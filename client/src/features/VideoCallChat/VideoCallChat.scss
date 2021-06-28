@@ -50,7 +50,7 @@
         padding: 10px;
         background-color: #fff;
         margin: 10px 0;
-        border-radius: 0px 5px 5px 20px;
+        border-radius: 0px 1.15rem 1.15rem 20px;
       }
     }
     &__owner-chat {
@@ -60,15 +60,14 @@
       justify-content: flex-end;
 
       & > div {
-        margin-left: 10px;
+        margin-right: 10px;
       }
       & > div > section {
         color: #fff;
-
         padding: 10px;
         background-color: #096609;
-        margin: 10px 0;
-        border-radius: 5px 20px 0px 5px;
+        margin: 5px 0;
+        border-radius: 1.15rem 20px 0px 1.15rem;
       }
     }
   }

@@ -85,7 +85,7 @@ const VideoCallChat = (props) => {
         </div>
         <div className="ctn-video-call-chat__chat-box__owner-chat">
           <div>
-            <b>You:</b>
+           
 
             <section>
               <p>Phu Nguyen Scam!! 🤬🤬</p>
