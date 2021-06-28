@@ -1,0 +1,109 @@
+.ctn-video-call-chat {
+  height: 100%;
+  width: 30%;
+  background-color: #e2e6ff;
+  border-radius: 8px;
+  color: black;
+  padding: 1em;
+  position: relative;
+
+  &__title {
+    height: 10%;
+    height: 10%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &__control {
+      & > button {
+        cursor: pointer;
+        margin: 5px;
+        height: 40px;
+        width: 110px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        background-color: transparent;
+      }
+      & > .active {
+        background-color: #bce7d3;
+        color: #096609;
+      }
+    }
+  }
+  &__chat-box {
+    overflow-y: auto;
+    height: 75%;
+    padding: 10px;
+
+    &__user-chat {
+      display: flex;
+      align-items: flex-start;
+
+      & > div {
+        margin-left: 10px;
+      }
+      & > div > section {
+        padding: 10px;
+        background-color: #fff;
+        margin: 10px 0;
+        border-radius: 0px 5px 5px 20px;
+      }
+    }
+    &__owner-chat {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      justify-content: flex-end;
+
+      & > div {
+        margin-left: 10px;
+      }
+      & > div > section {
+        color: #fff;
+
+        padding: 10px;
+        background-color: #096609;
+        margin: 10px 0;
+        border-radius: 5px 20px 0px 5px;
+      }
+    }
+  }
+  &__chat-field {
+    position: absolute;
+    bottom: 1em;
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    display: flex;
+    width: 93%;
+    border-radius: 15px;
+    align-items: center;
+    & > input {
+      padding: 10px;
+      border: none;
+      width: 90%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    & > div {
+      background-color: #096609;
+      height: 45px;
+      width: 45px;
+      border: none;
+      border-radius: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & > div > .icon {
+      font-size: 18px;
+      color: #fff;
+    }
+  }
+}
