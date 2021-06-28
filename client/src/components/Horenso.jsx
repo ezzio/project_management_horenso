@@ -30,12 +30,12 @@ function Horenso() {
                         <div className="character">
                             <img src={image} alt="avatar" />
                             <label>Thắng</label>
-                            <label className="sidebar__status__people sidebar__status__people--message">2</label>
+                            <div className="sidebar__status__people sidebar__status__people--message">2</div>
                         </div>
                         <div className="character">
                             <img src={image} alt="avatar" />
                             <label>Khoa</label>
-                            <label className="sidebar__status__people sidebar__status__people--message">1</label>
+                            <div className="sidebar__status__people sidebar__status__people--message">1</div>
                         </div>
                         <div className="character">
                             <img src={image} alt="avatar" />

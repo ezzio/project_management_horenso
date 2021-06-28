@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import Horenso from './components/Horeso';
+import Horenso from './components/Horenso';
 
 function App() {
   return (
