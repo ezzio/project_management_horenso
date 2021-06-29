@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import LoginFormPc from "/components/LoginFormPc";
-import HelpButton from "/components/HelpButton";
-import LoginSignUpButton from "/components/LoginSignUpButton";
+import LoginFormPc from "./components/LoginFormPc";
+import HelpButton from "./components/HelpButton";
+import LoginSignUpButton from "./components/LoginSignUpButton";
 
 function LoginScreenPc(props) {
   return (
