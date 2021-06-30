@@ -1,0 +1,123 @@
+@import "../../styles/Color.scss";
+
+.ctn-video-call-chat {
+  height: 100%;
+  width: 30%;
+  background-color: #fff;
+  border-radius: 8px;
+  color: black;
+  padding: 1em;
+  position: relative;
+
+  &__title {
+    height: 70px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &__control {
+      & > button {
+        cursor: pointer;
+        margin: 5px;
+        height: 40px;
+        width: 110px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        background-color: transparent;
+      }
+      & > .active {
+        background-color: $_PRIMARY;
+        color: #fff;
+      }
+    }
+  }
+  &__chat-box {
+    overflow-y: auto;
+    height: 75%;
+    padding: 10px;
+
+    &__from-them {
+      display: flex;
+      align-items: center;
+
+      & > div {
+        margin-left: 10px;
+
+        & > ul {
+          list-style: none;
+
+          & > li {
+            background-color: $_CTN_SECOND;
+            padding: 10px;
+            border-radius: 0 1.15rem 1.15rem 0;
+            margin: 3px 0;
+          }
+
+          & > li:first-child {
+            border-radius: 1.15rem 1.15rem 1.15rem 0;
+          }
+
+          & > li:last-child {
+            background-color: $_CTN_SECOND;
+            border-radius: 0 1.15rem 1.15rem 1.15rem;
+          }
+        }
+      }
+    }
+    &__owner-chat {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      justify-content: flex-end;
+
+      & > div {
+        margin-right: 10px;
+      }
+      & > div > section {
+        color: #fff;
+        padding: 10px;
+        background-color: $_PRIMARY;
+        margin: 5px 0;
+        border-radius: 1.15rem 20px 0px 1.15rem;
+      }
+    }
+  }
+  &__chat-field {
+    position: absolute;
+    bottom: 1em;
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    display: flex;
+    width: 93%;
+    border-radius: 15px;
+    align-items: center;
+    & > input {
+      padding: 10px;
+      border: none;
+      width: 90%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    & > div {
+      background-color: $_PRIMARY;
+      height: 45px;
+      width: 45px;
+      border: none;
+      border-radius: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & > div > .icon {
+      font-size: 18px;
+      color: #fff;
+    }
+  }
+}
