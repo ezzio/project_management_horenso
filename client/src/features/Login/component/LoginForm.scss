@@ -1,0 +1,155 @@
+.form {
+  display: flex;
+  border-width: 0px;
+  border-radius: 2px;
+  border-color: #ccc;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  border-style: solid;
+  flex-direction: column;
+  position: relative;
+  box-shadow: -2px 2px 1.5px 0.1px #000;
+
+  &__title {
+    padding: 16px;
+    padding-top: 24px;
+    justify-content: center;
+    width: 156px;
+    top: 0px;
+    height: 97px;
+    left: 173px;
+    flex-direction: column;
+    display: flex;
+    &__text {
+      font-size: 30px;
+      color: #000;
+      padding-bottom: 12px;
+      width: 142px;
+      height: 41px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__email-container {
+    top: 105px;
+    left: 63px;
+    width: 400px;
+    height: 68px;
+    position: absolute;
+    &__label {
+      top: 0px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 24px;
+      width: 125px;
+      font-size: 14px;
+    }
+  }
+
+  &__password-container {
+    top: 213px;
+    left: 63px;
+    width: 400px;
+    height: 45px;
+    position: absolute;
+    &__label {
+      top: 193px;
+      left: 63px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 20px;
+      width: 79px;
+      font-size: 14px;
+    }
+  }
+  &__login-github {
+    top: 362px;
+    left: 209px;
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(189, 16, 224, 1);
+    height: 25px;
+    width: 109px;
+  }
+}
+
+.email-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  padding-left: 16px;
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+    width: 121px;
+    height: 40px;
+    border: none;
+    background: transparent;
+  }
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.password-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  padding-left: 16px;
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+    width: 121px;
+    height: 40px;
+    border: none;
+    background: transparent;
+  }
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
