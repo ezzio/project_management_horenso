@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState , useRef , useEffect } from "react";
 import { AiOutlineTeam, AiFillSetting } from "react-icons/ai";
 import { GiExitDoor, GiSpeaker } from "react-icons/gi";
 import { RiVoiceprintFill, RiRecordCircleFill } from "react-icons/ri";
@@ -9,8 +9,24 @@ import PropTypes from "prop-types";
 import "./Videocall.scss";
 import VideoCallChat from "../VideoCallChat/VideoCallChat";
 const Videocall = (props) => {
+  const [audio, setaudio] = useState([]);
+  const videoEl = useRef(null);
+  function openStrem() {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+      let video = videoEl.current;
+      video.srcObject = stream;
+      video.play();
+    });
+  }
+  useEffect(() => {
+    if (!videoEl) {
+      return;
+    }
+    openStrem();
+  }, [videoEl]);
   return (
     <div className="ctn-video-call">
+      
       <div style={{ width: "70%", paddingRight: "1em" }}>
         <div className="ctn-video-call__title">
           <h2>Overview of new real estate proposals</h2>
@@ -40,6 +56,7 @@ const Videocall = (props) => {
           </div>
         </div>
         <div className="ctn-video-call__video-box">
+          <video ref={videoEl}></video>
           <div className="ctn-video-call__video-box__owner">
             <img
               src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/83162431_1059481474384512_829843550521786368_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=BBNtA7XUq3wAX9w0eb5&_nc_ht=scontent.fsgn8-1.fna&oh=c38b0b10530a46340cdb1c7ded257ada&oe=60DFC235"
