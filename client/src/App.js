@@ -2,7 +2,7 @@ import React from "react";
 
 import "./App.css";
 import SideBar from "./components/SideBar/SideBar";
-import So from "./pages/Horenso/So/So";
+import So from "./pages/Horenso/Metting/Metting";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {

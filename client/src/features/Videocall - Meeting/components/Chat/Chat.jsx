@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./VideoCallChat.scss";
+import "./Chat.scss";
 import { FiSend } from "react-icons/fi";
 
-const VideoCallChat = (props) => {
+const Chat = (props) => {
   return (
     <div className="ctn-video-call-chat">
       <div className="ctn-video-call-chat__title">
@@ -73,6 +73,6 @@ const VideoCallChat = (props) => {
   );
 };
 
-VideoCallChat.propTypes = {};
+Chat.propTypes = {};
 
-export default VideoCallChat;
+export default Chat;
