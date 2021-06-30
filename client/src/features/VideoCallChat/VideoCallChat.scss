@@ -2,12 +2,13 @@
 
 .ctn-video-call-chat {
   height: 100%;
-  width: 30%;
-  background-color: #fff;
+  width: 35%;
+  background-color: $_SECONDARY;
   border-radius: 8px;
   color: black;
   padding: 1em;
   position: relative;
+  box-shadow: $_SHADOW;
 
   &__title {
     height: 70px;
@@ -36,53 +37,60 @@
     }
   }
   &__chat-box {
+    display: flex;
     overflow-y: auto;
     height: 75%;
     padding: 10px;
+    flex-direction: column;
+    width: auto;
 
     &__from-them {
       display: flex;
-      align-items: center;
 
-      & > div {
-        margin-left: 10px;
+      & > .info {
+        display: flex;
+        align-items: center;
+      }
 
-        & > ul {
-          list-style: none;
+      & > .chat-text {
+        & > p {
+          width: fit-content;
+          background-color: #fff;
+          padding: 10px;
+          margin: 5px 0;
+          border-radius: 1.15rem;
+        }
 
-          & > li {
-            background-color: $_CTN_SECOND;
-            padding: 10px;
-            border-radius: 0 1.15rem 1.15rem 0;
-            margin: 3px 0;
-          }
-
-          & > li:first-child {
-            border-radius: 1.15rem 1.15rem 1.15rem 0;
-          }
-
-          & > li:last-child {
-            background-color: $_CTN_SECOND;
-            border-radius: 0 1.15rem 1.15rem 1.15rem;
-          }
+        & > p:nth-child(2) {
+          border-radius: 1.15rem 1.15rem 1.15rem 0;
+        }
+        & > p:last-child {
+          border-radius: 0 1.15rem 1.15rem 1.15rem;
         }
       }
     }
-    &__owner-chat {
+    &__from-me {
       display: flex;
-      align-items: flex-end;
-      width: 100%;
       justify-content: flex-end;
+      & > .chat-text {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        & > p {
+          color: white;
+          width: fit-content;
+          background-color: $_PRIMARY;
+          padding: 10px;
+          margin: 1px 0;
+          border-radius: 1.15rem;
+        }
 
-      & > div {
-        margin-right: 10px;
-      }
-      & > div > section {
-        color: #fff;
-        padding: 10px;
-        background-color: $_PRIMARY;
-        margin: 5px 0;
-        border-radius: 1.15rem 20px 0px 1.15rem;
+        & > p:nth-child(1) {
+          border-radius: 1.15rem 1.15rem 0rem 1.15rem;
+        }
+        & > p:last-child {
+          border-radius: 1.15rem 0 1.15rem 1.15rem;
+        }
       }
     }
   }
@@ -90,7 +98,7 @@
     position: absolute;
     bottom: 1em;
     padding: 10px;
-    border: none;
+    border: 1px solid #ccc;
     background-color: #fff;
     display: flex;
     width: 93%;

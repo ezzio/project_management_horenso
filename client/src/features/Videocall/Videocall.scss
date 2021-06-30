@@ -8,11 +8,10 @@
   background-color: $_CONTAINER;
   border-radius: 10px;
   padding: 1em;
-  box-shadow: $_SHADOW;
-  border: 1px solid #fff;
   &__title {
+    width: 97%;
     height: 10%;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ccc;
@@ -24,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    width: 97%;
     font-weight: bold;
 
     &__show-detail {
@@ -56,21 +55,30 @@
   }
 
   &__video-box {
-    background-image: url("https://scontent.fvca1-1.fna.fbcdn.net/v/t1.6435-9/62905490_874144142918247_3910632095977832448_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=6Ig5cn17FxkAX-cfGkv&tn=pDG68DIAaniiDuTb&_nc_ht=scontent.fvca1-1.fna&oh=0130557bf93df3961b60cd785e954464&oe=60DFDDB4");
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 80%;
     width: 100%;
     position: relative;
     border: none;
     border-radius: 20px;
-    padding: 30px;
+
+    &__camera {
+      border-radius: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      @media all and (display-mode: fullscreen) {
+      }
+    }
 
     &__owner {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       display: flex;
       height: 50px;
       justify-content: space-between;
-      width: 17%;
+      width: 15%;
       & > div {
         color: #fff;
         display: flex;
@@ -79,58 +87,29 @@
       }
     }
 
-    &__counting-time {
-      display: flex;
-      justify-content: space-between;
-      color: #fff;
-      padding: 10px 20px;
-      width: 110px;
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      border: none;
-      transform: translate(-45px, 0px);
-      border-radius: 10px;
-      font-weight: bold;
-      align-items: center;
-    }
-
     &__team-mate {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 50px;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      overflow: auto;
 
       & > div {
         position: relative;
         border: 3px solid #fff;
-        border-radius: 30px;
-        margin: 10px 0;
-        height: 100px;
-        width: 100px;
-
-        & > .icon {
-          position: absolute;
-          bottom: 0px;
-          right: 0px;
-          color: #fff;
-          background-color: $_SUCCESS;
-          height: 30px;
-          width: 30px;
-          border-radius: 10px;
-
-          &--red {
-            background-color: $_ERROR;
-          }
-        }
+        border-radius: 5px;
+        height: 70px;
+        width: 70px;
+        margin-bottom: 10px;
       }
     }
     &__controller {
       position: absolute;
       bottom: 20px;
       right: 50%;
-      transform: translate(270px, 0);
+      transform: translate(230px, 0);
       width: 50%;
       display: flex;
       justify-content: space-evenly;
@@ -183,7 +162,7 @@
 }
 
 .btn-opacity {
-  background-color: #99999970;
+  background-color: #99999998;
 
   &--red {
     background-color: #ff0000b4;
