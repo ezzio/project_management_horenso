@@ -1,15 +1,16 @@
+@import "../../styles/Color.scss";
+
 .ctn-video-call-chat {
   height: 100%;
   width: 30%;
-  background-color: #e2e6ff;
+  background-color: #fff;
   border-radius: 8px;
   color: black;
   padding: 1em;
   position: relative;
 
   &__title {
-    height: 10%;
-    height: 10%;
+    height: 70px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -29,8 +30,8 @@
         background-color: transparent;
       }
       & > .active {
-        background-color: #bce7d3;
-        color: #096609;
+        background-color: $_PRIMARY;
+        color: #fff;
       }
     }
   }
@@ -39,18 +40,32 @@
     height: 75%;
     padding: 10px;
 
-    &__user-chat {
+    &__from-them {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
 
       & > div {
         margin-left: 10px;
-      }
-      & > div > section {
-        padding: 10px;
-        background-color: #fff;
-        margin: 10px 0;
-        border-radius: 0px 1.15rem 1.15rem 20px;
+
+        & > ul {
+          list-style: none;
+
+          & > li {
+            background-color: $_CTN_SECOND;
+            padding: 10px;
+            border-radius: 0 1.15rem 1.15rem 0;
+            margin: 3px 0;
+          }
+
+          & > li:first-child {
+            border-radius: 1.15rem 1.15rem 1.15rem 0;
+          }
+
+          & > li:last-child {
+            background-color: $_CTN_SECOND;
+            border-radius: 0 1.15rem 1.15rem 1.15rem;
+          }
+        }
       }
     }
     &__owner-chat {
@@ -65,7 +80,7 @@
       & > div > section {
         color: #fff;
         padding: 10px;
-        background-color: #096609;
+        background-color: $_PRIMARY;
         margin: 5px 0;
         border-radius: 1.15rem 20px 0px 1.15rem;
       }
@@ -91,7 +106,7 @@
       }
     }
     & > div {
-      background-color: #096609;
+      background-color: $_PRIMARY;
       height: 45px;
       width: 45px;
       border: none;
