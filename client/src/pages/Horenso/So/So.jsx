@@ -1,5 +1,5 @@
 import React from "react";
-import Videocall from "../../../features/Videocall/Videocall";
+import Videocall from "../../../features/Videocall/Videocall.jsx";
 import "./So.scss";
 import "../../../styles/ContainerContents.scss";
 

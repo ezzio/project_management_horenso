@@ -1,7 +1,130 @@
 @import "../../styles/color.scss";
+
 .ctn-side-bar {
+  padding: 1px;
   width: 300px;
   height: 100%;
   background-color: $_CONTAINER;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #aaa;
+  padding: 0 30px;
+  position: relative;
+}
+
+.logo {
+  height: 10%;
+  width: 100%;
+
+  border-bottom: 1px solid #ccc;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: $_PRIMARY;
+}
+
+.selectors {
+  margin: 35px 0;
+
+  &__title {
+    color: #777;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__select {
+    list-style-type: none;
+    &__direct {
+      height: 45px;
+      width: 100%;
+      transition: 0.315s ease;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      background-color: $_SECONDARY;
+      border-radius: 10px;
+      margin: 10px 0;
+      justify-content: space-between;
+
+      &:hover {
+        background-color: $_PRIMARY;
+      }
+
+      & > p {
+        pointer-events: none;
+        margin-left: 15px;
+        font-weight: bold;
+      }
+
+      & > .icon {
+        pointer-events: none;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+a {
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+}
+
+.active {
+  background-color: $_PRIMARY;
+  pointer-events: none;
+  color: #fff;
+  padding: 0 30px;
+}
+
+.work-progress {
+  margin-top: 100px;
+  height: 15%;
+  width: 100%;
+  background-color: $_SECONDARY;
+  border-radius: 10px;
+  border: none;
+  padding: 25px;
+
+  & > b {
+    margin-bottom: 15px;
+  }
+
+  &__ctn-bar {
+    margin-top: 35px;
+    height: 5px;
+    width: 100%;
+    background: #fff;
+    &__loading {
+      position: relative;
+      height: 100%;
+      background-color: $_PRIMARY;
+
+      &__count {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 10px;
+        font-weight: bold;
+        transform: translate(0px, -13px);
+      }
+    }
+  }
+}
+
+.user {
+  cursor: pointer;
+  display: flex;
+  margin-top: 30px;
+  height: 7%;
+  padding: 10px;
+  width: 100%;
+  justify-content: space-evenly;
+  border-radius: 1.15rem;
+  border: 2px solid $_PRIMARY;
+  align-items: center;
+
+  & > img {
+    border-radius: 50%;
+  }
 }
