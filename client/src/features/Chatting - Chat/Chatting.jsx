@@ -12,7 +12,7 @@ import "../../styles/ContainerContents.scss";
 
 function Chatting() {
   return (
-    <div className="ctn ">
+    <div className="ctn">
       <div className="container">
         <div className="sidebar">
           <div className="sidebar__title">

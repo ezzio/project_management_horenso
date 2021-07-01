@@ -1,8 +1,11 @@
 import React from "react";
 import { AiFillSetting } from "react-icons/ai";
 import "./Header.scss";
+import propTypes from "prop-types";
 import { SiGooglehangoutsmeet } from "react-icons/si";
-const Header = () => {
+import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+
+const Header = ({ room }) => {
   return (
     <div className="header">
       <div className="header__title">
@@ -13,10 +16,13 @@ const Header = () => {
         <div className="header__control__time-tracker">
           <p>2:14</p> <p>•</p> <p>Th5, 01/07/2021</p>
         </div>
+        {room.length > 0 && <AiOutlineVideoCameraAdd className="icon" />}
         <AiFillSetting className="icon" />
       </div>
     </div>
   );
 };
-
+Header.propTypes = {
+  room: propTypes.array,
+};
 export default Header;
