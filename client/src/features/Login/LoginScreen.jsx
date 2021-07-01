@@ -8,7 +8,7 @@ function LoginScreen() {
     return (
         <div className='login'>
             <div className='login__form'>
-                <LoginForm></LoginForm>
+                <LoginForm />
             </div>
             <button className='help-btn' 
                     style={{
@@ -29,9 +29,10 @@ function LoginScreen() {
             <div className='login__signup'>
                 <span className='long__signup__text'>Don't have an account?</span>
             </div>
-            <button className='signup-btn' style={{
-                    height: 36,
-                    width: 100
+            <button className='signup-btn' 
+                    style={{
+                        height: 36,
+                        width: 100
                      }}>
                 <span className='ignup-btn__text'>Sign up</span>                
             </button>

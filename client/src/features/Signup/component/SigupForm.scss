@@ -1,0 +1,223 @@
+.form {
+  display: flex;
+  border-width: 1px;
+  border-radius: 2px;
+  border-color: #ccc;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  flex-direction: column;
+  border-style: solid;
+  box-shadow: -2px 2px 1.5px 0.1px #000;
+
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    color: #121212;
+    height: 42px;
+    width: 108px;
+    font-size: 30px;
+    margin-top: -456px;
+    margin-left: 213px;
+  }
+  &__fullname-container {
+    width: 440px;
+    height: 67px;
+    margin-top: 75px;
+    margin-left: 29px;
+    position: relative;
+
+    &__text {
+      top: 0px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 23px;
+      width: 93px;
+    }
+  }
+
+  &__icon {
+    height: 69px;
+    flex-direction: row;
+    display: flex;
+    margin-top: 31px;
+    margin-left: 27px;
+    margin-right: 33px;
+  }
+
+  &__email-containter {
+    width: 438px;
+    height: 45px;
+    margin-top: 51px;
+    margin-left: 29px;
+    position: relative;
+
+    &__text {
+      top: 0px;
+      left: 1px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 25px;
+      width: 76px;
+    }
+  }
+
+  &__password-container {
+    width: 438px;
+    height: 45px;
+    margin-top: 51px;
+    margin-left: 29px;
+    position: relative;
+  }
+
+  &__password-text {
+    font-style: normal;
+    font-weight: 400;
+    color: #121212;
+    height: 23px;
+    width: 82px;
+    margin-top: -162px;
+    margin-left: 68px;
+  }
+
+  &__signup-github {
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(189, 16, 224, 1);
+    height: 25px;
+    width: 126px;
+    margin-top: 165px;
+    margin-left: 204px;
+  }
+
+  &__tos {
+  }
+}
+
+.fullname-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  padding-left: 16px;
+
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+  }
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.password-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  padding-left: 16px;
+
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+  }
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.email-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  padding-left: 16px;
+
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+  }
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.signup-btn {
+  display: flex;
+  background-color: #3f51b5;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 2px;
+  min-width: 88px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-shadow: 0px 1px 5px 0.35px #000;
+
+  &__text {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+  }
+}
