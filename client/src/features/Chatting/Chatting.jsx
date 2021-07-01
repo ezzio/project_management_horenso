@@ -42,7 +42,7 @@ function Chatting() {
                             <div className="character">
                                 <img src={img} alt="avatar" />
                                 <label>Thắng</label>
-                                <label className="sidebar__status__people sidebar__status__people--message">2</label>
+                                <label className="sidebar__status__people sidebar__status__people--message">4</label>
                             </div>
                             <div className="character">
                                 <img src={img} alt="avatar" />
