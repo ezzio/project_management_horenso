@@ -62,6 +62,11 @@ function LoginForm() {
                 fontSize: 40
             }}
             ></EntypoIcon>
+            <div className='form__login-btn-container'>
+                <button className='login-btn'>
+                    <input className='login-btn__text' placeholder='Log In'></input>
+                </button>
+            </div>
             <span className='form__login-github'>Or login with Github</span>
         </div>
     )

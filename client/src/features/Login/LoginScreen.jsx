@@ -1,5 +1,6 @@
 import React from 'react'
 import "./LoginScreen.scss"
+import LoginForm from './component/LoginForm.jsx';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/dist/MaterialCommunityIcons";
 
 
