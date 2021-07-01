@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import SideBar from "./components/SideBar/SideBar";
+import So from "./pages/Horenso/Meeting/Meeting";
 import Ren from "./pages/Horenso/Ren/Ren";
-import So from "./pages/Horenso/So/So";
-
 
 function App() {
   return (
