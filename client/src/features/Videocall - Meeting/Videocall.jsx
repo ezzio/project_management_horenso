@@ -7,7 +7,7 @@ import { MdCallEnd } from "react-icons/md";
 import PropTypes from "prop-types";
 import "./Videocall.scss";
 import { openStream } from "./Videocall.js";
-import VideoCallChat from "../VideoCallChat/VideoCallChat";
+import Chat from "./components/Chat/Chat.jsx";
 
 const Videocall = (props) => {
   const videoEl = useRef(null);
@@ -103,7 +103,7 @@ const Videocall = (props) => {
         </div>
       </div>
 
-      <VideoCallChat />
+      <Chat />
     </div>
   );
 };

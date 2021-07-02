@@ -60,15 +60,12 @@
     position: relative;
     border: none;
     border-radius: 20px;
-
     &__camera {
       border-radius: 20px;
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
-      @media all and (display-mode: fullscreen) {
-      }
     }
 
     &__owner {
@@ -90,7 +87,7 @@
     &__team-mate {
       position: absolute;
       top: 20px;
-      right: 50px;
+      right: 40px;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -168,5 +165,20 @@
     background-color: #ff0000b4;
     height: 80px !important;
     width: 80px !important;
+  }
+}
+
+@media screen and (min-height: 1000px) {
+  .ctn-video-call__video-box__team-mate {
+    right: 0px;
+  }
+  .ctn-video-call__video-box__controller {
+    transform: translate(290px, 0);
+  }
+  .ctn-video-call__title {
+    width: 103%;
+  }
+  .ctn-video-call__control-user {
+    width: 103%;
   }
 }
