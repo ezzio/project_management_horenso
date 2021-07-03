@@ -113,7 +113,8 @@
       color: #fff;
       align-items: center;
 
-      & > div {
+      & > .control {
+        color: #fff;
         height: 60px;
         width: 60px;
         border: none;
@@ -159,6 +160,7 @@
 }
 
 .btn-opacity {
+  cursor: pointer;
   background-color: #99999998;
 
   &--red {
@@ -168,7 +170,7 @@
   }
 }
 
-@media screen and (min-height: 1000px) {
+@media all and (display-mode: fullscreen) {
   .ctn-video-call__video-box__team-mate {
     right: 0px;
   }

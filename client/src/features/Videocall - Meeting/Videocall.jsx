@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import "./Videocall.scss";
 import { openStream } from "./Videocall.js";
 import Chat from "./components/Chat/Chat.jsx";
-
+import { Link } from "react-router-dom";
 const Videocall = (props) => {
   const videoEl = useRef(null);
   useEffect(() => {
@@ -21,20 +21,20 @@ const Videocall = (props) => {
     <div className="ctn-video-call">
       <div style={{ width: "70%", paddingRight: "1em" }}>
         <div className="ctn-video-call__title">
-          <h2>Overview of new real estate proposals</h2>
+          <h2>Phân tích giai đoạn xây dựng giao diện người dùng</h2>
         </div>
         <div className="ctn-video-call__control-user">
           <div className="ctn-video-call__control-user__show-detail">
             <section>
               <AiOutlineTeam />
-              <p>Invited to the call: </p>
+              <p>Thành viên đang có mặt: </p>
               <div className="circle circle--green">
                 <p>6</p>
               </div>
             </section>
             <section>
               <GiExitDoor />
-              <p>Absent people:</p>
+              <p>Thành viên vắng mặt:</p>
               <div className="circle circle--red">
                 <p>2</p>
               </div>
@@ -44,7 +44,7 @@ const Videocall = (props) => {
             <div className="circle circle--green--bg">
               <p>+</p>
             </div>
-            <p>Add user to the Sodan</p>
+            <p>Thêm thành viên vào cuộc họp</p>
           </div>
         </div>
 
@@ -84,19 +84,19 @@ const Videocall = (props) => {
             </div>
           </div>
           <div className="ctn-video-call__video-box__controller">
-            <div className="btn-opacity">
+            <div className="btn-opacity control">
               <GiSpeaker />
             </div>
-            <div className="btn-opacity">
+            <div className="btn-opacity control">
               <FaMicrophoneSlash />
             </div>
-            <div className="btn-opacity--red">
+            <Link to="/meeting" className="btn-opacity--red control">
               <MdCallEnd />
-            </div>
-            <div className="btn-opacity">
+            </Link>
+            <div className="btn-opacity control">
               <FaVideoSlash />
             </div>
-            <div className="btn-opacity">
+            <div className="btn-opacity control">
               <AiFillSetting />
             </div>
           </div>

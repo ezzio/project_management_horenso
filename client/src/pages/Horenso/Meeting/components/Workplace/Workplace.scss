@@ -1,0 +1,125 @@
+@import "../../../../../styles/Color.scss";
+
+.workplace {
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  &__room {
+    position: relative;
+    cursor: pointer;
+    width: 490px;
+    height: fit-content;
+    margin: 40px;
+    box-shadow: $_SHADOW;
+    border-radius: 10px;
+    position: relative;
+
+    &:hover {
+      & > .dropdown {
+        height: 250px;
+        padding: 30px;
+      }
+    }
+
+    & > .name {
+      font-size: 20px;
+      font-weight: bold;
+      height: auto;
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      padding: 10px;
+      color: #fff;
+      background-color: $_PRIMARY;
+      text-align: center;
+    }
+
+    & > .dropdown {
+      height: 0px;
+      overflow: hidden;
+      transition: all 0.5s;
+      padding: 15px;
+
+      & > .description {
+        height: 150px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $_PRIMARY;
+        padding: 20px 10px;
+        position: relative;
+        & > b {
+          position: absolute;
+          top: -11px;
+          left: 50px;
+          z-index: 1;
+          background: white;
+          padding: 0 5px;
+        }
+
+        & > div {
+          height: 100%;
+          width: 100%;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+      }
+
+      & > .info {
+        display: flex;
+        height: 40px;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        & > .status {
+          font-weight: bold;
+          width: auto;
+          height: auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @keyframes glowGreen {
+            0% {
+              color: #fff;
+            }
+
+            50% {
+              color: $_SUCCESS;
+            }
+
+            100% {
+              color: #fff;
+            }
+          }
+          @keyframes glowRed {
+            0% {
+              color: #fff;
+            }
+
+            50% {
+              color: $_ERROR;
+            }
+
+            100% {
+              color: #fff;
+            }
+          }
+          & > .icon {
+            margin-right: 10px;
+          }
+          &--online {
+            color: $_SUCCESS;
+            & > .icon {
+              animation: 1.5s glowGreen infinite;
+            }
+          }
+          &--offline {
+            color: $_ERROR;
+            & > .icon {
+              animation: 1.5s glowRed infinite;
+            }
+          }
+        }
+      }
+    }
+  }
+}

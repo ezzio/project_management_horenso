@@ -1,15 +1,5 @@
 @import "../../styles/color.scss";
 
-.ctn-side-bar {
-  padding: 1px;
-  width: 300px;
-  height: 100%;
-  background-color: $_CONTAINER;
-  border-right: 1px solid #aaa;
-  padding: 0 30px;
-  position: relative;
-}
-
 .logo {
   height: 10%;
   width: 100%;
@@ -121,7 +111,6 @@ a {
   width: 100%;
   justify-content: space-evenly;
   border-radius: 1.15rem;
-  border: 2px solid $_PRIMARY;
   align-items: center;
 
   & > img {
