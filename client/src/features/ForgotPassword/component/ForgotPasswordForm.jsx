@@ -1,16 +1,14 @@
-import React from 'react'
+import React from 'react';
+import {AiOutlineMail} from 'react-icons/ai';
 
 function ForgotPasswordForm() {
     return (
         <div className='form'>
             <div className='form__icon-container'>
-                <EntypoIcon
-                    name="mail"
-                    style={{
-                    color: "rgba(128,128,128,1)",
+                <AiOutlineMail style={{
                     fontSize: 40
                 }}
-                ></EntypoIcon>
+                ></AiOutlineMail>
                 <div className='email-textbox'
                     style={{
                         height: 45,

@@ -1,6 +1,8 @@
 import React from 'react'
-import MaterialIconsIcon from "react-native-vector-icons/dist/MaterialIcons";
-import EntypoIcon from "react-native-vector-icons/dist/Entypo";
+// import MaterialIconsIcon from "react-native-vector-icons/dist/MaterialIcons";
+// import EntypoIcon from "react-native-vector-icons/dist/Entypo";
+import {AiOutlineMail, AiOutlineLock} from 'react-icons/ai';
+import { BsPerson } from 'react-icons/bs'
 
 function SignUpForm() {
     return (
@@ -22,26 +24,20 @@ function SignUpForm() {
                     <input className='fullname-textbox__input'></input>
                 </div>
                 <span className='form__fullname-container__text'>Full Name</span>
-                <MaterialIconsIcon
-                    name="person"
-                    style={{
+                <BsPerson style={{
                         top: 27,
                         left: 0,
                         position: "absolute",
-                        color: "rgba(128,128,128,1)",
                         fontSize: 40
                     }}
-                ></MaterialIconsIcon>
+                ></BsPerson>
             </div>
             <div className='form__icon'>
-                <EntypoIcon
-                name="mail"
-                style={{
-                    color: "rgba(128,128,128,1)",
+                <AiOutlineMail style={{
                     fontSize: 40,
                     marginTop: 24
                 }}
-                ></EntypoIcon>
+                ></AiOutlineMail>
             </div>
             <div className='form__email-container'>
                 <div className='email-textbox'
@@ -75,16 +71,12 @@ function SignUpForm() {
                     <span className='password-textbox__text'>*****</span>
                     <input className='password-textbox__input'></input>
                 </div>
-                <EntypoIcon
-                    name="lock"
-                    style={{
+                <AiOutlineLock style={{
                     top: 0,
                     left: 0,
                     position: "absolute",
-                    color: "rgba(128,128,128,1)",
-                    fontSize: 40
-                }}
-                ></EntypoIcon>   
+                    fontSize: 40}}
+                ></AiOutlineLock>
             </div> 
             <button className='signup-btn'
                 style={{

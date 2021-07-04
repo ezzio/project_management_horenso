@@ -1,6 +1,7 @@
 import React from 'react'
 import './ForgotPasswordScreen.scss'
 import ForgotPasswordForm from './component/ForgotPasswordForm.jsx'
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
 function ForgotPasswordScreen() {
     return (
@@ -18,7 +19,14 @@ function ForgotPasswordScreen() {
                         width: 60,
                         marginLeft: 11,
                         marginTop: 239
-                        }}>
+                    }}>
+                        <AiOutlineQuestionCircle 
+                            style={{
+                                color: "#fff",
+                                fontSize: 24
+                            }}
+                        ></AiOutlineQuestionCircle>    
+                        <span className='help-btn__text'>Help</span>
                 </button>
             </div>
             <input className='forgotpassword__slogan' placeholder='This is the slogan'></input>

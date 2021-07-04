@@ -1,7 +1,7 @@
 import React from 'react';
 import './SignupScreen.scss';
 import SignupForm from './component/SignupForm.jsx'
-import MaterialCommunityIconsIcon from "react-native-vector-icons/dist/MaterialCommunityIcons";
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 function SignupScreen() {
     return (
@@ -20,13 +20,10 @@ function SignupScreen() {
                         width: 100,
                         marginLeft: 6
                     }}>
-                <MaterialCommunityIconsIcon
-                    name="comment-question"
-                    style={{
-                        color: "#fff",
+                <AiOutlineQuestionCircle style={{
                         fontSize: 24
                     }}
-                ></MaterialCommunityIconsIcon>
+                ></AiOutlineQuestionCircle>
                 <span className='help-btn__text'>Help</span>
             </button>
             <div className='Signup__already-joined'>

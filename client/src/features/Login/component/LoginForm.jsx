@@ -1,6 +1,6 @@
 import React from 'react'
 import './LoginForm.scss'
-import EntypoIcon from "react-native-vector-icons/dist/Entypo";
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 function LoginForm() {
     return (
@@ -42,26 +42,19 @@ function LoginForm() {
                 </div>
                 <span className='form__password-container__label'>Password</span>
             </div>
-            <EntypoIcon
-                name="mail"
-                style={{
+            <AiOutlineMail style={{
                 top: 129,
                 left: 23,
                 position: "absolute",
-                color: "rgba(128,128,128,1)",
-                fontSize: 40
-                }}
-            ></EntypoIcon>
-            <EntypoIcon
-                name="lock"
-                style={{
+                fontSize: 40}}
+            ></AiOutlineMail>
+            <AiOutlineLock style={{
                 top: 213,
                 left: 23,
                 position: "absolute",
-                color: "rgba(128,128,128,1)",
                 fontSize: 40
-            }}
-            ></EntypoIcon>
+            }}>
+            </AiOutlineLock>
             <div className='form__login-btn-container'>
                 <button className='login-btn'>
                     <input className='login-btn__text' placeholder='Log In'></input>
