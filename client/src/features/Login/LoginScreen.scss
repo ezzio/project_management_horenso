@@ -9,7 +9,7 @@
   width: 100vw;
 
   &__form {
-    height: 399px;
+    height: 400px;
     flex-direction: row;
     display: flex;
     margin-top: 72px;
@@ -21,9 +21,10 @@
     height: 36px;
     flex-direction: row;
     display: flex;
-    margin-top: -561px;
-    margin-left: 1002px;
+    margin-top: -590px;
+    margin-left: 1430px;
     margin-right: 112px;
+
     &__text {
       font-style: normal;
       font-weight: 400;
@@ -38,20 +39,24 @@
     height: 60px;
     flex-direction: row;
     display: flex;
-    margin-top: 557px;
-    margin-left: 503px;
-    margin-right: -516px;
+    margin-top: 600px;
+    margin-left: 770px;
+    // margin-right: -516px;
     &__stack {
-      width: 159px;
+      width: 200px;
       height: 39px;
       position: relative;
       &__text {
         height: 60px;
         flex-direction: row;
         display: flex;
-        margin-top: 557px;
-        margin-left: 503px;
-        margin-right: -516px;
+        // margin-top: 557px;
+        // margin-left: 503px;
+        // margin-right: -516px;
+        color: white;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 24px;
       }
     }
   }
@@ -68,7 +73,7 @@
   box-shadow: 0px 1px 5px 0.35px #000;
   &__text {
     top: 30px;
-    left: 14px;
+    left: 11px;
     position: absolute;
     font-style: normal;
     font-weight: 700;
@@ -88,10 +93,13 @@
   padding-right: 16px;
   border-top-left-radius: 0px;
   box-shadow: 0px 1px 5px 0.35px #000;
+  margin-left: 1600px;
+  height: 40px;
+  margin-top: -50px;
   &__text {
     color: rgba(144, 19, 254, 1);
     font-size: 14px;
-    width: 49px;
+    width: 55px;
     height: 17px;
     align-self: center;
     font-style: normal;

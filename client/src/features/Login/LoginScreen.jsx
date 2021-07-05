@@ -13,8 +13,8 @@ function LoginScreen() {
                     style={{
                         height: 60,
                         width: 60,
-                        marginLeft: 13,
-                        marginTop: 325  
+                        left: 1130,
+                        top: -11 
                     }}>
                 <AiOutlineQuestionCircle style={{
                         fontSize: 24
@@ -25,16 +25,12 @@ function LoginScreen() {
             <div className='login__signup'>
                 <span className='long__signup__text'>Don't have an account?</span>
             </div>
-            <button className='signup-btn' 
-                    style={{
-                        height: 36,
-                        width: 100
-                     }}>
-                <span className='ignup-btn__text'>Sign up</span>                
+            <button className='signup-btn'>
+                <span className='signup-btn__text'>Sign up</span>                
             </button>
             <div className='login__slogan-row'>
                 <div className='login__slogan-row__stack'>
-                    <input className='login__slogan-row__stack__text'>This is the slogan</input>
+                    <span className='login__slogan-row__stack__text'>This is the slogan</span>
                 </div>
             </div>
         </div>

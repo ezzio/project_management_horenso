@@ -20,12 +20,12 @@ function LoginForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__text' placeholder='Enter your email'></input>
-                    <input className='email-textbox__input'></input>
+                    <input className='email-textbox__input' placeholder='Enter your email'></input>
                 </div>
                 <span className='form__email-container__label'>Email</span>
             </div>
             <div className='form__password-container'>
+                <span className='form__password-container__label'>Password</span>
                 <div className='password-textbox' 
                     style={{
                         height: 45,
@@ -37,10 +37,8 @@ function LoginForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                        <input className='password-textbox__text' placeholder='Enter password'></input>
-                        <input className='password-textbox__input'></input>
+                        <input className='password-textbox__input' placeholder='Enter password'></input>
                 </div>
-                <span className='form__password-container__label'>Password</span>
             </div>
             <AiOutlineMail style={{
                 top: 129,
@@ -57,10 +55,10 @@ function LoginForm() {
             </AiOutlineLock>
             <div className='form__login-btn-container'>
                 <button className='login-btn'>
-                    <input className='login-btn__text' placeholder='Log In'></input>
+                    <span className='login-btn__text'>Log In</span>
                 </button>
             </div>
-            <span className='form__login-github'>Or login with Github</span>
+            <a className='form__login-github' href='https://www.google.com'>Or login with Github</a>
         </div>
     )
 }
