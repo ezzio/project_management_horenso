@@ -1,3 +1,5 @@
+@import "../../../styles/Color.scss";
+
 .meeting {
   padding-left: 20px;
 
@@ -5,5 +7,29 @@
     height: 500px;
     width: 500px;
     margin: 100px auto;
+
+    &__new-room {
+      margin-top: 15px;
+      height: 45px;
+      width: fit-content;
+      padding: 10px;
+      background-color: $_PRIMARY;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      & > .icon {
+        color: white;
+        margin-right: 7px;
+        font-size: 20px;
+      }
+      &:hover {
+        background-color: $_HOVER_PRIMARY;
+      }
+    }
   }
 }

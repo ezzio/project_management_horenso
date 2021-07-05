@@ -10,7 +10,7 @@
   position: relative;
   box-shadow: $_SHADOW;
 
-  @media screen and (min-height: 1000px) {
+  @media all and (display-mode: fullscreen) {
     width: 27%;
     .ctn-video-call-chat__title {
       height: 130px;

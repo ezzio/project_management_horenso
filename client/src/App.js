@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import SideBar from "./components/SideBar/SideBar";
-import So from "./pages/Horenso/Meeting/Meeting";
-import Ren from "./pages/Horenso/Ren/Ren";
+import Meeting from "./pages/Horenso/Meeting/Meeting";
+import Chat from "./pages/Horenso/Chat/Chat";
+import ProjectChecking from "./pages/Kanban/ProjectChecking/ProjectChecking";
 
 function App() {
   return (
@@ -13,10 +14,13 @@ function App() {
 
         <Switch>
           <Route path="/meeting">
-            <So />
+            <Meeting />
           </Route>
           <Route path="/chat">
-            <Ren />
+            <Chat />
+          </Route>
+          <Route path="/kanban">
+            <ProjectChecking />
           </Route>
         </Switch>
       </div>
