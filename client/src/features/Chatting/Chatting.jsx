@@ -1,20 +1,24 @@
-import React from 'react'
-import './Chatting.scss'
+import React, { useState } from 'react';
+import { BsToggleOn } from "react-icons/bs";
+import { FiSettings } from "react-icons/fi";
+import { IoMdSend, IoIosArrowDown } from "react-icons/io";
+import { FaTimes, FaFacebookMessenger } from "react-icons/fa";
+import img from '../../assets/images/avatar.jpg';
 import image from '../../assets/images/nguyen.jpg';
 import images from '../../assets/images/Pum.jpg';
-import img from '../../assets/images/avatar.jpg';
-import {AiOutlineMail} from "react-icons/ai";
-import {IoMdSend} from "react-icons/io";
-import {FiSettings} from "react-icons/fi";
-import {BsPeopleCircle} from "react-icons/bs";
-import {BsToggleOn} from "react-icons/bs";
+import './Chatting.scss';
+import Header from '../../pages/Horenso/Meeting/components/Header';
 
 function Chatting() {
+    const [click, setClick] = useState(false);
+    const handleClick = () => setClick(!click);
     return (
         <div className="ctn">
+            <Header />
             <div className="container">
                 <div className="sidebar">
                     <div className="sidebar__title">
+                        <FaFacebookMessenger className="title-icon"/>
                         <p>CHATTING ROOM</p>
                     </div>
                     <div className="sidebar__content">
@@ -37,33 +41,46 @@ function Chatting() {
                         <div className="sidebar__status__online">
                             <label className="word">Online</label>
                             <div className="online">3</div>
+                            <div className = "sidebar-icon" onClick = {handleClick}>
+                                {click ? <FaTimes /> : <IoIosArrowDown />}
+                            </div>
                         </div>
                         <div className="sidebar__status__people">
-                            <div className="character">
-                                <img src={img} alt="avatar" />
-                                <label>Thắng</label>
-                                <label className="sidebar__status__people sidebar__status__people--message">4</label>
+                            <div className="onlineCharacter">
+                                <div className="character">
+                                    <img src={img} alt="avatar" />
+                                    <label>Thắng</label>
+                                    <label className="sidebar__status__people sidebar__status__people--message">4</label>
+                                </div>
+                                <div className="character">
+                                    <img src={img} alt="avatar" />
+                                    <label>Khoa</label>
+                                    <label className="sidebar__status__people sidebar__status__people--message">2</label>
+                                </div>
+                                <div className="character">
+                                    <img src={img} alt="avatar" />
+                                    <label>Minh</label>
+                                    <label></label>
+                                </div>
                             </div>
-                            <div className="character">
-                                <img src={img} alt="avatar" />
-                                <label>Khoa</label>
-                                <label className="sidebar__status__people sidebar__status__people--message">2</label>
+                            <div className="offlineCharacter">
+                                <div className="character character--offline">
+                                    <img src={img} alt="avatar" />
+                                    <label>Nhut</label>
+                                    <label></label>
+                                </div>
+                                <div className="character character--offline">
+                                    <img src={img} alt="avatar" />
+                                    <label>Nhut</label>
+                                    <label></label>
+                                </div>
+                                <div className="character character--offline">
+                                    <img src={img} alt="avatar" />
+                                    <label>Nhut</label>
+                                    <label></label>
+                                </div>
                             </div>
-                            <div className="character">
-                                <img src={img} alt="avatar" />
-                                <label>Minh</label>
-                                <label></label>
-                            </div>
-                            <div className="character character--offline">
-                                <img src={img} alt="avatar" />
-                                <label>Nhut</label>
-                                <label></label>
-                            </div>
-                            <div className="character character--offline">
-                                <img src={img} alt="avatar" />
-                                <label>Nhut</label>
-                                <label></label>
-                            </div>
+                            
                         </div> 
                     </div>
                 </div>
@@ -108,7 +125,7 @@ function Chatting() {
                         </div>
                     </div>
                 </div>
-                <div className="rightSidebar">
+                {/* <div className="rightSidebar">
                     <div className="rightSidebar__info">
                         <div className="rightSidebar__info__avatar">
                             <img src={images} alt="avatar" />
@@ -124,7 +141,7 @@ function Chatting() {
                     </div>
                     <div className="rightSidebar__flowChart">
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
