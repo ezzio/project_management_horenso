@@ -1,24 +1,20 @@
 import React from 'react';
-import './SignupScreen.scss';
-import SignupForm from './component/SignupForm.jsx'
+import "./SignupScreen.scss";
+import LoginForm from './component/SignupForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 function SignupScreen() {
     return (
-        <div className='Signup'>
-            <div className='Signup__form'>
-                <SignupForm 
-                    style={{
-                        width: 500,
-                        height: 510
-                    }}
-                ></SignupForm>
+        <div className='signup'>
+            <div className='signup__form'>
+                <LoginForm />
             </div>
-            <button className='help-btn'
+            <button className='help-btn' 
                     style={{
-                        height: 36,
-                        width: 100,
-                        marginLeft: 6
+                        height: 60,
+                        width: 60,
+                        left: 1130,
+                        top: 90 
                     }}>
                 <AiOutlineQuestionCircle style={{
                         fontSize: 24
@@ -26,12 +22,13 @@ function SignupScreen() {
                 ></AiOutlineQuestionCircle>
                 <span className='help-btn__text'>Help</span>
             </button>
-            <div className='Signup__already-joined'>
-                <span className='Signup__already-joined__text'>Already joined?</span>
-                <button className='login-btn'>
-                    <span className='login-btn__text'>Login</span>
-                </button>
+            <div className='signup__login'>
+                <span className='signup__login__text'>Already joined?</span>
             </div>
+            <button className='logon-btn'>
+                <span className='logon-btn__text'>Login</span>                
+            </button>
+            
         </div>
     )
 }

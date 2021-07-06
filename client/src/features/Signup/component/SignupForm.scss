@@ -1,101 +1,127 @@
 .form {
+  height: 500px;
+  width: 520px;
   display: flex;
-  border-width: 1px;
+  border-width: 0px;
   border-radius: 2px;
   border-color: #ccc;
   flex-wrap: nowrap;
   background-color: #fff;
   overflow: hidden;
-  flex-direction: column;
   border-style: solid;
+  flex-direction: column;
+  position: relative;
   box-shadow: -2px 2px 1.5px 0.1px #000;
+  margin-left: 270px;
+  margin-top: 50px;
 
   &__title {
-    font-style: normal;
-    font-weight: 700;
-    color: #121212;
-    height: 42px;
-    width: 108px;
-    font-size: 30px;
-    margin-top: -456px;
-    margin-left: 213px;
-  }
-  &__fullname-container {
-    width: 440px;
-    height: 67px;
-    margin-top: 75px;
-    margin-left: 29px;
-    position: relative;
-
+    padding: 16px;
+    padding-top: 24px;
+    justify-content: center;
+    width: 156px;
+    top: 0px;
+    height: 97px;
+    left: 173px;
+    flex-direction: column;
+    display: flex;
     &__text {
+      margin-left: 185px;
+      font-size: 30px;
+      color: #000;
+      padding-bottom: 12px;
+      width: 142px;
+      height: 41px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__email-container {
+    top: 180px;
+    left: 63px;
+    width: 400px;
+    height: 68px;
+    position: absolute;
+    &__label {
       top: 0px;
       left: 0px;
       position: absolute;
       font-style: normal;
       font-weight: 400;
       color: #121212;
-      height: 23px;
-      width: 93px;
-    }
-  }
-
-  &__icon {
-    height: 69px;
-    flex-direction: row;
-    display: flex;
-    margin-top: 31px;
-    margin-left: 27px;
-    margin-right: 33px;
-  }
-
-  &__email-containter {
-    width: 438px;
-    height: 45px;
-    margin-top: 51px;
-    margin-left: 29px;
-    position: relative;
-
-    &__text {
-      top: 0px;
-      left: 1px;
-      position: absolute;
-      font-style: normal;
-      font-weight: 400;
-      color: #121212;
-      height: 25px;
-      width: 76px;
+      height: 24px;
+      width: 125px;
+      font-size: 14px;
     }
   }
 
   &__password-container {
-    width: 438px;
+    top: 213px;
+    left: 63px;
+    width: 400px;
     height: 45px;
-    margin-top: 51px;
-    margin-left: 29px;
-    position: relative;
+    position: absolute;
+    &__label {
+      top: 60px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 20px;
+      width: 79px;
+      font-size: 14px;
+    }
   }
-
-  &__password-text {
-    font-style: normal;
-    font-weight: 400;
-    color: #121212;
-    height: 23px;
-    width: 82px;
-    margin-top: -162px;
-    margin-left: 68px;
-  }
-
-  &__signup-github {
+  &__login-github {
+    top: 450px;
+    left: 209px;
+    position: absolute;
     font-style: normal;
     font-weight: 400;
     color: rgba(189, 16, 224, 1);
-    height: 25px;
-    width: 126px;
-    margin-top: 165px;
-    margin-left: 204px;
+    height: 30px;
+    width: 150px;
+    left: 195px;
   }
 
-  &__tos {
+  &__login-btn-container {
+    top: 380px;
+    left: 63px;
+    width: 400px;
+    height: 100px;
+    position: absolute;
+  }
+
+  &__fullname-container {
+    top: 80px;
+    left: 63px;
+    width: 400px;
+    height: 68px;
+    position: absolute;
+    &__label {
+      top: 20px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 24px;
+      width: 125px;
+      font-size: 14px;
+    }
+  }
+  &__footer {
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    height: 25px;
+    width: 520px;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgba(155, 155, 155, 1);
+    margin-top: 400px;
   }
 }
 
@@ -105,8 +131,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  padding-left: 16px;
-
+  // padding-left: 16px;
   &__text {
     font-size: 16px;
     line-height: 16px;
@@ -115,41 +140,10 @@
     color: #000;
     opacity: 0.5;
     align-self: flex-start;
-  }
-
-  &__input {
-    color: #000;
-    padding-right: 5px;
-    font-size: 16px;
-    align-self: stretch;
-    flex: 1 1 0%;
-    line-height: 16px;
-    padding-top: 14px;
-    padding-bottom: 8px;
-    padding-left: 30px;
+    width: 121px;
+    height: 40px;
     border: none;
     background: transparent;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.password-textbox {
-  display: flex;
-  border-bottom-width: 1px;
-  border-color: #d9d5dc;
-  background-color: transparent;
-  flex-direction: row;
-  padding-left: 16px;
-
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    color: #000;
-    opacity: 0.5;
-    align-self: flex-start;
   }
   &__input {
     color: #000;
@@ -165,6 +159,7 @@
     background: transparent;
     display: flex;
     flex-direction: column;
+    left: 20px;
   }
 }
 
@@ -174,8 +169,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  padding-left: 16px;
-
+  // padding-left: 16px;
   &__text {
     font-size: 16px;
     line-height: 16px;
@@ -184,8 +178,11 @@
     color: #000;
     opacity: 0.5;
     align-self: flex-start;
+    width: 121px;
+    height: 40px;
+    border: none;
+    background: transparent;
   }
-
   &__input {
     color: #000;
     padding-right: 5px;
@@ -202,22 +199,66 @@
     flex-direction: column;
   }
 }
-.signup-btn {
+.password-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  // padding-left: 16px;
+  &__text {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: #000;
+    opacity: 0.5;
+    align-self: flex-start;
+    width: 121px;
+    height: 40px;
+    border: none;
+    background: transparent;
+  }
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.login-btn {
   display: flex;
   background-color: #3f51b5;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   border-radius: 2px;
-  min-width: 88px;
+  width: 400px;
+  height: 50px;
   padding-left: 16px;
   padding-right: 16px;
   box-shadow: 0px 1px 5px 0.35px #000;
 
   &__text {
     color: #fff;
-    font-size: 16px;
+    font-size: 17px;
+    width: 57px;
+    height: 29px;
+    text-align: center;
     font-style: normal;
     font-weight: 700;
+    border: none;
+    background: transparent;
+    margin-top: 10px;
   }
 }

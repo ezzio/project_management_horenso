@@ -1,102 +1,92 @@
 import React from 'react'
-// import MaterialIconsIcon from "react-native-vector-icons/dist/MaterialIcons";
-// import EntypoIcon from "react-native-vector-icons/dist/Entypo";
-import {AiOutlineMail, AiOutlineLock} from 'react-icons/ai';
+import './SignupForm.scss'
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
 
-function SignUpForm() {
+function SignupForm() {
     return (
         <div className='form'>
-            <span className='form__title'>Let's go</span>
-            <div className='form__fullname-container'>
-                <div className='fullname-textbox'
-                    style={{
-                        height: 45,
-                        width: 400,
-                        position: "absolute",
-                        left: 1,
-                        top: 22,
-                        borderWidth: 1,
-                        borderColor: "#000000",
-                        borderStyle: "solid"
-                    }}>
-                    <span className='fullname-textbox__text'>John Smith</span>
-                    <input className='fullname-textbox__input'></input>
-                </div>
-                <span className='form__fullname-container__text'>Full Name</span>
-                <BsPerson style={{
-                        top: 27,
-                        left: 0,
-                        position: "absolute",
-                        fontSize: 40
-                    }}
-                ></BsPerson>
-            </div>
-            <div className='form__icon'>
-                <AiOutlineMail style={{
-                    fontSize: 40,
-                    marginTop: 24
-                }}
-                ></AiOutlineMail>
+            <div className='form__title'>
+                <span className='form__title__text'>Let's Go!</span>
             </div>
             <div className='form__email-container'>
-                <div className='email-textbox'
+                <div className='email-textbox' 
                     style={{
                         height: 45,
                         width: 400,
                         position: "absolute",
                         left: 0,
+                        top: 28,
                         borderWidth: 1,
                         borderColor: "#000000",
-                        top: 24,
                         borderStyle: "solid"
-                    }}>
-                    <span className='email-textbox__text'>example@mail.com</span>
-                    <input className='email-textbox__input'></input>    
+                }}>
+                    <input className='email-textbox__input' placeholder='example@mail.com'></input>
                 </div>
-                <span className='form__email-container__text'></span>  
+                <span className='form__email-container__label'>Email</span>
             </div>
             <div className='form__password-container'>
-                <div className='password-textbox'
+                <span className='form__password-container__label'>Password</span>
+                <div className='password-textbox' 
                     style={{
                         height: 45,
                         width: 400,
                         position: "absolute",
-                        left: 38,
-                        top: 0,
+                        left: 0,
+                        top: 80,
                         borderWidth: 1,
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                    <span className='password-textbox__text'>*****</span>
-                    <input className='password-textbox__input'></input>
+                        <input className='password-textbox__input' placeholder='*****'></input>
                 </div>
-                <AiOutlineLock style={{
-                    top: 0,
-                    left: 0,
-                    position: "absolute",
-                    fontSize: 40}}
-                ></AiOutlineLock>
-            </div> 
-            <button className='signup-btn'
-                style={{
-                    height: 45,
-                    width: 400,
-                    marginTop: 49,
-                    marginLeft: 69
+            </div>
+            <div className='form__fullname-container'>
+                <span className='form__fullname-container__label'>Full Name</span>
+                <div className='fullname-textbox' style={{
+                        height: 45,
+                        width: 400,
+                        position: "absolute",
+                        left: 0,
+                        top: 40,
+                        borderWidth: 1,
+                        borderColor: "#000000",
+                        borderStyle: "solid"
+                    }}>
+                    <input className='fullname-textbox__input' placeholder="John Smith"></input>
+                </div>
+            </div>
+            <AiOutlineMail style={{
+                top: 213,
+                left: 20,
+                position: "absolute",
+                fontSize: 40}}
+            ></AiOutlineMail>
+            <AiOutlineLock style={{
+                top: 293,
+                left: 23,
+                position: "absolute",
+                fontSize: 40
             }}>
-                <span className='signup-btn__text'></span>
-            </button>       
-            <span className='form__password-text'></span>
-            <span className='signup-github'>or signup with Github</span>
-            <span className='form__tos'>
-                By clicking the button above, you agree to our 
-                <span style={{fontStyle: 'italic'}}>Terms of Service</span> 
-                and
-                <span style={{fontStyle: 'italic'}}>Privacy Policy</span>
+            </AiOutlineLock>
+            <BsPerson style={{
+                top: 120,
+                left: 20,
+                position: "absolute",
+                fontSize: 40
+                }}>
+            </BsPerson>
+            <div className='form__login-btn-container'>
+                <button className='login-btn'>
+                    <span className='login-btn__text'>Log In</span>
+                </button>
+            </div>
+            <a className='form__login-github' href='https://www.google.com'>Or login with Github</a>
+            <span className='form__footer'>By clicking the button above, you agree to our 
+                <a href='https://www.google.com'> Terms of Service</a> and <a href='https://www.google.com'>Privacy Policy</a>
             </span>
         </div>
     )
 }
 
-export default SignUpForm
+export default SignupForm
