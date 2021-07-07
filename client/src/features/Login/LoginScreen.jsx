@@ -23,7 +23,7 @@ function LoginScreen() {
                 <span className='help-btn__text'>Help</span>
             </button>
             <div className='login__signup'>
-                <span className='long__signup__text'>Don't have an account?</span>
+                <span className='login__signup__text'>Don't have an account?</span>
             </div>
             <button className='signup-btn'>
                 <span className='signup-btn__text'>Sign up</span>                

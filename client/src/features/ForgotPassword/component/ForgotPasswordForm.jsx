@@ -1,38 +1,41 @@
-import React from 'react';
-import {AiOutlineMail} from 'react-icons/ai';
+import React from 'react'
+import './ForgotPasswordForm.scss'
+import { AiOutlineMail } from 'react-icons/ai';
 
 function ForgotPasswordForm() {
     return (
         <div className='form'>
-            <div className='form__icon-container'>
-                <AiOutlineMail style={{
-                    fontSize: 40
-                }}
-                ></AiOutlineMail>
-                <div className='email-textbox'
+            <div className='form__title'>
+                <span className='form__title__text'>Welcome!</span>
+            </div>
+            <div className='form__email-container'>
+                <div className='email-textbox' 
                     style={{
                         height: 45,
                         width: 400,
+                        position: "absolute",
+                        left: 0,
+                        top: 23,
                         borderWidth: 1,
                         borderColor: "#000000",
                         borderStyle: "solid"
-                    }}>
-                    <span className='email-textbox__text'>Enter your email</span>
-                    <input className='email-textbox__input'></input>
-                </div>
-            </div>
-            <button className='sendlink-btn'
-                style={{
-                    height: 45,
-                    width: 400,
-                    marginTop: 31,
-                    marginLeft: 64
                 }}>
-                <span className='sendlink-btn__text'>Send me the link</span>
-            </button>
-            <span className='form__email-text'>Email</span>
-            <span className='form__signin'>Or Sign In</span>
-            <span className='form__title'>Welcome!</span>
+                    <input className='email-textbox__input' placeholder='Enter your email'></input>
+                </div>
+                <span className='form__email-container__label'>Email</span>
+            </div>
+            <AiOutlineMail style={{
+                top: 129,
+                left: 23,
+                position: "absolute",
+                fontSize: 40}}
+            ></AiOutlineMail>
+            <div className='form__login-btn-container'>
+                <button className='sendlink-btn'>
+                    <span className='sendlink-btn__text'>Send me the link</span>
+                </button>
+            </div>
+            <a className='form__login' href='https://www.google.com'>Or Log in</a>
         </div>
     )
 }

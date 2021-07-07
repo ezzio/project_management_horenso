@@ -1,43 +1,40 @@
-import React from 'react'
+import React from 'react';
 import './ForgotPasswordScreen.scss'
-import ForgotPasswordForm from './component/ForgotPasswordForm.jsx'
-import { AiOutlineQuestionCircle } from 'react-icons/ai'
+import LoginForm from './component/ForgotPasswordForm.jsx'
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
-function ForgotPasswordScreen() {
+function LoginScreen() {
     return (
-        <div className='forgotpassword'>
-            <div className='forgotpassword__form'>
-                <ForgotPasswordForm  
-                    style={{
-                        height: 300,
-                        width: 500
-                    }}
-                ></ForgotPasswordForm>
-                <button className='help-btn'
+        <div className='forgot'>
+            <div className='forgot__form'>
+                <LoginForm />
+            </div>
+            <button className='help-btn' 
                     style={{
                         height: 60,
                         width: 60,
-                        marginLeft: 11,
-                        marginTop: 239
+                        left: 1130,
+                        top: -11 
                     }}>
-                        <AiOutlineQuestionCircle 
-                            style={{
-                                color: "#fff",
-                                fontSize: 24
-                            }}
-                        ></AiOutlineQuestionCircle>    
-                        <span className='help-btn__text'>Help</span>
-                </button>
+                <AiOutlineQuestionCircle style={{
+                        fontSize: 24
+                    }}
+                ></AiOutlineQuestionCircle>
+                <span className='help-btn__text'>Help</span>
+            </button>
+            <div className='forgot__signup'>
+                <span className='forgot__signup__text'>Don't have an account?</span>
             </div>
-            <input className='forgotpassword__slogan' placeholder='This is the slogan'></input>
-            <div className='forgotpassword__signup-container'>
-                <span className='forgotpassword__signup-container__text'>Don't have an account?</span>
-                <button className='signup-btn'>
-                    <span className='signup-btn__text'>Sign up</span>
-                </button>
+            <button className='signup-btn'>
+                <span className='signup-btn__text'>Sign up</span>                
+            </button>
+            <div className='forgot__slogan-row'>
+                <div className='forgot__slogan-row__stack'>
+                    <span className='forgot__slogan-row__stack__text'>This is the slogan</span>
+                </div>
             </div>
         </div>
     )
 }
 
-export default ForgotPasswordScreen
+export default LoginScreen
