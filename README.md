@@ -7,7 +7,6 @@
 
 Hướng dẫn cơ bản của [Roger Dudler](https://rogerdudler.github.io/git-guide/index.vi.html)
 
-
 ## Messages Commit
 ### Commit Sample
 
@@ -17,11 +16,7 @@ git commit -m "messages"
 VD: git commit -m "docs: describe rules of project"
 ```
 
-* Messages:
-
 > [type](optional scope): [subject]
-
-
 
 ### Type
 Phải là một trong những loại sau:
