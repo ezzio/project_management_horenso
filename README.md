@@ -5,7 +5,7 @@
 
 ## Làm việc với GitHub:
 
-Hướng dẫn cơ bản của [Roger Dudler](https://rogerdudler.github.io/git-guide/index.vi.html)
+[Hướng dẫn cơ bản cho người mới bắt đầu của Roger Dudler](https://rogerdudler.github.io/git-guide/index.vi.html)
 
 ## Messages Commit
 ### Commit Sample
