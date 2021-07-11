@@ -1,0 +1,20 @@
+#content .task-management {
+    width: 1200px;
+    padding: 5px 0;
+    display: inline-block;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+  
+    p, a {
+      float: left;
+      margin: 0 10px;
+      padding: 10px 10px;
+    }
+
+    a {
+      border-radius: 5px;
+      border: solid 1px rgb(48, 5, 146);
+      color: rgb(48, 5, 146);
+      background-color: #fff;
+    }
+  }
