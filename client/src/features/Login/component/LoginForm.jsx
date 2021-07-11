@@ -41,17 +41,18 @@ function LoginForm() {
                 </div>
             </div>
             <a className='form__forgotpassword' href='https://www.google.com/'>Forgot password?</a>
-            <AiOutlineMail style={{
-                top: 129,
-                left: 23,
+            <AiOutlineMail style={{ 
+                top: 138,
+                left: 64,
                 position: "absolute",
-                fontSize: 40}}
-            ></AiOutlineMail>
+                fontSize: 30
+            }}>
+            </AiOutlineMail>
             <AiOutlineLock style={{
-                top: 213,
-                left: 23,
+                top: 220,
+                left: 64,
                 position: "absolute",
-                fontSize: 40
+                fontSize: 30
             }}>
             </AiOutlineLock>
             <div className='form__login-btn-container'>
