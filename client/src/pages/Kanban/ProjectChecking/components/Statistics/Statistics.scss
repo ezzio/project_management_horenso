@@ -1,0 +1,31 @@
+.statistics {
+    width: 1200px;
+  }
+  
+  #content {
+    .parameter-list {
+      margin: 15px 0;
+    }
+  
+    .parameter-item {
+      float: left;
+      width: calc(100%/4);
+      border: solid 1px #ccc;
+      border-radius: 4px;
+      padding: 0 8px;
+      position: relative;
+    }
+  
+    .parameter-name, .parameter-value {
+      text-align: left;
+      padding: 2px 2px;
+    }
+
+    .parameter-icon {
+      top: 0;
+      right: 0;
+      position: absolute;
+      padding-right: 4px;
+      padding-top: 4px;
+    }
+  }
