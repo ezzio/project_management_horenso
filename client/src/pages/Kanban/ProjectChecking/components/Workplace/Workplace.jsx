@@ -5,7 +5,7 @@ import NewTask from '../NewTask/NewTask';
 import TaskColumn from '../TaskColumn/TaskColumn';
 function Workplace() {
     return (
-            <div id="content">
+            <div className="content">
                 <div className="content-section">
                     {/* Thống kê số liệu */}
                     <Statistics /> 
