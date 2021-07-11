@@ -4,6 +4,7 @@ import "./App.scss";
 import SideBar from "./components/SideBar/SideBar";
 import Meeting from "./pages/Horenso/Meeting/Meeting";
 import Chat from "./pages/Horenso/Chat/Chat";
+import ProjectChecking from "./pages/Kanban/ProjectChecking/ProjectChecking";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/chat">
             <Chat />
+          </Route>
+          <Route path="/kanban">
+            <ProjectChecking />
           </Route>
         </Switch>
       </div>
