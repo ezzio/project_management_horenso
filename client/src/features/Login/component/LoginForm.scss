@@ -1,3 +1,5 @@
+@import '../../../App.scss';
+
 .form {
   height: 400px;
   width: 520px;
@@ -11,7 +13,7 @@
   border-style: solid;
   flex-direction: column;
   position: relative;
-  box-shadow: -2px 2px 1.5px 0.1px #000;
+  box-shadow: $_SHADOW;
   margin-left: 270px;
   margin-top: 50px;
 
@@ -93,6 +95,21 @@
     height: 100px;
     position: absolute;
   }
+
+  &__forgotpassword {
+    margin-top: 150px;
+    margin-left: 330px;
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    align-self: flex-start;
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: rgba(189, 16, 224, 1);
+  }
 }
 
 .email-textbox {
@@ -106,7 +123,6 @@
     line-height: 16px;
     padding-top: 16px;
     padding-bottom: 8px;
-    color: #000;
     opacity: 0.5;
     align-self: flex-start;
     width: 121px;
@@ -137,19 +153,6 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    color: #000;
-    opacity: 0.5;
-    align-self: flex-start;
-    width: 121px;
-    height: 40px;
-    border: none;
-    background: transparent;
-  }
   &__input {
     color: #000;
     padding-right: 5px;

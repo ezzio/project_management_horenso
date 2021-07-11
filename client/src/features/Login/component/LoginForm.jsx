@@ -40,6 +40,7 @@ function LoginForm() {
                         <input className='password-textbox__input' placeholder='Enter password'></input>
                 </div>
             </div>
+            <a className='form__forgotpassword' href='https://www.google.com/'>Forgot password?</a>
             <AiOutlineMail style={{
                 top: 129,
                 left: 23,
