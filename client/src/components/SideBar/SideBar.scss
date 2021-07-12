@@ -1,119 +1,166 @@
 @import "../../styles/color.scss";
 
-.logo {
-  height: 10%;
-  width: 100%;
-
-  border-bottom: 1px solid #ccc;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: $_PRIMARY;
+.hidden {
+  display: none;
 }
 
-.selectors {
-  margin: 35px 0;
+.side-bar {
+  
+  padding: 0 10px;
+  border-radius: 0 8px 8px 0;
 
-  &__title {
-    color: #777;
-    text-align: center;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #fff;
+  background-color: $_PRIMARY;
+
+  overflow-x: hidden;
+
+  &:hover {
+    animation: 0.2s hide ease-in-out forwards;
+
+    & ~ .hidden {
+      display: block !important;
+    }
+
+    @keyframes hide {
+      from {
+        width: 60px;
+      }
+      to {
+        width: 320px;
+      }
+    }
+  }
+  &:not(:hover) {
+    animation: 0.35s show ease-in-out forwards;
+
+    @keyframes show {
+      from {
+        width: 320px;
+      }
+      to {
+        width: 60px;
+      }
+    }
   }
 
-  &__select {
-    list-style-type: none;
-    &__direct {
-      height: 45px;
+  &__header {
+    height: 20%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    font-size: 30px;
+
+    pointer-events: none;
+
+    & > .icon {
+      font-size: 50px;
+    }
+  }
+
+  &__content {
+    height: 70%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    &__group {
+      height: calc(100% / 3);
       width: 100%;
-      transition: 0.315s ease;
-      padding: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & > a {
+        height: 20%;
+        width: 100%;
+
+        border-radius: 1rem;
+        margin: 0.5rem 0;
+        padding: 1rem 0.5rem;
+
+        background-color: $_PRIMARY;
+        color: #fff;
+
+        font-weight: bold;
+        font-size: 1.15rem;
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+
+        transition: all 0.2s ease;
+
+        position: relative;
+
+        &:hover {
+          background-color: $_CONTAINER;
+          color: $_HOVER_PRIMARY;
+        }
+
+        & > p {
+          margin-left: 1rem;
+        }
+
+        & > .notify {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          height: 40px;
+          width: 40px;
+
+          border-radius: 8px;
+
+          background-color: $_CONTAINER;
+
+          position: absolute;
+          right: 0px;
+
+          color: $_HOVER_PRIMARY;
+        }
+
+        & > .icon {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  &__footer {
+    height: 10%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__user {
+      cursor: pointer;
+      width: 260px;
       display: flex;
       align-items: center;
-      background-color: $_SECONDARY;
-      border-radius: 10px;
-      margin: 10px 0;
-      justify-content: space-between;
+      font-weight: bold;
 
-      &:hover {
-        background-color: $_PRIMARY;
+      & > img {
+        border-radius: 50%;
       }
 
       & > p {
-        pointer-events: none;
-        margin-left: 15px;
-        font-weight: bold;
-      }
-
-      & > .icon {
-        pointer-events: none;
-        font-size: 18px;
+        margin-left: 1rem;
       }
     }
-  }
-}
 
-a {
-  font-size: 16px;
-  color: #000;
-  text-decoration: none;
-}
-
-.active {
-  background-color: $_PRIMARY;
-  pointer-events: none;
-  color: #fff;
-  padding: 0 30px;
-}
-
-.work-progress {
-  margin-top: 100px;
-  height: 15%;
-  width: 100%;
-  background-color: $_SECONDARY;
-  border-radius: 10px;
-  border: none;
-  padding: 25px;
-
-  & > b {
-    margin-bottom: 15px;
-  }
-
-  &__ctn-bar {
-    margin-top: 35px;
-    height: 5px;
-    width: 100%;
-    background: #fff;
-    &__loading {
-      position: relative;
-      height: 100%;
-      background-color: $_PRIMARY;
-
-      &__count {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 10px;
-        font-weight: bold;
-        transform: translate(0px, -13px);
-      }
+    & > .icon {
+      font-size: 1.3rem;
     }
-  }
-}
-
-.user {
-  cursor: pointer;
-  display: flex;
-  margin-top: 30px;
-  height: 7%;
-  padding: 10px;
-  width: 100%;
-  justify-content: space-evenly;
-  border-radius: 1.15rem;
-  align-items: center;
-
-  & > img {
-    border-radius: 50%;
   }
 }

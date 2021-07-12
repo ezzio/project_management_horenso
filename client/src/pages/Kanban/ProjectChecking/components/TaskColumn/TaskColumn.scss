@@ -1,0 +1,25 @@
+.content {
+    .kanban-board {
+      float: left;
+      width: calc(100%/4);
+      text-align: left;
+      margin: 0 5.5px;
+      padding: 5px 5px;
+      border-radius: 4px;
+      background-color: rgb(243, 243, 243);
+    }
+  
+    .work-flow {
+      &-task-infomation {
+        padding: 5px 5px;
+      }
+
+      &-footer{
+        text-align: center;
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
