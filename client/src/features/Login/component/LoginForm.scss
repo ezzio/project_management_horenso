@@ -1,12 +1,12 @@
 @import '../../../App.scss';
-
+@import '../../../styles/Color.scss';
 .form {
   height: 400px;
   width: 520px;
   display: flex;
   border-width: 0px;
-  border-radius: 2px;
-  border-color: #ccc;
+  border-radius: 15px;
+  border-color: white;
   flex-wrap: nowrap;
   background-color: #fff;
   overflow: hidden;
@@ -40,7 +40,7 @@
   }
 
   &__email-container {
-    top: 105px;
+    top: 85px;
     left: 63px;
     width: 400px;
     height: 68px;
@@ -55,11 +55,12 @@
       height: 24px;
       width: 125px;
       font-size: 14px;
+      font-weight: bold;
     }
   }
 
   &__password-container {
-    top: 213px;
+    top: 203px;
     left: 63px;
     width: 400px;
     height: 45px;
@@ -74,6 +75,7 @@
       height: 20px;
       width: 79px;
       font-size: 14px;
+      font-weight: bold;
     }
   }
   &__login-github {
@@ -118,18 +120,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    opacity: 0.5;
-    align-self: flex-start;
-    width: 121px;
-    height: 40px;
-    border: none;
-    background: transparent;
-  }
+
   &__input {
     color: #000;
     padding-right: 5px;
@@ -153,6 +144,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
+
   &__input {
     color: #000;
     padding-right: 5px;
@@ -172,7 +164,7 @@
 
 .login-btn {
   display: flex;
-  background-color: #3f51b5;
+  background-color: $_PRIMARY;
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -181,7 +173,6 @@
   height: 50px;
   padding-left: 16px;
   padding-right: 16px;
-  box-shadow: 0px 1px 5px 0.35px #000;
 
   &__text {
     color: #fff;
