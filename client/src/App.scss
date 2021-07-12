@@ -1,25 +1,12 @@
-$_SUCCESS: #09814a;
-$_ERROR: #fb3640;
-$_WARNING: #ea9010;
-
-$_CONTAINER: #ffffff;
-
-$_HOVER_PRIMARY: #f14b8a;
-$_PRIMARY: #f082ac;
-$_SECONDARY: #f3f3f4;
-
-$_SHADOW: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-  rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
-  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+@import "./styles/Color.scss";
 
 .App {
   display: flex;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 5px;
 }
 
 /* Track */
@@ -29,11 +16,50 @@ $_SHADOW: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $_PRIMARY;
-  border-radius: 1.15rem;
+  background: transparent;
+  // border-radius: 1.15rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $_HOVER_PRIMARY;
+  background: transparent;
+}
+
+.slide-top {
+  height: 100%;
+  width: 100%;
+  animation: slide-top 0.3s linear;
+}
+
+.slide-bottom {
+  height: 100%;
+  width: 100%;
+  animation: slide-bottom 0.3s linear;
+}
+
+@keyframes slide-top {
+  0% {
+    // transform: translateY(0);
+    opacity: 1;
+    filter: blur(0%);
+  }
+  100% {
+    // transform: translateY(-100px);
+    opacity: 0;
+    filter: blur(100%);
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    opacity: 0;
+    filter: blur(100%);
+
+    // transform: translateY(0);
+  }
+  100% {
+    // transform: translateY(100px);
+    opacity: 1;
+    filter: blur(0%);
+  }
 }

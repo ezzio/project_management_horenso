@@ -1,119 +1,180 @@
 @import "../../styles/color.scss";
 
-.logo {
-  height: 10%;
-  width: 100%;
-
-  border-bottom: 1px solid #ccc;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: $_PRIMARY;
+.hidden {
+  display: none;
 }
 
-.selectors {
-  margin: 35px 0;
+@mixin hideNShow($isHide) {
+  @if $isHide {
+    right: -5px;
+  }
+}
 
-  &__title {
-    color: #777;
-    text-align: center;
-    margin-bottom: 10px;
+.side-bar {
+  padding: 1%;
+  border-radius: 0 10px 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #fff;
+  background-color: $_PRIMARY;
+
+  &:hover {
+    animation: 0.15s show ease-in-out forwards;
+
+    & ~ .hidden {
+      display: block !important;
+    }
+
+    @keyframes show {
+      from {
+        width: 65px;
+      }
+      to {
+        width: 400px;
+      }
+    }
+  }
+  &:not(:hover) {
+    animation: 0.15s hide ease-in-out forwards;
+
+    .notify {
+      @include hideNShow($isHide: true);
+    }
+
+    @keyframes hide {
+      from {
+        width: 400px;
+      }
+      to {
+        width: 65px;
+      }
+    }
   }
 
-  &__select {
-    list-style-type: none;
-    &__direct {
-      height: 45px;
+  &__header {
+    height: 150px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    pointer-events: none;
+
+    & > .icon {
+      font-size: 60px;
+    }
+
+    & > p {
+      font-weight: bold;
+      margin-left: 1rem;
+    }
+  }
+
+  &__content {
+    height: 700px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    &__group {
       width: 100%;
-      transition: 0.315s ease;
-      padding: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin: 1rem 0;
+
+      & > a {
+        height: 50px;
+        width: 100%;
+
+        border-radius: 6px;
+        margin: 0.5% 0;
+        padding: 5% 0.5%;
+
+        background-color: $_PRIMARY;
+        color: #fff;
+
+        font-weight: bold;
+        font-size: 1rem;
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+
+        transition: all 0.2s ease;
+
+        position: relative;
+
+        &:hover {
+          background-color: $_CONTAINER;
+          color: $_HOVER_PRIMARY;
+        }
+
+        & > p {
+          margin-left: 5%;
+        }
+
+        & > .notify {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          height: 35px;
+          width: 35px;
+
+          border-radius: 6px;
+
+          background-color: $_CONTAINER;
+
+          position: absolute;
+
+          right: 0px;
+
+          color: $_HOVER_PRIMARY;
+        }
+
+        & > .icon {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+  &__footer {
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__user {
+      cursor: pointer;
+      width: 260px;
       display: flex;
       align-items: center;
-      background-color: $_SECONDARY;
-      border-radius: 10px;
-      margin: 10px 0;
-      justify-content: space-between;
+      font-weight: bold;
 
-      &:hover {
-        background-color: $_PRIMARY;
+      & > img {
+        border-radius: 50%;
       }
 
       & > p {
-        pointer-events: none;
-        margin-left: 15px;
-        font-weight: bold;
-      }
-
-      & > .icon {
-        pointer-events: none;
-        font-size: 18px;
+        margin-left: 5%;
       }
     }
-  }
-}
 
-a {
-  font-size: 16px;
-  color: #000;
-  text-decoration: none;
-}
-
-.active {
-  background-color: $_PRIMARY;
-  pointer-events: none;
-  color: #fff;
-  padding: 0 30px;
-}
-
-.work-progress {
-  margin-top: 100px;
-  height: 15%;
-  width: 100%;
-  background-color: $_SECONDARY;
-  border-radius: 10px;
-  border: none;
-  padding: 25px;
-
-  & > b {
-    margin-bottom: 15px;
-  }
-
-  &__ctn-bar {
-    margin-top: 35px;
-    height: 5px;
-    width: 100%;
-    background: #fff;
-    &__loading {
-      position: relative;
-      height: 100%;
-      background-color: $_PRIMARY;
-
-      &__count {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 10px;
-        font-weight: bold;
-        transform: translate(0px, -13px);
-      }
+    & > .icon {
+      font-size: 1.3rem;
     }
-  }
-}
-
-.user {
-  cursor: pointer;
-  display: flex;
-  margin-top: 30px;
-  height: 7%;
-  padding: 10px;
-  width: 100%;
-  justify-content: space-evenly;
-  border-radius: 1.15rem;
-  align-items: center;
-
-  & > img {
-    border-radius: 50%;
   }
 }

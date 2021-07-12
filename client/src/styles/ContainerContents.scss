@@ -1,17 +1,15 @@
 @import "../styles/Color.scss";
 
+// Container cho phần content bên phải
 .ctn {
   height: 100%;
-  width: 85%;
+  width: 100%;
   padding: 0 10px;
+  overflow: scroll;
 }
 
 .ctn-side-bar {
-  padding: 1px;
-  width: 15%;
+  width: 65px;
   height: 100%;
-  background-color: $_CONTAINER;
-  border-right: 1px solid #aaa;
-  padding: 0 30px;
-  position: relative;
+  overflow-y: auto;
 }

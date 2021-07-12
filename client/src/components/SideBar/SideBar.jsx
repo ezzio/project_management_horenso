@@ -2,136 +2,95 @@ import React, { useRef, useState } from "react";
 import "./SideBar.scss";
 import { Link } from "react-router-dom";
 import { SiGooglehangoutsmeet } from "react-icons/si";
-import { BsFillKanbanFill, BsFillChatDotsFill } from "react-icons/bs";
-import { AiFillGithub, AiFillSignal, AiFillDatabase } from "react-icons/ai";
-
+import {
+  BsFillKanbanFill,
+  BsFillChatDotsFill,
+  BsThreeDots,
+} from "react-icons/bs";
+import {
+  AiFillGithub,
+  AiFillSetting,
+  AiFillSignal,
+  AiFillDatabase,
+} from "react-icons/ai";
+import { GiFlowerTwirl } from "react-icons/gi";
+import { RiTeamFill } from "react-icons/ri";
+import { MdDashboard } from "react-icons/md";
 const SideBar = () => {
-  const [isSelected, setIsSelected] = useState(false);
-  const targetSelect = useRef();
-  const toggleSelected = (e) => {
-    if (targetSelect.current) {
-      targetSelect.current.className = "selectors__select__direct";
+  const mouseOver = () => {
+    const hiddenElement = document.querySelectorAll(".hidden");
+    for (var i = 0, len = hiddenElement.length; i < len; i++) {
+      hiddenElement[i].style.display = "block";
     }
-
-    targetSelect.current = e.target;
-    e.target.className = "selectors__select__direct active";
   };
-
+  const mouseLeave = () => {
+    const hiddenElement = document.querySelectorAll(".hidden");
+    for (var i = 0, len = hiddenElement.length; i < len; i++) {
+      hiddenElement[i].style.display = "none";
+    }
+  };
   return (
-    <div className="ctn-side-bar">
-      <section className="logo">
-        <h1>Kanso</h1>
-      </section>
-      <section className="user">
-        <img
-          src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/83162431_1059481474384512_829843550521786368_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=BBNtA7XUq3wAX9w0eb5&_nc_ht=scontent.fsgn8-1.fna&oh=c38b0b10530a46340cdb1c7ded257ada&oe=60DFC235"
-          alt=""
-          height="50"
-          width="50"
-        />
-        <b>Jack William</b>
-        <p>/Tester</p>
-      </section>
-      <section className="selectors">
-        <div className="selectors">
-          <h5 className="selectors__title">KANBAN</h5>
-          <ul className="selectors__select">
-            <li>
-              <Link
-                to="/kanban"
-                className="selectors__select__direct"
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-              >
-                <BsFillKanbanFill className="icon" />
-                <p>Quản lý công việc</p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-                to="/document"
-                className="selectors__select__direct"
-              >
-                <AiFillDatabase className="icon" />
-                <p>Lưu trữ tài nguyên</p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-                to="/github"
-                className="selectors__select__direct"
-              >
-                <AiFillGithub className="icon" />
-                <p>Quản lý Github</p>
-              </Link>
-            </li>
-          </ul>
+    <div
+      className="side-bar ctn-side-bar"
+      onMouseEnter={mouseOver}
+      onMouseLeave={mouseLeave}
+    >
+      <div className="side-bar__header">
+        <GiFlowerTwirl className="icon" />
+        <p className="hidden">Kanso</p>
+      </div>
+      <div className="side-bar__content">
+        <div className="side-bar__content__group">
+          <Link to="/dashboard">
+            <MdDashboard className="icon" /> <p className="hidden">Dashboard</p>
+          </Link>
+          <Link to="/kanban">
+            <BsFillKanbanFill className="icon" />{" "}
+            <p className="hidden">Table</p>
+          </Link>
+          <Link to="/source">
+            <AiFillDatabase className="icon" /> <p className="hidden">Stores</p>
+          </Link>
+          <Link to="/github">
+            <AiFillGithub className="icon" /> <p className="hidden">Github</p>
+          </Link>
         </div>
-
-        <div className="selectors">
-          <h5 className="selectors__title">HORENSO</h5>
-          <ul className="selectors__select">
-            <li>
-              <Link
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-                to="/report"
-                className="selectors__select__direct"
-              >
-                <AiFillSignal className="icon" />
-                <p>Báo cáo</p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-                to="/chat"
-                className="selectors__select__direct"
-              >
-                <BsFillChatDotsFill className="icon" />
-                <p>Trao đổi</p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={(e) => {
-                  toggleSelected(e);
-                }}
-                to="/meeting"
-                className="selectors__select__direct"
-              >
-                <SiGooglehangoutsmeet className="icon" />
-                <p>Cuộc họp</p>
-              </Link>
-            </li>
-          </ul>
+        <div className="side-bar__content__group">
+          <Link to="/meeting">
+            <SiGooglehangoutsmeet className="icon" />{" "}
+            <p className="hidden">Meeting</p>
+            <div className="notify">2</div>
+          </Link>
+          <Link to="/conversation">
+            <BsFillChatDotsFill className="icon" />{" "}
+            <p className="hidden">Conversation</p>
+            <div className="notify">9+</div>
+          </Link>
+          <Link to="/kanban">
+            <AiFillSignal className="icon" /> <p className="hidden">Reports</p>
+          </Link>
         </div>
-      </section>
-
-      <section className="work-progress">
-        <b>Work progress</b>
-        <p>Last updated by Ezzio</p>
-        <p>09:12 AM : 08/11/2020</p>
-
-        <div className="work-progress__ctn-bar">
-          <div
-            className="work-progress__ctn-bar__loading"
-            style={{ width: "32%" }}
-          >
-            <p className="work-progress__ctn-bar__loading__count">32%</p>
-          </div>
+        <div className="side-bar__content__group">
+          <Link to="/team-mate">
+            <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
+          </Link>
+          <Link to="/setting">
+            <AiFillSetting className="icon" /> <p className="hidden">Setting</p>
+          </Link>
         </div>
-      </section>
+      </div>
+      <div className="side-bar__footer">
+        <div className="side-bar__footer__user">
+          <img
+            src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.6435-9/212452707_4456077581098268_8477389473127673076_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=730e14&_nc_ohc=wy6_kQ6FPbsAX9RSQc6&tn=LRtYXF1z3QKLRooO&_nc_ht=scontent.fvca1-2.fna&oh=436e8235103f3149b0fd762fb9309efd&oe=60F0088B"
+            alt=""
+            height="40"
+            width="40"
+          />
+          <p className="hidden">Duong Dang Khoa</p>
+        </div>
+        <BsThreeDots className="icon hidden" />
+      </div>
     </div>
   );
 };
