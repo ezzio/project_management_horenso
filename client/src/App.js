@@ -41,15 +41,9 @@ const AnimatedRouter = () => {
       }}
     >
       <Switch location={displayLocation}>
-        <Route path="/meeting">
-          <Meeting />
-        </Route>
-        <Route path="/chat">
-          <Chat />
-        </Route>
-        <Route path="/kanban">
-          <ProjectChecking />
-        </Route>
+        <Route path="/meeting" children={<Meeting />} />
+        <Route path="/conversation" children={<Chat />} />
+        <Route path="/kanban" children={<ProjectChecking />} />
       </Switch>
     </div>
   );
