@@ -5,9 +5,11 @@
   height: 100%;
   width: 100%;
   padding: 0 10px;
+  overflow: scroll;
 }
 
 .ctn-side-bar {
-  width: 60px;
+  width: 65px;
   height: 100%;
+  overflow-y: auto;
 }

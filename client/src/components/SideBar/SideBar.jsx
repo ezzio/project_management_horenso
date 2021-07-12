@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 import { GiFlowerTwirl } from "react-icons/gi";
 import { RiTeamFill } from "react-icons/ri";
+import { MdDashboard } from "react-icons/md";
 const SideBar = () => {
   const mouseOver = () => {
     const hiddenElement = document.querySelectorAll(".hidden");
@@ -40,6 +41,9 @@ const SideBar = () => {
       </div>
       <div className="side-bar__content">
         <div className="side-bar__content__group">
+          <Link to="/dashboard">
+            <MdDashboard className="icon" /> <p className="hidden">Dashboard</p>
+          </Link>
           <Link to="/kanban">
             <BsFillKanbanFill className="icon" />{" "}
             <p className="hidden">Table</p>
@@ -67,11 +71,11 @@ const SideBar = () => {
           </Link>
         </div>
         <div className="side-bar__content__group">
-          <Link to="/setting">
-            <AiFillSetting className="icon" /> <p className="hidden">Setting</p>
-          </Link>
           <Link to="/team-mate">
             <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
+          </Link>
+          <Link to="/setting">
+            <AiFillSetting className="icon" /> <p className="hidden">Setting</p>
           </Link>
         </div>
       </div>
