@@ -5,15 +5,15 @@ import {RiCalendar2Line} from "react-icons/ri";
 function Header() {
     return (
         <div className="header">
-            <div className="nav">
-                <div className="nav-work-info">
+            <div className="header_nav">
+                <div className="header_nav_work-info">
                     <h2>Design System</h2>
                     <a href="">Edit</a>
                 </div>
             </div>
 
-            <div className="time">
-                <div className="total-time">
+            <div className="header_time">
+                <div className="header_time_total-time">
                     <i><RiCalendar2Line /></i>
                     <h2>Total time</h2>
                 </div>
