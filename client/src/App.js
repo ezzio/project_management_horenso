@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import "./App.scss";
 import SideBar from "./components/SideBar/SideBar";
 import Meeting from "./pages/Horenso/Meeting/Meeting";
@@ -11,21 +16,43 @@ function App() {
     <Router>
       <div className="App">
         <SideBar />
-
-        <Switch>
-          <Route path="/meeting">
-            <Meeting />
-          </Route>
-          <Route path="/chat">
-            <Chat />
-          </Route>
-          <Route path="/kanban">
-            <ProjectChecking />
-          </Route>
-        </Switch>
+        <AnimatedRouter />
       </div>
     </Router>
   );
 }
+
+const AnimatedRouter = () => {
+  const location = useLocation();
+  const [transitionStage, setTransitionStage] = React.useState("in");
+  const [displayLocation, setDisplayLocation] = React.useState(location);
+  React.useEffect(() => {
+    if (location.pathname !== displayLocation.pathname)
+      setTransitionStage("out");
+  }, [location]);
+  return (
+    <div
+      className={transitionStage === "in" ? "slide-bottom" : "slide-top"}
+      onAnimationEnd={() => {
+        if (transitionStage === "out") {
+          setTransitionStage("in");
+          setDisplayLocation(location);
+        }
+      }}
+    >
+      <Switch location={displayLocation}>
+        <Route path="/meeting">
+          <Meeting />
+        </Route>
+        <Route path="/chat">
+          <Chat />
+        </Route>
+        <Route path="/kanban">
+          <ProjectChecking />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 export default App;

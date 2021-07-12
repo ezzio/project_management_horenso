@@ -20,16 +20,14 @@ VD: git commit -m "docs: describe rules of project"
 
 ### Type
 Phải là một trong những loại sau:
- * build - Xây dựng các thay đổi liên quan
- * chore - Xây dựng quy trình hoặc thay đổi công cụ phụ trợ
- * docs - Chỉ liên quan đến tài liệu
- * feat - Một tính năng mới
- * fix - Một bản sửa lỗi
- * perf - Thay đổi mã giúp cải thiện hiệu suất
- * refactor - Sự thay đổi mã không sửa được lỗi hoặc thêm tính năng
- * revert - Hoàn nguyên mọi thứ
- * style - Đánh dấu, khoảng trắng, định dạng, thiếu dấu chấm phẩy ...
- * test - Thêm các bài kiểm tra bị thiếu
+* feat: thêm một feature
+* fix: fix bug cho hệ thống
+* refactor: sửa code nhưng không fix bug cũng không thêm feature hoặc đôi khi bug cũng được fix từ việc refactor.
+* docs: thêm/thay đổi document
+* chore: những sửa đổi nhỏ nhặt không liên quan tới code
+* style: những thay đổi không làm thay đổi ý nghĩa của code như thay đổi css/ui chẳng hạn.
+* perf: code cải tiến về mặt hiệu năng xử lý
+* vendor: cập nhật version cho các dependencies, packages.
 
 ### Scope (không bắt buộc)
 Có thể được cung cấp cho `type` của `commit`, để cung cấp thông tin ngữ cảnh bổ sung và được chứa trong dấu ngoặc đơn, ví dụ: `feat(parser): add ability to parse arrays`
