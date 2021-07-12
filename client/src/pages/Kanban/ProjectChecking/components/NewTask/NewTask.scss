@@ -11,7 +11,8 @@
       padding: 10px 10px;
     }
 
-  &-new-task {
+  &_new-task {
+      text-decoration: none;
       border-radius: 5px;
       border: solid 1px rgb(48, 5, 146);
       color: rgb(48, 5, 146);
