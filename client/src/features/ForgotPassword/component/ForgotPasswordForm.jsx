@@ -25,12 +25,13 @@ function ForgotPasswordForm() {
                 <span className='form__email-container__label'>Email</span>
             </div>
             <AiOutlineMail style={{
-                top: 129,
-                left: 23,
+                top: 127,
+                left: 64,
                 position: "absolute",
-                fontSize: 40}}
-            ></AiOutlineMail>
-            <div className='form__login-btn-container'>
+                fontSize: 30,
+                color: 'gray'
+            }}></AiOutlineMail>
+            <div className='form__sendlink-btn-container'>
                 <button className='sendlink-btn'>
                     <span className='sendlink-btn__text'>Send me the link</span>
                 </button>
