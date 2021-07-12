@@ -2,12 +2,11 @@
 
 .App {
   display: flex;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 5px;
 }
 
 /* Track */
@@ -17,25 +16,25 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $_PRIMARY;
-  border-radius: 1.15rem;
+  background: transparent;
+  // border-radius: 1.15rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $_HOVER_PRIMARY;
+  background: transparent;
 }
 
 .slide-top {
   height: 100%;
   width: 100%;
-  animation: slide-top 0.5s linear;
+  animation: slide-top 0.3s linear;
 }
 
 .slide-bottom {
   height: 100%;
   width: 100%;
-  animation: slide-bottom 0.5s linear;
+  animation: slide-bottom 0.3s linear;
 }
 
 @keyframes slide-top {
