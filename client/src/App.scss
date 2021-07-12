@@ -53,14 +53,14 @@
 
 @keyframes slide-bottom {
   0% {
-    // opacity: 0;
+    opacity: 0;
     filter: blur(100%);
 
     // transform: translateY(0);
   }
   100% {
     // transform: translateY(100px);
-    // opacity: 1;
+    opacity: 1;
     filter: blur(0%);
   }
 }
