@@ -1,19 +1,22 @@
 .statistics {
-    width: 1200px;
+    width: 100%;
   }
   
-  #content {
+  .content {
     .parameter-list {
+      display: flex;
       margin: 15px 0;
+      justify-content: space-between;
     }
   
     .parameter-item {
       float: left;
-      width: calc(100%/4);
+      width: calc(100%/4.1);
       border: solid 1px #ccc;
       border-radius: 4px;
       padding: 0 8px;
       position: relative;
+
     }
   
     .parameter-name, .parameter-value {
@@ -25,7 +28,7 @@
       top: 0;
       right: 0;
       position: absolute;
-      padding-right: 4px;
+      padding-right: 8px;
       padding-top: 4px;
     }
   }

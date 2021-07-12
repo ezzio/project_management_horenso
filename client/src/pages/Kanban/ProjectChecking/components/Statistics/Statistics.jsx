@@ -31,8 +31,6 @@ function Statistics(props) {
                     <h2 className="parameter-value">93.57%</h2>
                     <i className='parameter-icon'><GiProgression /></i>
                 </div>
-
-                <div class="clear"></div>
             </div>
         </div>
     );
