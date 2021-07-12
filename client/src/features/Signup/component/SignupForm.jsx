@@ -57,28 +57,29 @@ function SignupForm() {
                 </div>
             </div>
             <AiOutlineMail style={{
-                top: 213,
-                left: 20,
+                top: 205,
+                left: 64,
                 position: "absolute",
-                fontSize: 40}}
-            ></AiOutlineMail>
+                fontSize: 30,
+                color: 'gray'
+            }}></AiOutlineMail>
             <AiOutlineLock style={{
-                top: 293,
-                left: 23,
+                top: 300,
+                left: 63,
                 position: "absolute",
-                fontSize: 40
-            }}>
-            </AiOutlineLock>
+                fontSize: 30,
+                color: 'gray'
+            }}></AiOutlineLock>
             <BsPerson style={{
-                top: 120,
-                left: 20,
+                top: 108,
+                left: 63,
                 position: "absolute",
-                fontSize: 40
-                }}>
-            </BsPerson>
-            <div className='form__login-btn-container'>
-                <button className='login-btn'>
-                    <span className='login-btn__text'>Log In</span>
+                fontSize: 30,
+                color: 'gray'
+            }}></BsPerson>
+            <div className='form__joinnow-btn-container'>
+                <button className='joinnow-btn'>
+                    <span className='joinnow-btn__text'>Join now</span>
                 </button>
             </div>
             <a className='form__login-github' href='https://www.google.com'>Or login with Github</a>

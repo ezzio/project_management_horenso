@@ -1,3 +1,5 @@
+@import '../../../styles/Color.scss';
+
 .form {
   height: 500px;
   width: 520px;
@@ -11,7 +13,7 @@
   border-style: solid;
   flex-direction: column;
   position: relative;
-  box-shadow: -2px 2px 1.5px 0.1px #000;
+  box-shadow: $_SHADOW;
   margin-left: 270px;
   margin-top: 50px;
 
@@ -38,20 +40,20 @@
   }
 
   &__email-container {
-    top: 180px;
+    top: 168px;
     left: 63px;
     width: 400px;
-    height: 68px;
+    height: 45px;
     position: absolute;
     &__label {
-      top: 0px;
+      top: 10px;
       left: 0px;
       position: absolute;
       font-style: normal;
       font-weight: 400;
       color: #121212;
-      height: 24px;
-      width: 125px;
+      height: 20px;
+      width: 79px;
       font-size: 14px;
     }
   }
@@ -86,7 +88,7 @@
     left: 195px;
   }
 
-  &__login-btn-container {
+  &__joinnow-btn-container {
     top: 380px;
     left: 63px;
     width: 400px;
@@ -95,7 +97,7 @@
   }
 
   &__fullname-container {
-    top: 80px;
+    top: 60px;
     left: 63px;
     width: 400px;
     height: 68px;
@@ -131,20 +133,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  // padding-left: 16px;
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    color: #000;
-    opacity: 0.5;
-    align-self: flex-start;
-    width: 121px;
-    height: 40px;
-    border: none;
-    background: transparent;
-  }
+
   &__input {
     color: #000;
     padding-right: 5px;
@@ -169,20 +158,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  // padding-left: 16px;
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    color: #000;
-    opacity: 0.5;
-    align-self: flex-start;
-    width: 121px;
-    height: 40px;
-    border: none;
-    background: transparent;
-  }
+
   &__input {
     color: #000;
     padding-right: 5px;
@@ -205,7 +181,6 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  // padding-left: 16px;
   &__text {
     font-size: 16px;
     line-height: 16px;
@@ -236,9 +211,9 @@
   }
 }
 
-.login-btn {
+.joinnow-btn {
   display: flex;
-  background-color: #3f51b5;
+  background-color: $_PRIMARY;
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -247,12 +222,11 @@
   height: 50px;
   padding-left: 16px;
   padding-right: 16px;
-  box-shadow: 0px 1px 5px 0.35px #000;
 
   &__text {
     color: #fff;
     font-size: 17px;
-    width: 57px;
+    width: 150px;
     height: 29px;
     text-align: center;
     font-style: normal;
