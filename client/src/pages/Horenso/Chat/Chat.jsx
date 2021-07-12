@@ -4,9 +4,7 @@ import "./Chat.scss";
 
 const Ren = () => {
   return (
-    <div>
       <Chatting />
-    </div>
   );
 };
 
