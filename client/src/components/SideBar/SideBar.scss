@@ -4,10 +4,15 @@
   display: none;
 }
 
+@mixin hideNShow($isHide) {
+  @if $isHide {
+    right: -5px;
+  }
+}
+
 .side-bar {
-  
-  padding: 0 10px;
-  border-radius: 0 8px 8px 0;
+  padding: 1%;
+  border-radius: 0 10px 10px 0;
 
   display: flex;
   flex-direction: column;
@@ -17,82 +22,90 @@
   color: #fff;
   background-color: $_PRIMARY;
 
-  overflow-x: hidden;
-
   &:hover {
-    animation: 0.2s hide ease-in-out forwards;
+    animation: 0.15s show ease-in-out forwards;
 
     & ~ .hidden {
       display: block !important;
     }
 
-    @keyframes hide {
+    @keyframes show {
       from {
-        width: 60px;
+        width: 65px;
       }
       to {
-        width: 320px;
+        width: 400px;
       }
     }
   }
   &:not(:hover) {
-    animation: 0.35s show ease-in-out forwards;
+    animation: 0.15s hide ease-in-out forwards;
 
-    @keyframes show {
+    .notify {
+      @include hideNShow($isHide: true);
+    }
+
+    @keyframes hide {
       from {
-        width: 320px;
+        width: 400px;
       }
       to {
-        width: 60px;
+        width: 65px;
       }
     }
   }
 
   &__header {
-    height: 20%;
+    height: 150px;
     width: 100%;
 
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: center;
 
     font-size: 30px;
 
     pointer-events: none;
 
     & > .icon {
-      font-size: 50px;
+      font-size: 60px;
+    }
+
+    & > p {
+      font-weight: bold;
+      margin-left: 1rem;
     }
   }
 
   &__content {
-    height: 70%;
+    height: 700px;
     width: 100%;
 
     display: flex;
     flex-direction: column;
 
     &__group {
-      height: calc(100% / 3);
       width: 100%;
 
       display: flex;
       flex-direction: column;
       align-items: center;
 
+      margin: 1rem 0;
+
       & > a {
-        height: 20%;
+        height: 50px;
         width: 100%;
 
-        border-radius: 1rem;
-        margin: 0.5rem 0;
-        padding: 1rem 0.5rem;
+        border-radius: 6px;
+        margin: 0.5% 0;
+        padding: 5% 0.5%;
 
         background-color: $_PRIMARY;
         color: #fff;
 
         font-weight: bold;
-        font-size: 1.15rem;
+        font-size: 1rem;
         text-decoration: none;
 
         display: flex;
@@ -108,7 +121,7 @@
         }
 
         & > p {
-          margin-left: 1rem;
+          margin-left: 5%;
         }
 
         & > .notify {
@@ -116,27 +129,28 @@
           align-items: center;
           justify-content: center;
 
-          height: 40px;
-          width: 40px;
+          height: 35px;
+          width: 35px;
 
-          border-radius: 8px;
+          border-radius: 6px;
 
           background-color: $_CONTAINER;
 
           position: absolute;
+
           right: 0px;
 
           color: $_HOVER_PRIMARY;
         }
 
         & > .icon {
-          font-size: 25px;
+          font-size: 2rem;
         }
       }
     }
   }
   &__footer {
-    height: 10%;
+    height: 100px;
     width: 100%;
 
     display: flex;
@@ -155,7 +169,7 @@
       }
 
       & > p {
-        margin-left: 1rem;
+        margin-left: 5%;
       }
     }
 
