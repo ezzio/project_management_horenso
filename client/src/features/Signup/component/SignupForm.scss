@@ -235,4 +235,7 @@
     background: transparent;
     margin-top: 10px;
   }
+  &:hover {
+    background-color: $_HOVER_PRIMARY;
+  }
 }

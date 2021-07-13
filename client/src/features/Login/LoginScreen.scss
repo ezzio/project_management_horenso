@@ -45,6 +45,7 @@
     margin-top: 600px;
     margin-left: 770px;
     // margin-right: -516px;
+
     &__stack {
       width: 200px;
       height: 39px;
@@ -83,6 +84,9 @@
     color: rgba(255, 255, 255, 1);
     font-size: 16px;
   }
+  &:hover {
+    background-color: $_HOVER_PRIMARY;
+  }
 }
 
 .signup-btn {
@@ -108,5 +112,9 @@
     align-self: center;
     font-style: normal;
     font-weight: 700;
+  }
+  &:hover {
+    height: 42px;
+    width: 123px;
   }
 }
