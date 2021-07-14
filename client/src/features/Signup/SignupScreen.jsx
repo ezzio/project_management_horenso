@@ -25,8 +25,8 @@ function SignupScreen() {
             <div className='signup__login'>
                 <span className='signup__login__text'>Already joined?</span>
             </div>
-            <button className='login-btn'>
-                <span className='login-btn__text'>Login</span>                
+            <button className='logon-btn'>
+                <span className='logon-btn__text'>Login</span>                
             </button>
             
         </div>

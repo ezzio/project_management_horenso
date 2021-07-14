@@ -4,11 +4,11 @@ import { AiOutlineMail } from 'react-icons/ai';
 
 function ForgotPasswordForm() {
     return (
-        <div className='form'>
-            <div className='form__title'>
-                <span className='form__title__text'>Welcome!</span>
+        <div className='forgotpassword-form'>
+            <div className='forgotpassword-form__title'>
+                <span className='forgotpassword-form__title__text'>Welcome!</span>
             </div>
-            <div className='form__email-container'>
+            <div className='forgotpassword-form__email-container'>
                 <div className='email-textbox' 
                     style={{
                         height: 45,
@@ -22,7 +22,7 @@ function ForgotPasswordForm() {
                 }}>
                     <input className='email-textbox__input' placeholder='Enter your email'></input>
                 </div>
-                <span className='form__email-container__label'>Email</span>
+                <span className='forgotpassword-form__email-container__label'>Email</span>
             </div>
             <AiOutlineMail style={{
                 top: 127,
@@ -31,12 +31,12 @@ function ForgotPasswordForm() {
                 fontSize: 30,
                 color: 'gray'
             }}></AiOutlineMail>
-            <div className='form__sendlink-btn-container'>
+            <div className='forgotpassword-form__sendlink-btn-container'>
                 <button className='sendlink-btn'>
                     <span className='sendlink-btn__text'>Send me the link</span>
                 </button>
             </div>
-            <a className='form__login' href='https://www.google.com'>Or Log in</a>
+            <a className='forgotpassword-form__login' href='https://www.google.com'>Or Log in</a>
         </div>
     )
 }
