@@ -1,6 +1,7 @@
 import React from 'react'
 import './LoginForm.scss'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { Link } from 'react-router-dom'
 
 function LoginForm() {
     return (
@@ -40,7 +41,7 @@ function LoginForm() {
                         <input className='password-textbox__input' placeholder='Enter password'></input>
                 </div>
             </div>
-            <a className='login-form__forgotpassword' href='https://www.google.com/'>Forgot password?</a>
+            <Link className='login-form__forgotpassword' path='/ForgotPassword'>Forgot password?</Link>
             <AiOutlineMail style={{ 
                 top: 118,
                 left: 64,

@@ -1,6 +1,7 @@
 import React from 'react'
 import './ForgotPasswordForm.scss'
 import { AiOutlineMail } from 'react-icons/ai';
+import { Link } from 'react-router-dom'
 
 function ForgotPasswordForm() {
     return (
@@ -36,7 +37,7 @@ function ForgotPasswordForm() {
                     <span className='sendlink-btn__text'>Send me the link</span>
                 </button>
             </div>
-            <a className='forgotpassword-form__login' href='https://www.google.com'>Or Log in</a>
+            <Link className='forgotpassword-form__login' path='/'>Or Log in</Link>
         </div>
     )
 }

@@ -2,8 +2,15 @@ import React from 'react';
 import "./SignupScreen.scss";
 import LoginForm from './component/SignupForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { useHistory } from 'react-router-dom'
 
 function SignupScreen() {
+    const history = useHistory()
+
+    const signuptoLogin = () => {
+        history.push('/Login')
+    }
+
     return (
         <div className='signup'>
             <div className='signup__form'>
@@ -25,7 +32,7 @@ function SignupScreen() {
             <div className='signup__login'>
                 <span className='signup__login__text'>Already joined?</span>
             </div>
-            <button className='logon-btn'>
+            <button className='logon-btn' onClick={() => signuptoLogin()}>
                 <span className='logon-btn__text'>Login</span>                
             </button>
             

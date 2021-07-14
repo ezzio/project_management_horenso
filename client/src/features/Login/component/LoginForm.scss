@@ -111,6 +111,9 @@
     border: none;
     background: transparent;
     color: rgba(189, 16, 224, 1);
+    &:active {
+      color: orange;
+    }
   }
 }
 
