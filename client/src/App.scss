@@ -2,28 +2,10 @@
 
 .App {
   display: flex;
-  overflow: hidden;
 }
 
-::-webkit-scrollbar {
-  background-color: transparent;
-}
+/* Hide scrollbar for Chrome, Safari and Opera */
 
-/* Track */
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: transparent;
-  // border-radius: 1.15rem;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: transparent;
-}
 
 .slide-top {
   height: 100%;

@@ -59,12 +59,16 @@ const SideBar = () => {
           <Link to="/meeting">
             <SiGooglehangoutsmeet className="icon" />{" "}
             <p className="hidden">Meeting</p>
-            <div className="notify">2</div>
+            <div className="notify hidden">
+              <p>2</p>
+            </div>
           </Link>
           <Link to="/conversation">
             <BsFillChatDotsFill className="icon" />{" "}
             <p className="hidden">Conversation</p>
-            <div className="notify">9+</div>
+            <div className="notify hidden">
+              <p>9+</p>
+            </div>
           </Link>
           <Link to="/kanban">
             <AiFillSignal className="icon" /> <p className="hidden">Reports</p>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Videocall from "../../../features/Videocall - Meeting/Videocall.jsx";
 import "./Meeting.scss";
 import "../../../styles/ContainerContents.scss";
 import Header from "./components/Header/Header";
 import { Switch, Route, Link } from "react-router-dom";
 import Workplace from "./components/Workplace/Workplace.jsx";
+import MeetingRoom from "features/MeetingRoom - Meeting/MeetingRoom.jsx";
 const Meeting = () => {
   const [room, setRoom] = useState([
     {
@@ -33,7 +33,7 @@ const Meeting = () => {
           <Workplace room={room} />
         </Route>
         <Route path="/meeting/id=291adw">
-          <Videocall />
+          <MeetingRoom />
         </Route>
       </Switch>
     </div>
