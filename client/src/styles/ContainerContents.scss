@@ -4,7 +4,6 @@
 .ctn {
   height: 100%;
   width: 100%;
-  padding: 0 10px;
   overflow: scroll;
 }
 
@@ -12,4 +11,16 @@
   width: 65px;
   height: 100%;
   overflow-y: auto;
+}
+
+.ctn::-webkit-scrollbar,
+.ctn-side-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ctn,
+.ctn-side-bar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

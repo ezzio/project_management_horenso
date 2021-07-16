@@ -1,0 +1,157 @@
+@import "../../styles/Color.scss";
+
+.videocall {
+  width: 100%;
+  height: 100%;
+
+  background-color: #202124;
+
+  position: relative;
+
+  &__container-video {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    &__presenter {
+      height: 100%;
+      width: 100%;
+      flex: 3;
+      margin-bottom: 1%;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 10px 10px;
+      & > video {
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        margin: 0;
+      }
+    }
+
+    &__audiences {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+
+      &::-webkit-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    }
+  }
+  &__footer {
+    width: 100%;
+    height: 10%;
+    padding: 10px;
+
+    background-color: $_CONTAINER;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__info-room {
+      height: 100%;
+      width: fit-content;
+      max-width: 30%;
+
+      display: flex;
+      align-items: center;
+      flex: 3;
+    }
+
+    &__controller {
+      height: 100%;
+      width: fit-content;
+      max-width: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 6;
+
+      & > button {
+        cursor: pointer;
+
+        margin: 0 15px;
+
+        height: 70%;
+        width: 6%;
+        background-color: #fff;
+
+        border: 1px solid #ccc;
+
+        border-radius: 50%;
+
+        &:hover {
+          box-shadow: $_SHADOW;
+        }
+      }
+
+      & > button > svg {
+        font-size: 1.5em;
+      }
+    }
+
+    &__feat {
+      flex: 1;
+
+      height: 100%;
+      width: fit-content;
+      max-width: 20%;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      & > svg {
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin: 0 15px;
+      }
+    }
+  }
+}
+
+.ctn-video-feat {
+  height: 88%;
+  width: 20%;
+
+  border-radius: 15px;
+  border: none;
+
+  position: fixed;
+  right: 10px;
+  top: 10px;
+
+  box-shadow: $_SHADOW;
+
+  background-color: $_CONTAINER;
+
+  animation: show 0.3s ease-in-out;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
