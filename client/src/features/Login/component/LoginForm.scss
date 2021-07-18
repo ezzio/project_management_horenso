@@ -123,6 +123,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
+  border-radius: 5px;
 
   &__input {
     color: #000;
@@ -133,7 +134,7 @@
     line-height: 16px;
     padding-top: 14px;
     padding-bottom: 8px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: none;
     background: transparent;
     display: flex;
@@ -147,6 +148,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
+  border-radius: 5px;
 
   &__input {
     color: #000;
@@ -157,7 +159,7 @@
     line-height: 16px;
     padding-top: 14px;
     padding-bottom: 8px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: none;
     background: transparent;
     display: flex;
