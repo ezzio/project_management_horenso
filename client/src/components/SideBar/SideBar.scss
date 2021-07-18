@@ -21,13 +21,9 @@
   background-color: $_PRIMARY;
 
   &:hover {
-    animation: 0.15s show ease-in-out forwards;
+    animation: 0.1s showSideBar linear forwards;
 
-    & ~ .hidden {
-      display: block !important;
-    }
-
-    @keyframes show {
+    @keyframes showSideBar {
       from {
         width: 65px;
       }
@@ -37,13 +33,13 @@
     }
   }
   &:not(:hover) {
-    animation: 0.15s hide ease-in-out forwards;
+    animation: 0.1s hideSideBar linear forwards;
 
     .notify {
       @include hideNShow($isHide: true);
     }
 
-    @keyframes hide {
+    @keyframes hideSideBar {
       from {
         width: 400px;
       }
