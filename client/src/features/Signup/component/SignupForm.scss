@@ -143,7 +143,7 @@
     line-height: 16px;
     padding-top: 14px;
     padding-bottom: 8px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: none;
     background: transparent;
     display: flex;
@@ -168,7 +168,7 @@
     line-height: 16px;
     padding-top: 14px;
     padding-bottom: 8px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: none;
     background: transparent;
     display: flex;
@@ -181,19 +181,7 @@
   border-color: #d9d5dc;
   background-color: transparent;
   flex-direction: row;
-  &__text {
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
-    color: #000;
-    opacity: 0.5;
-    align-self: flex-start;
-    width: 121px;
-    height: 40px;
-    border: none;
-    background: transparent;
-  }
+
   &__input {
     color: #000;
     padding-right: 5px;
@@ -203,7 +191,7 @@
     line-height: 16px;
     padding-top: 14px;
     padding-bottom: 8px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: none;
     background: transparent;
     display: flex;
