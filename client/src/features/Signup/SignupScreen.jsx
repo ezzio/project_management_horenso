@@ -20,7 +20,7 @@ function SignupScreen() {
                     style={{
                         height: 60,
                         width: 60,
-                        left: 1130,
+                        left: 1135,
                         top: 90 
                     }}>
                 <AiOutlineQuestionCircle style={{
