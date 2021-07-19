@@ -143,10 +143,10 @@
 
   background-color: $_CONTAINER;
 
-  animation: show 0.3s ease-in-out;
+  animation: showVideo 0.3s ease-in-out;
 }
 
-@keyframes show {
+@keyframes showVideo {
   from {
     opacity: 0;
   }

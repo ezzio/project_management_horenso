@@ -17,14 +17,14 @@ import { GiFlowerTwirl } from "react-icons/gi";
 import { RiTeamFill } from "react-icons/ri";
 import { MdDashboard } from "react-icons/md";
 const SideBar = () => {
-  const mouseOver = () => {
-    const hiddenElement = document.querySelectorAll(".hidden");
+  const mouseEnter = () => {
+    let hiddenElement = document.querySelectorAll(".hidden");
     for (var i = 0, len = hiddenElement.length; i < len; i++) {
       hiddenElement[i].style.display = "block";
     }
   };
   const mouseLeave = () => {
-    const hiddenElement = document.querySelectorAll(".hidden");
+    let hiddenElement = document.querySelectorAll(".hidden");
     for (var i = 0, len = hiddenElement.length; i < len; i++) {
       hiddenElement[i].style.display = "none";
     }
@@ -32,7 +32,7 @@ const SideBar = () => {
   return (
     <div
       className="side-bar ctn-side-bar"
-      onMouseEnter={mouseOver}
+      onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
     >
       <div className="side-bar__header">
