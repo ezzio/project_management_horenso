@@ -1,14 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
-import { AiOutlineTeam, AiFillSetting } from "react-icons/ai";
+import { AiOutlineTeam, AiFillSetting, AiOutlinePlus } from "react-icons/ai";
 import { GiExitDoor, GiSpeaker } from "react-icons/gi";
 import { FaMicrophoneSlash, FaVideoSlash } from "react-icons/fa";
 import { MdCallEnd } from "react-icons/md";
-import { BsChatSquareDots, BsFillPeopleFill } from "react-icons/bs";
+import {
+  BsChatSquareDots,
+  BsFillPeopleFill,
+  BsFillPersonPlusFill,
+} from "react-icons/bs";
 // eslint-disable-next-line
 import "./MeetingRoom.scss";
 import CardVideo from "./components/CardVideo/CardVideo";
 import { openStream } from "./MeetingRoom.js";
 import { setSizeVideoFitDiv } from "./components/CardVideo/setSizeVideoFitDiv";
+import UserTag from "components/UserTag/UserTag";
+import ChattingMeeting from "features/Chatting - Meeting/ChattingMeeting";
 const MeetingRoom = () => {
   const [onModePresent, setOnModePresent] = useState(false);
   const [openTeammates, setOpenTeammates] = useState(false);
@@ -85,8 +91,53 @@ const MeetingRoom = () => {
           />
         </div>
       </div>
-      {openTeammates && <div className="ctn-video-feat teammate">Teammate</div>}
-      {openChatting && <div className="ctn-video-feat chatting">Chatting</div>}
+      {openTeammates && (
+        <div className="ctn-video-feat teammate">
+          <p>Member</p>
+          <button className="teammate__add-member">
+            <BsFillPersonPlusFill />
+            <p>New member</p>
+          </button>
+          <div className="teammate__list-member teammate__list-member--online">
+            <p>In the meeting</p>
+
+            <div>
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+            </div>
+          </div>
+          <div className="teammate__list-member teammate__list-member--offline">
+            <p>Absent</p>
+
+            <div>
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+              <UserTag />
+            </div>
+          </div>
+        </div>
+      )}
+      {openChatting && (
+        <div className="ctn-video-feat chatting">
+          <p>Chatting</p>
+          <ChattingMeeting />
+        </div>
+      )}
     </div>
   );
 };
