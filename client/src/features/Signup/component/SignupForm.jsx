@@ -21,7 +21,7 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__input' placeholder='example@mail.com'></input>
+                    <input className='email-textbox__input' placeholder='example@mail.com' />
                 </div>
                 <span className='signup-form__email-container__label'>Email</span>
             </div>
@@ -38,7 +38,7 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                        <input className='password-textbox__input' placeholder='*****'></input>
+                        <input className='password-textbox__input' placeholder='*****' />
                 </div>
             </div>
             <div className='signup-form__fullname-container'>
@@ -62,21 +62,21 @@ function SignupForm() {
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}></AiOutlineMail>
+            }} />
             <AiOutlineLock style={{
                 top: 300,
                 left: 63,
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}></AiOutlineLock>
+            }} />
             <BsPerson style={{
                 top: 108,
                 left: 63,
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}></BsPerson>
+            }} />
             <div className='signup-form__joinnow-btn-container'>
                 <button className='joinnow-btn'>
                     <span className='joinnow-btn__text'>Join now</span>

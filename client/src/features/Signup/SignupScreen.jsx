@@ -22,11 +22,8 @@ function SignupScreen() {
                         width: 60,
                         left: 1135,
                         top: 90 
-                    }}>
-                <AiOutlineQuestionCircle style={{
-                        fontSize: 24
-                    }}
-                ></AiOutlineQuestionCircle>
+            }}>
+                <AiOutlineQuestionCircle style={{fontSize: 24}}/>
                 <span className='help-btn__text'>Help</span>
             </button>
             <div className='signup__login'>
