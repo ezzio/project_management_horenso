@@ -21,7 +21,7 @@ function LoginForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__input' placeholder='Enter your email'></input>
+                    <input className='email-textbox__input' placeholder='Enter your email' />
                 </div>
                 <span className='login-form__email-container__label'>Email</span>
             </div>
@@ -37,8 +37,8 @@ function LoginForm() {
                         borderWidth: 1,
                         borderColor: "#000000",
                         borderStyle: "solid"
-                    }}>
-                        <input className='password-textbox__input' placeholder='Enter password'></input>
+                }}>
+                    <input className='password-textbox__input' placeholder='Enter password' />
                 </div>
             </div>
             <Link className='login-form__forgotpassword' path='/ForgotPassword'>Forgot password?</Link>
@@ -48,16 +48,14 @@ function LoginForm() {
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}>
-            </AiOutlineMail>
+            }} />
             <AiOutlineLock style={{
                 top: 210,
                 left: 64,
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}>
-            </AiOutlineLock>
+            }} />
             <div className='login-form__login-btn-container'>
                 <button className='login-btn'>
                     <span className='login-btn__text'>Log In</span>
