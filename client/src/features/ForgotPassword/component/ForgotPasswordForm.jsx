@@ -21,7 +21,7 @@ function ForgotPasswordForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__input' placeholder='Enter your email'></input>
+                    <input className='email-textbox__input' placeholder='Enter your email' />
                 </div>
                 <span className='forgotpassword-form__email-container__label'>Email</span>
             </div>
@@ -31,7 +31,7 @@ function ForgotPasswordForm() {
                 position: "absolute",
                 fontSize: 30,
                 color: 'gray'
-            }}></AiOutlineMail>
+            }} />
             <div className='forgotpassword-form__sendlink-btn-container'>
                 <button className='sendlink-btn'>
                     <span className='sendlink-btn__text'>Send me the link</span>
