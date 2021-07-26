@@ -65,33 +65,30 @@
     justify-content: space-between;
     align-items: center;
 
+    & > div {
+      width: calc(100% / 3);
+    }
+
     &__info-room {
       height: 100%;
-      width: fit-content;
-      max-width: 30%;
-
       display: flex;
       align-items: center;
-      flex: 3;
     }
 
     &__controller {
       height: 100%;
-      width: fit-content;
-      max-width: 50%;
 
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 6;
 
       & > button {
         cursor: pointer;
 
         margin: 0 15px;
 
-        height: 70%;
-        width: 6%;
+        height: 4rem;
+        width: 4rem;
         background-color: #fff;
 
         border: 1px solid #ccc;
@@ -109,11 +106,7 @@
     }
 
     &__feat {
-      flex: 1;
-
       height: 100%;
-      width: fit-content;
-      max-width: 20%;
 
       display: flex;
       align-items: center;
@@ -153,5 +146,65 @@
 
   to {
     opacity: 1;
+  }
+}
+
+.teammate {
+  padding: 1% 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  &__add-member {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    height: 5%;
+    width: 50%;
+
+    border-radius: 6px;
+    border: none;
+
+    background-color: $_PRIMARY;
+    color: #fff;
+
+    & > svg {
+      font-size: 1.5rem;
+    }
+  }
+  &__list-member {
+    height: calc(80% / 2);
+    width: 100%;
+
+    padding: 2%;
+
+    border-top: 1px solid #ccc;
+
+    & > div {
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    &--online {
+      & > p {
+        color: $_SUCCESS;
+        background-color: $_CONTAINER;
+      }
+    }
+    &--offline > p {
+      color: $_ERROR;
+      background-color: $_CONTAINER;
+    }
+  }
+}
+
+.chatting {
+  padding: 1%;
+
+  & > p {
+    margin-bottom: 1rem;
   }
 }
