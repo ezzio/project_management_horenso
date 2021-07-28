@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginForm.scss'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 
-function LoginForm() {
+function LoginForm(props) {
+    const {Login, error} = props
+
+    const [details, setDetails] = useState({email: '', password: ''})
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        Login(details)
+        setDetails({email: '', password: ''})
+    }
+
     return (
         <div className='login-form'>
             <div className='login-form__title'>
@@ -21,7 +31,10 @@ function LoginForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__input' placeholder='Enter your email' />
+                    <input className='email-textbox__input' placeholder='Enter your email' 
+                    type='text' name='email' id='email' value={details.email}
+                    onChange={(e) => setDetails({...details, name: e.target.value})}
+                    />
                 </div>
                 <span className='login-form__email-container__label'>Email</span>
             </div>
@@ -38,7 +51,10 @@ function LoginForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='password-textbox__input' placeholder='Enter password' />
+                    <input className='password-textbox__input' placeholder='Enter password' 
+                    type='password' name='password' id='password' value={details.password}
+                    onChange={(e) => setDetails({...details, name: e.target.value})}
+                    />
                 </div>
             </div>
             <Link className='login-form__forgotpassword' path='/ForgotPassword'>Forgot password?</Link>
@@ -56,6 +72,9 @@ function LoginForm() {
                 fontSize: 30,
                 color: 'gray'
             }} />
+            <div>
+                {(error != '') ? (<p style={{color: 'red'}}>{error}</p>) : ''}
+            </div>
             <div className='login-form__login-btn-container'>
                 <button className='login-btn'>
                     <span className='login-btn__text'>Log In</span>
