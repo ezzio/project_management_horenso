@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './SignupForm.scss'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
 
 function SignupForm() {
+    const [id, setId] = useState(1)
+    // const [userName, setUserName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
+    const [signUp, setSignUp] = useState({id: -1, userName: '', email: '', password: ''})
+    const [users, setUsers] = useState([])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (singUp.userName && signUp.email && signUp.password) {
+            const newUser = {id, userName: signUp.userName, email: signUp.email, password: signUp.password}
+            setUsers((users) => {
+                return [...users, newUser]
+            })
+            setId((id) => {
+                return id + 1
+            })
+            setSignUp({id: -1, userName: '', email: '', password: ''})
+        }
+    }
     return (
         <div className='signup-form'>
             <div className='signup-form__title'>
@@ -21,7 +41,11 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <input className='email-textbox__input' placeholder='example@mail.com' />
+                    <label htmlFor='userName' />
+                    <input className='email-textbox__input' placeholder='example@mail.com' 
+                     name='userName' value={signUp.userName} type='text' id='userName' 
+                     onChange={(e) => setUserName(e.target.value)}
+                    />
                 </div>
                 <span className='signup-form__email-container__label'>Email</span>
             </div>
@@ -38,7 +62,11 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                        <input className='password-textbox__input' placeholder='*****' />
+                        <label htmlFor='password' />
+                        <input className='password-textbox__input' placeholder='*****' 
+                        name='password' value={signUp.password} type='password' id='password'
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
                 </div>
             </div>
             <div className='signup-form__fullname-container'>
@@ -53,7 +81,11 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                    <input className='fullname-textbox__input' placeholder="John Smith"></input>
+                    <label htmlFor='email' />
+                    <input className='fullname-textbox__input' placeholder="John Smith" 
+                    name='email' value={signUp.email} type='text' id='email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
             </div>
             <AiOutlineMail style={{
@@ -78,7 +110,7 @@ function SignupForm() {
                 color: 'gray'
             }} />
             <div className='signup-form__joinnow-btn-container'>
-                <button className='joinnow-btn'>
+                <button type='submit' onClick={handleSubmit} className='joinnow-btn'>
                     <span className='joinnow-btn__text'>Join now</span>
                 </button>
             </div>
