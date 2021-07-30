@@ -44,7 +44,7 @@ const AnimatedRouter = () => {
         <Route path="/meeting">
           <Meeting />
         </Route>
-        <Route path="/chat">
+        <Route path="/conversation">
           <Chat />
         </Route>
         <Route path="/kanban">
