@@ -7,7 +7,6 @@ import './Header.scss';
 function Header() {
 
     const [click, setClick] = useState(false)
-
     const handleClick = () => setClick(!click);
 
     return (

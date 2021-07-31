@@ -8,75 +8,132 @@ function WorkPlace() {
     return (
         <div className="container">
             <div className="container__working">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><BiPieChart className="icon" /></td>
-                            <td> Kanban </td>
-                            <td><div className="btn-deadline">Urgent</div></td>
-                            <td><div className="btn-deadline">$$$$</div></td>
-                            <td><BsPeopleCircle className="icon" /></td>
-                        </tr>
-                        <tr>
-                            <td><BiPieChart className="icon" /></td>
-                            <td> Horenso </td>
-                            <td><div className="btn-deadline">Long Term</div></td>
-                            <td><div className="btn-deadline">$$$</div></td>
-                            <td><BsPeopleCircle className="icon" /></td>
-                        </tr>
-                        <tr>
-                            <td><BiPieChart className="icon" /></td>
-                            <td> Github </td>
-                            <td><div className="btn-deadline">Short Term</div></td>
-                            <td><div className="btn-deadline">$$</div></td>
-                            <td><BsPeopleCircle className="icon" /></td>
-                        </tr>
-                        <tr>
-                            <td><BiPieChart className="icon" /></td>
-                            <td> Login </td>
-                            <td><div className="btn-deadline">01.09.2021</div></td>
-                            <td><div className="btn-deadline">$</div></td>
-                            <td><BsPeopleCircle className="icon" /></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="container__working__task">
+                    <div className="title">
+                        <BiPieChart className="icon"/>
+                        <p>Important Fix</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>Urgen</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="container__working__task">
+                    <div className="title">
+                        <BiPieChart className="icon"/>
+                        <p>Important Fix</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>Short term</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="container__working__task">
+                    <div className="title">
+                        <BiPieChart className="icon"/>
+                        <p>Important Fix</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>Long Term</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="container__working__task">
+                    <div className="title">
+                        <BiPieChart className="icon"/>
+                        <p>Start new marketing campaign</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>01.09.2021</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
 
-            <div className="container__successwork">
-                <div className="container__successwork__title">
-                    <p> Completed </p> <button> Hide </button> 
+            <div className="container__complete">
+                <div className="container__complete__title">
+                    <p>Complete</p>
+                    <button>Hide</button>
                 </div>
-                <div className="complete-task">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><BiCheck className="icon" /></td>
-                                <td> Database </td>
-                                <td><div className="btn-complete">Urgent</div></td>
-                                <td><div className="btn-complete">$$$</div></td>
-                                <td><BsPeopleCircle className="icon" /></td>
-                            </tr>
-                            <tr>
-                                <td><BiCheck className="icon" /></td>
-                                <td> Chat </td>
-                                <td><div className="btn-complete">Urgent</div></td>
-                                <td><div className="btn-complete">$$</div></td>
-                                <td><BsPeopleCircle className="icon" /></td>
-                            </tr>
-                            <tr>
-                                <td><BiCheck className="icon" /></td>
-                                <td> VideoCall </td>
-                                <td><div className="btn-complete">Urgent</div></td>
-                                <td><div className="btn-complete">$</div></td>
-                                <td><BsPeopleCircle className="icon" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="container__complete__task">
+                    <div className="name">
+                        <BiCheck className="icon"/>
+                        <p>Chatting</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>Short term</p>
+                        </div>
+                        
+                        <div>
+                            <p>$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+
+                    </div>
                 </div>
-                
+                <div className="container__complete__task">
+                    <div className="name">
+                        <BiCheck className="icon"/>
+                        <p>Video Call</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>Long term</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="container__complete__task">
+                    <div className="name">
+                        <BiCheck className="icon"/>
+                        <p>Horenso</p>
+                    </div>
+                    <div className="content">
+                        <div>
+                            <p>23.07.2021</p>
+                        </div>
+                        
+                        <div>
+                            <p>$$</p>
+                            <BsPeopleCircle className="icon"/>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             
+
         </div>
     )
 }
