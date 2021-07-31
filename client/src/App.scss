@@ -2,27 +2,25 @@
 
 .App {
   display: flex;
-  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
-  background-color: transparent;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background: $_CONTAINER;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: transparent;
-  // border-radius: 1.15rem;
+  background: $_PRIMARY;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: transparent;
+  background: $_HOVER_PRIMARY;
 }
 
 .slide-top {

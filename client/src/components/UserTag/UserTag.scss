@@ -1,0 +1,17 @@
+.user {
+  cursor: pointer;
+  width: 260px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+  margin: 1rem 0;
+
+  & > img {
+    border-radius: 50%;
+  }
+
+  & > p {
+    margin-left: 5%;
+  }
+}

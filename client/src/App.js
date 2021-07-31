@@ -10,6 +10,7 @@ import SideBar from "./components/SideBar/SideBar";
 import Meeting from "./pages/Horenso/Meeting/Meeting";
 import Chat from "./pages/Horenso/Chat/Chat";
 import ProjectChecking from "./pages/Kanban/ProjectChecking/ProjectChecking";
+import ChartProjectChecking from "pages/Kanban/ChartProjectChecking/ChartProjectChecking";
 
 function App() {
   return (
@@ -48,7 +49,7 @@ const AnimatedRouter = () => {
           <Chat />
         </Route>
         <Route path="/kanban">
-          <ProjectChecking />
+          <ChartProjectChecking />
         </Route>
       </Switch>
     </div>
