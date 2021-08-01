@@ -1,17 +1,38 @@
 .user {
   cursor: pointer;
-  width: 260px;
+  min-width: 300px;
+  width: auto;
   display: flex;
-  align-items: center;
-  font-weight: bold;
 
-  margin: 1rem 0;
+  margin: 1.5rem 0 0;
 
-  & > img {
-    border-radius: 50%;
+  &__info {
+    margin-left: 1rem;
+    width: fit-content;
+    height: 100%;
+
+    & > img {
+      border-radius: 50%;
+    }
+
+    & > p {
+      font-weight: bold;
+    }
+
+    & > i {
+      color: #aaa;
+      font-size: 0.8rem;
+    }
   }
 
-  & > p {
-    margin-left: 5%;
+  &__role {
+    height: 30px;
+    width: 200px;
+    margin: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 8px;
   }
 }
