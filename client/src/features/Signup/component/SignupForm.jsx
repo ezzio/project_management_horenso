@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './SignupForm.scss'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
@@ -24,6 +24,12 @@ function SignupForm() {
             setSignUp({id: -1, userName: '', email: '', password: ''})
         }
     }
+
+    useEffect(() => {
+        console.log(users)
+    }, [users])
+    //check if array is updated
+
     return (
         <div className='signup-form'>
             <div className='signup-form__title'>
