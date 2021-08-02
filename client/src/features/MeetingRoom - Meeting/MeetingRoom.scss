@@ -1,4 +1,4 @@
-@import "../../styles/Color.scss";
+@import '../../styles/Color.scss';
 
 .videocall {
   width: 100%;
@@ -59,7 +59,7 @@
     height: 10%;
     padding: 10px;
 
-    background-color: $_CONTAINER;
+    background-color: $_WHITE;
 
     display: flex;
     justify-content: space-between;
@@ -134,7 +134,7 @@
 
   box-shadow: $_SHADOW;
 
-  background-color: $_CONTAINER;
+  background-color: $_WHITE;
 
   animation: showVideo 0.3s ease-in-out;
 }
@@ -191,12 +191,12 @@
     &--online {
       & > p {
         color: $_SUCCESS;
-        background-color: $_CONTAINER;
+        background-color: $_WHITE;
       }
     }
     &--offline > p {
       color: $_ERROR;
-      background-color: $_CONTAINER;
+      background-color: $_WHITE;
     }
   }
 }

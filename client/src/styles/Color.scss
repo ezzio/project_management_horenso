@@ -1,14 +1,17 @@
+$_SHADOW: #00000040 0px 54px 55px, #0000001f 0px -12px 30px,
+  #0000001f 0px 4px 6px, #0000002b 0px 12px 13px, #00000017 0px -3px 5px;
+$_SECOND_SHADOW: #00000059 0px 5px 15px;
 $_SUCCESS: #09814a;
 $_ERROR: #fb3640;
 $_WARNING: #ea9010;
-
-$_CONTAINER: #fafaff;
-$_SECOND_CONTAINER: #e4d9ff;
-
-$_HOVER_PRIMARY: #1e2749;
-$_PRIMARY: #273469;
+$_WHITE: #fafaff;
+$_PRIMARY: #051520;
 $_SECONDARY: #30343f;
-
-$_SHADOW: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-  rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
-  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+$_PINK: #ea5a92;
+$_GREENBLUE: hsl(170, 79%, 43%);
+$_BLUE: #5097f8;
+$_OGRANGE: hsl(22, 95%, 60%);
+$_PURPLE: hsl(267, 66%, 54%);
+$_GRAY: #4f5b63;
+//background of color always should opacity = 0.1
+//hover of color always should opacity = 0.8

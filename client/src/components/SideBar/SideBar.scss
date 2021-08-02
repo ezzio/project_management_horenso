@@ -1,4 +1,4 @@
-@import "../../styles/color.scss";
+@import '../../styles/color.scss';
 
 .hidden {
   display: none;
@@ -21,7 +21,7 @@
   background-color: $_PRIMARY;
 
   &:hover {
-    animation: 0.1s showSideBar linear forwards;
+    animation: 0.3s showSideBar ease-in-out forwards;
 
     @keyframes showSideBar {
       from {
@@ -33,7 +33,7 @@
     }
   }
   &:not(:hover) {
-    animation: 0.1s hideSideBar linear forwards;
+    animation: 0.3s hideSideBar ease-in-out forwards;
 
     .notify {
       @include hideNShow($isHide: true);
@@ -96,7 +96,7 @@
         padding: 5%;
 
         background-color: $_PRIMARY;
-        color: #fff;
+        color: $_GRAY;
 
         font-weight: bold;
         font-size: 1rem;
@@ -110,8 +110,8 @@
         position: relative;
 
         &:hover {
-          background-color: $_CONTAINER;
-          color: $_HOVER_PRIMARY;
+          background-color: $_WHITE;
+          color: $_PRIMARY;
         }
 
         & > p {
@@ -128,17 +128,17 @@
 
           border-radius: 6px;
 
-          background-color: $_CONTAINER;
+          background-color: $_WHITE;
 
           position: absolute;
 
           right: 0px;
 
-          color: $_HOVER_PRIMARY;
+          color: $_PRIMARY;
         }
 
         & > .icon {
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
     }
@@ -171,4 +171,9 @@
       font-size: 1.3rem;
     }
   }
+}
+
+.sidebar-active {
+  pointer-events: none;
+  color: $_WHITE !important;
 }
