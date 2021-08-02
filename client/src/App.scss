@@ -1,26 +1,20 @@
-@import "./styles/Color.scss";
+@import './styles/Color.scss';
 
 .App {
   display: flex;
 }
 
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $_CONTAINER;
-}
-
-/* Handle */
+/* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-  background: $_PRIMARY;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $_HOVER_PRIMARY;
+  background: #ff0000;
 }
 
 .slide-top {

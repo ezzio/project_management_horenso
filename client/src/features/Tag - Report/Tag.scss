@@ -1,0 +1,132 @@
+@import 'styles/Color.scss';
+.ctn-tag {
+  height: 300px;
+  width: 300px;
+  background-color: transparent;
+  position: relative;
+}
+
+.tag {
+  &__icon {
+    position: absolute;
+    top: 15px;
+    left: 10%;
+
+    height: 60px;
+    width: 60px;
+
+    border-radius: 50%;
+
+    background-color: $_OGRANGE;
+
+    box-shadow: hsl(22, 95%, 60%, 0.6) 0px 25px 20px -10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > svg {
+      height: 30px;
+      width: 30px;
+      color: #fff;
+    }
+  }
+
+  &__content {
+    cursor: pointer;
+    margin-top: 15%;
+    height: fit-content;
+    width: 100%;
+
+    background-color: #fff;
+
+    line-height: 1.6;
+
+    padding: 3rem;
+
+    border-radius: 1.15rem;
+    border: none;
+
+    transition: ease-in-out 0.3s;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    }
+
+    &__info {
+      height: 60%;
+      width: 100%;
+
+      margin: 10px 0;
+      padding-bottom: 10px;
+
+      border-bottom: 1px solid #efefef;
+
+      &__title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      &__detail {
+        & > section {
+          display: flex;
+          align-items: center;
+
+          & > p {
+            margin-left: 0.5rem;
+          }
+          & > svg {
+            font-size: 1.15rem;
+          }
+        }
+      }
+    }
+    &__footer-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      height: fit-content;
+
+      &__member {
+        height: 100%;
+        flex: 1;
+
+        & > p {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        & > section {
+          overflow: hidden;
+
+          display: flex;
+          align-items: center;
+          & > img {
+            border: 0.05px solid #000;
+            border-radius: 50%;
+          }
+          & > img:not(:first-child) {
+            transform: translateX(-10px);
+          }
+        }
+      }
+
+      &__process {
+        height: 100%;
+        width: fit-content;
+
+        & > p:first-child {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
