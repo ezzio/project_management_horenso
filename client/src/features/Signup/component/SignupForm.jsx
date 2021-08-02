@@ -13,7 +13,7 @@ function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (singUp.userName && signUp.email && signUp.password) {
+        if (signUp.userName && signUp.email && signUp.password) {
             const newUser = {id, userName: signUp.userName, email: signUp.email, password: signUp.password}
             setUsers((users) => {
                 return [...users, newUser]
@@ -44,7 +44,7 @@ function SignupForm() {
                     <label htmlFor='userName' />
                     <input className='email-textbox__input' placeholder='example@mail.com' 
                      name='userName' value={signUp.userName} type='text' id='userName' 
-                     onChange={(e) => setUserName(e.target.value)}
+                     onChange={(e) => setSignUp(e.target.value)}
                     />
                 </div>
                 <span className='signup-form__email-container__label'>Email</span>
@@ -65,7 +65,7 @@ function SignupForm() {
                         <label htmlFor='password' />
                         <input className='password-textbox__input' placeholder='*****' 
                         name='password' value={signUp.password} type='password' id='password'
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setSignUp(e.target.value)}
                         />
                 </div>
             </div>
@@ -84,7 +84,7 @@ function SignupForm() {
                     <label htmlFor='email' />
                     <input className='fullname-textbox__input' placeholder="John Smith" 
                     name='email' value={signUp.email} type='text' id='email'
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setSignUp(e.target.value)}
                     />
                 </div>
             </div>
