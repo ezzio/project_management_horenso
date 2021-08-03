@@ -210,6 +210,7 @@
   height: 50px;
   padding-left: 16px;
   padding-right: 16px;
+  opacity: 1;
 
   &__text {
     color: #fff;
@@ -224,6 +225,6 @@
     margin-top: 10px;
   }
   &:hover {
-    background-color: $_HOVER_PRIMARY;
+    opacity: 0.8;
   }
 }
