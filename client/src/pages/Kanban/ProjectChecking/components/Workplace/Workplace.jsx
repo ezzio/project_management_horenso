@@ -1,4 +1,3 @@
-import React, {useState, useRef} from 'react';
 import "./Workplace.scss";
 import Statistics from '../Statistics/Statistics';
 import NewTask from '../NewTask/NewTask';
