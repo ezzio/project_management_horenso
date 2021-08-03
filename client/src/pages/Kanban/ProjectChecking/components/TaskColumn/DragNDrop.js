@@ -26,7 +26,6 @@ function DragNDrop({data}) {
 
     const handleDragEnter = (e, targetTask) => {
         console.log('Entering a drag target', targetTask);
-        const currentTask = dragTask.current;
         if (dragNode.current !== e.target) {
             console.log('Target is not the same!')
             setList(oldList => {
@@ -47,15 +46,14 @@ function DragNDrop({data}) {
 
     }
 
-    const getStyles = (params) => {
-        const currentTask = dragTask.current;
-        if(currentTask.cIndex === params.cIndex && currentTask.taskIndex === params.taskIndex) {
+    const getStyles = (task) => {
+        if (dragTask.current.cIndex === task.cIndex && dragTask.current.taskIndex === task.taskIndex) {
             return 'current task-detail'
         }
         return 'task-detail'
     }
 
-    if(list) { 
+    if (list) { 
         return (
         <div className="ctn kanban">
             {list.map((c, cIndex) => (
@@ -95,7 +93,7 @@ function DragNDrop({data}) {
         </div>
         )
     } else { return null}
-    
+
 }
 
 export default DragNDrop;
