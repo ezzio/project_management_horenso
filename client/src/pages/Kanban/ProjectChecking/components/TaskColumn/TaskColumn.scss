@@ -1,7 +1,11 @@
 .content {
+  .kanban {
+    display: flex;
+    justify-content:space-between;
+  // css columns
     .kanban-board {
       float: left;
-      width: calc(100%/4);
+      width: calc(100%/4.1);
       text-align: left;
       margin: 0 5.5px;
       padding: 5px 5px;
@@ -22,4 +26,55 @@
         }
       }
     }
+  
+    // css tasks
+    .task-detail {
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 5px 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      margin-bottom: 8px;
+    }
+  
+    .task-header {
+      display: block;
+      position: relative;
+  
+      &-name {
+        font-weight: bold;
+      }
+  
+      &-more {
+        float: right;
+        text-decoration: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  
+    .task-content {
+      width: 100%;
+      display: inline-block;
+  
+      p {
+        float: left;
+        padding-right: 5px;
+      }
+  
+      &-member {
+        float: left;
+        position: absolute;
+        bottom: 0;
+      }
+  
+      &-time {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        float: right;
+      }
+    }
   }
+}
