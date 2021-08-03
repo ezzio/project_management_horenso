@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect} from 'react';
 
 function DragNDrop({data}) {
 
@@ -73,14 +73,14 @@ function DragNDrop({data}) {
                             className={dragging?getStyles({cIndex, taskIndex}):"task-detail"}
                             >
                                 <div className="task-header">
-                                    <p className="task-header-name">{task.name}</p>
+                                    <p className="task-header__name">{task.name}</p>
                                     <span>
-                                        <a href="" className="task-header-more">...</a>
+                                        <a href="" className="task-header__more">...</a>
                                     </span>
                                 </div>
                                 <div className="task-content">
-                                    <p className="task-content-member">{task.member}</p>
-                                    <p className="task-content-time">{task.time} h</p>
+                                        <img src={task.member} className="task-content__member" height="25" width="25"></img>
+                                    <p className="task-content__time">{task.time} h</p>
                                 </div>
                             </div>
                         ))}
