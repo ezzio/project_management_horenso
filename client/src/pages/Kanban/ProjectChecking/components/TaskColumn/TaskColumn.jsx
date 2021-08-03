@@ -1,8 +1,9 @@
+import React, {useEffect, useState} from 'react';
 import "./TaskColumn.scss";
 // import TaskDetail from "../TaskDetail/TaskDetail.jsx";
 import DragNDrop from './DragNDrop';
-function TaskColumn() {
-    const data = [
+
+const defaultData = [
         {
         column: 'Todo',
         tasks: [
@@ -26,11 +27,23 @@ function TaskColumn() {
         column: 'Done',
         tasks: [
             {id: 5, name: "Design Report page", member: "Khoa", time: "03:44:12"},
-            {id: 6, name: "Design signup page", member: "Mih", time: "00:48:48"}
+            {id: 6, name: "Design signup page", member: "Minh", time: "00:48:48"}
 
         ],
     },
 ]
+
+function TaskColumn() {
+    const [data, setData] = useState();  
+    useEffect(() => {
+    if (localStorage.getItem('List')) {
+        console.log(localStorage.getItem('List'))
+        setData(JSON.parse(localStorage.getItem('List')))
+    } else {
+        setData(defaultData)
+    }
+    }, [setData])
+
     return (
         <DragNDrop data={data}/>
     );
