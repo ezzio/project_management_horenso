@@ -125,6 +125,11 @@
     background-color: rgba(155, 155, 155, 1);
     margin-top: 400px;
   }
+
+  &__error {
+    color: $_ERROR;
+    font-weight: bold;
+  }
 }
 
 .fullname-textbox {
