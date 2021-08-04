@@ -64,25 +64,21 @@
     .task-content {
       width: 100%;
       display: inline-block;
+        
 
-      // p {
-      //   float: left;
-      //   padding-right: 5px;
-      // }
-  
       &__member {
-        float: left;
-        position: absolute;
-        bottom: 0;
+        border: 0.05px solid #000;
         border-radius: 50%;
-        margin-bottom: 5px;
       }
-  
+
+      &__member:not(:first-child) {
+        transform: translateX(-10px);
+      }
+
       &__time {
         position: absolute;
         right: 0;
         bottom: 0;
-        float: right;
         margin-bottom: 5px;
         padding-right: 5px;
       }
