@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import './SignupForm.scss'
+import { useForm } from 'react-hook-form'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
 
 function SignupForm() {
+    const {register, reset, handleSubmit, formState: { errors } } = useForm()
     const [id, setId] = useState(1)
-    // const [userName, setUserName] = useState('')
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
-    const [signUp, setSignUp] = useState({id: -1, userName: '', email: '', password: ''})
     const [users, setUsers] = useState([])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (signUp.userName && signUp.email && signUp.password) {
-            const newUser = {id, userName: signUp.userName, email: signUp.email, password: signUp.password}
-            setUsers((users) => {
-                return [...users, newUser]
-            })
-            setId((id) => {
-                return id + 1
-            })
-            setSignUp({id: -1, userName: '', email: '', password: ''})
-        }
+    const onHandleSubmit = (data) => {
+        const newUser = {id, fullName: data.fullName, email: data.email, password: data.password}
+        setUsers((users) => {
+            return [...users, newUser]
+        })
+        setId(id + 1)
+        reset({
+            fullName: '',
+            email: '',
+            password: ''
+        })
     }
-
+    
     useEffect(() => {
         console.log(users)
     }, [users])
     //check if array is updated
 
     return (
-        <div className='signup-form'>
+        <form className='signup-form' onSubmit={handleSubmit(onHandleSubmit)}>
             <div className='signup-form__title'>
                 <span className='signup-form__title__text'>Let's Go!</span>
             </div>
             <div className='signup-form__email-container'>
+                <span className='signup-form__email-container__label'>Email</span>
                 <div className='email-textbox' 
                     style={{
                         height: 45,
@@ -47,13 +45,12 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                 }}>
-                    <label htmlFor='userName' />
                     <input className='email-textbox__input' placeholder='example@mail.com' 
-                     name='userName' value={signUp.userName} type='text' id='userName' 
-                     onChange={(e) => setSignUp(e.target.value)}
+                     name='email' 
+                     {...register("email", { required: "This field is required", pattern: {value: /^\S+@\S+$/i, message: 'Invalid email address'} })} 
                     />
                 </div>
-                <span className='signup-form__email-container__label'>Email</span>
+                { errors.email && <p style={{marginTop: 80}} className='signup-form__error'>{errors.email.message}</p> }
             </div>
             <div className='signup-form__password-container'>
                 <span className='signup-form__password-container__label'>Password</span>
@@ -68,12 +65,14 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                        <label htmlFor='password' />
                         <input className='password-textbox__input' placeholder='*****' 
-                        name='password' value={signUp.password} type='password' id='password'
-                        onChange={(e) => setSignUp(e.target.value)}
+                        name='password' 
+                        {...register("password", { required: "This field is required", 
+                        minLength: {value: 6, message: "Password must be 6-18 characters long"}, 
+                        maxLength: {value: 18, message: "Password must be 6-18 characters long"} })} 
                         />
                 </div>
+                { errors.password && <p style={{marginTop: 130}} className='signup-form__error'>{errors.password.message}</p> }
             </div>
             <div className='signup-form__fullname-container'>
                 <span className='signup-form__fullname-container__label'>Full Name</span>
@@ -87,12 +86,12 @@ function SignupForm() {
                         borderColor: "#000000",
                         borderStyle: "solid"
                     }}>
-                    <label htmlFor='email' />
                     <input className='fullname-textbox__input' placeholder="John Smith" 
-                    name='email' value={signUp.email} type='text' id='email'
-                    onChange={(e) => setSignUp(e.target.value)}
+                    name='fullName' 
+                    {...register("fullName", { required: "This field is required" })}
                     />
                 </div>
+                 { errors.fullName && <p style={{marginTop: 90}} className='signup-form__error'>{errors.fullName.message}</p> }
             </div>
             <AiOutlineMail style={{
                 top: 205,
@@ -116,7 +115,7 @@ function SignupForm() {
                 color: 'gray'
             }} />
             <div className='signup-form__joinnow-btn-container'>
-                <button type='submit' onClick={handleSubmit} className='joinnow-btn'>
+                <button type='submit' className='joinnow-btn'>
                     <span className='joinnow-btn__text'>Join now</span>
                 </button>
             </div>
@@ -124,7 +123,7 @@ function SignupForm() {
             <span className='signup-form__footer'>By clicking the button above, you agree to our 
                 <a href='https://www.google.com'> Terms of Service</a> and <a href='https://www.google.com'>Privacy Policy</a>
             </span>
-        </div>
+        </form>
     )
 }
 
