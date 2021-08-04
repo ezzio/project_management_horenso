@@ -78,11 +78,13 @@ function DragNDrop({data}) {
                                         <a href="" className="task-header__more">...</a>
                                     </span>
                                 </div>
+                                {task.members.map((m) => (
                                 <div className="task-content">
-                                        <img src={task.member} className="task-content__member" height="25" width="25"></img>
+                                    <img src={task.member} className="task-content__member" height="25" width="25"></img>
                                     <p className="task-content__time">{task.time} h</p>
                                 </div>
-                            </div>
+                                ))}
+                                </div>
                         ))}
                     <div className="work-flow-footer">
                         <a href="">+Add new task</a>
