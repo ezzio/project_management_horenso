@@ -7,11 +7,6 @@ import WorkPlace from './components/WorkPlace/WorkPlace';
 function ChartProjectChecking() {
     return (
         <div>
-            <Switch>
-                <Route exact path="/projectchecking/Nhutngu">
-                    <ProjectChecking />
-                </Route>
-            </Switch>
             <Header />
             <WorkPlace />
         </div>
