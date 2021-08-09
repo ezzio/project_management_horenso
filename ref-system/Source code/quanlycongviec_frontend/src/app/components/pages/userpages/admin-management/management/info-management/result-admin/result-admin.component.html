@@ -1,0 +1,15 @@
+<div class="admin">
+  <app-table-template [tableConfig]="tableConfig"
+                      [tableContentChosen]="tableContentEvent"
+                      [editOrNot]="isSuperAdmin"
+                      [isSuperAdmin]="true"
+                      [isExport]="false"
+                      [inputComponent]="inputAdmin"
+                      [sizeModal]="'lg'"
+                      [keyDelete]="'email'"
+                      [tableName]="tableName"
+                      [deleteOrNot]="isSuperAdmin"
+                      [classOfDelete]="['sticky-col', 'second-col']"
+  ></app-table-template>
+</div>
+

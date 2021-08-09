@@ -1,0 +1,221 @@
+.l-container {
+  background-color: #edf2f5;
+  padding-top: 1px;
+  height: 100%;
+}
+
+.title {
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-top: 10px;
+  color: #ffffff;
+  border-radius: 15px;
+  margin: 10px 20px 10px 20px;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  background: linear-gradient(
+    148deg,
+    rgba(25, 97, 117, 1) 6%, rgba(53, 141, 166, 1) 21%, rgba(125, 190, 185, 1) 36%,
+    rgba(108, 185, 205, 1) 56%, rgba(77, 186, 208, 1) 79%, rgba(35, 114, 136, 1) 99%)
+}
+
+.title h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px 15px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #f7f7f7;
+  border-radius: 20px;
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+}
+
+.form {
+  position: relative;
+  width: 25%;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.form input {
+  border: none;
+  outline: none;
+  background-color: rgba(0,0,0,.04);
+  height: 65px;
+  width: 100%;
+  border-bottom: 1px solid;
+  z-index: 1000;
+}
+
+.form input:hover {
+  border-bottom: 2px solid #4b4b4b;
+  transition: border-bottom 0.1s ease-in;
+}
+
+.form input:focus {
+  border-bottom: 2px solid #673ab7;
+}
+
+.form label {
+  position: absolute;
+  top: 50px;
+  left: 25px;
+  color: #008db5;
+  transition: top 0.25s, font-size 0.25s;
+}
+
+.form label:hover {
+  cursor: auto;
+}
+
+.form input:not(:placeholder-shown)+label{
+  top: 37px;
+  font-size: 13px;
+  color: #008db5;
+}
+
+.form input:focus+label {
+  top: 37px;
+  font-size: 13px;
+  color: #673ab7;
+}
+
+#name, #code, #sex, #birthday, #email, #cmnd, #phone, #job_title, #child_depart,
+#contract_type, #contract_begin, #contract_end, #mstcn, #date_join, #date_quit, #status{
+  padding-top: 17px;
+  padding-left: 13px;
+  padding-bottom: 2px;
+}
+
+mat-datepicker-toggle {
+  position: absolute;
+  top: 45px;
+  right: 25px;
+}
+
+.btn.btn-submit {
+  transition: all 0.3s;
+  margin-top: 7px;
+  margin-bottom: 15px;
+  padding: 8px 18px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .title {
+    padding-bottom: 13px;
+    padding-left: 0px;
+    padding-top: 13px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .title h2 {
+    font-size: 23px;
+  }
+  .l-container {
+    padding-top: 10px;
+    height: auto;
+  }
+  .title {
+    display: none;
+  }
+
+  .main {
+    border-radius: 12px;
+  }
+
+  .form {
+    width: 33%;
+    padding-top: 25px;
+    font-size: 15px;
+  }
+
+  .form input {
+    height: 60px;
+  }
+
+  .form label {
+    top: 43px;
+  }
+
+  .form input:focus+label {
+    top: 30px;
+  }
+
+  .form input:not(:placeholder-shown)+label{
+    top: 30px;
+  }
+
+  mat-datepicker-toggle {
+    top: 37px;
+    right: 18px;
+  }
+
+  .btn.btn-submit {
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    display: none;
+  }
+
+  .main {
+    border-radius: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px 5px 5px 5px;
+  }
+
+  .form {
+    width: 50%;
+    font-size: 13px;
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-top: 7px;
+  }
+
+  .form input {
+    height: 50px;
+  }
+
+  .form label {
+    left: 20px;
+    top: 22px;
+    font-size: 12px;
+  }
+
+  .form input:not(:placeholder-shown)+label{
+    top: 12px;
+    font-size: 10px;
+  }
+
+  .form input:focus+label {
+    top: 12px;
+    font-size: 10px;
+  }
+
+  .btn.btn-submit {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  #name, #code, #sex, #birthday, #email, #cmnd, #phone, #job_title, #child_depart,
+  #contract_type, #contract_begin, #contract_end, #mstcn, #date_join, #date_quit, #status {
+    padding-top: 12px;
+  }
+
+  mat-datepicker-toggle {
+    top: 19px;
+    right: 5px;
+  }
+}

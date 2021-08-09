@@ -1,0 +1,12 @@
+<div class="superadmin">
+  <div class="item">
+    <div class="row">
+      <button class="btn btn-submit" (click)="openInfo()">Xem thông tin</button>
+      <button class="btn btn-editform" (click)="addNew()">Thêm</button>
+    </div>
+    <app-spinner-layout></app-spinner-layout>
+    <div class="card">
+      <app-result-superadmin [searchMessage]="tableContent"></app-result-superadmin>
+    </div>
+  </div>
+</div>

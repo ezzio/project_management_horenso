@@ -1,0 +1,52 @@
+<div class="top">
+  <div *ngIf="showSingleImport"  class="left-img">
+    <img class="img" src="assets/images/form.png">
+  </div>
+  <div *ngIf="showSingleImport"  class="left-option">
+    <h3>Nhập đơn mới</h3>
+    <div *ngIf="path !== ''"><a (click)="addOrEdit()"><u>Tại đây</u></a></div>
+  </div>
+  <div [ngClass]="showSingleImport? 'right-option' : 'other-option'">
+    <h3>Nhập danh sách </h3>
+    <div class="row">
+      <a class="addItem" *ngIf="path !== '' && pathArray !== {}" href="{{path}}">Tải form danh sách tại đây</a>
+      <div *ngIf="path === ''" class="dropdown">
+        <button class="btn btn-open dropdown-toggle" type="button" id="btnDropdownDemo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tải form danh sách tại đây
+        </button>
+        <div class="dropdown-menu scrollable-menu" aria-labelledby="btnDropdownDemo">
+          <div *ngFor="let pathLg of pathArray">
+            <h6 class="dropdown-header">{{pathLg.title}}</h6>
+            <a *ngFor="let pathElem of pathLg.content"
+               class="dropdown-item"
+               href="{{pathElem['pathUrl']}}">
+              {{pathElem['pathName']}}
+            </a>
+            <div class="dropdown-divider"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <app-import-data [inputComponent]="inputComponent"
+                         (objEvent)="receiveList($event)"
+                         [empImportForm]="empImportForm"
+                         [empImportBtn]="empImportBtn"
+                         [showButtonOpen]="showButtonOpen"
+                         [categorySalary]="categorySalary"
+                         (categoryEvent)="categoryEvent($event)">
+          <div content>
+            <ng-content class="row-1" select="[content1]"></ng-content>
+          </div>
+        </app-import-data>
+      </div>
+
+    </div>
+  </div>
+  <div [ngClass]="showSingleImport? 'right-img' : 'other-img'">
+    <img class="img" src="assets/images/add-person.png">
+  </div>
+  <div *ngIf="showSingleImport" class="middle">
+    <em>hoặc</em>
+  </div>
+</div>
+<h4 *ngIf="showSingleImport"  style="color:#000"><em>*** Chọn 1 trong 2 cách trên để nhập hồ sơ mới</em></h4>

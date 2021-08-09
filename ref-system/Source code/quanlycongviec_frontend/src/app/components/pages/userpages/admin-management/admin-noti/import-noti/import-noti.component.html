@@ -1,0 +1,26 @@
+<app-import-or-read [addOrEditComponent]="inputComponent"
+                    [sizeOfAddOrEdit]="sizeOfAddOrEdit"
+                    [pathDownload]="pathDownload"
+                    (eventOfReadFile)="receiveList($event)"
+                    [empImportForm]="true"
+                    [empImportBtn]="true"
+                    [showSingleImport]="false"
+></app-import-or-read>
+<!----------------------------------------------------->
+<div *ngIf="importList">
+    <app-table-template [tableConfig]="tableNoti"
+                        [tableContent]="importList"
+                        [editOrNot]="false"
+                        [inputComponent]="inputComponent">
+    </app-table-template>
+    <div class="group-btn">
+        <button class="btn btn-updata" (click)="updateData()">Save</button>
+        <button class="btn btn-remove" (click)="removeData()">Cancel</button>
+    </div>
+
+</div>
+<div class="noti" *ngIf="resultUpdate">
+    <div>Bạn đã cập nhập thành công: {{resultUpdate.count_update}}</div>
+    <div>Bạn đã thêm thành công: {{resultUpdate.count_insert}}</div>
+</div>
+<app-spinner-layout></app-spinner-layout>

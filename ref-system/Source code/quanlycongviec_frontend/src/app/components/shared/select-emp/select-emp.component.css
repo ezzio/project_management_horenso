@@ -1,0 +1,20 @@
+.followItem {
+  width: 200px;
+  padding-left: 10px;
+}
+.flex-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  margin-right: .8rem;
+}
+
+.label-1 {
+  margin-left: 20px;
+}
+
+label {
+  /*margin-right: 30px;*/
+}

@@ -1,0 +1,768 @@
+2021-04-18 14:51:58,998 INFO Error api_web_create_task: Database connection error
+2021-04-18 14:55:50,344 INFO Error api_web_create_task: Database connection error
+2021-04-18 15:00:51,813 INFO Error api_web_create_task: Database connection error
+2021-04-18 15:05:52,368 INFO Error api_web_create_task: Database connection error
+2021-04-21 12:00:00,344 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 12:00:27,969 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 12:16:37,116 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 12:18:50,503 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:02:28,939 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:05:30,384 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:05:45,640 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:08:50,144 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:09:18,733 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:24:04,254 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:30:26,756 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:31:45,626 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:33:55,563 INFO Error api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:34:48,901 INFO Error api_web_create_task: 4
+2021-04-21 17:00:26,567 INFO Error api_web_get_info_child_depart: 'name_child_depart'
+2021-04-21 17:02:55,186 INFO Error api_web_get_info_child_depart: 'name_child_depart'
+2021-04-21 17:03:23,515 INFO Error api_web_get_info_child_depart: 'name_child_depart'
+2021-04-21 17:03:57,660 INFO Error api_web_get_info_child_depart: 'name_child_depart'
+2021-04-21 17:04:46,150 INFO Error api_web_get_info_child_depart: 'child_depart'
+2021-04-21 17:05:10,652 INFO Error api_web_get_info_child_depart: 'child_depart'
+2021-04-21 17:07:44,129 INFO Error api_web_get_info_child_depart: unhashable type: 'dict'
+2021-04-21 17:09:58,239 INFO Error api_web_get_info_child_depart: unhashable type: 'dict'
+2021-04-21 17:12:34,076 INFO Error api_web_get_info_child_depart: 'NoneType' object is not subscriptable
+2021-04-21 17:13:50,527 INFO Error api_web_get_info_child_depart: 'NoneType' object is not subscriptable
+2021-04-21 17:15:12,990 INFO Error api_web_get_info_child_depart: 'NoneType' object is not subscriptable
+2021-04-27 21:03:53,652 INFO Error api_web_following_task: make_db_connection() got an unexpected keyword argument 'database'
+2021-04-27 21:04:02,219 INFO Error api_web_following_task: make_db_connection() got an unexpected keyword argument 'database'
+2021-04-28 12:52:53,037 INFO Error api_web_get_filter: 4
+2021-04-28 12:55:58,257 INFO Error api_web_get_filter: 4
+2021-04-28 12:59:14,643 INFO Error api_web_get_filter: 4
+2021-04-28 12:59:46,890 INFO Error api_web_get_filter: 4
+2021-04-28 13:01:31,226 INFO Error api_web_get_filter: 4
+2021-04-28 13:01:34,423 INFO Error api_web_get_filter: 4
+2021-04-28 13:01:53,010 INFO Error api_web_get_filter: 4
+2021-04-28 13:01:58,351 INFO Error api_web_get_filter: 4
+2021-04-28 13:02:25,578 INFO Error api_web_get_filter: 4
+2021-04-28 13:02:52,258 INFO Error api_web_get_filter: 4
+2021-04-28 13:03:04,519 INFO Error api_web_get_filter: 4
+2021-04-28 13:03:16,264 INFO Error api_web_get_filter: 4
+2021-04-28 13:04:35,340 INFO Error api_web_get_filter: 4
+2021-04-28 13:04:38,779 INFO Error api_web_get_filter: 4
+2021-04-28 13:05:33,411 INFO Error api_web_get_filter: 4
+2021-04-28 13:06:14,386 INFO Error api_web_get_filter: 4
+2021-04-28 13:06:51,238 INFO Error api_web_get_filter: 4
+2021-04-28 13:06:55,023 INFO Error api_web_get_filter: 4
+2021-04-28 13:07:07,319 INFO Error api_web_get_filter: 4
+2021-04-28 13:09:18,595 INFO Error api_web_get_filter: 4
+2021-04-28 13:10:00,211 INFO Error api_web_get_filter: 4
+2021-04-28 13:10:31,128 INFO Error api_web_get_filter: 4
+2021-04-28 13:10:33,840 INFO Error api_web_get_filter: 4
+2021-04-28 13:10:42,231 INFO Error api_web_get_filter: 4
+2021-04-28 13:11:34,762 INFO Error api_web_get_filter: 4
+2021-04-28 13:11:40,741 INFO Error api_web_get_filter: 4
+2021-04-28 13:13:10,647 INFO Error api_web_get_filter: 4
+2021-04-28 13:14:55,331 INFO Error api_web_get_filter: 4
+2021-04-28 13:16:32,057 INFO Error api_web_get_filter: 4
+2021-04-28 13:16:39,396 INFO Error api_web_get_filter: 4
+2021-04-28 13:16:47,219 INFO Error api_web_get_filter: 4
+2021-04-28 13:31:02,316 INFO Error api_web_get_filter: 4
+2021-04-28 13:31:05,729 INFO Error api_web_get_filter: 4
+2021-04-28 13:38:03,270 INFO Error api_web_get_filter: 4
+2021-04-28 13:44:27,479 INFO Error api_web_get_filter: 4
+2021-04-28 13:46:05,825 INFO Error api_web_get_filter: 4
+2021-04-28 13:47:57,516 INFO Error api_web_get_filter: 4
+2021-04-28 13:51:49,178 INFO Error api_web_get_filter: 4
+2021-04-28 13:51:50,335 INFO Error api_web_get_filter: 4
+2021-04-28 13:51:50,716 INFO Error api_web_get_filter: 4
+2021-04-28 14:18:16,476 INFO Error api_web_get_filter: 4
+2021-04-28 15:32:02,822 INFO Error api_web_get_filter: 4
+2021-04-28 20:47:35,007 INFO Error api_login: Database connection error
+2021-04-28 21:20:05,742 INFO Error api_register: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com, admin, 123456 )' at line 1
+2021-04-28 21:21:09,204 INFO Error api_register: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com, admin, 123456 )' at line 1
+2021-04-28 21:22:16,259 INFO Error api_register: 1364 (HY000): Field 'organistation' doesn't have a default value
+2021-04-29 09:24:57,554 INFO Error api_web_get_filter: 4
+2021-04-29 09:26:40,768 INFO Error api_web_get_filter: 4
+2021-04-29 09:27:54,003 INFO Error api_web_get_filter: 4
+2021-04-29 09:28:22,314 INFO Error api_web_get_filter: 4
+2021-04-29 09:28:24,229 INFO Error api_web_get_filter: 4
+2021-04-29 09:28:30,912 INFO Error api_web_get_filter: 4
+2021-04-29 09:31:29,434 INFO Error api_web_get_filter: 4
+2021-04-29 09:31:30,167 INFO Error api_web_get_filter: 4
+2021-04-29 09:31:31,264 INFO Error api_web_get_filter: 4
+2021-04-29 09:31:31,741 INFO Error api_web_get_filter: 4
+2021-04-29 09:31:36,662 INFO Error api_web_get_filter: 4
+2021-04-29 10:08:37,628 INFO Error api_web_get_filter: 4
+2021-04-29 10:08:41,865 INFO Error api_web_get_filter: 4
+2021-04-29 10:08:52,503 INFO Error api_web_get_filter: 4
+2021-04-29 10:09:45,760 INFO Error api_web_get_filter: 4
+2021-04-29 11:47:54,093 INFO Error api_web_get_filter: 4
+2021-04-29 11:47:56,210 INFO Error api_web_get_filter: 4
+2021-04-29 11:47:58,909 INFO Error api_web_get_filter: 4
+2021-04-29 11:48:01,485 INFO Error api_web_get_filter: 4
+2021-04-29 11:48:02,978 INFO Error api_web_get_filter: 4
+2021-04-29 11:48:25,898 INFO Error api_web_get_filter: 4
+2021-04-29 11:48:37,819 INFO Error api_web_get_filter: 4
+2021-04-29 11:49:21,191 INFO Error api_web_get_filter: 4
+2021-04-29 11:51:31,064 INFO Error api_web_get_filter: 4
+2021-04-29 11:51:31,646 INFO Error api_web_get_filter: 4
+2021-04-29 11:51:34,814 INFO Error api_web_get_filter: 4
+2021-04-29 11:52:53,269 INFO Error api_web_get_filter: 4
+2021-04-29 11:53:42,490 INFO Error api_web_get_filter: 4
+2021-04-29 11:53:51,939 INFO Error api_web_get_filter: 4
+2021-04-29 11:53:53,594 INFO Error api_web_get_filter: 4
+2021-04-29 12:00:01,688 INFO Error api_web_get_filter: 4
+2021-04-29 12:00:17,819 INFO Error api_web_get_filter: 4
+2021-04-29 12:02:12,010 INFO Error api_web_get_filter: 4
+2021-04-29 12:02:12,118 INFO Error api_web_get_filter: 4
+2021-04-29 13:28:16,400 INFO Error api_web_get_filter: 4
+2021-04-29 13:28:20,351 INFO Error api_web_get_filter: 4
+2021-04-29 17:38:43,056 INFO Error api_web_get_filter: 4
+2021-04-29 17:41:37,942 INFO Error api_web_get_filter: 4
+2021-05-01 06:42:15,935 INFO Error api_web_get_filter: 4
+2021-05-01 10:47:11,508 INFO Error api_web_get_filter: 4
+2021-05-01 11:03:04,696 INFO Error api_web_get_filter: 4
+2021-05-04 23:16:16,810 INFO Error api_web_get_filter: 4
+2021-05-04 23:16:18,483 INFO Error api_web_get_filter: 4
+2021-05-04 23:16:30,357 INFO Error api_web_get_filter: 4
+2021-05-04 23:16:45,684 INFO Error api_web_get_filter: 4
+2021-05-04 23:16:45,718 INFO Error api_web_get_filter: 4
+2021-05-04 23:17:14,796 INFO Error api_web_get_filter: 4
+2021-05-04 23:17:15,906 INFO Error api_web_get_filter: 4
+2021-05-04 23:32:21,041 INFO Error api_web_get_filter: 4
+2021-05-05 20:27:15,635 INFO Error api_web_get_filter: 4
+2021-05-05 21:02:20,437 INFO Error api_web_get_filter: 4
+2021-05-05 21:10:55,681 INFO Error api_web_get_filter: 4
+2021-05-06 08:10:00,372 INFO Error api_web_get_filter: 4
+2021-05-06 08:10:00,795 INFO Error api_web_get_filter: 4
+2021-05-06 08:10:02,923 INFO Error api_web_get_filter: 4
+2021-05-06 08:10:03,371 INFO Error api_web_get_filter: 4
+2021-05-09 14:04:32,142 INFO Error api_web_get_filter: 4
+2021-05-09 14:04:33,958 INFO Error api_web_get_filter: 4
+2021-05-09 14:07:26,907 INFO Error api_web_get_filter: 4
+2021-05-09 14:07:48,026 INFO Error api_web_get_filter: 4
+2021-05-09 17:16:22,765 ERROR api_update_status: Not all parameters were used in the SQL statement
+Traceback (most recent call last):
+  File "D:\DD\quanlycongviec-backend\src\common\utils_task.py", line 1710, in api_update_status
+    cursor.execute(qr_update, values)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python39\lib\site-packages\mysql\connector\cursor.py", line 568, in execute
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Not all parameters were used in the SQL statement
+2021-05-09 18:25:58,100 INFO Error api_web_get_filter: 4
+2021-05-09 18:28:27,071 INFO Error api_web_get_filter: 4
+2021-05-09 18:28:38,902 INFO Error api_web_get_filter: 4
+2021-05-09 18:28:43,555 INFO Error api_web_get_filter: 4
+2021-05-09 18:28:49,156 INFO Error api_web_get_filter: 4
+2021-05-09 18:28:50,376 INFO Error api_web_get_filter: 4
+2021-05-09 20:22:30,005 INFO Error api_web_get_filter: 4
+2021-05-10 13:34:30,343 INFO Error api_web_get_filter: 4
+2021-05-10 13:34:32,332 INFO Error api_web_get_filter: 4
+2021-05-10 13:34:32,839 INFO Error api_web_get_filter: 4
+2021-05-10 13:39:59,792 INFO Error api_web_get_filter: 4
+2021-05-10 13:54:40,591 INFO Error api_web_get_filter: 4
+2021-05-10 13:54:51,310 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 13:59:28,291 INFO Error api_web_create_task: -1
+2021-05-10 14:00:49,898 INFO Error api_web_create_task: -1
+2021-05-10 14:09:51,627 INFO Error api_web_create_task: -1
+2021-05-10 14:11:32,527 INFO Error api_web_create_task: -1
+2021-05-10 14:15:52,682 INFO Error api_web_create_task: -1
+2021-05-10 14:17:41,489 INFO Error api_web_create_task: -1
+2021-05-10 14:19:29,160 INFO Error api_web_create_task: -1
+2021-05-10 14:21:20,569 INFO Error api_web_create_task: -1
+2021-05-10 14:30:24,078 INFO Error api_web_create_task: -1
+2021-05-10 14:30:53,728 INFO Error api_web_create_task: -1
+2021-05-10 14:31:06,458 INFO Error api_web_create_task: -1
+2021-05-10 14:32:07,433 INFO Error api_web_create_task: -1
+2021-05-10 14:32:22,655 INFO Error api_web_create_task: -1
+2021-05-10 14:36:28,314 INFO Error api_web_create_task: -1
+2021-05-10 14:37:04,049 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 14:37:08,197 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 14:37:12,506 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 14:40:19,226 INFO Error api_web_get_filter: 4
+2021-05-10 14:40:23,780 INFO Error api_web_get_filter: 4
+2021-05-10 14:40:25,589 INFO Error api_web_get_filter: 4
+2021-05-10 14:41:57,040 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 14:44:34,975 INFO Error api_web_get_filter: 4
+2021-05-10 15:06:01,489 INFO Error api_web_get_filter: 4
+2021-05-10 15:06:17,091 INFO Error api_web_get_filter: 4
+2021-05-10 15:06:19,864 INFO Error api_web_get_filter: 4
+2021-05-10 15:06:20,985 INFO Error api_web_get_filter: 4
+2021-05-10 15:07:22,633 INFO Error api_web_get_filter: 4
+2021-05-10 15:07:24,093 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:07:32,666 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:07:38,739 INFO Error api_web_get_filter: 4
+2021-05-10 15:08:41,362 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:08:54,081 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:09:04,271 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:09:48,385 INFO Error api_web_get_filter: 4
+2021-05-10 15:11:29,672 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:20:47,024 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:22:12,460 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:29:14,765 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:29:31,184 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 15:42:05,427 INFO Error api_web_get_filter: 4
+2021-05-10 16:11:08,648 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 16:11:14,222 INFO Error api_web_create_task: invalid literal for int() with base 10: ''
+2021-05-10 17:03:51,376 INFO Error api_web_get_filter: 4
+2021-05-10 17:03:53,065 INFO Error api_web_get_filter: 4
+2021-05-10 17:03:54,003 INFO Error api_web_get_filter: 4
+2021-05-10 17:03:56,035 INFO Error api_web_get_filter: 4
+2021-05-10 17:04:17,682 INFO Error api_web_get_filter: 4
+2021-05-10 17:06:01,560 INFO Error api_web_get_filter: 4
+2021-05-10 17:06:01,919 INFO Error api_web_get_filter: 4
+2021-05-10 17:06:52,143 INFO Error api_web_edit_task: 92
+2021-05-10 17:06:54,376 INFO Error api_web_edit_task: 92
+2021-05-10 17:07:14,411 INFO Error api_web_edit_task: 102
+2021-05-10 17:07:42,892 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:07:55,737 INFO Error api_web_get_filter: 4
+2021-05-10 17:08:11,911 INFO Error api_web_get_filter: 4
+2021-05-10 17:08:18,463 INFO Error api_web_get_filter: 4
+2021-05-10 17:13:14,833 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:12,029 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:42,787 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:45,549 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:47,339 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:47,929 INFO Error api_web_get_filter: 4
+2021-05-10 17:14:58,512 INFO Error api_web_get_filter: 4
+2021-05-10 17:15:00,040 INFO Error api_web_get_filter: 4
+2021-05-10 17:15:56,654 INFO Error api_web_get_filter: 4
+2021-05-10 17:17:48,666 INFO Error api_web_get_filter: 4
+2021-05-10 17:18:14,240 INFO Error api_web_get_filter: 4
+2021-05-10 17:18:30,381 INFO Error api_web_get_filter: 4
+2021-05-10 17:19:41,938 INFO Error api_web_get_filter: 4
+2021-05-10 17:20:49,711 INFO Error api_web_get_filter: 4
+2021-05-10 17:23:45,148 INFO Error api_web_get_filter: 4
+2021-05-10 17:23:52,940 INFO Error api_web_get_filter: 4
+2021-05-10 17:27:11,975 INFO Error api_web_get_filter: 4
+2021-05-10 17:27:56,216 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:28:50,487 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:31:14,359 INFO Error api_web_get_filter: 4
+2021-05-10 17:37:37,721 INFO Error api_web_get_filter: 4
+2021-05-10 17:37:39,039 INFO Error api_web_get_filter: 4
+2021-05-10 17:37:49,190 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:37:54,532 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:38:15,211 INFO Error api_web_get_filter: 4
+2021-05-10 17:38:15,776 INFO Error api_web_get_filter: 4
+2021-05-10 17:38:23,296 INFO Error api_web_get_filter: 4
+2021-05-10 17:39:33,896 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:46:33,309 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:48:28,154 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 17:50:11,490 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 18:01:39,766 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-10 20:05:58,129 INFO Error api_web_get_filter: 4
+2021-05-10 20:06:01,541 INFO Error api_web_get_filter: 4
+2021-05-10 20:53:51,599 INFO Error api_web_get_filter: 4
+2021-05-10 20:56:35,125 INFO Error api_web_get_filter: 4
+2021-05-10 20:59:23,896 INFO Error api_web_get_filter: 4
+2021-05-10 21:00:11,137 INFO Error api_web_get_filter: 4
+2021-05-10 21:00:46,091 INFO Error api_web_get_filter: 4
+2021-05-10 21:01:06,138 INFO Error api_web_get_filter: 4
+2021-05-11 09:50:08,613 INFO Error api_web_get_filter: 4
+2021-05-11 09:50:14,888 INFO Error api_web_edit_task: 152
+2021-05-11 09:50:32,939 INFO Error api_web_get_filter: 4
+2021-05-11 10:00:41,647 INFO Error api_web_get_filter: 4
+2021-05-11 10:09:09,481 INFO Error api_web_get_filter: 4
+2021-05-11 10:09:23,656 INFO Error api_web_get_filter: 4
+2021-05-11 10:14:46,324 INFO Error api_web_get_filter: 4
+2021-05-11 10:14:59,938 INFO Error api_web_get_filter: 4
+2021-05-11 10:15:02,189 INFO Error api_web_get_filter: 4
+2021-05-11 10:16:09,420 INFO Error api_web_get_filter: 4
+2021-05-11 10:17:31,527 INFO Error api_web_get_filter: 4
+2021-05-11 10:17:41,783 INFO Error api_web_get_filter: 4
+2021-05-11 10:17:42,462 INFO Error api_web_get_filter: 4
+2021-05-11 10:18:12,931 INFO Error api_web_get_filter: 4
+2021-05-11 10:18:53,855 INFO Error api_web_get_filter: 4
+2021-05-11 10:19:14,527 INFO Error api_web_get_filter: 4
+2021-05-11 10:24:03,309 INFO Error api_web_get_filter: 4
+2021-05-11 11:33:21,156 INFO Error api_web_get_filter: 4
+2021-05-11 13:02:04,395 INFO Error api_web_get_filter: 4
+2021-05-11 13:02:04,900 INFO Error api_web_get_filter: 4
+2021-05-11 13:02:06,050 INFO Error api_web_get_filter: 4
+2021-05-11 13:03:51,903 INFO Error api_web_get_filter: 4
+2021-05-11 13:03:52,484 INFO Error api_web_get_filter: 4
+2021-05-11 13:03:53,212 INFO Error api_web_get_filter: 4
+2021-05-11 13:03:54,098 INFO Error api_web_get_filter: 4
+2021-05-11 13:04:24,701 INFO Error api_web_get_filter: 4
+2021-05-11 13:29:36,764 INFO Error api_web_get_filter: 4
+2021-05-11 14:29:20,540 INFO Error api_web_get_filter: 4
+2021-05-11 14:29:21,528 INFO Error api_web_get_filter: 4
+2021-05-11 14:29:21,932 INFO Error api_web_get_filter: 4
+2021-05-11 14:29:22,060 INFO Error api_web_get_filter: 4
+2021-05-11 14:37:51,467 INFO Error api_web_get_filter: 4
+2021-05-11 14:37:52,391 INFO Error api_web_get_filter: 4
+2021-05-11 14:37:53,543 INFO Error api_web_get_filter: 4
+2021-05-11 14:37:55,549 INFO Error api_web_get_filter: 4
+2021-05-11 14:37:57,324 INFO Error api_web_get_filter: 4
+2021-05-11 17:47:36,694 INFO Error api_web_edit_task: make_db_connection() got an unexpected keyword argument 'database'
+2021-05-11 17:49:04,548 INFO Error api_web_edit_task: make_db_connection() got an unexpected keyword argument 'database'
+2021-05-12 03:56:01,206 INFO Error api_web_get_filter: 169
+2021-05-12 03:56:02,652 INFO Error api_web_get_filter: 169
+2021-05-12 03:56:04,803 INFO Error api_web_get_filter: 169
+2021-05-12 03:56:05,261 INFO Error api_web_get_filter: 169
+2021-05-12 03:56:06,830 INFO Error api_web_get_filter: 169
+2021-05-12 03:56:07,360 INFO Error api_web_get_filter: 169
+2021-05-12 03:57:38,186 INFO Error api_web_get_filter: 169
+2021-05-12 04:17:25,873 INFO Error api_web_get_filter: 169
+2021-05-12 04:17:59,464 INFO Error api_web_get_filter: 169
+2021-05-12 04:17:59,967 INFO Error api_web_get_filter: 169
+2021-05-12 04:18:05,135 INFO Error api_web_get_filter: 169
+2021-05-12 04:18:05,595 INFO Error api_web_get_filter: 169
+2021-05-12 04:23:11,974 INFO Error api_web_get_filter: 169
+2021-05-12 04:40:28,181 INFO Error api_web_get_filter: 169
+2021-05-12 04:40:29,476 INFO Error api_web_get_filter: 169
+2021-05-12 04:53:26,438 INFO Error api_web_get_filter: 169
+2021-05-12 04:53:43,327 INFO Error api_web_get_filter: 169
+2021-05-12 04:53:51,665 INFO Error api_web_get_filter: 169
+2021-05-12 04:54:40,770 INFO Error api_web_get_filter: 169
+2021-05-12 05:23:55,527 INFO Error api_web_get_filter: 169
+2021-05-12 05:27:27,762 INFO Error api_web_get_filter: 169
+2021-05-12 05:36:12,381 INFO Error api_web_get_filter: 169
+2021-05-12 05:36:12,819 INFO Error api_web_get_filter: 169
+2021-05-12 05:42:38,585 INFO Error api_web_get_filter: 169
+2021-05-12 05:53:56,718 INFO Error api_web_get_filter: 169
+2021-05-12 05:53:57,239 INFO Error api_web_get_filter: 169
+2021-05-12 06:06:22,325 INFO Error api_web_get_filter: 169
+2021-05-12 06:12:36,460 INFO Error api_web_get_filter: 169
+2021-05-12 06:12:41,815 INFO Error api_web_get_filter: 169
+2021-05-14 09:35:23,687 INFO Error api_web_get_filter: 169
+2021-05-15 15:14:38,885 INFO Error api_web_get_filter: 169
+2021-05-16 14:37:52,214 INFO Error api_web_get_filter: 169
+2021-05-16 14:38:04,517 INFO Error api_web_get_filter: 169
+2021-05-16 14:38:05,472 INFO Error api_web_get_filter: 169
+2021-05-20 19:38:55,303 INFO Error api_web_get_filter: 169
+2021-05-20 19:38:55,812 INFO Error api_web_get_filter: 169
+2021-05-20 19:38:56,918 INFO Error api_web_get_filter: 169
+2021-05-20 19:39:01,399 INFO Error api_web_get_filter: 169
+2021-05-20 19:40:00,810 INFO Error api_web_get_filter: 169
+2021-05-20 19:40:01,407 INFO Error api_web_get_filter: 169
+2021-05-20 19:41:37,504 INFO Error api_web_get_filter: 169
+2021-05-20 19:41:38,614 INFO Error api_web_get_filter: 169
+2021-05-20 19:43:01,702 INFO Error api_web_get_filter: 169
+2021-05-20 19:43:02,780 INFO Error api_web_get_filter: 169
+2021-05-20 19:43:41,943 INFO Error api_web_get_filter: 169
+2021-05-20 19:45:00,684 INFO Error api_web_get_filter: 169
+2021-05-20 19:45:01,680 INFO Error api_web_get_filter: 169
+2021-05-20 19:45:03,143 INFO Error api_web_get_filter: 169
+2021-05-20 19:45:58,714 INFO Error api_web_get_filter: 169
+2021-05-20 19:46:19,056 INFO Error api_web_get_filter: 169
+2021-05-20 19:46:19,631 INFO Error api_web_get_filter: 169
+2021-05-20 19:46:35,166 INFO Error api_web_get_filter: 169
+2021-05-20 19:47:02,670 INFO Error api_web_get_filter: 169
+2021-05-20 19:47:26,436 INFO Error api_web_get_filter: 169
+2021-05-20 19:48:07,877 INFO Error api_web_get_filter: 169
+2021-05-20 19:49:24,461 INFO Error api_web_get_filter: 169
+2021-05-20 19:49:27,455 INFO Error api_web_get_filter: 169
+2021-05-20 19:50:54,890 INFO Error api_web_get_filter: 169
+2021-05-20 19:50:59,204 INFO Error api_web_get_filter: 169
+2021-05-20 19:54:21,709 INFO Error api_web_get_filter: 169
+2021-05-20 19:54:22,338 INFO Error api_web_get_filter: 169
+2021-05-20 19:54:47,597 INFO Error api_web_get_filter: 169
+2021-05-20 19:57:10,125 INFO Error api_web_get_filter: 169
+2021-05-20 19:57:10,995 INFO Error api_web_get_filter: 169
+2021-05-24 20:08:22,926 INFO Error api_login: module 'common.utils' has no attribute 'tuyen_dung_sendmail'
+2021-05-24 20:51:02,365 INFO Error api_login: name 'sender' is not defined
+2021-05-24 21:45:42,142 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-24 21:56:45,342 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-24 21:56:53,892 INFO Error api_web_get_filter: 4
+2021-05-25 08:23:08,775 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 18:48:21,612 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 18:49:14,906 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 18:50:09,531 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 18:57:37,832 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 18:58:54,715 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 362: ordinal not in range(128)
+2021-05-26 19:00:11,336 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 362: ordinal not in range(128)
+2021-05-26 19:04:57,275 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-26 19:06:14,725 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 19:07:43,761 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 19:27:28,354 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 19:34:24,364 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:20:48,157 INFO Error api_web_create_task: send_mail() missing 2 required positional arguments: 'body' and 'email_send'
+2021-05-26 20:21:53,345 INFO Error api_web_create_task: send_mail() missing 2 required positional arguments: 'body' and 'email_send'
+2021-05-26 20:23:32,699 INFO Error api_web_create_task: send_mail() missing 2 required positional arguments: 'email_send' and 'body'
+2021-05-26 20:24:44,715 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:26:32,396 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:30:16,852 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:33:10,787 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:35:20,675 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:41:02,059 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:50:33,160 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:54:10,145 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:56:01,971 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-26 20:57:41,904 INFO Error api_web_create_task: 'ascii' codec can't encode character '\u1ea1' in position 371: ordinal not in range(128)
+2021-05-30 07:08:55,478 INFO Error api_web_edit_task: 202
+2021-05-30 07:15:28,360 INFO Error api_web_get_filter: 4
+2021-05-30 07:19:10,505 INFO Error api_web_get_filter: 4
+2021-05-30 07:21:28,149 INFO Error api_web_get_filter: 169
+2021-05-30 07:26:24,248 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. h8sm7640562pfn.0 - gsmtp')}
+2021-05-30 07:26:26,645 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. w123sm7336249pfb.109 - gsmtp')}
+2021-05-30 07:27:13,907 INFO Error api_web_get_filter: 248
+2021-05-30 07:28:12,024 INFO Error api_web_get_filter: 247
+2021-05-30 07:28:12,903 INFO Error api_web_get_filter: 247
+2021-05-30 07:28:44,911 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. bb18sm7314266pjb.44 - gsmtp')}
+2021-05-30 07:28:49,484 INFO Error api_web_get_filter: 247
+2021-05-30 07:28:50,220 INFO Error api_web_get_filter: 247
+2021-05-30 07:35:28,253 INFO Error api_web_get_filter: 247
+2021-05-30 07:40:30,997 INFO Error api_web_get_filter: 4
+2021-05-30 07:40:41,654 INFO Error api_web_get_filter: 247
+2021-05-30 07:41:59,662 INFO Error api_web_get_filter: 4
+2021-05-30 07:42:31,022 INFO Error api_web_get_filter: 247
+2021-05-30 07:42:31,829 INFO Error api_web_get_filter: 247
+2021-05-30 07:43:37,731 INFO Error api_web_get_filter: 247
+2021-05-30 07:43:39,284 INFO Error api_web_get_filter: 247
+2021-05-30 07:44:00,219 INFO Error api_web_get_filter: 4
+2021-05-30 07:44:59,156 INFO Error api_web_get_filter: 247
+2021-05-30 07:47:04,077 INFO Error api_web_get_filter: 247
+2021-05-30 07:47:08,263 INFO Error api_web_get_filter: 247
+2021-05-30 07:47:38,599 INFO Error api_web_get_filter: 247
+2021-05-30 07:48:29,489 INFO Error api_web_get_filter: 247
+2021-05-30 07:49:10,377 INFO Error api_web_get_filter: 4
+2021-05-30 07:49:14,378 INFO Error api_web_get_filter: 4
+2021-05-30 07:51:17,272 INFO Error api_web_get_filter: 247
+2021-05-30 07:51:45,732 INFO Error api_web_get_filter: 4
+2021-05-30 07:52:04,820 INFO Error api_web_get_filter: 4
+2021-05-30 07:52:07,051 INFO Error api_web_get_filter: 4
+2021-05-30 07:52:17,415 INFO Error api_web_get_filter: 4
+2021-05-30 07:52:34,682 INFO Error api_web_get_filter: 4
+2021-05-30 07:52:40,758 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-30 07:52:57,044 INFO Error api_web_get_filter: 247
+2021-05-30 07:53:08,107 INFO Error api_web_get_filter: 247
+2021-05-30 07:53:54,178 INFO Error api_web_get_filter: 4
+2021-05-30 07:53:59,129 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-30 07:54:23,524 INFO Error api_web_get_filter: 4
+2021-05-30 07:55:41,249 INFO Error api_web_create_task: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+2021-05-30 07:56:12,940 INFO Error api_web_get_filter: 247
+2021-05-30 07:56:36,567 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-30 07:57:00,549 INFO Error api_web_get_filter: 4
+2021-05-30 07:57:02,340 INFO Error api_web_get_filter: 4
+2021-05-30 07:57:58,633 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-05-30 07:58:35,765 INFO Error api_web_create_task: [Errno 11001] getaddrinfo failed
+2021-05-30 07:59:58,539 INFO Error api_web_get_filter: 247
+2021-05-30 08:02:00,770 INFO Error api_web_get_filter: 247
+2021-05-30 08:02:31,004 INFO Error api_web_edit_task: 254
+2021-05-30 08:02:33,948 INFO Error api_web_get_filter: 247
+2021-05-30 08:02:35,677 INFO Error api_web_get_filter: 247
+2021-05-30 08:03:12,836 INFO Error api_web_get_filter: 4
+2021-05-30 08:21:57,546 INFO Error api_web_get_filter: 247
+2021-05-30 08:22:13,078 INFO Error api_web_get_filter: 247
+2021-05-30 08:22:27,901 INFO Error api_web_get_filter: 247
+2021-05-30 08:23:06,328 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. i14sm7392091pfk.130 - gsmtp')}
+2021-05-30 08:23:55,829 INFO Error api_web_get_filter: 247
+2021-05-30 08:23:56,668 INFO Error api_web_get_filter: 247
+2021-05-30 08:32:25,452 INFO Error api_web_get_filter: 247
+2021-05-30 08:34:52,062 INFO Error api_web_get_filter: 247
+2021-05-30 08:35:21,022 INFO Error api_web_get_filter: 247
+2021-05-30 08:41:00,407 INFO Error api_web_get_filter: 4
+2021-05-30 08:41:06,053 INFO Error api_web_get_filter: 4
+2021-05-30 08:42:49,579 INFO Error api_web_get_filter: 4
+2021-05-30 08:43:02,218 INFO Error api_web_get_filter: 247
+2021-05-30 08:43:16,978 INFO Error api_web_get_filter: 247
+2021-05-30 08:43:18,009 INFO Error api_web_get_filter: 247
+2021-05-30 08:43:30,360 INFO Error api_web_get_filter: 4
+2021-05-30 08:49:41,242 INFO Error api_web_get_filter: 247
+2021-05-30 08:49:42,482 INFO Error api_web_get_filter: 247
+2021-05-30 08:49:43,749 INFO Error api_web_get_filter: 247
+2021-05-30 08:49:45,831 INFO Error api_web_get_filter: 247
+2021-05-30 08:49:48,895 INFO Error api_web_get_filter: 247
+2021-05-30 08:49:50,065 INFO Error api_web_get_filter: 247
+2021-05-30 08:50:39,496 INFO Error api_web_get_filter: 247
+2021-05-30 08:53:00,898 INFO Error api_web_get_filter: 247
+2021-05-30 08:53:01,835 INFO Error api_web_get_filter: 247
+2021-05-30 08:53:05,539 INFO Error api_web_get_filter: 247
+2021-05-30 08:57:24,514 INFO Error api_web_get_filter: 4
+2021-05-30 09:00:04,344 INFO Error api_web_get_filter: 4
+2021-05-30 09:00:29,819 INFO Error api_web_get_filter: 4
+2021-05-30 12:07:19,493 INFO Error api_web_get_filter: 247
+2021-06-07 07:42:13,332 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. j4sm10257209pjv.7 - gsmtp')}
+2021-06-07 08:32:13,393 INFO Error api_web_get_filter: 247
+2021-06-07 08:32:14,373 INFO Error api_web_get_filter: 247
+2021-06-07 08:32:15,560 INFO Error api_web_get_filter: 247
+2021-06-07 08:32:20,542 INFO Error api_web_get_filter: 247
+2021-06-07 08:32:21,196 INFO Error api_web_get_filter: 247
+2021-06-07 08:32:44,830 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:41,746 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:42,680 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:43,300 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:43,855 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:44,489 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:44,911 INFO Error api_web_get_filter: 247
+2021-06-07 08:33:46,216 INFO Error api_web_get_filter: 247
+2021-06-07 10:56:38,323 INFO Error api_web_get_filter: 247
+2021-06-07 11:24:40,766 INFO Error api_web_get_filter: 247
+2021-06-07 12:19:09,795 INFO Error api_web_get_filter: 247
+2021-06-07 13:13:26,808 INFO Error api_web_get_filter: 247
+2021-06-07 13:21:00,812 INFO Error api_web_get_filter: 247
+2021-06-07 13:21:01,325 INFO Error api_web_get_filter: 247
+2021-06-07 13:21:03,134 INFO Error api_web_get_filter: 247
+2021-06-07 13:21:04,839 INFO Error api_web_get_filter: 247
+2021-06-07 13:34:59,774 INFO Error api_web_get_filter: 247
+2021-06-07 13:35:00,375 INFO Error api_web_get_filter: 247
+2021-06-07 13:36:06,391 INFO Error api_web_get_filter: 247
+2021-06-07 13:36:07,131 INFO Error api_web_get_filter: 247
+2021-06-07 13:38:07,739 INFO Error api_web_get_filter: 247
+2021-06-07 13:38:10,968 INFO Error api_web_get_filter: 247
+2021-06-07 13:54:46,523 INFO Error api_web_edit_task: 'title'
+2021-06-07 13:55:58,927 INFO Error api_web_edit_task: 'description'
+2021-06-07 13:56:17,926 INFO Error api_web_edit_task: 'description'
+2021-06-07 14:01:15,153 INFO Error api_web_get_filter: 4
+2021-06-07 14:01:29,645 INFO Error api_web_get_filter: 4
+2021-06-07 14:01:34,226 INFO Error api_web_get_filter: 4
+2021-06-07 14:01:53,765 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:02:02,120 INFO Error api_web_get_filter: 4
+2021-06-07 14:02:05,374 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:02:39,161 INFO Error api_web_get_filter: 4
+2021-06-07 14:02:40,815 INFO Error api_web_get_filter: 4
+2021-06-07 14:03:23,433 INFO Error api_web_get_filter: 4
+2021-06-07 14:03:46,897 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:04:05,824 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:04:20,369 INFO Error api_web_get_filter: 4
+2021-06-07 14:04:22,178 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:04:36,492 INFO Error api_web_get_filter: 4
+2021-06-07 14:04:42,502 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-07 14:04:59,266 INFO Error api_web_get_filter: 4
+2021-06-07 14:07:16,049 INFO Error api_web_get_filter: 4
+2021-06-07 14:17:14,372 INFO Error api_web_get_filter: 247
+2021-06-07 14:17:15,389 INFO Error api_web_get_filter: 247
+2021-06-07 14:17:15,811 INFO Error api_web_get_filter: 247
+2021-06-07 14:18:11,861 INFO Error api_web_get_filter: 247
+2021-06-07 14:18:12,389 INFO Error api_web_get_filter: 247
+2021-06-07 14:20:19,770 INFO Error api_web_get_filter: 247
+2021-06-07 14:20:35,928 INFO Error api_web_get_filter: 200
+2021-06-07 14:20:36,779 INFO Error api_web_get_filter: 200
+2021-06-07 14:30:05,920 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. u5sm7537447pfi.179 - gsmtp')}
+2021-06-07 14:30:15,721 INFO Error api_web_get_filter: 200
+2021-06-07 14:30:16,235 INFO Error api_web_get_filter: 200
+2021-06-07 14:31:04,081 INFO Error api_web_get_filter: 200
+2021-06-07 14:31:04,662 INFO Error api_web_get_filter: 200
+2021-06-07 15:20:42,476 INFO Error api_web_get_filter: 200
+2021-06-07 15:24:33,746 INFO Error api_web_get_filter: 200
+2021-06-07 15:24:36,539 INFO Error api_web_get_filter: 200
+2021-06-07 15:24:40,697 INFO Error api_web_get_filter: 200
+2021-06-07 15:24:59,841 INFO Error api_web_get_filter: 200
+2021-06-07 15:25:17,947 INFO Error api_web_get_filter: 200
+2021-06-07 15:25:18,374 INFO Error api_web_get_filter: 200
+2021-06-07 17:02:09,793 INFO Error api_web_get_filter: 200
+2021-06-07 17:41:10,730 INFO Error api_web_get_filter: 200
+2021-06-08 04:22:16,490 INFO Error api_web_get_filter: 200
+2021-06-08 13:38:27,444 INFO Error api_web_get_filter: 200
+2021-06-08 13:38:29,079 INFO Error api_web_get_filter: 200
+2021-06-08 13:38:36,004 INFO Error api_web_get_filter: 200
+2021-06-08 13:38:37,204 INFO Error api_web_get_filter: 200
+2021-06-08 13:38:43,263 INFO Error api_web_get_filter: 200
+2021-06-08 13:39:10,379 INFO Error api_web_get_filter: 200
+2021-06-08 13:39:13,124 INFO Error api_web_get_filter: 200
+2021-06-08 13:39:38,510 INFO Error api_web_get_filter: 200
+2021-06-08 13:39:47,579 INFO Error api_web_get_filter: 200
+2021-06-08 13:39:50,857 INFO Error api_web_get_filter: 200
+2021-06-08 14:00:18,561 INFO Error api_web_get_filter: 200
+2021-06-08 14:00:20,984 INFO Error api_web_get_filter: 200
+2021-06-08 14:02:05,799 INFO Error api_web_get_filter: 200
+2021-06-08 14:12:44,457 INFO Error api_web_get_filter: 200
+2021-06-08 14:14:33,123 INFO Error api_web_get_filter: 200
+2021-06-08 14:17:01,157 INFO Error api_web_get_filter: 200
+2021-06-08 14:17:35,109 INFO Error api_web_get_filter: 200
+2021-06-08 14:18:51,647 INFO Error api_web_get_filter: 200
+2021-06-08 14:21:07,206 INFO Error api_web_get_filter: 200
+2021-06-08 14:22:27,870 INFO Error api_web_get_filter: 200
+2021-06-08 14:22:53,430 INFO Error api_web_get_filter: 200
+2021-06-08 14:23:06,815 INFO Error api_web_get_filter: 200
+2021-06-08 14:23:52,278 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:10,035 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:11,238 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:14,965 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:16,360 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:17,715 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:18,799 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:19,806 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:20,847 INFO Error api_web_get_filter: 200
+2021-06-08 14:24:56,065 INFO Error api_web_get_filter: 200
+2021-06-08 14:25:00,244 INFO Error api_web_get_filter: 200
+2021-06-08 14:25:37,440 INFO Error api_web_get_filter: 200
+2021-06-08 14:30:21,427 INFO Error api_web_get_filter: 200
+2021-06-08 14:38:00,486 INFO Error api_web_get_filter: 200
+2021-06-08 17:38:50,225 INFO Error api_web_get_filter: 200
+2021-06-08 17:41:43,041 INFO Error api_web_get_filter: 200
+2021-06-08 17:41:45,233 INFO Error api_web_get_filter: 200
+2021-06-08 17:42:12,641 INFO Error api_web_get_filter: 200
+2021-06-08 22:57:50,644 INFO Error api_web_get_filter: 200
+2021-06-08 22:57:52,116 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:19,848 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:22,095 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:22,759 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:24,490 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:25,164 INFO Error api_web_get_filter: 200
+2021-06-08 22:58:26,457 INFO Error api_web_get_filter: 200
+2021-06-08 23:07:30,852 INFO Error api_web_get_filter: 200
+2021-06-08 23:07:31,243 INFO Error api_web_get_filter: 200
+2021-06-08 23:07:31,734 INFO Error api_web_get_filter: 200
+2021-06-08 23:07:32,836 INFO Error api_web_get_filter: 200
+2021-06-08 23:09:32,396 INFO Error api_web_get_filter: 4
+2021-06-08 23:09:34,157 INFO Error api_web_get_filter: 4
+2021-06-08 23:09:34,980 INFO Error api_web_get_filter: 4
+2021-06-09 09:23:11,147 INFO Error api_web_get_filter: 200
+2021-06-09 09:23:38,848 INFO Error api_web_get_filter: 200
+2021-06-09 09:23:59,517 INFO Error api_web_get_filter: 200
+2021-06-09 09:24:00,129 INFO Error api_web_get_filter: 200
+2021-06-09 12:27:49,527 INFO Error api_web_get_filter: 200
+2021-06-09 13:16:10,395 INFO Error api_web_get_filter: 200
+2021-06-09 15:06:11,682 INFO Error api_web_get_filter: 200
+2021-06-09 17:06:02,823 INFO Error api_web_get_filter: 200
+2021-06-09 19:48:14,441 INFO Error api_web_get_filter: 200
+2021-06-09 20:58:26,764 INFO Error api_web_get_filter: 200
+2021-06-10 00:55:57,030 INFO Error api_web_get_filter: 200
+2021-06-10 01:02:50,017 INFO Error api_web_get_filter: 200
+2021-06-10 01:02:50,636 INFO Error api_web_get_filter: 200
+2021-06-10 01:09:13,287 INFO Error api_web_get_filter: 200
+2021-06-10 01:09:14,419 INFO Error api_web_get_filter: 200
+2021-06-10 01:14:28,343 INFO Error api_web_get_filter: 200
+2021-06-10 01:14:48,330 INFO Error api_web_get_filter: 200
+2021-06-10 01:14:48,503 INFO Error api_web_get_filter: 200
+2021-06-10 01:23:53,831 INFO Error api_web_get_filter: 4
+2021-06-10 01:30:07,822 INFO Error api_web_get_filter: 200
+2021-06-10 01:30:22,760 INFO Error api_web_get_filter: 200
+2021-06-10 01:31:50,711 INFO Error api_web_get_filter: 4
+2021-06-10 10:22:29,653 INFO Error api_web_get_filter: 200
+2021-06-11 01:56:21,399 INFO Error api_web_get_filter: 200
+2021-06-11 01:56:22,252 INFO Error api_web_get_filter: 200
+2021-06-11 01:56:22,680 INFO Error api_web_get_filter: 200
+2021-06-11 01:56:23,610 INFO Error api_web_get_filter: 200
+2021-06-11 02:21:33,322 INFO Error api_web_get_filter: 200
+2021-06-11 02:44:39,989 INFO Error api_web_get_filter: 200
+2021-06-11 04:05:47,114 INFO Error api_web_get_filter: 200
+2021-06-11 04:17:13,751 INFO Error api_web_get_filter: 200
+2021-06-11 04:17:31,076 INFO Error api_web_get_filter: 200
+2021-06-11 04:18:27,590 INFO Error api_web_get_filter: 200
+2021-06-11 04:19:25,643 INFO Error api_web_get_filter: 200
+2021-06-11 04:21:05,757 INFO Error api_web_get_filter: 200
+2021-06-11 04:22:23,493 INFO Error api_web_get_filter: 200
+2021-06-11 04:22:56,590 INFO Error api_web_get_filter: 200
+2021-06-11 04:23:01,572 INFO Error api_web_get_filter: 200
+2021-06-11 04:32:37,339 INFO Error api_web_get_filter: 200
+2021-06-11 04:33:23,826 INFO Error api_web_get_filter: 200
+2021-06-11 04:35:39,119 INFO Error api_web_get_filter: 200
+2021-06-11 04:37:03,304 INFO Error api_web_get_filter: 200
+2021-06-11 04:39:05,054 INFO Error api_web_get_filter: 200
+2021-06-11 04:40:13,948 INFO Error api_web_get_filter: 200
+2021-06-11 04:55:15,920 INFO Error api_web_get_filter: 200
+2021-06-11 04:58:21,407 INFO Error api_web_get_filter: 200
+2021-06-11 04:59:19,886 INFO Error api_web_get_filter: 200
+2021-06-11 05:03:40,799 INFO Error api_web_get_filter: 200
+2021-06-11 05:04:23,578 INFO Error api_web_get_filter: 200
+2021-06-11 05:19:42,798 INFO Error api_web_get_filter: 200
+2021-06-11 05:19:45,745 INFO Error api_web_get_filter: 200
+2021-06-11 05:19:54,700 INFO Error api_web_get_filter: 200
+2021-06-11 05:20:58,058 INFO Error api_web_get_filter: 200
+2021-06-11 05:22:00,772 INFO Error api_web_get_filter: 200
+2021-06-11 05:23:19,045 INFO Error api_web_get_filter: 200
+2021-06-11 05:23:38,565 INFO Error api_web_get_filter: 200
+2021-06-11 05:23:40,885 INFO Error api_web_get_filter: 200
+2021-06-11 05:36:29,943 INFO Error api_web_get_filter: 200
+2021-06-11 05:37:16,013 INFO Error api_web_get_filter: 200
+2021-06-11 05:48:43,983 INFO Error api_web_get_filter: 200
+2021-06-11 05:50:18,334 INFO Error api_web_get_filter: 200
+2021-06-11 05:50:21,053 INFO Error api_web_get_filter: 200
+2021-06-11 05:51:53,481 INFO Error api_web_get_filter: 200
+2021-06-11 05:51:58,471 INFO Error api_web_get_filter: 200
+2021-06-11 05:52:15,295 INFO Error api_web_get_filter: 200
+2021-06-11 05:52:23,859 INFO Error api_web_get_filter: 200
+2021-06-11 06:15:02,289 INFO Error api_web_get_filter: 200
+2021-06-11 06:15:09,500 INFO Error api_web_get_filter: 200
+2021-06-11 06:15:11,600 INFO Error api_web_get_filter: 200
+2021-06-11 06:16:00,343 INFO Error api_web_get_filter: 4
+2021-06-11 06:16:38,175 INFO Error api_web_get_filter: 200
+2021-06-11 06:16:39,160 INFO Error api_web_get_filter: 200
+2021-06-11 06:16:54,214 INFO Error api_web_get_filter: 4
+2021-06-11 06:16:56,475 INFO Error api_web_get_filter: 4
+2021-06-11 06:20:32,196 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:20:38,528 INFO Error api_web_get_filter: 4
+2021-06-11 06:20:40,010 INFO Error api_web_get_filter: 4
+2021-06-11 06:20:41,575 INFO Error api_web_get_filter: 4
+2021-06-11 06:20:45,196 INFO Error api_web_get_filter: 4
+2021-06-11 06:21:14,470 INFO Error api_web_get_filter: 200
+2021-06-11 06:21:39,780 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. z14sm3342351pfn.11 - gsmtp')}
+2021-06-11 06:21:49,187 INFO Error api_web_get_filter: 200
+2021-06-11 06:21:49,796 INFO Error api_web_get_filter: 200
+2021-06-11 06:26:56,636 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:27:00,733 INFO Error api_web_get_filter: 4
+2021-06-11 06:27:02,597 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:27:39,866 INFO Error api_web_get_filter: 169
+2021-06-11 06:28:28,510 INFO Error api_web_get_filter: 169
+2021-06-11 06:28:50,442 INFO Error api_web_get_filter: 169
+2021-06-11 06:28:51,772 INFO Error api_web_get_filter: 169
+2021-06-11 06:28:53,008 INFO Error api_web_get_filter: 169
+2021-06-11 06:29:49,012 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:30:01,738 INFO Error api_web_get_filter: 4
+2021-06-11 06:34:24,857 INFO Error api_web_get_filter: 4
+2021-06-11 06:34:45,150 INFO Error api_web_get_filter: 4
+2021-06-11 06:34:46,243 INFO Error api_web_get_filter: 4
+2021-06-11 06:34:47,429 INFO Error api_web_get_filter: 4
+2021-06-11 06:34:57,635 INFO Error api_web_get_filter: 4
+2021-06-11 06:35:17,744 INFO Error api_web_get_filter: 4
+2021-06-11 06:35:18,727 INFO Error api_web_get_filter: 4
+2021-06-11 06:35:38,134 INFO Error api_web_get_filter: 4
+2021-06-11 06:35:40,002 INFO Error api_web_get_filter: 4
+2021-06-11 06:35:44,982 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:36:32,155 INFO Error api_web_get_filter: 4
+2021-06-11 06:36:33,345 INFO Error api_web_get_filter: 4
+2021-06-11 06:36:58,664 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. ig1sm3296437pjb.27 - gsmtp')}
+2021-06-11 06:37:04,700 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 06:37:14,810 INFO Error api_web_get_filter: 4
+2021-06-11 07:14:03,763 INFO Error api_web_get_filter: 200
+2021-06-11 07:14:03,843 INFO Error api_web_get_filter: 4
+2021-06-11 07:21:46,796 INFO Error api_web_get_filter: 4
+2021-06-11 07:21:47,019 INFO Error api_web_get_filter: 200
+2021-06-11 07:36:49,503 INFO Error api_web_get_filter: 200
+2021-06-11 07:36:50,618 INFO Error api_web_get_filter: 200
+2021-06-11 08:01:49,152 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 08:01:58,407 INFO Error api_web_get_filter: 200
+2021-06-11 08:01:59,330 INFO Error api_web_get_filter: 200
+2021-06-11 08:02:06,763 INFO Error api_web_get_filter: 200
+2021-06-11 08:02:07,288 INFO Error api_web_get_filter: 200
+2021-06-11 08:02:08,654 INFO Error api_web_get_filter: 200
+2021-06-11 08:02:09,179 INFO Error api_web_get_filter: 200
+2021-06-11 08:03:01,275 INFO Error api_web_list_id_task: invalid literal for int() with base 10: 'N/A'
+2021-06-11 08:03:08,365 INFO Error api_web_get_filter: 4
+2021-06-11 08:04:07,692 INFO Error api_web_get_filter: 169
+2021-06-11 08:04:12,094 INFO Error api_web_get_filter: 169
+2021-06-11 08:04:18,012 INFO Error api_web_get_filter: 169
+2021-06-11 08:13:50,304 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. z14sm3453222pfn.11 - gsmtp')}
+2021-06-11 08:14:04,952 INFO Error api_web_get_filter: 200
+2021-06-11 08:14:05,478 INFO Error api_web_get_filter: 200
+2021-06-11 08:16:40,895 INFO Error api_web_get_filter: 4
+2021-06-11 08:18:35,511 INFO Error api_web_get_filter: 200
+2021-06-11 08:19:15,949 INFO Error api_web_get_filter: 4
+2021-06-11 08:34:56,429 INFO Error api_web_get_filter: 200
+2021-06-11 08:35:19,844 INFO Error api_web_get_filter: 200
+2021-06-11 08:35:40,462 INFO Error api_web_get_filter: 200
+2021-06-11 08:36:20,856 INFO Error api_web_create_task: {'': (555, b'5.5.2 Syntax error. o133sm3570010pfd.49 - gsmtp')}
+2021-06-11 08:36:24,406 INFO Error api_web_get_filter: 200
+2021-06-11 08:36:24,783 INFO Error api_web_get_filter: 200
+2021-06-11 08:38:38,788 INFO Error api_web_get_filter: 200
+2021-06-11 08:39:02,379 INFO Error api_web_get_filter: 200
+2021-06-11 08:40:01,139 INFO Error api_web_get_filter: 200
+2021-06-11 08:40:01,885 INFO Error api_web_get_filter: 200
+2021-06-11 08:40:19,184 INFO Error api_web_get_filter: 200
+2021-06-11 08:40:57,370 INFO Error api_web_get_filter: 4
+2021-06-11 08:41:24,571 INFO Error api_web_get_filter: 200
+2021-06-11 08:41:25,076 INFO Error api_web_get_filter: 200
+2021-06-11 08:41:34,996 INFO Error api_web_get_filter: 4
+2021-06-11 15:31:29,971 INFO Error api_web_get_filter: 200
+2021-07-24 01:15:11,318 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials gd20sm29481403pjb.33 - gsmtp')
+2021-07-24 01:15:38,773 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials f18sm29397983pfe.25 - gsmtp')
+2021-07-24 01:17:51,133 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:17:55,684 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:18:09,436 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:18:09,497 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:08,249 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:08,316 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:11,904 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:11,963 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:44,807 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:19:50,607 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:21:22,011 INFO Error api_web_create_task: name 'DATETIME_FORMAT4' is not defined
+2021-07-24 01:22:35,996 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials s36sm24413105pgl.8 - gsmtp')
+2021-07-24 01:22:37,852 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials k5sm35553815pfu.142 - gsmtp')
+2021-07-24 01:22:50,704 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials y4sm6638025pju.10 - gsmtp')
+2021-07-24 01:22:52,523 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials r10sm34023699pff.7 - gsmtp')
+2021-07-24 01:22:54,334 INFO Error api_web_create_task: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials h21sm1577100pfh.67 - gsmtp')
+2021-07-24 10:05:10,046 INFO Error api_web_get_filter: 286
+2021-07-24 10:05:12,075 INFO Error api_web_get_filter: 286
+2021-07-24 10:05:18,978 INFO Error api_web_get_filter: 286
+2021-07-24 10:05:32,761 INFO Error api_web_get_filter: 286
+2021-07-24 10:05:38,759 INFO Error api_web_get_filter: 283
+2021-07-24 10:05:39,857 INFO Error api_web_get_filter: 283
+2021-07-24 10:06:26,932 INFO Error api_web_get_filter: 283
+2021-07-24 10:06:28,617 INFO Error api_web_get_filter: 283

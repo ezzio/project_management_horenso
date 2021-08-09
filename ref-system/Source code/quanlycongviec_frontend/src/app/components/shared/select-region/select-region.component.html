@@ -1,0 +1,40 @@
+<div *ngIf="showSelectRegionComponent" [ngClass]="classSelectRegion? 'flex-container-default' : 'flex-container'" >
+  <div>
+    <label class="label-1"><i class="fa fa-map-marker"></i> | Tên vùng</label><span> </span>
+    <ng-select class="region-select custom-sr" [multiple]=multipleChoice [(ngModel)]="selectItem.region"
+               (change)="getDoiTac($event)" (change)="sendMessage($event)" [maxSelectedItems]=maxItems>
+      <ng-option *ngFor="let zone of allZone" [value]="zone.region">{{zone.region}}</ng-option>
+    </ng-select>
+  </div>
+  <div>
+    <label class="label-1"><i class="fa fa-handshake-o"></i> | Đối tác</label><span> </span>
+    <ng-select class="doitac-select custom-sr" [multiple]=multipleChoice [(ngModel)]="selectItem.team_name"
+               (change)="getBlock($event)" (change)="sendMessage($event)" [maxSelectedItems]=maxItems
+               [disabled]="(selectItem.region.length > 0) ? !isDisabled : isDisabled">
+      <ng-option *ngIf="isShowAll === true" value="all">Tất cả</ng-option>
+      <ng-option *ngFor="let doitac of allDoiTac" [value]="doitac.shortname">{{doitac.shortname}}</ng-option>
+    </ng-select>
+  </div>
+  <div *ngIf="isShowBlock">
+    <label class="label-2"><i class="fa fa-th-large"></i> | Tên block</label><span> </span>
+    <ng-select class="block-select custom-sr"  [multiple]=multipleChoice [(ngModel)]="selectItem.block_name"
+               (change)="getAcc($event)" (change)="sendMessage($event)" [maxSelectedItems]=maxItems
+               [disabled]="(selectItem.team_name.length > 0 && selectItem.team_name[0] !== 'all')? !isDisabled : isDisabled">
+      <ng-option *ngIf="isShowAll === true" [value]="allValueBlock">Tất cả</ng-option>
+      <ng-option *ngFor="let block of allBlock" [value]="block.block">{{block.block}}</ng-option>
+      <ng-option [value]="" *ngIf="selectItem.team_name.length < 0" selected></ng-option>
+    </ng-select>
+  </div>
+  <div *ngIf="isShowEmp">
+    <label class="label-2"><i class="fa fa-user"></i> | Nhân viên</label><span> </span>
+    <ng-select class="emp-select custom-sr" [multiple]=multipleChoice [(ngModel)]="selectItem.MBN_account_name"
+               [disabled]="selectItem.block_name.length > 0 ? !isDisabled : isDisabled"
+               (change)="sendMessage($event)">
+      <ng-option *ngFor="let emp of allEmp" [value]="emp.MBN_account_name">{{emp.MBN_account_name}}</ng-option>
+    </ng-select>
+  </div>
+</div>
+
+
+
+

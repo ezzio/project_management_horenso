@@ -1,0 +1,38 @@
+<div class="editor">
+  <div class="card-body">
+    <div *ngIf="checkEmail" style="padding: 1rem">
+      <input type="radio" id="tinpnc" [(ngModel)]="ofMytinpnc" value="0"/>
+      <label for="tinpnc">MyTIN-PNC</label>
+      <input type="radio" id="pnc" [(ngModel)]="ofMytinpnc" value="1"/>
+      <label for="pnc">Phương Nam telecom</label>
+    </div>
+    <div class="col-lg-12 control-section">
+      <app-form-template *ngIf="ofMytinpnc === '0'" [elementForm]="elementContent"
+                         [formConfig]="formConfig"
+                         (formEvent)="receiveFormEvent($event)"
+                         (imageEvent)="receiveImage($event)"
+                         [defaultCol]="'form__group col-sm-8'"
+      ></app-form-template>
+      <app-form-template *ngIf="ofMytinpnc === '1'" [elementForm]="elementContent"
+                         [formConfig]="formConfigPNC"
+                         (formEvent)="receiveFormEvent($event)"
+                         (imageEvent)="receive2Image($event)"
+                         [defaultCol]="'form__group col-sm-8'"
+      ></app-form-template>
+      <div class="sample-container">
+        <div class="default-section">
+          <quill-editor [modules]="editorModules" [(ngModel)]="content"
+                        [placeholder]="'Nhập nội dung và hình ảnh tại đây'"
+          ></quill-editor>
+        </div>
+      </div>
+      <div class="author">
+        Tác giả: {{userName}} - Ngày đăng bài: {{datePost | date: 'dd/MM/yyyy'}}
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-addform" (click)="onSubmit()">Đăng bài</button>
+  </div>
+</div>
+<app-spinner-layout></app-spinner-layout>

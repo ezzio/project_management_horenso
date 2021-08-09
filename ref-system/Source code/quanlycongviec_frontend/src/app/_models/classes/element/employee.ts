@@ -1,0 +1,31 @@
+export class Employee  {
+  emp_id: number;
+  emp_code: string;
+  emp_name: string;
+  email: string;
+  department: string;
+  gender: string;
+  available: string;
+  degree: string;
+  level: string;
+  telephone: string;
+  birthday: string;
+  cmnd: string;
+  cmnd_date: string;
+  placeIssueId: string;
+  address: string;
+  startDate: string;
+  endDate: string;
+  placeOfBirth: string;
+  nationality: string;
+  msthue: string;
+  mst_date: string;
+  mst_place: string;
+  insurance: string;
+  salary_insurance: string;
+  contract_type: string;
+  contract_no: string;
+  contract_code: string;
+  contract_start: string;
+  contract_end: string;
+}

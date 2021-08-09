@@ -1,0 +1,20 @@
+input[type="number"]{
+  width: 65px;
+  height: 35px;
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding-left: 25px;
+  outline: none;
+}
+label {
+  font-size: 15px;
+  color: white;
+  margin: 6px 30px 5px 5px;
+  font-weight: normal;
+}
+.row {
+  margin-top: 10px;
+  font-family: 'Montserrat';
+  margin-left: 0 !important;
+}

@@ -1,0 +1,19 @@
+<div class="progressbar">
+  <div class="timer">
+    <div [ngStyle]="{'width': progressbarValue}"></div>
+  </div>
+  <div>{{dayremain}}</div>
+</div>
+<!--<mat-slider-->
+<!--  class="tp-margin"-->
+<!--  [invert]="false"-->
+<!--  [thumbLabel]="true"-->
+<!--  [displayWith]="formatLabel"-->
+<!--  [(ngModel)]="progressbarValue"-->
+<!--  [vertical]="false"-->
+<!--  style="pointer-events: none;"-->
+<!--&gt;</mat-slider>-->
+<div *ngIf="isShowTime" class="showTime">
+  <div>Ngày giao: {{dataProgress.t_assigned}}</div>
+  <div style="text-align: right">Deadline: {{dataProgress.deadline}}</div>
+</div>

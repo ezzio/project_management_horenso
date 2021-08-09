@@ -1,0 +1,90 @@
+.general-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.general-content > div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  width: 100%;
+}
+
+label {
+  width: 100%;
+}
+
+.custom {
+  width: 100%;
+}
+
+h5 {
+  margin: 5px 0px 10px 0px;
+  font-family: 'Montserrat';
+  color: white;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.displayNone {
+  display: none;
+}
+.datetime {
+  display: flex;
+}
+textarea {
+  width: 100%;
+}
+.group-btn {
+  float: right;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+}
+.group-btn button {
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+
+.btn-create-task {
+  float: left;
+  margin-bottom: 25px;
+}
+
+.btn-create-task .btn{
+  color: white;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  padding: 5px 55px;
+  font-weight: bold;
+  margin-left: 10px;
+  border-radius: 8px;
+  margin-right: 20px;
+  opacity: 1;
+  box-shadow: none;
+  border: none;
+}
+
+.btn-create-task .btn.btn-submit {
+  background-color: #386DFF;
+}
+
+.btn-create-task .btn.btn-outline-danger {
+  padding: 5px 50px;
+  background-color: #3c3c3c2e;
+  backdrop-filter: blur(50px);
+}
+
+@media only screen and (max-width: 500px) {
+  .btn-create-task .btn.btn-submit {
+    padding: 5px 35px;
+  }
+
+  .btn-create-task .btn.btn-outline-danger {
+    padding: 5px 30px;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <div class="modal-header-1">{{objCurrent.title}}</div>
+  <div class="modal-header-2">
+    <p>Người tạo: {{objCurrent.owner}}</p>
+    <p>Dự án: {{objCurrent.data_root.title}}</p>
+  </div>
+</div>
+<div class="modal-body">
+  <app-timer-kpi [dataProgress]="objCurrent" [isShowTime]="true"></app-timer-kpi>
+  <div class="body-update">
+    <div>
+      <label>Mô tả</label>
+      <textarea class="des" [ngModel]="objCurrent.description"
+                row="4"
+                (ngModelChange)="changeData('description', $event)"></textarea>
+    </div>
+    <div>
+      <label>Khó khăn</label>
+      <textarea class="des" [ngModel]="objCurrent.problem" (ngModelChange)="changeData('problem', $event)"></textarea>
+    </div>
+    <div>
+      <label>Độ hoàn thiện</label>
+      <mat-slider class="slider" [ngModel]="completion"
+                  (ngModelChange)="changeData('completion', $event)"
+                  [disabled]="false"
+                  [invert]="false"
+                  [thumbLabel]="true"
+                  [vertical]="false"
+                  [color]="color">
+      </mat-slider>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-dark" (click)="openConversation()">Hộp thoại báo cáo tiến độ</button>
+  <button class="btn btn-outline-success" (click)="submit()">Lưu</button>
+  <button class="btn btn-outline-danger" (click)="close()">Thoát</button>
+</div>

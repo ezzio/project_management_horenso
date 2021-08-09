@@ -1,0 +1,104 @@
+.modal-header h5 {
+  color: white;
+  margin: 0;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+.modal-body {
+  padding-top: 10px !important;
+}
+
+.modal-body p {
+  color: white;
+  font-family: 'Montserrat';
+  margin-bottom: 0px;
+}
+
+.modal-body-1 {
+  display: flex;
+}
+
+.modal-body-1 p mat-icon {
+  position: absolute;
+  right: 2rem;
+  color: red;
+}
+
+.text-label {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  color: #00ffd5;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.modal-footer button {
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  padding: 5px 50px;
+  margin-left: 10px;
+  border-radius: 8px;
+  margin-right: 20px;
+  opacity: 1;
+  box-shadow: none;
+  color: white;
+  border: none;
+  background-color: #3c3c3c2e;
+  backdrop-filter: blur(50px);
+}
+
+.modal-footer .btn.btn-outline-dark {
+  padding: 5px 20px;
+  background-color: #009688;
+}
+
+.mat-slider-horizontal {
+  height: 35px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.taskinfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.taskinfo-inner {
+  width: 45%;
+}
+
+.level-label {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+  color: white;
+  margin-right: 45px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.level-1 {
+  background-color: #42E329;
+  border-color: #42E329;
+}
+.level-2 {
+  background-color: #24DBFF;
+  border-color: #24DBFF;
+}
+.level-3 {
+  background-color: #FF3818;
+  border-color: #FF3818;
+}

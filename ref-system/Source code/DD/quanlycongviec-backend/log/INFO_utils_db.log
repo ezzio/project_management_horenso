@@ -1,0 +1,203 @@
+2021-04-17 15:19:40,465 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-17 15:38:25,077 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 14:51:57,959 INFO Try connect database error number 1 
+2021-04-18 14:51:58,064 INFO Try connect database error number 2 
+2021-04-18 14:51:58,166 INFO Try connect database error number 3 
+2021-04-18 14:51:58,271 INFO Try connect database error number 4 
+2021-04-18 14:51:58,376 INFO Try connect database error number 5 
+2021-04-18 14:51:58,480 INFO Try connect database error number 6 
+2021-04-18 14:51:58,582 INFO Try connect database error number 7 
+2021-04-18 14:51:58,687 INFO Try connect database error number 8 
+2021-04-18 14:51:58,792 INFO Try connect database error number 9 
+2021-04-18 14:51:58,896 INFO Try connect database error number 10 
+2021-04-18 14:55:49,313 INFO Try connect database error number 1 
+2021-04-18 14:55:49,416 INFO Try connect database error number 2 
+2021-04-18 14:55:49,521 INFO Try connect database error number 3 
+2021-04-18 14:55:49,624 INFO Try connect database error number 4 
+2021-04-18 14:55:49,727 INFO Try connect database error number 5 
+2021-04-18 14:55:49,831 INFO Try connect database error number 6 
+2021-04-18 14:55:49,932 INFO Try connect database error number 7 
+2021-04-18 14:55:50,035 INFO Try connect database error number 8 
+2021-04-18 14:55:50,138 INFO Try connect database error number 9 
+2021-04-18 14:55:50,242 INFO Try connect database error number 10 
+2021-04-18 14:56:42,848 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:00:50,773 INFO Try connect database error number 1 
+2021-04-18 15:00:50,877 INFO Try connect database error number 2 
+2021-04-18 15:00:50,982 INFO Try connect database error number 3 
+2021-04-18 15:00:51,084 INFO Try connect database error number 4 
+2021-04-18 15:00:51,188 INFO Try connect database error number 5 
+2021-04-18 15:00:51,292 INFO Try connect database error number 6 
+2021-04-18 15:00:51,396 INFO Try connect database error number 7 
+2021-04-18 15:00:51,500 INFO Try connect database error number 8 
+2021-04-18 15:00:51,606 INFO Try connect database error number 9 
+2021-04-18 15:00:51,711 INFO Try connect database error number 10 
+2021-04-18 15:02:42,293 INFO Try connect database error number 1 
+2021-04-18 15:03:03,397 INFO Try connect database error number 2 
+2021-04-18 15:03:24,502 INFO Try connect database error number 3 
+2021-04-18 15:03:45,607 INFO Try connect database error number 4 
+2021-04-18 15:04:06,715 INFO Try connect database error number 5 
+2021-04-18 15:04:27,823 INFO Try connect database error number 6 
+2021-04-18 15:04:48,927 INFO Try connect database error number 7 
+2021-04-18 15:05:10,032 INFO Try connect database error number 8 
+2021-04-18 15:05:31,159 INFO Try connect database error number 9 
+2021-04-18 15:05:52,267 INFO Try connect database error number 10 
+2021-04-18 15:10:02,673 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:10:24,758 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:10:32,147 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:11:09,799 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:13:26,000 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:17:33,225 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:21:19,549 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:22:08,488 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:22:13,666 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:27:16,688 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:27:18,798 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 15:53:05,937 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 16:06:09,971 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:02:41,366 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:02:44,535 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:02:56,042 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:03:38,322 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:05:10,268 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:05:16,037 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:05:36,569 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:07:18,789 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:08:39,649 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:14:07,501 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:14:25,356 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:16:24,497 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:18:46,248 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:19:56,101 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:26:27,470 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:26:53,320 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-18 18:28:26,699 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:29:30,303 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-18 18:29:58,724 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-19 11:59:17,593 INFO [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2021-04-19 12:00:47,454 INFO api_report_total_fe Error emp_checkin_exec_query ( SELECT owner,assigned FROM tm_task_assignement_tb WHERE reject ='0'): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-19 12:00:47,465 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.owner  WHERE t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX"  AND type = 1 AND owner = "phuongnam.khiempm@fpt.net" and reject ='0'  or type = 2 AND owner = "phuongnam.khiempm@fpt.net" and reject ='0'  or t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND assigned = "phuongnam.khiempm@fpt.net" AND reject ='0'  AND a.child_depart = "PDX" ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-19 12:00:47,469 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.owner  WHERE t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX"  AND owner = "phuongnam.khiempm@fpt.net" and reject ='0' or assigned = "phuongnam.khiempm@fpt.net" AND reject ='0' ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-19 12:00:47,495 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.emp_name, a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.assigned AND reject ='0' AND  t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX" ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-19 12:01:17,828 INFO api_report_total_fe Error emp_checkin_exec_query ( SELECT owner,assigned FROM tm_task_assignement_tb WHERE reject ='0'): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-19 12:01:17,831 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.owner  WHERE t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX"  AND type = 1 AND owner = "phuongnam.khiempm@fpt.net" and reject ='0'  or type = 2 AND owner = "phuongnam.khiempm@fpt.net" and reject ='0'  or t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND assigned = "phuongnam.khiempm@fpt.net" AND reject ='0'  AND a.child_depart = "PDX" ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-19 12:01:17,834 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.owner  WHERE t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX"  AND owner = "phuongnam.khiempm@fpt.net" and reject ='0' or assigned = "phuongnam.khiempm@fpt.net" AND reject ='0' ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-19 12:01:17,836 INFO api_report_total_fe Error emp_checkin_exec_query (SELECT a.emp_name, a.child_depart, b.* FROM employees_tb a INNER JOIN tm_task_assignement_tb b ON a.email = b.assigned AND reject ='0' AND  t_assigned >= "2021-03-01 00:00:00" AND t_assigned <= "2021-06-01 00:00:00"  AND a.child_depart = "PDX" ): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-21 12:00:00,237 INFO api_web_create_task Error emp_checkin_exec_query (SELECT * FROM employees_tb WHERE email = "phamnhutoan03041998@gmail.com"): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-21 12:00:27,968 INFO api_web_create_task Error emp_checkin_exec_query (SELECT * FROM employees_tb WHERE email = "phamnhutoan03041998@gmail.com"): 1146 (42S02): Table 'quanlycongviec.employees_tb' doesn't exist
+2021-04-21 13:34:48,793 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb where id = "4"): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:36:13,198 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:36:13,199 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_history_comment_tb WHERE id_task = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_history_comment_tb' doesn't exist
+2021-04-21 13:36:13,206 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:39:08,575 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:39:08,578 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_history_comment_tb WHERE id_task = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_history_comment_tb' doesn't exist
+2021-04-21 13:39:08,597 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 14:03:31,229 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 14:03:31,327 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_history_comment_tb WHERE id_task = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_history_comment_tb' doesn't exist
+2021-04-21 14:03:31,348 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 14:06:02,360 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 14:06:02,362 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_history_comment_tb WHERE id_task = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_history_comment_tb' doesn't exist
+2021-04-21 14:06:02,371 INFO  Error emp_checkin_exec_query (SELECT * FROM tm_task_assignement_tb WHERE id = "4" ): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 15:28:09,802 INFO api_web_list_email_available Error emp_checkin_exec_query (SELECT email,name,phong_ban,level_task FROM danh_sach_tat_nien_tb WHERE email = "phamnhutoan0304@gmail.com" limit 1): 1146 (42S02): Table 'quanlycongviec.danh_sach_tat_nien_tb' doesn't exist
+2021-04-21 15:28:09,804 INFO api_web_list_email_available Error emp_checkin_exec_query (SELECT email,name,phong_ban,level_task FROM danh_sach_tat_nien_tb WHERE email = "phamnhutoan0304@gmail.com" limit 1): 1146 (42S02): Table 'quanlycongviec.danh_sach_tat_nien_tb' doesn't exist
+2021-04-21 15:46:55,671 INFO api_web_list_email_available Error emp_checkin_exec_query (SELECT email,name,phong_ban,level_task FROM danh_sach_tat_nien_tb WHERE email = "phamnhutoan0304@gmail.com" limit 1): 1146 (42S02): Table 'quanlycongviec.danh_sach_tat_nien_tb' doesn't exist
+2021-04-21 15:46:55,687 INFO api_web_list_email_available Error emp_checkin_exec_query (SELECT email,name,phong_ban,level_task FROM danh_sach_tat_nien_tb WHERE email = "phamnhutoan0304@gmail.com" limit 1): 1146 (42S02): Table 'quanlycongviec.danh_sach_tat_nien_tb' doesn't exist
+2021-04-21 16:05:06,132 INFO api_web_following_task Error emp_checkin_exec_query (SELECT id_tree FROM cong_viec WHERE t_create >= "2021-04-14 00:00:00" AND t_create <= "2021-04-14 24:00:00" AND type in (1,2) AND reject = 0): 1525 (HY000): Incorrect DATETIME value: '2021-04-14 24:00:00'
+2021-04-21 16:31:05,912 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "phamnhutoan@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-04-21 16:31:14,398 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "phamnhutoan0304@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-04-21 19:14:55,197 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-21 19:18:33,293 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-21 19:19:28,673 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-21 19:20:41,744 INFO certfile "../data/.certs\mytinpnc_vn.crt" does not exist
+2021-04-27 21:08:47,435 INFO api_web_get_filter Error emp_checkin_exec_query (SELECT id_tree, title FROM tm_task_assignement_tb WHERE owner = "phamnhutoan0304@gmail.com" OR  assigned = "phamnhutoan0304@gmail.com" OR  reviewer = "phamnhutoan0304@gmail.com"): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-27 21:08:47,723 INFO api_web_following_task Error emp_checkin_exec_query (SELECT id_tree FROM tm_task_assignement_tb WHERE t_create >= "2021-04-01 00:00:00" AND t_create <= "2021-04-27 24:00:00" AND type in (1,2) AND reject = 0): 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-28 20:47:33,479 INFO Try connect database error number 1 
+2021-04-28 20:47:33,709 INFO Try connect database error number 2 
+2021-04-28 20:47:33,877 INFO Try connect database error number 3 
+2021-04-28 20:47:34,027 INFO Try connect database error number 4 
+2021-04-28 20:47:34,172 INFO Try connect database error number 5 
+2021-04-28 20:47:34,315 INFO Try connect database error number 6 
+2021-04-28 20:47:34,448 INFO Try connect database error number 7 
+2021-04-28 20:47:34,588 INFO Try connect database error number 8 
+2021-04-28 20:47:34,752 INFO Try connect database error number 9 
+2021-04-28 20:47:34,897 INFO Try connect database error number 10 
+2021-04-28 20:48:21,834 INFO  Error emp_checkin_exec_query (SELECT * FROM accounts WHERE user = "admin"): 1054 (42S22): Unknown column 'user' in 'where clause'
+2021-05-09 17:17:34,791 INFO api_update_status: Not all parameters were used in the SQL statement
+2021-05-09 17:18:07,414 INFO api_update_status: Not all parameters were used in the SQL statement
+2021-05-09 17:19:12,328 INFO api_update_status: name 'email' is not defined
+2021-05-09 17:20:42,413 INFO api_update_status: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATEcong_viec SET status_noti = 1 WHERE id =  "57"' at line 1
+2021-05-09 17:21:32,301 INFO api_update_status: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATEcong_viec SET status_noti = 1 WHERE id = "57"' at line 1
+2021-05-10 14:34:45,972 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:40:02,704 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:40:04,307 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:40:05,942 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:44:22,148 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:53:27,962 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:54:23,689 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:55:11,211 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 14:59:48,422 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:01:26,016 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:01:36,041 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:02:54,962 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:05:57,927 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:07:31,651 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:08:50,621 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:09:42,353 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:10:47,656 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:41:59,885 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 15:47:50,338 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:00:01,579 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:05:39,484 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:05:43,118 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:05:44,895 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:16:26,076 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:16:30,001 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:16:38,233 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:16:47,154 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:21:14,183 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:26:08,660 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:28:19,901 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:40:13,452 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:54:49,432 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:55:01,896 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 16:55:10,014 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:02:24,605 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:04:31,998 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:05:44,015 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:06:35,555 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:07:05,927 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:07:21,654 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:13:14,722 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:14:11,908 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:15:56,554 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:17:48,552 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:18:11,408 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:20:32,537 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:20:49,601 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:22:09,796 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:35:47,878 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:38:00,697 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:46:30,032 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:46:59,707 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:48:20,571 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:49:21,355 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:50:06,582 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:51:11,266 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 17:54:43,786 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:00:05,746 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:00:15,417 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:00:20,936 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:17:12,240 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:17:43,827 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 18:20:07,753 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "admin@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:24:11,637 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 19:24:11,998 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 19:24:14,694 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "admin@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-05-10 19:36:20,455 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "admin@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:37:26,949 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "admin@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:38:38,260 INFO api_web_get_info_child_depart Error emp_checkin_exec_query (SELECT a.child_depart, a.email, b.child_depart, b.branch FROM employees_tb a LEFT JOIN department_tb b on a.child_depart = b.child_depart WHERE a.email = "admin@gmail.com" ): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:39:15,696 INFO  Error emp_checkin_exec_query (SELECT child_depart FROM  quanlycongviec.department_tb): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:40:12,289 INFO  Error emp_checkin_exec_query (SELECT child_depart FROM  quanlycongviec.department_tb): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:40:40,682 INFO  Error emp_checkin_exec_query (SELECT child_depart FROM  quanlycongviec.department_tb): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:41:03,634 INFO  Error emp_checkin_exec_query (SELECT child_depart FROM department_tb): 1146 (42S02): Table 'quanlycongviec.department_tb' doesn't exist
+2021-05-10 19:56:26,799 INFO api_check_noti Error emp_checkin_exec_query ( SELECT id,title, status_noti FROM cong_viec WHERE assigned = "phamnhutoan0304@gmail.com" and status_noti = 0 ): 1054 (42S22): Unknown column 'status_noti' in 'field list'
+2021-06-10 10:22:19,452 INFO Try connect database error number 1 

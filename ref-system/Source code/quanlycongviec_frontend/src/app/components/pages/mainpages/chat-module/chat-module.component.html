@@ -1,0 +1,6 @@
+<div *ngFor="let message of messageList">
+
+</div>
+
+<input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && submit()" />
+<button (click)="submit()">Send Message</button>

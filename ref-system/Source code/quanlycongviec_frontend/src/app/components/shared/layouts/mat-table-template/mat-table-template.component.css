@@ -1,0 +1,124 @@
+.wrapper {
+  position: relative;
+  overflow: auto;
+  margin-top: 1rem;
+  height: 600px;
+}
+
+.red {
+  color: blue;
+}
+.white {
+  color: grey;
+}
+.group-button{
+  margin-bottom: 5rem;
+  float: right;
+}
+.btn {
+  margin-left: 1rem;
+  float: none;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+  max-height: 100px;
+}
+/*.mat-form-field {*/
+/*  width: 160px;*/
+/*}*/
+.w-160{
+  width: 160px;
+}
+.w-90 {
+  width: 90px;
+}
+.w-140 {
+  width: 140px;
+}
+.w-110 {
+  width: 110px;
+}
+.custom-radio {
+  width: 120px;
+  padding-left: 10px;
+  font-size: 0.8rem;
+}
+th.mat-header-cell {
+  font-size: 1rem;
+  vertical-align: text-top;
+  padding: 2rem 0 0 2px;
+  text-align: left;
+}
+th {
+  background-color: #5d5d5d;
+  color: white;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+.label-th{
+  height: 1rem;
+}
+.mat-select-value {
+  color: white;
+}
+
+td.mat-cell, th {
+  border: 0.5px solid #D5D5D5;
+  width: -moz-min-content;
+  /*white-space: nowrap;*/
+}
+td.mat-cell{
+  padding: 10px;
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #e0e0e0;
+}
+.ticketTb:nth-child(2){
+  left: 231px !important;
+}
+.newsTb:nth-child(2){
+  left: 55px !important;
+}
+.ptqTb:nth-child(2){
+  left: 50px !important;
+}
+.ptqTb:nth-child(3){
+  left: 82px !important;
+}
+.ptqTb:nth-child(4){
+  left: 173px !important;
+}
+.ptqTb:nth-child(5){
+  left: 265px !important;
+}
+.ptqTb:nth-child(6){
+  left: 357px !important;
+}
+.ptqTb:nth-child(7){
+  left: 519px !important;
+}
+.ptqTb:nth-child(8){
+  left: 681px !important;
+}
+.ptqTb:nth-child(9){
+  left: 756px !important;
+}
+.container {
+  height: 32px;
+  overflow: hidden;
+}
+.show {
+  overflow: visible;
+  height: auto;
+}
+th.mat-table-sticky {
+  z-index: 2 !important;
+}

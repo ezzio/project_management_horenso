@@ -1,0 +1,609 @@
+.board-filter {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 15px 0 0;
+  padding: 5px 0px 5px 0px;
+  border-radius: 13px;
+  background-color: #d5e1f44a;
+  backdrop-filter: blur(50px);
+}
+
+.board-filter ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 0
+}
+.tag-group {
+  /*width: 80%;*/
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag-group > div {
+  width: 17%;
+  margin: 0.5rem;
+}
+.board-filter ul li {
+  list-style: none;
+  position: relative;
+  margin: 0 0px 0px 15px;
+  height: 100%;
+  transition: all 0.2s;
+  max-width: 20%;
+}
+
+.filter-label {
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  margin-bottom: 3px;
+}
+
+.select-time {
+  position: relative;
+}
+
+.select-time input {
+  height: 35px;
+  width: 100%;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  padding-left: 20px;
+  border: 1px solid #a7a7a7;
+  border-radius: 10px;
+  font-family: 'Montserrat';
+}
+
+.select-time mat-datepicker-toggle {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border: 1px solid #a7a7a7;
+  width: 50px;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-time mat-datepicker-toggle > button, .select-time mat-datepicker-toggle > button:focus{
+  outline: none;
+}
+
+.select-time mat-datepicker-toggle > button {
+  position: absolute;
+  width: 12vw;
+  right: 0;
+}
+
+.select-time mat-datepicker-toggle > button > span {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+}
+
+.btn_filter {
+  width: max-content;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #3894ff;
+  height: 50px;
+  outline: none;
+  border-radius: 10px;
+  padding: 0px 20px;
+  border: none;
+  margin: 9px 15px 8px 5px;
+  transition: all 0.2s;
+  font-family: 'Montserrat';
+}
+
+.btn_filter:hover {
+  transform: scale(1.1, 1.1);
+}
+.ng-select::ng-deep .ng-select-container .ng-value-container {
+  padding-left: 22px;
+}
+
+.ng-select.ng-select-single::ng-deep .ng-select-container .ng-value-container .ng-input {
+  left: 10px;
+  padding-top: 18px;
+}
+
+.ng-select::ng-deep .ng-select-container .ng-value-container .ng-input>input {
+  cursor: pointer;
+}
+
+.ng-select::ng-deep .ng-arrow-wrapper {
+  padding-right: 25px;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 5px;
+  border-color: #efefef;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel {
+  transition: all 0.2s;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  padding-left: 20px;
+}
+
+.ng-select.ng-select-single::ng-deep .ng-select-container {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  height: 100%;
+  padding-top: 20px;
+  margin-top: -20px;
+}
+
+.ng-select::ng-deep .ng-clear-wrapper {
+  display: none;
+}
+
+ng-select::ng-deep .ng-select-container {
+  margin-top: 5px;
+}
+
+.task-list {
+  border-radius: 13px;
+  margin: 10px 15px 0 0;
+  padding: 20px 25px 15px 25px;
+  color: black;
+  background-color: #d5e1f44a;
+  backdrop-filter: blur(50px);
+}
+
+.task-list .task-search {
+  position: relative;
+  width: 25%;
+}
+
+.task-list .task-search > input{
+  font-family: 'Montserrat';
+  font-size: 15px;
+  border: 1px solid #bfbfbf;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.task-list .task-search .mat-icon {
+  position: absolute;
+  transform: rotate(90deg);
+  right: 10px;
+  top: 5px;
+  color: gray;
+}
+
+.task-list .task {
+  margin-bottom: 35px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 15px;
+  cursor: pointer;
+}
+
+.task:hover {
+  background-color: #b4cfd92b;
+}
+
+.task-list .task:last-child {
+  margin-bottom: 0px;
+}
+
+.task-name {
+  font-weight: bold;
+  color: white;
+  height: fit-content;
+  align-items: center;
+  font-size: 17px;
+  width: 32%;
+  display: grid;
+  grid-template-columns: 45px auto auto;
+  grid-template-areas:
+    'number name name'
+    'number email email'
+}
+
+.task-tag {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0px;
+}
+.status-tags {
+  width: 65%;
+  display: flex;
+}
+.small-status-tags {
+  display: flex;
+  align-items: center;
+}
+.comp-tag > div {
+  display: flex;
+  width: 100%;
+  min-width: 200px;
+  align-items: center;
+}
+
+.status-tag {
+  font-size: 12px;
+  padding: 6px 4px;
+  font-weight: bold;
+  color: white;
+  width: 7vw;
+  text-align: center;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat';
+  height: fit-content;
+}
+
+.level-1 {
+  background-color: #42E329;
+}
+
+.level-2 {
+  background-color: #24DBFF;
+}
+
+.level-3 {
+  background-color: #FF3818;
+}
+
+.name-tag {
+  align-items: center;
+  color: white;
+  width: 100%;
+  font-family: 'Montserrat';
+  grid-area: name;
+  line-height: 1.2;
+  font-size: 16px;
+}
+.email-tag {
+  font-family: Montserrat;
+  grid-area: email;
+  font-size: 0.8rem;
+  color: #d3d3d3a3;
+  line-height: 1;
+  padding-top: 4px
+}
+.level {
+  grid-area: number;
+  width: 33px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+  color: white;
+  margin-right: 45px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.view-tag {
+  padding: 5px 18px 5px 25px;
+  margin-right: 15px;
+  color: white;
+}
+.view-tag:hover {
+  color: blue;
+}
+:host ::ng-deep .min .mat-slider-thumb {
+  background-color: blue;
+}
+
+.completion-bar {
+  width: 200px;
+  margin-top: 0.5rem;
+}
+.completion-tag {
+  font-size: 12px;
+  padding: 0px 0px 0px 12px;
+  width: 12vw;
+  color: white;
+}
+
+.completion-tag > div {
+  font-family: 'Montserrat';
+  color: #d3d3d3a8;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.completion-tag > div:nth-child(2) {
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.open-dots {
+  margin-top: 3px;
+  margin-right: 10px;
+}
+.open-dots .dropdown a.dropdown-toggle {
+  padding: 0.3rem 0.6rem;
+  background: white;
+  border-radius: 13px;
+  color: black;
+}
+
+.open-dots .dropdown a.dropdown-toggle:hover {
+  border: 1px solid white;
+}
+.open-dots .dropdown .dropdown-toggle mat-icon {
+  font-size: 1rem;
+  width: 18px;
+}
+.open-dots .dropdown .dropdown-item:focus, .dropdown-item:hover {
+  background: lightgray !important;
+}
+.open-dots .dropdown .dropdown-item mat-icon{
+  font-size: 16px;
+}
+
+.open-dots .dropdown img {
+  width: 12px;
+  margin-right: 5px;
+  height: 18px;
+  margin-bottom: 6px;
+}
+
+.typeTask {
+  margin-top: 1rem;
+  display: flex;
+}
+.ng-select.custom ::ng-deep .ng-select-container  {
+  border: 1px solid lightgray;
+  min-height: 0px;
+  background: #fff;
+  border-radius: 2rem;
+  width: 300px;
+}
+.typeTask label {
+  margin-top: 0.3rem;
+  margin-right: 1rem;
+}
+
+:host ::ng-deep .min .mat-slider-thumb {
+  background-color: blue;
+}
+mat-progress-bar span {
+  color: white;
+}
+.mat-progress-bar .mat-progress-bar-fill::after{
+  background: white;
+}
+.mat-progress-bar .mat-progress-bar-buffer{
+  background: lightslategray;
+}
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 15px 0 0;
+}
+
+.tag-filter .status-tag {
+  padding: 5px 5px;
+  width: 128px;
+  margin: 0px 5px;
+}
+
+.group-btn {
+  display: flex;
+  align-items: center;
+  flex: 100%;
+  justify-content: flex-end;
+}
+
+.mobile {
+  display: none;
+}
+
+.pc {
+  display: flex;
+}
+
+.task-list .ngx-pagination {
+  font-family: 'Montserrat';
+  color: white;
+}
+
+.task-list .ngx-pagination li a {
+  color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+  .board-filter {
+    margin: 8px 0px 0px 0px;
+  }
+
+  .tag-filter {
+    margin-right: 0px;
+  }
+
+  .tag-filter .status-tag {
+    margin: 5px 5px;
+  }
+
+  .filter-label {
+    font-size: 13px;
+  }
+
+  .select-time input {
+    padding-left: 12px;
+    font-size: 13px;
+  }
+
+  .task-list {
+    margin: 10px 0px 0px 0px;
+  }
+
+  .task-list .task {
+    margin-bottom: 25px;
+  }
+
+  .comp-tag > div {
+    height: 100%;
+    align-items: center;
+    min-width: 0px;
+  }
+
+  .status-tag {
+    padding: 3px 8px;
+    width: 60px;
+    height: fit-content;
+    margin: 5px 5px;
+  }
+
+  .open-dots {
+    margin: 0rem 5px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .pc {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .filter-label {
+    font-size: 11px;
+  }
+
+  .board-filter ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .board-filter ul li {
+    max-width: 45%;
+    height: fit-content;
+    margin: 2px 5px 5px 5px;
+  }
+
+  .tag-filter {
+    margin-left: -5px
+  }
+
+  .tag-filter .status-tag {
+    padding: 3px 0px;
+    font-size: 11px;
+    width: 93px;
+  }
+
+  .btn_filter {
+    font-size: 13px;
+    height: 35px;
+    padding: 0px 15px;
+    margin: 5px 5px 0px 5px;
+  }
+
+  .task-list {
+    padding: 10px 15px;
+  }
+
+  .task-list .task-search {
+    width: 70%;
+  }
+
+  .task-list .task-search > input {
+    padding: 3px 15px;
+    font-size: 14px;
+    margin: 5px 0px 15px 0px;
+  }
+
+  .task-list .task-search .mat-icon {
+    top: 8px;
+  }
+
+  .task-list .task {
+    flex-wrap: wrap;
+    padding: 15px 10px 0px 10px;
+    margin-bottom: 20px;
+  }
+
+  .task-name {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .name-tag {
+    font-size: 15px;
+  }
+
+  .status-tags {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .small-status-tags {
+    margin-bottom: 15px;
+  }
+
+  .comp-tag .completion-tag > div, .comp-tag .completion-tag > div:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .comp-tag .completion-tag > div:nth-child(2) {
+    margin-left: 5px;
+  }
+
+  .small-status-tags .status-tag {
+    margin: 0;
+  }
+
+  .small-status-tags .status-tag.completion-tag {
+    width: 33vw;
+    padding: 6px 8px;
+  }
+
+  .small-status-tags .status-tag.deadline-tag, .small-status-tags .status-tag.project-tag {
+    width: 45vw;
+  }
+
+  .group-btn {
+    flex: auto;
+    margin-bottom: 10px;
+  }
+
+  .open-dots {
+    margin: 0px;
+  }
+
+  .open-dots .dropdown a.dropdown-toggle {
+    padding: 2px 0.7rem;
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .task-list .ngx-pagination {
+    padding-left: 0px;
+  }
+}

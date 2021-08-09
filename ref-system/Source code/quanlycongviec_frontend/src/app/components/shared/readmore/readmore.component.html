@@ -1,0 +1,9 @@
+{{ shortContent }}
+<div *ngIf="content && content.length > limit ">
+    <a *ngIf="!isContentToggled" (click)="toggleContent()" i18n>
+        <i class="fa fa-arrow-circle-right "></i></a>
+    <a *ngIf="isContentToggled" (click)="toggleContent()" i18n>
+        <i class="fa fa-arrow-circle-left "></i></a>
+</div>
+
+

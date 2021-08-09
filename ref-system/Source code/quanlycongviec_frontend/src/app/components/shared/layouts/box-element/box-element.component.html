@@ -1,0 +1,23 @@
+<div class="box-layout">
+  <div class="box-body" *ngFor="let el of boxContentResult">
+    <div class="btn-delete" *ngIf="deleteOrNot">
+      <button class="btn btn-outline-dark" (click)="functionDelete(el)">
+        <mat-icon>close</mat-icon></button>
+    </div>
+    <div *ngFor="let config of boxConfig">
+      <div *ngIf="config['dataField'] === 'imgUrl'">
+        <img src="{{el.config.imgUrl}}"/>
+      </div>
+      <div *ngIf="config['openButton']" (click)="openInfo(el)">
+        <span style="color: red !important; cursor: pointer">{{el[config['dataField']]}}</span></div>
+      <div *ngIf="!config['openButton'] && !config['checkbox']">
+        {{config['title']}}: {{el[config['dataField']]}}
+      </div>
+      <div *ngIf="config['checkbox']">
+        <label>Chọn ứng viên: </label>
+        <input type="checkbox" [(ngModel)]="el[config['dataField']]" (change)="checkEvent(el, $event)"/>
+      </div>
+    </div>
+  </div>
+</div>
+

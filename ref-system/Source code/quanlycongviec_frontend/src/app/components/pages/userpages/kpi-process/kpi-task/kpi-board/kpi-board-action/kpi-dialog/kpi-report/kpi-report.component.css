@@ -1,0 +1,17 @@
+.modal-header h5 {
+  margin: 5px 0px 5px 0px;
+  font-family: 'Montserrat';
+  color: white;
+}
+
+.btn-out {
+  position: absolute;
+  right: 2rem;
+  background: #ca7441;
+  color: white;
+}
+.btn-out:hover {
+  background: white;
+  border: 1px solid #ca7441;
+  color: #ca7441;
+}

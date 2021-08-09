@@ -1,0 +1,16 @@
+<div (clickOutside)="outSide($event)">
+    <div>
+        <p style="margin-top: 23px; color: white" (click)="slideDownUp()">
+            <mat-icon [matBadge]="numberOfTicket" matBadgeColor="warn">notifications</mat-icon>
+        </p>
+    </div>
+    <div class="card" data-target="slide-content" id="slide-content">
+        <div class="card-body">
+            <ul>
+                <li>
+                  <a routerLink="api/auth/hanhchinh/leader">Đơn cần duyệt: {{numberOfTicket}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

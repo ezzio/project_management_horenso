@@ -1,0 +1,118 @@
+.img {
+  /*width: auto;*/
+  /*height: 100%;*/
+  /*max-height: 110px;*/
+  object-fit: cover;
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.img-forum {
+  width: 100%;
+  object-fit: cover;
+}
+img.col-6{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.content {
+  color: black;
+  text-decoration: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-align: left;
+  font-weight: bold;
+}
+.content, .content-2{
+  padding-left: 1rem;
+}
+p {
+  color: grey;
+  text-align: left;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2%;
+  min-width: 200px;
+  width: 100%;
+}
+.flexWidth33 > div {
+  width: 100%;
+}
+
+.flexWidth100 > div {
+  width: 100%;
+}
+.col-6 {
+  padding: 0;
+  font-size: 0.8rem;
+}
+/*.col-6.img {*/
+/*  min-width: 150px;*/
+/*}*/
+.row {
+  padding: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.content:hover {
+  color: red;
+}
+.img:hover{
+  opacity: 0.8;
+}
+/*@media only screen and (max-width: 1200px){*/
+/*  .flex-container {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    width: 100%;*/
+/*    padding: 0 5%;*/
+/*  }*/
+
+/*  .flex-container > div {*/
+/*    width: 50%;*/
+/*    !*height: 150px;*!*/
+/*    text-align: center;*/
+/*    padding-right: 1rem;*/
+/*  }*/
+/*}*/
+@media screen and (max-width: 767px) and (min-width: 501px) {
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  .flex-container > div {
+    width: 50%;
+    /*height: 150px;*/
+    text-align: center;
+    padding-right: 1rem;
+  }
+}
+
+h6 {
+  background: lightcyan;
+  padding: 1rem;
+}
+.forum {
+  box-shadow: 1px 2px 5px lightgray;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+.lacso{
+  background-image: url('src/assets/images/lacso.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.lacso:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

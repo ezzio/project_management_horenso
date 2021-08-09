@@ -1,0 +1,21 @@
+<div class="row multiple-import">
+  <div class="row-1">
+    <input type="file" name="file" id="file" [ngClass]="empImportForm? 'emp-form-control':'form-control'"
+           (change)="addFile($event)" (blur)="resetFile($event)"
+           accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+  </div>
+  <div *ngIf="categorySalary" class="row-1">
+    <ejs-combobox #samples
+                  class="custom-salary"
+                  [(value)]="category" (change)="changeCategory()"
+                  [dataSource]="categorySalary"
+                  [fields]="fields"
+                  [placeholder]="'Loại lương'"
+                  [popupHeight]="'200px'"></ejs-combobox>
+  </div>
+  <ng-content class="row-1" select="[content]"></ng-content>
+  <div class="row-1">
+    <button [ngClass]="empImportBtn? 'btn emp-btn-open':'btn btn-open'" (click)="openFile()">Mở đơn</button>
+  </div>
+</div>
+

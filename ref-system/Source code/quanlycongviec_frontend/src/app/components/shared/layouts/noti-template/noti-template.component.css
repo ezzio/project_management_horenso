@@ -1,0 +1,65 @@
+#slide-content {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    margin-left: -9rem;
+}
+
+.slide-down {
+    animation: slide-down 0.1s linear both;
+}
+
+.slide-up {
+    animation: slide-up 0.1s linear both;
+}
+ul {
+    list-style: none;
+    padding: 0
+}
+ul li {
+    padding: 1rem;
+}
+ul li:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+}
+ul li:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px lightgray inset;
+}
+ul li a {
+    text-decoration: none;
+    color: dimgrey;
+    font-size: 0.8rem;
+}
+.card-body {
+    padding: 0;
+}
+@keyframes slide-down {
+    0% {
+        visibility: hidden;
+        height: 0;
+    }
+
+    95% {
+        visibility: visible;
+        height: 250px;
+    }
+
+    /* Set height to 'auto' after animation for spacing showing form-invalid feedback message */
+    100% {
+        visibility: visible;
+        height: auto;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        visibility: visible;
+        height: 250px;
+    }
+
+    to {
+        visibility: hidden;
+        height: 0;
+    }
+}

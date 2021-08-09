@@ -1,0 +1,30 @@
+.editor {
+  padding-bottom: 5%;
+  width: 100%;
+  background-color: #ecdcd2;
+}
+.author{
+  background-color: white;
+  padding: 2%;
+  font-weight: bold;
+}
+.default-section{
+  background-color: white;
+}
+input[type="radio"] {
+  visibility: hidden !important;
+}
+input[type="radio"] + label, input[type="radio"]:checked + label, input[type="radio"]:disabled + label {
+  border-radius: 5px;
+  padding: 1rem;
+  text-align: center;
+  height: fit-content !important;
+  width: fit-content !important;
+  border: 1px solid #54EE7D !important;
+}
+input[type="radio"]:checked + label {
+  background: rgba(33, 129, 59,  0.5) !important;
+  height: fit-content !important;
+  width: fit-content !important;
+  color: white !important;
+}

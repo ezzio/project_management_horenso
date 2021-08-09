@@ -1,0 +1,20 @@
+
+canvas.chartjs-render-monitor {
+    width: 100%;
+}
+.chart-container {
+  position: relative;
+  height:38vh;
+  width:20vw;
+}
+.chart-container {
+  position: relative;
+}
+@media only screen and (max-width: 768px){
+  .chart-container {
+    position: relative;
+    height: 60vh;
+    width: 70vw;
+    padding: 4rem 0;
+  }
+}

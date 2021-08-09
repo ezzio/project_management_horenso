@@ -1,0 +1,22 @@
+<div *ngIf="formConfigResult">
+  <h5>{{title}}</h5>
+  <app-form-template [formConfig]="formConfigResult"
+                     [elementForm]="element"
+                     (dateSEvent)="dateEvent($event)"
+                     (formEvent)="formEvent($event)"
+                     (timeSEvent)="timeEvent($event)"
+                     [defaultCol]="'form__group__small col-sm-12'"
+                     [formLabel]="formLabel"
+                     [validFormLabel]="validFormLabel"
+                     [customSelect]="'custom__small'"
+                     [customField]="customField"
+                     (formValidEvent)="formValidEvent($event)"
+                     [customFormDateTime]="customFormDateTime"
+                     [radioNumber]="true"
+  >
+  </app-form-template>
+</div>
+<div class="group-btn" [ngClass]="customButton">
+  <button *ngIf="isShowBtnSave" [disabled]= "!isShowBtnSubmit" class="btn btn-submit" (click)="submit()">{{buttonName}}</button>
+  <button class="btn btn-outline-danger" (click)="close()">Thoát</button>
+</div>

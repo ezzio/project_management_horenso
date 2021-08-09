@@ -1,0 +1,33 @@
+<div class="flex-container">
+  <div>
+    <label class="label-1">Chọn</label>
+    <ng-select class="followItem" [(ngModel)]="followItem">
+      <ng-option *ngIf="showEmpName === true" value="emp_name">Tên nhân viên</ng-option>
+      <ng-option value="emp_code">Mã nhân viên</ng-option>
+      <ng-option *ngIf="showEmpMBN === true" value="MBN_account_name">Tài khoản PCTU</ng-option>
+      <ng-option *ngIf="showEmail === true" value="email">Email</ng-option>
+    </ng-select>
+  </div>
+  <div>
+    <label class="label-1">Nhân viên</label>
+    <ng-select class="followItem" *ngIf="!followItem"></ng-select>
+    <ng-select class="followItem" *ngIf="followItem === 'emp_name'"
+               [(ngModel)]="searchItem.emp_name" (change)="sendMessage()">
+      <ng-option *ngFor="let emp of allName" [value]="emp">{{emp}}</ng-option>
+    </ng-select>
+    <ng-select class="followItem" *ngIf="followItem === 'emp_code'"
+               [(ngModel)]="searchItem.emp_code" (change)="sendMessage()">
+      <ng-option *ngFor="let emp of allCode" [value]="emp">{{emp}}</ng-option>
+    </ng-select>
+    <ng-select class="followItem" *ngIf="followItem === 'MBN_account_name'"
+               [(ngModel)]="searchItem.MBN_account_name" (change)="sendMessage()">
+      <ng-option *ngFor="let emp of allMBN" [value]="emp">{{emp}}</ng-option>
+    </ng-select>
+    <ng-select class="followItem" *ngIf="followItem === 'email'"
+               [(ngModel)]="searchItem.email" (change)="sendMessage()">
+      <ng-option *ngFor="let emp of allEmail" [value]="emp">{{emp}}</ng-option>
+    </ng-select>
+  </div>
+</div>
+
+

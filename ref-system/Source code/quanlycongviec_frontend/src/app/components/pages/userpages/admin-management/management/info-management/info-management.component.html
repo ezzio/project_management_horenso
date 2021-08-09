@@ -1,0 +1,30 @@
+<div class="flex-container">
+  <div class="item">
+    <div class="row">
+      <app-select-depart [isShowEmail]="true"
+                         [isShowEmpCode]="false"
+                         [isShowEmpName]="false"
+                         (messageEvent)="receiveMessage($event)"
+      ></app-select-depart>
+<!--      <app-select-depart (messageEvent)="receiveMessage($event)" [isShowEmpCode]="false"></app-select-depart>-->
+      <div class="row-1">
+        <div><label style="padding: 0 0 0 0.2rem">Loại quyền</label></div>
+        <div>
+          <ng-select (change)="eventTypeRight($event)" class="custom-admin type-right" [multiple]="true">
+            <ng-option *ngFor="let r of rightAdminList" [value]="r">{{r}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="row-1">
+        <button class="btn btn-submit" (click)="openInfo()">Xem</button>
+        <button *ngIf="superAdmin !== ''" class="btn btn-editform" (click)="addNew()">Thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner-layout></app-spinner-layout>
+<div class="card">
+  <app-result-admin [searchMessage]="tableContent"
+                    [isSuperAdmin]="superAdmin !== ''? true : false"
+  ></app-result-admin>
+</div>

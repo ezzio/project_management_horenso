@@ -1,0 +1,37 @@
+<div [ngClass]="['flex-container', flexWidth]">
+  <div>
+    <div class="row forum">
+      <div class="col-12">
+        <a class="content" routerLink="/api/auth/xecaitien">
+          <img class="img-forum" [src]="imgUrl + 'logoxecaitien.png'"/>
+        </a>
+      </div>
+    </div>
+<!--    <div class="lacso" (click)="gotoLacso()"></div>-->
+    <div *ngIf="isShowVideo" class="row">
+      <img class="col-6 img" [src]="imgUrl + 'video.jpg'"/>
+      <div class="col-6">
+        <a class="content" (click)="gotovideo()">Video MyTIN-PNC</a>
+      </div>
+    </div>
+    <div *ngIf="isShowPage" class="row">
+      <img class="col-6 img" src="assets/images/flipbook/page-1.jpeg"/>
+      <div class="col-6">
+        <a class="content" (click)="gotoPage()">Sử ký chiến dịch thu đông 2020</a>
+      </div>
+    </div>
+  </div>
+  <h6>Thông tin nổi bật</h6>
+  <hr>
+  <div *ngIf="isShowPage">
+    <div *ngFor="let o of newsList | slice: 0: 6; let idx = index; trackBy: trackByFn">
+      <div class="row">
+        <img class="col-6 img" [src]="o.img | safeResourceUrl" />
+        <div class="col-6">
+          <a class="content" [routerLink]="o.linkUrl">{{o.tieu_de}}</a>
+          <p class="content-2">{{o.tac_gia}} - {{o.ngay_dang_bai}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

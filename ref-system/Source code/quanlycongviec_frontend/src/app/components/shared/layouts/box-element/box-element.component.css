@@ -1,0 +1,36 @@
+.box-body {
+  border: 1px solid lightgray;
+  box-shadow: 1px 2px 5px lightgray;
+}
+.box-layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+.box-layout > div {
+  width: 23%;
+  padding: 2rem;
+  margin: 1rem;
+  word-break: break-word;
+  font-size: 0.8rem;
+}
+.btn-delete {
+  position: relative;
+  top: -3rem;
+  left: 10rem;
+}
+.btn-delete button {
+  background: white;
+}
+.btn-delete button:hover {
+  background: black;
+  color: white;
+}
+@media only screen and (max-width: 768px){
+  .box-layout > div {
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem;
+    word-break: break-word;
+    font-size: 0.8rem;
+  }
+}

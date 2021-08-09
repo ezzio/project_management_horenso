@@ -1,0 +1,108 @@
+<div class="l-container">
+  <div class="board-header">
+    <div class="search-fix" >
+      <input placeholder="Tìm kiếm"/>
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="addjob-btn" (click)="createJob()">
+      <mat-icon>add_circle_outline</mat-icon>
+      Tạo công việc mới
+    </div>
+    <div *ngIf="jobcontents && number" class="state-view">
+      <div class="state-view-inner1">
+        <div class="state-numbers">{{number[0]}}</div>
+        <div class="state-name">{{jobcontents[0].type}}</div>
+      </div>
+      <mat-icon>arrow_right_alt</mat-icon>
+      <div class="state-view-inner2">
+        <div class="state-numbers">{{number[1]}}</div>
+        <div class="state-name">{{jobcontents[1].type}}</div>
+      </div>
+      <mat-icon>arrow_right_alt</mat-icon>
+      <div class="state-view-inner3">
+        <div class="state-numbers">{{number[2]}}</div>
+        <div class="state-name">{{jobcontents[2].type}}</div>
+      </div>
+      <mat-icon>arrow_right_alt</mat-icon>
+      <div class="state-view-inner4">
+        <div class="state-numbers">{{number[3]}}</div>
+        <div class="state-name">{{jobcontents[3].type}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="board-container-mobile">
+    <section>
+      <div class="board-container-fix">
+        <div cdkDropListGroup>
+          <div class="carousel slide" id="myCarousel" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+              <div *ngFor="let jobcontent of jobcontents let i = index" class="carousel-item" [ngClass]="i === 0 ? 'active': ''">
+                <div class="board-type-mobile" [ngClass]="jobcontent.nameClassType">
+                  {{jobcontent.type}}
+                </div>
+                <div class="board-inner-mobile" [ngClass]="jobcontent['nameClass']">
+                  <div class="board-name">{{jobcontent.type}}</div>
+                  <div class="board-job">
+                    <div class="board-post" *ngFor="let j of jobcontent.job; let k = index" [ngClass]="jobcontent.nameClassPost">
+                      <app-kpi-board-obs [jobContent]="j"
+                                         (changeFreeEvent)="resetBoard($event)"
+                                         (changeObjCurrentEvent)="resetBoard($event)"
+                                         (pointEvent)="resetBoard($event)"
+                                         (closePopupEvent)="resetBoard($event)"
+                                         (btnMobileEvent)="btnMobileEvent($event, jobcontents[i + 1].type, j)">
+                      </app-kpi-board-obs>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Left and right controls-->
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="board-container-pc">
+    <section id="job-1">
+      <div class="board-container-fix">
+        <div cdkDropListGroup>
+          <div class="board-container">
+            <div class="board-inner" *ngFor="let jobcontent of jobcontents; let i = index" [ngClass]="jobcontent.nameClass">
+              <div class="board-name">
+                <div class="task-count" [ngClass]="jobcontent.nameClassPost">{{jobcontent.count}}</div>
+                <div class="board-type-pc">{{jobcontent.type}}</div>
+              </div>
+              <div class="board-job"
+                   cdkDropList
+                   [cdkDropListData]="jobcontent.job"
+                   (cdkDropListDropped)="drop($event, jobcontent.type)">
+                <div class="board-post" *ngFor="let j of jobcontent.job; let k = index" cdkDrag [cdkDragStartDelay]="disableDrag" [ngClass]="jobcontent.nameClassPost">
+                  <app-kpi-board-obs [jobContent]="j"
+                                     (changeFreeEvent)="resetBoard($event)"
+                                     (changeObjCurrentEvent)="resetBoard($event)"
+                                     (pointEvent)="resetBoard($event)"
+                                     (closePopupEvent)="resetBoard($event)">
+                    <ng-template #button>
+                      <button class="change-state-btn"
+                              matRipple>
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                      </button>
+                    </ng-template>
+                  </app-kpi-board-obs>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

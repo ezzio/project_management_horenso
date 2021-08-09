@@ -1,0 +1,56 @@
+.form-control {
+  padding: .375rem 0;
+  border: none;
+}
+
+.emp-form-control {
+  padding: .375rem 0;
+  width: 14rem;
+  border: none;
+  background-color: rgb(0,0,0,0);
+}
+
+.emp-btn-open {
+  float: right;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0px 5px 2px #9a9a9a;
+  border-radius: 2rem;
+}
+
+.btn.emp-btn-open:hover{
+  transform:none;
+  background: #3072a2;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  color: #fff;
+  transform:scale(1.1,1.1);
+  transition: all 0.5s;
+}
+
+.custom-salary {
+  width: 14rem;
+  margin-left: 0.1rem;
+  margin-right:2.5rem;
+}
+
+.ng-select.custom-salary ::ng-deep .ng-select-container {
+  border-radius: 2rem;
+  width: 14rem;
+}
+.ng-select.custom-salary ::ng-deep .ng-select-container:hover {
+  background: #dbffdb;
+  cursor:pointer;
+  border:none;
+}
+
+
+/*input[type="file"]*/
+/*{*/
+/*  color: transparent;*/
+/*  background-color: #F89406;*/
+
+/*}*/

@@ -1,0 +1,45 @@
+<div [ngSwitch]="typeChart">
+  <div *ngSwitchCase="'pie'"  style="display: block; font-size: 1rem">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <div *ngSwitchCase="'line'" class="chart-wrapper" style="height: 200px">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins"
+    >
+    </canvas>
+  </div>
+  <div *ngSwitchCase="'doughnut'" class="chart-wrapper">
+    <div class="chart-container">
+    <canvas baseChart
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [options]="doughnutOptions"
+            [chartType]="doughnutChartType">
+    </canvas>
+    </div>
+  </div>
+  <div *ngSwitchCase="'stack'" class="chart-wrapper" style="display: block;">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>

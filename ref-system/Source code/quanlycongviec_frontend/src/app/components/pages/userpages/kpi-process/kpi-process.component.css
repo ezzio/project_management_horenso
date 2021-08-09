@@ -1,0 +1,27 @@
+h1 {
+  font-family: Montserrat;
+}
+
+ul.main-left-ul li > .board-nav div {
+  font-family: Montserrat;
+}
+
+@media only screen and (max-width: 1200px) {
+  ul.main-left-ul li > .board-nav div {
+    line-height: 1.5;
+  }
+
+  ul.main-left-ul li > .mat-icon {
+    height: 20px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  ul.main-left-ul li {
+    width: inherit !important;
+  }
+
+  ul.main-left-ul li > .board-nav {
+    display: none;
+  }
+}

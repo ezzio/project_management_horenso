@@ -1,0 +1,20 @@
+::ng-deep .modal-content {
+  margin-top: 8rem;
+}
+
+.modal-header {
+  background-color: #f57c42;
+  color: white;
+}
+.modal-body, .modal-footer {
+  font-size: 1rem;
+}
+.btn {
+  width: 32%;
+  font-size: 0.8rem;
+}
+
+.btn {
+  border-radius: 1.5rem;
+  border:none;
+}

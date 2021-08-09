@@ -1,0 +1,85 @@
+.slider {
+  width: 100%;
+}
+label {
+  margin-right: 1.5rem;
+  padding: 0 !important;
+}
+input[type="radio"] {
+  margin-right: 0;
+  visibility: visible !important;
+  margin-top: 0.35rem !important;
+}
+.modal-radio {
+  display: flex;
+}
+.assigned {
+  color: #ff4141 !important;
+}
+.label-review {
+  width: 100px !important;
+  text-align: initial !important;
+}
+.modal-header h5 {
+  color: white;
+  font-family: Montserrat;
+}
+.modal-body .modal-radio .label-review {
+  color: white;
+  margin-left: 10px;
+}
+.modal-footer .btn {
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  padding: 5px 50px;
+  margin-left: 10px;
+  border-radius: 8px;
+  margin-right: 20px;
+  opacity: 1;
+  box-shadow: none;
+  color: white;
+  border: none;
+  background-color: #3c3c3c2e;
+  backdrop-filter: blur(50px);
+}
+.modal-footer .btn.btn-submit {
+  background-color: #386DFF;
+  padding: 5px 55px;
+}
+
+.modal-body .point-pass label {
+  color: white;
+  font-family: Montserrat;
+  font-size: 18px;
+}
+
+.modal-body .modal-radio {
+  font-family: Montserrat;
+}
+
+.modal-body .point-assigned {
+  padding: 10px 0px 20px 0px;
+}
+
+.modal-body .point-note > label, .modal-body .point-deadline > label{
+  font-family: 'Montserrat';
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  color: #ffffff94;
+}
+
+.modal-body .point-note div textarea {
+  border-radius: 13px;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-footer .btn.btn-submit {
+    padding: 5px 35px;
+  }
+
+  .modal-footer .btn.btn-outline-danger {
+    padding: 5px 30px;
+  }
+}

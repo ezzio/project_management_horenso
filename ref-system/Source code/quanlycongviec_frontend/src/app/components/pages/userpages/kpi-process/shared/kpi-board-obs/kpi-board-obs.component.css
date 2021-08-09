@@ -1,0 +1,147 @@
+.background {
+  stroke-opacity: 0.3 !important;
+}
+.spinner-container {
+  margin-bottom: 1rem;
+  display: flex;
+}
+.spinner-background {
+  position: absolute;
+  bottom: 19%;
+  left: 10%
+}
+
+.spinner-container .spinner-container-1{
+  width: 80%;
+  margin-top: 0.6rem;
+}
+.spinner-container .spinner-container-2{
+  width: 10%;
+  text-align: right;
+}
+.spinner-container .mat-progress-spinner{
+  display: inline;
+}
+.spinner-container .mat-progress-spinner.background {
+  stroke-opacity: 0.3 !important;
+}
+.spinner-container .spinner-container-2 {
+  justify-content: right;
+}
+
+.spinner-background {
+  position: absolute;
+  bottom: 19%;
+  left: 10%
+}
+.btn-edit {
+  float: right;
+}
+.btn-edit mat-icon {
+  font-size: 0.8rem;
+}
+.btn-edit:hover {
+  color: white;
+  background: #FF9900;
+}
+.post-name {
+  font-weight: bold;
+  display: flex;
+}
+.post-name-1 {
+  width: 85%;
+}
+.post-name-1 div:nth-child(1) {
+  font-family: 'Montserrat';
+  font-size: 16px;
+}
+.post-name-1 div:nth-child(2) {
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: normal;
+  opacity: 0.7;
+}
+.post-name-2 {
+  color: white;
+  position: absolute;
+  width: 28px;
+  height: 27px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-name-2.level-1{
+  background-color: #42E329;
+}
+.post-name-2.level-2{
+  background-color: #24DBFF;
+}
+.post-name-2.level-3{
+  background-color: #FF3818;
+}
+.post-date {
+  margin-top: 5px;
+}
+.post-date div {
+  font-family: Montserrat;
+  font-size: 13px;
+  margin-bottom: -4px;
+  color: white;
+}
+.change-state-btn {
+  display: none;
+  position: absolute;
+  width: 43px;
+  height: 30px;
+  background-color: #c5c5c5;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  bottom: -20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.change-state-btn .mat-icon{
+  color: white;
+  font-size: 30px;
+  height: 28px;
+  width: 30px;
+}
+
+.group-btn {
+  position: absolute;
+  bottom: 0;
+  right: -5px;
+  margin:0;
+}
+
+.group-btn button {
+  border: none;
+  outline: none;
+}
+
+:host::ng-deep .group-btn span {
+  font-family: Montserrat;
+}
+
+@media only screen and (max-width: 768px) {
+  .change-state-btn {
+    display: initial;
+  }
+
+  .post-date.completion {
+    margin-bottom: 20px;
+  }
+}
+.assigned {
+  font-size: 0.8rem;
+}
+.group-btn {
+  margin-top: 1rem;
+}

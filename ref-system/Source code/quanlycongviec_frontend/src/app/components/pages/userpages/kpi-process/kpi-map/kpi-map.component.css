@@ -1,0 +1,113 @@
+  table {
+    width: 100%;
+  }
+
+  .table-mat {
+    margin-right: 25px;
+  }
+
+  td, th {
+    width: 25%;
+  }
+
+  tr.detail-row {
+    height: 0;
+  }
+
+  .fix-table {
+    background-color: #c3cecd;
+    color: white;
+    font-size: 14px;
+  }
+
+  tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+  }
+
+  tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+  }
+
+  .element-row td {
+    border-bottom-width: 0;
+  }
+
+  .element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+
+  .element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  .element-description {
+    padding: 16px;
+  }
+
+  .element-description-attribution {
+    opacity: 0.5;
+  }
+
+  .filter-fix {
+    margin-left: 15px;
+  }
+
+.mat-select{
+  line-height: 1;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: rgb(212, 226, 255);
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: rgb(109, 177, 255);
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: rgb(109, 177, 255);
+}
+
+tr.mat-row, tr.mat-footer-row:hover{
+  cursor: pointer;
+}
+
+table {
+  border-collapse: initial;
+}
+
+.table-mat table tr th{
+  border-bottom-style: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  h2 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .table-mat {
+    margin-right: 15px;
+  }
+
+  .search-fix {
+    width: 45%;
+  }
+
+  .filter-fix {
+    width: 45%;
+  }
+}

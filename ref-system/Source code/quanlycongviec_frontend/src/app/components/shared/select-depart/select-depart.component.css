@@ -1,0 +1,46 @@
+label {
+  color: #000;
+  padding: .2rem 0 0 .2rem;
+}
+.row {
+  margin: 0;
+}
+.row-1{
+  padding-right: 0.5rem;
+}
+
+.ng-select.custom-ng ::ng-deep .ng-select-container  {
+  border:none;
+  min-height: 32px;
+  background: #fff;
+  border-radius: 2rem;
+  text-align: left;
+}
+
+.ng-select.custom-ng ::ng-deep .ng-select-container:hover  {
+  background: #b9abad;
+  border:none;
+  cursor:pointer;
+  text-align: left;
+}
+
+.child-depart {
+  width: 150px;
+  text-align: left;
+}
+.branch {
+  width: 100px;
+  text-align: left;
+}
+.email {
+  width: 300px;
+  text-align: left;
+}
+.code {
+  width: 150px;
+  text-align: left;
+}
+.emp-name {
+  width: 200px;
+  text-align: left;
+}

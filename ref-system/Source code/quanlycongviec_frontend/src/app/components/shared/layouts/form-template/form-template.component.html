@@ -1,0 +1,260 @@
+<div class="detail" *ngIf="formConfigResult">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form__group__region">
+        <app-select-region *ngIf="isRegion" [classSelectRegion]="true"
+                           (messageEvent)="receiveRegion($event)"
+                           [showSelectRegionComponent]=true
+                           [rightToEditAndShow]=false
+        ></app-select-region>
+        <app-select-emp *ngIf="isEmpInput" (messageEvent)="receiveEmp($event)"></app-select-emp>
+      </div>
+      <div *ngFor="let element of formConfigResult; let i = index"
+           [ngClass]="element.type === 'line'? 'form__group col-sm-12' :  defaultCol">
+        <div *ngIf="element.type !== ''" [ngSwitch]="element.type">
+          <div *ngSwitchCase="'text'">
+            <input [ngClass]="customField"
+                   [ngClass]="element.classText? element.classText : formInput"
+                   [readonly]="!disableAllForm"
+                   [type]="element.type"
+                   [name]="element.dataField"
+                   [placeholder]="element.placeholder? element.placeholder: ''"
+                   [formControlName]="element.dataField"
+                   [required]="element.required"
+                   [(ngModel)]="elementFormResult[element.dataField]"
+                   (ngModelChange)="changeEvent(element.dataField, $event)"
+                   (blur)="blurEvent(element.dataField, $event)"
+            />
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+          <div *ngSwitchCase="'currency'">
+            <input [ngClass]="customField"
+                   [ngClass]="element.classText? element.classText : formInput"
+                   [readonly]="!disableAllForm"
+                   [type]="element.type"
+                   [name]="element.dataField"
+                   [placeholder]="element.placeholder? element.placeholder: ''"
+                   [formControlName]="element.dataField"
+                   [required]="element.required"
+                   [(ngModel)]="elementFormResult[element.dataField]"
+                   (ngModelChange)="changeEvent(element.dataField, $event)"
+                   (click)="eventClick(element.dataField, $event)"
+                   (blur)="transformAmount(element.dataField, $event)"
+            />
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+
+          <div *ngSwitchCase="'number'">
+            <input [ngClass]="customField"
+                   [ngClass]="element.classText? element.classText : formInput"
+                   [type]="element.type"
+                   [name]="element.dataField"
+                   [placeholder]="element.placeholder? element.placeholder: ''"
+                   [formControlName]="element.dataField"
+                   [required]="element.required"
+                   [maxlength]="element?.validator"
+                   [minlength]="element?.validator"
+                   [ngModel]="elementFormResult[element.dataField]"
+                   (ngModelChange)="changeEvent(element.dataField, $event)"/>
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}</label>
+            <label *ngIf="checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+          <div *ngSwitchCase="'textarea'">
+            <textarea [ngClass]="customField"
+                      [attr.row]="element.row? element.row : 4"
+                      [name]="element.dataField"
+                      [formControlName]="element.dataField"
+                      [required]="element.required"
+                      [ngModel]="elementFormResult[element.dataField]"
+                      (ngModelChange)="changeEvent(element.dataField, $event)"></textarea>
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+          <div *ngSwitchCase="'datetime'">
+            <ejs-datetimepicker [ngClass]="customDate"
+                                [value]='elementFormResult[element.dataField]'
+                                (valueChange)="receiveTimeDate(element.dataField, $event)"
+                                format="dd/MM/yyyy hh:mm"></ejs-datetimepicker>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'date'">
+            <ejs-datepicker
+              [ngClass]="customDate"
+              [enabled]="disableAllForm"
+              [value]='elementFormResult[element.dataField]'
+              (valueChange)="receiveDate(element.dataField, $event)"
+              format="dd/MM/yyyy"></ejs-datepicker>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'sdate'">
+            <app-singlecalendar [setDate]="elementFormResult[element.dataField]"
+                                (messageEvent)="receiveSDate(element.dataField, $event)"
+                                [styleInputGroup]="styleInputGroup"
+                                [required]="element.required"
+                                [defaultDay]="element?.default"
+                                [styleBtn]="styleBtnCalendar"
+                                [styleForm]="'form100'"
+                                [minDate]="element.minDate? elementFormResult[element.minDate]: minDate"
+                                [maxDate]="element.maxDate? elementFormResult[element.maxDate]: maxDate"
+            ></app-singlecalendar>
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+          <div *ngSwitchCase="'line'">
+            <div [ngStyle]="{'background-color': element.color, 'height': '1px'}"></div>
+          </div>
+          <div *ngSwitchCase="'sdatev2'">
+            <app-singlecalendar [setDate]="elementFormResult[element.dataField]"
+                                (messageEvent)="receiveSDate(element.dataField, $event)"
+                                [minDate]="element.minDate? elementFormResult[element.minDate]: minDate"
+                                [maxDate]="element.maxDate? elementFormResult[element.maxDate]: maxDate"
+            ></app-singlecalendar>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'sdatetime'">
+            <app-single-datetime [stringDateModel]="elementFormResult[element.dataField]"
+                                 (sdatetimeEvent)="receiveSDateTime(element.dataField, $event)"
+            ></app-single-datetime>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'sdatewithtime'">
+            <app-singlecalendar [customForm]="customFormDateTime"
+                                [setDateTime]="elementFormResult[element.dataField]"
+                                (messageEvent)="receiveSDate(element.dataField, $event)"
+                                [minDate]="element.minDate? element.minDate: minDate"
+                                [maxDate]="element.maxDate? element.maxDate: maxDate"
+                                [isTime]="true" [defaultDay]="element?.default"
+                                (timeEvent)="receiveSTime(element.dataField, $event)"
+                                [styleBtn]="styleBtnCalendar"
+                                [styleForm]="'form100'"
+
+            ></app-singlecalendar>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'doubleselect'">
+            <app-select-depart-email
+              [title]="element.title"
+              [defaultObj]="element.default"
+              (emailEvent)="changeEvent(element.dataField, $event)">
+            </app-select-depart-email>
+          </div>
+          <div *ngSwitchCase="'time'" class="time">
+            <ejs-timepicker
+              [value]="elementFormResult[element.dataField]" [step]='interval'
+              [format]='customFormat'
+              (valueChange)="receiveTime(element.dataField, $event)"
+            ></ejs-timepicker>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'textfix'">
+            <input [ngClass]="customField"
+                   [ngClass]="element.classText? element.classText : formInput"
+                   [type]="element.type"
+                   [name]="element.dataField"
+                   [formControlName]="element.dataField"
+                   [ngModel]="elementFormResult[element.dataField]" readonly
+                   (ngModelChange)="changeEvent(element.dataField, $event)"/>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'multiplenumber'">
+            <app-multiple-input-template
+              (durationEvent)="changeEvent(element.dataField, $event)"
+              [setInput]="elementFormResult[element.dataField]"></app-multiple-input-template>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'select'">
+            <ng-select
+              [items]="element.options"
+              [addTag]="addTagPromise"
+              [loading]="loading"
+              bindLabel="name"
+              bindValue="name"
+              [readonly]="!disableAllForm"
+              [required]="element.required"
+              [placeholder]="element.placeholder? element.placeholder : ''"
+              [multiple]="element.multiple"
+              [formControlName]="element.dataField"
+              [ngModel]="elementFormResult[element.dataField]"
+              (ngModelChange)="changeEvent(element.dataField, $event)"
+              [ngClass]="element.classSelect? element.classSelect : customSelect"
+            >
+              <ng-template ng-tag-tmp let-search="searchTerm">
+                <b>create new</b>: {{search}}
+              </ng-template>
+            </ng-select>
+            <label *ngIf="!element.unLabel" [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && !checkForError(element)"
+                   [ngClass]="formLabel">{{ element.title }}
+              <span *ngIf="element.required">*</span></label>
+            <label *ngIf="!element.unLabel && checkForError(element)"
+                   [ngClass]="validFormLabel">{{ element.title }} *</label>
+          </div>
+          <div *ngSwitchCase="'upload'">
+            <input class="form__field" type="file" name="file"
+                   (change)="upload($event)" [disabled]="!disableUpload"
+                   placeholder="Upload file"/>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'uploadImage'">
+            <input class="form__field" type="file" name="file"
+                   (change)="uploadImage($event)"
+                   placeholder="Chọn ảnh ngang"/>
+            <label [ngClass]="formLabel">{{ element.title }}</label>
+          </div>
+          <div *ngSwitchCase="'radio'" class="piority">
+            <div class="piority-inner">
+              <div *ngFor="let option of element.options; let i = index">
+                <input type="radio" id="{{element.nameRadio}}-{{option}}"
+                       [formControlName]="element.dataField"
+                       [value]="option" [(ngModel)]="elementFormResult[element.dataField]"
+                       (ngModelChange)="changeEvent(element.dataField, $event)"
+                />
+                <label *ngIf="radioNumber" for="{{element.nameRadio}}-{{option}}" class="level-{{option}}">
+                  {{option}}
+                </label>
+              </div>
+            </div>
+            <label [ngClass]="formLabel">{{ element.title }} (Được sắp xếp theo thứ tự tăng dần từ nhỏ đến lớn)</label>
+          </div>
+          <div *ngSwitchCase="'slider'">
+            <mat-slider class="slider"
+                        thumbLabel
+                        [formControlName]="element.dataField"
+                        [(ngModel)]="elementFormResult[element.dataField]"
+                        (ngModelChange)="changeEvent(element.dataField, $event)"
+            ></mat-slider>
+            <label [ngClass]="formLabel">{{ element.title }} ({{elementFormResult[element.dataField]}})</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+

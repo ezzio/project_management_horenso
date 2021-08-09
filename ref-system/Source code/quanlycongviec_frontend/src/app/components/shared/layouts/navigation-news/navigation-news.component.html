@@ -1,0 +1,42 @@
+<div *ngIf="!mobile" class="l-container">
+  <header id="header">
+    <div>
+      <div id="logo">
+        <a routerLink="/api/auth/home" class="img"><img src="assets/images/logo.png" alt="" title=""/></a>
+      </div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/bandocviet">Bạn đọc viết</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/phongtrao">Phong trào</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/kythuat">Góc kỹ thuật</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/daotao">Góc đào tạo</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/quytrinhquydinh">Quy trình-quy định</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/thongbao">Thông báo</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/truyenthong/news/tuyendung">Tuyển dụng</a></li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/api/auth/download"
+            >Tải App
+              <i class="fa fa-arrow-circle-down" style="padding-top: 5px"></i>
+            </a>
+          </li>
+<!--          <li class="nav-item"><a class="nav-link" routerLink="api/auth/stream">Kết nối</a></li>-->
+        </ul>
+      </nav>
+      <div id="btn2"><a class="btn btn-apply" routerLink="api/auth/tuyendung/apply">Nộp đơn ứng tuyển<mat-icon>description</mat-icon></a></div>
+      <div id="btn"><a class="btn btn-login" routerLink="api/auth/login">Login</a></div>
+      <div class="lgMenu" (click)="toggleMenu()">&#9776;</div>
+    </div>
+    <div [@slideInOut]="menuState" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="toggleMenu()">&times;</a>
+      <a routerLink="api/auth/truyenthong/news/bandocviet">Bạn đọc viết</a>
+      <a routerLink="api/auth/truyenthong/news/phongtrao">Phong trào</a>
+      <a routerLink="api/auth/truyenthong/news/kythuat">Góc kỹ thuật</a>
+      <a routerLink="api/auth/truyenthong/news/daotao">Góc đào tạo</a>
+      <a routerLink="api/auth/truyenthong/news/quytrinhquydinh">Quy trình-quy định</a>
+      <a routerLink="api/auth/truyenthong/news/thongbao">Thông báo</a>
+      <a routerLink="api/auth/truyenthong/news/tuyendung">Tuyển dụng</a>
+      <a routerLink="api/auth/stream">Kết nối</a>
+      <a routerLink="/api/auth/download">Tải ứng dụng</a>
+    </div>
+  </header>
+</div>

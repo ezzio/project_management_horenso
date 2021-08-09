@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h5>Đánh giá</h5></div>
+<div class="modal-body">
+  <div class="modal-radio">
+    <input type="radio" id="review-1" value="Không đạt" [(ngModel)]="review"/>
+    <label class="label-review" for="review-1">Không đạt</label>
+    <input type="radio" id="review-2" value="Đạt" [(ngModel)]="review"/>
+    <label class="label-review" for="review-2">Đạt</label></div>
+  <div *ngIf="review === 'Đạt'" class="point-pass">
+    <label>KPI</label><br>
+    <mat-slider class="slider"
+                thumbLabel
+                [(ngModel)]="point">
+    </mat-slider>
+  </div>
+  <div *ngIf="review === 'Không đạt'">
+    <div class="point-note">
+      <label>Ghi chú</label>
+      <div>
+        <textarea type="text" row="3" style="width: 100%" [(ngModel)]="problem"></textarea>
+      </div>
+    </div>
+    <div class="point-assigned">
+      <label class="assigned">
+        <input type="checkbox" [(ngModel)]="assignedAgain"/>Thay đổi người nhận việc?
+      </label>
+      <app-select-depart-email *ngIf="assignedAgain" [defaultObj]="objCurrent.info_assigned"
+                               [title]="'Email người nhận việc'"
+                               (emailEvent)="emailEvent($event)"
+                               [formLabel]="'label_point_task'"
+      ></app-select-depart-email>
+    </div>
+    <div class="point-deadline">
+      <label class="deadline">Ngày hết hạn</label>
+        <app-singlecalendar [setDateTime]="setDateTime"
+                            (messageEvent)="receiveSDate('deadline', $event)"
+                            [minDate]="minDate"
+                            [isTime]="true"
+                            (timeEvent)="receiveSTime('deadline', $event)"
+                            [customForm]="'date_time_create_project'"
+        ></app-singlecalendar>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-submit" (click)="submit()">Lưu</button>
+  <button class="btn btn-outline-danger" (click)="close()">Thoát</button>
+</div>

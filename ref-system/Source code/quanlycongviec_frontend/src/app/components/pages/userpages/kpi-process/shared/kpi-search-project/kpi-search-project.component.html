@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="search">
+    <label style="color: white;">Danh sách dự án:</label>
+    <ng-select class="custom"
+               appendTo="body"
+               [(ngModel)]="rootChosen" [multiple]="false"
+               [items]="rootList"
+               [closeOnSelect]="false">
+      <ng-template ng-option-tmp let-item="item" let-index="index" let-item$="item$">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" [ngModel]="item$.selected"
+                 class="custom-control-input"/>
+          <label
+            class="form-check-label ml-2 custom-control-label">{{item.title}}</label>
+        </div>
+      </ng-template>
+      <ng-template ng-label-tmp let-item="item">
+        <div class="ng-value">
+          <span class="ng-value-label">{{item.title}}</span>
+        </div>
+      </ng-template>
+    </ng-select>
+    <button class="btn btn-outline-dark" (click)="findRoot()">Tìm</button>
+  </div>
+</div>

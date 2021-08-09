@@ -1,0 +1,319 @@
+.board-filter {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 15px 0 0;
+  padding: 5px 0px 5px 0px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+}
+
+.board-filter ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 0
+}
+
+.board-filter ul li {
+  list-style: none;
+  position: relative;
+  width: 20%;
+  height: 100%;
+  transition: all 0.2s;
+}
+
+.board-filter ul li:hover {
+  background-color: #f1f7f7;
+  cursor: pointer;
+}
+
+.board-filter ul li:after {
+  position: absolute;
+  content: '';
+  top: 3px;
+  right: 0px;
+  background-color: #ededed;
+  width: 2px;
+  height: 45px;
+}
+
+.board-filter ul li:last-child:after {
+  display: none;
+}
+
+.filter-label {
+  font-size: 14px;
+  color: #bebebe;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.select-time {
+  position: relative;
+}
+
+.select-time input {
+  height: 30px;
+  border: none;
+  background-color: #ffffff00;
+  cursor: pointer;
+  outline: none;
+  padding-left: 20px;
+}
+
+.select-time mat-datepicker-toggle {
+  position: absolute;
+  right: 7px;
+  top: -5px;
+}
+
+.btn_filter {
+  width: 105px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #77B6FF;
+  height: 50px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #a5a5a5;
+  margin-right: 15px;
+  transition: all 0.2s;
+}
+
+.btn_filter:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.ng-select::ng-deep .ng-select-container .ng-value-container {
+  padding-left: 22px;
+}
+
+.ng-select.ng-select-single::ng-deep .ng-select-container .ng-value-container .ng-input {
+  left: 10px;
+  padding-top: 18px;
+}
+
+.ng-select::ng-deep .ng-select-container .ng-value-container .ng-input>input {
+  cursor: pointer;
+}
+
+.ng-select::ng-deep .ng-arrow-wrapper {
+  padding-right: 25px;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 5px;
+  border-color: #efefef;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel {
+  transition: all 0.2s;
+}
+
+.ng-select::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  padding-left: 20px;
+}
+
+.ng-select.ng-select-single::ng-deep .ng-select-container {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  height: 100%;
+  padding-top: 20px;
+  margin-top: -20px;
+}
+
+.ng-select::ng-deep .ng-clear-wrapper {
+  display: none;
+}
+
+.task-list {
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.task {
+  border-bottom: 1px solid #efefef;
+  padding-left: 30px;
+  transition: all 0.2s;
+}
+
+.task:hover {
+  background-color: whitesmoke;
+}
+
+.task-name {
+  font-weight: bold;
+  padding-top: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.task-name mat-icon {
+  margin-right: 15px;
+}
+
+.task-tag {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0px;
+}
+
+.status-tag {
+  margin-right: 15px;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 3px 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.level-1 {
+  color: #ff0000;
+}
+
+.level-2 {
+  color: #ffbc00;
+}
+
+.level-3 {
+  color: #5252ff;
+}
+
+.task-tag .start-tag {
+  background-color: #bcbcbc;
+  color: white;
+  font-size: 12px;
+  padding: 3px 12px;
+  margin-right: 15px;
+}
+.name-tag {
+  font-size: 12px;
+  padding: 3px 12px;
+  margin-right: 15px;
+  color: gray;
+}
+
+:host ::ng-deep .min .mat-slider-thumb {
+  background-color: blue;
+}
+
+.completion-bar {
+  width: 200px;
+  margin-top: 0.5rem;
+}
+.completion-tag {
+  font-size: 12px;
+  padding: 3px 12px;
+}
+.open-dots {
+}
+.open-dots-1 {
+  margin-right: 1rem;
+  background: midnightblue;
+  border-radius: 50%;
+  padding: 0.2rem;
+  text-align: center;
+}
+.open-dots-1 mat-icon, .open-dots-2 mat-icon {
+  color: white;
+  font-size: 1rem;
+}
+.open-dots-2 {
+  margin-right: 1rem;
+  background: red;
+  border-radius: 50%;
+  padding: 0.2rem;
+  text-align: center;
+}
+.typeTask {
+  margin-top: 1rem;
+  display: flex;
+}
+.ng-select.custom ::ng-deep .ng-select-container  {
+  border: 1px solid lightgray;
+  min-height: 0px;
+  background: #fff;
+  border-radius: 2rem;
+  width: 300px;
+}
+.typeTask label {
+  margin-top: 0.3rem;
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  mat-datepicker-toggle {
+    color: transparent;
+  }
+
+  .board-filter {
+    display: block;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    padding-left: 3px;
+  }
+
+  .board-filter {
+    margin: 5px 0px 0 0;
+  }
+
+  .board-filter ul li:after{
+    height: 30px;
+  }
+
+  .select-time {
+    margin-top: -5px;
+  }
+
+  .select-time input {
+    padding-left: 3px;
+    font-size: 11px;
+  }
+
+  .ng-select::ng-deep .ng-select-container .ng-value-container {
+    padding-left: 3px;
+  }
+
+  .ng-select.ng-select-single::ng-deep .ng-select-container {
+    font-size: 11px;
+    padding-top: 5px;
+    margin-top: -11px;
+  }
+
+  .ng-select::ng-deep .ng-dropdown-panel.ng-select-bottom {
+    margin-top: 0px;
+  }
+
+  .ng-select::ng-deep .ng-arrow-wrapper {
+    padding-right: 0px;
+  }
+
+  .ng-select.ng-select-single::ng-deep .ng-select-container .ng-value-container .ng-input {
+    left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 7px;
+  }
+
+  .ng-select::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-size: 10px;
+    padding: 3px 3px;
+  }
+
+  .btn_filter {
+    width: 65px;
+    font-size: 11px;
+    height: 25px;
+    margin-left: 40%;
+  }
+}

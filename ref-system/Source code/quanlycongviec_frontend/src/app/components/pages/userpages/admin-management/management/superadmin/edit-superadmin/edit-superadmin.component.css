@@ -1,0 +1,47 @@
+.emp-info, .divTeamNameList, .ulTeamNameList {
+  padding: 1rem;
+}
+.emp-info {
+  background-color: #f0c0b5;
+}
+.divTeamNameList {
+  background-color: #58b2c7;
+}
+.ulTeamNameList {
+  list-style: none;
+}
+.ulTeamNameList li{
+  display: inline-block;
+  padding-right: 1rem ;
+
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.flex-container > div {
+  /*margin: 10px;*/
+  padding: 20px 0 20px 0;
+}
+.row {
+  margin-left: 1rem;
+}
+.child-depart, .email{
+  width: 20rem;
+  padding-right: 2rem;
+}
+.type-right {
+  width: 200px;
+}
+.modal-header {
+  background-color: midnightblue;
+  color: white;
+}
+
+ng-select.custom-admin ::ng-deep.ng-select-container{
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  background: transparent;
+}

@@ -1,0 +1,303 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../src/assets/custom.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import url('//fonts.googleapis.com/css2?family =Work+Sans&display=swap');
+@import url('//fonts.googleapis.com/css?family=Spectral+SC:700');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('//fonts.googleapis.com/css2?family=Be+Vietnam:wght@300&display=swap');
+@import url('//fonts.googleapis.com/css?family=Pangolin');
+@import url('//fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+
+
+html, body { height: 100%; }
+body {margin: 0; font-family: 'Be Vietnam', sans-serif;
+  /*background-image: linear-gradient(to left bottom, lightgoldenrodyellow, turquoise);*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+}
+
+.ng-select .ng-select-container {
+  text-align: left;
+  border-color: white;
+}
+.ng-dropdown-panel.ng-select-bottom{
+  text-align: left;
+}
+.ng-select .ng-select-container:hover{
+  border-image: linear-gradient(to right, #f57c42, #2196F3);
+  border-image-outset: 2;
+  border-image-slice: 1;
+  border-image-width: 1px;
+  background-image: linear-gradient(to right, #32c4cd, #32c4cd);
+}
+.modal-holder{
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+
+input.mat-input-element{
+  line-height: 1;
+}
+
+/************ Angular Material CSS ***************/
+
+.search-fix .mat-form-field-flex {
+  height: 62px;
+}
+
+.search-fix .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline {
+  top: 15px;
+  background-color: #adafaf0d;
+}
+
+.search-fix .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-form-field-label{
+  margin-top: -1px;
+}
+
+.fix-table.cdk-focused.cdk-mouse-focused button:focus{
+  outline: none;
+}
+
+.search-fix.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: rgba(0,0,0,.12);
+}
+
+.search-fix.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color:rgb(212, 226, 255);
+  background-color: white;
+
+}
+.search-fix.mat-form-field.mat-focused .mat-form-field-label {
+  color:rgb(109, 177, 255);
+}
+
+.search-fix .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-suffix{
+  top: 2px;
+}
+
+.search-fix .mat-form-field-infix {
+  padding-top: 13px;
+}
+
+.filter-fix .mat-form-field-label {
+  height: 20px;
+}
+
+.filter-fix .mat-form-field-wrapper {
+  padding-bottom: 20px;
+}
+
+.filter-fix .mat-form-field-infix {
+  padding-top: 13px;
+  padding-bottom: 11px;
+}
+
+.filter-fix .mat-form-field-infix .mat-select{
+  width: 88%;
+}
+
+.fix-progressbar .mat-progress-bar {
+  margin-top: 5px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+.fix-progressbar .mat-progress-bar .mat-progress-bar-fill::after{
+  background-color: #1a9fc3;
+}
+
+.fix-progressbar .mat-progress-bar .mat-progress-bar-buffer {
+  background-color: #d4e1e4;
+}
+
+button.mat-menu-item {
+  outline: none;
+}
+
+.level .mat-select-trigger {
+  transform: translateX(34px) translateY(45px);
+}
+
+.level .mat-select-trigger .mat-select-value {
+  transform: translateX(-34px) translateY(-47px);
+}
+
+.filter-fix .mat-form-field-wrapper .mat-form-field-infix .level .mat-select-trigger .mat-select-arrow-wrapper {
+  transform: translateX(-34px) translateY(-46px);
+}
+
+/*Profile Account CSS*/
+
+
+.form .mat-form-field-suffix .mat-focus-indicator {
+  outline:none;
+}
+
+.mat-calendar .mat-calendar-previous-button {
+  outline: none;
+}
+
+.mat-calendar .mat-calendar-next-button {
+  outline: none;
+}
+
+.form mat-datepicker-toggle button {
+  outline: none;
+}
+/*------------------------------------------------*/
+
+@keyframes example {
+  0%   {transform: scale(0.5)}
+  100% {transform: scale(1)}
+}
+/*#componentPrint {*/
+/*  !* hide the printing component from @media screen *!*/
+/*  display: none;*/
+/*}*/
+
+@media print {
+  /* invert the display (show/hide) properties of the main */
+  /* aplication component and the printing component       */
+
+  .canvas_div_pdf {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100px;
+    bottom: 0;
+  }
+  .group-btn-print {
+    display: none;
+  }
+  .group-btn-accept {
+    display: none;
+  }
+  app-baocao {
+    display: none;
+  }
+  app-navigation {
+    display: none;
+  }
+  .note{
+    display: none;
+  }
+  .content-header-1, .content-header-3{
+    width: 40%;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .content-header-2 {
+    width: 20%;
+  }
+}
+
+.custom-modal .modal-dialog {
+}
+.custom-modal .modal-dialog .modal-content{
+  width: 1200px;
+  height: 100vh;
+  position: absolute;
+  top: 2rem;
+  left: -16rem;
+}
+
+/*------------------------------------Dialog Modal CSS--------------------------------*/
+.modal.show.my-dialog .modal-dialog {
+  /*position: absolute;*/
+  /*margin: 0 auto;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*height: 100%;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  top: 4%;
+  width: 55%;
+  max-width: 100%;
+}
+
+.modal.show.my-dialog .modal-dialog .modal-content {
+  background-color: #92a7c740;
+  box-shadow: rgb(128 128 128 / 50%) 0px 1px 8px, rgb(23 43 77 / 20%) 1px -2px 10px;
+  border: none;
+  backdrop-filter: blur(40px);
+  border-radius: 10px;
+}
+
+.modal.show.my-dialog .modal-body {
+  padding: 25px 30px 30px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 1200px) {
+  .form .mat-select-trigger {
+    width: 150px;
+  }
+
+  .modal.show.my-dialog .modal-dialog {
+    width: 95%;
+  }
+
+  .modal.show.my-dialog .modal-body {
+    padding: 15px 15px 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .form .mat-form-field-suffix {
+    font-size: 14px;
+  }
+
+  .form .mat-select-trigger {
+    width: 133px;
+  }
+
+  .application .main .form mat-datepicker-toggle .mat-icon-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .application .main .form mat-datepicker-toggle .mat-icon-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mat-slider-thumb-label {
+  transform: rotate(45deg) !important;
+  border-radius: 50% 50% 0 !important;
+  background-color: orange !important;
+}
+
+.mat-slider-thumb {
+  transform: scale(0) !important;
+}
+
+.mat-slider-thumb-label-text {
+  opacity: 1 !important;
+  font-size: 0.5rem;
+}
+.gantt_add, .gantt_grid_head_add{
+  display: none !important;
+}
+.slider-xct .mat-slider-thumb-label {
+  transform: rotate(45deg) !important;
+  border-radius: 50% !important;
+  background-color: orange !important;
+  top: -1rem !important;
+}
+
+.slider-xct .mat-slider-thumb {
+  transform: scale(0) !important;
+}
+
+.slider-xct .mat-slider-thumb-label-text {
+  opacity: 1 !important;
+  font-size: 0.7rem;
+  color: white;
+}
+:root {
+  --imageSrc: url('https://mytinpnc.vn/data/img/');
+}

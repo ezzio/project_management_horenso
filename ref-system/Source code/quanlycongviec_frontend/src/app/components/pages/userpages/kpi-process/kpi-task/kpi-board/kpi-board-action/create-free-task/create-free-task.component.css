@@ -1,0 +1,16 @@
+.free-task {
+  padding: 2rem;
+}
+
+.free-task h5 {
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+  .free-task {
+    padding: 15px;
+  }
+}

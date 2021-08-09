@@ -1,0 +1,6 @@
+<!--<ngb-timepicker class="changeSize" [(ngModel)]="time" [seconds]="seconds"></ngb-timepicker>-->
+<div class="ngx-timepicker-field-example">
+  <ngx-timepicker-field [defaultTime]="defautTime" [controlOnly]="true"
+                        (timeChanged)="sendMessage($event)"
+                        [format]="24" ></ngx-timepicker-field>
+</div>

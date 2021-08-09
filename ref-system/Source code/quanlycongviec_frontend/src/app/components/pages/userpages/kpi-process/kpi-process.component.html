@@ -1,0 +1,25 @@
+
+<app-side-body-layout>
+  <div content>
+        <h1>GIAO VIỆC</h1>
+        <ul class="main-left-ul">
+          <li id="board" routerLink="board" (click)="isActive($event)">
+            <mat-icon>view_week</mat-icon>
+            <div class="board-nav"><div>Công việc cần làm</div></div>
+          </li>
+          <li id="tasklist" routerLink="tasklist" (click)="isActive($event)">
+            <mat-icon>subject</mat-icon>
+            <div class="board-nav"><div>Công việc cần theo dõi</div></div>
+          </li>
+          <li id='projectlist' routerLink="projectlist" (click)="isActive($event)">
+            <mat-icon>device_hub</mat-icon>
+            <div class="board-nav"><div>Quản lý Dự án</div></div>
+          </li>
+<!--          <li id='baocao' routerLink="baocao" (click)="isActive($event)">-->
+<!--            <mat-icon>insert_chart_outlined</mat-icon>-->
+<!--            <div class="board-nav"><div>Báo cáo</div></div>-->
+<!--          </li>-->
+        </ul>
+  </div>
+</app-side-body-layout>
+

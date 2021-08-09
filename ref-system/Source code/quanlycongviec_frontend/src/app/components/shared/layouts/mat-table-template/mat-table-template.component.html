@@ -1,0 +1,164 @@
+<div class="view">
+    <div [hidden]="!tableContentResult">
+        <button [hidden]="!filterButton" mat-flat-button color="warn" (click)="resetFilters()" style="margin-top: 1rem">
+            Xoá điều kiện lọc
+        </button>
+        <div class="wrapper" id="wrapper">
+            <table mat-table [dataSource]="dataSource">
+                <ng-container *ngIf="editOrNot" matColumnDef="editCol" class="toolTb sticky" [sticky]="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div class="label-th">
+                            <mat-label>Edit</mat-label>
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        <a (click)="functionEdit(element, i)"><i class="fa fa-edit"></i></a>
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="deleteOrNot" matColumnDef="deleteCol" class="toolTb sticky" [sticky]="true">
+                    <th mat-header-cell *matHeaderCellDef [ngClass]="customStickyClass">
+                        <div class="label-th">
+                            <mat-label>Xoá</mat-label>
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element" [ngClass]="customStickyClass">
+                        <a (click)="functionDelete(element)"><i class="fa fa-trash"></i></a>
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="uploadImg" matColumnDef="uploadCol" class="toolTb">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-label>Upload hình</mat-label>
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        <input type="file" name="file" (change)="upload(element, $event)" placeholder="Upload file"/>
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="postOrNot" matColumnDef="hieulucCol" class="toolTb">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div class="label-th">
+                            <mat-label>Hiệu lực</mat-label>
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element" [ngClass]="element.hieu_luc === 1 ? 'red' : 'white'">
+                        <a (click)="changeHieuLuc(element)"><i class="fa fa-eye"></i></a>
+                    </td>
+                </ng-container>
+                <div *ngIf="tableConfigResult">
+                    <div *ngFor="let n of tableConfigResult.columns; let i = index; trackBy: trackByFn">
+                        <ng-container matColumnDef="{{n['dataField']}}" [sticky]="n['stickyCol']? true: false">
+                            <th mat-header-cell *matHeaderCellDef [ngClass]="customStickyClass">
+                                <div class="label-th">
+                                    <mat-label>{{n.title}}</mat-label>
+                                </div>
+                                <br>
+                                <div *ngIf="n['type'] === 'date' || n['type'] === 'datetime' || n['type'] === 'sdate' || n['type'] === 'sdatetime'">
+                                    <mat-form-field [ngClass]="n['widthCustom']"
+                                                    *ngIf="filterSelectObj && filterSelectObj.length > 0 && n['optionFilter']">
+                                        <mat-select multiple matNativeControl (openedChange)="openedChange($event)"
+                                                    [(ngModel)]="filterSelectObj[i].modelValue"
+                                                    (selectionChange)="filterChange(filterSelectObj[i],$event)">
+                                            <mat-option *ngFor="let item of filterSelectObj[i].optionFilter; trackBy: trackByFn"
+                                                        [value]="item">{{item}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="n['type'] !== 'date' && n['type'] !== 'datetime' && n['type'] !== 'sdate' && n['type'] !== 'sdatetime'">
+                                    <mat-form-field [ngClass]="n['widthCustom']"
+                                                    *ngIf="filterSelectObj && filterSelectObj.length > 0 && n['optionFilter']">
+                                        <mat-select multiple matNativeControl (openedChange)="openedChange($event)"
+                                                    [(ngModel)]="filterSelectObj[i].modelValue"
+                                                    (selectionChange)="filterChange(filterSelectObj[i],$event)">
+                                            <mat-option *ngFor="let item of filterSelectObj[i].optionFilter; trackBy: trackByFn"
+                                                        [value]="item">{{item}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="!n['optionFilter']"></div>
+                            </th>
+                            <td mat-cell *matCellDef="let element" [ngClass]="customStickyClass">
+                                <app-readmore
+                                        *ngIf="!n['formatDate'] && !n['formatCurrency'] && !n['linkTo'] && !n['linkDownload'] && readmore"
+                                        [content]="element[n['dataField']]"
+                                        [limit]="31"
+                                        [completeWords]="true"
+                                ></app-readmore>
+                                <div *ngIf="!n['formatDate'] && !n['formatCurrency'] && !n['linkTo'] && !n['linkDownload'] && !readmore">
+                                    {{element[n['dataField']]}}
+                                </div>
+                                <div *ngIf="n['formatDate'] && !isStringDate(element[n['dataField']])">{{element[n['dataField']] | date: 'dd/MM/yyyy'}}</div>
+                                <div *ngIf="n['formatDate'] && isStringDate(element[n['dataField']])">{{element[n['dataField']]}}</div>
+                                <div *ngIf="n['formatCurrency']">{{element[n['dataField']] | currency: 'VND'}}</div>
+                                <div *ngIf="!n['formatDate'] && n['linkTo']">
+                                    <a routerLink="{{n['linkTo']}}/{{element[n['dataField']]}}">
+                                        {{element[n['dataField']]}}
+                                    </a>
+                                </div>
+                                <div *ngIf="n['linkDownload'] === 'img'">
+                                    <a [href]="urlPath + element[n['dataField']]">{{element[n['dataField']]}}</a>
+                                </div>
+                                <div *ngIf="n['linkDownload'] === 'file' && element[n['dataField']] !== ''">
+                                    <a [href]="urlFilePath + element[n['dataField']]">File đính kèm</a>
+                                </div>
+                            </td>
+                        </ng-container>
+                    </div>
+                </div>
+                <ng-container *ngIf="isCheckboxDuyet" matColumnDef="duyetCol" class="toolTb">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div class="label-th">
+                            <mat-label>Duyệt</mat-label>
+                        </div>
+                        <br><br>
+                        <div class="custom-radio">
+                            <input type="radio" value="OK" name="ok-all" [(ngModel)]="checkAll"
+                                   (change)="checkboxAllEvent()"/>OK
+                            &nbsp;&nbsp;
+                            <input type="radio" value="NOTOK" name="notok-all" [(ngModel)]="checkAll"
+                                   (change)="checkboxAllEvent()"/>NOTOK
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        <input type="radio" value="OK" name="ok-{{i}}" [(ngModel)]="element.recorded"
+                               (change)="checkboxEvent(element, $event)"/>OK&nbsp;&nbsp;
+                        <input type="radio" value="NOTOK" name="notok-{{i}}" [(ngModel)]="element.recorded"
+                               (change)="checkboxEvent(element, $event)"/>NOTOK
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="isCheckboxDuyet" matColumnDef="resultCol" class="toolTb">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-label>KQ duyệt</mat-label>
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        {{element.recorded}}
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="buttonTicket" matColumnDef="btnCol" class="toolTb">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-label>Chi tiết</mat-label>
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        <div>
+                            <a style="color:green" (click)="openDetail(element)"><i class=" fa fa-book"></i></a>&nbsp;&nbsp;
+                            <a style="color:black" (click)="print(element)"><i class=" fa fa-print"></i></a>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator
+            [length]="dataSource.data?.length"
+            [pageIndex]="0"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+        <div class="group-button">
+            <button *ngIf="isExport" class="btn btn-exp" (click)="export()">Xuất BC chi tiết</button>
+            <button *ngIf="isExportNV" class="btn btn-submit" (click)="exportNV()">Xuất BC nghiệp vụ</button>
+            <button *ngIf="isCheckboxDuyet" class="btn btn-success" (click)="save()">Lưu</button>
+        </div>
+    </div>
+    <app-spinner-layout></app-spinner-layout>
+</div>
+

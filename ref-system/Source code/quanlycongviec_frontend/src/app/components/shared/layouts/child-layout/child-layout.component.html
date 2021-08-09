@@ -1,0 +1,29 @@
+<div class="home" [ngClass]="homeSetup">
+  <div class="card mt-4" [ngStyle]="notPad? {'padding': '0'} : {'padding': '0 2%'}">
+    <div class="card-header">
+      <div [ngClass]="nameOfLeft">
+        <div class="transbox">
+          <img *ngIf="nameOfLeft === 'left-section-adminnote'" src="assets/images/report1.png">
+          <img *ngIf="nameOfLeft === 'left-section-adminnote'" src="assets/images/report1.png" style="float:right">
+          <img *ngIf="nameOfLeft === 'left-section-atld'" src="assets/images/safety.png">
+          <img *ngIf="nameOfLeft === 'left-section-atld'" src="assets/images/safety.png" style="  float:right">
+          <h3>{{title}}&nbsp;
+            <mat-icon *ngIf="nameOfLeft === 'left-section-salary'" class="coin-icon">monetization_on</mat-icon>
+          </h3>
+        </div>
+      </div>
+      <div [ngClass]="nameOfRight">
+        <a *ngIf="showInfoButton" class="item" routerLink="{{infoRouterLink}}" (click)="eventInfoClick($event)">Thông tin &nbsp;<mat-icon class="btn-icon">perm_contact_cal</mat-icon></a>
+        <a *ngIf="showGhinhanButton" class="item" routerLink="{{noteRouterLink}}">Ghi nhận KPI &nbsp;<mat-icon class="btn-icon">perm_contact_cal</mat-icon></a>
+        <a *ngIf="showImportButton" class="item" routerLink="{{importRouterLink}}">Import file &nbsp;<mat-icon class="btn-icon">file_upload</mat-icon></a>
+        <a *ngIf="showSBButton" class="item" routerLink="{{sbRouterLink}}">Soạn bài viết &nbsp;<mat-icon class="btn-icon">file_upload</mat-icon></a>
+        <a *ngIf="showAdminButton" class="item" routerLink="{{adminRouterLink}}">Supper admin &nbsp;<mat-icon class="btn-icon">file_upload</mat-icon></a>
+        <a *ngIf="showCreateButton" class="item" routerLink="{{createRouterLink}}">Tạo ticket &nbsp;<mat-icon class="btn-icon">file_upload</mat-icon></a>
+        <a *ngIf="showCommmentButton" class="item" routerLink="{{commentRouterLink}}">Đánh giá &nbsp;<mat-icon class="btn-icon">file_upload</mat-icon></a>
+      </div>
+    </div>
+    <div [ngClass]="classOfCard">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

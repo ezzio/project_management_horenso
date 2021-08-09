@@ -1,0 +1,82 @@
+<div class="l-container">
+  <div class="title">
+    <h2>Tổng quan</h2>
+  </div>
+  <div class="main" id="main">
+    <div class="form">
+      <input id="name" type="text" placeholder=" " [(ngModel)]="emp_name"/>
+      <label for="name">Họ và tên</label>
+    </div>
+    <div class="form">
+      <input id="code" type="text" placeholder=" " [(ngModel)]="emp_code" readonly/>
+      <label for="code">Mã nhân viên</label>
+    </div>
+    <div class="form">
+      <input id="sex" type="text" placeholder=" " [(ngModel)]="sex" readonly/>
+      <label for="sex">Giới tính</label>
+    </div>
+    <div class="form">
+      <input id="birthday" type="text" placeholder=" " [(ngModel)]="birthday" [matDatepicker]="picker1" readonly/>
+      <label for="birthday">Ngày sinh</label>
+      <mat-datepicker-toggle matSuffix [for]="picker1" disabled></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </div>
+    <div class="form">
+      <input id="email" type="text" placeholder=" " [(ngModel)]="email" readonly/>
+      <label for="email">Email</label>
+    </div>
+    <div class="form">
+      <input id="cmnd" type="text" placeholder=" " [(ngModel)]="cmnd"/>
+      <label for="cmnd">Số CMND</label>
+    </div>
+    <div class="form">
+      <input id="phone" type="text" placeholder=" " [(ngModel)]="mobile_phone"/>
+      <label for="phone">Điện thoại</label>
+    </div>
+    <div class="form">
+      <input id="job_title" type="text" placeholder=" " [(ngModel)]="job_title" readonly/>
+      <label for="job_title">Chuyên môn</label>
+    </div>
+    <div class="form">
+      <input id="child_depart" type="text" placeholder=" " [(ngModel)]="child_depart" readonly/>
+      <label for="child_depart">Bộ phận</label>
+    </div>
+    <div class="form">
+      <input id="contract_type" type="text" placeholder=" " [(ngModel)]="contract_type" readonly/>
+      <label for="contract_type">Loại hợp đồng</label>
+    </div>
+    <div class="form">
+      <input id="contract_begin" type="text" placeholder=" " [(ngModel)]="contract_begin" [matDatepicker]="picker2" readonly/>
+      <label for="contract_begin">Ngày bắt đầu hợp đồng</label>
+      <mat-datepicker-toggle matSuffix [for]="picker2" disabled></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </div>
+    <div class="form">
+      <input id="contract_end" type="text" placeholder=" " [(ngModel)]="contract_end" [matDatepicker]="picker3" readonly/>
+      <label for="contract_end">Ngày kết thúc hợp đồng</label>
+      <mat-datepicker-toggle matSuffix [for]="picker3" disabled></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </div>
+    <div class="form">
+      <input id="mstcn" type="text" placeholder=" " [(ngModel)]="mstcn" readonly/>
+      <label for="mstcn">MSTCN</label>
+    </div>
+    <div class="form">
+      <input id="date_join" type="text" placeholder=" " [(ngModel)]="date_join_company" [matDatepicker]="picker4" readonly/>
+      <label for="date_join">Ngày vào công ty</label>
+      <mat-datepicker-toggle matSuffix [for]="picker4" disabled></mat-datepicker-toggle>
+      <mat-datepicker #picker4></mat-datepicker>
+    </div>
+    <div class="form">
+      <input id="status" type="text" placeholder=" " [(ngModel)]="status_working" readonly/>
+      <label for="status">Trạng thái làm việc</label>
+    </div>
+    <div class="form">
+      <input id="date_quit" type="text" placeholder=" " [(ngModel)]="date_quit_job" [matDatepicker]="picker5" readonly/>
+      <label for="date_quit">Ngày nghỉ việc</label>
+      <mat-datepicker-toggle matSuffix [for]="picker5" disabled></mat-datepicker-toggle>
+      <mat-datepicker #picker5></mat-datepicker>
+    </div>
+    <button *ngIf="isEmpEdit" class="btn btn-submit" (click)="onSubmit()">Lưu thông tin thay đổi</button>
+  </div>
+</div>

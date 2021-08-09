@@ -1,0 +1,6 @@
+.ng-select.custom ::ng-deep .ng-select-container {
+  background: white;
+  border-radius: 1rem;
+  border:none;
+  width: 200px;
+}

@@ -1,0 +1,43 @@
+.tp-margin{
+  width: 100%;
+  height: 35px;
+}
+.showTime {
+  display: flex;
+}
+.showTime > div {
+  font-size: 0.9rem;
+  width: 50%;
+}
+.progressbar {
+  display: flex;
+  align-items: center;
+}
+.progressbar > div:nth-child(2) {
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: bold;
+}
+.timer {
+  width: 50%;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #ffffff45;
+  margin-right: 10px;
+}
+.timer > div {
+  height: 4px;
+  border-radius: 5px;
+  background-color: white;
+}
+.timer > div:nth-child(2) {
+  font-size: 13px;
+  font-family: Montserrat;
+  color: white;
+}
+.showTime {
+  margin-top: 5px;
+}
+.showTime div {
+  font-family: Montserrat;
+}

@@ -1,0 +1,392 @@
+.detail {
+  background-color: transparent;
+  /*padding: 2%;*/
+}
+.form__group__region {
+  position: relative;
+  margin-top: 5px;
+  /*padding: 20px;*/
+  margin-left: 17px;
+  width: 100%;
+}
+.form__group {
+  position: relative;
+  margin-top: 5px;
+  padding: 20px;
+  width: 100%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 1rem;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  /*color: #9b9b9b;*/
+  color: #3072a2;
+}
+.form__field:disabled {
+  background: #dddddd;
+  border-bottom: 1px solid #9b9b9b;
+  opacity: 0.4
+}
+
+/*.form__field:focus .form__label,  .form__field:focus .validFormLabel{*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  display: block;*/
+/*  transition: 0.2s;*/
+/*  font-size: 1rem;*/
+/*  color: #11998e;*/
+/*  font-weight: 700;*/
+/*}*/
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 2px;
+  border-image: linear-gradient(to right, lightcoral, darkred);
+  border-image-slice: 1;
+}
+
+/*.form__field:required, .form__field:invalid {*/
+/*  box-shadow: none;*/
+/*  color: red*/
+/*}*/
+.form__input {
+  font-size: 0.8rem;
+  /*margin-top: 0.4rem;*/
+  /*padding: 5px 0 12px 0;*/
+}
+input.form__field{
+  padding: 5px 0 12px 0;
+}
+.img-col {
+  border: 1px solid #072945;
+}
+.img-avatar{
+  margin: auto;
+}
+.avatar {
+  width: 4rem;
+  height: 4rem;
+}
+
+.img-avatar {
+  padding-left: 100px;
+}
+.ng-select.custom .ng-select-container{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 1rem;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  height: 24px;
+}
+.ng-select-disabled {
+  background: #dddddd;
+  opacity: 0.4
+}
+.ng-select.custom__small .ng-dropdown-panel .ng-dropdown-panel-items .ng-option,
+.ng-select.select-form-table1 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option,
+.ng-select.select-form-table2 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option,
+.ng-select.select-form-table3 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+  white-space: normal;
+}
+
+.typeEmpty{
+  visibility: hidden
+}
+.form__group__small {
+  position: relative;
+  /*margin-top: 5px;*/
+  /*padding: 25px;*/
+  width: 100%;
+  font-size: 0.7rem;
+  margin-top: 0px;
+  padding: 1rem 1.5rem;
+}
+.form__label__small {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 0.8rem;
+  color: #3072a2;
+}
+
+.form__field:focus .form__label__small {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 0.8rem;
+  color: #11998e;
+  font-weight: 700;
+}
+.ng-select.custom__small .ng-select-container {
+  font-family: inherit;
+  width: 100%;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.8rem;
+  /*padding: 7px 0;*/
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.ng-select.custom__black .ng-select-container {
+  background: white !important;
+}
+.ng-select.custom__small .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+  font-size: 0.7rem;
+}
+.date{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  position: relative;
+  top: 4px
+}
+.date__small{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 0.8rem;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  position: relative;
+  top: 4px
+}
+.form__label__hide {
+  visibility: hidden;
+}
+.validFormLabel{
+  color: red;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+.validFormLabel__small{
+  color: red;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 0.8rem;
+}
+.validFormLabel__hide {
+  visibility: hidden;
+}
+.select-form-table1 {
+  width: 250px;
+}
+.select-form-table2 {
+  width: 200px;
+}
+.select-form-table3 {
+  width: 115px;
+}
+.ng-select-container, .ng-select.select-form-table1 .ng-select-container,
+.ng-select.select-form-table2 .ng-select-container, .ng-select.select-form-table3 .ng-select-container{
+  font-family: inherit;
+  width: 100%;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  /*padding: 7px 0;*/
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.text-form-table {
+  width: 100px;
+}
+.ng-select.select-form .ng-select-container{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.7rem;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  height: 24px;
+}
+
+.select-form {
+  font-size: 0.7rem;
+}
+.form__field__small {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 0.8rem;
+  padding: 8px 0;
+  background: transparent;
+  transition: border-color 0.2s
+}
+.time {
+  padding-top: 0.2rem;
+}
+.form__group__small__2{
+  position: relative;
+  margin-top: 5px;
+  padding: 2px 25px;
+  width: 100%;
+  font-size: 0.7rem;
+}
+input[type="radio"]:checked + label {
+  color: red;
+}
+
+input[type="radio"]:disabled + label {
+  background: gray;
+  opacity: 0.5;
+}
+
+input[type="radio"] + label, input[type="radio"]:checked + label, input[type="radio"]:disabled + label {
+  border-radius: 50%;
+  padding: 0.7rem 0.1rem;
+  height: 2.3rem;
+  width: 2.3rem;
+  text-align: center;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+}
+.piority {
+  display: flex;
+}
+.piority-inner {
+  display: flex;
+  width: 100%;
+}
+.slider {
+  width: 100%;
+  height: 30px;
+}
+
+.label_create_task {
+  font-family: 'Montserrat';
+  position: absolute;
+  top: 0;
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  color: #ffffff94;
+}
+
+.valid_label_create_task {
+  font-family: 'Montserrat';
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 16px;
+  font-weight: normal;
+  color: red;
+}
+
+.form_field_create_project {
+  font-family: 'Montserrat';
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  outline: 0;
+  font-size: 17px;
+  padding: 13px 20px 0px 25px;
+  background: white;
+  transition: border-color 0.2s;
+  border-radius: 10px;
+  line-height: 85%;
+}
+.form_field__uv {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: white;
+  transition: border-color 0.2s;
+  border-radius: 10px;
+  line-height: 85%;
+  height: 2.3rem;
+}
+
+.form_field_create_project:focus {
+  font-weight: 700;
+}
+
+.piority-inner input[type="radio"] + label,
+.piority-inner input[type="radio"]:checked + label,
+.piority-inner input[type="radio"]:disabled + label{
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+  background-color: transparent;
+  color: white;
+  margin-right: 45px;
+  cursor: pointer;
+}
+
+.piority-inner input[type="radio"] + label.level-1 {
+  border-color: #42E329;
+}
+
+.piority-inner input[type="radio"] + label.level-2 {
+  border-color: #24DBFF;
+}
+
+.piority-inner input[type="radio"] + label.level-3 {
+  border-color: #FF3818;
+}
+
+.piority-inner input[type="radio"]:checked + label.level-1 {
+  background-color: #42E329;
+}
+
+.piority-inner input[type="radio"]:checked + label.level-2 {
+  background-color: #24DBFF;
+}
+
+.piority-inner input[type="radio"]:checked + label.level-3 {
+  background-color: #FF3818;
+}

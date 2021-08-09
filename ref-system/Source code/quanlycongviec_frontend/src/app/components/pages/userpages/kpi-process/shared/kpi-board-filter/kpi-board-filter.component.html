@@ -1,0 +1,188 @@
+<div class="board-filter" style="width: 100%">
+  <ul>
+    <li>
+      <div class="filter-label">Từ ngày tạo</div>
+      <div class="select-time">
+        <input id="date-from" type="text" placeholder="Từ ngày" [(ngModel)]="dateFrom" [matDatepicker]="picker1"
+               [max]="maxDate" readonly/>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </div>
+    </li>
+    <li>
+      <div class="filter-label">Đến ngày tạo</div>
+      <div class="select-time">
+        <input id="date-to" type="text" placeholder="Đến ngày" [(ngModel)]="dateTo" [matDatepicker]="picker2"
+               [max]="maxDate" readonly/>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </div>
+    </li>
+    <li *ngIf="typeUpdate === 'following_task'">
+      <div class="filter-label">Dự án/Công việc riêng</div>
+      <select-template
+        [elementList]="projectList" [strElement]="'p'"
+        [multiple]="true" (dataEvent)="dtEvent($event)"
+        [element]="project"
+        [keyList]="'title'"
+        [customSelect]="'custom1'"
+      ></select-template>
+    </li>
+    <li>
+      <div class="filter-label">Quá/ Còn hạn</div>
+      <select-template
+        [elementList]="deadlineList" [strElement]="'dead'"
+        [multiple]="true" (dataEvent)="changeDeadlineEvent($event)"
+        [keyList]="'content'"
+        [customSelect]="'custom1'"
+        [elementEvent]="deadlineListEvent"
+      ></select-template>
+    </li>
+    <li>
+      <div class="filter-label">Trạng thái</div>
+      <select-template
+        [elementList]="tagList" [strElement]="'tag'"
+        [elementEvent]="tagListEvent"
+        [multiple]="true" (dataEvent)="changeTagEvent($event)"
+        [keyList]="'content'"
+        [customSelect]="'custom1'"
+      ></select-template>
+    </li>
+    <li>
+      <div>
+        <button class="btn_filter" matRipple (click)="updateFilter()">Cập nhật</button>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="tag-filter" *ngIf="tagChosen">
+  <div *ngFor="let tag of tagChosen">
+    <div class="status-tag" [ngStyle]="{'background': tag.color, 'color': tag.text_color}">{{tag.content}}</div>
+  </div>
+</div>
+<div class="task-list">
+  <div class="task-list-header">
+    <div class="task-search">
+      <input placeholder="Tìm kiếm"/>
+      <mat-icon>search</mat-icon>
+    </div>
+  </div>
+  <div *ngFor="let task of tasks  | paginate: { itemsPerPage: 7, currentPage: p }">
+    <div class="task">
+      <div class="task-name" (click)="updateBox(task.data_task, true)">
+        <div class="level level-{{task.data_task.priority}}">{{task.data_task.priority}}</div>
+<!--        <div class="name-tag" *ngIf="task.data_task.title.length > 20">{{task.data_task.title.substr(0, 20)}}...</div>-->
+        <div class="name-tag">{{task.data_task.title}}</div>
+        <div class="email-tag" *ngIf="typeUpdate === 'following_task'">{{task.data_task.assigned}}</div>
+      </div>
+      <div class="status-tags">
+        <div class="small-status-tags mobile" *ngFor="let progress of task.list_content" (click)="updateBox(task.data_task, true)">
+          <div *ngIf="progress.key_col === 1" class="comp-tag">
+            <div class="status-tag completion-tag" [ngStyle]="{'background': progress.color}">
+              <div>Tiến độ: </div>
+              <div>{{task.data_task.completion}}%</div>
+            </div>
+          </div>
+          <div *ngIf="progress.key_col === 2" class="comp-tag">
+            <div class="status-tag deadline-tag" [ngStyle]="{'background': progress.color}">{{task.data_task.deadline}}</div>
+          </div>
+          <div *ngIf="progress.key_col === 3" class="comp-tag">
+            <div class="status-tag project-tag" [ngStyle]="{'background': progress.color}">{{progress.content}}</div>
+          </div>
+        </div>
+        <div class="small-status-tags pc" *ngFor="let progress of task.list_content" (click)="updateBox(task.data_task, true)">
+          <div *ngIf="progress.key_col === 1" class="comp-tag">
+            <div>
+              <div class="status-tag" [ngStyle]="{'background': progress.color}">{{progress.content}}</div>
+              <div class="completion-tag">
+                <div>Tiến độ:</div>
+                <app-timer-kpi [progressbarValue]="task.data_task.completion"
+                               [dayremain]="task.data_task.completion">
+                </app-timer-kpi>
+<!--                <label style="color: white">Tiến độ hoàn thiện</label>-->
+<!--                <mat-progress-bar class="completion-bar"-->
+<!--                                  mode="determinate"-->
+<!--                                  value="{{task.data_task.completion}}"-->
+<!--                ></mat-progress-bar>-->
+<!--                <span style="margin-left: 1rem">{{task.data_task.completion}}</span>-->
+              </div>
+            </div>
+          </div>
+          <div *ngIf="progress.key_col === 2" class="comp-tag">
+            <div>
+              <div class="status-tag" [ngStyle]="{'background': progress.color}">{{progress.content}}</div>
+              <div class="completion-tag">
+                <div>Deadline:</div>
+                <div>{{task.data_task.deadline}}</div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="progress.key_col === 3" class="comp-tag" style="width: 10vw;">
+            <div>
+              <div class="status-tag" [ngStyle]="{'background': progress.color}">{{progress.content}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="group-btn" *ngIf="typeUpdate === 'project' || task.data_task.permission.length > 0">
+          <div *ngIf="typeUpdate === 'project'" class="open-dots">
+            <div class="dropdown">
+              <a class="dropdown-toggle" id="tagDropdown0" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                <img src="assets/images/gantt.svg" width="10px"/>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="tagDropdown0">
+                <a class="dropdown-item view-tag"
+                   (click)="openView('tree', task.data_task)">
+                  <img src="assets/images/tree.svg"  width="10px"/>
+                  Sơ đồ cây
+                </a>
+                <a class="dropdown-item view-tag" (click)="openView('gantt', task.data_task)">
+                  <img src="assets/images/gantt.svg" width="10px"/>
+                  Sơ đồ gantt
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="open-dots" *ngIf="task.data_task.permission.length > 0">
+            <div class="dropdown">
+              <a class="dropdown-toggle" id="tagDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                <mat-icon>edit</mat-icon>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="tagDropdown">
+<!--                <a class="dropdown-item" (click)="showConversation(task)">-->
+<!--                  <mat-icon>forum</mat-icon>-->
+<!--                  Báo cáo tiến độ-->
+<!--                </a>-->
+                <a class="dropdown-item" *ngIf="task.data_task.permission.includes('review')"
+                   (click)="setPoint(task.data_task)">
+                  <mat-icon>chat</mat-icon>
+                  Đánh giá
+                </a>
+                <a *ngIf="task.data_task.permission.includes('edit')" class="dropdown-item"
+                   (click)="updateBox(task.data_task)">
+                  <mat-icon>edit</mat-icon>
+                  Cập nhập thông tin
+                </a>
+                <a *ngIf="task.data_task.permission.includes('cancel')" class="dropdown-item"
+                   (click)="deleteObj(task.data_task)">
+                  <mat-icon>delete</mat-icon>
+                  Xóa
+                </a>
+                <a *ngIf="task.data_task.permission.includes('add')" class="dropdown-item"
+                   (click)="assignTask(task.data_task)">
+                  <mat-icon>add_circle_outline</mat-icon>
+                  Tạo công việc con
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ng-content select="[map]"></ng-content>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau" responsive="true" maxSize="7"></pagination-controls>
+</div>

@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="row-1">
+    <select-template [title]="'TIN/PNC'"
+                     [elementList]="['TIN', 'PNC']" [strElement]="'branch'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [element]="elementBEvent"
+                     [customSelect]="selectDefault? 'customDefault' : 'custom170'"
+    ></select-template>
+  </div>
+  <div class="row-1">
+    <select-template [title]="'Mã vùng'"
+                     [elementList]="maVungArray" [strElement]="'parent_depart'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [elementEvent]="elementPEvent"
+                     [customSelect]="selectDefault? 'customDefault' : 'custom170'"
+    ></select-template>
+  </div>
+  <div class="row-1">
+    <select-template [title]="'Bộ phận'"
+                     [elementList]="childDepartList" [strElement]="'child_depart'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [elementEvent]="elementCEvent"
+                     [customSelect]="selectDefault? 'customDefault' : 'custom210'"
+    ></select-template>
+  </div>
+  <div *ngIf="isShowEmail" class="row-1">
+    <select-template [title]="'Email'"
+                     [elementList]="emailList" [strElement]="'email'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [elementEvent]="elementEmailEvent"
+    ></select-template>
+  </div>
+  <div *ngIf="isShowEmpCode" class="row-1">
+    <select-template [title]="'Mã nhân viên'"
+                     [elementList]="empCodeList" [strElement]="'code'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [elementEvent]="elementCodeEvent"
+                     [customSelect]="selectDefault? 'customDefault' : 'custom210'"
+    ></select-template>
+  </div>
+  <div *ngIf="isShowEmpName" class="row-1">
+    <select-template [title]="'Tên nhân viên'"
+                     [elementList]="empNameList" [strElement]="'name'"
+                     [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                     [elementEvent]="elementNameEvent"
+    ></select-template>
+  </div>
+  <div *ngIf="isShowNameOrCode" class="row-1">
+    <div><label><i class="fa fa-user"></i>&nbsp;| Lọc theo</label></div>
+    <div>
+      <ng-select [(ngModel)]="nameOrCode" class="custom-ng code">
+        <ng-option value="email">Email nhân viên</ng-option>
+        <ng-option value="code">Mã nhân viên</ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div *ngIf="isShowNameOrCode">
+    <div class="row-1">
+      <div>
+        <select-template [title]="'Email'" *ngIf="nameOrCode === 'email'"
+                         [elementList]="emailList" [strElement]="'email'"
+                         [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                         [elementEvent]="elementEmailEvent"
+        ></select-template>
+        <select-template [title]="'Mã nhân viên'" *ngIf="nameOrCode === 'code'"
+                         [elementList]="empCodeList" [strElement]="'emp_code'"
+                         [multiple]="isMultiple" (dataEvent)="dtEvent($event)"
+                         [elementEvent]="elementCodeEvent"
+                         [customSelect]="selectDefault? 'customDefault' : 'custom210'"
+        ></select-template>
+      </div>
+    </div>
+  </div>
+</div>
+

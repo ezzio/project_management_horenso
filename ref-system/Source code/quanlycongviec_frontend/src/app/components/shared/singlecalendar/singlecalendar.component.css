@@ -1,0 +1,88 @@
+.input-group {
+  /*width: 9rem;*/
+  padding-right: 10px;
+  /*margin-left: 0.8rem;*/
+  height: 2.25rem;
+  /*width: 82%;*/
+}
+.inputGroup100 {
+  width: 100%;
+  padding-right: 10px;
+  /*margin-right: 0.8rem;*/
+}
+.inputGroup82 {
+  width: 82%;
+}
+.input-group> .form-control {
+  height: 2.25rem;
+}
+.styleInput{
+  width: 8rem;
+  border-radius: 20px;
+}
+button.styleInput {
+  width: 3rem;
+  border-radius: 0 20px 20px 0;
+}
+.form200{
+  width: 200px;
+}
+.form180 {
+  width: 180px;
+}
+
+.date_time_create_project {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.date_time_create_project .form-group {
+  width: auto;
+}
+
+.date_time_create_project .input-group .form-control {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: white;
+  font-family: 'Montserrat';
+  color: black;
+  padding: 6px 5px 5px 25px;
+}
+
+.date_time_create_project .input-group>.input-group-append>.btn {
+  color: white;
+  border: 1px solid white;
+}
+
+:host ::ng-deep .date_time_create_project .ngx-timepicker-control__input {
+  border-radius: 4px;
+  height: auto;
+  font-family: 'Montserrat';
+  padding: 0px;
+}
+
+:host ::ng-deep .date_time_create_project .ngx-timepicker-control__arrows {
+  top: -2px;
+  right: -8px;
+}
+
+:host ::ng-deep .date_time_create_project .ngx-timepicker-control__arrow {
+  color: white;
+}
+
+@media only screen and (max-width: 768px){
+  .input-group> .form-control {
+    height: 2.25rem;
+    font-size: 0.8rem;
+  }
+}
+.form100{
+  width: 100%;
+}
+.form-inline {
+  display: flex;
+}
+.btn__white {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: black;
+}

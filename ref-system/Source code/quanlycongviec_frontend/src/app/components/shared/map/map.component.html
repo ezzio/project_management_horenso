@@ -1,0 +1,9 @@
+<ejs-maps id='container' style="display:block;"
+          [layers]='layers' (load)="load($event)"
+          [zoomSettings]="zoomSettings"
+          [titleSettings]="titleSettings"
+          [centerPosition] = 'centerPosition' >
+  <e-layers>
+    <e-layer [layerType] = "'Bing'" [bingMapType] = "'AerialWithLabel'" [key]='bingkey'></e-layer>
+  </e-layers>
+</ejs-maps>

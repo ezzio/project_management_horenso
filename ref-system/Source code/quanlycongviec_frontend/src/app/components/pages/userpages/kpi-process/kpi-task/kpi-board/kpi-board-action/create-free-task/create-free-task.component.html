@@ -1,0 +1,14 @@
+<div class="free-task">
+  <h5>Tiêu đề task hiện tại: {{objCurrent.title}}</h5>
+  <app-form-create
+    (dataEvent)="dataEvent($event)"
+    [formConfig]="formConfig"
+    [element]="element"
+    [customField]="'form_field_create_project'"
+    [formLabel]="'label_create_task'"
+    [validFormLabel]="'valid_label_create_task'"
+    [customFormDateTime]="'date_time_create_project'"
+    [customButton]="'btn-create-task'"
+  ></app-form-create>
+</div>
+

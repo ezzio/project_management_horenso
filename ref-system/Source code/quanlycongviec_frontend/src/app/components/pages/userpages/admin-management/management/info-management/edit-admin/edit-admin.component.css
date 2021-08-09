@@ -1,0 +1,78 @@
+.modal-header {
+  background-color: midnightblue;
+  color: white;
+}
+.emp-info {
+  padding: 1rem;
+}
+.emp-info {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.right-info {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.divTeamNameList {
+  border-bottom: 1px dotted #9a9a9a;
+  padding: 1rem;
+}
+.ulTeamNameList {
+  list-style: none;
+}
+.ulTeamNameList li{
+  display: inline-block;
+  padding-right: 1rem ;
+
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.05) ;
+}
+
+.flex-container > div {
+  padding: 10px 0 10px 7px;
+}
+
+.child-depart, .email{
+  width: 13rem;
+  padding-right: 2rem;
+}
+.type-right {
+  width: 200px;
+}
+.admin {
+  width: 300px;
+}
+.depart {
+  width: 200px;
+}
+label {
+  color: #000;
+  padding: .2rem 0 0 .5rem;
+}
+.row {
+  margin-left: 2.5rem;
+}
+
+.row-1{
+  padding-right: 1rem;
+}
+
+.ng-select.custom-admin ::ng-deep .ng-select-container  {
+  border:none;
+  min-height: 0px;
+  background: #fff;
+  border-radius: 2rem;
+}
+
+a mat-icon.disabled {
+  color: gray;
+  cursor: not-allowed;
+  font-size: 0.8rem;
+}
+
+a mat-icon.normal {
+  color: red;
+  font-size: 0.8rem;
+}
+

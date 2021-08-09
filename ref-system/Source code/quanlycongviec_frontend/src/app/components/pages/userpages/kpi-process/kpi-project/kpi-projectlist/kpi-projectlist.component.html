@@ -1,0 +1,24 @@
+<div class="l-container">
+  <a class="addjob-btn" (click)="createProject()">
+    <mat-icon>add_circle_outline</mat-icon>Tạo dự án mới</a>
+  <div class="main">
+    <app-kpi-board-filter [typeList]="'project'"
+                          [typeUpdate]="'project'"
+                          (openViewEvent)="openViewEvent($event)">
+      <div map>
+        <div class="view" *ngIf="isOpenedTree">
+          <button class="btn btn-close" (click)="isOpenedTree = !isOpenedTree"><mat-icon>close</mat-icon></button>
+          <div class="view-map">
+            <app-kpi-roadmap [objCurrent]="objCurrent"></app-kpi-roadmap>
+          </div>
+        </div>
+        <div class="view" *ngIf="isOpenedGantt" >
+          <button class="btn btn-close" (click)="isOpenedGantt = !isOpenedGantt"><mat-icon>close</mat-icon></button>
+          <div class="view-map">
+            <app-kpi-ganttmap [idTree]="idTree"></app-kpi-ganttmap>
+          </div>
+        </div>
+      </div>
+    </app-kpi-board-filter>
+  </div>
+</div>

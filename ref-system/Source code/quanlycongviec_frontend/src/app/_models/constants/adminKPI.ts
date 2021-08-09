@@ -1,0 +1,22 @@
+export const AdminKPI = [
+  'Báo tăng/giảm nhân sự  trễ (Ticket + Bản cứng (hồ sơ nhận việc/hồ sơ thanh lý)',
+  'Gửi thông tin nhân sự trễ',
+  'Không gửi hoặc  gửi trễ đề nghị cấp quyền, reset mail/acct inside',
+  'Không gửi, hoặc gửi trễ Hồ sơ BH',
+  'Lưu trữ hồ sơ/giấy tờ không đầy đủ',
+  'Cập nhật sai thông tin trên các trang hệ thống',
+  'Không phản hồi thông tin mail, zalo, wc… theo quy định',
+  'Không theo dõi, duy trì kiểm tra CSVC',
+  'Không cập nhập thông tin SCM cho nhân viên đầy đủ',
+  'Không cấp phát BHLD, CCDC đúng quy định',
+  'Làm thanh toán trễ so với quy định',
+  'Không kiểm soát hoặc kiểm soát chấm công sai quy định',
+  'Không báo cáo hoặc báo cáo ko kịp thời các báo cáo',
+  'Không kiểm soát chi phí',
+  'Không nhắc nhở nhân viên tham gia đào tạo',
+  'Không hoàn thành các công việc phát sinh được giao',
+  'Không hỗ trợ liên bộ phận',
+  'Không tham gia hoạt động phong trào',
+  'Không chấp hành nội quy công ty',
+  'Phản hồi thông tin theo quy định, báo cáo sai thông tin'
+];

@@ -1,0 +1,42 @@
+<table>
+    <thead>
+    <tr>
+        <th>Xoá</th>
+        <th *ngFor="let header of tableConfig.columns">{{header.title}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let n of elementForm; let i = index">
+        <td class="delete-col"><mat-icon (click)="deleteRow(n)">delete_outline</mat-icon></td>
+        <td *ngFor="let element of tableConfig.columns">
+            <div *ngIf="element.type !== ''" [ngSwitch]="element.type">
+                <div *ngSwitchCase="'text' || 'number'">
+                    <input class="form__field"
+                           [ngClass]="customInput"
+                           [type]="element.type"
+                           [placeholder]="element.placeholder? element.placeholder: ''"
+                           [ngModel]="n[element['dataField']]"
+                           (ngModelChange)="changeEvent(i, element['dataField'], $event)"/>
+                </div>
+                <div *ngSwitchCase="'select'">
+                    <ng-select
+                            [ngClass]="customSelect"
+                            [items]="element.options"
+                            [addTag]="addTagPromise"
+                            [loading]="loading"
+                            [required]="element.required"
+                            [placeholder]="element.placeholder? element.placeholder : ''"
+                            [multiple]="element.multiple"
+                            [ngModel]="n[element['dataField']]"
+                            (ngModelChange)="changeEvent(i, element['dataField'], $event)">
+                        <ng-template ng-tag-tmp let-search="searchTerm">
+                            <b>create new</b>: {{search}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

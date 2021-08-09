@@ -1,0 +1,51 @@
+<mat-form-field class="search-fix" appearance="outline">
+    <mat-label class="label">Tìm Kiếm</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Tìm kiếm" #input>
+    <mat-icon class="maticon" matSuffix>search</mat-icon>
+</mat-form-field>
+
+<mat-form-field class="filter-fix" appearance="standard">
+	<mat-label>Loại công việc</mat-label>
+	<mat-select class="level" [formControl]="job" multiple>
+		<mat-option *ngFor="let j of jobList" [value]="j">{{j}}</mat-option>
+	</mat-select>
+</mat-form-field>
+
+<mat-drawer-container class="sidenav-container">
+    <mat-drawer #drawer class="sidenav-content" mode="over">
+      <p>Sidenav name</p>
+      <p *ngIf="showText1">Text được thêm sau khi bấm button</p>
+      <button (click)="showText1 = !showText1" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+    <mat-drawer #drawer2 class="sidenav-content" mode="over" position="end">
+        <p>Sidenav content</p>
+        <p *ngIf="showText2">Text được thêm sau khi bấm button</p>
+        <button (click)="showText2 = !showText2" mat-raised-button>
+          Toggle extra text
+        </button>
+    </mat-drawer>
+    <div class="table-mat mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+            <ng-container matColumnDef="name">
+                <th class="fix-table" mat-header-cell *matHeaderCellDef mat-sort-header>Công việc</th>
+                <td mat-cell *matCellDef="let element" (click)="drawer.toggle()">
+                    {{element.name}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="time">
+                <th class="fix-table" mat-header-cell *matHeaderCellDef mat-sort-header>Tổng thời gian</th>
+                <td mat-cell *matCellDef="let element" (click)="drawer2.toggle()">
+                    {{element.time_start}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                class="element-row">
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</mat-drawer-container>

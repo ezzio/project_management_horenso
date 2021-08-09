@@ -1,0 +1,70 @@
+<div class="edit-admin">
+    <div class="modal-header">
+        <h5 class="modal-title">{{title}}</h5>
+    </div>
+    <div class="modal-body">
+        <div>
+            <div class="emp-info">Cập nhập thông tin quyền admin: {{itemAdd.email}}</div>
+            <div class="right-info">
+                <div class="divTeamNameList">
+                    <p>Đang có quyền Admin: </p>
+                    <ul class="ulTeamNameList">
+                        <li *ngFor="let i of arrayPerId">
+                            <a *ngIf="rightAllList.includes(perIdFollowRightAdmin[i])"
+                               (click)="deleteItem('perId', i)">
+                                <mat-icon class="normal">delete</mat-icon>
+                                {{perIdFollowRightAdmin[i]}}
+                            </a>
+                            <a *ngIf="!rightAllList.includes(perIdFollowRightAdmin[i])">
+                                <mat-icon class="disabled">delete</mat-icon>
+                                {{perIdFollowRightAdmin[i]}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="divTeamNameList">
+                    <p>Quyền trên các phòng ban: </p>
+                    <ul class="ulTeamNameList">
+                        <li *ngFor="let i of arrayChild"><a (click)="deleteItem('depart', i)">
+                            <mat-icon style="font-size: 0.8rem; color: darkred">delete</mat-icon>
+                        </a> {{i}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div *ngIf="!obj" class="custom-depart">
+                <app-select-depart [isShowEmail]="true"
+                                   [isShowEmpCode]="false"
+                                   [isShowEmpName]="false"
+                                   (messageEvent)="receiveEmp($event)"
+                ></app-select-depart>
+            </div>
+            <div>
+                <label>Quyền Admin</label>
+                <ng-select class="custom-admin admin" (change)="receiveTypeRight($event)">
+                    <ng-option *ngFor="let r of rightAllList" [value]="r">{{r}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="row-1 child-depart">
+                <label>Mã vùng</label>
+                <ng-select class="custom-admin depart" (change)="receiveParentDepart($event)"
+                           [multiple]="true"
+                >
+                    <ng-option *ngFor="let r of parentDepartList" [value]="r">{{r}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="row-1 child-depart">
+                <label>Phòng ban</label>
+                <ng-select class="custom-admin depart" (change)="receiveChildDepart($event)"
+                           [multiple]="!obj"
+                >
+                    <ng-option *ngFor="let r of childDepartP" [value]="r.child_depart">{{r.child_depart}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-addform" (click)="addNew()">Cập nhập</button>
+    <button class="btn btn-addform" (click)="activeModal.dismiss('Cross click')">Thoát</button>
+</div>
+<app-spinner-layout></app-spinner-layout>

@@ -1,0 +1,33 @@
+<div class="view">
+  <div>
+    <div style="overflow-x:auto">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th class="delete-col">Xoá</th>
+          <th *ngFor="let columnHead of tableConfigResult.columns" [ngClass]="columnHead['nameClass']">
+            {{ columnHead.title }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let columnData of tableContentResult; let i = index">
+          <td class="delete-col"><mat-icon (click)="deleteRow(columnData)">delete_outline</mat-icon></td>
+          <td *ngFor="let columnHead of tableConfigResult.columns" [ngClass]="columnHead['nameClass']">
+            <app-form-template [formConfig]="[columnHead]"
+                               [elementForm]="[columnData[columnHead['dataField']]]"
+                               (formEvent)="receiveForm(i, $event)"
+                               [formLabel]="'form__label__hide'"
+                               [customSelect]="customSelect"
+                               [isRegion]="false"
+            ></app-form-template>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-addform" (click)="saveRow()"><mat-icon>save</mat-icon></button>
+      <button class="btn btn-addform" (click)="addRow()"><mat-icon>add</mat-icon></button>
+    </div>
+    <app-spinner-layout></app-spinner-layout>
+  </div>
+</div>
+

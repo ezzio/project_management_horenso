@@ -1,0 +1,9 @@
+<table class="table table-striped">
+    <tr *ngFor="let col of tableConfig.columns">
+        <td class="title" *ngIf="col.type !== 'upload'">{{col.title}}</td>
+        <td *ngIf="col.type !== 'upload' && !col['formatDate'] && !col['formatCurrency']">
+            {{tableContent[col['dataField']]}}</td>
+        <td *ngIf="col['formatDate']">{{tableContent[col['dataField']] | date: 'dd/MM/yyyy'}}</td>
+        <td *ngIf="col['formatCurrency']">{{tableContent[col['dataField']] | currency: 'VND'}}</td>
+    </tr>
+</table>

@@ -1,0 +1,60 @@
+<header *ngIf="!mobile" id="header">
+  <div class="container">
+    <div id="logo">
+      <a routerLink="/api/auth/home" class="img"><img src="assets/images/logo.png" alt="" title=""/></a>
+    </div>
+    <div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/tuyendung/form"> Hồ sơ cá nhân</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="api/auth/tuyendung/baitest">&nbsp;Bài kiểm tra</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown3" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Truyền thông
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/bandocviet">Bạn đọc viết</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/phongtrao">Phong trào</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/kythuat">Góc kỹ thuật</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/daotao">Góc đào tạo</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/quytrinhquydinh">Quy trình-quy định</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/thongbao">Thông báo</a>
+              <a class="dropdown-item" routerLink="api/auth/truyenthong/news/tuyendung">Tuyển dụng</a>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" routerLink="/api/auth/download">Tải ứng dụng</a></li>
+          <li class="nav-item hi"><a class="nav-link">Xin chào {{userName}}!</a></li>
+          <li class="lgMenu" (click)="toggleMenu()">&#9776;</li>
+        </ul>
+      </nav>
+    </div>
+    <div [@slideInOut]="menuState" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="toggleMenu()">&times;</a>
+      <a routerLink=""><mat-icon>person_pin</mat-icon> {{userName}}</a>
+      <a routerLink="api/auth/tuyendung/form"><mat-icon>format_list_bulleted</mat-icon>&nbsp;Form</a>
+      <a routerLink="api/auth/tuyendung/baitest"><mat-icon>note</mat-icon>&nbsp;Bài kiểm tra</a>
+      <div class="dropdown">
+        <a class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+          <mat-icon>receipt</mat-icon> Truyền thông
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdown3">
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/bandocviet">Bạn đọc viết</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/phongtrao">Phong trào</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/kythuat">Góc kỹ thuật</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/daotao">Góc đào tạo</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/quytrinhquydinh">Quy trình-quy định</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/thongbao">Thông báo</a>
+          <a class="dropdown-item" routerLink="api/auth/truyenthong/news/tuyendung">Tuyển dụng</a>
+        </div>
+      </div>
+      <a routerLink="/api/auth/download">
+        <mat-icon>file_download</mat-icon>
+        Tải ứng dụng</a>
+      <a (click)="logout()" href="javascript:void(0)">
+        <mat-icon>logout</mat-icon>
+        Log Out</a>
+    </div>
+  </div>
+</header>

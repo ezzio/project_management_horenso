@@ -1,0 +1,58 @@
+<div class="page">
+<!--  <app-kpi-search-project (dataEvent)="getData($event)"></app-kpi-search-project>-->
+  <ngx-graph
+    [links]="hierarchialGraph.links"
+    [nodes]="hierarchialGraph.nodes"
+    [layout]="layout"
+    [layoutSettings]="layoutSettings"
+    [curve]="curve"
+    [draggingEnabled]="false"
+    [autoCenter]="true"
+  >
+    <ng-template #nodeTemplate let-node>
+      <svg:g class="node">
+        <linearGradient id="lg-{{node.id}}" x1="0.5" y1="1" x2="0.5" y2="0">
+          <stop offset="0%" stop-opacity="1" [attr.stop-color]="node.color"/>
+          <stop [attr.offset]="node.p" stop-opacity="1" [attr.stop-color]="node.color"/>
+          <stop [attr.offset]="node.p" stop-opacity="0" [attr.stop-color]="node.color"/>
+          <stop offset="100%" stop-opacity="0" [attr.stop-color]="node.color"/>
+        </linearGradient>
+        <svg:circle r="60" fill="white"
+                    stroke-width="2" stroke-dashoffset="0"
+                    [attr.stroke]="node.color"
+        ></svg:circle>
+        <svg:circle r="60" [attr.fill]="'url(#lg-' + node.id +')'"
+                    stroke-width="2"
+                    [attr.stroke]="node.color"
+                    stroke-dashoffset="0"
+        ></svg:circle>
+        <svg:text alignment-baseline="central" (click)="open()"
+                  [ngbPopover]="content"
+                  container="body" style="font-size: 0.8rem">
+          <svg:tspan x="-45" dy="0.5em" style="font-weight: bold">{{node.label}}</svg:tspan>
+          <svg:tspan x="-45" dy="1.5em" style="font-weight: bold">{{node.completion}}%</svg:tspan>
+        </svg:text>
+      </svg:g>
+      <ng-template #content>
+        <p>Tiêu đề: {{node.title}}</p>
+        <p>Người tạo: {{node.owner}}</p>
+        <p>Thời gian bắt đầu: {{node.ts}}</p>
+        <p>Thời gian kết thúc: {{node.deadline}}</p>
+        <p>Người được giao: {{node?.assigned}}</p>
+      </ng-template>
+    </ng-template>
+    <ng-template #linkTemplate let-link>
+      <svg:g class="edge">
+        <svg:path class="line" stroke-width="2" marker-end="url(#arrow)">
+        </svg:path>
+        <svg:text class="edge-label" text-anchor="middle">
+          <textPath class="text-path" [attr.href]="'#' + link.id" [style.dominant-baseline]="link.dominantBaseline"
+                    startOffset="50%">
+            {{link.label}}
+          </textPath>
+        </svg:text>
+      </svg:g>
+    </ng-template>
+  </ngx-graph>
+</div>
+

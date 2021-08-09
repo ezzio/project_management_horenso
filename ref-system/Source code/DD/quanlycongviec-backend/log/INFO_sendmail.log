@@ -1,0 +1,27 @@
+2021-05-24 20:12:16,561 INFO Error sent mail 'str' object has no attribute 'send'
+2021-05-24 20:16:10,120 INFO Error sent mail [WinError 10061] No connection could be made because the target machine actively refused it
+2021-05-24 20:21:06,338 INFO Error sent mail Connection unexpectedly closed
+2021-05-24 20:26:51,407 INFO Error sent mail Connection unexpectedly closed
+2021-05-24 20:28:51,757 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials m24sm859569pfa.125 - gsmtp')
+2021-05-24 20:31:46,189 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials 67sm10941634pfw.83 - gsmtp')
+2021-05-24 20:35:01,581 INFO Error sent mail 'mail'
+2021-05-24 20:35:55,041 INFO Error sent mail 'mail'
+2021-05-24 20:36:47,415 INFO Error sent mail send() missing 1 required positional argument: 'message'
+2021-05-24 20:40:35,594 INFO Error sent mail 'mail'
+2021-05-24 20:42:22,707 INFO Error sent mail 'mail'
+2021-05-24 20:45:05,291 INFO Error sent mail 'mail'
+2021-05-24 20:45:22,490 INFO Error sent mail STARTTLS extension not supported by server.
+2021-05-24 20:52:35,441 INFO Error sent mail [WinError 10061] No connection could be made because the target machine actively refused it
+2021-05-24 20:53:01,312 INFO Error sent mail [WinError 10061] No connection could be made because the target machine actively refused it
+2021-05-24 20:53:50,608 INFO Error sent mail [WinError 10061] No connection could be made because the target machine actively refused it
+2021-05-24 20:54:09,796 INFO Error sent mail [WinError 10061] No connection could be made because the target machine actively refused it
+2021-05-24 21:02:18,099 INFO Error sent mail [Errno 11003] getaddrinfo failed
+2021-05-24 21:04:22,417 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials o10sm10980225pfh.67 - gsmtp')
+2021-05-24 21:05:29,586 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials v21sm2598807ote.9 - gsmtp')
+2021-05-24 21:09:01,714 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials h27sm3027760vko.5 - gsmtp')
+2021-05-24 21:11:24,639 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials e9sm6056076ooq.7 - gsmtp')
+2021-05-24 21:14:32,582 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials l5sm5999645qke.0 - gsmtp')
+2021-05-24 21:14:58,217 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials d12sm5982363pjr.9 - gsmtp')
+2021-05-24 21:15:22,416 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials c20sm6273706oof.25 - gsmtp')
+2021-05-24 21:16:09,228 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials l8sm4406963pjw.8 - gsmtp')
+2021-05-24 21:17:40,905 INFO Error sent mail (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials v14sm11187170pfi.25 - gsmtp')

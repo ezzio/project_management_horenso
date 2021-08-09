@@ -1,0 +1,14 @@
+<div class="history" *ngIf="dataCmt">
+  <div *ngFor="let data of dataCmt" #scrollMe>
+    <div [ngClass]="userEmail === data.email.toLowerCase()? 'right': 'left'">
+      <div class="content-chat">
+        <div class="row">{{data.cmt}}</div>
+        <div class="time">{{data.date_cmt}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="inputText">
+  <input [placeholder]="placeholderText" [(ngModel)]="comment"/>
+  <button class="btn btn-outline-success" (click)="submit()">Gửi</button>
+</div>

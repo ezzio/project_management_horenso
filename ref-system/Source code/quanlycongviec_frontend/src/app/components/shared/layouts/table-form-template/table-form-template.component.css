@@ -1,0 +1,29 @@
+table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td, th {
+  border: 0.5px solid #D5D5D5;
+  /*padding: 10px;*/
+  width: -moz-min-content;
+  padding: 0 2rem;
+}
+.form-table-first-col {
+  width: 120px;
+}
+td.delete-col {
+  padding: 1.5rem 0;
+  color: red;
+}
+td.delete-col:hover{
+  color: #fdb3a4;
+  cursor: pointer;
+}
+th.delete-col {
+  padding: 0;
+}
+td, th {
+  z-index: 999;
+}

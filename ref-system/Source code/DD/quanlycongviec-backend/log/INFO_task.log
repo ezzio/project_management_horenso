@@ -1,0 +1,133 @@
+2021-04-21 12:20:23,070 INFO Error insert_db api_web_create_task: 1054 (42S22): Unknown column 'progression' in 'field list'
+2021-04-21 12:22:21,147 INFO Error insert_db api_web_create_task: 1054 (42S22): Unknown column 'progression' in 'field list'
+2021-04-21 12:22:44,867 INFO Error insert_db api_web_create_task: 1054 (42S22): Unknown column 'progression' in 'field list'
+2021-04-21 12:23:49,284 INFO Error insert_db api_web_create_task: 1054 (42S22): Unknown column 'progression' in 'field list'
+2021-04-21 12:26:17,985 INFO Error insert_db api_web_create_task: 1054 (42S22): Unknown column 'weight_normalized' in 'field list'
+2021-04-21 12:27:13,287 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'id' at row 1
+2021-04-21 13:36:13,206 INFO Error dumps_to_db api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 13:39:08,600 INFO Error dumps_to_db api_web_create_task: 1146 (42S02): Table 'quanlycongviec.tm_task_assignement_tb' doesn't exist
+2021-04-21 14:03:31,350 INFO Error dumps_to_db api_web_create_task: 1062 (23000): Duplicate entry '4' for key 'cong_viec.PRIMARY'
+2021-04-21 14:06:02,371 INFO Error dumps_to_db api_web_create_task: 1062 (23000): Duplicate entry '4' for key 'cong_viec.PRIMARY'
+2021-04-21 14:47:21,638 INFO Error get_dict_all_info_of_node_fr_email api_web_view_kanban: invalid literal for int() with base 10: 'N/A'
+2021-04-21 15:28:09,802 INFO api_web_list_email_available: list index out of range
+2021-04-21 15:28:09,804 INFO api_web_list_email_available: list index out of range
+2021-04-21 15:46:55,675 INFO api_web_list_email_available: list index out of range
+2021-04-21 15:46:55,693 INFO api_web_list_email_available: list index out of range
+2021-04-27 20:36:17,744 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:36:24,158 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:36:32,103 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:36:34,977 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:36:38,114 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:37:23,205 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:37:29,240 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:39:10,805 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:40:54,341 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:41:01,795 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-27 20:41:25,852 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-28 12:42:46,237 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-28 12:42:55,803 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-28 12:43:07,021 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-28 12:43:28,252 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-04-29 11:52:35,152 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-04-29 11:52:46,687 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: '/jvhjvl' for column 'problem' at row 1
+2021-04-29 11:54:21,888 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'kggklk' for column 'problem' at row 1
+2021-04-29 11:56:24,092 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-10 13:41:00,992 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:41:09,760 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:41:26,246 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:41:38,242 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:41:44,236 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:55:10,530 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:55:14,628 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 13:55:21,628 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 14:35:15,838 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 14:45:07,702 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 14:45:14,799 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 14:45:27,187 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 15:48:23,730 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 15:56:46,109 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 15:57:01,369 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:00:20,430 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:05:00,172 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:05:25,308 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:06:06,053 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:06:15,665 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:14:02,274 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:14:12,621 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:16:05,843 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:16:07,887 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:16:16,757 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:17:12,465 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:17:25,836 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:21:30,356 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:21:30,611 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:21:49,180 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:21:49,256 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:40:28,748 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:40:44,084 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:55:48,891 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 16:56:02,902 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-10 18:10:48,268 INFO api_web_get_info_child_depart: 'child_depart'
+2021-05-11 09:48:14,916 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-11 09:48:32,924 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 'problem' at row 1
+2021-05-11 16:08:25,575 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 16:16:50,559 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 16:42:30,738 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'gsdagasg' for column 'problem' at row 1
+2021-05-11 16:49:52,302 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 16:58:44,434 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:05:02,209 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:05:44,140 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:12:54,316 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'qqq' for column 'problem' at row 1
+2021-05-11 17:14:07,401 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'a' for column 'problem' at row 1
+2021-05-11 17:15:56,984 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'oooooo' for column 'problem' at row 1
+2021-05-11 17:22:01,061 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:23:09,571 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:25:49,011 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:41:00,556 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:46:16,033 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:51:30,263 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'l,k;l' for column 'problem' at row 1
+2021-05-11 17:54:33,922 INFO Error dumps_to_db : 1054 (42S22): Unknown column 'update_time' in 'field list'
+2021-05-11 17:58:11,540 INFO Error dumps_to_db : 1366 (HY000): Incorrect integer value: 'dfghjk' for column 'problem' at row 1
+2021-05-11 18:05:59,543 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '177' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:06:16,833 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '177' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:06:59,360 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '177' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:08:03,376 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '171' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:08:19,699 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '171' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:11:30,352 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '178' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:11:37,614 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '178' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:11:48,701 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '178' for key 'cong_viec_clone.PRIMARY'
+2021-05-11 18:16:44,284 INFO Error dumps_to_db : 1062 (23000): Duplicate entry '179' for key 'cong_viec_clone.PRIMARY'
+2021-06-07 14:03:54,291 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 't_duration' at row 1
+2021-07-24 01:14:43,022 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 't_duration' at row 1
+2021-07-24 01:15:22,962 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 't_duration' at row 1
+2021-07-24 01:15:23,022 INFO Error insert_db api_web_create_task: 1366 (HY000): Incorrect integer value: '' for column 't_duration' at row 1
+2021-07-24 01:17:43,970 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,971 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,971 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,980 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,980 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,980 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,989 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,989 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:43,989 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,070 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,071 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,071 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,077 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,077 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:44,077 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:45,111 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:45,112 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:45,112 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,074 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,074 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,074 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,082 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,082 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:17:46,083 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,470 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,470 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,470 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,475 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,476 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined
+2021-07-24 01:18:01,476 INFO Error info_detail_email load_from_db: name 'MYSQL_EMP_TB' is not defined

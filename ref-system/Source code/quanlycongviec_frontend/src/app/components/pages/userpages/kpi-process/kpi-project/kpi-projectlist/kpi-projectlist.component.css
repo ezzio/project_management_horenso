@@ -1,0 +1,42 @@
+.addjob-btn {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  border-radius: 7px;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 1px solid rgb(213 232 224);
+  color: lightgoldenrodyellow;
+  font-weight: bold;
+  transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
+  cursor: pointer;
+  width: 150px;
+}
+.view {
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*right: 0;*/
+  /*background: rgba(0, 0, 0, 0.4);*/
+  /*width: 100%;*/
+  /*height: 100vh;*/
+  /*overflow: scroll;*/
+  /*padding-top: 65px;*/
+}
+.view-map {
+  /*background: white;*/
+  /*width: 90%;*/
+  /*float: right;*/
+}
+.btn-close {
+  /*position: fixed;*/
+  /*top: 70px;*/
+  background: orange;
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 0.7rem;
+}
+.btn-close:hover {
+  background: white;
+  color: orange;
+}

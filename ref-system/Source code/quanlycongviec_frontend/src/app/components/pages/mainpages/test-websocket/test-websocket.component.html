@@ -1,0 +1,11 @@
+<div class="websocket">
+  <div class="form-inline">
+    <input [(ngModel)]="handle"/>
+    <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && submit($event)"/>
+    <button (click)="submit($event)">Send Message</button>
+  </div>
+  <div>
+    <h5>Chat Log</h5>
+    <div id="chat-box" [innerHtml]="htmlContent"></div>
+  </div>
+</div>

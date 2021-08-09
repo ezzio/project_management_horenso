@@ -1,0 +1,28 @@
+
+.header {
+  margin-left: -30px;
+  background-color: white;
+  border-bottom: 1px solid #efefef;
+  display: flex;
+}
+
+
+.search {
+  display: flex;
+}
+ng-select.custom ::ng-deep .ng-select-container  {
+  border: 1px solid lightgray;
+  min-height: 0px;
+  background: #fff;
+  border-radius: 2rem;
+  width: 625px;
+}
+
+.page {
+  /*overflow: scroll;*/
+  /*height: 100vh;*/
+  padding-top: 1rem;
+}
+.search {
+  margin-bottom: 3rem;
+}

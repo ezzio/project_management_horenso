@@ -1,0 +1,9 @@
+<div class="sample-container">
+  <div class="default-section">
+    <quill-editor [modules]="editorModules" [(ngModel)]="content"
+                  [placeholder]="'Nhập nội dung và hình ảnh tại đây'"
+                  (ngModelChange)="this.modelChanged.next($event)"
+    ></quill-editor>
+  </div>
+<!--  <button class="btn btn-addform" (click)="save()">Lưu văn bản</button>-->
+</div>

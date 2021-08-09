@@ -1,0 +1,197 @@
+<header *ngIf="!mobile" id="header">
+  <div class="container">
+    <div [@slideInOut]="accMenuState" class="sidenav accSideNav">
+      <a href="javascript:void(0)" class="closebtn" (click)="toggleAccMenu()" style="top:10px;">
+        <mat-icon style="margin-left: 20px; margin-right: 0">arrow_back_ios</mat-icon>
+      </a>
+      <a>
+        <mat-icon>email</mat-icon>
+        {{userEmail}}</a>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="accDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <mat-icon>perm_data_setting</mat-icon>&nbsp;Quyền Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="accDropdown">
+          <a *ngIf="superAdmin && superAdmin !== ''" class="dropdown-item" routerLink="/api/auth/management">
+            Cài đặt Admin
+          </a>
+          <a *ngIf="rightNews?.show" class="dropdown-item" routerLink="/api/auth/adminnews">Admin tin tức</a>
+          <a *ngIf="rightNews?.show" class="dropdown-item" routerLink="/api/auth/adminnoti">Admin Notification</a>
+        </div>
+      </div>
+      <a routerLink="/api/auth/schedule">
+        <mat-icon>calendar_today</mat-icon>&nbsp;Lịch đặt phòng</a>
+      <a routerLink="/api/auth/stream">
+        <mat-icon>call</mat-icon>
+        Kết nối</a>
+      <a (click)="logout()" href="javascript:void(0)">
+        <mat-icon>logout</mat-icon>
+        Log Out</a>
+    </div>
+    <!-- ------------------------ -->
+    <div id="logo">
+<!--      <a routerLink="/api/auth/home" class="img"><img src="assets/images/logo.png" alt="" title=""/></a>-->
+    </div>
+
+    <div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu" id="test">
+          <li class="nav-item" id="noti">
+            <a class="nav-link" (click)="getNotify()" href="javascript:void(0)">{{userMail}}</a>
+            <div *ngIf="lengthNoti > 0" class="noidung">
+              <div *ngFor="let n of dataNoti" (click)="updateSta(n.id)">
+                {{n.title}}
+              </div>
+            </div>
+            <div *ngIf="lengthNoti > 0" class="notisum">{{lengthNoti}}</div>
+          </li>
+<!--          <div class="position">-->
+<!--            dsfa-->
+<!--          </div>-->
+          <li class="nav-item"><a class="nav-link" (click)="logout()" href="javascript:void(0)">
+            <mat-icon>logout</mat-icon>
+            Đăng xuất</a>
+          </li>
+<!--          <li class="nav-item">-->
+<!--            <app-noti-template></app-noti-template>-->
+<!--          </li>-->
+<!--          <li class="nav-item dropdown dropdown2 nav-username">-->
+<!--            <mat-icon>person</mat-icon>-->
+<!--            <a class="nav-link dropdown-toggle" id="navbarDropdown6" role="button" data-toggle="dropdown"-->
+<!--               aria-haspopup="true" aria-expanded="false" routerLink="/api/auth/accountuser/profile">-->
+<!--              {{userName}}-->
+<!--            </a>-->
+<!--            <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown6">-->
+<!--              <a class="dropdown-item" routerLink="/api/auth/accountuser/profile">{{userEmail}}</a>-->
+<!--              <a class="dropdown-item" routerLink="/api/auth/accountuser/profile">Đặt lịch</a>-->
+<!--              <a class="dropdown-item" routerLink="/api/auth/accountuser/profile">Kết nối</a>-->
+<!--              &lt;!&ndash;              <a class="dropdown-item" routerLink="/api/auth/accountuser/kpi/task/list/1">Kpi</a>&ndash;&gt;-->
+<!--              <a class="dropdown-item" routerLink="/api/auth/accountuser/admin/adminnews">Quyền Admin</a>-->
+<!--              <a class="dropdown-item" (click)="logout()" href="javascript:void(0)">-->
+<!--                <mat-icon>logout</mat-icon>-->
+<!--                Đăng xuất-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </li>-->
+          <li class="lgMenu" id="lgMenu" (click)="toggleMenu()">&#9776;</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header><!-- #header -->
+
+<!-- Side Navigation Div -->
+<div class="sidenav" [@slideInOut]="menuState">
+  <div class="side-item-content">
+    <div class="side_item row side_item-first">
+      <a class="col-1" (click)="toggleMenu()" matRipple><i class="fa fa-times"></i></a>
+      <a class="col-4" style="cursor:pointer" routerLink="/api/auth/accountuser/profile">
+        <mat-icon>person</mat-icon>
+        {{userName}}</a>
+      <a class="col-3" routerLink="/api/auth/download">
+        <mat-icon>file_download</mat-icon>
+        Tải ứng dụng</a>
+      <a class="col-3" (click)="logout()" href="javascript:void(0)">
+        <mat-icon>logout</mat-icon>
+        Logout</a>
+    </div>
+    <mat-drawer-container class="user-container">
+      <mat-drawer #drawer class="user-container-inner" mode="over" position="end">
+        <div class="back-btn" (click)="drawer.toggle()">
+          <a>
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </a>
+        </div>
+        <div class="user-content">
+          <a id="profile" class="is-active" routerLink="/api/auth/accountuser/profile" matRipple>
+            <i class="fa fa-plus-square"></i> Tổng quan</a>
+          <a id="schedule" class="" routerLink="/api/auth/accountuser/profile" matRipple>
+            <i class="fa fa-list-alt"></i> Đặt lịch</a>
+          <a id="stream" class="" routerLink="/api/auth/accountuser/profile" matRipple>
+            <i class="fa fa-phone"></i> Kết nối</a>
+          <!--            <a id="kpi" class="" routerLink="/api/auth/accountuser/kpi/task/list" matRipple>-->
+          <!--              <i class="fa fa-list-ul"></i> KPI</a>-->
+          <a *ngIf="rightNews?.show" routerLink="/api/auth/accountuser/admin/adminnews" matRipple>
+            <i class="fa fa-newspaper-o"></i> Admin tin tức</a>
+          <a *ngIf="rightNews?.show" routerLink="/api/auth/accountuser/admin/adminnoti" matRipple>
+            <i class="fa fa-commenting-o"></i> Admin Notification</a>
+          <a *ngIf="superAdmin && superAdmin !== ''" routerLink="/api/auth/accountuser/admin/management" matRipple>
+            <i class="fa fa-sliders"></i> Cài đặt quyền Admin</a>
+        </div>
+      </mat-drawer>
+      <div class="side-item user-item" (click)="drawer.toggle()" matRipple>
+        <p class="side-item-title">Thông tin cá nhân</p>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title"></p>
+        <div class="side-item-1">
+          <a routerLink="/api/auth/accountuser/kpi/board">
+            <img src="assets/images/kpi.jpg" width="30%"/>Giao việc</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title"></p>
+        <div class="side-item-1">
+          <a routerLink="/api/auth/xecaitien">
+            <img src="assets/images/logoxct.PNG" width="30%"/>Xe cải tiến</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title">Tiện ích hành chính</p>
+        <div class="side-item-1">
+          <a *ngIf="rightCheckin?.show" routerLink="/api/auth/hanhchinh/diemdanh">
+            <img src="assets/images/qlddicon.svg"/>Quản lý điểm danh</a>
+          <a *ngIf="rightTicket?.show" routerLink="/api/auth/hanhchinh/tbvp/leader">
+            <img src="assets/images/ticketicon.svg"/>Ticket</a>
+          <a routerLink="/api/auth/adminpunish">
+            <img src="assets/images/kpiadmin.svg"/>Ghi nhận KPI admin</a>
+          <a *ngIf="rightAtld?.show" routerLink="/api/auth/hanhchinh/atld">
+            <img src="assets/images/atldongicon.svg"/>An toàn lao động</a>
+          <a *ngIf="rightCheckin?.show" routerLink="/api/auth/hanhchinh/ngaycong">
+            <img src="assets/images/qlncicon.svg"/>Quản lý ngày công</a>
+          <a *ngIf="rightCheckin?.show" routerLink="/api/auth/hanhchinh/toado">
+            <img src="assets/images/checkiicon.svg"/>Tracking</a>
+          <a *ngIf="rightCheckin?.show" routerLink="/api/auth/hanhchinh/distance">
+            <img src="assets/images/checkiicon.svg"/>Displacement</a>
+          <a routerLink="/api/auth/truyenthong/quanlykhaibaoyte/general">
+            <img src="assets/images/qlddicon.svg"/>Khai báo y tế</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title">Tiện ích nhân sự</p>
+        <div class="side-item-1 row">
+          <a *ngIf="rightEmp?.show" routerLink="/api/auth/tins/emp">
+            <img src="assets/images/hscaicon.svg"/>Hồ sơ cá nhân</a>
+          <a *ngIf="rightEmp?.show" routerLink="/api/auth/tins/location">
+            <img src="assets/images/kbddicon.svg"/>Khai báo điểm danh</a>
+          <a *ngIf="rightLuong?.show" routerLink="/api/auth/luong">
+            <img src="assets/images/salaryicon.svg"/>Quản lý lương</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title">Tuyển dụng</p>
+        <div class="side-item-1 row">
+          <a *ngIf="rightCareer?.show" routerLink="/api/auth/tuyendung/career/general">
+            <img src="assets/images/qluvicon.svg"/>Quản lý ứng viên</a>
+          <a *ngIf="isNgPv === '1'" routerLink="/api/auth/tuyendung/recruiter">
+            <img src="assets/images/dguvicon.svg"/>Đánh giá ứng viên</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <p class="side-item-title">Game</p>
+        <div class="side-item-1">
+          <a routerLink="/api/auth/game/gameplay">
+            <img src="assets/images/gameicon.svg"/>Play game</a>
+          <a routerLink="/api/auth/game/gameinfo">
+            <img src="assets/images/gameicon2.svg"/>Quản lý thông tin</a>
+          <a routerLink="/api/auth/game/admingamedhbc">
+            <img src="assets/images/gameicon2.svg"/>Đuổi hình bắt chữ</a>
+          <a routerLink="/api/auth/game/admingameqs">
+            <img src="assets/images/gameicon2.svg"/>Quay số</a>
+        </div>
+      </div>
+    </mat-drawer-container>
+  </div>
+</div>

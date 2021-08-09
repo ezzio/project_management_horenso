@@ -1,0 +1,34 @@
+<form class="form-inline" [ngClass]="customForm">
+  <div class="form-group" [ngClass]="styleForm">
+    <div class="input-group" [ngClass]="styleInputGroup">
+      <input class="form-control" placeholder="{{placeholder}}"
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+             [positionTarget]="buttonEl"
+             (ngModelChange)="sendMessage($event)"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             [ngModelOptions]="{standalone: true}"
+             [ngClass]="styleInput"
+             [required]="required"
+             datepicker-append-to-body="true"
+             [disabled]="isDisabled"
+             appDate
+             readonly>
+      <div class="input-group-append">
+        <button #buttonEl class="btn btn-outline-secondary calendar" [ngClass]="styleBtn" (click)="d.toggle()"
+                type="button">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isTime">
+    <div class="ngx-timepicker-field-example">
+      <ngx-timepicker-field [format]="24" [defaultTime]="valueTime"
+                            [controlOnly]="true"
+                            (timeChanged)="receiveTime($event)"
+                            [disabled]="isDisabled"
+      ></ngx-timepicker-field>
+    </div>
+  </div>
+</form>

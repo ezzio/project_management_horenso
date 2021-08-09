@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h5>{{title}}</h5>
+</div>
+<div class="modal-body">
+  <p>Thời gian bắt đầu: {{objCurrent.t_assigned}}</p>
+  <div *ngIf="!isTexted">
+    <div *ngIf="typeTask === '1'">
+      <label>Gộp vào dự án</label>
+      <ng-select
+        class="custom"
+        bindLabel="name"
+        appendTo="body"
+        [(ngModel)]="project" [multiple]="false"
+        [items]="projectList"
+        [closeOnSelect]="false">
+        <ng-template ng-option-tmp let-item="item" let-item$="item$">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" [ngModel]="item$.selected"
+                   class="custom-control-input"/>
+            <label class="form-check-label ml-2 custom-control-label">
+              {{item.title}} - {{item.title_root}}</label>
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <div class="ng-value">
+            <span class="ng-value-label">{{item.title}}</span>
+          </div>
+        </ng-template>
+      </ng-select>
+    </div>
+    <app-form-create (dataEvent)="dataEvent($event)"
+                     (closeEvent)="closeEvent($event)"
+                     [formConfig]="formConfig"
+                     [element]="objCurrent"
+                     [buttonName]="'Lưu'"
+                     [customField]="'form_field_create_project'"
+                     [formLabel]="'label_create_task'"
+                     [validFormLabel]="'valid_label_create_task'"
+                     [customFormDateTime]="'date_time_create_project'"
+                     [customButton]="'btn-create-task'"
+    ></app-form-create>
+  </div>
+  <div *ngIf="isTexted" class="taskinfo">
+    <div *ngFor="let config of formConfig.columns" class="taskinfo-inner">
+      <div *ngIf="config.type !== 'slider' && config.type !== 'radio' && config['dataField'] !== 'weight'">
+        <label class="text-label">{{config.title}}</label>
+        <p>{{objCurrent[config['dataField']]}}</p>
+      </div>
+      <div *ngIf="config.type === 'slider'">
+        <label class="text-label">{{config.title}}</label><br>
+        <mat-slider class="slider"
+                    thumbLabel
+                    [(ngModel)]="objCurrent.weight">
+        </mat-slider>
+      </div>
+      <div *ngIf="config.type === 'radio'">
+        <label class="text-label">{{config.title}}</label>
+        <div class="level-label level-{{objCurrent.priority}}">{{objCurrent.priority}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isTexted" class="modal-footer">
+  <button class="btn btn-outline-dark" (click)="showConversation()">Hộp thoại báo cáo tiến độ</button>
+  <button class="btn btn-outline-warning" (click)="activeModal.close()">Thoát</button>
+</div>

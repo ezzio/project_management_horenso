@@ -1,0 +1,47 @@
+@keyframes dropAnimation {
+  from   {margin-top:5rem}
+  to  {margin-top:8rem}
+}
+
+.single-menu {
+  margin-top: 8rem;
+  margin-right: 34%;
+  margin-left: 34%;
+  text-align: center;
+  display: block;
+  animation-name: dropAnimation;
+  animation-duration: 1s;
+}
+
+.menu-header {
+  font-size: 1.8rem;
+}
+
+hr {
+  position: relative;
+  width: 8rem;
+  border-top: solid 1px;
+  margin: .5rem auto 3rem;
+}
+
+.menu-item {
+  width: 25rem;
+  height: 4.5rem;
+  border-radius: 1rem;
+  background: white;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px #737373;
+}
+
+img {
+  width: 2rem;
+  height: 2rem;
+  float: right;
+}
+
+.menu-item:hover {
+  background: rgb(255, 146, 52);
+  transition: 0.5s;
+  cursor:pointer;
+}

@@ -1,0 +1,49 @@
+<label [ngStyle]="{'color': colorText}" *ngIf="title">{{title}} </label>
+<ng-select [ngClass]="[customSelect, defaultSelect]"
+           appendTo="body"
+           placeholder="{{placeholder}}"
+           [disabled]="disabled"
+           [(ngModel)]="element" [multiple]="multiple"
+           (ngModelChange)="dtEvent(strElement, $event)"
+           [searchFn]="keyList && keyList === 'emailPB' ? customSearchFn: null"
+           [items]="elementList"
+           [closeOnSelect]="false">
+  <ng-template ng-header-tmp>
+    <div *ngIf="multiple">
+      <button class="btn btn-link"
+              (click)="onSelectAll(strElement)">Tất cả</button>
+      <button class="btn btn-link"
+              (click)="onClearAll(strElement)">Bỏ chọn</button>
+    </div>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index" let-item$="item$">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" [ngModel]="item$.selected"
+             class="custom-control-input"/>
+      <label *ngIf="!keyList" [ngClass]="customControlLabel"
+             class="form-check-label ml-2 custom-control-label">{{item}}</label>
+      <label *ngIf="keyList && keyList !== 'emailPB'" [ngClass]="customControlLabel"
+             class="form-check-label ml-2 custom-control-label">{{item[keyList]}}</label>
+      <label *ngIf="keyList === 'emailPB'" [ngClass]="customControlLabel"
+             class="form-check-label ml-2 custom-control-label">{{item.emp_name}}<br><span style="color: lightgray">{{item.email}}</span> </label>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="multiple" ng-multi-label-tmp let-items="items" let-clear="clear">
+    <div class="ng-value" *ngIf="items.length > 0">
+      <span class="ng-value-label">{{items.length}} được chọn...</span>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="!multiple && keyList !== 'emailPB'" ng-label-tmp let-item="item" let-clear="clear">
+    <div class="ng-value">
+      <span class="ng-value-label">{{item}}</span>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="!multiple && keyList === 'emailPB'" ng-label-tmp let-item="item" let-clear="clear">
+    <div class="ng-value">
+      <span class="ng-value-label">{{item.emp_name}} - {{item.email}}</span>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="!multiple && keyList === 'emailPB'" ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+    <span >{{item.emp_name}} - {{item.email}}</span>
+  </ng-template>
+</ng-select>

@@ -1,0 +1,265 @@
+body {
+  margin: 10px;
+}
+.wrapper {
+  display: flex;
+  width: 100%;
+  /*align-items: stretch;*/
+  /*min-height: 100vh;*/
+}
+
+.container {
+  /*margin-right:  40px;*/
+}
+
+.card-header {
+  text-align: center;
+}
+
+h4 {
+  padding: 20px;
+}
+/*.btn-addform {*/
+/*  background-image: linear-gradient(to right bottom, skyblue, darkblue);*/
+/*  color: white;*/
+/*  float: right;*/
+/*}*/
+.btn-open {
+  float: right;
+  background-color: #000;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-submit {
+  /*float: right;*/
+  background-color: #168ba5;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-editform {
+  background: #814686;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-success {
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-filter{
+  float: right;
+  background-color: hsl(203, 80%, 87%);
+  color: #8c7a7e;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-cancel {
+  float: right;
+  background-color: #f57c42;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-reset {
+  float: right;
+  background-color: #000;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-share {
+  background-color: #2196F3;
+  color: white;
+  box-shadow: 0px 5px 10px #bababa;
+}
+.btn-back {
+  float: right;
+  color: white;
+  margin: 1rem;
+  background: #8cb0b9;
+  box-shadow: 0 5px 5px #bfbfbf;
+  border-radius: 1rem;
+}
+.btn-exp {
+  float: right;
+  background-image: linear-gradient(to right bottom, lightcoral, orangered);
+  color: white;
+}
+
+.btn-openForm {
+  border: solid 1px darkblue;
+  width: 300px;
+}
+.btn-updata {
+  float: right;
+  background-image: linear-gradient(to right bottom, skyblue, darkblue);
+  color: white;
+}
+.btn-remove {
+  float: right;
+  background-image: linear-gradient(to right bottom, indianred, darkred);
+  color: white;
+  margin-right: 5px;
+}
+.btn-addform {
+  background: #83a097;
+  color: white;
+  margin: 10px;
+  box-shadow: 0px 5px 10px #bababa;
+}
+
+.btn:hover {
+  transform: scale(1.1, 1.1);
+  transition: all 0.3s;
+  color: #fff;
+}
+.btn-note {
+  border: solid 1px red;
+}
+.btn-logout {
+  background: #f57c42;
+  color: white;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+div {
+  font-family: 'Be Vietnam', sans-serif;;
+}
+.left-side {
+  /*background-image: linear-gradient(to right bottom, rgba(220,220,220, 0.4), rgba(192,192,192,0.4));*/
+  float: left;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.right-side {
+  /*background-image: linear-gradient(to right bottom, rgba(220,220,220, 0.4), rgba(192,192,192,0.4));*/
+  float: right;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+label {
+  color: #000;
+  font-weight: bold;
+}
+.custom-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.custom-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: gray;
+}
+
+/* On mouse-over, add a grey background color */
+.custom-check:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom-check input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.custom-check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+th[sortable] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+th[sortable].desc:before, th[sortable].asc:before {
+  content: '';
+  display: block;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAmxJREFUeAHtmksrRVEUx72fH8CIGQNJkpGUUmakDEiZSJRIZsRQmCkTJRmZmJgQE0kpX0D5DJKJgff7v+ru2u3O3vvc67TOvsdatdrnnP1Y///v7HvvubdbUiIhBISAEBACQkAICAEhIAQ4CXSh2DnyDfmCPEG2Iv9F9MPlM/LHyAecdyMzHYNwR3fdNK/OH9HXl1UCozD24TCvILxizEDWIEzA0FcM8woCgRrJCoS5PIwrANQSMAJX1LEI9bqpQo4JYNFFKRSvIgsxHDVnqZgIkPnNBM0rIGtYk9YOOsqgbgepRCfdbmFtqhFkVEDVPjJp0+Z6e6hRHhqBKgg6ZDCvYBygVmUoEGoh5JTRvIJwhJo1aUOoh4CLPMyvxxi7EWOMgnCGsXXI1GIXlZUYX7ucU+kbR8NW8lh3O7cue0Pk32MKndfUxQFAwxdirk3fHappAnc0oqDPzDfGTBrCfHP04dM4oTV8cxr0SVzH9FF07xD3ib6xCDE+M+aUcVygtWzzbtGX2rPBrEUYfecfQkaFzYi6HjVnGBdtL7epqAlc1+jRdAap74RrnPc4BCijttY2tRcdN0g17w7HqZrXhdJTYAuS3hd8z+vKgK3V1zWPae0mZDMykadBn1hTQBLnZNwVrJpSe/NwEeDsEwCctEOsJTsgxLvCqUl2ACftEGvJDgjxrnBqkh3ASTvEWrIDQrwrnJpkB3DSDrGW7IAQ7wqnJtkBnLRztejXXVu4+mxz/nQ9jR1w5VB86ejLTFcnnDwhzV+F6T+CHZlx6THSjn76eyyBIOPHyDakhBAQAkJACAgBISAEhIAQYCLwC8JxpAmsEGt6AAAAAElFTkSuQmCC') no-repeat;
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+  float: left;
+  margin-left: -22px;
+}
+
+th[sortable].desc:before {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+}
+
+a:hover {
+  cursor:pointer
+}
+.modal-dialog .modal-content {
+  border-radius: 20px;
+}
+.modal-dialog .modal-header {
+  border-radius: 20px 20px 0 0;
+}
+.modal {
+  /*position: absolute;*/
+  /*top: 20%;*/
+  /*left: 20%;*/
+}
+@media only screen and (max-width: 767px){
+  .side-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .side-content > a {
+    width: 50%;
+    font-size: 0.65rem;
+  }
+}

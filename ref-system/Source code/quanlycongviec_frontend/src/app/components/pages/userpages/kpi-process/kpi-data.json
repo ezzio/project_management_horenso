@@ -1,0 +1,56 @@
+[
+  {
+    "name":"App IOS", "type": "CHƯA LÀM",
+    "content":"Nội dung App IOS", "author": "Khoa",
+    "progress": "75", "level":"3",
+    "time_start": "none", "time_end": "none"
+  },
+  {
+    "name":"App 2", "type": "CHƯA LÀM",
+    "content":"Nội dung App 2", "author": "Tường",
+    "progress": "75", "level":"2",
+    "time_start": "none", "time_end": "none"
+  },
+  {
+    "name":"Design", "type": "CHƯA LÀM",
+    "content":"Nội dung Design", "author": "none",
+    "progress": "75", "level":"1",
+    "time_start": "none", "time_end": "none"
+  },
+  {
+    "name":"App", "type": "ĐANG LÀM",
+    "content":"Nội dung App", "author": "Khoa",
+    "progress": "75", "level":"3",
+    "time_start": "8:00", "time_end": "9:00"
+  },
+  {
+    "name":"Web", "type": "ĐANG LÀM",
+    "content":"Nội dung Web", "author": "Linh",
+    "progress": "75", "level":"2",
+    "time_start": "9:00", "time_end": "10:00"
+  },
+  {
+    "name":"Test", "type": "ĐANG LÀM",
+    "content":"Nội dung Test", "author": "Thy",
+    "progress": "75", "level":"1",
+    "time_start": "13:30", "time_end": "17:30"
+  },
+  {
+    "name":"Game", "type": "ĐÃ LÀM",
+    "content":"Nội dung Test", "author": "Ngọc, Toni, Linh",
+    "progress": "75", "level":"1",
+    "time_start": "13:30", "time_end": "17:30"
+  },
+  {
+    "name":"Chấm công", "type": "ĐÃ LÀM",
+    "content":"Tool chấm công", "author": "Ngọc, Toni, Khoa",
+    "progress": "75", "level":"2",
+    "time_start": "8:00", "time_end": "17:30"
+  },
+  {
+    "name":"Test 2", "type": "ĐÃ LÀM",
+    "content":"Nội dung Test 2", "author": "Ngọc, Toni, Linh, Khoa",
+    "progress": "75", "level":"3",
+    "time_start": "10:00", "time_end": "17:30"
+  }
+]

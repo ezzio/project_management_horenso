@@ -1,0 +1,168 @@
+<div id="largescreen">
+  <div class="view">
+    <div *ngIf="tableContentResult">
+      <div class="table-scroll" [ngClass]="heightTable">
+        <table class="main-table" [ngClass]="colorText">
+          <thead>
+          <tr>
+            <th scope="col" *ngIf="editOrNot" [ngClass]="['sticky-col', 'first-col']">Edit</th>
+            <th scope="col" *ngIf="!editOrNot && isSuperAdmin" [ngClass]="['sticky-col', 'first-col']">Edit</th>
+            <th scope="col" *ngIf="postOrNot">Hiệu lực</th>
+            <th scope="col" *ngIf="deleteOrNot" [ngClass]="classOfDelete">Xoá</th>
+            <th scope="col" *ngIf="!deleteOrNot && isSuperAdmin" [ngClass]="classOfDelete">Xoá</th>
+            <th scope="col" *ngIf="plusButton"></th>
+            <th scope="col" *ngIf="plusButton"></th>
+            <th scope="col" *ngFor="let columnHead of tableConfigResult.columns" [ngClass]="columnHead['nameClass']">
+              {{ columnHead.title }}</th>
+            <th scope="col" *ngIf="uploadImg">Upload hình </th>
+            <th scope="col" *ngIf="okTicket">Duyệt đơn</th>
+            <th scope="col" *ngIf="cancelTicket">Huỷ đơn</th>
+            <th scope="col" *ngIf="buttonTicket">Chi tiết</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let columnData of tableContentResult | paginate: { itemsPerPage: itemsPerPage, currentPage: pResult }; let i = index; trackBy: trackByFn">
+            <td *ngIf="editOrNot" [ngClass]="['sticky-col', 'first-col']">
+              <a (click)="functionEdit(columnData, i)"><i class="fa fa-edit"></i></a>
+            </td>
+            <td *ngIf="!editOrNot && isSuperAdmin" [ngClass]="['sticky-col', 'first-col']"></td>
+            <td *ngIf="postOrNot" [ngClass]="columnData.hieu_luc === 1 ? 'red' : 'white'">
+              <a (click)="changeHieuLuc(columnData)"><i class="fa fa-eye"></i></a></td>
+            <td *ngIf="deleteOrNot" [ngClass]="classOfDelete">
+              <a (click)="functionDelete(columnData)"><i class="fa fa-trash"></i></a>
+            </td>
+            <td *ngIf="!deleteOrNot && isSuperAdmin" [ngClass]="classOfDelete"></td>
+            <td *ngIf="plusButton"><a (click)="functionEdit(columnData)"><i class="fa fa-plus-circle"></i></a></td>
+            <td *ngIf="plusButton"><a *ngIf="columnData?.donvi !== ''" (click)="removeItem(columnData)"><i
+              class="fa fa-close"></i></a></td>
+            <td *ngFor="let columnHead of tableConfigResult.columns" [ngClass]="columnHead['nameClass']">
+              <div *ngIf="columnHead['linkTo']">
+                <a style="color: green" routerLink="{{columnHead['linkTo']}}/{{columnData[columnHead['dataField']]}}">
+                  {{columnData[columnHead['dataField']]}}
+                </a>
+              </div>
+              <div *ngIf="columnHead['openDetail']">
+                <a style="color: red" (click)="openDetail(columnData, columnHead['dataField'], columnHead['openDetail'])">
+                  <i class="fa fa-pencil-square-o"></i>
+                </a>
+                {{columnData[columnHead['dataField']]}}
+              </div>
+              <div *ngIf="columnHead['openCV']" class="content-id">
+                <a (click)="openCV(columnData, columnHead['openCV'])">
+                  {{columnData[columnHead['dataField']]}}
+                </a>
+              </div>
+              <div *ngIf="columnHead['changeColor'] && columnData[columnHead['dataField']] === 'Đạt'"
+                   style="color: green">
+                <i class="fa fa-check-circle"></i>
+                {{columnData[columnHead['dataField']]}}
+              </div>
+              <div *ngIf="columnHead['changeColor'] && columnData[columnHead['dataField']] === 'Không Đạt'"
+                   style="color: gray">
+                <i class="fa fa-check-circle"></i>
+                {{columnData[columnHead['dataField']]}}
+              </div>
+              <div *ngIf="columnHead['sendMail']">
+                <a (click)="sendMail(columnData, columnHead['sendMail'])"><i class="fa fa-send-o" style="cursor: pointer"></i></a>
+              </div>
+<!--              <div *ngIf="columnHead['formatDate']">-->
+<!--                {{columnData[columnHead['dataField']] | date: columnHead['formatDate']}}</div>-->
+              <div *ngIf="columnHead['formatCurrency']">
+                {{columnData[columnHead['dataField']] | currency: columnHead['formatCurrency']}}</div>
+              <div *ngIf="columnHead['linkDownload'] === 'img'">
+                <a [href]="urlPath + columnData[columnHead['dataField']]">{{columnData[columnHead['dataField']]}}</a>
+              </div>
+              <div *ngIf="columnHead['linkDownload'] === 'file' && columnData[columnHead['dataField']] !== ''">
+                <a [href]="urlFilePath + columnData[columnHead['dataField']]">File đính kèm</a>
+              </div>
+              <div *ngIf="columnHead['openButton']" (click)="openInfo(columnData)">
+                <span style="color: red !important; cursor: pointer">{{columnData[columnHead['dataField']]}}</span></div>
+              <div *ngIf="columnHead['selectParent']">
+                  <ng-select appendTo="body"
+                             [(ngModel)]="columnData[columnHead['dataField']]">
+                    <ng-option *ngFor="let p of parentDepartList" [value]="p">{{p}}</ng-option>
+                  </ng-select>
+              </div>
+              <div *ngIf="columnHead['selectThuctap']">
+                <ng-select appendTo="body"
+                           [(ngModel)]="columnData[columnHead['dataField']]">
+                  <ng-option [value]="1">Thực tập</ng-option>
+                  <ng-option [value]="0">Nhân viên</ng-option>
+                </ng-select>
+              </div>
+              <div *ngIf="columnHead['checkbox']">
+                <input type="checkbox" [(ngModel)]="columnData[columnHead['dataField']]" (change)="checkEvent(columnData, $event)"/>
+              </div>
+              <div *ngIf="!columnHead['linkTo'] && !columnHead['linkDownload'] && !columnHead['formatCurrency']
+                 && !columnHead['openDetail'] && !columnHead['changeColor'] && !columnHead['sendMail'] && !columnHead['openCV']
+                 && !columnHead['checkbox'] && !columnHead['openButton'] && !columnHead['selectParent'] && !columnHead['selectThuctap']" >
+                {{columnData[columnHead['dataField']]}}</div>
+            </td>
+            <td *ngIf="uploadImg">
+              <input type="file" name="file" (change)="upload(columnData, $event)" placeholder="Upload file" /></td>
+            <td *ngIf="okTicket">
+              <a class="btn btn-ok" (click)="sendMailTicket()">Duyệt</a>
+            </td>
+            <td *ngIf="cancelTicket">
+              <a class="btn btn-notok" (click)="sendMailTicket()">Không duyệt</a>
+            </td>
+            <td *ngIf="buttonTicket">
+              <ng-template
+                *ngTemplateOutlet="templateRef; context : {rawData : columnData}">
+              </ng-template>
+              <ng-content select="[btnInfo]"></ng-content>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="tableContentResult === null" style="padding: 20px"><strong>Không tìm thấy thông tin</strong>
+        </div>
+      </div>
+      <div>
+        <pagination-controls *ngIf="isPagination" (pageChange)="pResult = $event"></pagination-controls>
+      </div>
+      <div class="group-button">
+        <button *ngIf="isExport" class="btn btn-exp" (click)="export()">Xuất BC chi tiết</button>
+        <button *ngIf="isExportNV" class="btn btn-submit" (click)="exportNV()">Xuất BC nghiệp vụ</button>
+      </div>
+      <app-spinner-layout></app-spinner-layout>
+    </div>
+  </div>
+</div>
+<div id="smallscreen">
+  <div class="box-layout">
+    <div class="box-body" *ngFor="let el of tableContentResult">
+      <div class="btn-delete" *ngIf="deleteOrNot">
+        <button class="btn btn-outline-dark" (click)="functionDelete(el)">
+          <mat-icon>close</mat-icon></button>
+      </div>
+      <div *ngFor="let config of tableConfigResult.columns">
+        <div *ngIf="config['dataField'] === 'imgUrl'">
+          <img src="{{el.config.imgUrl}}"/>
+        </div>
+        <div *ngIf="!config['openButton'] && !config['checkbox']">
+          {{config['title']}}: {{el[config['dataField']]}}
+        </div>
+        <div *ngIf="config['checkbox']">
+          <label>Chọn ứng viên: </label>
+          <input type="checkbox" [(ngModel)]="el[config['dataField']]" (change)="checkEvent(el, $event)"/>
+        </div>
+        <div *ngIf="config['openDetail']">
+          {{config['title']}}:
+          <a style="color: red" (click)="openDetail(el, config['dataField'], config['openDetail'])">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="buttonTicket">
+        <ng-template
+          *ngTemplateOutlet="templateRef; context : {rawData : el}">
+        </ng-template>
+        <ng-content select="[btnInfo]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>
+
+

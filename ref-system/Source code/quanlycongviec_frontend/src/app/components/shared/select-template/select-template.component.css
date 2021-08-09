@@ -1,0 +1,79 @@
+ng-select.custom-ng ::ng-deep.ng-select-container{
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  background: transparent;
+}
+.customDefault {
+  width: 284px;
+}
+.custom1 {
+  width: 100%;
+}
+.custom105{
+  width: 105px;
+}
+.custom170{
+  width: 170px;
+}
+.custom290{
+  width: 290px;
+}
+.custom400{
+  width: 400px;
+}
+.custom210 {
+  width: 210px;
+}
+.custom230 {
+  width: 230px;
+}
+.btn-link {
+  color: midnightblue;
+}
+.btn-link:hover {
+  color: blue;
+}
+.custom-control-label-80 {
+  font-size: 75%;
+}
+.custom200{
+  width: 200px;
+}
+.ng-select.form_custom .ng-select-container {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  outline: 0;
+  font-size: 1rem;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  height: 24px;
+}
+.ng-select-disabled {
+  background: #dddddd;
+  opacity: 0.4
+}
+
+.form_select_create_task {
+  margin-right: 40px;
+}
+
+.ng-select.form_select_create_task .ng-select-container {
+  color: white;
+  margin-top: 5px;
+  border-bottom: 1px solid white;
+}
+
+.ng-select.form_select_create_task .ng-select-container .ng-value-container .ng-input>input,
+.ng-select.ng-select-single.form_select_create_task .ng-select-container .ng-value-container .ng-value{
+  color: white;
+  font-family: 'Montserrat';
+}
+
+@media only screen and (max-width: 768px) {
+  .ng-select {
+    width: 100%;
+  }
+}

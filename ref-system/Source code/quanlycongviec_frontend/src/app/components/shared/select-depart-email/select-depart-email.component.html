@@ -1,0 +1,26 @@
+<div style="display: flex" class="l-container">
+  <div>
+    <label [ngClass]="formLabel">Phòng ban</label>
+    <select-template
+      [elementList]="childDepartList" [strElement]="'child_depart'"
+      [multiple]="false" (dataEvent)="dt1Event($event)"
+      [defaultSelect]="'form_custom'"
+      [element]="defaultObj.child_depart"
+      [customSelect]="'form_select_create_task custom230'"
+    >
+    </select-template>
+  </div>
+  <div>
+    <label [ngClass]="formLabel">{{title}}</label>
+    <select-template
+                     [elementList]="emailList" [strElement]="'email'"
+                     [multiple]="false" (dataEvent)="dt2Event($event)"
+                     [keyList]="'emailPB'"
+                     [defaultSelect]="'form_custom'"
+                     [element]="defaultObj"
+                     [customSelect]="'form_select_create_task custom400'"
+    ></select-template>
+  </div>
+
+</div>
+

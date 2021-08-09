@@ -1,0 +1,44 @@
+label {
+  color: #000;
+  padding: .2rem 0 0 .5rem;
+}
+
+.card {
+  margin-top: 1rem;
+}
+.btn {
+  /*background: #000;*/
+  box-shadow: 0 5px 10px grey;
+  width: 5em;
+  border-radius: 1rem;
+  float: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.row {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+.row-1{
+  padding-left: 1rem;
+}
+
+ng-select.custom-admin ::ng-deep .ng-select-container  {
+  border: 0;
+  border-bottom: 1px solid #9b9b9b;
+  background: transparent;
+}
+.child-depart {
+  width: 200px;
+}
+.email {
+  width: 300px;
+}
+.type-right {
+  width: 220px;
+}
+input {
+  border-radius: 10px;
+  height: 2rem;
+  border-style: none;
+}

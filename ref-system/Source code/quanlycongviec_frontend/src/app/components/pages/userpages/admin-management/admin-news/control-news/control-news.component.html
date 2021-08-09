@@ -1,0 +1,20 @@
+<div class="content" *ngIf="tableContent">
+    <app-mat-table-template [tableConfig]="tableConfig"
+                            [tableContent]="tableContent"
+                            [editOrNot]="true"
+                            [postOrNot]="true"
+                            [deleteOrNot]="true"
+                            [tableName]="'tin_tuc_tb'"
+                            [keyDelete]="'tin_tuc_id'"
+                            [inputComponent]="inputComponent"
+                            [customStickyClass]="'newsTb'"
+    ></app-mat-table-template>
+</div>
+
+<!--<div>-->
+<!--  <h2>Ảnh bìa</h2>-->
+<!--  <app-table-template [tableConfig]="tableConfigImg"-->
+<!--                      [tableContent]="tableContentImg"-->
+<!--  ></app-table-template>-->
+<!--</div>-->
+

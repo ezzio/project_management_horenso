@@ -1,0 +1,337 @@
+@keyframes dropAnimation {
+  from {margin-top: 5rem}
+  to {margin-top: 7rem}
+}
+.mt-4 {
+  margin-top: 0rem!important;
+}
+
+.home {
+  width: 100%;
+  margin: 7rem 0 0 0;
+  animation-name: dropAnimation;
+  animation-duration: .5s;
+}
+.homeSetup-default{
+  margin: 7rem 0 0 0;
+}
+.homeSetup-snd{
+  margin: 2rem 0 0 0;
+}
+/* Card Styling */
+.card {
+  border: none;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  border-radius: 2rem;
+}
+
+.card-header {
+  padding: 0;
+  background-color: #cccccc;
+  height: 8rem;
+  border-radius: 40px 40px 0 0;
+  border:none;
+  box-shadow: 0 5px 10px grey;
+}
+
+.card-header h3, .left-section-adminnote h3, .left-section-atld h3 {
+  margin-top: 2.7rem;
+  width: 20rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.left-section-adminnote h3 {
+  color: black;
+}
+.left-section-adminnote h3, .left-section-atld h3 {
+  padding-top: 2.7rem;
+  margin-top: 0;
+}
+
+
+.left-section-ptq h3 {
+  margin-top: 2.5rem;
+  border-radius: 2rem;
+  background: #072945;
+  color: #fff;
+  width: 12rem;
+  opacity:1;
+}
+
+.left-section-emp h3 {
+  background: #ebf3f5;
+}
+
+.left-section-salary h3 {
+  margin-top: 2.9rem;
+  background: #dbffdb;
+  width: 12rem;
+}
+.left-section-health h3 {
+  color: white
+  /*margin-top: 2.9rem;*/
+  /*background: #ffd298;*/
+  /*width: 12rem;*/
+}
+
+.card-body-emp, .card-body-ptq, .card-body-salary, .card-body-admin, .card-body-atld, .card-body-adminnote, .card-body-health, .card-body-location,
+.card-body-career, .card-body-game, .card-body-noti{
+  /*padding-top: 1rem;*/
+  /*padding-bottom: 2rem;*/
+  border-radius: 0 0 2rem 2rem;
+  border:none;
+  box-shadow: 0 5px 10px grey;
+  padding: 1rem;
+}
+.card-body-adminnote, .card-body-admin {
+  color: black;
+}
+.card-body-ptq{
+  background: #ececec;
+}
+
+.card-body-emp {
+  background: #ecdcd2;
+  border-radius:0;
+}
+
+.card-body-salary {
+  background: #ecdcd2;
+}
+.card-body-admin{
+  background: #ecdcd2;
+  overflow: scroll;
+}
+.card-body-atld{
+  border-radius: 0;
+  background: #c9dade;
+}
+.card-body-adminnote{
+  padding-top:0;
+  background: #ececec;
+}
+.card-body-health{
+  background: #ecdcd2;
+}
+.card-body-location{
+  background: #ecdcd2;
+}
+.card-body-career{
+  background: #c9dade;
+}
+.card-body-game{
+  background: #c9dade;
+}
+.card-body-noti{
+  background: #c9dade;
+}
+/* Right Section */
+
+.right-section-emp, .right-section-ptq, .right-section-salary, .right-section-admin, .right-section-atld, .right-section-adminnote, .right-section-health, .right-section-location,
+.right-section-career, .right-section-game, .right-section-noti {
+  float: right;
+  width: 26%;
+  height: 100%;
+  border-radius: 0 2rem 0 0;
+}
+
+.right-section-ptq {
+  background: #cebaae;
+}
+
+.right-section-emp {
+  background: #96c1cc;
+}
+
+.right-section-salary {
+  background: #8e686a;
+}
+.right-section-admin {
+  background: #ffd298;
+}
+.right-section-atld {
+  background: #b988bd;
+}
+.right-section-adminnote {
+  background: #ebaf5f;
+}
+.right-section-health {
+  background: #ca7441;
+}
+.right-section-location {
+  background: #ffd298;
+}
+.right-section-career {
+  background: #fdb3a4;
+}
+.right-section-game {
+  background: #fdb3a4;
+}
+.right-section-noti {
+  background: #fdb3a4;
+}
+/* Left Section */
+
+.left-section-emp, .left-section-ptq, .left-section-salary, .left-section-admin, .left-section-atld, .left-section-adminnote, .left-section-health, .left-section-location,
+.left-section-career, .left-section-tbvp, .left-section-game, .left-section-noti {
+  text-align: center;
+  float:left;
+  width: 74%;
+  height: 100%;
+  background-size: initial;
+  background-position: right;
+  background-color: #cccccc;
+  border-radius: 2rem 0 0 0;
+}
+
+.left-section-ptq {
+  background-image: url('src/assets/images/law2.jpg');
+  opacity: .7;
+  background-size: contain;
+}
+
+.left-section-emp {
+  background-image: url('src/assets/images/people.png');
+  background-size: cover;
+}
+
+.left-section-salary {
+  background-image: url('src/assets/images/salary.jpg');
+  background-size: contain;
+}
+.left-section-admin {
+  background-image: url('src/assets/images/admin.jpg');
+  background-size: contain;
+}
+.left-section-atld {
+  /*background-image: url('src/assets/images/atld.jpg');*/
+  background-size: contain;
+  background: #1e8cde;
+}
+.left-section-adminnote {
+  /*background-image: url('src/assets/images/mistake.jpeg');*/
+  background-size: cover;
+  background: #07a9b354;
+}
+.left-section-health {
+  background-image: url('src/assets/images/health.jpg');
+  background-size: cover;
+}
+/* Item Styling */
+.left-section-location {
+  background-image: url('src/assets/images/location.jpg');
+  background-size: cover;
+}
+.left-section-career {
+  background-image: url('src/assets/images/tuyendung.jpg');
+  background-size: cover;
+}
+.left-section-tbvp {
+  background-image: url('src/assets/images/ticket.jpg');
+  background-size: 40% 100%;
+}
+.left-section-game {
+  background-image: url('src/assets/images/gameinfo.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.left-section-noti {
+  background-image: url('src/assets/images/noti.png');
+  background-size: auto 100%;
+  /*background-repeat: no-repeat;*/
+}
+.item {
+  display: block;
+  padding: 10px;
+  margin: 0.5rem 17% 0rem;
+  text-decoration: none;
+  color: #212529;
+  background: #fff;
+  border-radius: 2rem;
+  width: 10rem;
+  box-shadow: 0 3px 5px #424242;
+}
+
+.item:hover {
+  color: #fff;
+}
+
+.right-section-ptq .item:hover {
+  background: #ca7441;
+}
+
+.right-section-emp .item:hover {
+  background: #a98585;
+}
+
+.right-section-salary .item:hover {
+  background: #707d9e;
+}
+.right-section-admin .item:hover {
+  background: #707d9e;
+}
+.right-section-atld .item:hover {
+  background: #8c7a7e;
+}
+.right-section-adminnote .item:hover {
+  background: #a98585;
+}
+.right-section-health .item:hover {
+  background: #47748b;
+}
+.right-section-location .item:hover {
+  background: #a98585;
+}
+.right-section-career .item:hover {
+  background: #3b5998;
+}
+.right-section-game .item:hover {
+  background: #3b5998;
+}
+.right-section-noti .item:hover {
+  background: #3b5998;
+}
+/* Icon Styling */
+
+.btn-icon {
+  position: relative;
+  top: .2rem;
+  font-size: 1.5rem;
+}
+
+.coin-icon {
+  color: #609661;
+  font-size: 2.1rem;
+  position: absolute;
+}
+
+/* Image Styling*/
+img {
+  height: 5rem;
+  width: 5rem;
+  float: left;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+@media(max-width: 767px) {
+  .item {
+    display: block;
+    padding-top: 2%;
+    margin: 0.5rem 8% 0rem;
+    font-size: 0.7rem;
+    text-decoration: none;
+    color: #212529;
+    background: #fff;
+    border-radius: 1rem;
+    width: 5rem;
+    box-shadow: 0 3px 5px #424242;
+  }
+  .card-header h3{
+    font-size: 1rem;
+  }
+}

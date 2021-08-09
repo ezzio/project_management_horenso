@@ -1,0 +1,71 @@
+<div class="modal-body">
+  <div>
+    <div class="modal-nav">
+      <a class="link-option is-active" id="notproject" (click)="optionEvent(false, $event)">Không thuộc dự án </a>
+      <a class="link-option" id="isproject" (click)="optionEvent(true, $event)">Thuộc dự án</a>
+    </div>
+    <div *ngIf="!hasProject">
+      <app-form-create
+        [customField]="'form_field_create_project'"
+        [formLabel]="'label_create_task'"
+        [validFormLabel]="'valid_label_create_task'"
+        (dataEvent)="dataFreeEvent($event)"
+        (closeEvent)="closeEvent($event)"
+        [formConfig]="formFreeConfig"
+        [element]="elementFree"
+        [customFormDateTime]="'date_time_create_project'"
+        [customButton]="'btn-create-task'"
+      ></app-form-create>
+    </div>
+    <label *ngIf="!isContinue && hasProject" class="label-lg">Tạo công việc từ </label>
+    <div *ngIf="!isContinue && hasProject" class="project">
+      <div *ngFor="let item of projectList">
+        <div id="title-root" class="title-root  plus-icon2" (click)="dropDownTask($event)">
+          <div class="plus-icon">
+            <div class="plus-icon1"></div>
+            <div class="plus-icon1"></div>
+          </div>
+          <span><mat-icon>create</mat-icon>{{item.title}}</span>
+          <a *ngIf="item.permission.includes('add')" (click)="goToContinue(item)"
+          ><mat-icon>add_circle_outline</mat-icon></a>
+        </div>
+        <div class="task" id="taskList">
+          <label *ngFor="let c of item.child" style="display: flex">
+            <div class="task-type">
+              <div class="level-{{c.priority}}"></div>
+            </div>
+            <span style="width: 80%;">{{c.title}}</span>
+            <a (click)="goToContinue(c)"
+            ><mat-icon>add_circle_outline</mat-icon></a>
+          </label>
+        </div>
+      </div>
+<!--      <button class="btn btn-create" (click)="createOther()">-->
+<!--        <mat-icon>library_add</mat-icon>-->
+<!--        Tạo dự án mới-->
+<!--      </button>-->
+    </div>
+  </div>
+  <div *ngIf="isContinue && project" class="form-create-task">
+    <button class="btn btn-back" (click)="isContinue = !isContinue"><mat-icon>arrow_back</mat-icon></button>
+    <p>
+      <span>Dự án: {{project.data_root.title_root}}</span> - <span>Người tạo: {{project.data_root.owner}}</span>
+    </p>
+    <p>
+      <span>Công việc: {{project.title}}</span> -
+      <span>Người tạo: {{project.info_owner.email}}</span>
+    </p>
+    <app-form-create
+      (dataEvent)="dataEvent($event)"
+      (closeEvent)="closeEvent($event)"
+      [formConfig]="formConfig"
+      [element]="element"
+      [customField]="'form_field_create_project'"
+      [formLabel]="'label_create_task'"
+      [validFormLabel]="'valid_label_create_task'"
+      [customFormDateTime]="'date_time_create_project'"
+      [customButton]="'btn-create-task'"
+    >
+    </app-form-create>
+  </div>
+</div>

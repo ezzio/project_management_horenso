@@ -1,0 +1,63 @@
+<div class="post-name" placement="bottom-right"
+     triggers="mouseenter:mouseleave"
+     ngbPopover="Mô tả: {{jobContent.description}}">
+  <div class="post-name-1"
+       (click)="updateBox(jobContent, true)">
+    <div>{{checkLengthTitle(jobContent.title)}}</div>
+    <div *ngIf="jobContent.data_root.title">Dự án: {{checkLengthTitle(jobContent.data_root.title)}}</div>
+  </div>
+  <div class="post-name-2 level-{{jobContent.priority}}">
+    {{jobContent.priority}}
+  </div>
+</div>
+<div class="post-date">
+  <div>Deadline</div>
+  <app-timer-kpi [dataProgress]="jobContent"></app-timer-kpi>
+</div>
+<div class="post-date completion">
+  <div>Tiến độ</div>
+  <app-timer-kpi [progressbarValue]="jobContent.completion"
+                 [dayremain]="jobContent.completion">
+  </app-timer-kpi>
+</div>
+<div class="group-btn">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="jobContent.permission.includes('cancel')"
+            (click)="deleteObj(jobContent)" mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Xóa</span>
+    </button>
+    <button *ngIf="jobContent.permission.includes('add')"
+            (click)="assignTask(jobContent)" mat-menu-item>
+      <mat-icon>add_circle_outline</mat-icon>
+      <span>Giao việc</span>
+    </button>
+    <button *ngIf="jobContent.permission.includes('edit')"
+            (click)="updateBox(jobContent)" mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Cập nhật</span>
+    </button>
+    <button *ngIf="jobContent.permission.includes('review')"
+            (click)="setPoint(jobContent)" mat-menu-item>
+      <mat-icon>chat</mat-icon>
+      <span>Đánh giá</span>
+    </button>
+    <button *ngIf="jobContent.state === 1"
+            (click)="openDialog(jobContent)" mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Cập nhật tiến độ</span>
+    </button>
+    <button (click)="openConversation(jobContent)" mat-menu-item>
+      <mat-icon>supervised_user_circle</mat-icon>
+      <span>Báo cáo</span>
+    </button>
+  </mat-menu>
+</div>
+<button *ngIf="(jobContent.state !== 3) && (jobContent.state !== 2)" class="change-state-btn"
+        matRipple (click)="btnMobile()">
+  <mat-icon>keyboard_arrow_down</mat-icon>
+</button>
+

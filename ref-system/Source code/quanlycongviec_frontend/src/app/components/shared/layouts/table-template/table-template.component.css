@@ -1,0 +1,301 @@
+.second-col {
+  width: 50px;
+  min-width:50px;
+  max-width: 50px;
+  left: 50px;
+}
+.third-col {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  left: 100px;
+}
+.forth-col {
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
+  left: 220px;
+}
+.second-col-nonefrt {
+  width: 260px;
+  min-width:260px;
+  max-width: 260px;
+  left: 0px;
+}
+.third-col-nonefrt {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 260px;
+}
+.forth-col-nonefrt {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 410px;
+}
+.third-col-admin {
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  left: 330px;
+}
+.forth-col-admin {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  left: 220px;
+}
+
+.second2-col {
+  width: 70px;
+  min-width:70px;
+  max-width: 70px;
+  left: 50px;
+}
+.third2-col {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  left: 120px;
+}
+.forth2-col {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  left: 220px;
+}
+.second-col-nonefrt-code{
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+  left: 0px;
+}
+.third-col-nonefrt-code {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  left: 160px;
+}
+.forth-col-nonefrt-code {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 280px;
+}
+.red {
+  color: blue;
+}
+.white {
+  color: grey;
+}
+.table-scroll {
+  position: relative;
+  width:100%;
+  /*z-index: 1;*/
+  margin: auto;
+  overflow: auto;
+  /*height: 400px;*/
+}
+.table-scroll table {
+  width: 100%;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table-scroll table.white {
+  color: white;
+}
+.table-scroll table.white tr:hover {
+  color: black;
+}
+.table-wrap {
+  position: relative;
+}
+.table-scroll th,
+.table-scroll td {
+  padding: 5px 10px;
+  border: 1px solid #f8f8f8;
+  /*background: #fff;*/
+  vertical-align: top;
+}
+.table-scroll thead th {
+  background: #5d5d5d;
+  color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+a:focus {
+  background: red;
+} /* testing links*/
+
+th:first-child, td:first-child {
+  left: 0;
+}
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: rgb(162, 162, 162);
+  color: white;
+  z-index: 2;
+}
+
+thead th.sticky-col{
+  z-index: 5;
+}
+tr:hover {background-color:#f5f5f5;}
+
+.xephangTb:nth-child(2){
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  left: 50px;
+}
+.xephangTb:nth-child(3) {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  left: 150px;
+}
+.xephangTb:nth-child(4) {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  left: 250px;
+}
+.btn-ok {
+  background: green;
+  color: white;
+}
+.btn-ok:hover {
+  background: white;
+  border: 1px solid green;
+  color: green;
+}
+.btn-notok {
+  background: #8c7a7e;
+  color: white
+}
+.btn-notok:hover {
+  background: white;
+  border: 1px solid #8c7a7e;
+  color: #8c7a7e;
+}
+.wrap-text {
+  word-break: break-all;
+}
+.w-250 {
+  width: 250px !important;
+}
+.w-400 {
+  width: 400px !important;
+}
+th.sticky-row {
+  position: -webkit-sticky;
+  position: sticky;
+}
+.h-580 {
+  height: 580px;
+  overflow: scroll;
+}
+
+.box-body {
+  border: 1px solid lightgray;
+  box-shadow: 1px 2px 5px lightgray;
+}
+.box-layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+.box-layout > div {
+  width: 23%;
+  padding: 2rem;
+  margin: 1rem;
+  word-break: break-word;
+  font-size: 0.8rem;
+}
+.btn-delete {
+  position: relative;
+  top: -3rem;
+  left: 10rem;
+}
+.btn-delete button {
+  background: white;
+}
+.btn-delete button:hover {
+  background: black;
+  color: white;
+}
+@media only screen and (max-width: 768px){
+  .box-layout > div {
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem;
+    word-break: break-word;
+    font-size: 0.8rem;
+  }
+}
+/*****************/
+.box-body {
+  border: 1px solid lightgray;
+  box-shadow: 1px 2px 5px lightgray;
+}
+.box-layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+.box-layout > div {
+  width: 23%;
+  padding: 2rem;
+  margin: 1rem;
+  word-break: break-word;
+  font-size: 0.8rem;
+}
+.btn-delete {
+  position: relative;
+  top: -3rem;
+  left: 10rem;
+}
+.btn-delete button {
+  background: white;
+}
+.btn-delete button:hover {
+  background: black;
+  color: white;
+}
+@media only screen and (max-width: 768px){
+  .box-layout > div {
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem;
+    word-break: break-word;
+    font-size: 0.8rem;
+  }
+  #largescreen {
+    display: none !important;
+  }
+  #smallscreen {
+    display: block !important;
+  }
+}
+.block{
+  display: block;
+}
+.none {
+  display: none;
+}
+
+#largescreen {
+  display: block;
+}
+#smallscreen {
+  display: none;
+}
+.content-id a {
+  color: lightblue;
+}
+.content-id a:hover{
+  color: blue;
+}

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="container-news">
+        <div *ngIf="objCurrent" class="news-1">
+            <h2>{{objCurrent?.tieu_de}}</h2>
+            <div class="content" [innerHTML]="content | safe: 'html'">
+            </div>
+        </div>
+    </div>
+</div>
+
+

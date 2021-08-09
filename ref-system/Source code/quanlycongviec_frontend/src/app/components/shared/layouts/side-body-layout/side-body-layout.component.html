@@ -1,0 +1,25 @@
+<!--<div class="home">-->
+<!--  <div class="home-side" id="home-side">-->
+<!--    <div class="sidebar" [ngClass]="heightSide">-->
+<!--      <div class="sidebar-head">-->
+<!--        <img [src]="imgAvar" width="100px"/>-->
+<!--      </div>-->
+<!--      <ng-content class="sidebar-body" select="[content]"></ng-content>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="home-body" id="home-body">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="main-side-nav">
+  <div class="left-menu">
+    <div class="main-left">
+      <ng-content select="[content]"></ng-content>
+    </div>
+  </div>
+  <div class="main-right">
+    <div class="load-container" style="width:99%">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

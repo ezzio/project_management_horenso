@@ -1,0 +1,16 @@
+<div class="doublecalendar">
+  <app-singlecalendar [setDateTime]="fromDate"
+                      (messageEvent)="receiveDate(strFromDate, $event)"
+                      [minDate]="minDate1"
+                      [maxDate]="maxDate1"
+                      [isTime]="true" [defaultDay]="defaultDate1"
+                      (timeEvent)="receiveTime(strFromDate, $event)"
+  ></app-singlecalendar>
+  <app-singlecalendar [setDateTime]="toDate"
+                      (messageEvent)="receiveDate(strToDate, $event)"
+                      [minDate]="minDate2"
+                      [maxDate]="maxDate2"
+                      [isTime]="true" [defaultDay]="defaultDate2"
+                      (timeEvent)="receiveTime(strToDate, $event)"
+  ></app-singlecalendar>
+</div>

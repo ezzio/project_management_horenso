@@ -1,0 +1,56 @@
+.flex-container-default,.flex-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  /*margin-bottom: 1rem;*/
+  margin-right: 2rem;
+}
+
+.flex-container .ng-select, .ng-select-container, .ng-value-container {
+   width: 20rem;
+}
+
+.flex-container-default > div {
+  margin-right: .8rem;
+}
+
+.label-1 {
+ padding-right: 1rem;
+}
+
+.label-2 {
+  padding-right:3.51rem
+}
+
+.region-select, .doitac-select {
+  /*background: #fff;*/
+  width: 100px;
+}
+.block-select {
+  width: 210px;
+}
+.emp-select {
+  width:10rem;
+}
+
+.ng-select.custom-sr ::ng-deep .ng-select-container {
+  background: #fff;
+  border-radius: 2rem;
+  /*border:none;*/
+}
+
+
+.ng-select.custom-sr ::ng-deep .ng-select-container:hover  {
+  cursor:pointer;
+  background: #cebaae;
+  border: none;
+}
+
+
+
+
+
+
+

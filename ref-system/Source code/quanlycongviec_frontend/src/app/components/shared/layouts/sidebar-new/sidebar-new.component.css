@@ -1,0 +1,24 @@
+.sidenav{
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding-top: 2rem;
+}
+.sidenav a {
+  padding: 30px 0px 2px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "PT Sans", sans-serif;
+  color: white;
+  display: block;
+}
+.sidenav-head {
+  width: 55%;
+  margin: auto;
+}
+.sidenav-head img {
+  border-radius: 50%;
+}

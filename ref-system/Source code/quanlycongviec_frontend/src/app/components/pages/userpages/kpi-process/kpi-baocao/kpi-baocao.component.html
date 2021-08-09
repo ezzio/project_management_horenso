@@ -1,0 +1,179 @@
+<div class="baocao">
+  <div class="boloc">
+<!--    <div class="boloc_thoigian">-->
+<!--      <app-singlecalendar-->
+<!--        placeholder="Từ ngày"-->
+<!--        (messageEvent)="dateTo($event)"-->
+<!--        [setDate]="date_to"-->
+<!--        [classCalendar]="false"-->
+<!--        [styleForm]="'form100'"-->
+<!--        [(ngModel)]="date_to">-->
+<!--      </app-singlecalendar>-->
+<!--    </div>-->
+    <div class="boloc_thoigian">
+        <input
+               placeholder="Đến ngày"
+               [(ngModel)]="date_from"
+               [matDatepicker]="picker2"
+               [max]="maxDate"
+               readonly/>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </div>
+    <div class="boloc_thoigian">
+      <input
+             placeholder="Đến ngày"
+             [(ngModel)]="date_to"
+             [matDatepicker]="picker3"
+             [max]="maxDate"
+             readonly/>
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </div>
+    <div class="boloc_inner">
+      <ng-select [(ngModel)]="moc_thoi_gian"
+                 placeholder="Theo ngày tạo">
+        <ng-option value="t_assigned">Theo ngày tạo</ng-option>
+        <ng-option value="deadline">Deadline</ng-option>
+      </ng-select>
+    </div>
+<!--    <div class="boloc_inner">-->
+<!--      <ng-select [(ngModel)]="phong_ban"-->
+<!--                 placeholder="Tất cả phòng ban">-->
+<!--        <ng-option *ngFor="let pb of list_phong_ban"-->
+<!--                   [value]="pb.data">-->
+<!--          {{pb.data}}-->
+<!--        </ng-option>-->
+<!--      </ng-select>-->
+<!--    </div>-->
+    <div class="boloc_inner">
+      <ng-select [(ngModel)]="child_depart"
+                 placeholder="Tất cả phòng ban">
+        <ng-option value="pdx">phòng chuyển đổi số</ng-option>
+        <ng-option value="HR">phòng nhân sự</ng-option>
+        <ng-option value="truyền thông">phòng truyền thông</ng-option>
+        <ng-option value="kế toán">phòng kế toán</ng-option>
+        <ng-option value="đào tạo">phòng đào tạo</ng-option>
+        <ng-option value="">Tất cả</ng-option>
+      </ng-select>
+    </div>
+    <div class="boloc_inner">
+      <ng-select [(ngModel)]="type"
+                 placeholder="Tất cả công việc">
+        <ng-option value=0>Công việc</ng-option>
+        <ng-option value=1>Công việc con</ng-option>
+        <ng-option value="">Tất cả</ng-option>
+      </ng-select>
+    </div>
+    <div class="boloc_inner">
+      <ng-select [(ngModel)]="state"
+                 placeholder="Tất cả trạng thái">
+        <ng-option value = 0 >Chưa làm</ng-option>
+        <ng-option value = 1>Đang làm</ng-option>
+        <ng-option value = 3>Chờ review</ng-option>
+        <ng-option value = 2>Đã hoàn thành</ng-option>
+        <ng-option value = "">Tất cả</ng-option>
+      </ng-select>
+    </div>
+    <button mat-flat-button (click)="capnhat()">cập nhật</button>
+  </div>
+  <div class="tongquan">
+    <div class="tongquan_inner">
+      <div class="icon_a">
+        <mat-icon>folder</mat-icon>
+      </div>
+      <div *ngIf="dataNew" class="tongquan_inner_inner"><h1>Dự Án</h1>
+        <div class="noidung"><h5>
+          {{dataNew.du_an.tong_sl_da}}
+        </h5>
+          <div>
+            <p class="positive">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{dataNew.du_an.sl_da_ht}} done
+            </p>
+            <p class="negative">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{dataNew.du_an.sl_da_cht}} active
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tongquan_inner">
+      <div class="icon_b">
+        <mat-icon>event_note</mat-icon>
+      </div>
+      <div *ngIf="dataNew" class="tongquan_inner_inner"><h1>Công Việc</h1>
+        <div class="noidung"><h5>{{dataNew.cong_viec.tong_sl_cv}}</h5>
+          <div>
+            <p class="positive">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{dataNew.cong_viec.sl_cv_ht}} done
+            </p>
+            <p class="negative">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{dataNew.cong_viec.sl_cv_cht}} active
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tongquan_inner">
+      <div class="icon_c">
+        <mat-icon>people</mat-icon>
+      </div>
+      <div class="tongquan_inner_inner"><h1>Thành Viên</h1>
+        <div class="noidung"><h5>11</h5>
+          <div>
+<!--            <p class="positive">-->
+<!--              <mat-icon>fiber_manual_record</mat-icon>-->
+<!--              3000 PNC-->
+<!--            </p>-->
+<!--            <p class="negative">-->
+<!--              <mat-icon>fiber_manual_record</mat-icon>-->
+<!--              4000 TIN-->
+<!--            </p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bc_congviec">
+    <div class="bc_congviec_inner">
+      <div class="bc_tieude"><h5>Báo cáo trạng thái công việc</h5></div>
+      <div  class="bieudo_Donut">
+        <canvas *ngIf="dataNew" baseChart
+                [chartType]="doughnutChartType"
+                [options]="doughnutChartOptions"
+                [data]="doughnutChartData1"
+                [labels]="doughnutChartLabels"
+                [colors]="doughnutChartColors">
+        </canvas>
+
+      </div>
+    </div>
+    <div class="bc_congviec_inner">
+      <div class="bc_tieude"><h5>Thành viên xuất sắc</h5></div>
+      <div class="list_nvsx">
+        <div>
+          <div *ngFor="let o of output.thanh_vien_xuat_sac" class="thongtin_nv">
+            <img src="assets/images/img_avatar.png" width="20px" height="20px">
+            <div class="thongtin_nv_inner">
+              <h6>{{o.ho_va_ten}}</h6>
+              <p>{{o.cong_viec_da_hoan_thanh}}/{{o.tong_cong_viec_duoc_giao}} completed tasks</p>
+            </div>
+            <div class="test">
+              <div class='test1' [ngStyle]="{'width': o.ti_le_phan_tram+'%'}">{{o.ti_le_phan_tram}}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bc_congviec_inner">
+      <div class="bc_tieude"><h5>Báo cáo trạng thái công việc</h5></div>
+      <div class="bieudo_Donut">
+      </div>
+    </div>
+  </div>
+</div>
+

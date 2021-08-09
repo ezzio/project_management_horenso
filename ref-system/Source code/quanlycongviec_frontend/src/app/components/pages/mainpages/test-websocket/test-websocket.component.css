@@ -1,0 +1,19 @@
+.form-inline {
+  margin-top: 70px;
+}
+.panel-heading {
+  background: lightgray;
+  padding: 0.2rem;
+}
+#chat-box {
+  margin: 1rem;
+  width: 40%;
+}
+.panel-default{
+  padding: 0.2rem;
+  margin: 1rem;
+  border: 1px solid lightgray
+}
+.panel-body {
+  padding: 0.2rem;
+}

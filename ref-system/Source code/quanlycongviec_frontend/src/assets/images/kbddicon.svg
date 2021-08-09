@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="29" y="13" width="143" height="181" rx="7" fill="#00C2CB"/>
+<rect x="37" y="21" width="127" height="164" rx="7" fill="white"/>
+<rect x="53" y="9" width="91" height="19" rx="6" fill="#C4C4C4"/>
+<ellipse cx="100" cy="9" rx="10" ry="8" fill="#C4C4C4"/>
+<ellipse cx="99.5" cy="9" rx="7.5" ry="6" fill="#00C2CB"/>
+<path d="M49 55.6364L58.7059 62L71 48" stroke="#FF0000" stroke-width="2"/>
+<rect x="48" y="73" width="24" height="24" fill="#C4C4C4"/>
+<rect x="48" y="102" width="24" height="24" fill="#C4C4C4"/>
+<rect x="48" y="131" width="24" height="24" fill="#C4C4C4"/>
+<line x1="82" y1="55" x2="152" y2="55" stroke="#C4C4C4" stroke-width="2"/>
+<line x1="82" y1="84" x2="152" y2="84" stroke="#C4C4C4" stroke-width="2"/>
+<line x1="82" y1="113" x2="152" y2="113" stroke="#C4C4C4" stroke-width="2"/>
+<line x1="82" y1="142" x2="152" y2="142" stroke="#C4C4C4" stroke-width="2"/>
+</svg>
