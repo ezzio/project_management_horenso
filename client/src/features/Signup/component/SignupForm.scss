@@ -72,13 +72,13 @@
   }
   &__login-github {
     top: 86%;
-    left: 39.2%;
+    left: 37%;
     position: absolute;
     font-style: normal;
     font-weight: 400;
     color: rgba(189, 16, 224, 1);
     height: 16px;
-    width: 124px;
+    width: 200px;
     font-size: 14px;
   }
 
@@ -221,6 +221,16 @@
     border-width: 1px;
     border-color: lightgrey;
     border-radius: 5px;
+  }
+
+  &__hide-password {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+    height: 16px;
+    width: 58px;
+    color: rgba(144, 19, 254, 1);
+    font-size: 15px;
   }
 }
 
