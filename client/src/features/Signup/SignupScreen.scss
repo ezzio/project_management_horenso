@@ -2,92 +2,106 @@
 
 .signup {
   display: flex;
-  background-color: rgba(74, 144, 226, 1);
-  border-width: 100px;
-  border-color: rgba(255, 255, 255, 1);
   flex-direction: column;
-  border-style: solid;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: lightskyblue;
+  background-image: url('./background-img.jpg');
 
   &__form {
-    height: 400px;
-    flex-direction: row;
     display: flex;
-    margin-top: 72px;
-    margin-left: 332px;
-    margin-right: -969px;
+    margin: auto;
+    position: relative;
+    height: 525px;
+    width: 480px;
+    bottom: 3.8%;
+    left: 0%;
+  }
+
+  &__logon-container {
+    position: fixed;
+    height: 40px;
+    width: 301px;
+    right: 2%;
+    top: 3.1%;
   }
 
   &__login {
+    margin: auto;
+    position: absolute;
     height: 36px;
+    width: fit-content;
     flex-direction: row;
     display: flex;
-    margin-top: -590px;
-    margin-left: 1480px;
-    margin-right: 112px;
+    top: 0%;
+    left: 35%;
 
     &__text {
       font-style: normal;
       font-weight: 400;
-      color: #121212;
+      color: white;
       height: 13px;
       width: 152px;
-      margin-top: 0px;
+      margin-top: 10px;
     }
   }
-}
 
-.help-btn {
-  display: flex;
-  background-color: $_PRIMARY;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: row;
-  border-radius: 2px;
-  position: relative;
-  box-shadow: $_SHADOW;
-  &__text {
-    top: 30px;
-    left: 11px;
+  &__help-btn {
     position: absolute;
-    font-style: normal;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 1);
-    font-size: 16px;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-}
+    background-color: $_PRIMARY;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    border-radius: 8px;
+    box-shadow: $_SHADOW;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    top: 86%;
+    left: 102%;
 
-.logon-btn {
-  display: flex;
-  background-color: rgba(255, 255, 255, 1);
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  min-width: 88px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-top-left-radius: 0px;
-  border-color: white;
-  margin-left: 1600px;
-  height: 40px;
-  margin-top: -50px;
-  box-shadow: $_SHADOW;
-
-  &__text {
-    color: rgba(144, 19, 254, 1);
-    font-size: 14px;
-    width: 55px;
-    height: 17px;
-    align-self: center;
-    font-style: normal;
-    font-weight: 700;
+    &__text {
+      top: 30px;
+      left: 11px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 1);
+      font-size: 12px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
   }
-  &:hover {
-    height: 42px;
-    width: 123px;
+
+  &__logon-btn {
+    display: flex;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top-left-radius: 0px;
+    border-color: white;
+    height: 40px;
+    box-shadow: $_SHADOW;
+    top: 0%;
+    right: 0%;
+    &__text {
+      color: rgba(144, 19, 254, 1);
+      font-size: 14px;
+      width: 55px;
+      height: 17px;
+      align-self: center;
+      font-style: normal;
+      font-weight: 700;
+    }
+    &:hover {
+      height: 42px;
+      width: 78px;
+    }
   }
 }

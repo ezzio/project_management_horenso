@@ -34,17 +34,7 @@ function SignupForm() {
             </div>
             <div className='signup-form__email-container'>
                 <span className='signup-form__email-container__label'>Email</span>
-                <div className='email-textbox' 
-                    style={{
-                        height: 45,
-                        width: 400,
-                        position: "absolute",
-                        left: 0,
-                        top: 28,
-                        borderWidth: 1,
-                        borderColor: "#000000",
-                        borderStyle: "solid"
-                }}>
+                <div className='email-textbox'>
                     <input className='email-textbox__input' placeholder='example@mail.com' 
                      name='email' 
                      {...register("email", { required: "This field is required", pattern: {value: /^\S+@\S+$/i, message: 'Invalid email address'} })} 
@@ -54,17 +44,7 @@ function SignupForm() {
             </div>
             <div className='signup-form__password-container'>
                 <span className='signup-form__password-container__label'>Password</span>
-                <div className='password-textbox' 
-                    style={{
-                        height: 45,
-                        width: 400,
-                        position: "absolute",
-                        left: 0,
-                        top: 80,
-                        borderWidth: 1,
-                        borderColor: "#000000",
-                        borderStyle: "solid"
-                    }}>
+                <div className='password-textbox'>
                         <input className='password-textbox__input' placeholder='*****' 
                         name='password' 
                         {...register("password", { required: "This field is required", 
@@ -76,16 +56,7 @@ function SignupForm() {
             </div>
             <div className='signup-form__fullname-container'>
                 <span className='signup-form__fullname-container__label'>Full Name</span>
-                <div className='fullname-textbox' style={{
-                        height: 45,
-                        width: 400,
-                        position: "absolute",
-                        left: 0,
-                        top: 40,
-                        borderWidth: 1,
-                        borderColor: "#000000",
-                        borderStyle: "solid"
-                    }}>
+                <div className='fullname-textbox'>
                     <input className='fullname-textbox__input' placeholder="John Smith" 
                     name='fullName' 
                     {...register("fullName", { required: "This field is required" })}
@@ -94,24 +65,24 @@ function SignupForm() {
                  { errors.fullName && <p style={{marginTop: 90}} className='signup-form__error'>{errors.fullName.message}</p> }
             </div>
             <AiOutlineMail style={{
-                top: 205,
-                left: 64,
+                top: 240,
+                left: 68,
                 position: "absolute",
-                fontSize: 30,
+                fontSize: 25,
                 color: 'gray'
             }} />
             <AiOutlineLock style={{
-                top: 300,
-                left: 63,
+                top: 320,
+                left: 68,
                 position: "absolute",
-                fontSize: 30,
+                fontSize: 25,
                 color: 'gray'
             }} />
             <BsPerson style={{
-                top: 108,
-                left: 63,
+                top: 155,
+                left: 68,
                 position: "absolute",
-                fontSize: 30,
+                fontSize: 25,
                 color: 'gray'
             }} />
             <div className='signup-form__joinnow-btn-container'>
