@@ -1,0 +1,55 @@
+@import 'styles/Color.scss';
+
+.ctn-board {
+  padding: 1rem;
+  background-color: #fefdff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.board-content {
+  margin-top: 3rem;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  white-space: nowrap;
+  overflow-x: auto;
+
+  &__new-column {
+    cursor: pointer;
+    margin-left: 1rem;
+
+    flex: 0 0 300px;
+    height: 65px;
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    background-color: hsl(215, 92%, 64%, 0.1);
+    color: $_BLUE;
+
+    padding: 1rem;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    transition: all 0.3s;
+
+    font-size: 1rem;
+
+    &:hover {
+      background-color: $_BLUE;
+      color: white;
+      box-shadow: 0px 15px 20px hsl(215, 92%, 64%, 0.4);
+      height: 140px;
+    }
+    & > svg {
+      margin-right: 1rem;
+    }
+  }
+}
