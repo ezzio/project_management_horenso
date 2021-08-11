@@ -1,5 +1,6 @@
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Report from 'pages/Horenso/Report/Report';
+import KanbanDashBoard from 'pages/Kanban/KanbanDashBoard/KanbanDashBoard';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -10,7 +11,7 @@ import {
 import './App.scss';
 import SideBar from './components/SideBar/SideBar';
 import Meeting from './pages/Horenso/Meeting/Meeting';
-import ProjectChecking from './pages/Kanban/ProjectChecking/ProjectChecking';
+
 
 function App() {
   return (
@@ -44,7 +45,7 @@ const AnimatedRouter = () => {
       <Switch location={displayLocation}>
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        <Route path="/kanban" children={<ProjectChecking />} />
+        <Route path="/kanban" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
       </Switch>
     </div>
