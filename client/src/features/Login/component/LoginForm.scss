@@ -1,11 +1,11 @@
 @import '../../../App.scss';
 @import '../../../styles/Color.scss';
 .login-form {
-  height: 400px;
-  width: 520px;
+  height: 398px;
+  width: 480px;
   display: flex;
   border-width: 0px;
-  border-radius: 15px;
+  border-radius: 5px;
   border-color: white;
   flex-wrap: nowrap;
   background-color: #fff;
@@ -14,23 +14,17 @@
   flex-direction: column;
   position: relative;
   box-shadow: $_SHADOW;
-  margin-left: 270px;
-  margin-top: 50px;
 
   &__title {
-    padding: 16px;
-    padding-top: 24px;
+    position: absolute;
     justify-content: center;
     width: 156px;
-    top: 0px;
-    height: 97px;
-    left: 173px;
+    top: 9.6%;
+    left: 33.5%;
     flex-direction: column;
     display: flex;
     &__text {
-      margin-top: -20px;
-      margin-left: 185px;
-      font-size: 30px;
+      font-size: 40px;
       color: #000;
       padding-bottom: 12px;
       width: 142px;
@@ -41,10 +35,10 @@
   }
 
   &__email-container {
-    top: 85px;
-    left: 63px;
-    width: 400px;
-    height: 68px;
+    top: 34.2%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
     position: absolute;
     &__label {
       top: -20px;
@@ -55,16 +49,16 @@
       color: #121212;
       height: 24px;
       width: 125px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: bold;
     }
   }
 
   &__password-container {
-    top: 203px;
-    left: 63px;
-    width: 400px;
-    height: 45px;
+    top: 55%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
     position: absolute;
     &__label {
       top: -20px;
@@ -75,37 +69,36 @@
       color: #121212;
       height: 20px;
       width: 79px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: bold;
     }
   }
   &__login-github {
-    top: 362px;
-    left: 209px;
+    top: 90%;
+    left: 38%;
     position: absolute;
     font-style: normal;
     font-weight: 400;
     color: rgba(189, 16, 224, 1);
     height: 25px;
     width: 150px;
-    left: 195px;
+    font-size: 15px;
   }
 
   &__login-btn-container {
-    top: 291px;
-    left: 63px;
-    width: 400px;
-    height: 100px;
+    position: absolute;
+    top: 70.7%;
+    left: 12.5%;
+    width: 360px;
+    height: 50px;
     position: absolute;
   }
 
   &__forgotpassword {
-    margin-top: 150px;
-    margin-left: 330px;
-    font-size: 16px;
-    line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
+    position: absolute;
+    top: 58%;
+    left: 63%;
+    font-size: 14px;
     align-self: flex-start;
     width: 150px;
     height: 40px;
@@ -129,6 +122,9 @@
   background-color: transparent;
   flex-direction: row;
   border-radius: 5px;
+  height: 40px;
+  width: 360px;
+  position: 'absolute';
 
   &__input {
     color: #000;
@@ -140,11 +136,13 @@
     padding-top: 14px;
     padding-bottom: 8px;
     padding-left: 40px;
-    border: none;
     background: transparent;
     display: flex;
     flex-direction: column;
-    left: 20px;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: 'solid';
+    border-radius: 5px;
   }
 }
 .password-textbox {
@@ -154,6 +152,9 @@
   background-color: transparent;
   flex-direction: row;
   border-radius: 5px;
+  height: 40px;
+  width: 360px;
+  position: 'absolute';
 
   &__input {
     color: #000;
@@ -165,28 +166,33 @@
     padding-top: 14px;
     padding-bottom: 8px;
     padding-left: 40px;
-    border: none;
+    padding-right: 120px;
     background: transparent;
     display: flex;
     flex-direction: column;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: 'solid';
+    border-radius: 5px;
   }
 }
 
 .login-btn {
   display: flex;
+  position: absolute;
   background-color: $_PRIMARY;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  border-radius: 2px;
-  width: 400px;
+  border-radius: 5px;
+  width: 360px;
   height: 50px;
-  padding-left: 16px;
-  padding-right: 16px;
+  top: 0%;
+  left: 0%;
 
   &__text {
     color: #fff;
-    font-size: 17px;
+    font-size: 15px;
     width: 57px;
     height: 29px;
     text-align: center;
@@ -194,7 +200,7 @@
     font-weight: 700;
     border: none;
     background: transparent;
-    margin-top: 10px;
+    margin-top: 14px;
   }
   &:hover {
     opacity: 0.8;

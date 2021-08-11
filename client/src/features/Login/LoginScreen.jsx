@@ -30,7 +30,7 @@ function LoginScreen() {
             }
         }
         if (user.id === -1){
-            setError('Email or password incorrect')
+            setError('Email or password incorrect!')
         }
         console.log(user)
     }
@@ -39,29 +39,22 @@ function LoginScreen() {
         <div className='login'>
             <div className='login__form'>
                 <LoginForm Login={Login} error={error}/>
-            </div>
-            <button className='help-btn' 
-                    style={{
-                        height: 60,
-                        width: 60,
-                        left: 1135,
-                        top: -11 
-                    }}
-            >
-                <AiOutlineQuestionCircle style={{fontSize: 24}} />
+                <button className='help-btn'>
+                    <AiOutlineQuestionCircle style={{color: 'white', fontSize: 24}} />
                 <span className='help-btn__text'>Help</span>
             </button>
-            <div className='login__signup'>
-                <span className='login__signup__text'>Don't have an account?</span>
             </div>
-            <button className='signup-btn' onClick={() => loginToSignUp()}>
-                <span className='signup-btn__text'>Sign up</span>                
-            </button>
-            <div className='login__slogan-row'>
-                <div className='login__slogan-row__stack'>
-                    <span className='login__slogan-row__stack__text'>This is the slogan</span>
+            <div className='login__signup-container'>
+                <div className='login__signup'>
+                    <span className='login__signup__text'>Don't have an account?</span>
                 </div>
+                <button className='signup-btn' onClick={() => loginToSignUp()}>
+                    <span className='signup-btn__text'>Sign up</span>                
+                </button>
             </div>
+            {/* <div className='login__slogan-container'>
+                <span className='login__slogan-container__text'>This is the slogan</span>
+            </div> */}
         </div>
     )
 }
