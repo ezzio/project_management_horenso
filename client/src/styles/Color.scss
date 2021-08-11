@@ -13,3 +13,33 @@ $_PURPLE: hsl(267, 66%, 54%);
 $_GRAY: #4f5b63;
 //background of color always should opacity = 0.1
 //hover of color always should opacity = 0.8
+
+.completed,
+.red,
+.high {
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  background-color: hsl(337, 77%, 64%, 0.1) !important;
+  color: hsl(337, 77%, 64%) !important;
+}
+
+.low {
+  font-weight: bold;
+
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+
+  background-color: hsl(170, 79%, 43%, 0.1) !important;
+  color: hsl(170, 79%, 43%) !important;
+}
+
+.medium {
+  font-weight: bold;
+
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+
+  background-color: hsl(22, 95%, 60%, 0.1) !important;
+  color: hsl(22, 95%, 60%) !important;
+}
