@@ -15,30 +15,24 @@ function LoginScreen() {
         <div className='forgot'>
             <div className='forgot__form'>
                 <LoginForm />
+                <button className='help-btn'>
+                    <AiOutlineQuestionCircle style={{fontSize: 24, color: 'white'}}/>
+                    <span className='help-btn__text'>Help</span>
+                </button>
             </div>
-            <button className='help-btn' 
-                    style={{
-                        height: 60,
-                        width: 60,
-                        left: 1135,
-                        top: -11 
-            }}>
-                <AiOutlineQuestionCircle style={{
-                        fontSize: 24
-                }}/>
-                <span className='help-btn__text'>Help</span>
-            </button>
-            <div className='forgot__signup'>
-                <span className='forgot__signup__text'>Don't have an account?</span>
+            <div className='forgot__signup-container'>
+                <div className='forgot__signup'>
+                    <span className='forgot__signup__text'>Don't have an account?</span>
+                </div>
+                <button className='signup-btn' onClick={() => forgotPasswordToSignUp()}>
+                    <span className='signup-btn__text'>Sign up</span>                
+                </button>
             </div>
-            <button className='signup-btn' onClick={() => forgotPasswordToSignUp()}>
-                <span className='signup-btn__text'>Sign up</span>                
-            </button>
-            <div className='forgot__slogan-row'>
+            {/* <div className='forgot__slogan-row'>
                 <div className='forgot__slogan-row__stack'>
                     <span className='forgot__slogan-row__stack__text'>This is the slogan</span>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

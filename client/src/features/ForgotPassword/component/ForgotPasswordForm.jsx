@@ -10,26 +10,16 @@ function ForgotPasswordForm() {
                 <span className='forgotpassword-form__title__text'>Welcome!</span>
             </div>
             <div className='forgotpassword-form__email-container'>
-                <div className='email-textbox' 
-                    style={{
-                        height: 45,
-                        width: 400,
-                        position: "absolute",
-                        left: 0,
-                        top: 23,
-                        borderWidth: 1,
-                        borderColor: "#000000",
-                        borderStyle: "solid"
-                }}>
+                <div className='email-textbox'>
                     <input className='email-textbox__input' placeholder='Enter your email' />
                 </div>
                 <span className='forgotpassword-form__email-container__label'>Email</span>
             </div>
             <AiOutlineMail style={{
-                top: 127,
+                top: 143,
                 left: 64,
                 position: "absolute",
-                fontSize: 30,
+                fontSize: 25,
                 color: 'gray'
             }} />
             <div className='forgotpassword-form__sendlink-btn-container'>
@@ -37,7 +27,7 @@ function ForgotPasswordForm() {
                     <span className='sendlink-btn__text'>Send me the link</span>
                 </button>
             </div>
-            <Link className='forgotpassword-form__login' path='/'>Or Log in</Link>
+            <Link className='forgotpassword-form__login' path='/'>or Log in</Link>
         </div>
     )
 }
