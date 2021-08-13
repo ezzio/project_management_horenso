@@ -1,23 +1,24 @@
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Report from 'pages/Horenso/Report/Report';
+import Board from 'pages/Kanban/Board/Board';
 import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation
+  useLocation,
 } from 'react-router-dom';
 import './App.scss';
 import SideBar from './components/SideBar/SideBar';
 import Meeting from './pages/Horenso/Meeting/Meeting';
-import ProjectChecking from './pages/Kanban/ProjectChecking/ProjectChecking';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <SideBar />
-        <AnimatedRouter />
+        {/* <SideBar /> */}
+        {/* <AnimatedRouter /> */}
+        <Board />
       </div>
     </Router>
   );
@@ -44,7 +45,7 @@ const AnimatedRouter = () => {
       <Switch location={displayLocation}>
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        <Route path="/kanban" children={<ProjectChecking />} />
+        {/* <Route path="/kanban" children={<ProjectChecking />} /> */}
         <Route path="/report" children={<Report />} />
       </Switch>
     </div>
