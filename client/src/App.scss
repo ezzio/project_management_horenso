@@ -1,7 +1,8 @@
-@import './styles/Color.scss';
+@import "./styles/Color.scss";
 
 .App {
   display: flex;
+  position: relative;
 }
 
 .slide-top {
