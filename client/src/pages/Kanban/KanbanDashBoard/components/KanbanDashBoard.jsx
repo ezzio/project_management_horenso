@@ -1,11 +1,13 @@
 import JobTag from "features/JobTag - Kanban/JobTag";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./KanbanDashBoard.scss";
 import ModalAddJob from "./ModalAddJob/ModalAddJob";
 
-const KanbanDashBoard = (props) => {
+const KanbanDashBoard = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const [showCompleteTask, setShowCompleteTask] = useState(true);
 
   const jobs = [{
     id_job: 0,
@@ -75,7 +77,11 @@ const KanbanDashBoard = (props) => {
         <div className="ctn-kanbandashboard__working">
           <div className="ctn-kanbandashboard__working__title">
             <h1 className="title">Jobs On Working</h1>
-            <button className="add-task-button" onClick={() => setShowModal(true)}>Add new</button>
+            <button className="add-task-button"
+              onClick={() => setShowModal(true)}
+            >
+              Add new
+            </button>
           </div>
           <div className="ctn-kanbandashboard__working__content">
             {jobs.map(job => {
@@ -96,21 +102,13 @@ const KanbanDashBoard = (props) => {
         <div className="ctn-kanbandashboard__complete">
           <div className="ctn-kanbandashboard__complete__title">
             <h1 className="title">Complete</h1>
-            <button className="btn-show-hide">Hide</button>
+            <button className="btn-show-hide"
+              onClick={() => setShowCompleteTask(!showCompleteTask)}
+            >
+              {showCompleteTask ? 'Hide' : 'Show'}
+            </button>
           </div>
-          <div className="ctn-kanbandashboard__complete__content">
-            {jobs.map(job => {
-              if (job.is_completed)
-                return (
-                  <JobTag
-                    title={job.name}
-                    level={job.level}
-                    process={job.process}
-                    members={job.members}
-                  />
-                );
-            })}
-          </div>
+          {showCompleteTask && <CompleteTask jobs={jobs} />}
         </div>
       </div>
     </>
@@ -118,3 +116,21 @@ const KanbanDashBoard = (props) => {
 };
 
 export default KanbanDashBoard;
+
+const CompleteTask = ({ jobs }) => {
+  return (
+    <div className="ctn-kanbandashboard__complete__content">
+      {jobs.map(job => {
+        if (job.is_completed)
+          return (
+            <JobTag
+              title={job.name}
+              level={job.level}
+              process={job.process}
+              members={job.members}
+            />
+          );
+      })}
+    </div>
+  );
+}

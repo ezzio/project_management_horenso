@@ -17,9 +17,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <SideBar /> */}
-        {/* <AnimatedRouter /> */}
-        <KanbanDashBoard />
+        <SideBar />
+        <AnimatedRouter />
+        {/* <KanbanDashBoard /> */}
       </div>
     </Router>
   );
