@@ -1,0 +1,208 @@
+@import '../../../App.scss';
+@import '../../../styles/Color.scss';
+.login-form {
+  height: 398px;
+  width: 480px;
+  display: flex;
+  border-width: 0px;
+  border-radius: 5px;
+  border-color: white;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  border-style: solid;
+  flex-direction: column;
+  position: relative;
+  box-shadow: $_SHADOW;
+
+  &__title {
+    position: absolute;
+    justify-content: center;
+    width: 156px;
+    top: 9.6%;
+    left: 33.5%;
+    flex-direction: column;
+    display: flex;
+    &__text {
+      font-size: 40px;
+      color: #000;
+      padding-bottom: 12px;
+      width: 142px;
+      height: 41px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__email-container {
+    top: 34.2%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    &__label {
+      top: -20px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 24px;
+      width: 125px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  &__password-container {
+    top: 55%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    &__label {
+      top: -20px;
+      left: 0px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 400;
+      color: #121212;
+      height: 20px;
+      width: 79px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  &__login-github {
+    top: 90%;
+    left: 38%;
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(189, 16, 224, 1);
+    height: 25px;
+    width: 150px;
+    font-size: 15px;
+  }
+
+  &__login-btn-container {
+    position: absolute;
+    top: 70.7%;
+    left: 12.5%;
+    width: 360px;
+    height: 50px;
+    position: absolute;
+  }
+
+  &__forgotpassword {
+    position: absolute;
+    top: 58%;
+    left: 63%;
+    font-size: 14px;
+    align-self: flex-start;
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: rgba(189, 16, 224, 1);
+    &:active {
+      color: orange;
+    }
+  }
+  &__error {
+    color: $_ERROR;
+    font-weight: bold;
+  }
+}
+
+.email-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  border-radius: 5px;
+  height: 40px;
+  width: 360px;
+  position: 'absolute';
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: 'solid';
+    border-radius: 5px;
+  }
+}
+.password-textbox {
+  display: flex;
+  border-bottom-width: 1px;
+  border-color: #d9d5dc;
+  background-color: transparent;
+  flex-direction: row;
+  border-radius: 5px;
+  height: 40px;
+  width: 360px;
+  position: 'absolute';
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+    padding-right: 120px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: 'solid';
+    border-radius: 5px;
+  }
+}
+
+.login-btn {
+  display: flex;
+  position: absolute;
+  background-color: $_PRIMARY;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 5px;
+  width: 360px;
+  height: 50px;
+  top: 0%;
+  left: 0%;
+
+  &__text {
+    color: #fff;
+    font-size: 15px;
+    width: 57px;
+    height: 29px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    margin-top: 14px;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}

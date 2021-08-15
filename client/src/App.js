@@ -19,7 +19,6 @@ function App() {
       <div className="App">
         <SideBar />
         <AnimatedRouter />
-        {/* <KanbanDashBoard /> */}
       </div>
     </Router>
   );

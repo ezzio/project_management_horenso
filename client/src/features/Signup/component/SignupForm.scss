@@ -1,0 +1,265 @@
+@import '../../../styles/Color.scss';
+
+.signup-form {
+  height: 525px;
+  width: 480px;
+  display: flex;
+  border-width: 0px;
+  border-radius: 15px;
+  border-color: #ccc;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  border-style: solid;
+  flex-direction: column;
+  position: relative;
+  box-shadow: $_SHADOW;
+
+  &__title {
+    justify-content: center;
+    width: 360px;
+    height: 46px;
+    top: 10%;
+    left: 12.5%;
+    flex-direction: column;
+    display: flex;
+    position: absolute;
+    &__text {
+      font-size: 34px;
+      color: #000;
+      font-style: normal;
+      font-weight: 700;
+      padding-left: 120px;
+    }
+  }
+
+  &__email-container {
+    top: 43.6%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    &__label {
+      bottom: 101%;
+      left: 0;
+      position: absolute;
+      font-style: normal;
+      font-weight: bold;
+      color: #121212;
+      height: 19px;
+      width: 360px;
+      font-size: 12px;
+    }
+  }
+
+  &__password-container {
+    top: 59.7%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    &__label {
+      bottom: 101%;
+      left: 0;
+      position: absolute;
+      font-style: normal;
+      font-weight: bold;
+      color: #121212;
+      height: 19px;
+      width: 360px;
+      font-size: 12px;
+    }
+  }
+  &__login-github {
+    top: 86%;
+    left: 37%;
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(189, 16, 224, 1);
+    height: 16px;
+    width: 200px;
+    font-size: 14px;
+  }
+
+  &__joinnow-btn-container {
+    top: 72%;
+    left: 12.5%;
+    width: 360px;
+    height: 50px;
+    position: absolute;
+  }
+
+  &__fullname-container {
+    top: 27.8%;
+    left: 12.5%;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    &__label {
+      bottom: 102%;
+      left: 0;
+      position: absolute;
+      font-style: normal;
+      font-weight: bold;
+      color: #121212;
+      height: 19px;
+      width: 360px;
+      font-size: 12px;
+    }
+  }
+  &__footer {
+    position: absolute;
+    font-style: normal;
+    top: 96%;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    height: 25px;
+    width: 520px;
+    font-size: 12px;
+    text-align: center;
+    background-color: rgba(155, 155, 155, 1);
+    padding-right: 30px;
+  }
+
+  &__error {
+    color: $_ERROR;
+    font-weight: bold;
+  }
+}
+
+.fullname-textbox {
+  display: flex;
+  border-color: black;
+  background-color: transparent;
+  flex-direction: row;
+  height: 40;
+  width: 360;
+  position: 'absolute';
+  left: 0;
+  top: 0;
+  border-width: 1;
+  border-style: 'solid';
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    left: 20px;
+    border-style: 'solid';
+    border-width: 1px;
+    border-color: lightgrey;
+    border-radius: 5px;
+  }
+}
+
+.email-textbox {
+  display: flex;
+  border-color: black;
+  background-color: transparent;
+  flex-direction: row;
+  height: 40;
+  width: 360;
+  position: 'absolute';
+  left: 0;
+  top: 0;
+  border-width: 1px;
+  border-style: 'solid';
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    border-style: 'solid';
+    border-width: 1px;
+    border-color: lightgrey;
+    border-radius: 5px;
+  }
+}
+.password-textbox {
+  display: flex;
+  background-color: transparent;
+  flex-direction: row;
+  height: 40;
+  width: 360;
+  position: 'absolute';
+  left: 0;
+  top: 0;
+
+  &__input {
+    color: #000;
+    padding-right: 5px;
+    font-size: 16px;
+    align-self: stretch;
+    flex: 1 1 0%;
+    line-height: 16px;
+    padding-top: 14px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    border-style: 'solid';
+    border-width: 1px;
+    border-color: lightgrey;
+    border-radius: 5px;
+  }
+
+  &__hide-password {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+    height: 16px;
+    width: 58px;
+    color: rgba(144, 19, 254, 1);
+    font-size: 15px;
+  }
+}
+
+.joinnow-btn {
+  display: flex;
+  background-color: $_PRIMARY;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 2px;
+  width: 360px;
+  height: 50px;
+  padding-left: 16px;
+  padding-right: 16px;
+  opacity: 1;
+
+  &__text {
+    color: #fff;
+    font-size: 17px;
+    width: 150px;
+    height: 29px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    margin-top: 10px;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}

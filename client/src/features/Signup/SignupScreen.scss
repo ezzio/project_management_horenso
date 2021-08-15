@@ -1,0 +1,107 @@
+@import '../../styles/Color.scss';
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: lightskyblue;
+  background-image: url('../../styles/background-img.jpg');
+
+  &__form {
+    display: flex;
+    margin: auto;
+    position: relative;
+    height: 525px;
+    width: 480px;
+    bottom: 3.8%;
+    left: 0%;
+  }
+
+  &__logon-container {
+    position: fixed;
+    height: 40px;
+    width: 301px;
+    right: 2%;
+    top: 3.1%;
+  }
+
+  &__login {
+    margin: auto;
+    position: absolute;
+    height: 36px;
+    width: fit-content;
+    flex-direction: row;
+    display: flex;
+    top: 0%;
+    left: 35%;
+
+    &__text {
+      font-style: normal;
+      font-weight: 400;
+      color: white;
+      height: 13px;
+      width: 152px;
+      margin-top: 10px;
+    }
+  }
+
+  &__help-btn {
+    position: absolute;
+    background-color: $_PRIMARY;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    border-radius: 8px;
+    box-shadow: $_SHADOW;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    top: 86%;
+    left: 102%;
+
+    &__text {
+      top: 30px;
+      left: 11px;
+      position: absolute;
+      font-style: normal;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 1);
+      font-size: 12px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__logon-btn {
+    display: flex;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top-left-radius: 0px;
+    border-color: white;
+    height: 40px;
+    box-shadow: $_SHADOW;
+    top: 0%;
+    right: 0%;
+    &__text {
+      color: rgba(144, 19, 254, 1);
+      font-size: 14px;
+      width: 55px;
+      height: 17px;
+      align-self: center;
+      font-style: normal;
+      font-weight: 700;
+    }
+    &:hover {
+      height: 42px;
+      width: 78px;
+    }
+  }
+}
