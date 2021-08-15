@@ -1,0 +1,104 @@
+@import "../../../styles/Color.scss";
+@import "../../../styles/ContainerContents.scss";
+.Source {
+
+    .header {
+        width: 100%;
+
+        &-search {
+            width: 70%;
+            display: flex;
+            font-size: 35px;
+
+            input {
+                width: 90%;
+                margin-left: 10px;
+                padding: 4px;
+                font-size: 18px;
+            }
+        }
+
+        &-usertag {
+            img {
+                border: 0.05px solid #000;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &__content{
+
+        &-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9rem;
+        
+            thead tr {
+                background-color: #cccccc;
+                text-align: left;
+                font-weight: bold;
+            }
+        
+            th, td {
+                padding: 12px 15px;
+            }
+        
+            tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
+        }
+
+
+        .pagination {
+            width: 100%;
+            height: 40px;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pagination a {
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            color: #000000;
+            cursor: pointer;
+        }
+        
+        .pagination a:hover {
+            color: white;
+            background-color: #cccccc;
+        }
+        
+        .pagination li.active {
+            .page-link {
+                padding: 10px;
+                margin: 8px;
+                border-radius: 5px;
+                border: 1px solid #cccccc;
+                background-color: #cccccc;
+                cursor: pointer;
+            }
+
+            .sr-only {
+                display:none;
+            }
+        }
+        
+        .pagination li.disabled {
+            pointer-events: none;
+            cursor: default;
+
+            .page-link {
+                color:#cccccc;
+                padding: 10px;
+                margin: 8px;
+                border-radius: 5px;
+                border: 1px solid #cccccc;
+                background-color: #cccccc;
+            }
+        }
+    }
+}
