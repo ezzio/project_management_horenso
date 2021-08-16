@@ -11,14 +11,15 @@ import {
 import './App.scss';
 import SideBar from './components/SideBar/SideBar';
 import Meeting from './pages/Horenso/Meeting/Meeting';
+import Source from './pages/Storage/Source/Source';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <SideBar /> */}
-        {/* <AnimatedRouter /> */}
-        <Board />
+        <SideBar />
+        <AnimatedRouter />
+        {/* <Board /> */}
       </div>
     </Router>
   );
@@ -47,6 +48,8 @@ const AnimatedRouter = () => {
         <Route path="/conversation" children={<Conversation />} />
         {/* <Route path="/kanban" children={<ProjectChecking />} /> */}
         <Route path="/report" children={<Report />} />
+        <Route path="/source" children={<Source />} />
+        
       </Switch>
     </div>
   );

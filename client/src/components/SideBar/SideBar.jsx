@@ -75,12 +75,12 @@ const SideBar = () => {
           {currentUrl === 'source' ? (
             <Link className="sidebar-active" to="/source">
               <AiFillDatabase className="icon" />{' '}
-              <p className="hidden">Stores</p>
+              <p className="hidden">Storage</p>
             </Link>
           ) : (
             <Link to="/source">
               <AiFillDatabase className="icon" />{' '}
-              <p className="hidden">Stores</p>
+              <p className="hidden">Storage</p>
             </Link>
           )}
 
