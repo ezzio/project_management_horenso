@@ -69,6 +69,7 @@ function LoginForm(props) {
                     <span className='login-btn__text'>Log In</span>
                 </button>
             </div>
+
             <button type='button' className='github-btn'>
                 <AiFillGithub style={{position: 'absolute', fontSize: 25, left: 20, bottom: 3}} />
                 <span className='github-btn__text'>Or Log in with Github</span>
