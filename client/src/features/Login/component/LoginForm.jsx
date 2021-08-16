@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './LoginForm.scss'
 import { useForm } from 'react-hook-form'
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 
 
@@ -69,7 +69,10 @@ function LoginForm(props) {
                     <span className='login-btn__text'>Log In</span>
                 </button>
             </div>
-            <a className='login-form__login-github' href='https://www.google.com'>or login with Github</a>
+            <button type='button' className='github-btn'>
+                <AiFillGithub style={{position: 'absolute', fontSize: 25, left: 20, bottom: 3}} />
+                <span className='github-btn__text'>Or Log in with Github</span>
+            </button>
         </form>
     )
 }
