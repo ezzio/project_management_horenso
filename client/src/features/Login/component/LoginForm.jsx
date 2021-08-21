@@ -3,15 +3,25 @@ import './LoginForm.scss'
 import { useForm } from 'react-hook-form'
 import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '../LoginSlice'
 
 
 function LoginForm(props) {
-    const {Login, error} = props
+    const [error, setError] = useState('')
 
-    const {register, reset, handleSubmit, formState: { errors } } = useForm()
+    const {register, reset, handleSubmit, formState: { errors } } = useForm() 
+
+    const dispatch = useDispatch()
 
     const submitHandler = (data) => {
-        Login(data)
+        dispatch(
+            userLogin({
+                email: data.email,
+                password: data.password,
+                setError
+            })
+        )
         reset({
             email: data.email,
             password: ''
