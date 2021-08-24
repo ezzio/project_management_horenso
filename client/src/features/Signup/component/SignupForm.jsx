@@ -1,36 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './SignupForm.scss'
 import { useForm } from 'react-hook-form'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
+import { userSignUp } from '../SignupSlice'
 
 function SignupForm() {
     const {register, reset, handleSubmit, formState: { errors } } = useForm()
-    const [id, setId] = useState(1)
-    const [users, setUsers] = useState([])
+    
+    const [error, setError] = useState('')
     const [isShow, setisShow] = useState(false)
+
+    const dispatch = useDispatch()
 
     const toggleShow = () => {
         setisShow(!isShow)
     }
 
-    const onHandleSubmit = (data) => {
-        const newUser = {id, fullName: data.fullName, email: data.email, password: data.password}
-        setUsers((users) => {
-            return [...users, newUser]
-        })
-        setId(id + 1)
+   const onHandleSubmit = (data) => {
+        setError('')
+        const today = new Date()
+
+        const createAt = today.getDate() + '-' + (today.getMonth() + 1) + '-' + 
+        today.getFullYear() + ' ' + today.getHours() + ':' + 
+        today.getMinutes() + ':' + today.getSeconds()
+
+        dispatch(
+            userSignUp({
+                fullName: data.fullName,
+                email: data.email,
+                password: data.password,
+                createAt, 
+                setError
+            })
+        )
         reset({
-            fullName: '',
+            fullName: data.fullName,
             email: '',
             password: ''
         })
-    }
-    
-    useEffect(() => {
-        console.log(users)
-    }, [users])
-    //check if array is updated
+   }
 
     return (
         <form className='signup-form' onSubmit={handleSubmit(onHandleSubmit)}>
@@ -70,6 +80,7 @@ function SignupForm() {
                     />
                 </div>
                 { errors.fullName && <p style={{position: 'absolute', top: 127, fontSize: 12}} className='signup-form__error'>{errors.fullName.message}</p> }
+                {(error != '') ? (<p style={{ position: 'absolute', top: 127, fontSize: 12 }} className='signup-form__error'>{error}</p>) : ''}
             </div>
             <AiOutlineMail style={{
                 top: 240,

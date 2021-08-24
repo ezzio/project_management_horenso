@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './ResetPasswordForm.scss'
 import { useForm } from 'react-hook-form'
 import { AiOutlineLock} from 'react-icons/ai';
-import { BsWatch } from 'react-icons/bs';
-
 
 function LoginForm(props) {
 
@@ -11,6 +9,10 @@ function LoginForm(props) {
 
     const createPassword = (data) => {
         console.log(data)
+        reset({
+            password: '',
+            confirm: ''
+        })
     }   
 
     return (
