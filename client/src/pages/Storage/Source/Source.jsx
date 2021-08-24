@@ -87,7 +87,7 @@ function Source() {
               <tr>
                 <td>{f.name}</td>
                 <td>{f.lastModifiedDate}</td>
-                <td>{f.size}</td>
+                <td>{f.size} MB</td>
                 <td>{f.member}</td>
                 <td>
                   <div className="action">
