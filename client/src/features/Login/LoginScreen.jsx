@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import "./LoginScreen.scss";
 import LoginForm from './component/LoginForm.jsx';
-import { userData } from './data'
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom'
 
 function LoginScreen() {
-    const loginData = userData
 
     const history = useHistory()
 
@@ -14,31 +12,31 @@ function LoginScreen() {
         history.push('/Signup')
     }
 
-    const [user, setUser] = useState({id: -1, name: '', email: ''})
-    const [error, setError] = useState('')
+    // const [user, setUser] = useState({id: -1, name: '', email: ''})
+    // const [error, setError] = useState('')
 
-    const Login = (details) => {
-        console.log(details)
-        for (let i = 0; i < loginData.length; i++){
-            if (details.email === loginData[i].email && details.password === loginData[i].password){
-                setUser({
-                    id: loginData[i].id,
-                    name: loginData[i].name,
-                    email: loginData[i].email,
-                })
-                console.log('Login successfully')
-            }
-        }
-        if (user.id === -1){
-            setError('Email or password incorrect!')
-        }
-        console.log(user)
-    }
+    // const Login = (details) => {
+    //     console.log(details)
+    //     for (let i = 0; i < loginData.length; i++){
+    //         if (details.email === loginData[i].email && details.password === loginData[i].password){
+    //             setUser({
+    //                 id: loginData[i].id,
+    //                 name: loginData[i].name,
+    //                 email: loginData[i].email,
+    //             })
+    //             console.log('Login successfully')
+    //         }
+    //     }
+    //     if (user.id === -1){
+    //         setError('Email or password incorrect!')
+    //     }
+    //     console.log(user)
+    // }
     
     return (
         <div className='login'>
             <div className='login__form'>
-                <LoginForm Login={Login} error={error}/>
+                <LoginForm/>
                 <button className='help-btn'>
                     <AiOutlineQuestionCircle style={{color: 'white', fontSize: 24}} />
                 <span className='help-btn__text'>Help</span>
