@@ -8,19 +8,11 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-<<<<<<< HEAD
   useLocation,
-} from 'react-router-dom';
-import './App.scss';
-import SideBar from './components/SideBar/SideBar';
-import Meeting from './pages/Horenso/Meeting/Meeting';
-import Source from './pages/Storage/Source/Source';
-=======
-  useLocation
 } from "react-router-dom";
 import "./App.scss";
 import Meeting from "./pages/Horenso/Meeting/Meeting";
->>>>>>> 35491bb605f7d359c035b4c927d509d16553fe0a
+import Source from "./pages/Storage/Source/Source";
 
 function App() {
   return (
@@ -28,10 +20,8 @@ function App() {
       <div className="App">
         <SideBar />
         <AnimatedRouter />
-<<<<<<< HEAD
+
         {/* <Board /> */}
-=======
->>>>>>> 35491bb605f7d359c035b4c927d509d16553fe0a
       </div>
     </Router>
   );
@@ -61,7 +51,6 @@ const AnimatedRouter = () => {
         <Route path="/kanban" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
         <Route path="/source" children={<Source />} />
-        
       </Switch>
     </div>
   );

@@ -1,12 +1,26 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./Source.scss";
 import JsonData from "./MOCK_DATA.json";
 import { TableHeader, Pagination, Search } from "./components/DataTable";
 import { RiDownload2Fill, RiDeleteBin6Line } from "react-icons/ri";
 import UploadFile from "features/File/File";
+import axios from "axios";
+// import storage from "../../../../../server/routes/Store";
 
 function Source() {
   const [files, setFiles] = useState(JsonData);
+
+  // useEffect(() => {
+  //   const fetchFileList = async () => {
+  //     try {
+  //       const response = await storage.getAll();
+  //       console.log(response);
+  //     } catch (error) {
+  //       console.log("Failed to fetch file list: ", error);
+  //     }
+  //   };
+  // });
+
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
