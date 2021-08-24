@@ -1,0 +1,81 @@
+@import "styles/Color.scss";
+
+.ctn-modal-add-job {
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    &__form {
+        background-color: #fff;
+        width: 20vw;
+        height: 50vh;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 10px;
+
+        & > h3 {
+            text-align: center;
+        }
+
+        & > div {
+            display: flex;
+            flex-direction: column;
+
+            & > label {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            & > input[type="text"],
+            select {
+                height: 45px;
+                border-radius: 8px;
+                border: solid 1px #ccc;
+                margin: 5px 0;
+                padding: 12px 16px;
+            }
+
+            & > input:focus {
+                outline: none;
+                border-color: $_BLUE;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 5px 0px;
+            }
+        }
+
+        &__button-back {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            & > p {
+                font-size: 14px;
+                width: 20%;
+                cursor: pointer;
+            }
+            .submit {
+                height: 40px;
+                width: 4rem;
+                border: none;
+                color: white;
+                background-color: $_BLUE;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .submit:hover {
+                opacity: 0.8;
+                transition: linear 0.2s;
+            }
+        }
+    }
+}

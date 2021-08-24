@@ -1,0 +1,78 @@
+@import "styles/Color.scss";
+
+.ctn-kanbandashboard {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 40px 150px;
+  overflow-y: auto;
+
+  &__working {
+    width: 100%;
+
+    &__title {
+      display: flex;
+      width: 25%;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .title {
+        color: $_PRIMARY;
+      }
+
+      .add-task-button {
+        background-color: $_GREENBLUE;
+        border: none;
+        border-radius: 10px;
+        width: 70px;
+        height: 30px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .add-task-button:hover {
+        transform: translateY(-5px);
+        transition: linear 0.3s;
+        box-shadow: #09814a 0px 15px 35px -7px;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  &__complete {
+    width: 100%;
+    margin-top: 5rem;
+
+    &__title {
+      display: flex;
+      width: 15%;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-show-hide {
+      border: none;
+      background-color: #fff;
+      border-radius: 10px;
+      width: 70px;
+      height: 30px;
+      color: $_GREENBLUE;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    &__content {
+      opacity: 0.3;
+    }
+  }
+}
