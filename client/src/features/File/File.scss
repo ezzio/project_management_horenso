@@ -1,0 +1,56 @@
+@import "../../styles/Color.scss";
+
+.file__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-input {
+    // max-width: 200px;
+    &-btn {
+      display: none;
+    }
+
+    &-label {
+      cursor: pointer;
+      background-color: $_PRIMARY;
+      height: 30px;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      border-radius: 2px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    &-label:hover {
+      filter: brightness(250%);
+      box-shadow: #00000059 0px 5px 15px;
+      cursor: pointer;
+    }
+  }
+
+  &-btn {
+    height: 30px;
+    background-color: $_PRIMARY;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    padding: 6px 6px;
+    border-radius: 2px;
+    margin-left: 16px;
+  }
+  &-btn:hover {
+    filter: brightness(250%);
+    box-shadow: #00000059 0px 5px 15px;
+    cursor: pointer;
+  }
+}
+
+#upload-file {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
