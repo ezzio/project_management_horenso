@@ -7,6 +7,11 @@ const UploadFile = ({ onSuccess }) => {
 
   const onInputChange = (e) => {
     setFiles(e.target.files);
+    if (e.target.files.length === 1) {
+      alert("You are selecting 1 file!");
+    } else {
+      alert("You are selecting " + e.target.files.length + " files");
+    }
   };
 
   const onSubmit = (e) => {
@@ -22,26 +27,10 @@ const UploadFile = ({ onSuccess }) => {
         onSuccess(response.data);
       })
       .catch((e) => {});
-    if (files.length === 1) {
-      alert("Upload successfully 1 file!");
-    } else {
-      alert("Upload successfully " + files.length + " files");
-    }
-  };
+    alert("Upload successful!");
 
-  const fileNumbers = files.length;
-  let noti = "";
-  if (fileNumbers === 1) {
-    noti = <div className="file__form-noti">You are uploading 1 file!</div>;
-  } else if (fileNumbers > 1) {
-    noti = (
-      <div className="file__form-noti">
-        You are uploading {fileNumbers} files!
-      </div>
-    );
-  } else {
-    noti = "";
-  }
+    document.getElementsByClassName("file__form-input-btn")[0].value = null;
+  };
 
   return (
     <div>
@@ -65,8 +54,6 @@ const UploadFile = ({ onSuccess }) => {
             Upload new file
           </label>
         </div>
-
-        {noti}
         <button className="file__form-btn">Submit</button>
       </form>
     </div>

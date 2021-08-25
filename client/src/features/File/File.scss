@@ -4,7 +4,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 400px;
+  width: 250px;
 
   &-input {
     &-btn {
@@ -47,10 +47,5 @@
     filter: brightness(250%);
     box-shadow: #00000059 0px 5px 15px;
     cursor: pointer;
-  }
-
-  &-noti {
-    font-size: 14px;
-    font-weight: 600;
   }
 }
