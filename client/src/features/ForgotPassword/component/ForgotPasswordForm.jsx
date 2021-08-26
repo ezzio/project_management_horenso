@@ -2,18 +2,33 @@ import React from 'react'
 import './ForgotPasswordForm.scss'
 import { AiOutlineMail } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
-function ForgotPasswordForm() {
+function ForgotPasswordForm(props) {
+
+    const {register, reset, handleSubmit, formState: { errors } } = useForm() 
+
+    const { setIsSent } = props
+
+    const onHandleSubmit = () => {
+        setIsSent(true)
+    }
+
     return (
-        <div className='forgotpassword-form'>
+        <div onClick={handleSubmit(onHandleSubmit)} className='forgotpassword-form'>
             <div className='forgotpassword-form__title'>
                 <span className='forgotpassword-form__title__text'>Welcome!</span>
             </div>
             <div className='forgotpassword-form__email-container'>
                 <div className='email-textbox'>
-                    <input className='email-textbox__input' placeholder='Enter your email' />
+                    <input className='email-textbox__input' placeholder='Enter your email' 
+                    type='text' name='email' 
+                    {...register("email", { required: "This field is required", 
+                    pattern: {value: /^\S+@\S+$/i, message: 'Invalid email address'} })}
+                    />
                 </div>
                 <span className='forgotpassword-form__email-container__label'>Email</span>
+                { errors.email && <p style={{ position: 'absolute', top: 42, fontSize: 14 }} className='forgotpassword-form__error'>{errors.email.message}</p> }
             </div>
             <AiOutlineMail style={{
                 top: 143,

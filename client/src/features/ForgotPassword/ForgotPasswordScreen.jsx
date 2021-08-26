@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ForgotPasswordScreen.scss'
 import LoginForm from './component/ForgotPasswordForm.jsx'
+import LinkSent from './component/LinkSent.jsx'
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom'
 
 function LoginScreen() {
+
+    const [isSent, setIsSent] = useState(false)
+
     const history = useHistory()
 
     const forgotPasswordToSignUp = () => {
@@ -14,11 +18,16 @@ function LoginScreen() {
     return (
         <div className='forgot'>
             <div className='forgot__form'>
-                <LoginForm />
+                { isSent ? <LinkSent /> : <LoginForm setIsSent={setIsSent}/>}
+                {isSent ?
+                <button className='help-btn2'>
+                    <AiOutlineQuestionCircle style={{fontSize: 24, color: 'white'}}/>
+                    <span className='help-btn2__text'>Help</span>
+                </button> : 
                 <button className='help-btn'>
                     <AiOutlineQuestionCircle style={{fontSize: 24, color: 'white'}}/>
                     <span className='help-btn__text'>Help</span>
-                </button>
+                </button>}
             </div>
             <div className='forgot__signup-container'>
                 <div className='forgot__signup'>

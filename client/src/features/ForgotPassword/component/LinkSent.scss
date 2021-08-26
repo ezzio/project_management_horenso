@@ -1,0 +1,76 @@
+@import '../../../App.scss';
+@import '../../../styles/Color.scss';
+.sent-form {
+  height: 377px;
+  width: 480px;
+  display: flex;
+  border-width: 0px;
+  border-radius: 5px;
+  border-color: white;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  border-style: solid;
+  flex-direction: column;
+  position: relative;
+  box-shadow: $_SHADOW;
+
+  &__title {
+    position: absolute;
+    justify-content: center;
+    width: 156px;
+    top: 9.6%;
+    left: 31.5%;
+    flex-direction: column;
+    display: flex;
+    &__text {
+      font-size: 40px;
+      color: #000;
+      padding-bottom: 12px;
+      width: 142px;
+      height: 41px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    justify-content: center;
+    width: 400px;
+    top: 65.6%;
+    left: 27.3%;
+    flex-direction: column;
+    display: flex;
+    &__text1 {
+      font-size: 28px;
+      color: #000;
+      padding-bottom: 12px;
+      font-style: normal;
+      font-weight: 200;
+    }
+    &__text2 {
+      font-size: 16px;
+      color: #000;
+      padding-top: 6px;
+      padding-bottom: 12px;
+      padding-left: 4px;
+      font-style: normal;
+      font-weight: 200;
+    }
+    &__text3 {
+      font-size: 16px;
+      color: #000;
+      padding-top: 6px;
+      padding-bottom: 12px;
+      padding-left: 75px;
+      font-style: normal;
+      font-weight: 200;
+    }
+  }
+
+  &__error {
+    color: $_ERROR;
+    font-weight: bold;
+  }
+}
