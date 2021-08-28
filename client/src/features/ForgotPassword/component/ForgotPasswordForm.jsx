@@ -3,14 +3,24 @@ import './ForgotPasswordForm.scss'
 import { AiOutlineMail } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { forgotPassword } from '../ForgotPasswordSlice'
 
 function ForgotPasswordForm(props) {
 
-    const {register, reset, handleSubmit, formState: { errors } } = useForm() 
+    const {register, handleSubmit, formState: { errors } } = useForm() 
+    
+    const [error, setError] = useState('')
 
     const { setIsSent } = props
 
-    const onHandleSubmit = () => {
+    const onHandleSubmit = (data) => {
+        setError('')
+        dispatch(
+            forgotPassword({
+                email: data.email,
+                setError
+            })
+        )
         setIsSent(true)
     }
 
@@ -29,6 +39,7 @@ function ForgotPasswordForm(props) {
                 </div>
                 <span className='forgotpassword-form__email-container__label'>Email</span>
                 { errors.email && <p style={{ position: 'absolute', top: 42, fontSize: 14 }} className='forgotpassword-form__error'>{errors.email.message}</p> }
+                { (error && !errors.email) && <p style={{ position: 'absolute', top: 42, fontSize: 14}} className='forgotpassword-form__error'>{error}</p> }
             </div>
             <AiOutlineMail style={{
                 top: 143,
