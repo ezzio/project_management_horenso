@@ -86,7 +86,7 @@ function Source() {
           />
           <tbody>
             {filesData.map((f) => (
-              <tr key={f.Id}>
+              <tr>
                 <td>{f.name}</td>
                 <td>{f.lastModifiedDate}</td>
                 <td>{f.size} MB</td>
