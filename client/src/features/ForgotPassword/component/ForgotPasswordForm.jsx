@@ -3,6 +3,7 @@ import './ForgotPasswordForm.scss'
 import { AiOutlineMail } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../ForgotPasswordSlice'
 
 function ForgotPasswordForm(props) {
@@ -12,6 +13,8 @@ function ForgotPasswordForm(props) {
     const [error, setError] = useState('')
 
     const { setIsSent } = props
+
+    const dispatch = useDispatch()
 
     const onHandleSubmit = (data) => {
         setError('')
