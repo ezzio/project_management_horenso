@@ -1,25 +1,13 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import "./Source.scss";
 import JsonData from "./MOCK_DATA.json";
 import { TableHeader, Pagination, Search } from "./components/DataTable";
-import { RiDownload2Fill, RiDeleteBin6Line } from "react-icons/ri";
-import UploadFile from "features/File/File";
-import axios from "axios";
-// import storage from "../../../../../server/routes/Store";
+import UploadFile from "features/UploadFile-Storage/File";
+import DownloadFile from "features/DownloadFile-Storage/dowloadFile.jsx";
+import DeleteFile from "features/DeleteFile-Storage/deleteFile";
 
 function Source() {
   const [files, setFiles] = useState(JsonData);
-
-  // useEffect(() => {
-  //   const fetchFileList = async () => {
-  //     try {
-  //       const response = await storage.getAll();
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.log("Failed to fetch file list: ", error);
-  //     }
-  //   };
-  // });
 
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,19 +86,15 @@ function Source() {
           />
           <tbody>
             {filesData.map((f) => (
-              <tr>
+              <tr key={f.Id}>
                 <td>{f.name}</td>
                 <td>{f.lastModifiedDate}</td>
                 <td>{f.size} MB</td>
                 <td>{f.member}</td>
                 <td>
                   <div className="action">
-                    <a href="#" className="btn__btn-download">
-                      <RiDownload2Fill />
-                    </a>
-                    <a href="#" className="btn__btn-delete">
-                      <RiDeleteBin6Line />
-                    </a>
+                    <DownloadFile fileId={f.Id} />
+                    <DeleteFile fileId={f.Id} />
                   </div>
                 </td>
               </tr>
