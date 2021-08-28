@@ -8,7 +8,7 @@ import { forgotPassword } from '../ForgotPasswordSlice'
 
 function ForgotPasswordForm(props) {
 
-    const {register, handleSubmit, formState: { errors } } = useForm() 
+    const {register, reset, handleSubmit, formState: { errors } } = useForm() 
     
     const [error, setError] = useState('')
 
@@ -18,13 +18,17 @@ function ForgotPasswordForm(props) {
 
     const onHandleSubmit = (data) => {
         setError('')
-        dispatch(
-            forgotPassword({
-                email: data.email,
-                setError
-            })
-        )
-        setIsSent(true)
+        if ( dispatch(
+                forgotPassword({
+                    email: data.email,
+                    setError
+            }))) {
+            setIsSent(true)
+        }
+        reset({
+            email: data.email,
+            password: ''
+        })
     }
 
     return (
