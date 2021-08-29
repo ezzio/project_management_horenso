@@ -1,0 +1,52 @@
+@import "styles/Color.scss";
+
+.ctn-job-task {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+
+    &__title {
+        flex: 2;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &__process {
+        flex: 1;
+
+        .background-process {
+            width: 80%;
+            height: 0.2rem;
+            background-color: #ccc;
+            position: relative;
+
+            .process-work {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 0.2rem;
+                background-color: $_GREENBLUE;
+            }
+        }
+    }
+
+    &__members {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+
+        & > button {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+        }
+    }
+}
