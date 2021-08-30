@@ -1,8 +1,7 @@
 @import 'styles/Color.scss';
 
 .column {
-  flex: 0 0 300px;
-
+  width: calc(100% / 4);
   overflow-x: scroll;
   white-space: nowrap;
 
@@ -52,7 +51,7 @@
 
     &__add-task {
       width: 100%;
-      height: 30px;
+      height: 50px;
 
       cursor: pointer;
 
