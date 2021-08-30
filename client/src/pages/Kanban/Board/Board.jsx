@@ -7,7 +7,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 const Board = (props) => {
   const columns = [
-    { id_column: 0, title: 'Backlog' },
+    { id_column: 0, title: 'Backlog', tasks: [{
+      id: 0, title: 'This is the title of task', 
+    }] },
     { id_column: 1, title: 'In process' },
     { id_column: 2, title: 'Review' },
     { id_column: 3, title: 'Completed' },

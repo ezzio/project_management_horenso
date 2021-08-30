@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { MdMoreHoriz } from 'react-icons/md';
 import './Column.scss';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import Task from 'features/Task/Task';
 
 const Column = (props) => {
   const { tasks, column, numberOfTasks } = props;
@@ -13,9 +14,9 @@ const Column = (props) => {
         <MdMoreHoriz />
       </div>
       <div className="column__content">
-        <button className="column__content__add-task">
-          <BsPlusCircleFill /> Add another task
-        </button>
+        <Task></Task>
+        <Task></Task>
+        <Task></Task>
       </div>
     </div>
   );
