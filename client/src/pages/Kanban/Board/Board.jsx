@@ -6,8 +6,10 @@ import { BsPlusCircleFill } from 'react-icons/bs';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 const Board = (props) => {
-  const initialColumn = [
-    { id_column: 0, title: 'Backlog' },
+  const columns = [
+    { id_column: 0, title: 'Backlog', tasks: [{
+      id: 0, title: 'This is the title of task', 
+    }] },
     { id_column: 1, title: 'In process' },
     { id_column: 2, title: 'Review' },
     { id_column: 3, title: 'Completed' },
@@ -26,24 +28,6 @@ const Board = (props) => {
     },
   ];
 
-  const [columns, setColumns] = useState(initialColumn);
-
-  const addNewColumn = useRef(null);
-  console.log(addNewColumn.current);
-
-  const handleAddNewColumn = () => {
-    let newListColumns = [...columns];
-
-    setColumns([
-      ...newListColumns,
-      { id_column: newListColumns.length + 1, title: 'new column' },
-    ]);
-  };
-
-  useEffect(() => {
-    addNewColumn.current.scrollIntoView({ behavior: 'smooth' });
-  });
-
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -57,19 +41,9 @@ const Board = (props) => {
 
       {/* render column */}
       <div className="board-content">
-        <DndProvider backend={HTML5Backend}>
-          {columns.map((column) => {
-            return <Column column={column} numberOfTasks={columns.length} />;
-          })}
-        </DndProvider>
-
-        <button
-          ref={addNewColumn}
-          className="board-content__new-column"
-          onClick={handleAddNewColumn}
-        >
-          <BsPlusCircleFill /> Add new column
-        </button>
+        {columns.map((column) => {
+          return <Column column={column} numberOfTasks={columns.length} />;
+        })}
       </div>
     </div>
   );
