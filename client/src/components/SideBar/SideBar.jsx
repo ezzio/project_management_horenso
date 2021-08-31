@@ -44,7 +44,6 @@ const SideBar = () => {
       onMouseLeave={mouseLeave}
     >
       <div className="side-bar__header">
-        <GiFlowerTwirl className="icon" />
         <p className="hidden">Kanso</p>
       </div>
       <div className="side-bar__content">
