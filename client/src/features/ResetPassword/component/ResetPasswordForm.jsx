@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './ResetPasswordForm.scss'
 import { useForm } from 'react-hook-form'
 import { AiOutlineLock} from 'react-icons/ai';
-import { BsWatch } from 'react-icons/bs';
+import { useDispatch } from 'react-redux'
+import { resetPassword } from '../../ForgotPassword/ForgotPasswordSlice'
 
-
-function LoginForm(props) {
+function ResetPasswordForm() {
 
     const {register, reset, handleSubmit, watch, formState: { errors } } = useForm()
 
+    const [error, setError] = useState('')
+
+    const dispatch = useDispatch()
+
     const createPassword = (data) => {
-        console.log(data)
+        if (data.password === data.confirm) {
+            dispatch(
+                resetPassword({
+                    password: data.password
+                })
+            )   
+        }
+        else {
+            setError('Password must match. Please try again!')
+        }
+        reset({
+            password: '',
+            confirm: ''
+        })
     }   
 
     return (
@@ -40,6 +57,7 @@ function LoginForm(props) {
                     />
                 </div>
                 { errors.confirm && <p style={{ position: 'absolute', top: 42, fontSize: 14 }} className='reset-form__error'>{errors.confirm.message}</p> }
+                { (error && !errors.confirm) && <p style={{ position: 'absolute', top: 42, fontSize: 14}} className='reset-form__error'>{error}</p> }
             </div>
             <AiOutlineLock style={{ 
                 top: 145,
@@ -66,4 +84,4 @@ function LoginForm(props) {
     )
 }
 
-export default LoginForm
+export default ResetPasswordForm

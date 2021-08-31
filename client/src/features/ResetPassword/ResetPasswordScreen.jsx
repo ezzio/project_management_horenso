@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import "./ResetPasswordScreen.scss";
 import ResetPasswordForm from './component/ResetPasswordForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
