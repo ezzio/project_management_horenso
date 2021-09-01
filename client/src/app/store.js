@@ -1,13 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-<<<<<<< HEAD
-=======
-import loginReducer from "features/Login/LoginSlice";
-import signupReducer from "features/Signup/SignupSlice"
-
->>>>>>> 35491bb605f7d359c035b4c927d509d16553fe0a
+import { configureStore } from '@reduxjs/toolkit';
+import loginReducer from 'features/Login/LoginSlice';
+import signupReducer from 'features/Signup/SignupSlice';
+import boardReducer from 'pages/Kanban/Board/boardSlice';
 export const store = configureStore({
   reducer: {
+    board: boardReducer,
     login: loginReducer,
-    signup: signupReducer
+    signup: signupReducer,
   },
 });
