@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Repositories from "./Component/Repositories/Repositories";
 import { MdPeople } from "react-icons/md";
 import { GoLocation } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -53,9 +54,6 @@ const UserSetting = (props) => {
           <span className={(selectButton === 3) ?'navBar__issues-selected__text' : 'navBar__issues__text'}>Issues</span>
         </button>
       </div>
-      <div>
-        <span>Page info here</span>
-      </div>
       <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
           <div className="userinfo__sidebar__name">
@@ -77,6 +75,9 @@ const UserSetting = (props) => {
             <InfoProfile setIsEditProfile={() => setIsEditProfile(true)} />
           )}
         </div>
+      </div>
+      <div className='info-ctn'>
+        {(selectButton === 2) ? <Repositories /> : ''}
       </div>
     </div>
   );

@@ -269,4 +269,17 @@
       font-weight: 400;
     }
   }
+
+  &__type-btn {
+    position: absolute;
+    left: 50%;
+  }
+}
+
+.info-ctn {
+  position: absolute;
+  height: 916px;
+  width: 936px;
+  top: 7.8%;
+  left: 33.6%;
 }
