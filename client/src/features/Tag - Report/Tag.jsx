@@ -7,6 +7,7 @@ import './Tag.scss';
 
 const Tag = (props) => {
   const { type, title, team, time, members, process } = props;
+  // const { tagList } = props;
 
   const tagIcon = () => {
     switch (type) {

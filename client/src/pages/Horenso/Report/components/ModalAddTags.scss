@@ -1,0 +1,119 @@
+@import "styles/Color.scss";
+@import "styles/ContainerContents.scss";
+
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200, 0.85);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    .modalContainer {
+        width: 500px;
+        height: 500px;
+        border-radius: 12px;
+
+        background-color: #fff;
+        box-shadow: $_SHADOW;
+
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .btn-exit {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+
+            & > button {
+                width: 20px;
+
+                background-color: #fff;
+                border: none;
+                font-size: 16px;
+
+                cursor: pointer;
+            }
+        }
+
+        &__title {
+            text-align: center;
+        }
+
+        &__body {
+            height: 100%;
+            width: 100%;
+
+            & > form {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+
+                .input-errors {
+                    color: $_ERROR;
+                    transition: all 2s;
+                    padding-top: 10px;
+                }
+
+                & > section {
+                    display: flex;
+                    flex-direction: column;
+
+                    & > input:focus {
+                        outline: none;
+                        border-color: $_BLUE;
+                    }
+                    .errors-outline {
+                        padding: 1rem 5px;
+                        height: 2rem;
+                        border-radius: 8px;
+                        border: solid 1px $_ERROR;
+                    }
+
+                    .input-normal {
+                        padding: 1rem 5px;
+                        height: 2rem;
+                        border-radius: 8px;
+                        border: solid 1px #ccc;
+                    }
+                }
+
+                .tag-btn {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    & > button {
+                        width: 60px;
+                        height: 30px;
+                        cursor: pointer;
+                    }
+                    .btn-submit {
+                        background-color: $_PRIMARY;
+                        color: #fff;
+
+                        border: none;
+                        border-radius: 8px;
+                    }
+
+                    .btn-submit:hover {
+                        background-color: $_SECONDARY;
+                        transition: all 0.35s;
+                    }
+
+                    .btn-cancle {
+                        background-color: #fff;
+                        border: none;
+
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

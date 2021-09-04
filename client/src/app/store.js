@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-<<<<<<< HEAD
-=======
-import loginReducer from "features/Login/LoginSlice";
-import signupReducer from "features/Signup/SignupSlice"
+import loginReducer from 'features/Login/LoginSlice';
+import signupReducer from 'features/Signup/SignupSlice';
+import tagReducer from 'features/Tag - Report/TagSlice'
 
->>>>>>> 35491bb605f7d359c035b4c927d509d16553fe0a
+const rootReducer = {
+  login: loginReducer,
+  signup: signupReducer,
+  tags: tagReducer,
+}
+
 export const store = configureStore({
-  reducer: {
-    login: loginReducer,
-    signup: signupReducer
-  },
+  reducer: rootReducer,
 });
