@@ -62,22 +62,42 @@ function Repositories() {
                     <span className='repo-ctn__search-ctn__new-btn__text'>New</span>
                 </button>
             </div>
-            <div className='repo-ctn__repositories'>
-                <div className='repo-ctn__repositories__details-ctn'>
-                    <h3 className='repo-ctn__repositories__details-ctn__name'>react-projects</h3>
-                    <span className='repo-ctn__repositories__details-ctn__description'>This is a description for react-projects</span>
-                    <div className='repo-ctn__repositories__other-details-ctn'>   
-                        <span className='repo-ctn__repositories__other-details-ctn__lang-color' />
-                        <span className='repo-ctn__repositories__other-details-ctn__language'>CSS</span>
-                        <AiOutlineFork style={{position: 'relative', left: 21, top: 3}}/>
-                        <span className='repo-ctn__repositories__other-details-ctn__forks'>1,375</span>
-                        <span className='repo-ctn__repositories__other-details-ctn__update'>Updated on 5 Jul</span>
+            <div className='repo-ctn__repositories-ctn'>
+                <div className='repo-ctn__repositories'>
+                    <div className='repo-ctn__repositories__details-ctn'>
+                        <h3 className='repo-ctn__repositories__details-ctn__name'>react-projects</h3>
+                        <span className='repo-ctn__repositories__details-ctn__description'>This is a description for react-projects</span>
+                        <div className='repo-ctn__repositories__other-details-ctn'>   
+                            <span className='repo-ctn__repositories__other-details-ctn__lang-color' style={{backgroundColor: 'purple'}}/>
+                            <span className='repo-ctn__repositories__other-details-ctn__language'>CSS</span>
+                            <AiOutlineFork style={{position: 'relative', left: 21, top: 3}}/>
+                            <span className='repo-ctn__repositories__other-details-ctn__forks'>1,375</span>
+                            <span className='repo-ctn__repositories__other-details-ctn__update'>Updated on 5 Jul</span>
+                        </div>
+                        <button className='repo-ctn__repositories__star-btn'>
+                            <AiOutlineStar style={{ position: 'relative', fontSize: 18, right: 4, top: 4}}/>
+                            <span className='repo-ctn__repositories__star-btn__text'>Star</span>
+                        </button>
+                        <span className='repo-ctn__repositories__completion'>98%</span>
                     </div>
-                    <button className='repo-ctn__repositories__star-btn'>
-                        <AiOutlineStar style={{ position: 'relative', fontSize: 18, right: 4, top: 4}}/>
-                        <span className='repo-ctn__repositories__star-btn__text'>Star</span>
-                    </button>
-                    <span className='repo-ctn__repositories__completion'>98%</span>
+                </div>
+                <div className='repo-ctn__repositories'>
+                    <div className='repo-ctn__repositories__details-ctn'>
+                        <h3 className='repo-ctn__repositories__details-ctn__name'>react-projects</h3>
+                        <span className='repo-ctn__repositories__details-ctn__description'>This is a description for react-projects</span>
+                        <div className='repo-ctn__repositories__other-details-ctn'>   
+                            <span className='repo-ctn__repositories__other-details-ctn__lang-color' style={{backgroundColor: 'purple'}}/>
+                            <span className='repo-ctn__repositories__other-details-ctn__language'>CSS</span>
+                            <AiOutlineFork style={{position: 'relative', left: 21, top: 3}}/>
+                            <span className='repo-ctn__repositories__other-details-ctn__forks'>1,375</span>
+                            <span className='repo-ctn__repositories__other-details-ctn__update'>Updated on 5 Jul</span>
+                        </div>
+                        <button className='repo-ctn__repositories__star-btn'>
+                            <AiOutlineStar style={{ position: 'relative', fontSize: 18, right: 4, top: 4}}/>
+                            <span className='repo-ctn__repositories__star-btn__text'>Star</span>
+                        </button>
+                        <span className='repo-ctn__repositories__completion'>98%</span>
+                    </div>
                 </div>
             </div>
         </div>

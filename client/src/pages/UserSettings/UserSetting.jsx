@@ -28,31 +28,33 @@ const UserSetting = (props) => {
   return (
     <div>
       <div className='navBar'>
-        <button onClick={() => pageButtonClick(1)} className={(selectButton === 1) ? 'navBar__overview-selected' : 'navBar__overview'}>
-          <FiBookOpen style={(selectButton === 1) ? 
-          {fontSize: 17, position: "absolute", right: 80, color: 'black'} :
-          {fontSize: 17, position: "absolute", right: 80, color: 'gray'}} 
-          />
-          <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>
-            Overview
-          </span>
-        </button>
-        <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__repo-selected' : 'navBar__repo'}>
-          <BiBookBookmark style={(selectButton === 2) ? 
-          {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
-          {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} 
-          />
-          <span className={(selectButton === 2) ? 'navBar__repo-selected__text' : 'navBar__repo__text'}>Repositories</span>
-          <div className='navBar__repo-number-ctn'>
-            <span className='navBar__repo-number-ctn__text'>2</span>
-          </div>
-        </button>
-        <button onClick={() => pageButtonClick(3)} className={(selectButton === 3) ?'navBar__issues-selected' : 'navBar__issues'}>
-          <AiOutlineExclamationCircle style={(selectButton === 3) ? 
-          {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
-          {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} />
-          <span className={(selectButton === 3) ?'navBar__issues-selected__text' : 'navBar__issues__text'}>Issues</span>
-        </button>
+        <div className='navBar__btn-ctn'>
+          <button onClick={() => pageButtonClick(1)} className={(selectButton === 1) ? 'navBar__overview-selected' : 'navBar__overview'}>
+            <FiBookOpen style={(selectButton === 1) ? 
+            {fontSize: 17, position: "absolute", right: 80, color: 'black'} :
+            {fontSize: 17, position: "absolute", right: 80, color: 'gray'}} 
+            />
+            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>
+              Overview
+            </span>
+          </button>
+          <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__repo-selected' : 'navBar__repo'}>
+            <BiBookBookmark style={(selectButton === 2) ? 
+            {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
+            {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} 
+            />
+            <span className={(selectButton === 2) ? 'navBar__repo-selected__text' : 'navBar__repo__text'}>Repositories</span>
+            <div className='navBar__repo-number-ctn'>
+              <span className='navBar__repo-number-ctn__text'>2</span>
+            </div>
+          </button>
+          <button onClick={() => pageButtonClick(3)} className={(selectButton === 3) ?'navBar__issues-selected' : 'navBar__issues'}>
+            <AiOutlineExclamationCircle style={(selectButton === 3) ? 
+            {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
+            {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} />
+            <span className={(selectButton === 3) ?'navBar__issues-selected__text' : 'navBar__issues__text'}>Issues</span>
+          </button>    
+        </div>
       </div>
       <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
