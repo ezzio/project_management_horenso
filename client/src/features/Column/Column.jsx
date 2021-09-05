@@ -11,14 +11,14 @@ const Column = (props) => {
 
   return (
     <Droppable droppableId={column.id_column.toString()}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <div
-          className="column"
+          className={`column ${snapshot.isDraggingOver ? 'drag-active' : ''}`}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
           <div className="column__header">
-            <h4 className="column__header__title">{column.title}</h4>
+            <h4 className="column__header__title">{column.name}</h4>
             {column.id_column === 0 && (
               <AiFillPlusCircle className="column__header__add" />
             )}

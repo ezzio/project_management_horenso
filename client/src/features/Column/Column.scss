@@ -50,3 +50,9 @@
     overflow-x: hidden;
   }
 }
+
+.drag-active {
+  & > .column__content {
+    background-color: hsl(170, 79%, 43%, 0.1);
+  }
+}

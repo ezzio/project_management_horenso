@@ -4,7 +4,7 @@ const initialState = {
   columns: [
     {
       id_column: 0,
-      title: 'Backlog',
+      name: 'Backlog',
       tasks: [
         {
           id: 0,
@@ -20,9 +20,9 @@ const initialState = {
         },
       ],
     },
-    { id_column: 1, title: 'In process', tasks: [] },
-    { id_column: 2, title: 'Review', tasks: [] },
-    { id_column: 3, title: 'Completed', tasks: [] },
+    { id_column: 1, name: 'In process', tasks: [] },
+    { id_column: 2, name: 'Review', tasks: [] },
+    { id_column: 3, name: 'Completed', tasks: [] },
   ],
 };
 
@@ -41,9 +41,26 @@ export const boardSlice = createSlice({
       )
         return;
 
-      const tempColumn = [...current(state.columns)];
-      const sourceTask = tempColumn[source.droppableId].tasks[source.index];
-      const tempTasks = tempColumn[source.droppableId].tasks;
+      let tempTask = current(
+        state.columns[source.droppableId].tasks[source.index]
+      );
+
+      if (destination.droppableId === source.droppableId) {
+        state.columns[source.droppableId].tasks.splice(source.index, 1);
+        state.columns[source.droppableId].tasks.splice(
+          destination.index,
+          0,
+          tempTask
+        );
+        console.log(current(state.columns[source.droppableId].tasks));
+      } else {
+        state.columns[source.droppableId].tasks.splice(source.index, 1);
+        state.columns[destination.droppableId].tasks.splice(
+          destination.index,
+          0,
+          tempTask
+        );
+      }
     },
   },
 });
