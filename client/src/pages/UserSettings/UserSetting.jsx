@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Repositories from "./Component/Repositories/Repositories";
+import Overview from "./Component/Overview/Overview";
 import { MdPeople } from "react-icons/md";
 import { GoLocation } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -34,9 +35,7 @@ const UserSetting = (props) => {
             {fontSize: 17, position: "absolute", right: 80, color: 'black'} :
             {fontSize: 17, position: "absolute", right: 80, color: 'gray'}} 
             />
-            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>
-              Overview
-            </span>
+            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>Overview</span>
           </button>
           <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__repo-selected' : 'navBar__repo'}>
             <BiBookBookmark style={(selectButton === 2) ? 
@@ -79,7 +78,10 @@ const UserSetting = (props) => {
         </div>
       </div>
       <div className='info-ctn'>
-        {(selectButton === 2) ? <Repositories /> : ''}
+        {
+          (selectButton === 1) ? <Overview /> : 
+          (selectButton === 2) ? <Repositories /> : ''
+        }
       </div>
     </div>
   );
