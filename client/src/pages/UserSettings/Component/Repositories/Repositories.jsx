@@ -99,6 +99,9 @@ function Repositories() {
                         <span className='repo-ctn__repositories__completion'>98%</span>
                     </div>
                 </div>
+                {/* <div className='repo-ctn__no-repo'>
+                    <h3 className='repo-ctn__no-repo__text'>You don't have any public repositories yet.</h3>
+                </div>         display this when user have no repository */}
             </div>
         </div>
     )

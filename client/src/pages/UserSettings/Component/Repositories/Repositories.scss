@@ -346,4 +346,18 @@
       top: 60%;
     }
   }
+
+  &__no-repo {
+    position: relative;
+    top: 1.8%;
+    width: 904;
+    height: 98px;
+    display: block;
+
+    &__text {
+      text-align: center;
+      vertical-align: middle;
+      line-height: 98px;
+    }
+  }
 }
