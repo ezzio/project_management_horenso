@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Content.scss";
 import { BsSearch } from "react-icons/bs";
 
@@ -29,6 +29,11 @@ const Content = () => {
             onChange={handleSearch}
           />
           <button onClick={handleClick}>Search</button>
+        </div>
+        <div className="repository">
+          <table className="repository__directory">
+            <thead></thead>
+          </table>
         </div>
       </div>
     </div>
