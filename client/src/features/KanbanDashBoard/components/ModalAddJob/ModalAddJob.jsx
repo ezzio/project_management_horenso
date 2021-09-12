@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ModalAddJob.scss'
 
-const ModalAddJob = () => {
+const ModalAddJob = ({ closeModal }) => {
     const [level, setLevel] = useState('')
     const handleChange = (e) => {
         setLevel(e.target.value)
@@ -34,7 +34,7 @@ const ModalAddJob = () => {
                     <input type="text" placeholder='Members' />
                 </div>
                 <section className="ctn-modal-add-job__form__button-back">
-                    <p>Cancle</p>
+                    <p onClick={() => closeModal(false)}>Cancle</p>
                     <button type="submit" className="submit" >Submit</button>
                 </section>
 

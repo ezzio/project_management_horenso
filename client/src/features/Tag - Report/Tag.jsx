@@ -6,11 +6,11 @@ import { AiOutlineFieldTime, AiOutlineTeam } from 'react-icons/ai';
 import './Tag.scss';
 
 const Tag = (props) => {
-  const { type, title, team, time, members, process } = props;
-  // const { tagList } = props;
+  // const { type, title, team, time, members, process } = props;
+  const { tagList } = props;
 
   const tagIcon = () => {
-    switch (type) {
+    switch (tagList.type) {
       case 'complated':
         return <BiCommentError />;
       case 'approved':
@@ -24,15 +24,15 @@ const Tag = (props) => {
       <div className="tag__icon">{tagIcon()}</div>
       <div className="tag__content">
         <section className="tag__content__info">
-          <h2 className="tag__content__info__title">{title}</h2>
+          <h2 className="tag__content__info__title">{tagList.title}</h2>
           <div className="tag__content__info__detail">
             <section>
               <AiOutlineTeam />
-              <p>{team}</p>
+              <p>{tagList.team}</p>
             </section>
             <section>
               <AiOutlineFieldTime />
-              <p>{time}</p>
+              <p>{tagList.time}</p>
             </section>
           </div>
         </section>
@@ -40,10 +40,10 @@ const Tag = (props) => {
           <section className="tag__content__footer-info__member">
             <p>Team member</p>
             <section>
-              {members.map((member) => {
+              {tagList.members.map((member) => {
                 return (
                   <img
-                    src={member}
+                    src={member.avatar}
                     alt="member"
                     className="member__icon"
                     height="25"
@@ -55,7 +55,7 @@ const Tag = (props) => {
           </section>
           <section className="tag__content__footer-info__process">
             <p>Process</p>
-            <p>{process}</p>
+            <p>{tagList.process}</p>
           </section>
         </section>
       </div>
@@ -64,12 +64,7 @@ const Tag = (props) => {
 };
 
 Tag.propTypes = {
-  type: PropTypes.string,
-  title: PropTypes.string,
-  team: PropTypes.string,
-  time: PropTypes.string,
-  members: PropTypes.array,
-  process: PropTypes.string,
+  tagList: PropTypes.object,
 };
 
 export default Tag;

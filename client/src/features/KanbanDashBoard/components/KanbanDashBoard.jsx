@@ -72,7 +72,7 @@ const KanbanDashBoard = () => {
 
   return (
     <>
-      {showModal && <ModalAddJob />}
+      {showModal && <ModalAddJob closeModal={setShowModal} />}
       <div className="ctn-kanbandashboard">
         <div className="ctn-kanbandashboard__working">
           <div className="ctn-kanbandashboard__working__title">

@@ -1,7 +1,8 @@
 import SideBar from "components/SideBar/SideBar";
+import KanbanDashBoard from "features/KanbanDashBoard/components/KanbanDashBoard";
 import Conversation from "pages/Horenso/Conversation/Conversation";
 import Report from "pages/Horenso/Report/Report";
-import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
+
 import React from "react";
 import {
   BrowserRouter as Router,

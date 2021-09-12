@@ -9,10 +9,10 @@ import './Report.scss';
 
 
 const Report = () => {
-  const members = [
-    'https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png',
-    'https://static.remove.bg/remove-bg-web/3661dd45c31a4ff23941855a7e4cedbbf6973643/assets/start_remove-79a4598a05a77ca999df1dcb434160994b6fde2c3e9101984fb1be0f16d0a74e.png',
-  ];
+  // const members = [
+  //   'https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png',
+  //   'https://static.remove.bg/remove-bg-web/3661dd45c31a4ff23941855a7e4cedbbf6973643/assets/start_remove-79a4598a05a77ca999df1dcb434160994b6fde2c3e9101984fb1be0f16d0a74e.png',
+  // ];
 
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const Report = () => {
 
   const handleAddTags = (data) => {
     console.log("New data: ", data);
-
-    const action = addTag(data)
-    console.log({ action });
-    dispatch(action);
+    // const action = addTag(data)
+    // console.log({ action });
+    console.log(typeof data);
+    dispatch(addTag(data));
   }
   console.log({ tags });
 
@@ -68,15 +68,12 @@ const Report = () => {
           </section>
         </div>
         <div className="report__list">
-          <Tag
-            type="complated"
-            title="UI Design"
-            team="UI team"
-            time="1 month left"
-            members={members}
-            process="47%"
-          // tagList={tags}
-          />
+          {tags.map((tag) => {
+            return <Tag
+              tagList={tag}
+            />
+          })}
+
         </div>
       </div>
     </>

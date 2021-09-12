@@ -6,10 +6,10 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             type: 'complated',
-            title: '',
-            team: '',
-            time: '',
-            member: '',
+            title: null,
+            team: null,
+            time: null,
+            member: null,
             process: '0%'
         }
     });
@@ -17,6 +17,8 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
         console.log(data);
         onAddTags(data);
     };
+
+
 
     return (
         <div className='modalBackground'>
@@ -36,6 +38,7 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
                                 type="text"
                                 placeholder="Title..."
                                 name="title"
+                                id='title'
                                 {...register('title', { required: "true", })}
                             />
                             {errors.title && <p className='input-errors'>This field is required</p>}
@@ -43,36 +46,38 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
                         <section className='tag-team'>
                             <label htmlFor="team">Team</label>
                             <input
-                                className={errors.title ? "errors-outline" : 'input-normal'}
+                                className={errors.team ? "errors-outline" : 'input-normal'}
                                 type="text"
                                 placeholder="Team..."
                                 name="team"
+                                id='team'
                                 {...register('team', { required: "true", })}
                             />
-                            {errors.title && <p className='input-errors'>This field is required</p>}
+                            {errors.team && <p className='input-errors'>This field is required</p>}
                         </section>
                         <section className='tag-time-success'>
                             <label htmlFor="time">Time</label>
                             <input
-                                className={errors.title ? "errors-outline" : 'input-normal'}
-                                type="time"
+                                className={errors.time ? "errors-outline" : 'input-normal'}
+                                type="datetime-local"
                                 name="timer"
                                 id="timer"
                                 {...register('time', { required: "true", })}
                             />
-                            {errors.title && <p className='input-errors'>This field is required</p>}
+                            {errors.time && <p className='input-errors'>This field is required</p>}
 
                         </section>
                         <section className='tag-member'>
                             <label htmlFor="member">Member</label>
                             <input
-                                className={errors.title ? "errors-outline" : 'input-normal'}
+                                className={errors.member ? "errors-outline" : 'input-normal'}
                                 type="text"
                                 placeholder="Member..."
                                 name="member"
+                                id='member'
                                 {...register('member', { required: "true", })}
                             />
-                            {errors.title && <p className='input-errors'>This field is required</p>}
+                            {errors.member && <p className='input-errors'>This field is required</p>}
 
                         </section>
                         <section className='tag-btn'>
