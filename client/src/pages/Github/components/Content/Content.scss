@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   color: rgb(66, 82, 110);
-  padding: 16px;
+  padding: 16px 32px;
 
   &__header {
     height: 100px;
@@ -49,6 +49,38 @@
       button:hover {
         background-color: $_SECONDARY;
         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .repository {
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9rem;
+
+        thead tr {
+          border-bottom: 2px solid #ddd;
+          text-align: left;
+          font-weight: bold;
+        }
+
+        th,
+        td {
+          width: calc(100% / 4);
+          padding: 12px 15px;
+        }
+
+        tbody tr:hover {
+          background-color: rgb(244, 245, 247);
+          box-shadow: rgb(244 245 247) -4px 0px 0px 0px,
+            rgb(244 245 247) 4px 0px 0px 0px;
+          border-radius: 3px;
+        }
+
+        tbody tr:last-child {
+          border-bottom: 2px solid #dddddd;
+        }
       }
     }
   }

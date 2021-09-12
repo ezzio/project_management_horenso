@@ -29,7 +29,7 @@ const UploadFile = ({ onSuccess }) => {
       .catch((e) => {});
     alert("Upload successful!");
 
-    document.getElementsByClassName("file__form-input-btn")[0].value = null;
+    document.querySelector(".file__form-input-btn").value = null;
   };
 
   return (

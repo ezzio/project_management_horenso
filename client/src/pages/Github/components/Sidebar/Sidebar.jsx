@@ -4,9 +4,10 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { VscSourceControl } from "react-icons/vsc";
 import { DiCode } from "react-icons/di";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const items = document.querySelectorAll(".body__list__item");
+  const items = document.querySelectorAll("Link");
   items.forEach(
     (item) =>
       (item.onclick = function () {
@@ -23,20 +24,20 @@ const Sidebar = () => {
       </div>
       <div className="sidebar__body">
         <div className="body__list">
-          <a className="body__list__item" href="#">
+          <Link to="/github/content" className="body__list__item">
             <VscSourceControl className="icon" />
-            <p>Source</p>
-          </a>
+            <p>Content</p>
+          </Link>
 
-          <a className="body__list__item" href="#">
+          <Link to="/github/download" className="body__list__item">
             <HiOutlineDocumentDownload className="icon" />
             <p>Download</p>
-          </a>
+          </Link>
 
-          <a className="body__list__item" href="#">
+          <Link to="/github/setting" className="body__list__item">
             <AiOutlineSetting className="icon" />
             <p>Setting</p>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

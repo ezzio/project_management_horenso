@@ -1,16 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "./Content.scss";
 import { BsSearch } from "react-icons/bs";
+import axios from "axios";
 
 const Content = () => {
-  const [searchInput, setSearchInput] = useState("");
+  const [repo, setRepo] = useState([]);
 
-  const handleSearch = (e) => {
-    setSearchInput(e.target.value);
-  };
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.github.com/repos/ezzio/Line-98/git/trees/cf35194b440a14fa217890c4c931fa206f25b884"
+      )
+      .then((response) => {
+        setRepo(response.data.tree);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
-  const handleClick = () => {
-    console.log(searchInput);
+  const handleClickUrl = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
+        if (response.data.tree === undefined) {
+          console.log("khong con file nao nua");
+          // setRepo(response);
+        } else {
+          // console.log(response.data.tree);
+          setRepo(response.data.tree);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -22,17 +45,31 @@ const Content = () => {
       <div className="content__body">
         <div className="search">
           <BsSearch className="search__icon" />
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchInput}
-            onChange={handleSearch}
-          />
-          <button onClick={handleClick}>Search</button>
+          <input type="text" placeholder="Search..." />
+          <button>Search</button>
         </div>
         <div className="repository">
-          <table className="repository__directory">
-            <thead></thead>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Last Commit</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              {repo.map((file) => (
+                <tr>
+                  <td>
+                    <a onClick={() => handleClickUrl(file.url)}>{file.path}</a>
+                  </td>
+                  <td>{file.size} MB</td>
+                  <td>2021-08-24</td>
+                  <td>Commit</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
