@@ -2,18 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
 import Column from 'features/Column/Column';
 import './Board.scss';
-import { BsPlusCircleFill } from 'react-icons/bs';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-const Board = (props) => {
-  const initialColumn = [
-    { id_column: 0, title: 'Backlog' },
-    { id_column: 1, title: 'In process' },
-    { id_column: 2, title: 'Review' },
-    { id_column: 3, title: 'Completed' },
-  ];
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateOnDnd } from './boardSlice';
 
-  const tasks = [{}];
+const Board = (props) => {
+  const columns = useSelector((state) => state.board.columns);
+
+  const dispatch = useDispatch();
 
   const members = [
     {
@@ -26,24 +22,9 @@ const Board = (props) => {
     },
   ];
 
-  const [columns, setColumns] = useState(initialColumn);
-
-  const addNewColumn = useRef(null);
-  console.log(addNewColumn.current);
-
-  const handleAddNewColumn = () => {
-    let newListColumns = [...columns];
-
-    setColumns([
-      ...newListColumns,
-      { id_column: newListColumns.length + 1, title: 'new column' },
-    ]);
+  const onDragEnd = (result) => {
+    dispatch(updateOnDnd(result));
   };
-
-  useEffect(() => {
-    addNewColumn.current.scrollIntoView({ behavior: 'smooth' });
-  });
-
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -57,19 +38,11 @@ const Board = (props) => {
 
       {/* render column */}
       <div className="board-content">
-        <DndProvider backend={HTML5Backend}>
+        <DragDropContext onDragEnd={onDragEnd}>
           {columns.map((column) => {
-            return <Column column={column} numberOfTasks={columns.length} />;
+            return <Column column={column} />;
           })}
-        </DndProvider>
-
-        <button
-          ref={addNewColumn}
-          className="board-content__new-column"
-          onClick={handleAddNewColumn}
-        >
-          <BsPlusCircleFill /> Add new column
-        </button>
+        </DragDropContext>
       </div>
     </div>
   );

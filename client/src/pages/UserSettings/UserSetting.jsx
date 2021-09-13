@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Repositories from "./Component/Repositories/Repositories";
 import Overview from "./Component/Overview/Overview";
+import Issues from "./Component/Issues/Issues";
 import { MdPeople } from "react-icons/md";
 import { GoLocation } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -35,14 +36,14 @@ const UserSetting = (props) => {
             {fontSize: 17, position: "absolute", right: 80, color: 'black'} :
             {fontSize: 17, position: "absolute", right: 80, color: 'gray'}} 
             />
-            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>Overview</span>
+            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>Projects</span>
           </button>
           <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__repo-selected' : 'navBar__repo'}>
             <BiBookBookmark style={(selectButton === 2) ? 
             {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
             {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} 
             />
-            <span className={(selectButton === 2) ? 'navBar__repo-selected__text' : 'navBar__repo__text'}>Repositories</span>
+            <span className={(selectButton === 2) ? 'navBar__repo-selected__text' : 'navBar__repo__text'}>Tasks</span>
             <div className='navBar__repo-number-ctn'>
               <span className='navBar__repo-number-ctn__text'>2</span>
             </div>
@@ -55,7 +56,7 @@ const UserSetting = (props) => {
           </button>    
         </div>
       </div>
-      <div className="ctn-userinfo">
+      {/* <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
           <div className="userinfo__sidebar__name">
             <img
@@ -76,11 +77,12 @@ const UserSetting = (props) => {
             <InfoProfile setIsEditProfile={() => setIsEditProfile(true)} />
           )}
         </div>
-      </div>
+      </div> */}
       <div className='info-ctn'>
         {
           (selectButton === 1) ? <Overview /> : 
-          (selectButton === 2) ? <Repositories /> : ''
+          (selectButton === 2) ? <Repositories /> : 
+          (selectButton === 3) ? <Issues /> : ''
         }
       </div>
     </div>

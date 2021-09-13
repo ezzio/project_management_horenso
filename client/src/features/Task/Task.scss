@@ -1,0 +1,78 @@
+.kanban-task {
+  width: 100%;
+  height: 200px;
+
+  background-color: #fff;
+
+  border-radius: 8px;
+
+  padding: 1rem;
+  color: #555;
+  transition: ease-in-out 0.3s;
+  margin: 1rem 0;
+
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transform: translateY(-3px);
+  }
+
+  &__title {
+    white-space: normal;
+    margin-bottom: 1rem;
+  }
+  &__priority {
+    width: fit-content;
+  }
+
+  &__block-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  &__attachment {
+    width: fit-content;
+  }
+  &__member {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+
+      &:nth-child(2) {
+        transform: translateX(-10px);
+      }
+      &:nth-child(3) {
+        transform: translateX(-20px);
+      }
+      &:nth-child(4) {
+        transform: translateX(-30px);
+      }
+      &:nth-child(5) {
+        transform: translateX(-40px);
+      }
+      &:nth-child(6) {
+        transform: translateX(-50px);
+      }
+      &:nth-child(7) {
+        transform: translateX(-60px);
+      }
+      &:nth-child(8) {
+        transform: translateX(-70px);
+      }
+      &:nth-child(9) {
+        transform: translateX(-80px);
+      }
+      &:nth-child(10) {
+        transform: translateX(-90px);
+      }
+    }
+  }
+}
