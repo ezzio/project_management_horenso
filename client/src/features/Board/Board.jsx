@@ -20,6 +20,18 @@ const Board = (props) => {
       avatar:
         'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
+    {
+      avatar:
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+    },
+    {
+      avatar:
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+    },
+    {
+      avatar:
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+    },
   ];
 
   const onDragEnd = (result) => {

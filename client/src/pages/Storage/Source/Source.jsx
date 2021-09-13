@@ -2,11 +2,13 @@ import React, { useState, useMemo } from "react";
 import "./Source.scss";
 import JsonData from "./MOCK_DATA.json";
 import { TableHeader, Pagination, Search } from "./components/DataTable";
-import { RiDownload2Fill, RiDeleteBin6Line } from "react-icons/ri";
-import UploadFile from "features/File/File";
+import UploadFile from "features/UploadFile-Storage/File";
+import DownloadFile from "features/DownloadFile-Storage/dowloadFile.jsx";
+import DeleteFile from "features/DeleteFile-Storage/deleteFile";
 
 function Source() {
   const [files, setFiles] = useState(JsonData);
+
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -91,12 +93,8 @@ function Source() {
                 <td>{f.member}</td>
                 <td>
                   <div className="action">
-                    <a href="#" className="btn__btn-download">
-                      <RiDownload2Fill />
-                    </a>
-                    <a href="#" className="btn__btn-delete">
-                      <RiDeleteBin6Line />
-                    </a>
+                    <DownloadFile file={f.file} fileName={f.name} />
+                    <DeleteFile file={f.file} />
                   </div>
                 </td>
               </tr>
