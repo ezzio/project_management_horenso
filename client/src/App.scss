@@ -1,4 +1,4 @@
-@import "./styles/Color.scss";
+@import './styles/Color.scss';
 
 .App {
   display: flex;
@@ -42,4 +42,26 @@
     opacity: 1;
     filter: blur(0%);
   }
+}
+
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 1rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
