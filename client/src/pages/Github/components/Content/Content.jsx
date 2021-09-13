@@ -25,10 +25,9 @@ const Content = () => {
       .then((response) => {
         if (response.data.tree === undefined) {
           console.log("khong con file nao nua");
-          // setRepo(response);
         } else {
-          // console.log(response.data.tree);
           setRepo(response.data.tree);
+          console.log(repo);
         }
       })
       .catch((error) => {
