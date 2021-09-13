@@ -1,7 +1,8 @@
 import SideBar from 'components/SideBar/SideBar';
+import ModalNewTask from 'features/ModalNewTask/ModalNewTask';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Report from 'pages/Horenso/Report/Report';
-import Board from 'pages/Kanban/Board/Board';
+import Board from 'features/Board/Board';
 import KanbanDashBoard from 'pages/Kanban/KanbanDashBoard/components/KanbanDashBoard';
 import UserSetting from 'pages/UserSettings/UserSetting';
 import React from 'react';
@@ -14,6 +15,8 @@ import {
 import './App.scss';
 import Meeting from './pages/Horenso/Meeting/Meeting';
 import Source from './pages/Storage/Source/Source';
+import DetailTask from 'features/DetailTask/DetailTask';
+import Kanban from 'pages/Kanban/Kanban';
 
 function App() {
   return (
@@ -22,7 +25,7 @@ function App() {
         {/* <SideBar /> */}
         {/* <AnimatedRouter /> */}
 
-        <Board />
+        <DetailTask />
       </div>
     </Router>
   );
