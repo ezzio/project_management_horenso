@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Content.scss";
 import { BsSearch } from "react-icons/bs";
+import { AiOutlineFileText, AiFillFolder } from "react-icons/ai";
 import axios from "axios";
 
 const Content = () => {
@@ -17,7 +18,7 @@ const Content = () => {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   const handleClickUrl = (url) => {
     axios
@@ -27,12 +28,19 @@ const Content = () => {
           console.log("khong con file nao nua");
         } else {
           setRepo(response.data.tree);
-          console.log(repo);
         }
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const icon = (type) => {
+    if (type === "blob") {
+      return <AiOutlineFileText />;
+    } else {
+      return <AiFillFolder />;
+    }
   };
 
   return (
@@ -61,7 +69,10 @@ const Content = () => {
               {repo.map((file) => (
                 <tr>
                   <td>
-                    <a onClick={() => handleClickUrl(file.url)}>{file.path}</a>
+                    <a onClick={() => handleClickUrl(file.url)}>
+                      <i>{icon(file.type)}</i>
+                      {file.path}
+                    </a>
                   </td>
                   <td>{file.size} MB</td>
                   <td>2021-08-24</td>
