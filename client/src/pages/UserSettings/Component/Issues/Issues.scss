@@ -3,9 +3,11 @@
 .issues-ctn {
   width: 936px;
   height: 100vh;
+  background-color: $_BLUE;
 
   &__search-ctn {
     position: relative;
+    left: 1.5%;
     height: 65px;
     width: 904px;
     border-style: solid;
@@ -20,7 +22,7 @@
       border-style: solid;
       border-width: 1px;
       border-radius: 5px 0px 0px 5px;
-      border-color: lightgray;
+      border-color: black;
       background-color: white;
 
       &__text {
@@ -37,7 +39,7 @@
       border-style: solid;
       border-width: 1px;
       border-radius: 5px 0px 0px 5px;
-      border-color: lightgray;
+      border-color: black;
       background-color: rgb(14, 18, 238);
 
       &__text {
@@ -54,7 +56,7 @@
       height: 32px;
       border-style: solid;
       border-width: 1px;
-      border-color: lightgray;
+      border-color: black;
       background-color: white;
 
       &__text {
@@ -70,7 +72,7 @@
       height: 32px;
       border-style: solid;
       border-width: 1px;
-      border-color: lightgray;
+      border-color: black;
       background-color: rgb(14, 18, 238);
 
       &__text {
@@ -88,7 +90,7 @@
       border-style: solid;
       border-width: 1px;
       border-radius: 0px 5px 5px 0px;
-      border-color: lightgray;
+      border-color: black;
       background-color: white;
 
       &__text {
@@ -105,7 +107,7 @@
       border-style: solid;
       border-width: 1px;
       border-radius: 0px 5px 5px 0px;
-      border-color: lightgray;
+      border-color: black;
       background-color: rgb(14, 18, 238);
 
       &__text {
@@ -124,13 +126,14 @@
       padding-left: 30px;
       border-style: solid;
       border-width: 1px;
-      border-color: lightgray;
+      border-color: black;
       border-radius: 5px;
     }
   }
 
   &__result-ctn {
     position: relative;
+    left: 1.5%;
     width: 904px;
     height: 351px;
     border-style: solid;
@@ -395,10 +398,11 @@
     }
     &__display-ctn {
       position: relative;
-      width: 904px;
+      width: 902px;
       height: fit-content;
       min-height: 295px;
       display: block;
+      background-color: white;
 
       &__no-result {
         position: relative;
@@ -417,23 +421,30 @@
 }
 .issue {
   position: relative;
-  width: 904px;
+  width: 902px;
   height: 63px;
   border-style: solid;
   border-color: lightgray;
   border-width: 0px 0px 1px 0px;
 
   &__comment-ctn {
-    position: 'absolute';
-    right: 0%;
-    height: 20px;
-    width: 20px;
+    position: absolute;
+    top: 20%;
+    left: 115%;
+    width: 30px;
+
+    &__text {
+      float: right;
+      padding-left: 0px;
+      font-size: 14px;
+      font-weight: 600;
+    }
   }
 
   &__detail-ctn {
     position: relative;
     width: 701px;
-    height: 62px;
+    height: 40px;
     left: 4.3%;
 
     &__title {
@@ -454,7 +465,7 @@
 
     &__description {
       position: relative;
-      bottom: 40%;
+      bottom: 0%;
       left: 4.3%;
       font-size: 12px;
     }

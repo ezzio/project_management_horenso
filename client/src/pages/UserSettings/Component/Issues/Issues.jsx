@@ -114,10 +114,10 @@ function Issues() {
                         <div className='issue__detail-ctn'>
                             <a className='issue__detail-ctn__title'>UserName/my-branch</a>
                             <a className='issue__detail-ctn__repo-name'>React Projects</a>
-                            {/* <div className='issue__comment-ctn'>
-                                <MdChatBubbleOutline style={{position: 'absolute', fontSize: 18, color: 'grey'}}/>
-                                <span>2</span>
-                            </div> */}
+                            <div className='issue__comment-ctn'>
+                                <MdChatBubbleOutline style={{position: 'relative', fontSize: 18, color: 'grey'}}/>
+                                <span className='issue__comment-ctn__text'>2</span>
+                            </div>
                         </div>
                         <span className='issue__detail-ctn__description'>#2 opened 21 minutes ago by UserName</span>
                     </div>

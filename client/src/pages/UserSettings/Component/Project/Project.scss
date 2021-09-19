@@ -1,8 +1,9 @@
 @import '../../../../styles/Color.scss';
 
-.overview-ctn {
+.project-ctn {
   width: 936px;
   height: 100vh;
+  background-color: $_BLUE;
 
   &__pinned-ctn {
     position: relative;
@@ -16,18 +17,26 @@
       height: 24px;
 
       &__label {
+        color: white;
         display: inline-block;
         padding-top: 6px;
-        font-size: 16px;
+        font-size: 21px;
+        padding-left: 12px;
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+          1px 1px 0 #000;
       }
 
       &__customize {
+        color: white;
         display: inline-block;
         position: relative;
-        font-size: 12px;
-        left: 74.5%;
+        font-size: 14px;
+        left: 72.5%;
         border-style: none;
         background-color: transparent;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+          1px 1px 0 #000;
       }
     }
   }
@@ -35,6 +44,7 @@
   &__repos-ctn {
     position: relative;
     width: 904px;
+    left: 1%;
     margin-top: 16px;
     height: max-content;
     min-height: 113px;
@@ -46,9 +56,10 @@
       width: 444px;
       height: 123px;
       border-style: solid;
-      border-color: lightgray;
+      border-color: black;
       border-width: 1px;
       border-radius: 5px;
+      background-color: white;
 
       &__details {
         position: relative;
@@ -60,48 +71,36 @@
         &__title {
           position: relative;
           width: 410px;
-          height: 21px;
+          height: 24px;
 
           &__text {
-            font-size: 12;
-            color: $_BLUE;
-            padding-left: 24px;
+            font-size: 17px;
+            color: $_GREENBLUE;
+            padding-left: 20px;
             font-weight: 600;
           }
+        }
+        &__star-num {
+          font-size: 15px;
+          padding-left: 24px;
         }
       }
       &__description {
         position: relative;
         width: 410px;
         height: 44px;
+        display: block;
 
         &__text {
-          font-size: 12px;
+          font-size: 14px;
         }
-      }
 
-      &__other-details {
-        position: relative;
-        width: 410px;
-        height: 18px;
-        top: 10.8%;
-
-        &__lang-color {
+        &__create-date {
           display: inline-block;
-          width: 12px;
-          height: 12px;
-          border-style: hidden;
-          border-radius: 10px;
-        }
-
-        &__language {
-          font-size: 14px;
-          padding-left: 2px;
-        }
-
-        &__star-num {
-          font-size: 14px;
-          padding-left: 65px;
+          position: relative;
+          top: 85%;
+          right: 30.3%;
+          font-size: 12px;
         }
       }
       &__type-ctn {

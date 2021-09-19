@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Repositories from "./Component/Repositories/Repositories";
-import Overview from "./Component/Overview/Overview";
+import Task from "./Component/Task/Task";
+import Project from "./Component/Project/Project";
 import Issues from "./Component/Issues/Issues";
 import { MdPeople } from "react-icons/md";
 import { GoLocation } from "react-icons/go";
@@ -56,7 +56,7 @@ const UserSetting = (props) => {
           </button>    
         </div>
       </div>
-      {/* <div className="ctn-userinfo">
+      <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
           <div className="userinfo__sidebar__name">
             <img
@@ -77,11 +77,11 @@ const UserSetting = (props) => {
             <InfoProfile setIsEditProfile={() => setIsEditProfile(true)} />
           )}
         </div>
-      </div> */}
+      </div>
       <div className='info-ctn'>
         {
-          (selectButton === 1) ? <Overview /> : 
-          (selectButton === 2) ? <Repositories /> : 
+          (selectButton === 1) ? <Project /> : 
+          (selectButton === 2) ? <Task /> : 
           (selectButton === 3) ? <Issues /> : ''
         }
       </div>
