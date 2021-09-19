@@ -1,4 +1,4 @@
-import Tag from 'features/Tag - Report/Tag';
+import Tag from 'features/TagReport/Tag';
 import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BiSortDown } from 'react-icons/bi';

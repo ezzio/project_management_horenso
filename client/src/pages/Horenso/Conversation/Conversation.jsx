@@ -1,5 +1,5 @@
-import Chatbox from 'features/ChatBox - Conversation/Chatbox';
-import Listchannel from 'features/ListChannel - Conversation/ListChannel';
+import Chatbox from 'features/ChatBox/Chatbox';
+import Listchannel from 'features/ListChannel/ListChannel';
 import React, { useState } from 'react';
 import './Conversation.scss';
 

@@ -1,71 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BiArrowBack } from 'react-icons/bi';
-import { AiOutlineCalendar, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineCalendar, AiOutlineMore } from 'react-icons/ai';
 import './HeaderBoard.scss';
 
 const HeaderBoard = (props) => {
   const { title, level, startTime, endTime, status, members } = props;
   return (
     <div className="header-board">
-      <div className="header-board__header">
-        <div className="header-board__header__back">
-          <BiArrowBack />
-          <span>Back to Jobs</span>
-        </div>
-        <div className="header-board__header__search">
-          <AiOutlineSearch />
-          <input type="search" placeholder="search task ..." />
-        </div>
-      </div>
-      <div className="header-board__content">
-        <div className="header-board__content__1st">
-          <div className="board-title">
-            <h1 style={{ color: 'black' }}>{title}</h1>
-            <div
-              className={
-                level === 'High'
-                  ? 'board-level'
-                  : level === 'Low'
-                  ? 'board-level low'
-                  : 'board-level medium'
-              }
-            >
-              <p>{level}</p>
-            </div>
-          </div>
-          <div className="board-time">
-            <AiOutlineCalendar />
-            <i>
+      <BiArrowBack style={{ fontSize: '1.15rem' }} />
+      <div className="header-board__2nd">
+        <div style={{ width: '70%', lineHeight: '1.5' }}>
+          <div className="header-board__2nd__title">
+            <h2>
+              Well organized and easy to understand Web building tutorials with
+              lots of examples of how to use HTML, CSS, JavaScript, SQL, Python,
+              PHP, Bootstrap, Java, XML and more.
+            </h2>
+            <div className="header-board__2nd__title__time">
+              <AiOutlineCalendar />
               {startTime} - {endTime}
-            </i>
-          </div>
-        </div>
-        <div className="header-board__content__2nd">
-          <div className="board__member">
-            <p>MEMBERS</p>
-            <div>
-              {members.map((mem) => {
-                return <img src={mem.avatar} alt="" height="40" width="40" />;
-              })}
-
-              {members.length > 5 && (
-                <div className="more-member">
-                  <p>+{members.length - 5}</p>
-                </div>
-              )}
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            width: '20%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
           <div
             className={
-              status !== 'Active' ? 'board__status completed' : 'board__status'
+              level === 'High' ? 'high' : level === 'Medium' ? 'medium' : 'low'
             }
           >
-            <p>STATUS</p>
-            <div>
-              <p>{status}</p>
-            </div>
+            {level}
           </div>
+          <div className="header-board__2nd__members">
+            {members.map((member, index) => {
+              return index < 4 ? (
+                <img src={member.avatar} alt="avatar" height="40" width="40" />
+              ) : (
+                <div className="header-board__2nd__members__more">
+                  <p>+{members.length - 4}</p>
+                </div>
+              );
+            })}
+          </div>
+          <AiOutlineMore className="header-board__2nd__setting" />
         </div>
       </div>
     </div>

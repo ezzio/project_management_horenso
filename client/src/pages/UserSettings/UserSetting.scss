@@ -1,4 +1,4 @@
-@import "styles/Color.scss";
+@import 'styles/Color.scss';
 
 .ctn-userinfo {
   width: 1300px;
@@ -8,6 +8,7 @@
   p {
     color: #888;
   }
+  z-index: 1;
 }
 .userinfo {
   &__sidebar {
@@ -109,4 +110,174 @@
       }
     }
   }
+}
+
+.navBar {
+  background-color: white;
+  width: 100vw;
+  height: 75px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+  position: absolute;
+  display: flex;
+
+  &__btn-ctn {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    top: 35.8%;
+    left: 33.3%;
+    z-index: 3;
+  }
+
+  &__overview {
+    position: relative;
+    height: 48px;
+    width: 115px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 400;
+      padding-left: 27px;
+    }
+
+    &:hover {
+      transition-duration: 0.2s;
+      border-width: 0px 0px 3px 0px;
+    }
+  }
+
+  &__overview-selected {
+    position: relative;
+    height: 48px;
+    width: 115px;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: orange;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 550;
+      padding-left: 27px;
+    }
+  }
+
+  &__repo {
+    position: relative;
+    height: 48px;
+    width: 159px;
+    border: none;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 400;
+      padding-left: 2px;
+    }
+
+    &:hover {
+      transition-duration: 0.2s;
+      border-width: 0px 0px 3px 0px;
+    }
+  }
+
+  &__repo-selected {
+    position: relative;
+    height: 48px;
+    width: 159px;
+    border: none;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: orange;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 550;
+      padding-left: 2px;
+    }
+  }
+
+  &__issues {
+    position: relative;
+    height: 48px;
+    width: 104px;
+    border: none;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 400;
+      padding-left: 15px;
+    }
+
+    &:hover {
+      transition-duration: 0.2s;
+      border-width: 0px 0px 3px 0px;
+    }
+  }
+
+  &__issues-selected {
+    position: relative;
+    height: 48px;
+    width: 104px;
+    border: none;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: orange;
+    background-color: white;
+
+    &__text {
+      color: black;
+      font-size: 14px;
+      font-weight: 550;
+      padding-left: 15px;
+    }
+  }
+
+  &__repo-number-ctn {
+    position: absolute;
+    background-color: lightgray;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    align-content: center;
+    bottom: 28%;
+    left: 80%;
+    &__text {
+      display: inline-block;
+      padding-top: 3px;
+      font-weight: 400;
+    }
+  }
+
+  &__type-btn {
+    position: absolute;
+    left: 50%;
+  }
+}
+
+.info-ctn {
+  position: absolute;
+  height: 916px;
+  width: 936px;
+  top: 7.8%;
+  left: 33.6%;
 }

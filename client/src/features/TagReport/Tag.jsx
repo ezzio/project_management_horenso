@@ -5,7 +5,7 @@ import { TiTick } from 'react-icons/ti';
 import { AiOutlineFieldTime, AiOutlineTeam } from 'react-icons/ai';
 import './Tag.scss';
 
-const Tag = (props) => {
+const TagReport = (props) => {
   const { type, title, team, time, members, process } = props;
 
   const tagIcon = () => {
@@ -62,7 +62,7 @@ const Tag = (props) => {
   );
 };
 
-Tag.propTypes = {
+TagReport.propTypes = {
   type: PropTypes.string,
   title: PropTypes.string,
   team: PropTypes.string,
@@ -71,4 +71,4 @@ Tag.propTypes = {
   process: PropTypes.string,
 };
 
-export default Tag;
+export default TagReport;
