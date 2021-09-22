@@ -10,7 +10,7 @@ const initialState = {
 export const getUser = createAsyncThunk(
   'login/getUser',
   async (params, thunkAPI) => {
-    const currentUser = await userApi.getUser();
+    const currentUser = await userApi.getUser(params);
     return currentUser;
   }
 );

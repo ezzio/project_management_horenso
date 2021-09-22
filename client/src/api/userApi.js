@@ -1,5 +1,5 @@
 const userApi = {
-  getUser: () => {
+  login: () => {
     // Call api
   },
 };

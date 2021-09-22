@@ -12,34 +12,28 @@ function LoginForm(props) {
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const checkIsLogin = async () => {
-      const actionResult = await dispatch(getUser());
-      const currentUser = unwrapResult(actionResult);
-      console.log(currentUser);
-    };
-    checkIsLogin();
-  }, []);
+  // useEffect(() => {
+  //   const checkIsLogin = async () => {
+  //     const actionResult = await dispatch(getUser());
+  //     const currentUser = unwrapResult(actionResult);
+  //     console.log(currentUser);
+  //   };
+  //   checkIsLogin();
+  // }, []);
 
   const submitHandler = (data) => {
-    dispatch(
-      userLogin({
-        email: data.email,
-        password: data.password,
-        setError,
-      })
-    );
-    reset({
-      email: data.email,
-      password: '',
-    });
+    const login = async () => {
+      await dispatch(
+        getUser({ username: data.email, password: data.password })
+      );
+    };
+    login();
   };
 
   return (
