@@ -19,7 +19,7 @@ import DetailTask from 'features/DetailTask/DetailTask';
 import Kanban from 'pages/Kanban/Kanban';
 import NotFound from 'components/Common/NotFound/NotFound';
 import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
-import LoginScreen from 'features/ForgotPassword/ForgotPasswordScreen';
+import LoginScreen from 'features/Login/LoginScreen.jsx';
 
 function App() {
   return (
