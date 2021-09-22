@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , } from 'react';
 import './LoginForm.scss';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector } from 'react-redux';
 import { getUser, userLogin } from '../LoginSlice';
-import { unwrapResult } from '@reduxjs/toolkit';
+import { unwrapResult  } from '@reduxjs/toolkit';
 
 function LoginForm(props) {
   const [error, setError] = useState('');
@@ -26,6 +26,10 @@ function LoginForm(props) {
   //   };
   //   checkIsLogin();
   // }, []);
+
+  const isLogin = useSelector((state) => 
+    state.login.current
+  )
 
   const submitHandler = (data) => {
     const login = async () => {

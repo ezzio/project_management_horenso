@@ -8,12 +8,10 @@ router.get("/", functionAutho.checkNotAuthenticated, (req, res) => {
   console.log(req.session);
   res.send('hello')
 });
-// router.post("/",function (req, res) {
-//   console.log(req.body);
-// });
+
 router.post("/", passport.authenticate("local"), function (req, res) {
   // console.log(req.session);
-  res.send({ isLogin: true });
+  res.send({ isLogin: true  });
 });
 
 passport.use(
