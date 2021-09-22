@@ -18,6 +18,7 @@ router.post("/", passport.authenticate("local"), function (req, res) {
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
+    console.log(username , password);
     let DBfindUser = await login
       .find({ username: username, password: password })
       .lean()
