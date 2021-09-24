@@ -1,0 +1,13 @@
+@import "styles/Color.scss";
+
+body {
+    background-color: #999;
+}
+
+.ctn-timeline {
+    & > h1 {
+        font-size: 5em;
+        text-align: center;
+        font-family: "Bebas Neue", sans-serif;
+    }
+}

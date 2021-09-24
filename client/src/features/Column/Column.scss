@@ -2,12 +2,9 @@
 
 .column {
   width: calc(90% / 4);
-  overflow-x: scroll;
   white-space: nowrap;
   height: fit-content;
   max-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
   &:not(:first-child) {
     margin-left: 1rem;
   }
@@ -31,8 +28,15 @@
       }
     }
 
-    & > svg {
-      font-size: 1.15rem;
+    &__add {
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: $_BLUE;
+      transition: all 0.3s;
+      &:hover {
+        transform: translateY(-2px);
+        color: hsl(215, 92%, 64%, 0.8);
+      }
     }
   }
 
@@ -42,5 +46,13 @@
     width: 100%;
     border-radius: 8px;
     padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.drag-active {
+  & > .column__content {
+    background-color: hsl(170, 79%, 43%, 0.1);
   }
 }

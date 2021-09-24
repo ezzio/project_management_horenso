@@ -1,29 +1,27 @@
 import React from 'react'
-import './ModalAddTags.scss'
-import { useForm } from 'react-hook-form'
+import PropTypes from 'prop-types'
+import { useForm } from 'react-hook-form';
+import './AddNewTimeLine.scss';
 
-const ModalAddTags = ({ closeModal, onAddTags }) => {
+const AddNewTimeLine = ({ closeModal, onAddNewTimeLine }) => {
     const { register,
         handleSubmit,
         formState: { errors } } = useForm({
-            defaultValues: {
-                type: 'complated',
-                title: null,
-                team: null,
-                time: null,
-                member: null,
-                process: '0%'
-            }
+            // defaultValues: {
+            //     type: 'complated',
+            //     title: null,
+            //     team: null,
+            //     time: null,
+            //     member: null,
+            //     process: '0%'
+            // }
         });
     const onSubmit = (data) => {
         console.log(data);
-        onAddTags(data);
+        // onAddNewTimeLine(data);
     };
-
-
-
     return (
-        <div className='modalBackground'>
+        <div>
             <div className="modalContainer">
                 <div className="btn-exit">
                     <button onClick={() => closeModal(false)}>X</button>
@@ -58,22 +56,10 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
                             {errors.team && <p className='input-errors'>This field is required</p>}
                         </section>
                         <section className='tag-time-success'>
-                            <label htmlFor="time">Start Time</label>
+                            <label htmlFor="time">Time</label>
                             <input
                                 className={errors.time ? "errors-outline" : 'input-normal'}
-                                type="datetime-local"
-                                name="timer"
-                                id="timer"
-                                {...register('time', { required: "true", })}
-                            />
-                            {errors.time && <p className='input-errors'>This field is required</p>}
-
-                        </section>
-                        <section className='tag-time-success'>
-                            <label htmlFor="time">End Time</label>
-                            <input
-                                className={errors.time ? "errors-outline" : 'input-normal'}
-                                type="datetime-local"
+                                type="date"
                                 name="timer"
                                 id="timer"
                                 {...register('time', { required: "true", })}
@@ -82,16 +68,17 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
 
                         </section>
                         <section className='tag-member'>
-                            <label htmlFor="member">Member</label>
-                            <input
-                                className={errors.member ? "errors-outline" : 'input-normal'}
-                                type="text"
-                                placeholder="Member..."
-                                name="member"
-                                id='member'
-                                {...register('member', { required: "true", })}
+                            <label htmlFor="description">Description</label>
+                            <textarea
+                                className={errors.description ? "errors-outline" : 'input-normal'}
+                                rows="3"
+                                placeholder="Describe..."
+                                name="description"
+                                style={{ resize: 'none' }}
+                                id='description'
+                                {...register('discription', { required: "true", })}
                             />
-                            {errors.member && <p className='input-errors'>This field is required</p>}
+                            {errors.description && <p className='input-errors'>This field is required</p>}
 
                         </section>
                         <section className='tag-btn'>
@@ -110,4 +97,9 @@ const ModalAddTags = ({ closeModal, onAddTags }) => {
     )
 }
 
-export default ModalAddTags
+AddNewTimeLine.propTypes = {
+    closeModal: PropTypes.func,
+    onAddNewTimeLine: PropTypes.func,
+}
+
+export default AddNewTimeLine

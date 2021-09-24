@@ -13,7 +13,7 @@
 
     .modalContainer {
         width: 500px;
-        height: 500px;
+        height: 550px;
         border-radius: 12px;
 
         background-color: #fff;
@@ -94,7 +94,7 @@
                         cursor: pointer;
                     }
                     .btn-submit {
-                        background-color: $_PRIMARY;
+                        background-color: $_GREENBLUE;
                         color: #fff;
 
                         border: none;
@@ -102,7 +102,7 @@
                     }
 
                     .btn-submit:hover {
-                        background-color: $_SECONDARY;
+                        background-color: $_BLUE;
                         transition: all 0.35s;
                     }
 

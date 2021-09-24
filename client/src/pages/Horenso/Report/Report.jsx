@@ -22,8 +22,7 @@ const Report = () => {
     console.log("New data: ", data);
     // const action = addTag(data)
     // console.log({ action });
-    console.log(typeof data);
-    dispatch(addTag(data));
+    // dispatch(addTag(data));
   }
   console.log({ tags });
 
@@ -69,11 +68,8 @@ const Report = () => {
         </div>
         <div className="report__list">
           {tags.map((tag) => {
-            return <Tag
-              tagList={tag}
-            />
+            return <Tag tagList={tag} />
           })}
-
         </div>
       </div>
     </>
