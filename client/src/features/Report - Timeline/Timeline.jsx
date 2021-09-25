@@ -7,44 +7,56 @@ import {
 import 'react-vertical-timeline-component/style.min.css';
 import 'styles/Color.scss';
 import './Timeline.scss';
-import timelineData from './TimelineData';
+// import timelineData from './TimelineData';
 import { MdDone } from 'react-icons/md';
 import {
     AiOutlineLoading3Quarters,
     AiOutlinePlus
 } from 'react-icons/ai';
 import AddNewTimeLine from './components/AddNewTimeLine';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTimeLine } from './TimelineSlice';
 
 const Timeline = props => {
     const complete = { background: '#06D6A0' };
     const incomplete = { background: '#F9C74F' };
     const [openModal, setOpenModal] = useState(false)
+    const dispatch = useDispatch();
+    const timelines = useSelector(state => state.timelines)
+
     const handleAddNewTimeLine = (data) => {
-        console.log(data)
+        dispatch(addTimeLine(data));
+        setOpenModal(false);
     }
+
     return (
         <div className='ctn ctn-timeline'>
-            {openModal && <AddNewTimeLine closeModal={setOpenModal} onAddNewTimeLine={handleAddNewTimeLine} />}
+            {openModal && <AddNewTimeLine
+                closeModal={setOpenModal}
+                onAddNewTimeLine={handleAddNewTimeLine}
+                timelinedata={timelines}
+            />}
             <h1>TIMELINE</h1>
             <VerticalTimeline>
                 {
-                    timelineData.map((data) => {
-                        let iconProccess = data.proccess === '100%';
+                    timelines.map((timeline) => {
+                        let isCompleted = timeline.proccess === 'completed';
                         return (
                             <VerticalTimelineElement
-                                key={data.id}
+                                key={timeline.id}
                                 className='vertical-timeline-element'
-                                date={data.date}
-                                iconStyle={iconProccess ? complete : incomplete}
-                                icon={data.proccess === '100%' ? <MdDone /> : <AiOutlineLoading3Quarters />}
+                                date={`${timeline.start_time} to ${timeline.end_time}`}
+                                iconStyle={isCompleted ? complete : incomplete}
+                                icon={isCompleted ? <MdDone className="success-icon" />
+                                    : <AiOutlineLoading3Quarters className="loading-icon" />}
                             >
                                 <h3 className='vertical-timeline-title'>
-                                    {data.title}
+                                    {timeline.title}
                                 </h3>
                                 <h5 className='vertical-timeline-performers'>
-                                    {data.performers}
+                                    {timeline.performers}
                                 </h5>
-                                <p>{data.description}</p>
+                                <p>{timeline.description}</p>
                             </VerticalTimelineElement>
                         );
                     })

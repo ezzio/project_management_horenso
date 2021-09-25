@@ -1,4 +1,6 @@
-let timelineData = [
+import { createSlice } from "@reduxjs/toolkit";
+
+const initalTimeLines = [
     {
         id: 1,
         title: 'Make a features parts',
@@ -7,7 +9,7 @@ let timelineData = [
             'Add modules Redux Toolkits and React redux, set store in index.js',
         start_time: '15th July',
         end_time: '15th August',
-        proccess: '25%',
+        proccess: 'incompleted',
     },
     {
         id: 2,
@@ -17,7 +19,7 @@ let timelineData = [
             'Create Database and connect to server',
         start_time: 'September',
         end_time: '2022 Jan',
-        proccess: '50%',
+        proccess: 'incompleted',
     },
     {
         id: 3,
@@ -27,7 +29,7 @@ let timelineData = [
             'Coding Server for Website',
         start_time: 'October',
         end_time: 'December',
-        proccess: '60%',
+        proccess: 'incompleted',
     },
     {
         id: 4,
@@ -37,8 +39,32 @@ let timelineData = [
             'Build a Client Github Clone',
         start_time: 'December',
         end_time: '2022 Feb',
-        proccess: '100%',
+        proccess: 'completed',
+    },
+    {
+        id: 5,
+        title: 'Creating Store',
+        performers: "UI team",
+        description:
+            'Create a Store Page',
+        start_time: 'January',
+        end_time: '2022 Feb',
+        proccess: 'completed',
     },
 ];
 
-export default timelineData;
+const timeline = createSlice({
+    name: 'timelines',
+    initialState: initalTimeLines,
+    reducers: {
+        addTimeLine: (state, action) => {
+            const newTimeLine = action.payload;
+            console.log(newTimeLine);
+            state.push(newTimeLine);
+        }
+    }
+})
+
+const { reducer, actions } = timeline;
+export const { addTimeLine } = actions;
+export default reducer;
