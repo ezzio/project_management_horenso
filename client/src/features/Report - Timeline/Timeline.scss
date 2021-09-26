@@ -11,7 +11,7 @@ body {
         font-family: "Bebas Neue", sans-serif;
     }
 
-    .vertical-timeline-element-content {
+    .vertical-timeline-element-content:not(:last-child) {
         box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.25), 0 0.4em 1.25em 0 rgba(0, 0, 0, 0.15) !important;
     }
 
