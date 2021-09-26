@@ -1,60 +1,58 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import userApi from "api/userApi";
+import axios from "axios";
 const initialState = {
-    account: [
-      {
-          id: 1,
-          name: 'Minh',
-          email: 'minhn465@gmail.com',
-          password: 'minh2001'
-      },
-      {
-          id: 2,
-          name: 'Jeff',
-          email: 'jeff123@gmail.com',
-          password: 'lmao1234'
-      },
-      {
-          id: 3,
-          name: 'Nadhir',
-          email: 'farfa420@gmail.com',
-          password: 'sussy1234'
-      }
-    ],
-    currentUser:{
-      id: 0,
-      name: '',
-      email: ''
-    },
-    error: ''
-}
+  current: {},
+  loading: false,
+  error: "",
+};
+
+export const getUser = createAsyncThunk(
+  "login/getUser",
+  async (params, thunkAPI) => {
+    // const currentUser = await userApi.login(params);
+    // console.log(userApi.login(params));
+    // return currentUser;
+
+    // let bodyParams = JSON.stringify(params);
+    // console.log(params);
+    return await axios
+      .post(
+        "http://localhost:4000/login",
+        {
+          username: params.username,
+          password: params.password,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data) {
+          // console.log(response.data);
+          // localStorage.setItem("id", response.data.id);
+          // window.location = response.data.redirect;
+          return response.data
+        }
+      });
+  }
+);
 
 export const loginSlice = createSlice({
-    name: 'login',
-    initialState,
-    reducers: {
-        userLogin: (state, action) => {
-            for (let i = 0; i < state.account.length; i++){ 
-                if (action.payload.email === state.account[i].email && 
-                    action.payload.password === state.account[i].password) //check if email and password match user account
-                {
-                    console.log('Login successfully')
-                    state.currentUser.id = state.account[i].id
-                    state.currentUser.email = state.account[i].email
-                    state.currentUser.name = state.account[i].name
-                    //set current user state
-                    state.error = ''
-                    break;
-                }
-            }
-            if (state.currentUser.id <= 0) {
-                console.log('Login failed')
-                state.error = 'Email or password does not match. Please try again!'
-            }
-            action.payload.setError(state.error)
-        }
-    }
-})
+  name: "login",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [getUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUser.rejected]: (state) => {
+      state.loading = false;
+      state.error = "Login unsuccessful";
+    },
+    [getUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.current = action.payload;
+    },
+  },
+});
 
-export default loginSlice.reducer
-export const { userLogin } = loginSlice.actions
+export default loginSlice.reducer;
