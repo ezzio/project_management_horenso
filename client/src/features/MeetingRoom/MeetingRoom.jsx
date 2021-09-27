@@ -14,7 +14,7 @@ import CardVideo from "./components/CardVideo/CardVideo";
 import { openStream } from "./MeetingRoom.js";
 import { setSizeVideoFitDiv } from "./components/CardVideo/setSizeVideoFitDiv";
 import UserTag from "components/UserTag/UserTag";
-import ChattingMeeting from "features/Chatting - Meeting/ChattingMeeting";
+import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
 const MeetingRoom = () => {
   const [onModePresent, setOnModePresent] = useState(false);
   const [openTeammates, setOpenTeammates] = useState(false);

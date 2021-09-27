@@ -1,0 +1,363 @@
+@import '../../../../styles/Color.scss';
+
+.repo-ctn {
+  width: 936px;
+  height: 100vh;
+
+  &__search-ctn {
+    position: relative;
+    height: 65px;
+    width: 904px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    z-index: 1;
+
+    &__searchbar {
+      position: relative;
+      height: 32px;
+      width: 513px;
+      padding-left: 13px;
+      left: 0%;
+      top: 25%;
+    }
+
+    &__type-btn {
+      position: relative;
+      left: 58.5%;
+      bottom: 25%;
+      width: 79px;
+      height: 32px;
+      &__summary {
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightgrey;
+        width: 79px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 8px;
+        padding-left: 13px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+
+        &__option-ctn {
+          position: relative;
+          width: fit-content;
+          height: fit-content;
+          border-style: solid;
+          border-color: lightgray;
+          border-width: 1px;
+          border-radius: 5px;
+          margin-top: 8px;
+          z-index: 2;
+          box-shadow: $_SHADOW;
+
+          &__header {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            font-weight: 600;
+            padding-left: 17px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+          }
+
+          &__option {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            padding-left: 40px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+
+            &:hover {
+              background-color: lightgray;
+            }
+          }
+        }
+      }
+    }
+
+    &__sort-btn {
+      position: relative;
+      left: 80.5%;
+      bottom: 125%;
+      width: 76px;
+      height: 32px;
+
+      &__summary {
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightgrey;
+        width: 76px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 8px;
+        padding-left: 13px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+
+        &__option-ctn {
+          position: relative;
+          width: fit-content;
+          height: fit-content;
+          border-style: solid;
+          border-color: lightgray;
+          border-width: 1px;
+          border-radius: 5px;
+          margin-top: 8px;
+          z-index: 2;
+          box-shadow: $_SHADOW;
+
+          &__header {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            font-weight: 600;
+            padding-left: 17px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+          }
+
+          &__option {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            padding-left: 40px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+
+            &:hover {
+              background-color: lightgray;
+            }
+          }
+        }
+      }
+    }
+
+    &__language-btn {
+      position: relative;
+      left: 67.8%;
+      bottom: 75%;
+      width: 111px;
+      height: 32px;
+
+      &__summary {
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightgrey;
+        width: 111px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 8px;
+        padding-left: 13px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+
+        &__option-ctn {
+          position: relative;
+          width: fit-content;
+          height: fit-content;
+          border-style: solid;
+          border-color: lightgray;
+          border-width: 1px;
+          border-radius: 5px;
+          margin-top: 8px;
+          z-index: 2;
+          box-shadow: $_SHADOW;
+
+          &__header {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            font-weight: 600;
+            padding-left: 17px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+          }
+
+          &__option {
+            position: relative;
+            width: 298px;
+            height: 33px;
+            border-style: solid;
+            border-color: lightgray;
+            border-width: 0px 0px 1px 0px;
+            font-size: 14px;
+            padding-left: 40px;
+            padding-top: 8px;
+            z-index: 2;
+            background-color: white;
+
+            &:hover {
+              background-color: lightgray;
+            }
+          }
+        }
+      }
+    }
+
+    &__new-btn {
+      position: relative;
+      bottom: 175%;
+      left: 91%;
+      width: 82px;
+      height: 32px;
+      background-color: rgb(10, 175, 10);
+      position: relative;
+      border-radius: 5px;
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+
+      &:hover {
+        transition-duration: 0.4s;
+        background-color: green;
+      }
+
+      &__text {
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+        padding-left: 16px;
+      }
+    }
+  }
+
+  &__repositories-ctn {
+    position: relative;
+    width: 904px;
+    height: 100vh;
+    display: block;
+  }
+
+  &__repositories {
+    position: relative;
+    width: 904px;
+    height: 130px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+
+    &__details-ctn {
+      width: 678px;
+      height: 81px;
+      padding-top: 25px;
+
+      &__name {
+        padding-top: 8px;
+        color: $_BLUE;
+      }
+
+      &__description {
+        display: inline-block;
+        padding-top: 8px;
+        font-size: 12px;
+      }
+    }
+
+    &__other-details-ctn {
+      width: 678px;
+      height: 18px;
+      padding-top: 12px;
+
+      &__lang-color {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-style: hidden;
+        border-radius: 10px;
+      }
+
+      &__language {
+        font-size: 12px;
+        padding-left: 2px;
+      }
+
+      &__forks {
+        font-size: 12px;
+        padding-left: 25px;
+      }
+
+      &__update {
+        font-size: 12px;
+        padding-left: 20px;
+      }
+    }
+
+    &__star-btn {
+      position: absolute;
+      top: 10%;
+      left: 89.3%;
+      width: 67px;
+      height: 28px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 5px;
+      border-color: lightgray;
+      background-color: whitesmoke;
+
+      &:hover {
+        transition-duration: 0.2s;
+        background-color: lightgray;
+      }
+
+      &__text {
+        display: inline-block;
+        font-size: 12px;
+        padding-bottom: 10px;
+        font-weight: 600;
+      }
+    }
+
+    &__completion {
+      position: absolute;
+      font-size: 25px;
+      font-weight: 600;
+      left: 91%;
+      top: 60%;
+    }
+  }
+
+  &__no-repo {
+    position: relative;
+    top: 1.8%;
+    width: 904;
+    height: 98px;
+    display: block;
+
+    &__text {
+      text-align: center;
+      vertical-align: middle;
+      line-height: 98px;
+    }
+  }
+}

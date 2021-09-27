@@ -13,14 +13,18 @@ import {
 import './App.scss';
 import Meeting from './pages/Horenso/Meeting/Meeting';
 import Source from './pages/Storage/Source/Source';
+import DetailTask from 'features/DetailTask/DetailTask';
+import Kanban from 'pages/Kanban/Kanban';
+import NotFound from 'components/Common/NotFound/NotFound';
+import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
+import LoginScreen from 'features/Login/LoginScreen.jsx';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <SideBar />
-        <AnimatedRouter /> */}
-        <Timeline />
+        <SideBar />
+        <AnimatedRouter />
       </div>
     </Router>
   );

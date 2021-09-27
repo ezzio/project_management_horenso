@@ -1,10 +1,8 @@
 @import "styles/Color.scss";
 
-body {
-    background-color: rgb(235, 235, 235);
-}
-
 .ctn-timeline {
+    background-color: rgb(235, 235, 235);
+
     & > h1 {
         font-size: 5em;
         text-align: center;

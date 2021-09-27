@@ -5,7 +5,7 @@
     width: 100%;
 
     &__search {
-      width: 70%;
+      width: 100%;
       display: flex;
       font-size: 35px;
 
@@ -18,7 +18,7 @@
     }
 
     &__add-file {
-      max-width: 200px;
+      max-width: 400px;
     }
 
     &__user-tag {
@@ -60,6 +60,8 @@
         cursor: pointer;
         font-size: 16px;
         margin-right: 6px;
+        border: none;
+        border-radius: 2px;
       }
       .btn__btn-download:hover {
         filter: brightness(250%);
@@ -68,6 +70,8 @@
 
       .btn__btn-delete {
         background-color: $_ERROR;
+        border: none;
+        border-radius: 2px;
         color: white;
         padding: 6px 8px;
         cursor: pointer;
@@ -133,12 +137,4 @@
       }
     }
   }
-}
-
-.btn {
-  color: white;
-  padding: 6px 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 0 3px;
 }

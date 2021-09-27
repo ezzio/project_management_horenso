@@ -1,5 +1,5 @@
-import Tag from 'features/Tag - Report/Tag';
-import { addTag } from 'features/Tag - Report/TagSlice';
+import Tag from 'features/TagReport/Tag';
+import { addTag } from 'features/TagReport/TagSlice';
 import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BiSortDown } from 'react-icons/bi';
