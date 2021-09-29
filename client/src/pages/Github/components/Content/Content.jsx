@@ -66,8 +66,8 @@ const Content = () => {
               </tr>
             </thead>
             <tbody>
-              {repo.map((file) => (
-                <tr>
+              {repo.map((file, index) => (
+                <tr key={index}>
                   <td>
                     <a onClick={() => handleClickUrl(file.url)}>
                       <i>{icon(file.type)}</i>

@@ -1,19 +1,13 @@
+import React from "react";
+import "./App.scss";
 import SideBar from "components/SideBar/SideBar";
 import Conversation from "pages/Horenso/Conversation/Conversation";
 import Report from "pages/Horenso/Report/Report";
-import Board from "pages/Kanban/Board/Board";
+// import Board from "pages/Kanban/Board/Board";
 import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
 import UserSetting from "pages/UserSettings/UserSetting";
-import React from "react";
-
-import SideBar from "components/SideBar/SideBar";
 import ModalNewTask from "features/ModalNewTask/ModalNewTask";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import Report from "pages/Horenso/Report/Report";
-import Board from "features/Board/Board";
-import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
-import UserSetting from "pages/UserSettings/UserSetting";
-import React from "react";
+// import Board from "features/Board/Board";
 
 import {
   BrowserRouter as Router,
@@ -21,12 +15,8 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-import "./App.scss";
 
-import Source from "./pages/Storage/Source/Source";
 import Github from "./pages/Github/Github";
-
-import "./App.scss";
 import Meeting from "./pages/Horenso/Meeting/Meeting";
 import Source from "./pages/Storage/Source/Source";
 import DetailTask from "features/DetailTask/DetailTask";
@@ -44,7 +34,7 @@ function App() {
 
         {/* <Board /> */}
 
-        <Switch>
+        {/* <Switch>
           <Route path="/login">
             <LoginScreen />
           </Route>
@@ -53,7 +43,7 @@ function App() {
             <AnimatedRouter />
           </PrivateRoute>
           <Route path="*" component={NotFound} />
-        </Switch>
+        </Switch> */}
       </div>
     </Router>
   );
