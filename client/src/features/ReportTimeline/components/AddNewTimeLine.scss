@@ -1,0 +1,134 @@
+@import "styles/Color.scss";
+
+.modalBackGround {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(200, 200, 200, 0.85);
+
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    .modalContainer {
+        width: 500px;
+        height: fit-content;
+        border-radius: 12px;
+
+        background-color: #fff;
+        box-shadow: $_SHADOW;
+
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        .btn-exit {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+
+            & > button {
+                width: 20px;
+
+                background-color: #fff;
+                border: none;
+                font-size: 16px;
+
+                cursor: pointer;
+            }
+        }
+
+        &__title {
+            text-align: center;
+        }
+
+        &__body {
+            width: 100%;
+            height: 100%;
+
+            padding: 0.5rem;
+
+            &__form {
+                & > section {
+                    width: 100%;
+
+                    & > input:focus {
+                        outline: none;
+                        border-color: $_BLUE;
+                    }
+
+                    & > label {
+                        display: block;
+                        margin-top: 0.5rem;
+                    }
+
+                    .input-errors {
+                        color: $_ERROR;
+                        margin-top: 5px;
+                    }
+
+                    .errors-outline {
+                        padding: 10px 5px;
+                        border-radius: 8px;
+                        border: solid 1px $_ERROR;
+                        width: 100%;
+                    }
+
+                    .input-normal {
+                        padding: 10px 5px;
+                        border-radius: 8px;
+                        border: solid 1px #ccc;
+                        width: 100%;
+                    }
+
+                    & > textarea {
+                        width: 100%;
+                        border-radius: 5px;
+                        padding: 0.5rem;
+
+                        &:focus {
+                            outline: none;
+                            border-color: $_BLUE;
+                        }
+                    }
+                }
+                .timeline-btn {
+                    margin-top: 8px;
+                    width: 100%;
+
+                    display: flex;
+                    justify-content: space-between;
+
+                    & > button {
+                        width: 60px;
+                        height: 30px;
+
+                        cursor: pointer;
+                    }
+
+                    .btn-submit {
+                        background-color: $_GREENBLUE;
+                        color: #fff;
+
+                        border: none;
+                        border-radius: 8px;
+                    }
+
+                    .btn-submit:hover {
+                        background-color: $_BLUE;
+                        transition: all 0.35s;
+                    }
+
+                    .btn-cancle {
+                        background-color: #fff;
+                        border: none;
+
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
