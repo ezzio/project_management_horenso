@@ -9,14 +9,35 @@ const initialState = {
         {
           id: 0,
           title: 'This is the title of task 0',
-        },
-        {
-          id: 1,
-          title: 'This is the title of task 1',
-        },
-        {
-          id: 2,
-          title: 'This is the title of task 2',
+          progress: '100',
+          level: 'high',
+          endTime: '9/9/2021',
+          taskers: [
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+          ],
         },
       ],
     },

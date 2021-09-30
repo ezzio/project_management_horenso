@@ -1,14 +1,15 @@
 [
   {
     "Id": 1,
-    "name": "a.png",
+    "name": "camera_lense_0.jpeg",
+    "file": "hello.txt",
     "size": "3.4",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 2,
     "name": "fileluutru.png",
     "size": "3.4",
     "type": "image/png",
@@ -16,7 +17,7 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 3,
     "name": "fileluutru.png",
     "size": "3.4",
     "type": "image/png",
@@ -24,7 +25,7 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 4,
     "name": "fileluutru.png",
     "size": "3.4",
     "type": "image/png",
@@ -32,7 +33,7 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 5,
     "name": "fileluutru.png",
     "size": "16.5",
     "type": "image/png",
@@ -40,7 +41,7 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 6,
     "name": "a.png",
     "size": "16.5",
     "type": "image/png",
@@ -48,7 +49,7 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 7,
     "name": "a.png",
     "size": "16.5",
     "type": "image/png",
@@ -56,60 +57,60 @@
     "member": "Nhut"
   },
   {
-    "Id": 1,
+    "Id": 8,
     "name": "asssadsdasds.png",
-    "size": "16.5",
+    "size": "5",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Nhut"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "16.5",
+    "Id": 9,
+    "name": "kasdlasd.png",
+    "size": "2",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Thắng"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "3.4",
+    "Id": 10,
+    "name": "anhyeuem.png",
+    "size": "0.5",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Thắng"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "3.4",
+    "Id": 11,
+    "name": "thangngu.png",
+    "size": "11",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Thắng"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "3.4",
+    "Id": 12,
+    "name": "khoangu.png",
+    "size": "1.8",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
     "member": "Thắng"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "3.4",
+    "Id": 13,
+    "name": "MuC2.png",
+    "size": "3",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
-    "member": "Nhut"
+    "member": "Nguyen"
   },
   {
-    "Id": 1,
-    "name": "a.png",
-    "size": "3.4",
+    "Id": 14,
+    "name": "chelNgu.png",
+    "size": "16",
     "type": "image/png",
     "lastModifiedDate": "26 May 2021",
-    "member": "Nhut"
+    "member": "Khoa"
   },
   {
     "Id": 1,
