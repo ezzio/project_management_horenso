@@ -22,7 +22,7 @@ const Timeline = props => {
     const incomplete = { background: '#F9C74F' };
     const [openModal, setOpenModal] = useState(false)
     const dispatch = useDispatch();
-    const timelines = useSelector(state => state.timelines)
+    const timelines = useSelector(state => state.timeline)
 
     const handleAddNewTimeLine = (data) => {
         dispatch(addTimeLine(data));
