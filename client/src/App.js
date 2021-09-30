@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import SideBar from 'components/SideBar/SideBar';
 import ModalNewTask from 'features/ModalNewTask/ModalNewTask';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
