@@ -1,0 +1,28 @@
+@import '../../../../styles/Color.scss';
+
+.overview-ctn {
+  width: 936px;
+  height: 100vh;
+
+  &__pinned-ctn {
+    position: relative;
+    top: 2.5%;
+    width: 904px;
+    height: 415px;
+    display: grid;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+
+    &__label-ctn {
+      position: relative;
+      width: 904px;
+      height: 24px;
+
+      &__label {
+        display: inline-block;
+        padding-top: 6px;
+      }
+    }
+  }
+}
