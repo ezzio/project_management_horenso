@@ -1,0 +1,128 @@
+@import '../../../../styles/Color.scss';
+
+.project-ctn {
+  width: 936px;
+  height: 100vh;
+  background-color: $_BLUE;
+
+  &__pinned-ctn {
+    position: relative;
+    top: 2.5%;
+    width: 904px;
+    height: fit-content;
+
+    &__label-ctn {
+      position: relative;
+      width: 904px;
+      height: 24px;
+
+      &__label {
+        color: orange;
+        display: inline-block;
+        padding-top: 6px;
+        font-size: 21px;
+        padding-left: 12px;
+        color: white;
+      }
+
+      &__customize {
+        color: orange;
+        display: inline-block;
+        position: relative;
+        font-size: 14px;
+        left: 72.5%;
+        border-style: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__repos-ctn {
+    position: relative;
+    width: 904px;
+    left: 1%;
+    margin-top: 16px;
+    height: max-content;
+    min-height: 113px;
+    display: grid;
+    gap: 16px;
+
+    &__repo {
+      position: relative;
+      width: 444px;
+      height: 123px;
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+      border-radius: 5px;
+      background-color: white;
+
+      &__details {
+        position: relative;
+        width: 410px;
+        height: 89px;
+        top: 11.8%;
+        left: 3%;
+
+        &__title {
+          position: relative;
+          width: 410px;
+          height: 24px;
+
+          &__text {
+            font-size: 17px;
+            color: $_GREENBLUE;
+            padding-left: 20px;
+            font-weight: 600;
+          }
+        }
+        &__star-num {
+          font-size: 15px;
+          padding-left: 24px;
+        }
+      }
+      &__description {
+        position: relative;
+        width: 410px;
+        height: 44px;
+        display: block;
+
+        &__text {
+          font-size: 14px;
+        }
+
+        &__create-date {
+          display: inline-block;
+          position: relative;
+          top: 85%;
+          right: 30.3%;
+          font-size: 12px;
+        }
+      }
+      &__type-ctn {
+        position: absolute;
+        bottom: 80%;
+        left: 83%;
+        width: 49px;
+        height: 20px;
+        border-style: solid;
+        border-color: lightgray;
+        border-width: 1px;
+        border-radius: 10px;
+
+        &__text {
+          font-size: 12px;
+          font-weight: 600;
+          padding-left: 7px;
+          color: gray;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &__repos-ctn {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

@@ -1,16 +1,15 @@
 @import '../../../../styles/Color.scss';
 
-.repo-ctn {
+.task-ctn {
   width: 936px;
   height: 100vh;
+  background-color: $_BLUE;
 
   &__search-ctn {
     position: relative;
+    left: 1.5%;
     height: 65px;
     width: 904px;
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
-    border-color: lightgray;
     z-index: 1;
 
     &__searchbar {
@@ -18,8 +17,12 @@
       height: 32px;
       width: 513px;
       padding-left: 13px;
-      left: 0%;
+      left: 0.5%;
       top: 25%;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+      border-radius: 5px;
     }
 
     &__type-btn {
@@ -31,7 +34,7 @@
       &__summary {
         border-style: solid;
         border-width: 1px;
-        border-color: lightgrey;
+        border-color: black;
         width: 79px;
         height: 32px;
         font-size: 14px;
@@ -99,7 +102,7 @@
       &__summary {
         border-style: solid;
         border-width: 1px;
-        border-color: lightgrey;
+        border-color: black;
         width: 76px;
         height: 32px;
         font-size: 14px;
@@ -167,7 +170,7 @@
       &__summary {
         border-style: solid;
         border-width: 1px;
-        border-color: lightgrey;
+        border-color: black;
         width: 111px;
         height: 32px;
         font-size: 14px;
@@ -228,7 +231,7 @@
     &__new-btn {
       position: relative;
       bottom: 175%;
-      left: 91%;
+      left: 90.5%;
       width: 82px;
       height: 32px;
       background-color: rgb(10, 175, 10);
@@ -252,17 +255,20 @@
     }
   }
 
-  &__repositories-ctn {
+  &__user-tasks-ctn {
     position: relative;
+    left: 1.5%;
     width: 904px;
     height: 100vh;
     display: block;
   }
 
-  &__repositories {
+  &__user-tasks {
     position: relative;
-    width: 904px;
+    left: 0.6%;
+    width: 890px;
     height: 130px;
+    background-color: white;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
     border-color: lightgray;
@@ -273,13 +279,14 @@
       padding-top: 25px;
 
       &__name {
-        padding-top: 8px;
-        color: $_BLUE;
+        padding-left: 20px;
+        color: $_GREENBLUE;
       }
 
       &__description {
         display: inline-block;
-        padding-top: 8px;
+        padding-top: 16px;
+        padding-left: 20px;
         font-size: 12px;
       }
     }
@@ -289,19 +296,6 @@
       height: 18px;
       padding-top: 12px;
 
-      &__lang-color {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-style: hidden;
-        border-radius: 10px;
-      }
-
-      &__language {
-        font-size: 12px;
-        padding-left: 2px;
-      }
-
       &__forks {
         font-size: 12px;
         padding-left: 25px;
@@ -309,7 +303,7 @@
 
       &__update {
         font-size: 12px;
-        padding-left: 20px;
+        padding-left: 40px;
       }
     }
 
@@ -322,12 +316,12 @@
       border-style: solid;
       border-width: 1px;
       border-radius: 5px;
-      border-color: lightgray;
-      background-color: whitesmoke;
+      border-color: black;
+      background-color: lightgray;
 
       &:hover {
         transition-duration: 0.2s;
-        background-color: lightgray;
+        background-color: grey;
       }
 
       &__text {
@@ -340,14 +334,24 @@
 
     &__completion {
       position: absolute;
-      font-size: 25px;
-      font-weight: 600;
-      left: 91%;
-      top: 60%;
+      left: 85%;
+      top: 50%;
+      display: block;
+
+      &__text {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      &__number {
+        font-size: 25px;
+        font-weight: 600;
+        padding-left: 50px;
+      }
     }
   }
 
-  &__no-repo {
+  &__no-task {
     position: relative;
     top: 1.8%;
     width: 904;
