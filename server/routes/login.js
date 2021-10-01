@@ -8,13 +8,15 @@ router.get("/", functionAutho.checkNotAuthenticated, (req, res) => {
   console.log(req.session);
   res.send('hello')
 });
+
 router.post("/", passport.authenticate("local"), function (req, res) {
-  console.log(req.session);
-  res.send({ redirect: "/home" });
+  // console.log(req.session);
+  res.send({ isLogin: true  });
 });
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
+    console.log(username , password);
     let DBfindUser = await login
       .find({ username: username, password: password })
       .lean()

@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import SideBar from 'components/SideBar/SideBar';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Report from 'pages/Horenso/Report/Report';
