@@ -1,11 +1,10 @@
-import React, { useEffect, useState , } from 'react';
+import React, { useState } from 'react';
 import './LoginForm.scss';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useDispatch ,useSelector } from 'react-redux';
-import { getUser, userLogin } from '../LoginSlice';
-import { unwrapResult  } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../LoginSlice';
 
 function LoginForm(props) {
   const [error, setError] = useState('');
@@ -18,30 +17,12 @@ function LoginForm(props) {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const checkIsLogin = async () => {
-  //     const actionResult = await dispatch(getUser());
-  //     const currentUser = unwrapResult(actionResult);
-  //     console.log(currentUser);
-  //   };
-  //   checkIsLogin();
-  // }, []);
-
-  const isLogin = useSelector((state) => 
-    state.login.current
-  )
-
-  const submitHandler = (data) => {
-    const login = async () => {
-      await dispatch(
-        getUser({ username: data.email, password: data.password })
-      );
-    };
-    login();
+  const handleLogin = async (data) => {
+    await dispatch(userLogin(data));
   };
 
   return (
-    <form onSubmit={handleSubmit(submitHandler)} className="login-form">
+    <form onSubmit={handleSubmit(handleLogin)} className="login-form">
       <div className="login-form__title">
         <span className="login-form__title__text">Welcome!</span>
       </div>
@@ -51,11 +32,11 @@ function LoginForm(props) {
             className="email-textbox__input"
             placeholder="Enter your email"
             type="text"
-            name="email"
-            {...register('email', {
+            name="username"
+            autocomplete="off"
+            {...register('username', {
               required: 'This field is required',
               pattern: {
-                value: /^\S+@\S+$/i,
                 message: 'Invalid email address',
               },
             })}

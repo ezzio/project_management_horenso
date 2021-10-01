@@ -1,56 +1,40 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import userApi from "api/userApi";
-import axios from "axios";
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import userApi from 'api/userApi';
+
 const initialState = {
-  current: {},
-  loading: false,
-  error: "",
+  id: '',
+  isLogin: false,
+  loadding: false,
+  error: '',
 };
 
-export const getUser = createAsyncThunk(
-  "login/getUser",
+export const userLogin = createAsyncThunk(
+  'user/login',
   async (params, thunkAPI) => {
-    // const currentUser = await userApi.login(params);
-    // console.log(userApi.login(params));
-    // return currentUser;
-
-    // let bodyParams = JSON.stringify(params);
-    // console.log(params);
-    return await axios
-      .post(
-        "http://localhost:4000/login",
-        {
-          username: params.username,
-          password: params.password,
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        if (response.data) {
-          // console.log(response.data);
-          // localStorage.setItem("id", response.data.id);
-          // window.location = response.data.redirect;
-          return response.data
-        }
-      });
+    const currentUser = await userApi.login(params);
+    return currentUser;
   }
 );
 
 export const loginSlice = createSlice({
-  name: "login",
+  name: 'login',
   initialState,
   reducers: {},
   extraReducers: {
-    [getUser.pending]: (state) => {
-      state.loading = true;
+    [userLogin.pending]: (state) => {
+      state.loadding = true;
     },
-    [getUser.rejected]: (state) => {
-      state.loading = false;
-      state.error = "Login unsuccessful";
+    [userLogin.rejected]: (state) => {
+      state.loadding = false;
+      state.error = 'Login failed';
     },
-    [getUser.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.current = action.payload;
+    [userLogin.fulfilled]: (state, action) => {
+      state.loadding = false;
+      state.isLogin = action.payload.isLogin;
+      state.id = action.payload.id;
+      localStorage.setItem('access_token', action.payload.id);
+      alert('Logged in successfully!');
+      document.location.href = '/';
     },
   },
 });

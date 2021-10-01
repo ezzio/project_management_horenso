@@ -1,31 +1,19 @@
-import {axios} from 'axios';
+import axios from 'axios';
+
+const API = process.env.REACT_APP_API_URL;
 const userApi = {
   login: (params) => {
-   console.log(params);
-    let bodyParams  = JSON.stringify(params);
-    // axios
-    //   .get("http://localhost:4000/project", { withCredentials: true })
-    //   .then((response) => {
-    //     if (response.data.redirect) {
-    //       // window.location = response.data.redirect;
-    //     }
-    //   });
-    console.log(bodyParams);
-   return axios
-    .post(
-      "http://localhost:4000/login",
-      {
-        bodyParams
-      },
-      { withCredentials: true }
-    )
-    .then((response) => {
-      if (response.data.redirect) {
-        localStorage.setItem('id' , response.data.id);
-        window.location = response.data.redirect;
-      } else {
-      }
-    });
+    return axios
+      .post(`${API}/login`, {
+        username: params.username,
+        password: params.password,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 

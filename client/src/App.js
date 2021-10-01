@@ -1,12 +1,9 @@
 import 'antd/dist/antd.css';
 import SideBar from 'components/SideBar/SideBar';
-import ModalNewTask from 'features/ModalNewTask/ModalNewTask';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Report from 'pages/Horenso/Report/Report';
-import Board from 'features/Board/Board';
 import KanbanDashBoard from 'pages/Kanban/KanbanDashBoard/components/KanbanDashBoard';
-import UserSetting from 'pages/UserSettings/UserSetting';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,11 +13,10 @@ import {
 import './App.scss';
 import Meeting from './pages/Horenso/Meeting/Meeting';
 import Source from './pages/Storage/Source/Source';
-import DetailTask from 'features/DetailTask/DetailTask';
-import Kanban from 'pages/Kanban/Kanban';
 import NotFound from 'components/Common/NotFound/NotFound';
 import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
-import LoginScreen from 'features/Login/LoginScreen.jsx';
+import LoginScreen from 'features/Login/LoginScreen';
+import SignupScreen from 'features/Signup/SignupScreen';
 
 function App() {
   return (
@@ -30,7 +26,10 @@ function App() {
           <Route path="/login">
             <LoginScreen />
           </Route>
-          <PrivateRoute path="/welcome">
+          <Route path="sign-up">
+            <SignupScreen />
+          </Route>
+          <PrivateRoute path="/">
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
@@ -60,11 +59,11 @@ const AnimatedRouter = () => {
       }}
     >
       <Switch location={displayLocation}>
-        <Route path="welcome/meeting" children={<Meeting />} />
-        <Route path="welcome/conversation" children={<Conversation />} />
-        <Route path="welcome/kanban" children={<KanbanDashBoard />} />
-        <Route path="welcome/report" children={<Report />} />
-        <Route path="welcome/source" children={<Source />} />
+        <Route path="/meeting" children={<Meeting />} />
+        <Route path="/conversation" children={<Conversation />} />
+        <Route path="/kanban" children={<KanbanDashBoard />} />
+        <Route path="/report" children={<Report />} />
+        <Route path="/source" children={<Source />} />
       </Switch>
     </div>
   );
