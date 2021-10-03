@@ -447,20 +447,33 @@
     height: 40px;
     left: 4.3%;
 
-    &__title {
+    &__repo-title-author {
+      color: $_BLUE;
+      font-weight: 600;
       position: relative;
       top: 15%;
       text-decoration: none;
       font-size: 16px;
+
+      &:hover {
+        transition-duration: 0.2s;
+        color: blue;
+      }
     }
 
-    &__repo-name {
+    &__issue-name {
+      color: $_GREENBLUE;
       position: relative;
       top: 15%;
       text-decoration: none;
       font-size: 16px;
       font-weight: 600;
       padding-left: 12px;
+
+      &:hover {
+        transition-duration: 0.2s;
+        color: hsl(170, 82%, 35%);
+      }
     }
 
     &__description {

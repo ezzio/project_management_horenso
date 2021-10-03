@@ -131,9 +131,9 @@
     z-index: 3;
   }
 
-  &__overview {
+  &__project {
     position: relative;
-    height: 48px;
+    height: 47px;
     width: 115px;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
@@ -150,10 +150,11 @@
     &:hover {
       transition-duration: 0.2s;
       border-width: 0px 0px 3px 0px;
+      border-color: orange;
     }
   }
 
-  &__overview-selected {
+  &__project-selected {
     position: relative;
     height: 48px;
     width: 115px;
@@ -170,9 +171,9 @@
     }
   }
 
-  &__repo {
+  &__task {
     position: relative;
-    height: 48px;
+    height: 47px;
     width: 115px;
     border: none;
     border-style: solid;
@@ -190,10 +191,11 @@
     &:hover {
       transition-duration: 0.2s;
       border-width: 0px 0px 3px 0px;
+      border-color: orange;
     }
   }
 
-  &__repo-selected {
+  &__task-selected {
     position: relative;
     height: 48px;
     width: 115px;
@@ -213,9 +215,8 @@
 
   &__issues {
     position: relative;
-    height: 48px;
+    height: 47px;
     width: 104px;
-    border: none;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
     border-color: lightgray;
@@ -231,6 +232,7 @@
     &:hover {
       transition-duration: 0.2s;
       border-width: 0px 0px 3px 0px;
+      border-color: orange;
     }
   }
 
@@ -238,7 +240,6 @@
     position: relative;
     height: 48px;
     width: 104px;
-    border: none;
     border-style: solid;
     border-width: 0px 0px 4px 0px;
     border-color: orange;
@@ -252,7 +253,7 @@
     }
   }
 
-  &__repo-number-ctn {
+  &__task-number-ctn {
     position: absolute;
     background-color: lightgray;
     width: 20px;
