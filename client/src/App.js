@@ -9,6 +9,13 @@ import UserSetting from "pages/UserSettings/UserSetting";
 import ModalNewTask from "features/ModalNewTask/ModalNewTask";
 // import Board from "features/Board/Board";
 
+import "antd/dist/antd.css";
+import SideBar from "components/SideBar/SideBar";
+import Conversation from "pages/Horenso/Conversation/Conversation";
+import Report from "pages/Horenso/Report/Report";
+import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
+import React, { useEffect } from "react";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -25,6 +32,14 @@ import NotFound from "components/Common/NotFound/NotFound";
 import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
 import LoginScreen from "features/ForgotPassword/ForgotPasswordScreen";
 
+import "./App.scss";
+import Meeting from "./pages/Horenso/Meeting/Meeting";
+import Source from "./pages/Storage/Source/Source";
+import NotFound from "components/Common/NotFound/NotFound";
+import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
+import LoginScreen from "features/Login/LoginScreen";
+import SignupScreen from "features/Signup/SignupScreen";
+
 function App() {
   return (
     <Router>
@@ -38,7 +53,10 @@ function App() {
           <Route path="/login">
             <LoginScreen />
           </Route>
-          <PrivateRoute path="/welcome">
+          <Route path="sign-up">
+            <SignupScreen />
+          </Route>
+          <PrivateRoute path="/">
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
@@ -74,7 +92,6 @@ const AnimatedRouter = () => {
         <Route path="/report" children={<Report />} />
         <Route path="/source" children={<Source />} />
         <Route path="/github" children={<Github />} />
-
         <Route path="welcome/meeting" children={<Meeting />} />
         <Route path="welcome/conversation" children={<Conversation />} />
         <Route path="welcome/kanban" children={<KanbanDashBoard />} />

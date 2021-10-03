@@ -1,0 +1,423 @@
+@import '../../styles/Color.scss';
+
+.issue-ctn {
+  width: 100vw;
+  height: 100vh;
+
+  &__repo-ctn-header {
+    position: relative;
+    width: 100vw;
+    height: 112px;
+    background-color: $_BLUE;
+    display: flex;
+
+    &__author {
+      position: relative;
+      top: 15%;
+      left: 2%;
+      color: orange;
+      font-size: 30px;
+      font-weight: 400;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+    }
+
+    &__repo-name {
+      position: relative;
+      top: 15%;
+      left: 2.5%;
+      color: orange;
+      font-size: 30px;
+      font-weight: 600;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+    }
+
+    &__type-ctn {
+      position: relative;
+      top: 58%;
+      left: -8.5%;
+      width: 112px;
+      height: 40px;
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+      border-radius: 50px;
+      background-color: white;
+      &__text {
+        font-size: 30px;
+        font-weight: 600;
+        padding-left: 14px;
+        color: black;
+      }
+    }
+  }
+
+  &__user-issue-ctn {
+    position: relative;
+    left: 16.1%;
+    top: 3.5%;
+    width: 1280px;
+    height: fit-content;
+    display: block;
+
+    &__header {
+      position: relative;
+      left: 2.5%;
+      width: 1216px;
+      height: 100px;
+      border-style: solid;
+      border-width: 0px 0px 1px 0px;
+      border-color: black;
+
+      &__title-ctn {
+        position: relative;
+        width: 1216px;
+        height: 48px;
+
+        &__title {
+          font-size: 35px;
+          font-weight: 600;
+        }
+
+        &__number {
+          padding-left: 13px;
+          font-size: 35px;
+          color: lightgray;
+        }
+
+        &__new-btn {
+          position: relative;
+          bottom: 90%;
+          background-color: rgb(10, 175, 10);
+          left: 93.5%;
+          width: 80px;
+          height: 28px;
+          border-style: hidden;
+          border-radius: 5px;
+
+          &__text {
+            font-size: 12px;
+            color: white;
+          }
+          &:hover {
+            transition-duration: 0.2s;
+            background-color: green;
+          }
+        }
+      }
+
+      &__poster-ctn {
+        width: 1216px;
+        height: 50px;
+
+        &__closed {
+          width: 88px;
+          height: 32px;
+          background-color: red;
+          border-style: hidden;
+          border-radius: 15px;
+
+          &__text {
+            font-size: 14px;
+            color: white;
+            padding-left: 16px;
+          }
+        }
+
+        &__open {
+          width: 88px;
+          height: 32px;
+          background-color: rgb(10, 175, 10);
+          border-style: hidden;
+          border-radius: 15px;
+
+          &__text {
+            font-size: 14px;
+            color: white;
+            padding-left: 16px;
+          }
+        }
+
+        &__poster-and-comment {
+          font-size: 14px;
+          padding-left: 12px;
+        }
+      }
+    }
+    &__post-ctn {
+      position: relative;
+      width: 1216px;
+      height: fit-content;
+      min-height: 150px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+
+      &__author-ctn {
+        position: relative;
+        width: 1214px;
+        height: 50px;
+        background-color: lightgray;
+        border-style: hidden;
+
+        &__pic {
+          position: relative;
+          top: 15%;
+          left: 2%;
+          width: 35px;
+          height: 35px;
+          border-style: solid;
+          border-width: 1px;
+          border-color: black;
+          border-radius: 50px;
+        }
+
+        &__author {
+          position: relative;
+          bottom: 5%;
+          left: 3%;
+          font-weight: bold;
+        }
+
+        &__time {
+          position: relative;
+          bottom: 5%;
+          left: 3%;
+        }
+      }
+
+      &__content-ctn {
+        position: relative;
+        margin-top: 10px;
+        left: 1.5%;
+        width: 1180px;
+        height: fit-content;
+        min-height: 50px;
+      }
+    }
+
+    &__comment-section {
+      position: relative;
+      width: 1216px;
+      height: fit-content;
+      min-height: 150px;
+      top: 55%;
+    }
+
+    &__comment-ctn {
+      position: relative;
+      width: 1216px;
+      height: fit-content;
+      min-height: 50px;
+      margin-top: 15px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+
+      &__author-ctn {
+        position: relative;
+        width: 1214px;
+        height: 50px;
+        background-color: lightgray;
+        border-style: hidden;
+
+        &__pic {
+          position: relative;
+          top: 15%;
+          left: 2%;
+          width: 35px;
+          height: 35px;
+          border-style: solid;
+          border-width: 1px;
+          border-color: black;
+          border-radius: 50px;
+        }
+
+        &__author {
+          position: relative;
+          bottom: 5%;
+          left: 3%;
+          font-weight: bold;
+        }
+
+        &__time {
+          position: relative;
+          bottom: 5%;
+          left: 3%;
+        }
+
+        &__op-ctn {
+          position: relative;
+          bottom: 55%;
+          left: 90%;
+          width: 80px;
+          height: 25px;
+          border-style: solid;
+          border-color: black;
+          border-width: 1px;
+          border-radius: 50px;
+          background-color: white;
+          &__text {
+            font-size: 20px;
+            font-weight: 600;
+            padding-left: 24px;
+            color: $_GREENBLUE;
+          }
+        }
+      }
+
+      &__content-ctn {
+        position: relative;
+        margin-top: 10px;
+        left: 1.5%;
+        width: 1180px;
+        height: fit-content;
+        min-height: 50px;
+      }
+    }
+  }
+}
+
+.reply-ctn {
+  position: relative;
+  top: 55%;
+  left: 17.75%;
+  margin-top: 30px;
+  width: 1216px;
+  height: fit-content;
+  min-height: 280px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+
+  &__author-ctn {
+    position: relative;
+    width: 1214px;
+    height: 50px;
+    background-color: $_BLUE;
+    border-style: hidden;
+
+    &__pic {
+      position: relative;
+      top: 15%;
+      left: 2%;
+      width: 35px;
+      height: 35px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: black;
+      border-radius: 50px;
+    }
+
+    &__author {
+      position: relative;
+      bottom: 5%;
+      left: 3%;
+      font-weight: bold;
+    }
+
+    &__bold-btn {
+      position: relative;
+      bottom: 10%;
+      left: 75%;
+      width: 20px;
+      height: 20px;
+      border-style: hidden;
+      background-color: transparent;
+      &__text {
+        font-size: 16px;
+        font-weight: bold;
+        color: orange;
+      }
+      &:hover {
+        transition-duration: 0.2s;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: orange;
+      }
+    }
+
+    &__italic-btn {
+      position: relative;
+      bottom: 10%;
+      left: 76%;
+      width: 20px;
+      height: 20px;
+      border-style: hidden;
+      background-color: transparent;
+      &__text {
+        font-size: 16px;
+        font-style: italic;
+        color: orange;
+      }
+      &:hover {
+        transition-duration: 0.2s;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: orange;
+      }
+    }
+
+    &__quote-btn {
+      position: relative;
+      bottom: 10%;
+      left: 77%;
+      width: 20px;
+      height: 20px;
+      border-style: hidden;
+      background-color: transparent;
+      &__text {
+        font-size: 16px;
+        color: orange;
+      }
+      &:hover {
+        transition-duration: 0.2s;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: orange;
+      }
+    }
+  }
+
+  &__content-ctn {
+    position: relative;
+    margin-top: 10px;
+    left: 1.5%;
+    width: 1180px;
+    min-height: 150px;
+    height: fit-content;
+    padding-left: 12px;
+    font-size: 16px;
+    resize: vertical;
+  }
+
+  &__guideline {
+    position: relative;
+    left: 1.5%;
+
+    &__text {
+      font-weight: 600;
+      color: $_ERROR;
+    }
+  }
+
+  &__post-btn {
+    position: relative;
+    left: 29%;
+    width: 96px;
+    height: 32px;
+    border-style: hidden;
+    border-radius: 5px;
+    background-color: rgb(10, 175, 10);
+    &__text {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    :hover {
+      transition-duration: 0.2s;
+      background-color: green;
+    }
+  }
+}
