@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.scss";
 import SideBar from "components/SideBar/SideBar";
 import Conversation from "pages/Horenso/Conversation/Conversation";
@@ -10,10 +9,6 @@ import ModalNewTask from "features/ModalNewTask/ModalNewTask";
 // import Board from "features/Board/Board";
 
 import "antd/dist/antd.css";
-import SideBar from "components/SideBar/SideBar";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import Report from "pages/Horenso/Report/Report";
-import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
 import React, { useEffect } from "react";
 
 import {
@@ -32,12 +27,6 @@ import NotFound from "components/Common/NotFound/NotFound";
 import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
 import LoginScreen from "features/ForgotPassword/ForgotPasswordScreen";
 
-import "./App.scss";
-import Meeting from "./pages/Horenso/Meeting/Meeting";
-import Source from "./pages/Storage/Source/Source";
-import NotFound from "components/Common/NotFound/NotFound";
-import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
-import LoginScreen from "features/Login/LoginScreen";
 import SignupScreen from "features/Signup/SignupScreen";
 
 function App() {
