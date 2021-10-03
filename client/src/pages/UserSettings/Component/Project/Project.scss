@@ -26,7 +26,7 @@
       }
 
       &__customize {
-        color: orange;
+        color: white;
         display: inline-block;
         position: relative;
         font-size: 14px;
@@ -56,6 +56,7 @@
       border-width: 1px;
       border-radius: 5px;
       background-color: white;
+      box-shadow: $_SHADOW;
 
       &__details {
         position: relative;
@@ -74,6 +75,12 @@
             color: $_GREENBLUE;
             padding-left: 20px;
             font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+              transition-duration: 0.2s;
+              color: hsl(170, 82%, 35%);
+            }
           }
         }
         &__star-num {
