@@ -3,7 +3,8 @@ import './Issues.scss'
 import { AiOutlineSearch, AiOutlineCheck } from 'react-icons/ai'
 import { VscIssues } from 'react-icons/vsc'
 import { MdChatBubbleOutline } from 'react-icons/md'
- 
+import { Link } from 'react-router-dom'
+
 function Issues() {
 
     const [button, setButton] = useState(1)
@@ -112,8 +113,8 @@ function Issues() {
                     <div className='issue'>
                         <VscIssues style={{position: 'absolute', fontSize: 24, top: 4, left: 12, color: 'green', fontWeight: 'bold'}} />
                         <div className='issue__detail-ctn'>
-                            <a className='issue__detail-ctn__title'>UserName/my-branch</a>
-                            <a className='issue__detail-ctn__repo-name'>React Projects</a>
+                            <Link className='issue__detail-ctn__repo-title-author'>UserName/my-branch</Link>
+                            <Link className='issue__detail-ctn__issue-name'>React Projects</Link>
                             <div className='issue__comment-ctn'>
                                 <MdChatBubbleOutline style={{position: 'relative', fontSize: 18, color: 'grey'}}/>
                                 <span className='issue__comment-ctn__text'>2</span>
