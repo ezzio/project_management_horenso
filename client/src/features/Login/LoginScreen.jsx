@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './LoginScreen.scss';
 import LoginForm from './component/LoginForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
@@ -12,7 +12,7 @@ function LoginScreen() {
       <div className="login__form">
         <LoginForm />
         <button className="help-btn">
-          <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 24 }} />
+          <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 19 }} />
           <span className="help-btn__text">Help</span>
         </button>
       </div>
