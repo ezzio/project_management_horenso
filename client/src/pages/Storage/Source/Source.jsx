@@ -13,7 +13,7 @@ const Source = () => {
 
   const FilterByNameInput = (
     <Input
-      placeholder="Search Name"
+      placeholder="Search file"
       value={value}
       onChange={(e) => {
         const currValue = e.target.value;
@@ -31,7 +31,6 @@ const Source = () => {
       dataIndex: "name",
       key: "Id",
       render: (t, r) => <a href={`${r.file}`} target="_blank">{`${r.name}`}</a>,
-      //   sorter: (a, b) => a.name.length - b.name.length,
     },
     {
       title: "Last modified date",
