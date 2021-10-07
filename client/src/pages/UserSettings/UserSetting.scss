@@ -1,10 +1,10 @@
 @import 'styles/Color.scss';
 
 .ctn-userinfo {
-  width: 400px;
+  width: 300px;
   height: 100vh;
   margin: 0 auto;
-  left: 5%;
+  left: 17.25%;
   position: absolute;
   p {
     color: #888;
@@ -32,6 +32,8 @@
         border-radius: 50%;
         margin-bottom: 10px;
         margin: 0;
+        height: 280px;
+        width: 280px;
       }
 
       .name {
@@ -53,12 +55,30 @@
       display: flex;
       flex-direction: column;
 
+      .name {
+        font-size: 25px;
+        font-weight: bold;
+        text-align: left;
+        margin: 0;
+      }
+
+      .user-name {
+        color: #ccc;
+        text-align: left;
+        font-size: 20px;
+        margin: 0;
+      }
+
       &__content {
-        font-size: 16px;
-        padding: 5px 0;
+        font-size: 18px;
+        margin-top: 10px;
       }
 
       &__email {
+        font-size: 16px;
+      }
+
+      &__location {
         font-size: 16px;
       }
 
@@ -67,13 +87,14 @@
       }
 
       .edit-profile {
-        height: 30px;
+        width: 280px;
+        height: 32px;
         background-color: $_BLUE;
         border: 1px solid #fff;
         border-radius: 10px;
         color: #fff;
         font-weight: bold;
-        margin: 10px 0;
+        margin-bottom: 10px;
       }
 
       .edit-profile:hover {
@@ -87,6 +108,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      margin-bottom: 10px;
 
       &__status {
         display: flex;
@@ -104,14 +126,6 @@
             display: flex;
           }
         }
-
-        .location {
-          display: flex;
-          margin-top: 10px;
-          & > p {
-            padding-left: 5px;
-          }
-        }
       }
     }
   }
@@ -119,10 +133,11 @@
 
 .edit-profile-ctn {
   width: 280px;
-  height: 183px;
+  height: fit-content;
+
   &__save-profile-btn {
     height: 30px;
-    width: 280px;
+    width: 100px;
     background-color: $_BLUE;
     border: 1px solid #fff;
     border-radius: 10px;
@@ -133,6 +148,95 @@
       cursor: pointer;
       opacity: 0.8;
       transition: linear 0.1s;
+    }
+  }
+
+  &__cancel-btn {
+    height: 30px;
+    width: 80px;
+    background-color: white;
+    border: 1px solid #fff;
+    border-style: solid;
+    border-color: lightgray;
+    border-radius: 10px;
+    color: grey;
+    font-weight: bold;
+    margin-left: 5px;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+      transition: linear 0.1s;
+    }
+  }
+
+  &__name-ctn {
+    width: 280px;
+    height: 57px;
+    margin-bottom: 10px;
+
+    &__label {
+      display: block;
+      font-weight: bold;
+    }
+    &__input {
+      display: block;
+      width: 280px;
+      height: 32px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 5px;
+      padding-left: 10px;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $_BLUE;
+      }
+    }
+  }
+
+  &__bio-ctn {
+    margin-top: 10px;
+    width: 280px;
+    height: 110px;
+
+    &__label {
+      display: block;
+      font-weight: bold;
+    }
+    &__input {
+      display: block;
+      width: 280px;
+      height: 81px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 5px;
+      padding-left: 10px;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $_BLUE;
+      }
+    }
+  }
+
+  &__details-ctn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 280px;
+    height: 28px;
+
+    &__input {
+      width: 258px;
+      height: 28px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 5px;
+      padding-left: 10px;
+      margin-left: 3px;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $_BLUE;
+      }
     }
   }
 }

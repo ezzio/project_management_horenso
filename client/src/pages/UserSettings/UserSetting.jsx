@@ -8,7 +8,7 @@ import { GoLocation } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { FiBookOpen } from 'react-icons/fi'
 import { BiBookBookmark } from 'react-icons/bi'
-import { AiOutlineExclamationCircle } from  'react-icons/ai'
+import { AiOutlineExclamationCircle, AiOutlineMail, AiOutlineLink, AiFillFacebook, AiOutlineFacebook } from  'react-icons/ai'
 import "./UserSetting.scss";
 
 const UserSetting = (props) => {
@@ -67,10 +67,6 @@ const UserSetting = (props) => {
               width="250"
               className="user-image"
             />
-            <p className="name" style={{ color: "black" }}>
-              Nguyên Đặng (Jimmy)
-            </p>
-            <p className="user-name">nguyendang127</p>
           </div>
           {isEditProfile ? (
             <EditProfile />
@@ -98,31 +94,44 @@ const InfoProfile = ({ setIsEditProfile }) => {
   return (
     <>
       <div className="userinfo__sidebar__bio">
+        <p className="name" style={{ color: "black" }}>
+              Nguyên Đặng (Jimmy)
+            </p>
+        <p className="user-name">nguyendang127</p>
         <p className="userinfo__sidebar__bio__content">Contact me</p>
-        <p className="userinfo__sidebar__bio__email">
-          phunguyen.dang.ctc@gmail.com
-        </p>
-        <p className="userinfo__sidebar__bio__telephone">(+84) 907801311</p>
         <button className="edit-profile" onClick={setIsEditProfile}>Edit profile</button>
-      </div>
-      <div className="userinfo__sidebar__footer">
-        <section className="userinfo__sidebar__footer__status">
-          <div className="statistic">
-            <section className="followers">
-              <MdPeople className="icon" />
-              <p>followers</p>
-              <p>1</p>
-            </section>
-            <section className="following">
-              <p>following</p>
-              <p>0</p>
-            </section>
-          </div>
-          <section className="location">
-            <GoLocation />
-            <p>VietNam</p>
+        <div className="userinfo__sidebar__footer">
+          <section className="userinfo__sidebar__footer__status">
+            <div className="statistic">
+              <section className="followers">
+                <MdPeople style={{position: "relative",fontSize: 18, marginRight: 5}}/>
+                <span>followers <span>1</span></span>  
+              </section>
+              <section className="following">
+                <span>following <span>0</span></span>
+              </section>
+            </div>
           </section>
-        </section>
+        </div>
+        <div>
+          <HiOutlineOfficeBuilding style={{position: "relative",fontSize: 18, marginRight: 5}} />
+        </div>
+        <div>
+            <GoLocation style={{position: "relative", top: 5,fontSize: 18, marginRight: 5}} />
+            <span className="userinfo__sidebar__bio__location">VietNam</span>
+        </div>
+        <div>
+          <AiOutlineMail style={{position: "relative", top: 5,fontSize: 18, marginRight: 5}}/>
+          <span className="userinfo__sidebar__bio__email">
+            phunguyen.dang.ctc@gmail.com
+          </span>
+        </div>
+        <div>
+          <AiOutlineLink style={{position: "relative", top: 5,fontSize: 18, marginRight: 5}} />
+        </div>
+        <div>
+          <AiOutlineFacebook style={{position: "relative", top: 5,fontSize: 18, marginRight: 5}} />
+        </div>
       </div>
     </>
   );
@@ -132,14 +141,39 @@ const EditProfile = ({setIsEditProfile}) => {
   return (
     <div>
       <form className='edit-profile-ctn'>
-        <label htmlFor="name">Name</label>
-        <input type="text" className="name" />
-        <label htmlFor="bio">Bio</label>
-        <textarea className="bio" />
-        <label htmlFor="company"><HiOutlineOfficeBuilding /></label>
-        <input type="text" className='company' />
+        <div className="edit-profile-ctn__name-ctn">
+          <label htmlFor="name" className="edit-profile-ctn__name-ctn__label" >Name</label>
+          <input type="text" placeholder='Name'
+          className="edit-profile-ctn__name-ctn__input" />
+        </div>
+        <div className="edit-profile-ctn__name-ctn__bio">
+          <label htmlFor="bio" className="edit-profile-ctn__bio-ctn__label">Bio</label>
+          <textarea className="bio" placeholder='Add a bio' 
+          className="edit-profile-ctn__bio-ctn__input" />
+        </div>
+        <div className="edit-profile-ctn__details-ctn">
+          <label htmlFor="company"><HiOutlineOfficeBuilding style={{fontSize: 19}} /></label>
+          <input className="edit-profile-ctn__details-ctn__input" type="text"  />
+        </div>
+        <div className="edit-profile-ctn__details-ctn">
+          <label htmlFor="Location"><GoLocation style={{fontSize: 19}}/></label>
+          <input className="edit-profile-ctn__details-ctn__input" type="text"  />
+        </div>
+        <div className="edit-profile-ctn__details-ctn">
+          <label htmlFor="Location"><AiOutlineMail style={{fontSize: 19}}/></label>
+          <input className="edit-profile-ctn__details-ctn__input" type="text"  />
+        </div>
+        <div className="edit-profile-ctn__details-ctn">
+          <label htmlFor="Location"><AiOutlineLink style={{fontSize: 19}}/></label>
+          <input className="edit-profile-ctn__details-ctn__input" type="text"  />
+        </div>
+        <div className="edit-profile-ctn__details-ctn">
+          <label htmlFor="Location"><AiFillFacebook style={{fontSize: 19}}/></label>
+          <input className="edit-profile-ctn__details-ctn__input" type="text"  />
+        </div>
         <div>
           <button className="edit-profile-ctn__save-profile-btn" onClick={setIsEditProfile}>Save profile</button>
+          <button className="edit-profile-ctn__cancel-btn" onClick={setIsEditProfile}>Cancel</button>
         </div>
       </form>
     </div>
