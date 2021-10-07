@@ -31,21 +31,21 @@ const UserSetting = (props) => {
     <div>
       <div className='navBar'>
         <div className='navBar__btn-ctn'>
-          <button onClick={() => pageButtonClick(1)} className={(selectButton === 1) ? 'navBar__overview-selected' : 'navBar__overview'}>
+          <button onClick={() => pageButtonClick(1)} className={(selectButton === 1) ? 'navBar__project-selected' : 'navBar__project'}>
             <FiBookOpen style={(selectButton === 1) ? 
             {fontSize: 17, position: "absolute", right: 80, color: 'black'} :
             {fontSize: 17, position: "absolute", right: 80, color: 'gray'}} 
             />
-            <span className={(selectButton === 1) ? 'navBar__overview-selected__text' : 'navBar__overview__text'}>Projects</span>
+            <span className={(selectButton === 1) ? 'navBar__project-selected__text' : 'navBar__project__text'}>Projects</span>
           </button>
-          <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__repo-selected' : 'navBar__repo'}>
+          <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__task-selected' : 'navBar__task'}>
             <BiBookBookmark style={(selectButton === 2) ? 
             {fontSize: 17, position: "absolute", left: 15, color: 'black'} :
             {fontSize: 17, position: "absolute", left: 15, color: 'gray'}} 
             />
-            <span className={(selectButton === 2) ? 'navBar__repo-selected__text' : 'navBar__repo__text'}>Tasks</span>
-            <div className='navBar__repo-number-ctn'>
-              <span className='navBar__repo-number-ctn__text'>2</span>
+            <span className={(selectButton === 2) ? 'navBar__task-selected__text' : 'navBar__task__text'}>Tasks</span>
+            <div className='navBar__task-number-ctn'>
+              <span className='navBar__task-number-ctn__text'>2</span>
             </div>
           </button>
           <button onClick={() => pageButtonClick(3)} className={(selectButton === 3) ?'navBar__issues-selected' : 'navBar__issues'}>
@@ -56,7 +56,7 @@ const UserSetting = (props) => {
           </button>    
         </div>
       </div>
-      <div className="ctn-userinfo">
+      {/* <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
           <div className="userinfo__sidebar__name">
             <img
@@ -77,7 +77,7 @@ const UserSetting = (props) => {
             <InfoProfile setIsEditProfile={() => setIsEditProfile(true)} />
           )}
         </div>
-      </div>
+      </div> */}
       <div className='info-ctn'>
         {
           (selectButton === 1) ? <Project /> : 

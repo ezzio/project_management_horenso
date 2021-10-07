@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
-import Column from 'features/Column/Column';
-import './Board.scss';
-import { DragDropContext } from 'react-beautiful-dnd';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateOnDnd } from './boardSlice';
+import React from "react";
+import HeaderBoard from "features/HeaderBoard/HeaderBoard";
+import Column from "features/Column/Column";
+import "./Board.scss";
+import { DragDropContext } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { updateOnDnd } from "./boardSlice";
 
 const Board = (props) => {
   const columns = useSelector((state) => state.board.columns);
@@ -14,23 +14,23 @@ const Board = (props) => {
   const members = [
     {
       avatar:
-        'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
   ];
 

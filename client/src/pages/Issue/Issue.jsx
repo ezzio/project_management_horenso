@@ -33,7 +33,7 @@ function Issue() {
                             <span className='issue-ctn__user-issue-ctn__header__poster-ctn__closed__text'>Closed</span>
                         </button> */}
                         <button className='issue-ctn__user-issue-ctn__header__poster-ctn__open'>
-                            <VscIssues style={{position: 'absolute', color: 'white', fontSize: 20, top: 55, left: 10}}/>
+                            <VscIssues style={{position: 'absolute', color: 'white', fontSize: 20, top: 53, left: 10}}/>
                             <span className='issue-ctn__user-issue-ctn__header__poster-ctn__open__text'>Open</span>
                         </button>
                         <span className='issue-ctn__user-issue-ctn__header__poster-ctn__poster-and-comment'>Dylan opened this issue 3 minutes ago - 1 comment</span>

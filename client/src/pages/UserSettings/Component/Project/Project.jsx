@@ -3,7 +3,7 @@ import "./Project.scss"
 import { BiBookBookmark } from 'react-icons/bi'
 import { AiOutlineStar } from 'react-icons/ai'
 import { GrDrag } from 'react-icons/gr'
-
+import { Link } from 'react-router-dom';
 
 function Project() {
 
@@ -19,7 +19,7 @@ function Project() {
                         <div className='project-ctn__repos-ctn__repo__details'>
                             <div className='project-ctn__repos-ctn__repo__details__title'>
                                 <BiBookBookmark style={{position: "absolute", fontSize: 18}} />
-                                <span className='project-ctn__repos-ctn__repo__details__title__text'>react-projects</span>
+                                <Link className='project-ctn__repos-ctn__repo__details__title__text'>react-projects</Link>
                                 <AiOutlineStar style={{position: 'absolute', fontSize: 16, left: 130, top: 2}} />
                                 <span className='project-ctn__repos-ctn__repo__details__star-num'>2</span>
                             </div>
