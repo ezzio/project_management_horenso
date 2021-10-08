@@ -2,7 +2,6 @@ import axios from "axios";
 import "./File.scss";
 import React, { useState } from "react";
 import { Upload, message, Modal, Button } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import { InboxOutlined } from "@ant-design/icons";
 
 const UploadFile = ({ onSuccess }) => {
@@ -23,14 +22,9 @@ const UploadFile = ({ onSuccess }) => {
   const handleChange = (info) => {
     let fileList = [...info.fileList];
 
-    // 1. Limit the number of uploaded files
-    // Only to show two recent uploaded files, and old ones will be replaced by the new
     fileList = fileList.slice(-10);
-
-    // 2. Read from response and show file link
     fileList = fileList.map((file) => {
       if (file.response) {
-        // Component will show file.url as link
         file.url = file.response.url;
       }
       return file;
@@ -61,7 +55,6 @@ const UploadFile = ({ onSuccess }) => {
 
   const onsubmit = (e) => {
     e.preventDefault();
-
     const data = new FormData();
     for (let i = 0; i < files.length; i++) {
       data.append("file", files[i]);
