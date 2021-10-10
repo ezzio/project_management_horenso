@@ -56,6 +56,9 @@
       flex-direction: column;
 
       .name {
+        display: inline-block;
+        width: 280px;
+        height: fit-content;
         font-size: 25px;
         font-weight: bold;
         text-align: left;
@@ -63,6 +66,9 @@
       }
 
       .user-name {
+        display: inline-block;
+        width: 280px;
+        height: fit-content;
         color: #ccc;
         text-align: left;
         font-size: 20px;
@@ -70,6 +76,9 @@
       }
 
       &__content {
+        display: inline-block;
+        width: 280px;
+        height: fit-content;
         font-size: 18px;
         margin-top: 10px;
       }
