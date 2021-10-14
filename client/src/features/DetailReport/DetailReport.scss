@@ -9,22 +9,45 @@
     justify-content: space-evenly;
     align-items: center;
 
+    & > h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-bottom: 0 !important;
+    }
+
     &__header {
         width: 95%;
 
         display: flex;
         justify-content: space-between;
 
+        &__title {
+            & > h3 {
+                width: fit-content;
+                padding: 1rem 0.5rem;
+
+                color: #fff;
+
+                border-radius: 1rem;
+            }
+        }
+
         &__performers {
             display: flex;
             flex-direction: column;
+
             & > h4 {
                 font-size: 18px;
+                text-align: end;
             }
 
-            & > img {
-                border-radius: 20px;
-                margin-right: 0.5rem;
+            .image-performers {
+                & > img {
+                    border-radius: 20px;
+                    margin-right: 0.5rem;
+                }
             }
         }
     }
@@ -37,25 +60,34 @@
         border-radius: 1rem;
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
 
         &__chart {
-            width: 95%;
-            height: 45%;
+            width: 45%;
+            height: 95%;
             background-color: #fff;
 
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border-radius: 1rem;
 
             display: flex;
-            justify-content: space-evenly;
+            flex-direction: row;
+            justify-content: space-around;
             align-items: center;
 
             &__approve-chart {
-                width: fit-content;
-                height: 60%;
+                width: 40%;
+                height: 30%;
+
+                & > h2 {
+                    text-align: center;
+                }
+            }
+            &__time-chart {
+                width: 40%;
+                height: 30%;
 
                 & > h2 {
                     text-align: center;
@@ -63,13 +95,21 @@
             }
 
             &__proccess-chart {
-                width: fit-content;
-                height: 60%;
+                width: 40%;
+                height: 30%;
 
                 & > h2 {
                     text-align: center;
                 }
             }
+        }
+
+        &__timeline {
+            width: 45%;
+            height: 95%;
+
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
     }
 }

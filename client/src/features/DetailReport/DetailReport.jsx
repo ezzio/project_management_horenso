@@ -1,19 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Divider, PageHeader, Space, Typography } from 'antd'
 import { Doughnut } from 'react-chartjs-2';
 import 'styles/Color.scss';
 import './DetailReport.scss';
 import { PieChart } from 'react-minimal-pie-chart';
+import Timeline from 'features/ReportTimeline/Timeline';
+import AddNewTimeLine from 'features/ReportTimeline/components/AddNewTimeLine';
+import { addTimeLine } from 'features/ReportTimeline/TimelineSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DetailReport = props => {
-    const dataChart = {
-        labels: ['Approved', 'Complated'],
+    const [openModal, setOpenModal] = useState(false);
+    const dispatch = useDispatch();
+    const timelines = useSelector(state => state.timeline)
+    const handleAddNewTimeLine = (data) => {
+        dispatch(addTimeLine(data));
+        setOpenModal(false);
+    }
+
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    }
+
+    const timeChart = {
+        labels: ['Complete', 'Loading'],
         datasets: [
             {
                 label: '# of Votes',
-                data: [2, 6],
-                backgroundColor: ['hsl(215, 92%, 64%)', '#ccc'],
+                data: [15, 100 - 15],
+                backgroundColor: ['#FF865E', '#ccc'],
+            }
+        ],
+    }
+    const proccessChart = {
+        labels: ['%', '100%'],
+        datasets: [
+            {
+                label: '# of Votes',
+                data: [67, 100 - 67],
+                backgroundColor: ['#FEE440', '#ccc'],
             }
         ],
     }
@@ -26,33 +52,41 @@ const DetailReport = props => {
     ]
 
     return (
-        <div>
+        <>
+            {openModal && <AddNewTimeLine
+                closeModal={setOpenModal}
+                onAddNewTimeLine={handleAddNewTimeLine}
+                timelinedata={timelines}
+            />}
             <div className="detail-report">
                 <div className="detail-report__header">
                     <div className="detail-report__header__title">
                         <h1>This is title</h1>
                         <p>September 15 - October 30</p>
+                        <h3 className="medium">Complated</h3>
                     </div>
                     <div className="detail-report__header__performers">
                         <h4>Present Performers</h4>
-                        {performers.map((performer) => (
-                            <img
-                                src={performer}
-                                alt="avatar"
-                                width='40'
-                                height='40'
-                                className='performers'
-                            />
-                        ))}
+                        <section className="image-performers">
+                            {performers.map((performer) => (
+                                <img
+                                    src={performer}
+                                    alt="avatar"
+                                    width='40'
+                                    height='40'
+                                    className='performers'
+                                />
+                            ))}
+                        </section>
                     </div>
                 </div>
                 <div className="detail-report__body">
                     <div className="detail-report__body__chart">
-                        <div className="detail-report__body__chart__approve-chart">
-                            <h2>Approved</h2>
+                        <div className="detail-report__body__chart__time-chart">
+                            <h2>Time</h2>
                             <Doughnut
                                 className="chart"
-                                data={dataChart}
+                                data={timeChart}
                                 options={{
                                     maintainAspectRatio: false,
                                 }}
@@ -60,21 +94,24 @@ const DetailReport = props => {
                         </div>
                         <div className="detail-report__body__chart__proccess-chart">
                             <h2>Process</h2>
-                            <PieChart
-                                data={[{ value: 1, key: 1, color: 'hsl(215, 92%, 64%)' }]}
-                                reveal={65}
-                                lineWidth={20}
-                                background="#bfbfbf"
-                                lengthAngle={360}
-                                rounded
-                                animate
-                                className="proccess-chart"
+                            <Doughnut
+                                className="chart"
+                                data={proccessChart}
+                                options={{
+                                    maintainAspectRatio: false,
+                                }}
                             />
                         </div>
                     </div>
+                    <div className="detail-report__body__timeline">
+                        <Timeline
+                            timelines={timelines}
+                            openModal={handleOpenModal}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -18,24 +18,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTimeLine } from './TimelineSlice';
 
 const Timeline = props => {
+    const { timelines, openModal } = props;
+
     const complete = { background: '#06D6A0' };
     const incomplete = { background: '#F9C74F' };
-    const [openModal, setOpenModal] = useState(false)
-    const dispatch = useDispatch();
-    const timelines = useSelector(state => state.timeline)
 
-    const handleAddNewTimeLine = (data) => {
-        dispatch(addTimeLine(data));
-        setOpenModal(false);
-    }
 
     return (
         <div className='ctn ctn-timeline'>
-            {openModal && <AddNewTimeLine
-                closeModal={setOpenModal}
-                onAddNewTimeLine={handleAddNewTimeLine}
-                timelinedata={timelines}
-            />}
+
             <h1>TIMELINE</h1>
             <VerticalTimeline>
                 {
@@ -64,7 +55,7 @@ const Timeline = props => {
                 <VerticalTimelineElement
                     iconStyle={{ background: 'hsl(215, 92%, 64%)' }}
                     icon={<AiOutlinePlus />}
-                    iconOnClick={() => setOpenModal(true)}
+                    iconOnClick={openModal}
                     style={{ cursor: 'pointer' }}
                 />
             </VerticalTimeline>
