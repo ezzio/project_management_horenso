@@ -33,6 +33,12 @@
         left: 72.5%;
         border-style: none;
         background-color: transparent;
+
+        &:hover {
+          border-style: solid;
+          border-width: 0px 0px 2px 0px;
+          border-color: black;
+        }
       }
     }
   }
@@ -41,7 +47,7 @@
     position: relative;
     width: 904px;
     left: 1%;
-    margin-top: 16px;
+    margin-top: 25px;
     height: max-content;
     min-height: 113px;
     display: grid;
@@ -76,6 +82,7 @@
             padding-left: 20px;
             font-weight: 600;
             text-decoration: none;
+            margin: 0;
 
             &:hover {
               transition-duration: 0.2s;

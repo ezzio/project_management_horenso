@@ -43,12 +43,12 @@ function LoginForm(props) {
           />
           <span className="login-form__email-container__label">Email</span>
         </div>
-        {errors.email && (
+        {errors.username && (
           <p
-            style={{ position: 'absolute', top: 42, fontSize: 14 }}
+            style={{ position: 'absolute', top: 40, fontSize: 14 }}
             className="login-form__error"
           >
-            {errors.email.message}
+            {errors.username.message}
           </p>
         )}
       </div>
@@ -83,7 +83,7 @@ function LoginForm(props) {
         )}
       </div>
       <Link className="login-form__forgotpassword" path="/ForgotPassword">
-        Forgot password?
+        Forgot Password?
       </Link>
       <AiOutlineMail
         style={{
@@ -104,7 +104,7 @@ function LoginForm(props) {
         }}
       />
       <div>
-        {error != '' ? (
+        {error !== '' ? (
           <p
             style={{ position: 'absolute', top: 95, left: 162, fontSize: 14 }}
             className="login-form__error"

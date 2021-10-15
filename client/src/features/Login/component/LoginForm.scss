@@ -86,8 +86,8 @@
   &__forgotpassword {
     position: absolute;
     top: 58%;
-    left: 63%;
-    font-size: 14px;
+    left: 65.5%;
+    font-size: 12px;
     align-self: flex-start;
     width: 150px;
     height: 40px;
@@ -123,15 +123,18 @@
     flex: 1 1 0%;
     line-height: 16px;
     padding-top: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
     padding-left: 40px;
     background: transparent;
     display: flex;
     flex-direction: column;
     border-width: 1px;
     border-color: lightgrey;
-    border-style: 'solid';
+    border-style: solid;
     border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 .password-textbox {
@@ -153,7 +156,7 @@
     flex: 1 1 0%;
     line-height: 16px;
     padding-top: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
     padding-left: 40px;
     padding-right: 120px;
     background: transparent;
@@ -161,8 +164,12 @@
     flex-direction: column;
     border-width: 1px;
     border-color: lightgrey;
-    border-style: 'solid';
+    border-style: solid;
     border-radius: 5px;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -181,15 +188,13 @@
 
   &__text {
     color: #fff;
-    font-size: 15px;
-    width: 57px;
-    height: 29px;
+    font-size: 14px;
     text-align: center;
+    vertical-align: middle;
     font-style: normal;
     font-weight: 700;
     border: none;
     background: transparent;
-    margin-top: 14px;
   }
   &:hover {
     opacity: 0.8;

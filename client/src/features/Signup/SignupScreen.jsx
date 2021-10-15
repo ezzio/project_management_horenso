@@ -16,7 +16,7 @@ function SignupScreen() {
             <div className='signup__form'>
                 <LoginForm />
                  <button className='signup__help-btn'>
-                    <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 24}}/>
+                    <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 19}}/>
                     <span className='signup__help-btn__text'>Help</span>
                 </button>
             </div>

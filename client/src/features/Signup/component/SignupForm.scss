@@ -5,7 +5,7 @@
   width: 480px;
   display: flex;
   border-width: 0px;
-  border-radius: 15px;
+  border-radius: 5px;
   border-color: #ccc;
   flex-wrap: nowrap;
   background-color: #fff;
@@ -111,15 +111,16 @@
   &__footer {
     position: absolute;
     font-style: normal;
-    top: 96%;
+    top: 94%;
     font-weight: 400;
     color: rgba(0, 0, 0, 1);
-    height: 25px;
-    width: 520px;
-    font-size: 12px;
+    height: 30px;
+    width: 480px;
+    font-size: 10px;
+    padding-top: 8px;
+    vertical-align: middle;
     text-align: center;
-    background-color: rgba(155, 155, 155, 1);
-    padding-right: 30px;
+    background-color: rgb(241, 238, 238);
   }
 
   &__error {
@@ -133,8 +134,8 @@
   border-color: black;
   background-color: transparent;
   flex-direction: row;
-  height: 40;
-  width: 360;
+  height: 40px;
+  width: 360px;
   position: 'absolute';
   left: 0;
   top: 0;
@@ -149,16 +150,19 @@
     flex: 1 1 0%;
     line-height: 16px;
     padding-top: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
     padding-left: 40px;
     background: transparent;
     display: flex;
     flex-direction: column;
     left: 20px;
-    border-style: 'solid';
+    border-style: solid;
     border-width: 1px;
     border-color: lightgrey;
     border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -167,8 +171,8 @@
   border-color: black;
   background-color: transparent;
   flex-direction: row;
-  height: 40;
-  width: 360;
+  height: 40px;
+  width: 360px;
   position: 'absolute';
   left: 0;
   top: 0;
@@ -183,23 +187,26 @@
     flex: 1 1 0%;
     line-height: 16px;
     padding-top: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
     padding-left: 40px;
     background: transparent;
     display: flex;
     flex-direction: column;
-    border-style: 'solid';
+    border-style: solid;
     border-width: 1px;
     border-color: lightgrey;
     border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 .password-textbox {
   display: flex;
   background-color: transparent;
   flex-direction: row;
-  height: 40;
-  width: 360;
+  height: 40px;
+  width: 360px;
   position: 'absolute';
   left: 0;
   top: 0;
@@ -217,10 +224,14 @@
     background: transparent;
     display: flex;
     flex-direction: column;
-    border-style: 'solid';
+    border-style: solid;
     border-width: 1px;
     border-color: lightgrey;
     border-radius: 5px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__hide-password {
@@ -253,11 +264,11 @@
     width: 150px;
     height: 29px;
     text-align: center;
+    vertical-align: middle;
     font-style: normal;
     font-weight: 700;
     border: none;
     background: transparent;
-    margin-top: 10px;
   }
   &:hover {
     opacity: 0.8;

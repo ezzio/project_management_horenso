@@ -83,7 +83,7 @@ function SignupForm() {
                 {(error != '') ? (<p style={{ position: 'absolute', top: 127, fontSize: 12 }} className='signup-form__error'>{error}</p>) : ''}
             </div>
             <AiOutlineMail style={{
-                top: 240,
+                top: 238,
                 left: 68,
                 position: "absolute",
                 fontSize: 25,
@@ -91,16 +91,16 @@ function SignupForm() {
             }} />
             <AiOutlineLock style={{
                 top: 320,
-                left: 68,
+                left: 67,
                 position: "absolute",
-                fontSize: 25,
+                fontSize: 28,
                 color: 'gray'
             }} />
             <BsPerson style={{
-                top: 155,
-                left: 68,
+                top: 152,
+                left: 66,
                 position: "absolute",
-                fontSize: 25,
+                fontSize: 28,
                 color: 'gray'
             }} />
             <div className='signup-form__joinnow-btn-container'>

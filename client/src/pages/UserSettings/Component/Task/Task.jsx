@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Task.scss'
 import { BiBookBookmark } from 'react-icons/bi'
-import { AiOutlineClockCircle, AiOutlineStar, AiOutlineCheck, AiOutlineClose, AiFillStar } from 'react-icons/ai'
+import { AiOutlineClockCircle, AiOutlineStar, AiOutlineCheck, AiFillStar } from 'react-icons/ai'
 
 function Task() {
 
@@ -27,7 +27,6 @@ function Task() {
                     <div className='task-ctn__search-ctn__type-btn__summary__option-ctn'>
                         <header className='task-ctn__search-ctn__type-btn__summary__option-ctn__header'>
                             <span>Select type</span>
-                            <AiOutlineClose style={{position: 'absolute', right: 14, top: 10}} />
                         </header>
                         <p className='task-ctn__search-ctn__type-btn__summary__option-ctn__option'> 
                             <AiOutlineCheck style={{position: 'absolute', left: 14}} /> 
@@ -46,7 +45,6 @@ function Task() {
                     <div className='task-ctn__search-ctn__language-btn__summary__option-ctn'>
                         <header className='task-ctn__search-ctn__language-btn__summary__option-ctn__header'>
                             <span>Select language</span>
-                            <AiOutlineClose style={{position: 'absolute', right: 14, top: 10}} />
                         </header>
                         <p className='task-ctn__search-ctn__language-btn__summary__option-ctn__option'>
                             <AiOutlineCheck style={{position: 'absolute', left: 14}} /> 
@@ -61,7 +59,6 @@ function Task() {
                     <div className='task-ctn__search-ctn__sort-btn__summary__option-ctn'>
                         <header className='task-ctn__search-ctn__sort-btn__summary__option-ctn__header'>
                             <span>Select order</span>
-                            <AiOutlineClose style={{position: 'absolute', right: 14, top: 10}} />
                         </header>
                         <p className='task-ctn__search-ctn__sort-btn__summary__option-ctn__option'>
                             <AiOutlineCheck style={{position: 'absolute', left: 14}} /> 
@@ -72,7 +69,7 @@ function Task() {
                     </div>
                 </details>
                 <button className='task-ctn__search-ctn__new-btn'>
-                    <BiBookBookmark style={{position: 'absolute', color: 'white', fontSize: 16, left: 14}} />
+                    <BiBookBookmark style={{position: 'absolute', color: 'white', fontSize: 16, left: 14, bottom: 7}} />
                     <span className='task-ctn__search-ctn__new-btn__text'>New</span>
                 </button>
             </div>
@@ -82,7 +79,7 @@ function Task() {
                         <h3 className='task-ctn__user-tasks__details-ctn__name'>react-projects</h3>
                         <span className='task-ctn__user-tasks__details-ctn__description'>This is a description for react-projects</span>
                         <div className='task-ctn__user-tasks__other-details-ctn'>   
-                            <AiOutlineClockCircle style={{position: 'absolute', top: 93, left: 20}} />
+                            <AiOutlineClockCircle style={{position: 'absolute', top: 90, left: 20}} />
                             <span className='task-ctn__user-tasks__other-details-ctn__update'>Updated on 5 Jul</span>
                         </div>
                         <button className='task-ctn__user-tasks__star-btn' onClick={() => starring(1)}>
@@ -104,7 +101,7 @@ function Task() {
                         <h3 className='task-ctn__user-tasks__details-ctn__name'>react-projects</h3>
                         <span className='task-ctn__user-tasks__details-ctn__description'>This is a description for react-projects</span>
                         <div className='task-ctn__user-tasks__other-details-ctn'>   
-                            <AiOutlineClockCircle style={{position: 'absolute', top: 93, left: 20}} />
+                            <AiOutlineClockCircle style={{position: 'absolute', top: 90, left: 20}} />
                             <span className='task-ctn__user-tasks__other-details-ctn__update'>Updated on 5 Jul</span>
                         </div>
                         <button className='task-ctn__user-tasks__star-btn' onClick={() => starring(2)}>

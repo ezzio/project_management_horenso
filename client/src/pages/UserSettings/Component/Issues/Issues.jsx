@@ -116,7 +116,7 @@ function Issues() {
                             <Link className='issue__detail-ctn__repo-title-author'>UserName/my-branch</Link>
                             <Link className='issue__detail-ctn__issue-name'>React Projects</Link>
                             <div className='issue__comment-ctn'>
-                                <MdChatBubbleOutline style={{position: 'relative', fontSize: 18, color: 'grey'}}/>
+                                <MdChatBubbleOutline style={{position: 'relative', fontSize: 18, color: 'grey', top: 3}}/>
                                 <span className='issue__comment-ctn__text'>2</span>
                             </div>
                         </div>

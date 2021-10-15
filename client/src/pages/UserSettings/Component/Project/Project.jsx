@@ -18,9 +18,9 @@ function Project() {
                     <div className='project-ctn__repos-ctn__repo'>
                         <div className='project-ctn__repos-ctn__repo__details'>
                             <div className='project-ctn__repos-ctn__repo__details__title'>
-                                <BiBookBookmark style={{position: "absolute", fontSize: 18}} />
+                                <BiBookBookmark style={{position: "absolute", fontSize: 18, top: 4}} />
                                 <Link className='project-ctn__repos-ctn__repo__details__title__text'>react-projects</Link>
-                                <AiOutlineStar style={{position: 'absolute', fontSize: 16, left: 130, top: 2}} />
+                                <AiOutlineStar style={{position: 'absolute', fontSize: 16, left: 130, top: 6}} />
                                 <span className='project-ctn__repos-ctn__repo__details__star-num'>2</span>
                             </div>
                             <div className='project-ctn__repos-ctn__repo__description'>
