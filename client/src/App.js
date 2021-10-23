@@ -1,4 +1,5 @@
 import './App.scss';
+import 'antd/dist/antd.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -18,6 +19,7 @@ import SignupScreen from 'features/Signup/SignupScreen';
 import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
 import NotFound from 'components/Common/NotFound/NotFound';
 import LoginScreen from 'features/Login/LoginScreen';
+
 
 function App() {
   return (
