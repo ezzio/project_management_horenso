@@ -5,8 +5,17 @@ import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOnDnd } from "./boardSlice";
+import { useParams } from "react-router";
 
 const Board = (props) => {
+  // ----------------------
+  // URL Router
+
+  const {id} = useParams();
+  console.log(id);
+  // ----------------------
+
+
   const columns = useSelector((state) => state.board.columns);
 
   const dispatch = useDispatch();

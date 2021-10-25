@@ -1,70 +1,80 @@
-import React, { useState, useMemo } from "react";
-import "./Source.scss";
+import React, { useState } from "react";
+import { Table, Space, Button, Input } from "antd";
+import "antd/dist/antd.css";
 import JsonData from "./MOCK_DATA.json";
-import { TableHeader, Pagination, Search } from "./components/DataTable";
+import "./Source.scss";
+import { RiDownload2Fill, RiDeleteBin6Line } from "react-icons/ri";
+import { BsSearch } from "react-icons/bs";
 import UploadFile from "features/UploadFile-Storage/File";
-import DownloadFile from "features/DownloadFile-Storage/dowloadFile.jsx";
-import DeleteFile from "features/DeleteFile-Storage/deleteFile";
 
-function Source() {
-  const [files, setFiles] = useState(JsonData);
+const Source = () => {
+  const [dataSource, setDataSource] = useState(JsonData);
+  const [value, setValue] = useState("");
 
-  const [totalItems, setTotalItems] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const [search, setSearch] = useState("");
-  const [sorting, setSorting] = useState({ field: "", order: "" });
-
-  const filesPerPage = 15;
-
-  const headers = [
-    { title: "Name", field: "name", sortable: true },
-    { title: "Last Modified", field: "lastModifiedDate", sortable: false },
-    { title: "Size", field: "size", sortable: true },
-    { title: "Member", field: "member", sortable: false },
-    { title: "Action", sortable: false },
+  const FilterByNameInput = (
+    <Input
+      placeholder="Search file"
+      value={value}
+      onChange={(e) => {
+        const currValue = e.target.value;
+        setValue(currValue);
+        const filteredData = JsonData.filter((entry) =>
+          entry.name.includes(currValue)
+        );
+        setDataSource(filteredData);
+      }}
+    />
+  );
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "Id",
+      render: (t, r) => <a href={`${r.file}`} target="_blank">{`${r.name}`}</a>,
+    },
+    {
+      title: "Last modified date",
+      dataIndex: "lastModifiedDate",
+      key: "Id",
+      sorter: (a, b) =>
+        new Date(a.lastModifiedDate) - new Date(b.lastModifiedDate),
+    },
+    {
+      title: "Size",
+      dataIndex: "size",
+      key: "Id",
+      sorter: (a, b) => a.size - b.size,
+    },
+    {
+      title: "Member",
+      dataIndex: "member",
+      render: (t, r) => (
+        <div className="user__tag">
+          <img src={`${r.member}`} height="35px" width="35px" />
+        </div>
+      ),
+      key: "Id",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <Button type="primary" icon={<RiDownload2Fill />} size="large" />
+          <Button type="danger" icon={<RiDeleteBin6Line />} size="large" />
+        </Space>
+      ),
+    },
   ];
-
-  const filesData = useMemo(() => {
-    let computedFiles = files;
-
-    //Searching files
-    if (search) {
-      computedFiles = computedFiles.filter(
-        (files) =>
-          files.name.toLowerCase().includes(search.toLowerCase()) ||
-          files.member.toLowerCase().includes(search.toLowerCase()) ||
-          files.lastModifiedDate.toLowerCase().includes(search.toLowerCase()) ||
-          files.size.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    setTotalItems(computedFiles.length);
-
-    //Sorting files
-    if (sorting.field) {
-      const reversed = sorting.order === "asc" ? 1 : -1;
-      computedFiles = computedFiles.sort(
-        (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
-      );
-    }
-
-    //Current Page slice
-    return computedFiles.slice(
-      (currentPage - 1) * filesPerPage,
-      (currentPage - 1) * filesPerPage + filesPerPage
-    );
-  }, [files, currentPage, search, sorting]);
-
   return (
-    <div className="ctn Source">
+    <div className="ctn source">
       <div className="header">
-        <Search
-          onSearch={(value) => {
-            setSearch(value);
-            setCurrentPage(1);
-          }}
-        />
+        <div className="header__search">
+          <i>
+            <BsSearch className="icon" />
+          </i>
+          {FilterByNameInput}
+        </div>
         <div className="header__add-file">
           <UploadFile />
         </div>
@@ -77,41 +87,11 @@ function Source() {
           />
         </div>
       </div>
-
-      <div className="Source__content">
-        <table className="Source__content-table">
-          <TableHeader
-            headers={headers}
-            onSorting={(field, order) => setSorting({ field, order })}
-          />
-          <tbody>
-            {filesData.map((f) => (
-              <tr>
-                <td>{f.name}</td>
-                <td>{f.lastModifiedDate}</td>
-                <td>{f.size} MB</td>
-                <td>{f.member}</td>
-                <td>
-                  <div className="action">
-                    <DownloadFile file={f.file} fileName={f.name} />
-                    <DeleteFile file={f.file} />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="pagination-outer">
-          <Pagination
-            total={totalItems}
-            filesPerPage={filesPerPage}
-            currentPage={currentPage}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
+      <div className="content">
+        <Table dataSource={dataSource} columns={columns}></Table>
       </div>
     </div>
   );
-}
+};
 
 export default Source;

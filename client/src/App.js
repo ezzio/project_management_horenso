@@ -1,75 +1,66 @@
-import "./App.scss";
-import SideBar from "components/SideBar/SideBar";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import Report from "pages/Horenso/Report/Report";
-// import Board from "pages/Kanban/Board/Board";
-import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
-import UserSetting from "pages/UserSettings/UserSetting";
-import ModalNewTask from "features/ModalNewTask/ModalNewTask";
-// import Board from "features/Board/Board";
-
-import "antd/dist/antd.css";
-import React, { useEffect } from "react";
-
+import './App.scss';
+import 'antd/dist/antd.css';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
-} from "react-router-dom";
+} from 'react-router-dom';
+import SideBar from 'components/SideBar/SideBar';
+import { useEffect, useState } from 'react';
+import Meeting from 'pages/Horenso/Meeting/Meeting';
+import Conversation from 'pages/Horenso/Conversation/Conversation';
+import KanbanDashBoard from 'features/KanbanDashBoard/KanbanDashBoard';
+import Report from 'pages/Horenso/Report/Report';
+import { Source } from 'webpack-sources';
+import Github from 'pages/Github/Github';
+import Board from 'features/Board/Board';
+import SignupScreen from 'features/Signup/SignupScreen';
+import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
+import NotFound from 'components/Common/NotFound/NotFound';
+import LoginScreen from 'features/Login/LoginScreen';
 
-import Github from "./pages/Github/Github";
-import Meeting from "./pages/Horenso/Meeting/Meeting";
-import Source from "./pages/Storage/Source/Source";
-import DetailTask from "features/DetailTask/DetailTask";
-import Kanban from "pages/Kanban/Kanban";
-import NotFound from "components/Common/NotFound/NotFound";
-import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
-import LoginScreen from "features/ForgotPassword/ForgotPasswordScreen";
-
-import SignupScreen from "features/Signup/SignupScreen";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <SideBar />
-        <AnimatedRouter />
-
-        {/* <Board /> */}
-
-        {/* <Switch>
+        <Switch>
           <Route path="/login">
             <LoginScreen />
           </Route>
           <Route path="sign-up">
             <SignupScreen />
           </Route>
-          <PrivateRoute path="/">
+          <PrivateRoute exact path="/:page">
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
+
+          <PrivateRoute path="/:page/:id" children={<Board />} />
+
           <Route path="*" component={NotFound} />
-        </Switch> */}
+        </Switch>
       </div>
     </Router>
   );
 }
 
+// Effect change page
 const AnimatedRouter = () => {
   const location = useLocation();
-  const [transitionStage, setTransitionStage] = React.useState("in");
-  const [displayLocation, setDisplayLocation] = React.useState(location);
-  React.useEffect(() => {
+  const [transitionStage, setTransitionStage] = useState('in');
+  const [displayLocation, setDisplayLocation] = useState(location);
+  useEffect(() => {
     if (location.pathname !== displayLocation.pathname)
-      setTransitionStage("out");
-  }, [location]);
+      setTransitionStage('out');
+  }, [displayLocation.pathname, location]);
   return (
     <div
-      className={transitionStage === "in" ? "slide-bottom" : "slide-top"}
+      className={transitionStage === 'in' ? 'slide-bottom' : 'slide-top'}
       onAnimationEnd={() => {
-        if (transitionStage === "out") {
-          setTransitionStage("in");
+        if (transitionStage === 'out') {
+          setTransitionStage('in');
           setDisplayLocation(location);
         }
       }}
@@ -77,15 +68,10 @@ const AnimatedRouter = () => {
       <Switch location={displayLocation}>
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        <Route path="/kanban" children={<KanbanDashBoard />} />
+        <Route exact path="/kanban" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
         <Route path="/source" children={<Source />} />
         <Route path="/github" children={<Github />} />
-        <Route path="welcome/meeting" children={<Meeting />} />
-        <Route path="welcome/conversation" children={<Conversation />} />
-        <Route path="welcome/kanban" children={<KanbanDashBoard />} />
-        <Route path="welcome/report" children={<Report />} />
-        <Route path="welcome/source" children={<Source />} />
       </Switch>
     </div>
   );
