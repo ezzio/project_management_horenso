@@ -1,4 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 const initialState = {
   columns: [
@@ -11,7 +12,44 @@ const initialState = {
           title: 'This is the title of task 0',
           progress: '100',
           level: 'high',
-          endTime: '9/9/2021',
+          startTime: '2021-10-24',
+          endTime: '2021-10-29',
+          completed: false,
+          taskers: [
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+            {
+              avatar:
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+            },
+          ],
+        },
+        {
+          id: 1,
+          title: 'This is the title of task 1',
+          progress: '100',
+          level: 'high',
+          startTime: '2021-10-24',
+          endTime: '2021-10-29',
+          completed: true,
           taskers: [
             {
               avatar:
@@ -83,8 +121,34 @@ export const boardSlice = createSlice({
         );
       }
     },
+
+    automaticChangeStatusTask: (state) => {
+      let currentTask;
+      state.columns[0].tasks.map((task, index) => {
+        if (moment().isBetween(String(task.startTime), undefined)) {
+          console.log(index);
+          currentTask = task;
+          state.columns[1].tasks.push(currentTask);
+          state.columns[0].tasks.splice(index, 1);
+        }
+      });
+      state.columns[1].tasks.map((task, index) => {
+        if(task.progress === '100'){
+          currentTask = task;
+          state.columns[2].tasks.push(currentTask);
+          state.columns[1].tasks.splice(index, 1);
+        }
+      })
+      state.columns[2].tasks.map((task, index) => {
+        if(task.completed){
+          currentTask = task;
+          state.columns[3].tasks.push(currentTask);
+          state.columns[2].tasks.splice(index, 1);
+        }
+      })
+    },
   },
 });
 
-export const { updateOnDnd } = boardSlice.actions;
+export const { updateOnDnd, automaticChangeStatusTask } = boardSlice.actions;
 export default boardSlice.reducer;
