@@ -20,7 +20,8 @@ function Project() {
                             <div className='project-ctn__repos-ctn__repo__details__title'>
                                 <BiBookBookmark style={{position: "absolute", fontSize: 18, top: 4}} />
                                 <Link className='project-ctn__repos-ctn__repo__details__title__text'>react-projects</Link>
-                                <AiOutlineStar style={{position: 'absolute', fontSize: 16, left: 130, top: 6}} />
+                                {/* neu duoc thi cho ten project toi da 36 ki tu */}
+                                <AiOutlineStar style={{position: 'relative', fontSize: 16, left: 10, top: 3}} />
                                 <span className='project-ctn__repos-ctn__repo__details__star-num'>2</span>
                             </div>
                             <div className='project-ctn__repos-ctn__repo__description'>
@@ -30,7 +31,7 @@ function Project() {
                             <div className='project-ctn__repos-ctn__repo__type-ctn'>
                                 <span className='project-ctn__repos-ctn__repo__type-ctn__text'>Public</span>
                             </div>                            
-                            <GrDrag style={{position: 'absolute', top: 0, left: 398}}/>
+                            <GrDrag style={{position: 'absolute', top: 3, left: 398}}/>
                         </div>
                     </div>
                 </div>

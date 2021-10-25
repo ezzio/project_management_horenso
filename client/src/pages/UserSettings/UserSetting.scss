@@ -5,6 +5,7 @@
   height: 100vh;
   margin: 0 auto;
   left: 17.25%;
+  top: 5%;
   position: absolute;
   p {
     color: #888;
@@ -400,6 +401,7 @@
     align-content: center;
     bottom: 28%;
     left: 80%;
+    padding-top: 2px;
     &__text {
       display: inline-block;
       font-weight: 600;
