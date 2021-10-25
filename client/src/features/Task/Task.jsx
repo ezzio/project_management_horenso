@@ -1,13 +1,57 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { RiChat1Line } from 'react-icons/ri';
-import { ImAttachment } from 'react-icons/im';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import './Task.scss';
-import { Draggable } from 'react-beautiful-dnd';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { RiChat1Line } from "react-icons/ri";
+import { ImAttachment } from "react-icons/im";
+import "./Task.scss";
+import { Draggable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
+import { deleteTask } from "features/Board/boardSlice";
+import { Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import "antd/dist/antd.css";
+import { Popconfirm, message } from "antd";
+import moment from "moment";
 
 const Task = (props) => {
-  const { task, index } = props;
+  const { task, index, columnId } = props;
+  const dispatch = useDispatch();
+
+  // const currentTime = moment();
+  // const projectTime = moment(task.endTime);
+  // const endTime = currentTime.from(projectTime);
+
+  function cancel(e) {
+    console.log(e);
+    // message.error("Click on No");
+  }
+
+  const handleDeleteTask = (task) => {
+    const deleteTaskId = task.id;
+    const action = deleteTask({ deleteTaskId, columnId });
+    dispatch(action);
+    message.success("Success! Task has been deleted.");
+  };
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="0" primary ghost>
+        <a>Edit task</a>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1" danger ghost>
+        <Popconfirm
+          title="Are you sure to delete this task?"
+          onConfirm={() => handleDeleteTask(task)}
+          onCancel={cancel}
+          okText="Yes"
+          cancelText="No"
+        >
+          <a href="#">Delete task</a>
+        </Popconfirm>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <Draggable draggableId={task.id.toString()} index={index}>
       {(provided) => (
@@ -19,7 +63,14 @@ const Task = (props) => {
         >
           <div className="kanban-task__title">
             <h4>{task.title}</h4>
-            <FiMoreHorizontal />
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                <DownOutlined />
+              </a>
+            </Dropdown>
           </div>
           <div className="kanban-task__progress">
             <div
@@ -33,11 +84,11 @@ const Task = (props) => {
           <div className="kanban-task__info">
             <div
               className={
-                task.level === 'high'
-                  ? 'high'
-                  : task.level === 'low'
-                  ? 'low'
-                  : 'medium'
+                task.level === "high"
+                  ? "high"
+                  : task.level === "low"
+                  ? "low"
+                  : "medium"
               }
             >
               {task.level}
@@ -59,14 +110,14 @@ const Task = (props) => {
               {task.taskers.length > 4 && (
                 <div
                   style={{
-                    backgroundColor: '#eee',
-                    borderRadius: '50%',
-                    width: '30px',
-                    height: '30px',
-                    transform: 'translateX(-20px)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    backgroundColor: "#eee",
+                    borderRadius: "50%",
+                    width: "30px",
+                    height: "30px",
+                    transform: "translateX(-20px)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
                   <p>+{task.taskers.length - 4}</p>
@@ -91,6 +142,7 @@ const Task = (props) => {
 Task.propTypes = {
   index: PropTypes.number.isRequired,
   task: PropTypes.object.isRequired,
+  columnId: PropTypes.number.isRequired,
 };
 
 export default Task;

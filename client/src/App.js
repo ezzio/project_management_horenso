@@ -6,7 +6,7 @@ import Report from "pages/Horenso/Report/Report";
 import KanbanDashBoard from "pages/Kanban/KanbanDashBoard/components/KanbanDashBoard";
 import UserSetting from "pages/UserSettings/UserSetting";
 import ModalNewTask from "features/ModalNewTask/ModalNewTask";
-// import Board from "features/Board/Board";
+import Board from "features/Board/Board";
 
 import "antd/dist/antd.css";
 import React, { useEffect } from "react";
@@ -35,10 +35,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <SideBar />
-        <AnimatedRouter />
+        {/* <SideBar />
+        <AnimatedRouter /> */}
 
-        {/* <Board /> */}
+        <Board />
 
         {/* <Switch>
           <Route path="/login">
