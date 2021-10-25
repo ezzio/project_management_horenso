@@ -1,5 +1,11 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import React from 'react';
+import {
+    AiOutlineLoading3Quarters,
+    AiOutlinePlus
+} from 'react-icons/ai';
+// import timelineData from './TimelineData';
+import { MdDone } from 'react-icons/md';
 import {
     VerticalTimeline,
     VerticalTimelineElement
@@ -7,35 +13,17 @@ import {
 import 'react-vertical-timeline-component/style.min.css';
 import 'styles/Color.scss';
 import './Timeline.scss';
-// import timelineData from './TimelineData';
-import { MdDone } from 'react-icons/md';
-import {
-    AiOutlineLoading3Quarters,
-    AiOutlinePlus
-} from 'react-icons/ai';
-import AddNewTimeLine from './components/AddNewTimeLine';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTimeLine } from './TimelineSlice';
 
 const Timeline = props => {
+    const { timelines, openModal } = props;
+
     const complete = { background: '#06D6A0' };
     const incomplete = { background: '#F9C74F' };
-    const [openModal, setOpenModal] = useState(false)
-    const dispatch = useDispatch();
-    const timelines = useSelector(state => state.timeline)
 
-    const handleAddNewTimeLine = (data) => {
-        dispatch(addTimeLine(data));
-        setOpenModal(false);
-    }
 
     return (
         <div className='ctn ctn-timeline'>
-            {openModal && <AddNewTimeLine
-                closeModal={setOpenModal}
-                onAddNewTimeLine={handleAddNewTimeLine}
-                timelinedata={timelines}
-            />}
+
             <h1>TIMELINE</h1>
             <VerticalTimeline>
                 {
@@ -64,7 +52,7 @@ const Timeline = props => {
                 <VerticalTimelineElement
                     iconStyle={{ background: 'hsl(215, 92%, 64%)' }}
                     icon={<AiOutlinePlus />}
-                    iconOnClick={() => setOpenModal(true)}
+                    iconOnClick={openModal}
                     style={{ cursor: 'pointer' }}
                 />
             </VerticalTimeline>
@@ -73,7 +61,8 @@ const Timeline = props => {
 }
 
 Timeline.propTypes = {
-
+    openModal: PropTypes.func,
+    timelines: PropTypes.array,
 }
 
 export default Timeline;
