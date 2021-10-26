@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { MdMoreHoriz } from 'react-icons/md';
-import './Column.scss';
-import Task from 'features/Task/Task';
-import { Droppable } from 'react-beautiful-dnd';
-import { AiFillPlusCircle } from 'react-icons/ai';
+import React from "react";
+import PropTypes from "prop-types";
+import { MdMoreHoriz } from "react-icons/md";
+import "./Column.scss";
+import Task from "features/Task/Task";
+import { Droppable } from "react-beautiful-dnd";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 const Column = (props) => {
   const { column } = props;
@@ -13,7 +13,7 @@ const Column = (props) => {
     <Droppable droppableId={column.id_column.toString()}>
       {(provided, snapshot) => (
         <div
-          className={`column ${snapshot.isDraggingOver ? 'drag-active' : ''}`}
+          className={`column ${snapshot.isDraggingOver ? "drag-active" : ""}`}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -26,7 +26,14 @@ const Column = (props) => {
           <div className="column__content">
             {column.tasks &&
               column.tasks.map((task, index) => {
-                return <Task task={task} key={task.id} index={index} />;
+                return (
+                  <Task
+                    task={task}
+                    key={task.id}
+                    index={index}
+                    columnId={column.id_column}
+                  />
+                );
               })}
             {provided.placeholder}
           </div>
