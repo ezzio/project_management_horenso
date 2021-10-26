@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import moment from "moment";
 
 const initialState = {
   columns: [
@@ -132,8 +133,38 @@ export const boardSlice = createSlice({
         state.columns[columnId].tasks[taskIndex] = newTask;
       }
     },
+    automaticChangeStatusTask: (state) => {
+      let currentTask;
+      state.columns[0].tasks.map((task, index) => {
+        if (moment().isBetween(String(task.startTime), undefined)) {
+          console.log(index);
+          currentTask = task;
+          state.columns[1].tasks.push(currentTask);
+          state.columns[0].tasks.splice(index, 1);
+        }
+      });
+      state.columns[1].tasks.map((task, index) => {
+        if (task.progress === "100") {
+          currentTask = task;
+          state.columns[2].tasks.push(currentTask);
+          state.columns[1].tasks.splice(index, 1);
+        }
+      });
+      state.columns[2].tasks.map((task, index) => {
+        if (task.completed) {
+          currentTask = task;
+          state.columns[3].tasks.push(currentTask);
+          state.columns[2].tasks.splice(index, 1);
+        }
+      });
+    },
   },
 });
 
-export const { updateOnDnd, deleteTask, updateTask } = boardSlice.actions;
+export const {
+  updateOnDnd,
+  deleteTask,
+  updateTask,
+  automaticChangeStatusTask,
+} = boardSlice.actions;
 export default boardSlice.reducer;

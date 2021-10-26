@@ -48,6 +48,7 @@ import SignupScreen from 'features/Signup/SignupScreen';
 import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
 import NotFound from 'components/Common/NotFound/NotFound';
 import LoginScreen from 'features/Login/LoginScreen';
+import DetailTask from 'features/DetailTask/DetailTask';
 
 
 function App() {
@@ -73,7 +74,9 @@ function App() {
             <AnimatedRouter />
           </PrivateRoute>
 
-          <PrivateRoute path="/:page/:id" children={<Board />} />
+          <PrivateRoute exact path="/kanban/:id" children={<Board />} />
+          <PrivateRoute exact path="/kanban/:idkanban/:id" children={<DetailTask />} />
+
 
 
 
