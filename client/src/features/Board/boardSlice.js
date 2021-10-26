@@ -13,6 +13,7 @@ const initialState = {
           progress: "100",
           level: "high",
           is_completed: false,
+          startTime: "15/08/2021",
           endTime: "09/09/2021",
           taskers: [
             {
@@ -48,6 +49,7 @@ const initialState = {
           progress: "60",
           level: "low",
           is_completed: false,
+          startTime: "15/08/2021",
           endTime: "10/09/2021",
           taskers: [
             {
@@ -119,8 +121,19 @@ export const boardSlice = createSlice({
         (task) => task.id !== deleteTaskId
       );
     },
+
+    updateTask: (state, action) => {
+      const { newTask, columnId } = action.payload;
+      const taskIndex = state.columns[columnId].tasks.findIndex(
+        (task) => task.id === newTask.id
+      );
+
+      if (taskIndex >= 0) {
+        state.columns[columnId].tasks[taskIndex] = newTask;
+      }
+    },
   },
 });
 
-export const { updateOnDnd, deleteTask } = boardSlice.actions;
+export const { updateOnDnd, deleteTask, updateTask } = boardSlice.actions;
 export default boardSlice.reducer;
