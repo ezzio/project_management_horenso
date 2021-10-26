@@ -1,3 +1,4 @@
+
 import "./App.scss";
 import SideBar from "components/SideBar/SideBar";
 import Conversation from "pages/Horenso/Conversation/Conversation";
@@ -13,11 +14,16 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 import "antd/dist/antd.css";
 
+
+import './App.scss';
+import 'antd/dist/antd.css';
+
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
+
 } from "react-router-dom";
 
 import Meeting from "pages/Horenso/Meeting/Meeting";
@@ -29,14 +35,31 @@ import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
 import NotFound from "components/Common/NotFound/NotFound";
 import LoginScreen from "features/Login/LoginScreen";
 
+import SideBar from 'components/SideBar/SideBar';
+import { useEffect, useState } from 'react';
+import Meeting from 'pages/Horenso/Meeting/Meeting';
+import Conversation from 'pages/Horenso/Conversation/Conversation';
+import KanbanDashBoard from 'features/KanbanDashBoard/KanbanDashBoard';
+import Report from 'pages/Horenso/Report/Report';
+import { Source } from 'webpack-sources';
+import Github from 'pages/Github/Github';
+import Board from 'features/Board/Board';
+import SignupScreen from 'features/Signup/SignupScreen';
+import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
+import NotFound from 'components/Common/NotFound/NotFound';
+import LoginScreen from 'features/Login/LoginScreen';
+
+
 function App() {
   return (
     <Router>
       <div className="App">
+
         {/* <SideBar />
         <AnimatedRouter /> */}
 
         <Board />
+
 
         <Switch>
           <Route path="/login">
@@ -52,7 +75,10 @@ function App() {
 
           <PrivateRoute path="/:page/:id" children={<Board />} />
 
-          {/* <Route path="*" component={NotFound} /> */}
+
+
+          <Route path="*" component={NotFound} />
+
         </Switch>
       </div>
     </Router>
@@ -70,10 +96,10 @@ const AnimatedRouter = () => {
   }, [displayLocation.pathname, location]);
   return (
     <div
-      className={transitionStage === "in" ? "slide-bottom" : "slide-top"}
+      className={transitionStage === 'in' ? 'slide-bottom' : 'slide-top'}
       onAnimationEnd={() => {
-        if (transitionStage === "out") {
-          setTransitionStage("in");
+        if (transitionStage === 'out') {
+          setTransitionStage('in');
           setDisplayLocation(location);
         }
       }}
