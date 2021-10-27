@@ -7,7 +7,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import { AiFillPlusCircle } from 'react-icons/ai';
 
 const Column = (props) => {
-  const { column } = props;
+  const { column, openModal } = props;
 
   return (
     <Droppable droppableId={column.id_column.toString()}>
@@ -20,7 +20,10 @@ const Column = (props) => {
           <div className="column__header">
             <h4 className="column__header__title">{column.name}</h4>
             {column.id_column === 0 && (
-              <AiFillPlusCircle className="column__header__add" />
+              <AiFillPlusCircle 
+                className="column__header__add" 
+                onClick={openModal}
+              />
             )}
           </div>
           <div className="column__content">

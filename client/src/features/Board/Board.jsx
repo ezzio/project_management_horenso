@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderBoard from "features/HeaderBoard/HeaderBoard";
 import Column from "features/Column/Column";
+import ModalNewTask from 'features/Board/ModalNewTask'
 import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +16,15 @@ const Board = (props) => {
   console.log(id);
   // ----------------------
 
+  const [modalOpen, setModalOpen] = React.useState(false)
+
+  const openModal = () => {
+    setModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
   const columns = useSelector((state) => state.board.columns);
 
@@ -56,12 +66,14 @@ const Board = (props) => {
         startTime="10/08/2021"
         endTime="21/12/2022"
       />
-
+    <div>
+      <ModalNewTask modalOpen={modalOpen} closeModal={closeModal} />
+    </div>
       {/* render column */}
       <div className="board-content">
         <DragDropContext onDragEnd={onDragEnd}>
           {columns.map((column) => {
-            return <Column column={column} />;
+            return <Column column={column} openModal={openModal} />;
           })}
         </DragDropContext>
       </div>

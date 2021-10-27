@@ -83,8 +83,12 @@ export const boardSlice = createSlice({
         );
       }
     },
+    addNewTask: (state, action) => {
+      state.columns[0].tasks.push(action.payload);
+      console.log(state.columns[0].tasks);
+    }
   },
 });
 
-export const { updateOnDnd } = boardSlice.actions;
+export const { updateOnDnd, addNewTask } = boardSlice.actions;
 export default boardSlice.reducer;
