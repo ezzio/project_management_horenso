@@ -1,4 +1,4 @@
-@import 'styles/Color.scss';
+@import "styles/Color.scss";
 .kanban-task {
   width: 100%;
   height: 190px;
@@ -19,18 +19,41 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transform: translateY(-5px);
   }
-  
+
   &__title {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    position: relative;
     & > h4 {
       width: 80%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  }
+
+  &__button--dropdown {
+    cursor: pointer;
+  }
+  &__dropdown--menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $_PINK;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    z-index: 10;
+
+    & a {
+      display: block;
+    }
+  }
+  &__dropdown--menu.active {
+    display: flex;
   }
   &__progress {
     background-color: #eee;

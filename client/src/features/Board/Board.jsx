@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import HeaderBoard from "features/HeaderBoard/HeaderBoard";
 import Column from "features/Column/Column";
@@ -26,30 +27,54 @@ const Board = (props) => {
     setModalOpen(false);
   }
 
+=======
+import React from 'react';
+import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
+import Column from 'features/Column/Column';
+import './Board.scss';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useDispatch, useSelector } from 'react-redux';
+import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
+import { useParams } from 'react-router';
+import { useEffect } from 'react';
+
+const Board = (props) => {
+  const dispatch = useDispatch();
+>>>>>>> fb960248dd837effecdfd81d3830e5850200ea0e
   const columns = useSelector((state) => state.board.columns);
 
-  const dispatch = useDispatch();
+  // ---------------------->
+  // URL Routers
+  const { id } = useParams();
+  // <----------------------
+
+  // ---------------------->
+  // Automatic Change Status Task
+  useEffect(() => {
+    dispatch(automaticChangeStatusTask())
+  });
+  // <----------------------
 
   const members = [
     {
       avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+        'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
   ];
 
