@@ -73,8 +73,9 @@
 
         &__title {
           position: relative;
-          width: 410px;
-          height: 24px;
+          width: 335px;
+          height: fit-content;
+          margin-bottom: 5px;
 
           &__text {
             font-size: 17px;
@@ -92,7 +93,7 @@
         }
         &__star-num {
           font-size: 15px;
-          padding-left: 24px;
+          padding-left: 12px;
         }
       }
       &__description {
@@ -115,7 +116,7 @@
       }
       &__type-ctn {
         position: absolute;
-        bottom: 80%;
+        bottom: 76%;
         left: 83%;
         width: 49px;
         height: 20px;

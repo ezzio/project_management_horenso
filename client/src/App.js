@@ -1,40 +1,11 @@
-
-import "./App.scss";
-import SideBar from "components/SideBar/SideBar";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import Report from "pages/Horenso/Report/Report";
-// import Board from "pages/Kanban/Board/Board";
-import UserSetting from "pages/UserSettings/UserSetting";
-import ModalNewTask from "features/ModalNewTask/ModalNewTask";
-import Board from "features/Board/Board";
-
-import "antd/dist/antd.css";
-import React, { useEffect, useState } from "react";
-
-import "./App.scss";
-import "antd/dist/antd.css";
-
-
 import './App.scss';
 import 'antd/dist/antd.css';
-
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
-
-} from "react-router-dom";
-
-import Meeting from "pages/Horenso/Meeting/Meeting";
-import { Source } from "webpack-sources";
-import Github from "pages/Github/Github";
-
-import SignupScreen from "features/Signup/SignupScreen";
-import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
-import NotFound from "components/Common/NotFound/NotFound";
-import LoginScreen from "features/Login/LoginScreen";
-
+} from 'react-router-dom';
 import SideBar from 'components/SideBar/SideBar';
 import { useEffect, useState } from 'react';
 import Meeting from 'pages/Horenso/Meeting/Meeting';
@@ -48,20 +19,12 @@ import SignupScreen from 'features/Signup/SignupScreen';
 import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
 import NotFound from 'components/Common/NotFound/NotFound';
 import LoginScreen from 'features/Login/LoginScreen';
-import DetailTask from 'features/DetailTask/DetailTask';
 
 
 function App() {
   return (
     <Router>
       <div className="App">
-
-        {/* <SideBar />
-        <AnimatedRouter /> */}
-
-        <Board />
-
-
         <Switch>
           <Route path="/login">
             <LoginScreen />
@@ -74,14 +37,9 @@ function App() {
             <AnimatedRouter />
           </PrivateRoute>
 
-          <PrivateRoute exact path="/kanban/:id" children={<Board />} />
-          <PrivateRoute exact path="/kanban/:idkanban/:id" children={<DetailTask />} />
-
-
-
+          <PrivateRoute path="/:page/:id" children={<Board />} />
 
           <Route path="*" component={NotFound} />
-
         </Switch>
       </div>
     </Router>
@@ -91,11 +49,11 @@ function App() {
 // Effect change page
 const AnimatedRouter = () => {
   const location = useLocation();
-  const [transitionStage, setTransitionStage] = useState("in");
+  const [transitionStage, setTransitionStage] = useState('in');
   const [displayLocation, setDisplayLocation] = useState(location);
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname)
-      setTransitionStage("out");
+      setTransitionStage('out');
   }, [displayLocation.pathname, location]);
   return (
     <div
@@ -110,7 +68,7 @@ const AnimatedRouter = () => {
       <Switch location={displayLocation}>
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        {/* <Route exact path="/kanban" children={<KanbanDashBoard />} /> */}
+        <Route exact path="/kanban" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
         <Route path="/source" children={<Source />} />
         <Route path="/github" children={<Github />} />

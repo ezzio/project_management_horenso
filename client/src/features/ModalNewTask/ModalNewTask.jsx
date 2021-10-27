@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import './ModalNewTask.scss';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 
 const ModalNewTask = () => {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => console.log(data);
 
   const [stepOne, setStepOne] = useState(true);
@@ -79,7 +81,7 @@ const StepOne = ({ step, register }) => {
       </section>
       <section className="modal-content__body__title">
         <label htmlFor="title">Title:</label>
-        <input type="text" name="title" {...register('title')} />
+        <input type="text" name="title"  />
       </section>
       <section className="modal-content__body__description">
         <label htmlFor="description">Description:</label>

@@ -115,6 +115,10 @@ export const boardSlice = createSlice({
         );
       }
     },
+    addNewTask: (state, action) => {
+      state.columns[0].tasks.push(action.payload);
+      console.log(state.columns[0].tasks);
+    },
 
     deleteTask: (state, action) => {
       const { deleteTaskId, columnId } = action.payload;
@@ -158,13 +162,13 @@ export const boardSlice = createSlice({
         }
       });
     },
-  },
-});
+}});
 
 export const {
   updateOnDnd,
   deleteTask,
   updateTask,
   automaticChangeStatusTask,
+  addNewTask,
 } = boardSlice.actions;
 export default boardSlice.reducer;
