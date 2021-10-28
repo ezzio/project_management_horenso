@@ -10,63 +10,75 @@ import {
   Form,
 } from "antd";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "./boardSlice";
-// import { register } from 'serviceWorker';
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../Board/boardSlice.js";
+import moment from "moment";
+import { message } from "antd";
+import { useRef } from "react";
 
-function ModalNewTask({ modalOpen, closeModal }) {
+function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
-
+  const formRef = useRef();
   const [form] = Form.useForm();
-
-  const tasks = useSelector((state) => state.board.columns[0].tasks);
 
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    const newTask = {
-      id: tasks.length,
-      title: values.title,
-      description: values.description,
-      progress: "0",
-      level: values.priority,
-      startTime: values.deadline[0].format("YYYY-MM-DD"),
-      endTime: values.deadline[1].format("YYYY-MM-DD"),
-      taskers: values.members,
+    const action = {
+      editTask: {
+        id: task.id,
+        title: values.title,
+        description: values.description,
+        level: values.priority,
+        startTime: values.deadline[0].format("YYYY-MM-DD"),
+        endTime: values.deadline[1].format("YYYY-MM-DD"),
+        taskers: values.members,
+      },
+      columnId: columnId,
     };
-    console.log(newTask);
+    console.log(action.editTask.taskers);
     closeModal();
-    dispatch(addNewTask(newTask));
+    dispatch(updateTask(action));
+    message.success("Success! Task has been updated.");
   };
 
   const { TabPane } = Tabs;
+  const [activeKey, setActiveKey] = React.useState("1");
+  const onKeyChange = (key) => setActiveKey(key);
 
   return (
     <div>
       <Modal
-        title="Create a new task"
+        title="Edit task"
         visible={modalOpen}
         onCancel={closeModal}
-        okText="Confirm"
+        okText={activeKey === "1" ? "Next" : "Confirm"}
         confirmLoading={confirmLoading}
         onOk={() => {
-          form
-            .validateFields()
-            .then((values) => {
-              // form.resetFields();
-              onFinish(values);
-            })
-            .catch((info) => {
-              console.log("Validate Failed:", info);
-            });
+          activeKey !== "1"
+            ? form
+                .validateFields()
+                .then((values) => {
+                  // form.resetFields();
+                  onFinish(values);
+                })
+                .catch((info) => {
+                  console.log("Validate Failed:", info);
+                })
+            : onKeyChange("2");
         }}
       >
-        <Tabs defaultChecked="1">
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={activeKey}
+          onChange={onKeyChange}
+          defaultChecked="1"
+        >
           <TabPane tab="Step 1" key="1">
-            <Step1 onFinish={onFinish} form={form} />
+            <Step1 onFinish={onFinish} form={form} task={task} />
           </TabPane>
           <TabPane tab="Step 2" key="2">
-            <Step2 onFinish={onFinish} form={form} />
+            <Step2 onFinish={onFinish} form={form} task={task} />
           </TabPane>
         </Tabs>
       </Modal>
@@ -74,7 +86,7 @@ function ModalNewTask({ modalOpen, closeModal }) {
   );
 }
 
-function Step1({ onFinish, form }) {
+function Step1({ onFinish, form, task }) {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
 
@@ -87,7 +99,12 @@ function Step1({ onFinish, form }) {
         name="Step 1"
         onFinish={onFinish}
         autoComplete="off"
-        initialValues={{ priority: "low" }}
+        initialValues={{
+          priority: task.level,
+          title: task.title,
+          description: task.description,
+          deadline: [moment(task.startTime), moment(task.endTime)],
+        }}
       >
         <Form.Item label="Priority:" name="priority">
           <Select size="large">
@@ -155,31 +172,72 @@ function Step1({ onFinish, form }) {
   );
 }
 
-function Step2({ onFinish, form }) {
+function Step2({ onFinish, form, task }) {
   const members = [
     {
+      id: 0,
       name: "Koih Hana",
       avatar:
         "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
     },
     {
+      id: 1,
       name: "Jack Will",
       avatar:
         "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
     },
     {
+      id: 2,
       name: "MenGuy124",
       avatar:
         "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
+    },
+    {
+      id: 3,
+      name: "Nhut",
+      avatar:
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+    },
+    {
+      id: 4,
+      name: "Pum",
+      avatar:
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+    },
+    {
+      id: 5,
+      name: "Minh",
+      avatar:
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+    },
+    {
+      id: 6,
+      name: "Nguyen",
+      avatar:
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
     },
   ];
 
   const { Option } = Select;
 
+  // from initalData
+  const tasker = task.taskers.map((tasker) => (
+    <div key={tasker.id}>
+      <Avatar src={tasker.avatar} alt="avatar" />
+      <label style={{ marginLeft: 5 }}>{tasker.name}</label>
+    </div>
+  ));
+
   return (
     <div>
       <PageHeader title="Step 2" subTitle="Assign members to task" />
-      <Form layout="vertical" form={form} name="Step 2" onFinish={onFinish}>
+      <Form
+        layout="vertical"
+        form={form}
+        name="Step 2"
+        onFinish={onFinish}
+        initialValues={{ members: tasker }}
+      >
         <Form.Item
           name="members"
           rules={[
@@ -196,12 +254,15 @@ function Step2({ onFinish, form }) {
             placeholder="Select members to assign task"
             size="large"
           >
-            {members.map((member, index) => {
+            {/* from initialValue --- all of taskers */}
+            {members.map((member) => {
               return (
-                <Option key={index} value={member.name}>
-                  <Avatar src={member.avatar} alt="avatar" />
-                  <label style={{ marginLeft: 5 }}>{member.name}</label>
-                </Option>
+                <>
+                  <Option key={member.id} value={member.name}>
+                    <Avatar src={member.avatar} alt="avatar" />
+                    <label style={{ marginLeft: 5 }}>{member.name}</label>
+                  </Option>
+                </>
               );
             })}
           </Select>
@@ -211,4 +272,4 @@ function Step2({ onFinish, form }) {
   );
 }
 
-export default ModalNewTask;
+export default ModalEditTask;

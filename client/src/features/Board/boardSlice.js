@@ -1,88 +1,108 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-import moment from 'moment';
+import { createSlice, current } from "@reduxjs/toolkit";
+import moment from "moment";
 
 const initialState = {
   columns: [
     {
       id_column: 0,
-      name: 'Backlog',
+      name: "Backlog",
       tasks: [
         {
           id: 0,
-          title: 'This is the title of task 0',
-          description: 'Description of task 0',
-          progress: '100',
-          level: 'high',
+          title: "This is the title of task 0",
+          description: "Description of task 0",
+          progress: "100",
+          level: "high",
           is_completed: false,
           isOverdue: false,
-          startTime: '2021-8-15',
-          endTime: '2022-8-15',
+          startTime: "2021-8-15",
+          endTime: "2022-8-15",
           taskers: [
             {
+              id: 1,
+              name: "Nhut",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 2,
+              name: "Pum",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 3,
+              name: "Minh",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 4,
+              name: "Nguyen",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 5,
+              name: "Thang",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 6,
+              name: "Kevin",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
           ],
         },
         {
           id: 1,
-          title: 'This is the title of task 2',
-          description: 'Description of task 0',
-          progress: '60',
-          level: 'low',
+          title: "This is the title of task 2",
+          description: "Description of task 0",
+          progress: "60",
+          level: "low",
           is_completed: false,
-          startTime: '15/08/2021',
-          endTime: '10/09/2021',
+          startTime: "2021/02/15",
+          endTime: "2021/02/20",
           isOverdue: false,
           taskers: [
             {
+              id: 1,
+              name: "Nhut",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 2,
+              name: "Pum",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 3,
+              name: "Minh",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
             {
+              id: 4,
+              name: "Nguyen",
               avatar:
-                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
           ],
         },
       ],
     },
-    { id_column: 1, name: 'In process', tasks: [] },
-    { id_column: 2, name: 'Review', tasks: [] },
-    { id_column: 3, name: 'Completed', tasks: [] },
+    { id_column: 1, name: "In process", tasks: [] },
+    { id_column: 2, name: "Review", tasks: [] },
+    { id_column: 3, name: "Completed", tasks: [] },
   ],
 };
 
 export const boardSlice = createSlice({
-  name: 'board',
+  name: "board",
   initialState,
   reducers: {
     addNewTask: (state, action) => {
@@ -98,13 +118,15 @@ export const boardSlice = createSlice({
     },
 
     updateTask: (state, action) => {
-      const { newTask, columnId } = action.payload;
+      // console.log(action.payload);
+      const { editTask, columnId } = action.payload;
+      // console.log(editTask.id, columnId);
       const taskIndex = state.columns[columnId].tasks.findIndex(
-        (task) => task.id === newTask.id
+        (task) => task.id === editTask.id
       );
 
       if (taskIndex >= 0) {
-        state.columns[columnId].tasks[taskIndex] = newTask;
+        state.columns[columnId].tasks[taskIndex] = editTask;
       }
     },
     automaticChangeStatusTask: (state) => {
@@ -122,7 +144,7 @@ export const boardSlice = createSlice({
         });
       if (state.columns[1].tasks)
         state.columns[1].tasks.map((task, index) => {
-          if (task.progress === '100') {
+          if (task.progress === "100") {
             currentTask = task;
             state.columns[2].tasks.push(currentTask);
             state.columns[1].tasks.splice(index, 1);

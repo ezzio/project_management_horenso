@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { MdMoreHoriz } from 'react-icons/md';
-import './Column.scss';
-import Task from 'features/Task/Task';
-import { Droppable } from 'react-beautiful-dnd';
-import { AiFillPlusCircle } from 'react-icons/ai';
-import { Badge } from 'antd';
+import React from "react";
+import PropTypes from "prop-types";
+import { MdMoreHoriz } from "react-icons/md";
+import "./Column.scss";
+import Task from "features/Task/Task";
+import { Droppable } from "react-beautiful-dnd";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { Badge } from "antd";
 
 const Column = (props) => {
   const { column, openModal } = props;
