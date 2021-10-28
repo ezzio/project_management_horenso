@@ -1,86 +1,67 @@
-<<<<<<< HEAD
 import React from "react";
 import HeaderBoard from "features/HeaderBoard/HeaderBoard";
 import Column from "features/Column/Column";
-import ModalNewTask from 'features/Board/ModalNewTask'
+import ModalNewTask from "features/Board/ModalNewTask";
 import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOnDnd } from "./boardSlice";
 import { useParams } from "react-router";
+import { automaticChangeStatusTask, updateOnDnd } from "./boardSlice";
+import { useEffect } from "react";
 
 const Board = (props) => {
   // ----------------------
   // URL Router
 
-  const {id} = useParams();
-  console.log(id);
-  // ----------------------
-
-  const [modalOpen, setModalOpen] = React.useState(false)
-
-  const openModal = () => {
-    setModalOpen(true);
-  }
-
-  const closeModal = () => {
-    setModalOpen(false);
-  }
-
-=======
-import React from 'react';
-import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
-import Column from 'features/Column/Column';
-import './Board.scss';
-import { DragDropContext } from 'react-beautiful-dnd';
-import { useDispatch, useSelector } from 'react-redux';
-import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
-import { useParams } from 'react-router';
-import { useEffect } from 'react';
-
-const Board = (props) => {
-  const dispatch = useDispatch();
->>>>>>> fb960248dd837effecdfd81d3830e5850200ea0e
-  const columns = useSelector((state) => state.board.columns);
-
-  // ---------------------->
-  // URL Routers
   const { id } = useParams();
-  // <----------------------
+  console.log(id);
 
   // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
-    dispatch(automaticChangeStatusTask())
+    dispatch(automaticChangeStatusTask());
   });
   // <----------------------
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const columns = useSelector((state) => state.board.columns);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const members = [
     {
       avatar:
-        'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
+        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
     {
       avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
+        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
     },
   ];
 
   const onDragEnd = (result) => {
     dispatch(updateOnDnd(result));
   };
+
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -91,9 +72,9 @@ const Board = (props) => {
         startTime="10/08/2021"
         endTime="21/12/2022"
       />
-    <div>
-      <ModalNewTask modalOpen={modalOpen} closeModal={closeModal} />
-    </div>
+      <div>
+        <ModalNewTask modalOpen={modalOpen} closeModal={closeModal} />
+      </div>
       {/* render column */}
       <div className="board-content">
         <DragDropContext onDragEnd={onDragEnd}>

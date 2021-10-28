@@ -10,33 +10,35 @@ import {
   Form,
 } from "antd";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "./boardSlice";
-// import { register } from 'serviceWorker';
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../Board/boardSlice.js";
+import moment from "moment";
+import { message } from "antd";
 
-function ModalNewTask({ modalOpen, closeModal }) {
+function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
 
   const [form] = Form.useForm();
 
-  const tasks = useSelector((state) => state.board.columns[0].tasks);
-
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    const newTask = {
-      id: tasks.length,
-      title: values.title,
-      description: values.description,
-      progress: "0",
-      level: values.priority,
-      startTime: values.deadline[0].format("YYYY-MM-DD"),
-      endTime: values.deadline[1].format("YYYY-MM-DD"),
-      taskers: values.members,
+    const action = {
+      editTask: {
+        id: task.id,
+        title: values.title,
+        description: values.description,
+        level: values.priority,
+        startTime: values.deadline[0].format("YYYY-MM-DD"),
+        endTime: values.deadline[1].format("YYYY-MM-DD"),
+        taskers: values.members,
+      },
+      columnId: columnId,
     };
-    console.log(newTask);
+    // console.log(editTask);
+    message.success("Success! Task has been updated.");
     closeModal();
-    dispatch(addNewTask(newTask));
+    dispatch(updateTask(action));
   };
 
   const { TabPane } = Tabs;
@@ -63,10 +65,10 @@ function ModalNewTask({ modalOpen, closeModal }) {
       >
         <Tabs defaultChecked="1">
           <TabPane tab="Step 1" key="1">
-            <Step1 onFinish={onFinish} form={form} />
+            <Step1 onFinish={onFinish} form={form} task={task} />
           </TabPane>
           <TabPane tab="Step 2" key="2">
-            <Step2 onFinish={onFinish} form={form} />
+            <Step2 onFinish={onFinish} form={form} task={task} />
           </TabPane>
         </Tabs>
       </Modal>
@@ -74,7 +76,7 @@ function ModalNewTask({ modalOpen, closeModal }) {
   );
 }
 
-function Step1({ onFinish, form }) {
+function Step1({ onFinish, form, task }) {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
 
@@ -87,7 +89,12 @@ function Step1({ onFinish, form }) {
         name="Step 1"
         onFinish={onFinish}
         autoComplete="off"
-        initialValues={{ priority: "low" }}
+        initialValues={{
+          priority: task.level,
+          title: task.title,
+          description: task.description,
+          deadline: [moment(task.startTime), moment(task.endTime)],
+        }}
       >
         <Form.Item label="Priority:" name="priority">
           <Select size="large">
@@ -155,7 +162,7 @@ function Step1({ onFinish, form }) {
   );
 }
 
-function Step2({ onFinish, form }) {
+function Step2({ onFinish, form, task }) {
   const members = [
     {
       name: "Koih Hana",
@@ -175,7 +182,6 @@ function Step2({ onFinish, form }) {
   ];
 
   const { Option } = Select;
-
   return (
     <div>
       <PageHeader title="Step 2" subTitle="Assign members to task" />
@@ -198,10 +204,12 @@ function Step2({ onFinish, form }) {
           >
             {members.map((member, index) => {
               return (
-                <Option key={index} value={member.name}>
-                  <Avatar src={member.avatar} alt="avatar" />
-                  <label style={{ marginLeft: 5 }}>{member.name}</label>
-                </Option>
+                <>
+                  <Option key={index} value={member.name}>
+                    <Avatar src={member.avatar} alt="avatar" />
+                    <label style={{ marginLeft: 5 }}>{member.name}</label>
+                  </Option>
+                </>
               );
             })}
           </Select>
@@ -211,4 +219,4 @@ function Step2({ onFinish, form }) {
   );
 }
 
-export default ModalNewTask;
+export default ModalEditTask;

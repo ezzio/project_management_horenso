@@ -11,10 +11,12 @@ const initialState = {
           id: 0,
           title: "This is the title of task 0",
           description: "Description of task 0",
-          progress: "100",
+          progress: "0",
           level: "high",
           is_completed: false,
-          startTime: "15/08/2021",
+
+          // format(mm/dd/yyyy)
+          startTime: "08/15/2021",
           endTime: "09/09/2021",
           taskers: [
             {
@@ -25,34 +27,6 @@ const initialState = {
               avatar:
                 "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
             },
-            {
-              avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-            },
-            {
-              avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-            },
-            {
-              avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-            },
-            {
-              avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-            },
-          ],
-        },
-        {
-          id: 1,
-          title: "This is the title of task 2",
-          description: "Description of task 0",
-          progress: "60",
-          level: "low",
-          is_completed: false,
-          startTime: "15/08/2021",
-          endTime: "10/09/2021",
-          taskers: [
             {
               avatar:
                 "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
@@ -115,6 +89,7 @@ export const boardSlice = createSlice({
         );
       }
     },
+
     addNewTask: (state, action) => {
       state.columns[0].tasks.push(action.payload);
       console.log(state.columns[0].tasks);
@@ -128,13 +103,15 @@ export const boardSlice = createSlice({
     },
 
     updateTask: (state, action) => {
-      const { newTask, columnId } = action.payload;
+      // console.log(action.payload);
+      const { editTask, columnId } = action.payload;
+      // console.log(editTask.id, columnId);
       const taskIndex = state.columns[columnId].tasks.findIndex(
-        (task) => task.id === newTask.id
+        (task) => task.id === editTask.id
       );
 
       if (taskIndex >= 0) {
-        state.columns[columnId].tasks[taskIndex] = newTask;
+        state.columns[columnId].tasks[taskIndex] = editTask;
       }
     },
     automaticChangeStatusTask: (state) => {
@@ -162,7 +139,8 @@ export const boardSlice = createSlice({
         }
       });
     },
-}});
+  },
+});
 
 export const {
   updateOnDnd,
