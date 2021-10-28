@@ -7,6 +7,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "features/Board/boardSlice";
 import { Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import { Popconfirm, message } from "antd";
 import moment from "moment";
@@ -69,7 +70,7 @@ const Task = (props) => {
       {(provided) => (
         <Dropdown overlay={menu} trigger={["contextMenu"]}>
           <div
-            className="kanban-task"
+            className="kanban-task "
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
