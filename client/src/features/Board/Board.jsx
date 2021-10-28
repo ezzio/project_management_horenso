@@ -9,18 +9,10 @@ import { automaticChangeStatusTask, updateOnDnd } from "./boardSlice";
 import { useEffect } from "react";
 
 const Board = (props) => {
-  // ----------------------
-  // URL Router
-
-
-  // ----------------------
-
-  // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
     dispatch(automaticChangeStatusTask());
   });
-  // <----------------------
 
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -32,17 +24,7 @@ const Board = (props) => {
 
   const closeModal = () => {
     setModalOpen(false);
-  }
-
-  const dispatch = useDispatch();
-  const columns = useSelector((state) => state.board.columns);
-
-  // ---------------------->
-  // Automatic Change Status Task
-  useEffect(() => {
-    dispatch(automaticChangeStatusTask())
-  });
-  // <----------------------
+  };
 
   const members = [
     {
@@ -70,6 +52,7 @@ const Board = (props) => {
   // const onDragEnd = (result) => {
   //   dispatch(updateOnDnd(result));
   // };
+
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -85,11 +68,9 @@ const Board = (props) => {
       </div>
       {/* render column */}
       <div className="board-content">
-       
-          {columns.map((column) => {
-            return <Column column={column} openModal={openModal} />;
-          })}
-    
+        {columns.map((column) => {
+          return <Column column={column} openModal={openModal} />;
+        })}
       </div>
     </div>
   );
