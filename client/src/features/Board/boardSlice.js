@@ -15,8 +15,8 @@ const initialState = {
           level: 'high',
           is_completed: false,
           isOverdue: false,
-          startTime: '15/08/2021',
-          endTime: '09/09/2021',
+          startTime: '2021-8-15',
+          endTime: '2022-8-15',
           taskers: [
             {
               avatar:

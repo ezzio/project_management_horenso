@@ -40,10 +40,13 @@ const Task = (props) => {
   const menu = (
     <Menu>
       <Menu.Item key="0" primary ghost>
+        <Link to={`${location.pathname}/${task.id}`}>Open</Link>
+      </Menu.Item>
+      <Menu.Item key="1" primary ghost>
         <a>Edit task</a>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="1" danger ghost>
+      <Menu.Item key="2" danger ghost>
         <Popconfirm
           title="Are you sure to delete this task?"
           onConfirm={() => handleDeleteTask(task)}
@@ -61,88 +64,10 @@ const Task = (props) => {
     <>
       {task.isOverdue ? (
         <Badge.Ribbon text="Overdue" color="red">
-          <Link to={`${location.pathname}/${task.id}`}>
-            <div className="kanban-task">
-              <div className="kanban-task__title">
-                <h4>{task.title}</h4>
-                <Dropdown overlay={menu} trigger={['click']}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <DownOutlined />
-                  </a>
-                </Dropdown>
-              </div>
-              <div className="kanban-task__progress">
-                <div
-                  className="kanban-task__progress__bar"
-                  style={{ width: `${task.progress}%` }}
-                >
-                  {task.progress > 10 && <p>{task.progress}%</p>}
-                </div>
-                {task.progress < 10 && <p>{task.progress}%</p>}
-              </div>
-              <div className="kanban-task__info">
-                <div
-                  className={
-                    task.level === 'high'
-                      ? 'high'
-                      : task.level === 'low'
-                      ? 'low'
-                      : 'medium'
-                  }
-                >
-                  {task.level}
-                </div>
-                <div className="kanban-task__info__time">Due in 2 days</div>
-              </div>
-              <div className="kanban-task__members-attach">
-                <div className="kanban-task__members-attach__members">
-                  {task.taskers.map((tasker, index) =>
-                    index < 4 ? (
-                      <img
-                        src={tasker.avatar}
-                        alt="avatar"
-                        height="30"
-                        width="30"
-                      />
-                    ) : null
-                  )}
-                  {task.taskers.length > 4 && (
-                    <div
-                      style={{
-                        backgroundColor: '#eee',
-                        borderRadius: '50%',
-                        width: '30px',
-                        height: '30px',
-                        transform: 'translateX(-20px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <p>+{task.taskers.length - 4}</p>
-                    </div>
-                  )}
-                </div>
-                <div className="kanban-task__members-attach__attach">
-                  <p>
-                    <ImAttachment /> 2
-                  </p>
-                  <p>
-                    <RiChat1Line /> 18
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </Badge.Ribbon>
-      ) : (
-        <Link to={`${location.pathname}/${task.id}`}>
           <div className="kanban-task">
             <div className="kanban-task__title">
               <h4>{task.title}</h4>
+
               <Dropdown overlay={menu} trigger={['click']}>
                 <a
                   className="ant-dropdown-link"
@@ -152,6 +77,7 @@ const Task = (props) => {
                 </a>
               </Dropdown>
             </div>
+
             <div className="kanban-task__progress">
               <div
                 className="kanban-task__progress__bar"
@@ -214,7 +140,83 @@ const Task = (props) => {
               </div>
             </div>
           </div>
-        </Link>
+        </Badge.Ribbon>
+      ) : (
+        <div className="kanban-task">
+          <div className="kanban-task__title">
+            <h4>{task.title}</h4>
+
+            <Dropdown overlay={menu} trigger={['click']}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                <DownOutlined />
+              </a>
+            </Dropdown>
+          </div>
+          <div className="kanban-task__progress">
+            <div
+              className="kanban-task__progress__bar"
+              style={{ width: `${task.progress}%` }}
+            >
+              {task.progress > 10 && <p>{task.progress}%</p>}
+            </div>
+            {task.progress < 10 && <p>{task.progress}%</p>}
+          </div>
+          <div className="kanban-task__info">
+            <div
+              className={
+                task.level === 'high'
+                  ? 'high'
+                  : task.level === 'low'
+                  ? 'low'
+                  : 'medium'
+              }
+            >
+              {task.level}
+            </div>
+            <div className="kanban-task__info__time">Due in 2 days</div>
+          </div>
+          <div className="kanban-task__members-attach">
+            <div className="kanban-task__members-attach__members">
+              {task.taskers.map((tasker, index) =>
+                index < 4 ? (
+                  <img
+                    src={tasker.avatar}
+                    alt="avatar"
+                    height="30"
+                    width="30"
+                  />
+                ) : null
+              )}
+              {task.taskers.length > 4 && (
+                <div
+                  style={{
+                    backgroundColor: '#eee',
+                    borderRadius: '50%',
+                    width: '30px',
+                    height: '30px',
+                    transform: 'translateX(-20px)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <p>+{task.taskers.length - 4}</p>
+                </div>
+              )}
+            </div>
+            <div className="kanban-task__members-attach__attach">
+              <p>
+                <ImAttachment /> 2
+              </p>
+              <p>
+                <RiChat1Line /> 18
+              </p>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
