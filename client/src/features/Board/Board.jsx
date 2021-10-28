@@ -6,15 +6,13 @@ import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { automaticChangeStatusTask, updateOnDnd } from "./boardSlice";
-import { useParams } from "react-router";
 import { useEffect } from "react";
 
 const Board = (props) => {
   // ----------------------
   // URL Router
 
-  const {id} = useParams();
-  console.log(id);
+
   // ----------------------
 
   const [modalOpen, setModalOpen] = React.useState(false)
@@ -60,9 +58,9 @@ const Board = (props) => {
     },
   ];
 
-  const onDragEnd = (result) => {
-    dispatch(updateOnDnd(result));
-  };
+  // const onDragEnd = (result) => {
+  //   dispatch(updateOnDnd(result));
+  // };
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -78,11 +76,11 @@ const Board = (props) => {
     </div>
       {/* render column */}
       <div className="board-content">
-        <DragDropContext onDragEnd={onDragEnd}>
+       
           {columns.map((column) => {
             return <Column column={column} openModal={openModal} />;
           })}
-        </DragDropContext>
+    
       </div>
     </div>
   );
