@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, PageHeader, Input, DatePicker, Avatar, Tabs, Select, Form} from 'antd';
+import { Modal, PageHeader, Input, DatePicker, Avatar, Tabs, Select, Form, message} from 'antd';
 import 'antd/dist/antd.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewTask } from './boardSlice';
@@ -7,6 +7,11 @@ import { addNewTask } from './boardSlice';
 
 function ModalNewTask({ modalOpen, closeModal }) {
     const [confirmLoading, setConfirmLoading] = React.useState(false);
+    const [activeTab, setActiveTab] = React.useState('1')
+
+    const changeTab = (key) => {
+        setActiveTab(key);
+    }
 
     const [form] = Form.useForm();
 
@@ -21,13 +26,14 @@ function ModalNewTask({ modalOpen, closeModal }) {
             description: values.description,
             progress: '0',
             level: values.priority,
-            startTime: values.deadline[0].format('DD/MM/YYYY'),
-            endTime: values.deadline[1].format('DD/MM/YYYY'),
+            startTime: values.deadline[0].format('YYYY-MM-DD'),
+            endTime: values.deadline[1].format('YYYY-MM-DD'),
             taskers: values.members,
         }
         console.log(newTask);
         closeModal();
         dispatch(addNewTask(newTask))
+        message.success('Success! Task has been created.')
     };
 
     const { TabPane } = Tabs;
@@ -41,18 +47,41 @@ function ModalNewTask({ modalOpen, closeModal }) {
                 okText='Confirm'
                 confirmLoading={confirmLoading}
                 onOk={() => {
-                    form
+                    if (activeTab === '1') {
+                        changeTab('2')
+                    }
+                    else {
+                        form
                         .validateFields()
                         .then((values) => {
-                            // form.resetFields();
+                            form.resetFields();
                             onFinish(values);
                         })
                         .catch((info) => {
+                            if (info.values.title === undefined ) {
+                                message.warning('Task title is invalid! Please try again');
+                            }
+                            else if (info.values.title !== undefined && (info.values.title.length < 6 || info.values.title.length > 36)) {
+                                message.warning('Task title is invalid! Please try again');
+                            }
+                            else if (info.values.description === undefined ) {
+                                message.warning('Task description is invalid! Please try again')
+                            }
+                            else if ( info.values.title !== undefined && (info.values.description.length < 6 || info.values.description.length > 100)) {
+                                message.warning('Task description is invalid! Please try again')
+                            }
+                            else if (info.values.deadline === undefined) {
+                                message.warning('Task deadline is invalid! Please try again')
+                            }
+                            else if (info.values.members === undefined) {
+                                message.warning('Task members is invalid! Please try again')
+                            }
                             console.log('Validate Failed:', info);
                         });
+                    }
                 }}
             >   
-            <Tabs defaultChecked='1'>
+            <Tabs defaultActiveKey='1' activeKey={activeTab} onChange={changeTab}>
                 <TabPane tab='Step 1' key='1'>
                     <Step1 onFinish={onFinish} form={form}/>
                 </TabPane>
@@ -125,7 +154,7 @@ function Step1({onFinish, form}) {
                     <RangePicker size='large'
                         allowClear
                         showTime
-                        format="DD/MM/YYYY"
+                        format="YYYY-MM-DD"
                         style={{ width: '100%' }}
                     />
                 </Form.Item>                  
@@ -173,7 +202,7 @@ function Step2({onFinish, form}) {
                         {
                             required: true,
                             message: 'This field is required',
-                            type: 'array',
+                            type: 'array'
                         },
                     ]}
                 >
