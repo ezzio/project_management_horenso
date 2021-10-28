@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import HeaderBoard from "features/HeaderBoard/HeaderBoard";
 import Column from "features/Column/Column";
@@ -6,15 +5,14 @@ import ModalNewTask from 'features/Board/ModalNewTask'
 import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOnDnd } from "./boardSlice";
-import { useParams } from "react-router";
+import { automaticChangeStatusTask, updateOnDnd } from "./boardSlice";
+import { useEffect } from "react";
 
 const Board = (props) => {
   // ----------------------
   // URL Router
 
-  const {id} = useParams();
-  console.log(id);
+
   // ----------------------
 
   const [modalOpen, setModalOpen] = React.useState(false)
@@ -27,26 +25,8 @@ const Board = (props) => {
     setModalOpen(false);
   }
 
-=======
-import React from 'react';
-import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
-import Column from 'features/Column/Column';
-import './Board.scss';
-import { DragDropContext } from 'react-beautiful-dnd';
-import { useDispatch, useSelector } from 'react-redux';
-import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
-import { useParams } from 'react-router';
-import { useEffect } from 'react';
-
-const Board = (props) => {
   const dispatch = useDispatch();
->>>>>>> fb960248dd837effecdfd81d3830e5850200ea0e
   const columns = useSelector((state) => state.board.columns);
-
-  // ---------------------->
-  // URL Routers
-  const { id } = useParams();
-  // <----------------------
 
   // ---------------------->
   // Automatic Change Status Task
@@ -78,9 +58,9 @@ const Board = (props) => {
     },
   ];
 
-  const onDragEnd = (result) => {
-    dispatch(updateOnDnd(result));
-  };
+  // const onDragEnd = (result) => {
+  //   dispatch(updateOnDnd(result));
+  // };
   return (
     <div className="ctn ctn-board">
       <HeaderBoard
@@ -96,11 +76,11 @@ const Board = (props) => {
     </div>
       {/* render column */}
       <div className="board-content">
-        <DragDropContext onDragEnd={onDragEnd}>
+       
           {columns.map((column) => {
             return <Column column={column} openModal={openModal} />;
           })}
-        </DragDropContext>
+    
       </div>
     </div>
   );
