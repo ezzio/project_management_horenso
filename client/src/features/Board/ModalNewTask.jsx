@@ -5,19 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNewTask } from './boardSlice';
 // import { register } from 'serviceWorker';
 
+
 function ModalNewTask({ modalOpen, closeModal }) {
-    const [confirmLoading, setConfirmLoading] = React.useState(false);
-    const [activeTab, setActiveTab] = React.useState('1')
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
 
-    const changeTab = (key) => {
-        setActiveTab(key);
-    }
+  const [form] = Form.useForm();
 
-    const [form] = Form.useForm();
+  const tasks = useSelector((state) => state.board.columns[0].tasks);
 
-    const tasks =  useSelector((state) => state.board.columns[0].tasks)
-
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
     const onFinish = (values) => {
         const newTask = {
@@ -93,7 +89,6 @@ function ModalNewTask({ modalOpen, closeModal }) {
         </div>
     )
 }
-
 
 function Step1({onFinish, form}) {
 
@@ -227,4 +222,4 @@ function Step2({onFinish, form}) {
     )
 }
 
-export default ModalNewTask
+export default ModalNewTask;
