@@ -8,6 +8,7 @@ import { addNewTask } from './boardSlice';
 
 function ModalNewTask({ modalOpen, closeModal }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState('1')
 
   const [form] = Form.useForm();
 
@@ -15,22 +16,26 @@ function ModalNewTask({ modalOpen, closeModal }) {
 
   const dispatch = useDispatch();
 
-    const onFinish = (values) => {
-        const newTask = {
-            id: tasks.length,
-            title: values.title,
-            description: values.description,
-            progress: '0',
-            level: values.priority,
-            startTime: values.deadline[0].format('YYYY-MM-DD'),
-            endTime: values.deadline[1].format('YYYY-MM-DD'),
-            taskers: values.members,
-        }
-        console.log(newTask);
-        closeModal();
-        dispatch(addNewTask(newTask))
-        message.success('Success! Task has been created.')
-    };
+  const changeTab = (key) => {
+    setActiveTab(key);
+  }
+
+  const onFinish = (values) => {
+    const newTask = {
+        id: tasks.length,
+        title: values.title,
+        description: values.description,
+        progress: '0',
+        level: values.priority,
+        startTime: values.deadline[0].format('YYYY-MM-DD'),
+        endTime: values.deadline[1].format('YYYY-MM-DD'),
+        taskers: values.members,
+    }
+    console.log(newTask);
+    closeModal();
+    dispatch(addNewTask(newTask))
+    message.success('Success! Task has been created.')
+  };
 
     const { TabPane } = Tabs;
 
