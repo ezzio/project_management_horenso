@@ -5,7 +5,9 @@ import ModalNewTask from "features/Board/ModalNewTask";
 import "./Board.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { automaticChangeStatusTask, updateOnDnd } from "./boardSlice";
+import { useParams } from "react-router";
+import { useEffect } from 'react';
+import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
 import { useEffect } from "react";
 
 const Board = (props) => {
@@ -24,7 +26,18 @@ const Board = (props) => {
 
   const closeModal = () => {
     setModalOpen(false);
-  };
+  }
+
+  const dispatch = useDispatch();
+  const columns = useSelector((state) => state.board.columns);
+  // <----------------------
+
+  // ---------------------->
+  // Automatic Change Status Task
+  useEffect(() => {
+    dispatch(automaticChangeStatusTask())
+  });
+  // <----------------------
 
   const members = [
     {
@@ -75,5 +88,6 @@ const Board = (props) => {
     </div>
   );
 };
+
 
 export default Board;
