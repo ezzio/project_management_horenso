@@ -1,85 +1,32 @@
-import { Modal, Form, Input, Select, DatePicker, Button } from 'antd';
-import JobTag from 'features/JobTag - Kanban/JobTag';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './KanbanDashBoard.scss';
+import { Modal, Form, Input, Select, DatePicker, Button, message } from "antd";
+import JobTag from "features/JobTag - Kanban/JobTag";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import "./KanbanDashBoard.scss";
+import { addKanban, deleteKanban } from "./KanbanDashBoardSlice";
 
 const { RangePicker } = DatePicker;
 
 const KanbanDashBoard = () => {
   const [showCompleteTask, setShowCompleteTask] = useState(true);
-
-  const jobs = [
-    {
-      id_job: 0,
-      name: 'Important feature fix',
-      process: '12%',
-      level: 'High',
-      is_completed: true,
-      members: [
-        'https://www.w3schools.com/howto/img_avatar.png',
-        'https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png',
-        'https://anest.dev/assets/images/avatar.png',
-        'https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg',
-        'https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg',
-        'https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg',
-      ],
-    },
-    {
-      id_job: 1,
-      name: 'Important feature fix',
-      process: '30%',
-      level: 'Medium',
-      is_completed: false,
-      members: [
-        'https://www.w3schools.com/howto/img_avatar.png',
-        'https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png',
-        'https://anest.dev/assets/images/avatar.png',
-        'https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg',
-        'https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg',
-        'https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg',
-      ],
-    },
-    {
-      id_job: 2,
-      name: 'Horenso',
-      process: '50%',
-      level: 'Low',
-      is_completed: false,
-      members: [
-        'https://www.w3schools.com/howto/img_avatar.png',
-        'https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png',
-        'https://anest.dev/assets/images/avatar.png',
-        'https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg',
-        'https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg',
-        'https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg',
-      ],
-    },
-    {
-      id_job: 3,
-      name: 'Kanban',
-      process: '12%',
-      level: 'High',
-      is_completed: false,
-      members: [
-        'https://www.w3schools.com/howto/img_avatar.png',
-        'https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png',
-        'https://anest.dev/assets/images/avatar.png',
-        'https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg',
-        'https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg',
-        'https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg',
-      ],
-    },
-  ];
+  const jobs = useSelector((state) => state.kanban);
+  const dispatch = useDispatch();
 
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
 
+  //Delete Kanban here
+  const handleDeleteJob = (job) => {
+    const deleteKanbanID = job.id_job;
+    const action = deleteKanban(deleteKanbanID);
+    dispatch(action);
+    message.success("Success! This Job has been removed");
+  };
+
   const showModal = () => {
     setVisible(true);
   };
-
-
 
   const handleCancel = () => {
     setVisible(false);
@@ -88,8 +35,20 @@ const KanbanDashBoard = () => {
   // -----------------------------
   //          Modal Form
   const onFinish = (values) => {
-    console.log(values);
+    const newKanban = {
+      id_job: jobs.length + 1,
+      title: values.title,
+      proccess: "0%",
+      priority: values.priority,
+      is_completed: false,
+      start_time: values.range_time[0].format("YYYY-MM-DD"),
+      end_time: values.range_time[1].format("YYYY-MM-DD"),
+      members: values.members,
+    };
+    console.log(newKanban);
+    dispatch(addKanban(newKanban));
     setVisible(false);
+    message.success("Success! This Job has been added");
   };
   const [form] = Form.useForm();
 
@@ -108,12 +67,12 @@ const KanbanDashBoard = () => {
               onFinish(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
-        initialValues={{ priority: 'low' }}
+        initialValues={{ priority: "Low" }}
       >
         <Form
           layout="vertical"
@@ -121,36 +80,36 @@ const KanbanDashBoard = () => {
           name="add_new_kanban"
           onFinish={onFinish}
           autoComplete="off"
-          initialValues={{ priority: 'low' }}
+          initialValues={{ priority: "Low" }}
         >
           <Form.Item
             label="Title: "
             name="title"
             rules={[
-              { required: true, message: 'Please input title of kanban' },
+              { required: true, message: "Please input title of kanban" },
             ]}
           >
             <Input />
           </Form.Item>
           <Form.Item label="Priority: " name="priority">
             <Select>
-              <Select.Option value="high">High</Select.Option>
-              <Select.Option value="medium">Medium</Select.Option>
-              <Select.Option value="low">Low</Select.Option>
+              <Select.Option value="High">High</Select.Option>
+              <Select.Option value="Medium">Medium</Select.Option>
+              <Select.Option value="Low">Low</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
             name="range_time"
             label="Range Time: "
             rules={[
-              { type: 'array', required: true, message: 'Please select time!' },
+              { type: "array", required: true, message: "Please select time!" },
             ]}
           >
             <RangePicker
               allowClear
               showTime
-              format="YYYY-MM-DD HH:mm:ss"
-              style={{ width: '100%' }}
+              format="YYYY-MM-DD"
+              style={{ width: "100%" }}
             />
           </Form.Item>
           <Form.Item
@@ -159,12 +118,12 @@ const KanbanDashBoard = () => {
             rules={[
               {
                 required: true,
-                message: 'Please select members on duty',
-                type: 'array',
+                message: "Please select members on duty",
+                type: "array",
               },
             ]}
           >
-            <Select mode="multiple" placeholder="search member...">
+            <Select mode="multiple" placeholder="Search member...">
               <Select.Option value="red">Red</Select.Option>
               <Select.Option value="green">Green</Select.Option>
               <Select.Option value="blue">Blue</Select.Option>
@@ -178,7 +137,7 @@ const KanbanDashBoard = () => {
           <div className="ctn-kanbandashboard__working__title">
             <h1 className="title">Kanbans On Working</h1>
             <button className="add-task-button" onClick={showModal}>
-              Add new one
+              Add new
             </button>
           </div>
           <div className="ctn-kanbandashboard__working__content">
@@ -186,10 +145,13 @@ const KanbanDashBoard = () => {
               if (!job.is_completed)
                 return (
                   <JobTag
-                    title={job.name}
-                    level={job.level}
+                    onDeleteJob={handleDeleteJob}
+                    job={job}
+                    title={job.title}
+                    priority={job.priority}
                     process={job.process}
                     members={job.members}
+                    setVisible={setVisible}
                   />
                 );
             })}
@@ -202,7 +164,7 @@ const KanbanDashBoard = () => {
               className="btn-show-hide"
               onClick={() => setShowCompleteTask(!showCompleteTask)}
             >
-              {showCompleteTask ? 'Hide' : 'Show'}
+              {showCompleteTask ? "Hide" : "Show"}
             </button>
           </div>
           {showCompleteTask && <CompleteTask jobs={jobs} />}
@@ -221,8 +183,9 @@ const CompleteTask = ({ jobs }) => {
         if (job.is_completed)
           return (
             <JobTag
-              title={job.name}
-              level={job.level}
+              job={job}
+              title={job.title}
+              priority={job.priority}
               process={job.process}
               members={job.members}
             />
