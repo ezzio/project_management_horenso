@@ -97,7 +97,13 @@ const JobTag = (props) => {
               }
               trigger={!job.is_completed ? "click" : ""}
             >
-              <Button style={{ backgroundColor: "#ccc", width: "fit-content" }}>
+              <Button
+                style={{
+                  border: "none",
+                  backgroundColor: "#fff",
+                  width: "fit-content",
+                }}
+              >
                 <MoreOutlined />
               </Button>
             </Popover>

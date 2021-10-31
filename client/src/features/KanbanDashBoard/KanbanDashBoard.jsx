@@ -144,22 +144,24 @@ const KanbanDashBoard = () => {
             {jobs.map((job) => {
               if (!job.is_completed)
                 return (
-                  <JobTag
-                    onDeleteJob={handleDeleteJob}
-                    job={job}
-                    title={job.title}
-                    priority={job.priority}
-                    process={job.process}
-                    members={job.members}
-                    setVisible={setVisible}
-                  />
+                  <Link to={`/kanban/${job.id_job}`}>
+                    <JobTag
+                      onDeleteJob={handleDeleteJob}
+                      job={job}
+                      title={job.title}
+                      priority={job.priority}
+                      process={job.process}
+                      members={job.members}
+                      setVisible={setVisible}
+                    />
+                  </Link>
                 );
             })}
           </div>
         </div>
         <div className="ctn-kanbandashboard__complete">
           <div className="ctn-kanbandashboard__complete__title">
-            <h1 className="title">Complete</h1>
+            <h1 className="title">Completed</h1>
             <button
               className="btn-show-hide"
               onClick={() => setShowCompleteTask(!showCompleteTask)}
