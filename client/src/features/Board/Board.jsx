@@ -1,14 +1,13 @@
-import React from "react";
-import HeaderBoard from "features/HeaderBoard/HeaderBoard";
-import Column from "features/Column/Column";
-import ModalNewTask from "features/Board/ModalNewTask";
-import "./Board.scss";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import React from 'react';
+import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
+import Column from 'features/Column/Column';
+import ModalNewTask from 'features/Board/ModalNewTask';
+import './Board.scss';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
-import { useEffect } from "react";
 
 const Board = (props) => {
   // Automatic Change Status Task
@@ -26,45 +25,39 @@ const Board = (props) => {
 
   const closeModal = () => {
     setModalOpen(false);
-  }
+  };
 
-  const dispatch = useDispatch();
-  const columns = useSelector((state) => state.board.columns);
   // <----------------------
 
   // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
-    dispatch(automaticChangeStatusTask())
+    dispatch(automaticChangeStatusTask());
   });
   // <----------------------
 
   const members = [
     {
       avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+        'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
     {
       avatar:
-        "http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144",
+        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
     },
   ];
-
-  // const onDragEnd = (result) => {
-  //   dispatch(updateOnDnd(result));
-  // };
 
   return (
     <div className="ctn ctn-board">
@@ -88,6 +81,5 @@ const Board = (props) => {
     </div>
   );
 };
-
 
 export default Board;
