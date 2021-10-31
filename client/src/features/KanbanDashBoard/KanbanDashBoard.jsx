@@ -161,7 +161,7 @@ const KanbanDashBoard = () => {
         </div>
         <div className="ctn-kanbandashboard__complete">
           <div className="ctn-kanbandashboard__complete__title">
-            <h1 className="title">Complete</h1>
+            <h1 className="title">Completed</h1>
             <button
               className="btn-show-hide"
               onClick={() => setShowCompleteTask(!showCompleteTask)}
