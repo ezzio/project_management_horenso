@@ -134,12 +134,10 @@ export const boardSlice = createSlice({
       if (state.columns[0].tasks)
         state.columns[0].tasks.map((task, index) => {
           if (moment().isBetween(task.startTime, task.endTime)) {
-            console.log(index);
+
             currentTask = task;
             state.columns[1].tasks.push(currentTask);
             state.columns[0].tasks.splice(index, 1);
-          } else {
-            task.isOverdue = true;
           }
         });
       if (state.columns[1].tasks)
@@ -148,8 +146,15 @@ export const boardSlice = createSlice({
             currentTask = task;
             state.columns[2].tasks.push(currentTask);
             state.columns[1].tasks.splice(index, 1);
-          } else if (!moment().isBetween(task.startTime, task.endTime)) {
+          } else if (moment().isAfter(task.endTime)) {
             task.isOverdue = true;
+          } else {
+            task.isOverdue = false;
+          }
+          if (!moment().isBetween(task.startTime, task.endTime)) {
+            currentTask = task;
+            state.columns[0].tasks.push(currentTask);
+            state.columns[1].tasks.splice(index, 1);
           }
         });
       if (state.columns[2].tasks)
