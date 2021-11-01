@@ -40,7 +40,6 @@ const kanban = createSlice({
     },
     updateKanban: (state, action) => {
       const editedKanban = action.payload;
-      console.log(action.payload.id_job);
       const kanbanIndex = state.findIndex(
         (kanban) => kanban.id_job === editedKanban.id_job
       );
@@ -53,26 +52,29 @@ const kanban = createSlice({
     [ListKanban.pending]: (state) => {},
     [ListKanban.rejected]: (state) => {},
     [ListKanban.fulfilled]: (state, action) => {
+      // state = [];
       let Job_List = action.payload;
-      Job_List.map((Eachjob) => {
-        state.push({
-          id_job: Eachjob._id,
-          title: Eachjob.title,
-          process: Eachjob.process,
-          priority: Eachjob.priority,
-          is_completed: Eachjob.is_completed || false,
-          start_time: moment(Eachjob.start_time).format('YYYY-MM-DD'),
-          end_time: moment(Eachjob.end_time).format('YYYY-MM-DD'),
-          members: [
-            "https://www.w3schools.com/howto/img_avatar.png",
-            "https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png",
-            "https://anest.dev/assets/images/avatar.png",
-            "https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg",
-            "https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg",
-            "https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg",
-          ],
+      if (state.length == 0) {
+        Job_List.map((Eachjob) => {
+          state.push({
+            id_job: Eachjob._id,
+            title: Eachjob.title,
+            process: Eachjob.process,
+            priority: Eachjob.priority,
+            is_completed: Eachjob.is_completed || false,
+            start_time: moment(Eachjob.start_time).format("YYYY-MM-DD"),
+            end_time: moment(Eachjob.end_time).format("YYYY-MM-DD"),
+            members: [
+              "https://www.w3schools.com/howto/img_avatar.png",
+              "https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png",
+              "https://anest.dev/assets/images/avatar.png",
+              "https://cdn5.vectorstock.com/i/1000x1000/25/54/businessman-profile-ico-vector-20022554.jpg",
+              "https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg",
+              "https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/17786/optimized_large_thumb_stage.jpg",
+            ],
+          });
         });
-      });
+      }
     },
     [AddNewJobkanban.pending]: (state) => {},
     [AddNewJobkanban.rejected]: (state) => {},
