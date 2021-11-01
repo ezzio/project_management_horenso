@@ -6,7 +6,7 @@ import "./JobTag.scss";
 import { Button, message, Popconfirm, Popover, Space } from "antd";
 import { useState } from "react";
 import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
-import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
+import { updateKanban , EditAJob } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -37,6 +37,8 @@ const JobTag = (props) => {
       members: values.members,
     };
     dispatch(updateKanban(action));
+    dispatch(EditAJob(action))
+    // console.log(action);
     message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };

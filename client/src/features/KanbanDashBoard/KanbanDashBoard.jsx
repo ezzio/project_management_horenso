@@ -56,7 +56,6 @@ const KanbanDashBoard = () => {
       end_time: values.range_time[1].format("YYYY-MM-DD"),
       members: values.members,
     };
-    console.log(newKanban);
     dispatch(addKanban(newKanban));
     dispatch(AddNewJobkanban(newKanban));
     setVisible(false);

@@ -23,6 +23,14 @@ export const DeleteAJob = createAsyncThunk(
     return current;
   }
 );
+export const EditAJob = createAsyncThunk(
+  "Kanan/editJob",
+  async (params) => {
+    // console.log(params);
+    const current = await KanbanAPI.editJob(params);
+    return current;
+  }
+);
 
 const initalKanbans = [];
 
@@ -84,6 +92,11 @@ const kanban = createSlice({
     [DeleteAJob.pending]: (state) => {},
     [DeleteAJob.rejected]: (state) => {},
     [DeleteAJob.fulfilled]: (state, action) => {
+      console.log(action.payload);
+    },
+    [EditAJob.pending]: (state) => {},
+    [EditAJob.rejected]: (state) => {},
+    [EditAJob.fulfilled]: (state, action) => {
       console.log(action.payload);
     },
   },
