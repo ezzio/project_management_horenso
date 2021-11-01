@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListMember from "./components/ListMember";
-import { MoreOutlined } from "@ant-design/icons";
+import { BarsOutlined, HolderOutlined } from "@ant-design/icons";
 import "./JobTag.scss";
 import { Button, message, Popconfirm, Popover, Space } from "antd";
 import { useState } from "react";
@@ -9,23 +9,15 @@ import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban
 import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
 const JobTag = (props) => {
-  const {
-    title,
-    priority,
-    process,
-    members,
-    job,
-    onDeleteJob,
-    setVisible,
-    id,
-  } = props;
+  const { title, priority, process, members, job, onDeleteJob } = props;
 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
+  const showModal = (e) => {
     setIsModalVisible(true);
   };
 
@@ -52,12 +44,10 @@ const JobTag = (props) => {
   return (
     <>
       <ModalEditKanban
-        showModal={showModal}
         handleCancel={handleCancel}
         state={isModalVisible}
         job={job}
         handleEditClick={handleEditJob}
-        setVisible={setVisible}
       />
       <div className="ctn-job-task">
         {/* <Link to={`/kanban/${id}`}> */}
@@ -89,20 +79,27 @@ const JobTag = (props) => {
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
             <Popover
+              placement="topLeft"
               content={
                 <Space>
-                  <Button type="primary" onClick={showModal}>
+                  <Button onClick={showModal} type="primary">
                     Edit
                   </Button>
                   <Popconfirm
                     title="Are you sure to delete this job?"
-                    onConfirm={() => onDeleteJob(job)}
+                    onConfirm={(event) => onDeleteJob(job, event)}
                     onCancel={"cancel"}
                     okText="Yes"
                     cancelText="No"
+                    placement="topRight"
                   >
                     <Button danger>Delete</Button>
                   </Popconfirm>
+                  <Link to={`/kanban/${job.id_job}`}>
+                    <Button shape="circle">
+                      <HolderOutlined />
+                    </Button>
+                  </Link>
                 </Space>
               }
               trigger={!job.is_completed ? "click" : ""}
@@ -114,7 +111,7 @@ const JobTag = (props) => {
                   width: "fit-content",
                 }}
               >
-                <MoreOutlined />
+                <BarsOutlined />
               </Button>
             </Popover>
           </div>

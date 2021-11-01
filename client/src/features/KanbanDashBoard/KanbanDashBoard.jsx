@@ -156,18 +156,15 @@ const KanbanDashBoard = () => {
             {jobs.map((job) => {
               if (!job.is_completed)
                 return (
-                  // <Link to={`/kanban/${job.id_job}`}>
                   <JobTag
                     onDeleteJob={handleDeleteJob}
                     job={job}
-                    id={job.id_job}
                     title={job.title}
                     priority={job.priority}
                     process={job.process}
                     members={job.members}
                     setVisible={setVisible}
                   />
-                  // </Link>
                 );
             })}
           </div>
