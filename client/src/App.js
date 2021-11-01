@@ -27,10 +27,10 @@ function App() {
       <div className="App">
         {/* <Board /> */}
         <Switch>
-          <Route path="/login">
+          {/* <Route path="/login">
             <LoginScreen />
-          </Route>
-          <Route path="/sign-up">
+          </Route> */}
+          <Route path="sign-up">
             <SignupScreen />
           </Route>
           <Route exact path="/">

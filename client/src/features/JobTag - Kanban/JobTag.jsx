@@ -6,7 +6,7 @@ import "./JobTag.scss";
 import { Button, message, Popconfirm, Popover, Space } from "antd";
 import { useState } from "react";
 import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
-import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
+import { updateKanban , EditAJob } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -37,6 +37,8 @@ const JobTag = (props) => {
       members: values.members,
     };
     dispatch(updateKanban(action));
+    dispatch(EditAJob(action))
+    // console.log(action);
     message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };
@@ -50,6 +52,7 @@ const JobTag = (props) => {
         handleEditClick={handleEditJob}
       />
       <div className="ctn-job-task">
+        {/* <Link to={`/kanban/${id}`}> */}
         <div className="ctn-job-task__title">
           <p>{title}</p>
         </div>
@@ -73,6 +76,7 @@ const JobTag = (props) => {
             <div className="process-work" style={{ width: process }}></div>
           </div>
         </div>
+        {/* </Link> */}
         <div className="ctn-job-task__members">
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
