@@ -12,7 +12,6 @@ import Meeting from "pages/Horenso/Meeting/Meeting";
 import Conversation from "pages/Horenso/Conversation/Conversation";
 import KanbanDashBoard from "features/KanbanDashBoard/KanbanDashBoard";
 import Report from "pages/Horenso/Report/Report";
-import { Source } from "webpack-sources";
 import Github from "pages/Github/Github";
 import Board from "features/Board/Board";
 import SignupScreen from "features/Signup/SignupScreen";
@@ -20,7 +19,8 @@ import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
 import NotFound from "components/Common/NotFound/NotFound";
 import LoginScreen from "features/Login/LoginScreen";
 import DetailTask from "features/DetailTask/DetailTask";
-
+import UserSetting from "pages/UserSettings/UserSetting";
+import Source from 'pages/Storage/Source/Source'
 function App() {
   return (
     <Router>
@@ -30,10 +30,13 @@ function App() {
           <Route path="/login">
             <LoginScreen />
           </Route>
-          <Route path="sign-up">
+          <Route path="/sign-up">
             <SignupScreen />
           </Route>
-          <PrivateRoute exact path="/:page">
+          <Route exact path="/">
+            <UserSetting />
+          </Route>
+          <PrivateRoute exact path="/:idProject">
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
