@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListMember from "./components/ListMember";
-import { BarsOutlined, HolderOutlined } from "@ant-design/icons";
+import { BarsOutlined, LoginOutlined } from "@ant-design/icons";
 import "./JobTag.scss";
-import { Button, message, Popconfirm, Popover, Space } from "antd";
+import { Button, message, Popconfirm, Popover, Space, Tooltip } from "antd";
 import { useState } from "react";
 import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
 import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
@@ -51,7 +51,11 @@ const JobTag = (props) => {
       />
       <div className="ctn-job-task">
         <div className="ctn-job-task__title">
-          <p>{title}</p>
+          <Link to={`/kanban/${job.id_job}`}>
+            <Tooltip title="Open Now" placement="topLeft">
+              <p>{title}</p>
+            </Tooltip>
+          </Link>
         </div>
         <div className="ctn-job-task__process">
           <div
@@ -93,11 +97,6 @@ const JobTag = (props) => {
                   >
                     <Button danger>Delete</Button>
                   </Popconfirm>
-                  <Link to={`/kanban/${job.id_job}`}>
-                    <Button shape="circle">
-                      <HolderOutlined />
-                    </Button>
-                  </Link>
                 </Space>
               }
               trigger={!job.is_completed ? "click" : ""}
@@ -112,6 +111,20 @@ const JobTag = (props) => {
                 <BarsOutlined />
               </Button>
             </Popover>
+            <Link to={`/kanban/${job.id_job}`}>
+              <Tooltip title="Open Now">
+                <Button
+                  shape="circle"
+                  style={{
+                    border: "none",
+                    backgroundColor: "#fff",
+                    width: "fit-content",
+                  }}
+                >
+                  <LoginOutlined />
+                </Button>
+              </Tooltip>
+            </Link>
           </div>
         </div>
       </div>
