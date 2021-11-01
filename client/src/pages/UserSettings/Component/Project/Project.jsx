@@ -3,9 +3,11 @@ import "./Project.scss"
 import { BiBookBookmark } from 'react-icons/bi'
 import { AiOutlineStar } from 'react-icons/ai'
 import { GrDrag } from 'react-icons/gr'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Project() {
+    const id_project = '123123123'
+  
 
     return (
         <div className='project-ctn'>
@@ -19,7 +21,7 @@ function Project() {
                         <div className='project-ctn__repos-ctn__repo__details'>
                             <div className='project-ctn__repos-ctn__repo__details__title'>
                                 <BiBookBookmark style={{position: "absolute", fontSize: 18, top: 4}} />
-                                <Link className='project-ctn__repos-ctn__repo__details__title__text'>react-projects</Link>
+                                <Link className='project-ctn__repos-ctn__repo__details__title__text' to={`/${id_project}`} >react-projects</Link>
                                 {/* neu duoc thi cho ten project toi da 36 ki tu */}
                                 <AiOutlineStar style={{position: 'relative', fontSize: 16, left: 10, top: 3}} />
                                 <span className='project-ctn__repos-ctn__repo__details__star-num'>2</span>

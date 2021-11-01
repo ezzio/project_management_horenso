@@ -22,7 +22,7 @@ function ModalNewTask({ modalOpen, closeModal }) {
 
   const onFinish = (values) => {
     const newTask = {
-        id: tasks.length,
+        id: tasks.length + 1,
         title: values.title,
         description: values.description,
         progress: '0',
