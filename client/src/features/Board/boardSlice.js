@@ -1,108 +1,108 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import moment from "moment";
+import { createSlice, current } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 const initialState = {
   columns: [
     {
       id_column: 0,
-      name: "Backlog",
+      name: 'Backlog',
       tasks: [
         {
           id: 0,
-          title: "This is the title of task 0",
-          description: "Description of task 0",
-          progress: "100",
-          level: "high",
+          title: 'This is the title of task 0',
+          description: 'Description of task 0',
+          progress: '100',
+          level: 'high',
           is_completed: false,
           isOverdue: false,
-          startTime: "2021-8-15",
-          endTime: "2022-8-15",
+          startTime: '2021-8-15',
+          endTime: '2022-8-15',
           taskers: [
             {
               id: 1,
-              name: "Nhut",
+              name: 'Nhut',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 2,
-              name: "Pum",
+              name: 'Pum',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 3,
-              name: "Minh",
+              name: 'Minh',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 4,
-              name: "Nguyen",
+              name: 'Nguyen',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 5,
-              name: "Thang",
+              name: 'Thang',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 6,
-              name: "Kevin",
+              name: 'Kevin',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
           ],
         },
         {
           id: 1,
-          title: "This is the title of task 2",
-          description: "Description of task 0",
-          progress: "60",
-          level: "low",
+          title: 'This is the title of task 2',
+          description: 'Description of task 0',
+          progress: '60',
+          level: 'low',
           is_completed: false,
-          startTime: "2021/02/15",
-          endTime: "2021/02/20",
+          startTime: '2021/02/15',
+          endTime: '2021/02/20',
           isOverdue: false,
           taskers: [
             {
               id: 1,
-              name: "Nhut",
+              name: 'Nhut',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 2,
-              name: "Pum",
+              name: 'Pum',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 3,
-              name: "Minh",
+              name: 'Minh',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
             {
               id: 4,
-              name: "Nguyen",
+              name: 'Nguyen',
               avatar:
-                "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
+                'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
             },
           ],
         },
       ],
     },
-    { id_column: 1, name: "In process", tasks: [] },
-    { id_column: 2, name: "Review", tasks: [] },
-    { id_column: 3, name: "Completed", tasks: [] },
+    { id_column: 1, name: 'In process', tasks: [] },
+    { id_column: 2, name: 'Review', tasks: [] },
+    { id_column: 3, name: 'Completed', tasks: [] },
   ],
 };
 
 export const boardSlice = createSlice({
-  name: "board",
+  name: 'board',
   initialState,
   reducers: {
     addNewTask: (state, action) => {
@@ -134,15 +134,19 @@ export const boardSlice = createSlice({
       if (state.columns[0].tasks)
         state.columns[0].tasks.map((task, index) => {
           if (moment().isBetween(task.startTime, task.endTime)) {
-
             currentTask = task;
             state.columns[1].tasks.push(currentTask);
             state.columns[0].tasks.splice(index, 1);
           }
+          if (moment().isAfter(task.endTime)) {
+            task.isOverdue = true;
+          } else {
+            task.isOverdue = false;
+          }
         });
       if (state.columns[1].tasks)
         state.columns[1].tasks.map((task, index) => {
-          if (task.progress === "100") {
+          if (task.progress === '100') {
             currentTask = task;
             state.columns[2].tasks.push(currentTask);
             state.columns[1].tasks.splice(index, 1);
