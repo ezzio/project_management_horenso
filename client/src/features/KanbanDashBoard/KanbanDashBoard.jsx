@@ -1,10 +1,16 @@
 import { Modal, Form, Input, Select, DatePicker, Button, message } from "antd";
 import JobTag from "features/JobTag - Kanban/JobTag";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./KanbanDashBoard.scss";
-import { addKanban, deleteKanban , ListKanban , AddNewJobkanban , DeleteAJob } from "./KanbanDashBoardSlice";
+import {
+  addKanban,
+  deleteKanban,
+  ListKanban,
+  AddNewJobkanban,
+  DeleteAJob,
+} from "./KanbanDashBoardSlice";
 
 const { RangePicker } = DatePicker;
 
@@ -16,16 +22,16 @@ const KanbanDashBoard = () => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   // List Kanban
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(ListKanban());
-  },[])
+  }, []);
 
   //Delete Kanban here
   const handleDeleteJob = (job) => {
     const deleteKanbanID = job.id_job;
     const action = deleteKanban(deleteKanbanID);
     dispatch(action);
-    dispatch(DeleteAJob({kanban_id : deleteKanbanID}))
+    dispatch(DeleteAJob({ kanban_id: deleteKanbanID }));
     message.success("Success! This Job has been removed");
   };
 
@@ -150,22 +156,25 @@ const KanbanDashBoard = () => {
             {jobs.map((job) => {
               if (!job.is_completed)
                 return (
+                  // <Link to={`/kanban/${job.id_job}`}>
                   <JobTag
                     onDeleteJob={handleDeleteJob}
                     job={job}
+                    id={job.id_job}
                     title={job.title}
                     priority={job.priority}
                     process={job.process}
                     members={job.members}
                     setVisible={setVisible}
                   />
+                  // </Link>
                 );
             })}
           </div>
         </div>
         <div className="ctn-kanbandashboard__complete">
           <div className="ctn-kanbandashboard__complete__title">
-            <h1 className="title">Complete</h1>
+            <h1 className="title">Completed</h1>
             <button
               className="btn-show-hide"
               onClick={() => setShowCompleteTask(!showCompleteTask)}

@@ -8,10 +8,18 @@ import { useState } from "react";
 import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
 import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
-
+import { Link } from "react-router-dom";
 const JobTag = (props) => {
-  const { title, priority, process, members, job, onDeleteJob, setVisible } =
-    props;
+  const {
+    title,
+    priority,
+    process,
+    members,
+    job,
+    onDeleteJob,
+    setVisible,
+    id,
+  } = props;
 
   const dispatch = useDispatch();
 
@@ -52,6 +60,7 @@ const JobTag = (props) => {
         setVisible={setVisible}
       />
       <div className="ctn-job-task">
+        {/* <Link to={`/kanban/${id}`}> */}
         <div className="ctn-job-task__title">
           <p>{title}</p>
         </div>
@@ -75,6 +84,7 @@ const JobTag = (props) => {
             <div className="process-work" style={{ width: process }}></div>
           </div>
         </div>
+        {/* </Link> */}
         <div className="ctn-job-task__members">
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
@@ -97,7 +107,13 @@ const JobTag = (props) => {
               }
               trigger={!job.is_completed ? "click" : ""}
             >
-              <Button style={{ backgroundColor: "#ccc", width: "fit-content" }}>
+              <Button
+                style={{
+                  border: "none",
+                  backgroundColor: "#fff",
+                  width: "fit-content",
+                }}
+              >
                 <MoreOutlined />
               </Button>
             </Popover>

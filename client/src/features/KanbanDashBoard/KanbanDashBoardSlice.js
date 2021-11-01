@@ -1,6 +1,6 @@
 import KanbanAPI from "api/kanbanApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import moment from "moment";
 export const ListKanban = createAsyncThunk(
   "Kanan/ListKanban",
   async (params, thunkAPI) => {
@@ -61,8 +61,8 @@ const kanban = createSlice({
           process: Eachjob.process,
           priority: Eachjob.priority,
           is_completed: Eachjob.is_completed || false,
-          start_time: "",
-          end_time: "",
+          start_time: moment(Eachjob.start_time).format('YYYY-MM-DD'),
+          end_time: moment(Eachjob.end_time).format('YYYY-MM-DD'),
           members: [
             "https://www.w3schools.com/howto/img_avatar.png",
             "https://labhouse.vn/Content/ImageUpload/LAB/dlgECMSItem/163/avatar6%20(1).png",

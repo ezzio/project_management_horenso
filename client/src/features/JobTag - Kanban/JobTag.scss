@@ -3,12 +3,22 @@
 .ctn-job-task {
     width: 100%;
     height: fit-content;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 1rem 0;
     flex-wrap: wrap;
+
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        transition: all 0.35s;
+        border: none;
+    }
 
     &__title {
         flex: 2;
