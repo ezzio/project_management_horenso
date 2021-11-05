@@ -167,16 +167,19 @@ function Step2({onFinish, form}) {
 
     const members = [
         {
+        id: 0,
         name: 'Koih Hana',
         avatar:
             'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
         },
         {
+        id: 1,
         name: 'Jack Will',
         avatar:
             'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
         },
         {
+        id: 2,
         name: 'MenGuy124',
         avatar:
             'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
@@ -212,9 +215,9 @@ function Step2({onFinish, form}) {
                         placeholder='Select members to assign task'
                         size='large' 
                     >
-                        {members.map((member, index) => {
+                        {members.map((member) => {
                             return (
-                                <Option key={index} value={member.name}>
+                                <Option key={member.id} value={member.id}>
                                     <Avatar src={member.avatar} alt='avatar' />
                                     <label style={{marginLeft: 5}}>{member.name}</label>
                                 </Option>
