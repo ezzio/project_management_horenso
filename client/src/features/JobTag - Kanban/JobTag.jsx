@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListMember from "./components/ListMember";
-import { MoreOutlined } from "@ant-design/icons";
+import { BarsOutlined, LoginOutlined } from "@ant-design/icons";
 import "./JobTag.scss";
-import { Button, message, Popconfirm, Popover, Space } from "antd";
+import { Button, message, Popconfirm, Popover, Space, Tooltip } from "antd";
 import { useState } from "react";
 import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
-import { updateKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
+import { updateKanban , EditAJob } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const JobTag = (props) => {
-  const { title, priority, process, members, job, onDeleteJob, setVisible } =
-    props;
+  const { title, priority, process, members, job, onDeleteJob } = props;
 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
+  const showModal = (e) => {
     setIsModalVisible(true);
   };
 
@@ -37,6 +37,8 @@ const JobTag = (props) => {
       members: values.members,
     };
     dispatch(updateKanban(action));
+    dispatch(EditAJob(action))
+    // console.log(action);
     message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };
@@ -44,16 +46,19 @@ const JobTag = (props) => {
   return (
     <>
       <ModalEditKanban
-        showModal={showModal}
         handleCancel={handleCancel}
         state={isModalVisible}
         job={job}
         handleEditClick={handleEditJob}
-        setVisible={setVisible}
       />
       <div className="ctn-job-task">
+        {/* <Link to={`/kanban/${id}`}> */}
         <div className="ctn-job-task__title">
-          <p>{title}</p>
+          <Link to={`/kanban/${job.id_job}`}>
+            <Tooltip title="Open Now" placement="topLeft">
+              <p>{title}</p>
+            </Tooltip>
+          </Link>
         </div>
         <div className="ctn-job-task__process">
           <div
@@ -75,21 +80,24 @@ const JobTag = (props) => {
             <div className="process-work" style={{ width: process }}></div>
           </div>
         </div>
+        {/* </Link> */}
         <div className="ctn-job-task__members">
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
             <Popover
+              placement="topLeft"
               content={
                 <Space>
-                  <Button type="primary" onClick={showModal}>
+                  <Button onClick={showModal} type="primary">
                     Edit
                   </Button>
                   <Popconfirm
                     title="Are you sure to delete this job?"
-                    onConfirm={() => onDeleteJob(job)}
+                    onConfirm={(event) => onDeleteJob(job, event)}
                     onCancel={"cancel"}
                     okText="Yes"
                     cancelText="No"
+                    placement="topRight"
                   >
                     <Button danger>Delete</Button>
                   </Popconfirm>
@@ -104,9 +112,23 @@ const JobTag = (props) => {
                   width: "fit-content",
                 }}
               >
-                <MoreOutlined />
+                <BarsOutlined />
               </Button>
             </Popover>
+            <Link to={`/kanban/${job.id_job}`}>
+              <Tooltip title="Open Now">
+                <Button
+                  shape="circle"
+                  style={{
+                    border: "none",
+                    backgroundColor: "#fff",
+                    width: "fit-content",
+                  }}
+                >
+                  <LoginOutlined />
+                </Button>
+              </Tooltip>
+            </Link>
           </div>
         </div>
       </div>

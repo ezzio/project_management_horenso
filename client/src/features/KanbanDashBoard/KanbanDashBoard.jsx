@@ -1,10 +1,16 @@
 import { Modal, Form, Input, Select, DatePicker, Button, message } from "antd";
 import JobTag from "features/JobTag - Kanban/JobTag";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./KanbanDashBoard.scss";
-import { addKanban, deleteKanban } from "./KanbanDashBoardSlice";
+import {
+  addKanban,
+  deleteKanban,
+  ListKanban,
+  AddNewJobkanban,
+  DeleteAJob,
+} from "./KanbanDashBoardSlice";
 
 const { RangePicker } = DatePicker;
 
@@ -15,12 +21,17 @@ const KanbanDashBoard = () => {
 
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
+  // List Kanban
+  useEffect(() => {
+    dispatch(ListKanban());
+  }, []);
 
   //Delete Kanban here
   const handleDeleteJob = (job) => {
     const deleteKanbanID = job.id_job;
     const action = deleteKanban(deleteKanbanID);
     dispatch(action);
+    dispatch(DeleteAJob({ kanban_id: deleteKanbanID }));
     message.success("Success! This Job has been removed");
   };
 
@@ -45,8 +56,8 @@ const KanbanDashBoard = () => {
       end_time: values.range_time[1].format("YYYY-MM-DD"),
       members: values.members,
     };
-    console.log(newKanban);
     dispatch(addKanban(newKanban));
+    dispatch(AddNewJobkanban(newKanban));
     setVisible(false);
     message.success("Success! This Job has been added");
   };
@@ -144,17 +155,15 @@ const KanbanDashBoard = () => {
             {jobs.map((job) => {
               if (!job.is_completed)
                 return (
-                  <Link to={`/kanban/${job.id_job}`}>
-                    <JobTag
-                      onDeleteJob={handleDeleteJob}
-                      job={job}
-                      title={job.title}
-                      priority={job.priority}
-                      process={job.process}
-                      members={job.members}
-                      setVisible={setVisible}
-                    />
-                  </Link>
+                  <JobTag
+                    onDeleteJob={handleDeleteJob}
+                    job={job}
+                    title={job.title}
+                    priority={job.priority}
+                    process={job.process}
+                    members={job.members}
+                    setVisible={setVisible}
+                  />
                 );
             })}
           </div>

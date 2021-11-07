@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { RiChat1Line } from "react-icons/ri";
-import { ImAttachment } from "react-icons/im";
-import "./Task.scss";
-import { Draggable } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
-import { deleteTask } from "features/Board/boardSlice";
-import { Menu, Dropdown, Badge } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
-import { Popconfirm, message } from "antd";
-import moment from "moment";
-import ModalEditTask from "./EditTaskForm/ModalEditTask";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { RiChat1Line } from 'react-icons/ri';
+import { ImAttachment } from 'react-icons/im';
+import './Task.scss';
+import { Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { deleteTask } from 'features/Board/boardSlice';
+import { Menu, Dropdown, Badge } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import { Popconfirm, message } from 'antd';
+import moment from 'moment';
+import ModalEditTask from './EditTaskForm/ModalEditTask';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Task = (props) => {
   const { task, index, columnId } = props;
@@ -29,7 +29,7 @@ const Task = (props) => {
     const deleteTaskId = task.id;
     const action = deleteTask({ deleteTaskId, columnId });
     dispatch(action);
-    message.success("Success! Task has been deleted.");
+    message.success('Success! Task has been deleted.');
   };
 
   // Edit task
@@ -74,19 +74,10 @@ const Task = (props) => {
     <>
       {task.isOverdue ? (
         <Badge.Ribbon text="Overdue" color="red">
-          <Dropdown overlay={menu} trigger={["contextMenu"]}>
+          <Dropdown overlay={menu} trigger={['contextMenu']}>
             <div className="kanban-task">
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
-
-                <Dropdown overlay={menu} trigger={["click"]}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <DownOutlined />
-                  </a>
-                </Dropdown>
               </div>
 
               <div className="kanban-task__progress">
@@ -101,11 +92,11 @@ const Task = (props) => {
               <div className="kanban-task__info">
                 <div
                   className={
-                    task.level === "high"
-                      ? "high"
-                      : task.level === "low"
-                      ? "low"
-                      : "medium"
+                    task.level === 'high'
+                      ? 'high'
+                      : task.level === 'low'
+                      ? 'low'
+                      : 'medium'
                   }
                 >
                   {task.level}
@@ -127,14 +118,14 @@ const Task = (props) => {
                   {task.taskers.length > 4 && (
                     <div
                       style={{
-                        backgroundColor: "#eee",
-                        borderRadius: "50%",
-                        width: "30px",
-                        height: "30px",
-                        transform: "translateX(-20px)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        backgroundColor: '#eee',
+                        borderRadius: '50%',
+                        width: '30px',
+                        height: '30px',
+                        transform: 'translateX(-20px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
                       <p>+{task.taskers.length - 4}</p>
@@ -162,12 +153,12 @@ const Task = (props) => {
           </Dropdown>
         </Badge.Ribbon>
       ) : (
-        <Dropdown overlay={menu} trigger={["contextMenu"]}>
+        <Dropdown overlay={menu} trigger={['contextMenu']}>
           <div className="kanban-task">
             <div className="kanban-task__title">
               <h4>{task.title}</h4>
 
-              <Dropdown overlay={menu} trigger={["click"]}>
+              <Dropdown overlay={menu} trigger={['click']}>
                 <a
                   className="ant-dropdown-link"
                   onClick={(e) => e.preventDefault()}
@@ -188,11 +179,11 @@ const Task = (props) => {
             <div className="kanban-task__info">
               <div
                 className={
-                  task.level === "high"
-                    ? "high"
-                    : task.level === "low"
-                    ? "low"
-                    : "medium"
+                  task.level === 'high'
+                    ? 'high'
+                    : task.level === 'low'
+                    ? 'low'
+                    : 'medium'
                 }
               >
                 {task.level}
@@ -214,14 +205,14 @@ const Task = (props) => {
                 {task.taskers.length > 4 && (
                   <div
                     style={{
-                      backgroundColor: "#eee",
-                      borderRadius: "50%",
-                      width: "30px",
-                      height: "30px",
-                      transform: "translateX(-20px)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      backgroundColor: '#eee',
+                      borderRadius: '50%',
+                      width: '30px',
+                      height: '30px',
+                      transform: 'translateX(-20px)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     <p>+{task.taskers.length - 4}</p>
