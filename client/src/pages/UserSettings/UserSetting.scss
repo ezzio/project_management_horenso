@@ -1,10 +1,12 @@
 @import 'styles/Color.scss';
-
+.user-setting-ctn {
+  background-color: lightgray;
+}
 .ctn-userinfo {
   width: 300px;
   height: 100vh;
   margin: 0 auto;
-  left: 17.25%;
+  left: 10%;
   top: 5%;
   position: absolute;
   p {
@@ -251,173 +253,250 @@
   }
 }
 
-.navBar {
-  background-color: white;
-  width: 100vw;
-  height: 75px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: lightgray;
-  position: absolute;
-  display: flex;
+// .navBar {
+//   background-color: white;
+//   width: 100vw;
+//   height: 75px;
+//   border-style: solid;
+//   border-width: 1px;
+//   border-color: lightgray;
+//   position: absolute;
+//   display: flex;
 
-  &__btn-ctn {
-    position: relative;
-    height: fit-content;
-    width: fit-content;
-    top: 35.8%;
-    left: 33.3%;
-    z-index: 3;
-  }
+//   &__btn-ctn {
+//     position: relative;
+//     height: fit-content;
+//     width: fit-content;
+//     top: 35.8%;
+//     left: 33.3%;
+//     z-index: 3;
+//   }
 
-  &__project {
-    position: relative;
-    height: 47px;
-    width: 115px;
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
-    border-color: lightgray;
-    background-color: white;
+//   &__project {
+//     position: relative;
+//     height: 47px;
+//     width: 115px;
+//     border-style: solid;
+//     border-width: 0px 0px 1px 0px;
+//     border-color: lightgray;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 400;
-      padding-left: 27px;
-    }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 400;
+//       padding-left: 27px;
+//     }
 
-    &:hover {
-      transition-duration: 0.2s;
-      border-width: 0px 0px 3px 0px;
-      border-color: orange;
-    }
-  }
+//     &:hover {
+//       transition-duration: 0.2s;
+//       border-width: 0px 0px 3px 0px;
+//       border-color: orange;
+//     }
+//   }
 
-  &__project-selected {
-    position: relative;
-    height: 48px;
-    width: 115px;
-    border-style: solid;
-    border-width: 0px 0px 4px 0px;
-    border-color: orange;
-    background-color: white;
+//   &__project-selected {
+//     position: relative;
+//     height: 48px;
+//     width: 115px;
+//     border-style: solid;
+//     border-width: 0px 0px 4px 0px;
+//     border-color: orange;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 550;
-      padding-left: 27px;
-    }
-  }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 550;
+//       padding-left: 27px;
+//     }
+//   }
 
-  &__task {
-    position: relative;
-    height: 47px;
-    width: 115px;
-    border: none;
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
-    border-color: lightgray;
-    background-color: white;
+//   &__task {
+//     position: relative;
+//     height: 47px;
+//     width: 115px;
+//     border: none;
+//     border-style: solid;
+//     border-width: 0px 0px 1px 0px;
+//     border-color: lightgray;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 400;
-      padding-left: 2px;
-    }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 400;
+//       padding-left: 2px;
+//     }
 
-    &:hover {
-      transition-duration: 0.2s;
-      border-width: 0px 0px 3px 0px;
-      border-color: orange;
-    }
-  }
+//     &:hover {
+//       transition-duration: 0.2s;
+//       border-width: 0px 0px 3px 0px;
+//       border-color: orange;
+//     }
+//   }
 
-  &__task-selected {
-    position: relative;
-    height: 48px;
-    width: 115px;
-    border: none;
-    border-style: solid;
-    border-width: 0px 0px 4px 0px;
-    border-color: orange;
-    background-color: white;
+//   &__task-selected {
+//     position: relative;
+//     height: 48px;
+//     width: 115px;
+//     border: none;
+//     border-style: solid;
+//     border-width: 0px 0px 4px 0px;
+//     border-color: orange;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 550;
-      padding-left: 2px;
-    }
-  }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 550;
+//       padding-left: 2px;
+//     }
+//   }
 
-  &__issues {
-    position: relative;
-    height: 47px;
-    width: 104px;
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
-    border-color: lightgray;
-    background-color: white;
+//   &__issues {
+//     position: relative;
+//     height: 47px;
+//     width: 104px;
+//     border-style: solid;
+//     border-width: 0px 0px 1px 0px;
+//     border-color: lightgray;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 400;
-      padding-left: 15px;
-    }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 400;
+//       padding-left: 15px;
+//     }
 
-    &:hover {
-      transition-duration: 0.2s;
-      border-width: 0px 0px 3px 0px;
-      border-color: orange;
-    }
-  }
+//     &:hover {
+//       transition-duration: 0.2s;
+//       border-width: 0px 0px 3px 0px;
+//       border-color: orange;
+//     }
+//   }
 
-  &__issues-selected {
-    position: relative;
-    height: 48px;
-    width: 104px;
-    border-style: solid;
-    border-width: 0px 0px 4px 0px;
-    border-color: orange;
-    background-color: white;
+//   &__issues-selected {
+//     position: relative;
+//     height: 48px;
+//     width: 104px;
+//     border-style: solid;
+//     border-width: 0px 0px 4px 0px;
+//     border-color: orange;
+//     background-color: white;
 
-    &__text {
-      color: black;
-      font-size: 14px;
-      font-weight: 550;
-      padding-left: 15px;
-    }
-  }
+//     &__text {
+//       color: black;
+//       font-size: 14px;
+//       font-weight: 550;
+//       padding-left: 15px;
+//     }
+//   }
 
-  &__task-number-ctn {
-    position: absolute;
-    background-color: lightgray;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    align-content: center;
-    bottom: 28%;
-    left: 80%;
-    padding-top: 2px;
-    &__text {
-      display: inline-block;
-      font-weight: 600;
-    }
-  }
+//   &__task-number-ctn {
+//     position: absolute;
+//     background-color: lightgray;
+//     width: 20px;
+//     height: 20px;
+//     border-radius: 10px;
+//     align-content: center;
+//     bottom: 28%;
+//     left: 80%;
+//     padding-top: 2px;
+//     &__text {
+//       display: inline-block;
+//       font-weight: 600;
+//     }
+//   }
 
-  &__type-btn {
-    position: absolute;
-    left: 50%;
-  }
-}
+//   &__type-btn {
+//     position: absolute;
+//     left: 50%;
+//   }
+// }
 
 .info-ctn {
   position: absolute;
-  height: 916px;
-  width: 936px;
+  height: fit-content;
+  width: 950px;
   top: 7.8%;
   left: 33.6%;
+}
+.project-ctn {
+  position: absolute;
+  left: 33.6%;
+  top: 20%;
+  height: 320px;
+  width: 940px;
+  // border-style: solid;
+  // border-width: 1px;
+  // border-color: black;
+  overflow-x: auto;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+.task-ctn {
+  position: absolute;
+  left: 33.6%;
+  top: 55%;
+  height: 400px;
+  width: 940px;
+  // border-style: solid;
+  // border-width: 1px;
+  // border-color: black;
+  overflow-x: auto;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.approved-decor {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border-style: none;
+  outline: none;
+  padding-top: 8px;
+  background-color: rgb(177, 166, 240);
+  &__text {
+    font-weight: bold;
+    font-size: 15px;
+    color: darkslateblue;
+  }
+}
+
+.progress-decor {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border-style: none;
+  outline: none;
+  padding-top: 8px;
+  background-color: rgb(204, 252, 204);
+  &__text {
+    font-weight: bold;
+    font-size: 15px;
+    color: limegreen;
+  }
+}
+
+.review-decor {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border-style: none;
+  outline: none;
+  padding-top: 8px;
+  background-color: lightpink;
+  &__text {
+    font-weight: bold;
+    font-size: 15px;
+    color: red;
+  }
 }

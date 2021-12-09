@@ -1,17 +1,17 @@
 import React, { useState } from "react";
+import { Button, Row, Col, Card, Avatar, Tabs, Progress, List, Checkbox } from 'antd'
 // import PropTypes from "prop-types";
-import Task from "./Component/Task/Task";
-import Project from "./Component/Project/Project";
-import Issues from "./Component/Issues/Issues";
+import './UserSetting.scss'
 import { MdPeople } from "react-icons/md";
 import { GoLocation } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { FiBookOpen } from 'react-icons/fi'
-import { BiBookBookmark } from 'react-icons/bi'
-import { AiOutlineExclamationCircle, AiOutlineMail, AiOutlineLink, AiFillFacebook, AiOutlineFacebook } from  'react-icons/ai'
-import "./UserSetting.scss";
+import { GrAddCircle } from 'react-icons/gr'
+import { BsGear, BsThreeDots } from 'react-icons/bs'
+import { AiOutlineMail, AiOutlineLink, AiFillFacebook, AiOutlineFacebook } from  'react-icons/ai'
 
 const UserSetting = (props) => {
+  const { TabPane } = Tabs;
+
   const userInfo = {
     id_user: null,
     username: "",
@@ -19,43 +19,75 @@ const UserSetting = (props) => {
   };
 
   const [isEditProfile, setIsEditProfile] = useState(false);
-  const [selectButton, setSelectButton] = useState(1)
-
-  const pageButtonClick = (n) => {
-    setSelectButton(n)
-    console.log('Button' + n)
-  }
-
 
   return (
-    <div>
-      <div className='navBar'>
-        <div className='navBar__btn-ctn'>
-          <button onClick={() => pageButtonClick(1)} className={(selectButton === 1) ? 'navBar__project-selected' : 'navBar__project'}>
-            <FiBookOpen style={(selectButton === 1) ? 
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'black'} :
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'gray'}}
-          />
-            <span className={(selectButton === 1) ? 'navBar__project-selected__text' : 'navBar__project__text'}>Projects</span>
-          </button>
-          <button onClick={() => pageButtonClick(2)} className={(selectButton === 2) ? 'navBar__task-selected' : 'navBar__task'}>
-            <BiBookBookmark style={(selectButton === 2) ? 
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'black'} :
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'gray'}} 
-          />
-            <span className={(selectButton === 2) ? 'navBar__task-selected__text' : 'navBar__task__text'}>Tasks</span>
-            <div className='navBar__task-number-ctn'>
-              <span className='navBar__task-number-ctn__text'>2</span>
-            </div>
-          </button>
-          <button onClick={() => pageButtonClick(3)} className={(selectButton === 3) ?'navBar__issues-selected' : 'navBar__issues'}>
-            <AiOutlineExclamationCircle style={(selectButton === 3) ? 
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'black'} :
-            {fontSize: 20, position: "absolute", left: 15, bottom: 12, color: 'gray'}} 
-          />
-            <span className={(selectButton === 3) ?'navBar__issues-selected__text' : 'navBar__issues__text'}>Issues</span>
-          </button>    
-        </div>
+    <div
+      className='user-setting-ctn'
+    >
+      <div className='info-ctn'>
+      <Button 
+        type='default'
+        size='large'
+        icon={
+        <GrAddCircle 
+          style={{position: 'relative', fontSize: 20, top: 4, marginRight: 5}} 
+        />}
+        style={{
+          position: 'relative',
+          left: '1.5%',
+          borderRadius: 10,
+          boxShadow: "0px 5px 15px #00000059",
+          fontWeight: 'bold'
+        }}
+      >
+        Create Project
+      </Button>
+      <Button 
+        type='text'
+        size='large'
+        icon={
+        <BsGear 
+          style={{position: 'relative', fontSize: 20, top: 4, marginRight: 5}} 
+        />}
+        style={{
+          position: 'relative',
+          left: '68.4%',
+          borderRadius: 10,
+          fontWeight: 'bold',
+        }}
+      >
+        Setting
+      </Button>
+      </div>
+      <div className='project-ctn'>
+        <Project />
+      </div>
+      <div className='task-ctn'>
+        <h2
+          style={{fontWeight: 'bold'}}
+        >
+          Task
+        </h2>
+        <Tabs
+          defaultActiveKey='1'
+          type='line'
+          size='large'
+          tabBarGutter={64}
+          style={{fontWeight: 'bold'}}
+        >
+          <TabPane tab='All' key='1'>
+            <AllTask />
+          </TabPane>
+          <TabPane tab='Important' key='2'>
+            <ImportantTask />
+          </TabPane>
+          <TabPane tab='Note' key='3'>
+            <Note />
+          </TabPane>
+          <TabPane tab='Link' key='4'>
+            <Links />
+          </TabPane>
+        </Tabs>
       </div>
       <div className="ctn-userinfo">
         <div className="userinfo__sidebar">
@@ -74,13 +106,6 @@ const UserSetting = (props) => {
             <InfoProfile setIsEditProfile={() => setIsEditProfile(true)} />
           )}
         </div>
-      </div>
-      <div className='info-ctn'>
-        {
-          (selectButton === 1) ? <Project /> : 
-          (selectButton === 2) ? <Task /> : 
-          (selectButton === 3) ? <Issues /> : ''
-        }
       </div>
     </div>
   );
@@ -179,4 +204,450 @@ const EditProfile = ({setIsEditProfile}) => {
     </div>
   );
 };
+
+const Project = () => {
+
+  const projects = [
+    {
+      id: 0,
+      avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+      title: 'Project title',
+      totalTask: 140,
+      completedTask: 90,
+      members: [
+        {
+          id: 0,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 1,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 2,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 3,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 4,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 5,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+      ]
+    },
+    {
+      id: 0,
+      avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+      title: 'Project title',
+      totalTask: 140,
+      completedTask: 90,
+      members: [
+        {
+          id: 0,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 1,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 2,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 3,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 4,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 5,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+      ]
+    },
+    {
+      id: 0,
+      avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+      title: 'Project title',
+      totalTask: 140,
+      completedTask: 90,
+      members: [
+        {
+          id: 0,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 1,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 2,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 3,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 4,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 5,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+      ]
+    },
+    {
+      id: 0,
+      avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+      title: 'Project title',
+      totalTask: 140,
+      completedTask: 90,
+      members: [
+        {
+          id: 0,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 1,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 2,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 3,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 4,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+        {
+          id: 5,
+          avatar: 'https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
+        },
+      ]
+    },
+  ];
+
+  return (
+    <Row 
+      gutter={[48, 16]}
+      wrap={false}
+      align='middle'
+    >
+      {projects.map((project) => {
+
+        const percent = Math.round((project.completedTask / project.totalTask) * 100);
+        
+        return (
+          <Col key={project.id} span={48}>
+            <Card
+              style={{ boxShadow: "0px 5px 15px #00000059", borderRadius: 10, minWidth: 270 }}          
+            >
+              <div>
+                <Progress 
+                  percent={percent}
+                  showInfo={false}
+                  size="small"
+                  strokeColor={
+                    percent <= 30 ? 'red' : 
+                    (percent <= 50 ? 'orange' : 
+                    (percent <= 70 ? 'yellow' : 
+                    (percent <= 90 ? 'dodgerblue' : 'lawngreen')
+                    ))
+                  }
+                  style={{width: 50}}
+                />
+                <Button 
+                  type='text'
+                  size='large'
+                  icon={
+                  <BsThreeDots
+                    style={{position: 'relative', fontSize: 20, top: 4, marginRight: 5}} 
+                  />}
+                  style={{ position: 'relative', left: '65%' }}
+                />
+              </div>
+              <Avatar 
+                src={project.avatar}
+                  size='large'
+                  style={{position: 'relative', left: '41%'}}
+              />
+              <h2
+                style={{textAlign: 'center'}}
+              >
+                {project.title}
+              </h2>
+              <h2
+                style={{textAlign: 'center', marginBottom: 0 }}
+              >
+                {project.completedTask}/{project.totalTask}
+              </h2>
+              <p
+                style={{textAlign: 'center', fontSize: 11, fontWeight: 'bold', color: 'lightgray'}}
+              >
+                Task complete
+              </p>
+              <div style={{display: "flex", justifyContent:'center'}}>
+                <Avatar.Group
+                maxCount={5}
+                size='small'
+                maxStyle={{color: 'gray', backgroundColor: 'lightgray'}}
+                style={{}}
+                >
+                  {project.members.map((member) => {
+                    return (
+                      <Avatar key={member.id} src={member.avatar}/>
+                    )
+                  })}
+                </Avatar.Group>
+              </div>
+            </Card>
+          </Col>
+        )
+      })}
+    </Row>
+  )
+}
+
+const AllTask = () => {
+  const { Item } = List
+
+  const tasks = [
+    {
+      title: 'Fix bugs',
+      status: 'In Progress',
+    },
+    {
+      title: 'Design UI for login page',
+      status: 'Approved',
+    },
+    {
+      title: 'Add change language feature',
+      status: 'In Review',
+    },
+  ]
+
+  return (
+    <List
+      itemLayout='horizontal'
+      dataSource={tasks}
+      renderItem={item => (
+        <Item>
+          <Checkbox style={{marginRight: 15}}/>
+          <Item.Meta 
+            title={
+              <a style={{fontSize: 20}}>
+                {item.title}
+              </a>
+            }
+          />
+          <button
+            className={
+              item.status ==='Approved' ? 'approved-decor' :
+              (item.status ==='In Progress' ? 'progress-decor' :
+                'review-decor'
+              )
+            }
+          >
+            <p
+              className={
+              item.status ==='Approved' ? 'approved-decor__text' :
+              (item.status ==='In Progress' ? 'progress-decor__text' :
+                'review-decor__text'
+              )
+            }
+            >
+              {item.status}
+            </p>
+          </button>
+        </Item>
+      )}
+    />
+  )
+}
+
+const ImportantTask = () => {
+  const { Item } = List
+
+  const tasks = [
+    {
+      title: 'Fix bugs',
+      status: 'In Progress',
+    },
+    {
+      title: 'Design UI for login page',
+      status: 'Approved',
+    },
+    {
+      title: 'Add change language feature',
+      status: 'In Review',
+    },
+  ]
+
+  return (
+    <List
+      itemLayout='horizontal'
+      dataSource={tasks}
+      renderItem={item => (
+        <Item>
+          <Checkbox style={{marginRight: 15}}/>
+          <Item.Meta 
+            title={
+              <a style={{fontSize: 20}}>
+                {item.title}
+              </a>
+            }
+          />
+          <button
+            className={
+              item.status ==='Approved' ? 'approved-decor' :
+              (item.status ==='In Progress' ? 'progress-decor' :
+                'review-decor'
+              )
+            }
+          >
+            <p
+              className={
+              item.status ==='Approved' ? 'approved-decor__text' :
+              (item.status ==='In Progress' ? 'progress-decor__text' :
+                'review-decor__text'
+              )
+            }
+            >
+              {item.status}
+            </p>
+          </button>
+        </Item>
+      )}
+    />
+  )
+}
+
+const Note = () => {
+  const { Item } = List
+
+  const tasks = [
+    {
+      title: 'Fix bugs',
+      status: 'In Progress',
+    },
+    {
+      title: 'Design UI for login page',
+      status: 'Approved',
+    },
+    {
+      title: 'Add change language feature',
+      status: 'In Review',
+    },
+  ]
+
+  return (
+    <List
+      itemLayout='horizontal'
+      dataSource={tasks}
+      renderItem={item => (
+        <Item>
+          <Checkbox style={{marginRight: 15}}/>
+          <Item.Meta 
+            title={
+              <a style={{fontSize: 20}}>
+                {item.title}
+              </a>
+            }
+          />
+          <button
+            className={
+              item.status ==='Approved' ? 'approved-decor' :
+              (item.status ==='In Progress' ? 'progress-decor' :
+                'review-decor'
+              )
+            }
+          >
+            <p
+              className={
+              item.status ==='Approved' ? 'approved-decor__text' :
+              (item.status ==='In Progress' ? 'progress-decor__text' :
+                'review-decor__text'
+              )
+            }
+            >
+              {item.status}
+            </p>
+          </button>
+        </Item>
+      )}
+    />
+  )
+}
+
+const Links = () => {
+  const { Item } = List
+
+  const tasks = [
+    {
+      title: 'Fix bugs',
+      status: 'In Progress',
+    },
+    {
+      title: 'Design UI for login page',
+      status: 'Approved',
+    },
+    {
+      title: 'Add change language feature',
+      status: 'In Review',
+    },
+  ]
+
+  return (
+    <List
+      itemLayout='horizontal'
+      dataSource={tasks}
+      renderItem={item => (
+        <Item>
+          <Checkbox style={{marginRight: 15}}/>
+          <Item.Meta 
+            title={
+              <a style={{fontSize: 20}}>
+                {item.title}
+              </a>
+            }
+          />
+          <button
+            className={
+              item.status ==='Approved' ? 'approved-decor' :
+              (item.status ==='In Progress' ? 'progress-decor' :
+                'review-decor'
+              )
+            }
+          >
+            <p
+              className={
+              item.status ==='Approved' ? 'approved-decor__text' :
+              (item.status ==='In Progress' ? 'progress-decor__text' :
+                'review-decor__text'
+              )
+            }
+            >
+              {item.status}
+            </p>
+          </button>
+        </Item>
+      )}
+    />
+  )
+}
 
