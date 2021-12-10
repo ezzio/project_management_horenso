@@ -20,7 +20,7 @@ import NotFound from "components/Common/NotFound/NotFound";
 import LoginScreen from "features/Login/LoginScreen";
 import DetailTask from "features/DetailTask/DetailTask";
 import UserSetting from "pages/UserSettings/UserSetting";
-import Source from 'pages/Storage/Source/Source'
+import Source from "pages/Storage/Source/Source";
 function App() {
   return (
     <Router>

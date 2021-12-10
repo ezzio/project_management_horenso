@@ -13,13 +13,15 @@ const Source = () => {
 
   const FilterByNameInput = (
     <Input
-      placeholder="Search file"
+      placeholder="Search file or task..."
       value={value}
       onChange={(e) => {
         const currValue = e.target.value;
         setValue(currValue);
-        const filteredData = JsonData.filter((entry) =>
-          entry.name.includes(currValue)
+        const filteredData = JsonData.filter(
+          (entry) =>
+            entry.name.toLowerCase().includes(currValue) ||
+            entry.task.toLowerCase().includes(currValue)
         );
         setDataSource(filteredData);
       }}
@@ -31,6 +33,12 @@ const Source = () => {
       dataIndex: "name",
       key: "Id",
       render: (t, r) => <a href={`${r.file}`} target="_blank">{`${r.name}`}</a>,
+    },
+    {
+      title: "Task",
+      dataIndex: "task",
+      key: "Id",
+      sorter: (a, b) => a.task.localeCompare(b.task),
     },
     {
       title: "Last modified date",
