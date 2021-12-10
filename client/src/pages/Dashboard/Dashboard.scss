@@ -1,0 +1,38 @@
+.dashboard {
+  background-color: #f6f8fa;
+  padding: 20px 40px;
+}
+
+.timeline {
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &_title {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+}
+
+.circle_chart {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  &_box {
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 25px;
+    margin-right: 40px;
+  }
+  &_title {
+    padding-left: 15px;
+    padding-top: 10px;
+  }
+  &_item {
+    width: 400px;
+    height: 250px;
+  }
+}
