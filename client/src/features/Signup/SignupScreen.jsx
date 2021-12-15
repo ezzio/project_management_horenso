@@ -8,7 +8,7 @@ function SignupScreen() {
     const history = useHistory()
 
     const signuptoLogin = () => {
-        history.push('/Login')
+        history.push('/login')
     }
 
     return (
