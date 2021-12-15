@@ -20,7 +20,7 @@ function LoginScreen() {
         <div className="login__signup">
           <span className="login__signup__text">Don't have an account?</span>
         </div>
-        <button className="signup-btn" onClick={() => history.push('/signup')}>
+        <button className="signup-btn" onClick={() => history.push('/sign-up')}>
           <span className="signup-btn__text">Sign up</span>
         </button>
       </div>

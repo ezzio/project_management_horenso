@@ -30,18 +30,18 @@ function LoginForm(props) {
         <div className="email-textbox">
           <input
             className="email-textbox__input"
-            placeholder="Enter your email"
+            placeholder="Enter your username"
             type="text"
             name="username"
             autocomplete="off"
             {...register('username', {
               required: 'This field is required',
               pattern: {
-                message: 'Invalid email address',
+                message: 'Invalid username',
               },
             })}
           />
-          <span className="login-form__email-container__label">Email</span>
+          <span className="login-form__email-container__label">Username</span>
         </div>
         {errors.username && (
           <p
@@ -63,12 +63,12 @@ function LoginForm(props) {
             {...register('password', {
               required: 'This field is required',
               minLength: {
-                value: 6,
-                message: 'Password must be 6-18 characters long',
+                value: 5,
+                message: 'Password must be 5-18 characters long',
               },
               maxLength: {
                 value: 18,
-                message: 'Password must be 6-18 characters long',
+                message: 'Password must be 5-18 characters long',
               },
             })}
           />

@@ -20,21 +20,24 @@ function SignupForm() {
 
    const onHandleSubmit = (data) => {
         setError('')
-        const today = new Date()
+        // const today = new Date()
 
-        const createAt = today.getDate() + '-' + (today.getMonth() + 1) + '-' + 
-        today.getFullYear() + ' ' + today.getHours() + ':' + 
-        today.getMinutes() + ':' + today.getSeconds()
+        // const createAt = today.getDate() + '-' + (today.getMonth() + 1) + '-' + 
+        // today.getFullYear() + ' ' + today.getHours() + ':' + 
+        // today.getMinutes() + ':' + today.getSeconds()
 
-        dispatch(
-            userSignUp({
-                fullName: data.fullName,
-                email: data.email,
-                password: data.password,
-                createAt, 
-                setError
-            })
-        )
+        // dispatch(
+        //     userSignUp({
+        //         fullName: data.fullName,
+        //         email: data.email,
+        //         password: data.password,
+        //         createAt, 
+        //         setError
+        //     })
+        // )
+
+        dispatch(userSignUp(data));
+
         reset({
             fullName: data.fullName,
             email: '',
@@ -63,8 +66,8 @@ function SignupForm() {
                         <input className='password-textbox__input' placeholder='*****' type={isShow ? 'text' : 'password'}
                         name='password' 
                         {...register("password", { required: "This field is required!", 
-                        minLength: {value: 6, message: "Password must be 6-18 characters long"}, 
-                        maxLength: {value: 18, message: "Password must be 6-18 characters long"} })} 
+                        minLength: {value: 5, message: "Password must be 5-18 characters long"}, 
+                        maxLength: {value: 18, message: "Password must be 5-18 characters long"} })} 
                         />
                         { isShow ? <span className='password-textbox__hide-password' onClick={() => toggleShow()}>Hide</span> : 
                         <span className='password-textbox__hide-password' onClick={() => toggleShow()}>Show</span> }
@@ -72,11 +75,11 @@ function SignupForm() {
                 { errors.password && <p style={{position: 'absolute', top: 42, fontSize: 12}} className='signup-form__error'>{errors.password.message}</p> }
             </div>
             <div className='signup-form__fullname-container'>
-                <span className='signup-form__fullname-container__label'>Full Name</span>
+                <span className='signup-form__fullname-container__label'>Username</span>
                 <div className='fullname-textbox'>
                     <input className='fullname-textbox__input' placeholder="John Smith" 
-                    name='fullName' 
-                    {...register("fullName", { required: "This field is required!" })}
+                    name='username' 
+                    {...register('username', { required: "This field is required!" })}
                     />
                 </div>
                 { errors.fullName && <p style={{position: 'absolute', top: 127, fontSize: 12}} className='signup-form__error'>{errors.fullName.message}</p> }
