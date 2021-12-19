@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 // const API = process.env.REACT_APP_API_URL;
 const API = "https://servernckh.herokuapp.com";
+
 
 const userApi = {
   login: (params) => {
@@ -20,13 +21,12 @@ const userApi = {
   signUp: (params) => {
     return axios
       .post(
-        // `${API}/register/`,
-        'https://servernckh.herokuapp.com/register/',
+        `${API}/register/`,
+        // 'https://servernckh.herokuapp.com/register/',
         {
           user_name: params.username,
           password: params.password,
-        },
-        { withCredentials: true }
+        }
       )
       .then((response) => {
         return response;
