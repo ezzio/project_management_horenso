@@ -3,19 +3,15 @@ import { message } from "antd";
 import userApi from "api/userApi";
 
 const initialState = {
-  id: '',
+  id: "",
   loadding: false,
-  error: '',
-  isSuccess: false,
-}
+  error: "",
+};
 
-export const userSignUp = createAsyncThunk(
-  "user/sign-up",
-  async (params) => {
-    const response = await userApi.signUp(params);
-    return response;
-  }
-)
+export const userSignUp = createAsyncThunk("user/sign-up", async (params) => {
+  const response = await userApi.signUp(params);
+  return response;
+});
 
 export const signUpSlice = createSlice({
   name: "signUp",
@@ -27,13 +23,18 @@ export const signUpSlice = createSlice({
     },
     [userSignUp.rejected]: (state) => {
       state.loadding = true;
-      state.error = 'Sign up failed!';
+      state.error = "Sign up failed!";
     },
-    [userSignUp.fulfilled]: (state) => {
-      state.isSuccess = true;
-      message.info('Sign up successfully!');
+    [userSignUp.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      //   if (action.payload.isSuccess) {
+      //     message.info("Sign up successfully!");
+      //     state.loadding = true;
+      //   } else {
+      //     message.info("Sign up failed!");
+      //   }
     },
   },
 });
 
-export default signUpSlice.reducer
+export default signUpSlice.reducer;

@@ -23,14 +23,11 @@ export const DeleteAJob = createAsyncThunk(
     return current;
   }
 );
-export const EditAJob = createAsyncThunk(
-  "Kanan/editJob",
-  async (params) => {
-    // console.log(params);
-    const current = await KanbanAPI.editJob(params);
-    return current;
-  }
-);
+export const EditAJob = createAsyncThunk("Kanan/editJob", async (params) => {
+  // console.log(params);
+  const current = await KanbanAPI.editJob(params);
+  return current;
+});
 
 const initalKanbans = [];
 
@@ -60,10 +57,10 @@ const kanban = createSlice({
     [ListKanban.pending]: (state) => {},
     [ListKanban.rejected]: (state) => {},
     [ListKanban.fulfilled]: (state, action) => {
-      // state = [];
+      console.log(action.payload);
       let Job_List = action.payload;
-      if (state.length == 0) {
-        Job_List.map((Eachjob) => {
+      if (Job_List) {
+        Job_List.ListJob.map((Eachjob) => {
           state.push({
             id_job: Eachjob._id,
             title: Eachjob.title,
