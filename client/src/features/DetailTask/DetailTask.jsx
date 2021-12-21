@@ -7,7 +7,6 @@ import {
   Typography,
   Avatar,
   Tooltip,
-  Progress,
   Table,
   Button,
   Modal,
@@ -27,8 +26,9 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 import moment from 'moment';
+import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Content } = Layout;
 const { Text, Title } = Typography;
 
 const DetailTask = (props) => {
@@ -290,7 +290,7 @@ const DetailTask = (props) => {
                   width: '1450px',
                   backgroundColor: 'white',
                   padding: '1rem 2rem',
-                  height: '400px',
+                  height: '440px',
                   overflow: 'auto',
                   borderRadius: '8px',
                 }}
@@ -347,6 +347,49 @@ const DetailTask = (props) => {
                     delectus facere?
                   </Text>
                 </Space>
+                <Space
+                  size="small"
+                  direction="vertical"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
+                >
+                  <Title level={5}>Attachments:</Title>
+                  <Upload
+                    name="file"
+                    action=""
+                    className="detail-task-upload-attach"
+                  >
+                    <Button
+                      icon={<UploadOutlined />}
+                      block
+                      size="large"
+                      type="primary"
+                      style={{ borderRadius: '8px' }}
+                    >
+                      Click to upload
+                    </Button>
+                  </Upload>
+                  <List
+                    className="list-item-attachment"
+                    itemLayout="horizontal"
+                    dataSource={dataAttachment}
+                    renderItem={(item) => (
+                      <List.Item>
+                        <List.Item.Meta
+                          avatar={
+                            <Avatar src="https://joeschmoe.io/api/v1/random" />
+                          }
+                          title={<a href="">{item.file_name}</a>}
+                          description={`${moment(
+                            item.upload_at
+                          ).fromNow()} by ${item.upload_by}`}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                </Space>
               </Space>
               <div
                 style={{
@@ -389,96 +432,7 @@ const DetailTask = (props) => {
               </div>
             </Space>
           </Content>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              padding: '1rem 0',
-              height: '100vh',
-              width: '400px',
-            }}
-          >
-            <Space
-              direction="vertical"
-              style={{
-                width: '400px',
-                backgroundColor: 'white',
-                padding: '1rem 2rem',
-                height: '270px',
-                overflow: 'auto',
-                borderRadius: '8px',
-              }}
-            >
-              <Title level={5}>Progress</Title>
-              <Space size="large">
-                <Progress
-                  width={150}
-                  type="circle"
-                  percent={parseInt(
-                    (selectedRowKeys.length / data.length) * 100
-                  )}
-                />
-                <Progress
-                  type="circle"
-                  strokeColor={{
-                    '0%': '#108ee9',
-                    '100%': '#87d068',
-                  }}
-                  width={150}
-                  percent={(1 / 2) * 100}
-                  format={(percent) => `${1} days left`}
-                />
-              </Space>
-            </Space>
-            <Space
-              size="large"
-              direction="vertical"
-              style={{
-                width: '400px',
-                backgroundColor: 'white',
-                padding: '1rem 2rem',
-                height: '600px',
-                overflow: 'auto',
-                borderRadius: '8px',
-              }}
-            >
-              <Title level={5}>Attachments</Title>
-              <Upload
-                name="file"
-                action=""
-                className="detail-task-upload-attach"
-              >
-                <Button
-                  icon={<UploadOutlined />}
-                  block
-                  size="large"
-                  type="primary"
-                  style={{ borderRadius: '8px' }}
-                >
-                  Click to Upload
-                </Button>
-              </Upload>
-              <List
-                className="list-item-attachment"
-                itemLayout="horizontal"
-                dataSource={dataAttachment}
-                renderItem={(item) => (
-                  <List.Item>
-                    <List.Item.Meta
-                      avatar={
-                        <Avatar src="https://joeschmoe.io/api/v1/random" />
-                      }
-                      title={<a href="">{item.file_name}</a>}
-                      description={`${moment(item.upload_at).fromNow()} by ${
-                        item.upload_by
-                      }`}
-                    />
-                  </List.Item>
-                )}
-              />
-            </Space>
-          </div>
+          <ChatOnTask />
         </Space>
       </Layout>
     </>
