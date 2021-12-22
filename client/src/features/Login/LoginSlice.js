@@ -5,7 +5,7 @@ import userApi from "api/userApi";
 const initialState = {
   id: "",
   isLogin: false,
-  loadding: false,
+  loading: false,
   error: "",
 };
 
@@ -23,19 +23,23 @@ export const loginSlice = createSlice({
   reducers: {},
   extraReducers: {
     [userLogin.pending]: (state) => {
-      state.loadding = true;
+      state.loading = true;
     },
     [userLogin.rejected]: (state) => {
-      state.loadding = false;
-      state.error = "Login failed!";
+      state.loading = false;
+      message.error("Login failed, please try later");
+
     },
     [userLogin.fulfilled]: (state, action) => {
-      state.loadding = false;
-      state.isLogin = action.payload.isLogin;
-      state.id = action.payload.id;
-      localStorage.setItem("access_token", action.payload.id);
-      message.info("Login successfully!");
-      document.location.href = "/";
+      state.loading = false;
+      console.log(action.payload);
+      if(!action.payload.isSuccess){
+        message.error(action.payload.error);
+      } else { 
+        message.success("Login successfully!");
+        localStorage.setItem('access_token', action.payload.id);
+        window.location.replace('/');
+      }
     },
   },
 });
