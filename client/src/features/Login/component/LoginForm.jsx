@@ -3,8 +3,9 @@ import './LoginForm.scss';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../LoginSlice';
+import { Button } from 'antd';
 
 function LoginForm(props) {
   const [error, setError] = useState('');
@@ -20,6 +21,8 @@ function LoginForm(props) {
   const handleLogin = async (data) => {
     await dispatch(userLogin(data));
   };
+
+  const loading = useSelector(state => state.login.loading);
 
   return (
     <form onSubmit={handleSubmit(handleLogin)} className="login-form">
@@ -116,9 +119,9 @@ function LoginForm(props) {
         )}
       </div>
       <div className="login-form__login-btn-container">
-        <button type="submit" className="login-btn">
-          <span className="login-btn__text">Log In</span>
-        </button>
+        <Button type='primary' size='large' block style={{borderRadius: '5px'}} loading={loading} htmlType="submit">
+          Login
+        </Button>
       </div>
 
       <button type="button" className="github-btn">

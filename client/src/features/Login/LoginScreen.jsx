@@ -3,9 +3,13 @@ import './LoginScreen.scss';
 import LoginForm from './component/LoginForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function LoginScreen() {
   const history = useHistory();
+
+  const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+  if (isLoggedIn) history.push('/');
 
   return (
     <div className="login">
