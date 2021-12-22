@@ -11,10 +11,6 @@ function LoginScreen() {
     <div className="login">
       <div className="login__form">
         <LoginForm />
-        <button className="help-btn">
-          <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 19 }} />
-          <span className="help-btn__text">Help</span>
-        </button>
       </div>
       <div className="login__signup-container">
         <div className="login__signup">
