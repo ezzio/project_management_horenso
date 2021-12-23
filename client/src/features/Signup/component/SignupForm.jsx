@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './SignupForm.scss'
 import { useForm } from 'react-hook-form'
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineLock } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs'
+import { BiShow, BiHide } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import { userSignUp } from '../SignupSlice'
 
 function SignupForm() {
     const {register, reset, handleSubmit, formState: { errors } } = useForm()
+
+    const refPassword = useRef(null);
     
     const [error, setError] = useState('')
     const [isShow, setisShow] = useState(false)
@@ -19,7 +22,6 @@ function SignupForm() {
     }
 
    const onHandleSubmit = (data) => {
-        setError('')
         // const today = new Date()
 
         // const createAt = today.getDate() + '-' + (today.getMonth() + 1) + '-' + 
@@ -36,13 +38,14 @@ function SignupForm() {
         //     })
         // )
 
-        dispatch(userSignUp(data));
+        // dispatch(userSignUp(data));
 
-        reset({
-            fullName: data.fullName,
-            email: '',
-            password: ''
-        })
+        console.log(data)
+        // reset({
+        //     fullName: data.fullName,
+        //     email: '',
+        //     password: ''
+        // })
    }
 
     return (
@@ -50,27 +53,31 @@ function SignupForm() {
             <div className='signup-form__title'>
                 <span className='signup-form__title__text'>Let's go!</span>
             </div>
-            <div className='signup-form__email-container'>
-                <span className='signup-form__email-container__label'>Email</span>
-                <div className='email-textbox'>
-                    <input className='email-textbox__input' placeholder='example@mail.com' 
-                     name='email' 
-                     {...register("email", { required: "This field is required!", pattern: {value: /^\S+@\S+$/i, message: 'Invalid email address'} })} 
+            <div className='signup-form__confirm-password-container'>
+                <span className='signup-form__confirm-password-container__label'>Confirm password</span>
+                <div className='confirm-password-textbox'>
+                    <input className='confirm-password-textbox__input' placeholder='*****' 
+                     name='confirmPassword' type={'password'}
+                     {...register("confirmPassword", { required: "This field is required!", 
+                     validate: value => value === refPassword.current || "Password do not match! Please try again" })} 
                     />
                 </div>
-                { errors.email && <p style={{position: 'absolute', top: -39, fontSize: 12}} className='signup-form__error'>{errors.email.message}</p> }
+                { errors.confirmPassword && <p style={{position: 'absolute', top: -39, fontSize: 12}} className='signup-form__error'>{errors.confirmPassword.message}</p> }
             </div>
             <div className='signup-form__password-container'>
                 <span className='signup-form__password-container__label'>Choose Password</span>
                 <div className='password-textbox'>
                         <input className='password-textbox__input' placeholder='*****' type={isShow ? 'text' : 'password'}
                         name='password' 
+                        ref={refPassword}
                         {...register("password", { required: "This field is required!", 
                         minLength: {value: 5, message: "Password must be 5-18 characters long"}, 
                         maxLength: {value: 18, message: "Password must be 5-18 characters long"} })} 
                         />
-                        { isShow ? <span className='password-textbox__hide-password' onClick={() => toggleShow()}>Hide</span> : 
-                        <span className='password-textbox__hide-password' onClick={() => toggleShow()}>Show</span> }
+                        { isShow ? 
+                            <BiHide className='password-textbox__hide-password' onClick={() => toggleShow()} style={{fontSize: 25}}/> : 
+                            <BiShow className='password-textbox__hide-password' onClick={() => toggleShow()} style={{fontSize: 24}}/> 
+                        }
                 </div>
                 { errors.password && <p style={{position: 'absolute', top: 42, fontSize: 12}} className='signup-form__error'>{errors.password.message}</p> }
             </div>
@@ -85,15 +92,15 @@ function SignupForm() {
                 { errors.fullName && <p style={{position: 'absolute', top: 127, fontSize: 12}} className='signup-form__error'>{errors.fullName.message}</p> }
                 {(error != '') ? (<p style={{ position: 'absolute', top: 127, fontSize: 12 }} className='signup-form__error'>{error}</p>) : ''}
             </div>
-            <AiOutlineMail style={{
-                top: 238,
-                left: 68,
+            <AiOutlineLock style={{
+                top: 320,
+                left: 67,
                 position: "absolute",
-                fontSize: 25,
+                fontSize: 28,
                 color: 'gray'
             }} />
             <AiOutlineLock style={{
-                top: 320,
+                top: 236,
                 left: 67,
                 position: "absolute",
                 fontSize: 28,
