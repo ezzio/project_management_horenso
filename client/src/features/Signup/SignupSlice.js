@@ -1,38 +1,38 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { message } from "antd";
-import userApi from "api/userApi";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { message } from 'antd';
+import userApi from 'api/userApi';
 
 const initialState = {
-  id: "",
-  loadding: false,
-  error: "",
+  id: '',
+  loading: false,
+  error: '',
 };
 
-export const userSignUp = createAsyncThunk("user/sign-up", async (params) => {
+export const userSignUp = createAsyncThunk('user/sign-up', async (params) => {
   const response = await userApi.signUp(params);
   return response;
 });
 
 export const signUpSlice = createSlice({
-  name: "signUp",
+  name: 'signUp',
   initialState,
   reducers: {},
   extraReducers: {
     [userSignUp.pending]: (state) => {
-      state.loadding = true;
+      state.loading = true;
     },
     [userSignUp.rejected]: (state) => {
-      state.loadding = true;
-      state.error = "Sign up failed!";
+      state.loading = false;
+      state.error = 'Sign up failed!';
     },
     [userSignUp.fulfilled]: (state, action) => {
+      state.loading = false;
       console.log(action.payload);
-      //   if (action.payload.isSuccess) {
-      //     message.info("Sign up successfully!");
-      //     state.loadding = true;
-      //   } else {
-      //     message.info("Sign up failed!");
-      //   }
+      if (action.payload.data.isSuccess) {
+        message.success('Sign up successfully!');
+      } else {
+        message.error(action.payload.data.error);
+      }
     },
   },
 });

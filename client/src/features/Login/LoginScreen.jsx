@@ -3,18 +3,18 @@ import './LoginScreen.scss';
 import LoginForm from './component/LoginForm.jsx';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function LoginScreen() {
   const history = useHistory();
+
+  const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+  if (isLoggedIn) history.push('/');
 
   return (
     <div className="login">
       <div className="login__form">
         <LoginForm />
-        <button className="help-btn">
-          <AiOutlineQuestionCircle style={{ color: 'white', fontSize: 19 }} />
-          <span className="help-btn__text">Help</span>
-        </button>
       </div>
       <div className="login__signup-container">
         <div className="login__signup">

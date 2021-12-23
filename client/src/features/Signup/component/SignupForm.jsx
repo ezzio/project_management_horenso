@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useRef } from 'react'
 import './SignupForm.scss'
 import { useForm } from 'react-hook-form'
@@ -14,29 +15,44 @@ function SignupForm() {
     
     const [error, setError] = useState('')
     const [isShow, setisShow] = useState(false)
+=======
+import React, { useState } from 'react';
+import './SignupForm.scss';
+import { useForm } from 'react-hook-form';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { BsPerson } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { userSignUp } from '../SignupSlice';
+import { Button } from 'antd';
 
-    const dispatch = useDispatch()
+function SignupForm() {
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+>>>>>>> 9f8ffb74b891478e0026fcca0e926f2be1b297dc
 
-    const toggleShow = () => {
-        setisShow(!isShow)
-    }
+  const [error, setError] = useState('');
+  const [isShow, setisShow] = useState(false);
 
+  const dispatch = useDispatch();
+
+<<<<<<< HEAD
    const onHandleSubmit = (data) => {
         // const today = new Date()
+=======
+  const toggleShow = () => {
+    setisShow(!isShow);
+  };
+  const loading = useSelector(state => state.signup.loading);
+>>>>>>> 9f8ffb74b891478e0026fcca0e926f2be1b297dc
 
-        // const createAt = today.getDate() + '-' + (today.getMonth() + 1) + '-' + 
-        // today.getFullYear() + ' ' + today.getHours() + ':' + 
-        // today.getMinutes() + ':' + today.getSeconds()
 
-        // dispatch(
-        //     userSignUp({
-        //         fullName: data.fullName,
-        //         email: data.email,
-        //         password: data.password,
-        //         createAt, 
-        //         setError
-        //     })
-        // )
+  const onHandleSubmit = (data) => {
+    setError('');
+    // const today = new Date()
 
         // dispatch(userSignUp(data));
 
@@ -123,7 +139,8 @@ function SignupForm() {
                 <a href='https://www.google.com'> Terms of Service</a> and <a href='https://www.google.com'>Privacy Policy</a>
             </span>
         </form>
-    )
-}
+      );
+    }
+  }
 
-export default SignupForm
+export default SignupForm;

@@ -1,0 +1,54 @@
+.chat-on-task {
+  height: 100vh;
+  width: 430px;
+  background-color: white;
+
+  &__header {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  &__body {
+    width: 100%;
+    height: 85%;
+    &__box {
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      overflow-y: auto;
+
+      & .ant-space-align-center {
+        align-items: flex-start;
+      }
+
+      &__bubble {
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        background-color: #eee;
+        border-radius: 0rem 1rem 1rem 1rem;
+
+        &--owner {
+          background-color: #1890ff;
+          color: #fff;
+          border-radius: 1rem 1rem 0rem 1rem;
+        }
+      }
+    }
+  }
+  &__footer {
+    width: 100%;
+    height: auto;
+
+    &__input-mess {
+      border-top: 1px solid #ccc;
+      width: 430px;
+      height: 60px;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+    }
+  }
+}

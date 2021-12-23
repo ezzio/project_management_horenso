@@ -4,10 +4,10 @@
 }
 .ctn-userinfo {
   width: 350px;
-  height: 100vh;
+  height: 90vh;
   margin: 0 auto;
-  left: 10%;
-  top: 5%;
+  left: 15%;
+  top: 10%;
   position: absolute;
   p {
     color: #888;
@@ -75,7 +75,7 @@
         color: #ccc;
         text-align: left;
         font-size: 20px;
-        margin: 0;
+        margin-bottom: 1rem;
       }
 
       &__content {
@@ -420,14 +420,14 @@
   position: absolute;
   height: fit-content;
   width: 950px;
-  top: 7.8%;
+  top: 13.8%;
   left: 33.6%;
 }
 .project-ctn {
   position: absolute;
   left: 33.6%;
   top: 20%;
-  height: 320px;
+  height: 300px;
   width: 940px;
   // border-style: solid;
   // border-width: 1px;
