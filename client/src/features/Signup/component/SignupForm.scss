@@ -33,8 +33,9 @@
     }
   }
 
-  &__email-container {
-    top: 43.6%;
+  &__confirm-password-container {
+    top: 59.7%;
+    // top: 43.6%;
     left: 12.5%;
     width: 360px;
     height: 40px;
@@ -53,7 +54,8 @@
   }
 
   &__password-container {
-    top: 59.7%;
+    top: 43.6%;
+    // top: 59.7%;
     left: 12.5%;
     width: 360px;
     height: 40px;
@@ -166,7 +168,7 @@
   }
 }
 
-.email-textbox {
+.confirm-password-textbox {
   display: flex;
   border-color: black;
   background-color: transparent;
@@ -218,7 +220,7 @@
     align-self: stretch;
     flex: 1 1 0%;
     line-height: 16px;
-    padding-top: 14px;
+    padding-top: 16px;
     padding-bottom: 8px;
     padding-left: 40px;
     background: transparent;
@@ -236,12 +238,8 @@
 
   &__hide-password {
     position: absolute;
-    top: 30%;
-    left: 85%;
-    height: 16px;
-    width: 58px;
-    color: rgba(144, 19, 254, 1);
-    font-size: 15px;
+    top: 24%;
+    left: 89%;
   }
 }
 
