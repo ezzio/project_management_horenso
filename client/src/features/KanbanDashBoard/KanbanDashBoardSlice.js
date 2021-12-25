@@ -57,7 +57,6 @@ const kanban = createSlice({
     [ListKanban.pending]: (state) => {},
     [ListKanban.rejected]: (state) => {},
     [ListKanban.fulfilled]: (state, action) => {
-      console.log(action.payload);
       let Job_List = action.payload;
       if (Job_List) {
         Job_List.ListJob.map((Eachjob) => {
