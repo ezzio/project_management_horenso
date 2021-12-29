@@ -136,12 +136,12 @@ const JobTag = (props) => {
   );
 };
 
-JobTag.propTypes = {
-  title: PropTypes.string,
-  level: PropTypes.string,
-  process: PropTypes.string,
-  members: PropTypes.array,
-  onDeleteJob: PropTypes.func,
-};
+// JobTag.propTypes = {
+//   title: PropTypes.string,
+//   level: PropTypes.string,
+//   process: PropTypes.string,
+//   members: PropTypes.array,
+//   onDeleteJob: PropTypes.func,
+// };
 
 export default JobTag;

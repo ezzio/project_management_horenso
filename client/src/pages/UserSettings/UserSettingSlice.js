@@ -3,10 +3,13 @@ import userApi from "api/userApi";
 const initialState = {
   name: "User",
   bio: "User bio",
+  display_name: "",
   company: "",
   location: "",
   email: "",
   avatarURL: "https://avatars.githubusercontent.com/u/72656184?v=4",
+  projects: [],
+  loading: false,
 };
 export const listUserInfo = createAsyncThunk(
   "user/InfoUser",
@@ -21,7 +24,6 @@ export const userSettingSlice = createSlice({
   initialState,
   reducers: {
     editProfile: (state, action) => {
-
       state.name = action.payload.name;
       state.bio = action.payload.bio;
       state.company = action.payload.company;
@@ -40,14 +42,24 @@ export const userSettingSlice = createSlice({
     [listUserInfo.rejected]: (state) => {},
     [listUserInfo.fulfilled]: (state, action) => {
       let payload = action.payload;
-     
-        state.name = action.payload.userInfo.display_name,
-        state.bio = payload.userInfo.bio,
-        state.company = payload.company,
-        state.location = payload.location,
-        state.email = payload.email,
-        state.avatarURL = payload.avatarURL
-      
+      if (payload) {
+        let userInfo = payload[0].userInfo;
+        state.name = userInfo.user_name;
+        state.display_name = userInfo.display_name;
+        state.bio = userInfo.bio;
+        state.company = userInfo.company;
+        state.location = userInfo.location;
+        state.email = userInfo.email;
+        state.avatarURL = userInfo.avatar;
+        payload[1].allProject.forEach((project, index) => {
+          state.projects.push({
+            ...project,
+            totalTask: 140,
+            completedTask: 90,
+            id: index,
+          });
+        });
+      }
     },
   },
 });

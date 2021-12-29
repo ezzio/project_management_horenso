@@ -29,13 +29,12 @@ const UserSetting = () => {
   const [visibleModalUpload, setVisibleModalUpload] = useState(false);
 
   const profile = useSelector((state) => state.userSetting);
-  console.log(profile);
   const exitEditProfile = () => {
     setIsEditProfile(false);
   };
 
   useEffect(() => {
-    dispatch(listUserInfo())
+    dispatch(listUserInfo());
   }, []);
 
   return (
@@ -90,8 +89,6 @@ const UserSetting = () => {
   );
 };
 
-UserSetting.propTypes = {};
-
 export default UserSetting;
 
 const InfoProfile = ({ setIsEditProfile, profile }) => {
@@ -101,7 +98,7 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
         <p className="name" style={{ color: "black" }}>
           {profile.name}
         </p>
-        <p className="user-name">nguyendang127</p>
+        <p className="user-name">{profile.display_name}</p>
         <p className="userinfo__sidebar__bio__content">{profile.bio}</p>
         <Button
           type="primary"
