@@ -150,7 +150,7 @@ function SignupForm() {
       </div>
       <AiOutlineLock
         style={{
-          top: 318,
+          top: 320,
           left: 67,
           position: "absolute",
           fontSize: 28,

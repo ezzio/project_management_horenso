@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import Project from './Component/Project/Project';
-import Task from './Component/Task/Task';
-import { Button } from 'antd';
-import './UserSetting.scss';
-import { MdPeople } from 'react-icons/md';
-import { GoLocation } from 'react-icons/go';
-import { HiOutlineOfficeBuilding } from 'react-icons/hi';
+import React, { useState, useEffect } from "react";
+import Project from "./Component/Project/Project";
+import Task from "./Component/Task/Task";
+import { Button } from "antd";
+import "./UserSetting.scss";
+import { MdPeople } from "react-icons/md";
+import { GoLocation } from "react-icons/go";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import {
   AiOutlineMail,
   AiOutlineLink,
   AiFillFacebook,
   AiOutlineFacebook,
-} from 'react-icons/ai';
-import { PlusOutlined } from '@ant-design/icons';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { editProfile } from './UserSettingSlice';
-import AvatarUpload from './Component/AvatarUpload/AvatarUpload';
+} from "react-icons/ai";
+import { PlusOutlined } from "@ant-design/icons";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { editProfile, listUserInfo } from "./UserSettingSlice";
+import AvatarUpload from "./Component/AvatarUpload/AvatarUpload";
 
 const UserSetting = () => {
   // const userInfo = {
@@ -24,20 +24,28 @@ const UserSetting = () => {
   //   username: "",
   //   password: "",
   // };
-
+  const dispatch = useDispatch();
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [visibleModalUpload, setVisibleModalUpload] = useState(false);
 
   const profile = useSelector((state) => state.userSetting);
-
   const exitEditProfile = () => {
     setIsEditProfile(false);
   };
 
+  useEffect(() => {
+    dispatch(listUserInfo());
+  }, []);
+
   return (
     <div className="user-setting-ctn">
       <div className="info-ctn">
-        <Button type="primary" size="large" icon={<PlusOutlined />} style={{borderRadius: '5px'}}>
+        <Button
+          type="primary"
+          size="large"
+          icon={<PlusOutlined />}
+          style={{ borderRadius: "5px" }}
+        >
           Create Project
         </Button>
       </div>
@@ -45,7 +53,7 @@ const UserSetting = () => {
         <Project />
       </div>
       <div className="task-ctn">
-        <h2 style={{ fontWeight: 'bold' }}>Task</h2>
+        <h2 style={{ fontWeight: "bold" }}>Task</h2>
         <Task />
       </div>
       <div className="ctn-userinfo">
@@ -81,25 +89,28 @@ const UserSetting = () => {
   );
 };
 
-UserSetting.propTypes = {};
-
 export default UserSetting;
 
 const InfoProfile = ({ setIsEditProfile, profile }) => {
   return (
     <>
       <div className="userinfo__sidebar__bio">
-        <p className="name" style={{ color: 'black' }}>
+        <p className="name" style={{ color: "black" }}>
           {profile.name}
         </p>
-        <p className="user-name">nguyendang127</p>
+        <p className="user-name">{profile.display_name}</p>
         <p className="userinfo__sidebar__bio__content">{profile.bio}</p>
-        <Button type="primary" size="medium" onClick={setIsEditProfile} style={{marginBottom: '1rem', borderRadius: '5px'}}>
+        <Button
+          type="primary"
+          size="medium"
+          onClick={setIsEditProfile}
+          style={{ marginBottom: "1rem", borderRadius: "5px" }}
+        >
           Edit profile
         </Button>
         <div>
           <HiOutlineOfficeBuilding
-            style={{ position: 'relative', fontSize: 18, marginRight: 5 }}
+            style={{ position: "relative", fontSize: 18, marginRight: 5 }}
           />
           <span className="userinfo__sidebar__bio__location">
             {profile.company}
@@ -108,7 +119,7 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
         <div>
           <GoLocation
             style={{
-              position: 'relative',
+              position: "relative",
               top: 5,
               fontSize: 18,
               marginRight: 5,
@@ -121,7 +132,7 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
         <div>
           <AiOutlineMail
             style={{
-              position: 'relative',
+              position: "relative",
               top: 5,
               fontSize: 18,
               marginRight: 5,
@@ -132,7 +143,7 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
         <div>
           <AiOutlineLink
             style={{
-              position: 'relative',
+              position: "relative",
               top: 5,
               fontSize: 18,
               marginRight: 5,
@@ -143,7 +154,7 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
         <div>
           <AiOutlineFacebook
             style={{
-              position: 'relative',
+              position: "relative",
               top: 5,
               fontSize: 18,
               marginRight: 5,
@@ -180,7 +191,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             placeholder="Name"
             defaultValue={profile.name}
             className="edit-profile-ctn__name-ctn__input"
-            {...register('name')}
+            {...register("name")}
           />
         </div>
         <div className="edit-profile-ctn__name-ctn__bio">
@@ -192,7 +203,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             placeholder="Add a bio"
             defaultValue={profile.bio}
             className="edit-profile-ctn__bio-ctn__input"
-            {...register('bio')}
+            {...register("bio")}
           />
         </div>
         <div className="edit-profile-ctn__details-ctn">
@@ -204,7 +215,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             name="company"
             defaultValue={profile.company}
             className="edit-profile-ctn__details-ctn__input"
-            {...register('company')}
+            {...register("company")}
           />
         </div>
         <div className="edit-profile-ctn__details-ctn">
@@ -216,7 +227,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             name="location"
             defaultValue={profile.location}
             className="edit-profile-ctn__details-ctn__input"
-            {...register('location')}
+            {...register("location")}
           />
         </div>
         <div className="edit-profile-ctn__details-ctn">
@@ -228,7 +239,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             name="email"
             defaultValue={profile.email}
             className="edit-profile-ctn__details-ctn__input"
-            {...register('email')}
+            {...register("email")}
           />
         </div>
         <div className="edit-profile-ctn__details-ctn">
@@ -240,7 +251,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             name="link"
             defaultValue={profile.link}
             className="edit-profile-ctn__details-ctn__input"
-            {...register('link')}
+            {...register("link")}
           />
         </div>
         <div className="edit-profile-ctn__details-ctn">
@@ -252,7 +263,7 @@ const EditProfile = ({ exitEditProfile, profile }) => {
             name="facebook"
             defaultValue={profile.facebook}
             className="edit-profile-ctn__details-ctn__input"
-            {...register('facebook')}
+            {...register("facebook")}
           />
         </div>
         <div>
