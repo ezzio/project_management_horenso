@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userApi from "api/userApi";
 const initialState = {
-  name: "User",
-  bio: "User bio",
+  name: "",
+  bio: "",
   display_name: "",
   company: "",
   location: "",
   email: "",
-  avatarURL: "https://avatars.githubusercontent.com/u/72656184?v=4",
+  avatarURL: "",
   projects: [],
   loading: false,
 };

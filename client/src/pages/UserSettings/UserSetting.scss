@@ -3,6 +3,9 @@
   background-color: lightgray;
 }
 .ctn-userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 350px;
   height: 90vh;
   margin: 0 auto;
@@ -26,6 +29,7 @@
     &__name {
       display: flex;
       flex-direction: column;
+      align-items: center;
       width: 280px;
       height: fit-content;
       align-content: flex-start;
