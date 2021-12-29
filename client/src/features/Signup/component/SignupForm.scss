@@ -139,10 +139,9 @@
   height: 40px;
   width: 360px;
   position: 'absolute';
-  left: 0;
-  top: 0;
   border-width: 1;
   border-style: 'solid';
+  vertical-align: middle;
 
   &__input {
     color: #000;
@@ -188,8 +187,6 @@
     align-self: stretch;
     flex: 1 1 0%;
     line-height: 16px;
-    padding-top: 14px;
-    padding-bottom: 15px;
     padding-left: 40px;
     background: transparent;
     display: flex;
@@ -198,9 +195,15 @@
     border-width: 1px;
     border-color: lightgrey;
     border-radius: 5px;
+    vertical-align: middle;
+
     &:focus {
       outline: none;
     }
+  }
+  ::-webkit-input-placeholder {
+    position: absolute;
+    top: 27%;
   }
 }
 .password-textbox {
@@ -210,18 +213,14 @@
   height: 40px;
   width: 360px;
   position: 'absolute';
-  left: 0;
-  top: 0;
 
   &__input {
     color: #000;
-    padding-right: 5px;
     font-size: 16px;
     align-self: stretch;
     flex: 1 1 0%;
     line-height: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
+    font-size: 16px;
     padding-left: 40px;
     background: transparent;
     display: flex;
@@ -234,6 +233,10 @@
     &:focus {
       outline: none;
     }
+  }
+  ::-webkit-input-placeholder {
+    position: absolute;
+    top: 25%;
   }
 
   &__hide-password {
