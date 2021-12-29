@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { message } from 'antd';
-import projectApi from 'api/projectApi';
-import { addNewProject } from 'pages/UserSettings/UserSettingSlice';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { message } from "antd";
+import projectApi from "api/projectApi";
+import { addNewProject } from "pages/UserSettings/UserSettingSlice";
 
 const initialState = {
   loading: false,
@@ -9,17 +9,17 @@ const initialState = {
 };
 
 export const createProjectAsync = createAsyncThunk(
-  'project/create',
+  "project/create",
   async (params, thunkAPI) => {
-    // thunkAPI.dispatch(addNewProject(params));
-
     const temp = await projectApi.createNew(params);
+    // thunkAPI.dispatch(addNewProject(params));
+    console.log(temp);
     return temp;
   }
 );
 
 export const createProjectSlice = createSlice({
-  name: 'createProject',
+  name: "createProject",
   initialState,
   reducer: {},
   extraReducers: {
@@ -28,7 +28,7 @@ export const createProjectSlice = createSlice({
     },
     [createProjectAsync.rejected]: (state) => {
       state.loading = false;
-      message.error('Something went wrong!');
+      message.error("Something went wrong!");
     },
     [createProjectAsync.fulfilled]: (state, action) => {
       state.loading = false;

@@ -1,15 +1,14 @@
-const { default: axios } = require('axios');
+const { default: axios } = require("axios");
 
 const API = 'https://servernckh.herokuapp.com/project';
+// const API = "http://localhost:4000/project";
 
 const projectApi = {
   createNew: (params) => {
+    console.log(params);
     return axios
-      .post(`${API}/create_a_project/`, {
-        params,
-      })
+      .post(`${API}/create_a_project/`, params)
       .then((response) => {
-        console.log(response.data);
         return response.data;
       })
       .catch((error) => {

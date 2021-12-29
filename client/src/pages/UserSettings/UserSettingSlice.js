@@ -1,30 +1,34 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import userApi from 'api/userApi';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import userApi from "api/userApi";
 const initialState = {
-  name: '',
-  bio: '',
-  display_name: '',
-  company: '',
-  location: '',
-  email: '',
-  avatarURL: '',
+  name: "",
+  bio: "",
+  display_name: "",
+  company: "",
+  location: "",
+  email: "",
+  avatarURL: "",
   projects: [],
   loading: false,
 };
 export const listUserInfo = createAsyncThunk(
-  'user/InfoUser',
+  "user/InfoUser",
   async (thunkAPI) => {
     const infoUser = await userApi.listUserInfo();
     return infoUser;
   }
 );
-export const editUserAsync = createAsyncThunk("user/editUser", async (thunkAPI) => {
-  const infoUser = await userApi.editUser();
-  return infoUser;
-});
+export const editUserAsync = createAsyncThunk(
+  "user/editUser",
+  async (params, thunkAPI) => {
+    const infoUser = await userApi.editUser(params);
+    thunkAPI.dispatch(editProfile(params));
+    return infoUser;
+  }
+);
 
 export const userSettingSlice = createSlice({
-  name: 'userSetting',
+  name: "userSetting",
   initialState,
   reducers: {
     editProfile: (state, action) => {
@@ -65,7 +69,6 @@ export const userSettingSlice = createSlice({
         state.location = userInfo.location;
         state.email = userInfo.email;
         state.avatarURL = userInfo.avatar;
-
         payload[1].allProject.forEach((project, index) => {
           state.projects.push({
             ...project,

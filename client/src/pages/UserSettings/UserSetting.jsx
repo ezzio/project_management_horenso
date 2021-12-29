@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Project from './Component/Project/Project';
-import Task from './Component/Task/Task';
-import { Avatar, Button, Image, message, Tooltip, Upload } from 'antd';
-import './UserSetting.scss';
-import { GoLocation } from 'react-icons/go';
-import { HiOutlineOfficeBuilding } from 'react-icons/hi';
-import { AiOutlineMail, AiOutlineLink, AiFillFacebook } from 'react-icons/ai';
-import { PlusOutlined } from '@ant-design/icons';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { editProfile, listUserInfo } from './UserSettingSlice';
-import { CameraOutlined, UserOutlined } from '@ant-design/icons';
-import CreateProject from 'features/CreateProject/CreateProject'
-import userApi from 'api/userApi';
+import React, { useState, useEffect } from "react";
+import Project from "./Component/Project/Project";
+import Task from "./Component/Task/Task";
+import { Avatar, Button, Image, message, Tooltip, Upload } from "antd";
+import "./UserSetting.scss";
+import { GoLocation } from "react-icons/go";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { AiOutlineMail, AiOutlineLink, AiFillFacebook } from "react-icons/ai";
+import { PlusOutlined } from "@ant-design/icons";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { editProfile, listUserInfo, editUserAsync } from "./UserSettingSlice";
+import { CameraOutlined, UserOutlined } from "@ant-design/icons";
+import CreateProject from "features/CreateProject/CreateProject";
+import userApi from "api/userApi";
 const UserSetting = () => {
   const dispatch = useDispatch();
   const [isEditProfile, setIsEditProfile] = useState(false);
@@ -81,20 +81,23 @@ const UserSetting = () => {
 
   return (
     <div className="user-setting-ctn">
-      <CreateProject isModalVisible={isModalCreateProject} setIsModalVisible={setIsModalCreateProject}/>
+      <CreateProject
+        isModalVisible={isModalCreateProject}
+        setIsModalVisible={setIsModalCreateProject}
+      />
       <div className="info-ctn">
         <Button
           type="primary"
           size="large"
           icon={<PlusOutlined />}
-          style={{ borderRadius: '5px' }}
+          style={{ borderRadius: "5px" }}
           onClick={() => setIsModalCreateProject(true)}
         >
           Create Project
         </Button>
       </div>
       <div className="project-ctn">
-        <Project/>
+        <Project />
       </div>
       <div className="task-ctn">
         <h2 style={{ fontWeight: "bold" }}>Task</h2>
@@ -220,7 +223,8 @@ const EditProfile = ({ exitEditProfile, profile }) => {
   const { register, handleSubmit } = useForm();
 
   const handleEdit = (data) => {
-    dispatch(editProfile(data));
+    // dispatch(editProfile(data));
+   
     dispatch(editUserAsync(data));
     exitEditProfile();
   };
