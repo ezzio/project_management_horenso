@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProfile, listUserInfo } from './UserSettingSlice';
 import { CameraOutlined, UserOutlined } from '@ant-design/icons';
+import CreateProject from 'features/CreateProject/CreateProject'
 import userApi from 'api/userApi';
 const UserSetting = () => {
   const dispatch = useDispatch();
@@ -71,22 +72,29 @@ const UserSetting = () => {
       onSuccess('ok');
     }, 500);
   };
-
   // <---------Upload avatar------------
+
+  // ----------Create project----------->
+  const [isModalCreateProject, setIsModalCreateProject] = useState(false);
+
+  // <---------Create project------------
+
   return (
     <div className="user-setting-ctn">
+      <CreateProject isModalVisible={isModalCreateProject} setIsModalVisible={setIsModalCreateProject}/>
       <div className="info-ctn">
         <Button
           type="primary"
           size="large"
           icon={<PlusOutlined />}
           style={{ borderRadius: '5px' }}
+          onClick={() => setIsModalCreateProject(true)}
         >
           Create Project
         </Button>
       </div>
       <div className="project-ctn">
-        <Project />
+        <Project/>
       </div>
       <div className="task-ctn">
         <h2 style={{ fontWeight: 'bold' }}>Task</h2>
