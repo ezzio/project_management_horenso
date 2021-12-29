@@ -22,7 +22,7 @@ const userApi = {
     return axios
       .post(
         `${API}/register/`,
-        // 'https://servernckh.herokuapp.com/register/',
+    
         {
           user_name: params.username,
           password: params.password,
@@ -50,6 +50,23 @@ const userApi = {
   uploadAvatar: (params) => {
     return axios
       .post(`${API}/user/uploadAvatar`, params)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  editUser: (params) => {
+    return axios
+      .post(`${API}/user/editUserInfo`, {
+        owner: localStorage.getItem("access_token"),
+        display_name: params.display_name,
+        bio: params.bio,
+        company: params.company,
+        location: params.location,
+        email: params.email,
+      })
       .then((response) => {
         return response.data;
       })

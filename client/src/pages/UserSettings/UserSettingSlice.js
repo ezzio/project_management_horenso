@@ -18,6 +18,10 @@ export const listUserInfo = createAsyncThunk(
     return infoUser;
   }
 );
+export const editUserAsync = createAsyncThunk("user/editUser", async (thunkAPI) => {
+  const infoUser = await userApi.editUser();
+  return infoUser;
+});
 
 export const userSettingSlice = createSlice({
   name: "userSetting",
@@ -60,6 +64,11 @@ export const userSettingSlice = createSlice({
           });
         });
       }
+    },
+    [editUserAsync.pending]: (state, action) => {},
+    [editUserAsync.pending]: (state, action) => {},
+    [editUserAsync.pending]: (state, action) => {
+      console.log(action.payload);
     },
   },
 });
