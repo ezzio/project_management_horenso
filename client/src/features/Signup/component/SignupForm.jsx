@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { AiOutlineLock } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { BiShow, BiHide } from "react-icons/bi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSignUp } from "../SignupSlice";
 
 function SignupForm() {
@@ -12,27 +12,26 @@ function SignupForm() {
     register,
     reset,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const refPassword = useRef(null);
+  // const refPassword = useRef(null);
 
-  const [error, setError] = useState("");
   const [isShow, setisShow] = useState(false);
+  const [error, setError] = useState("")
 
   const dispatch = useDispatch();
 
   const toggleShow = () => {
     setisShow(!isShow);
   };
-//   const loading = useSelector((state) => state.signup.loading);
+  // const loading = useSelector((state) => state.signup.loading);
 
   const onHandleSubmit = (data) => {
-    setError("");
     // const today = new Date()
 
     // dispatch(userSignUp(data));
-
     console.log(data);
     // reset({
     //     fullName: data.fullName,
@@ -59,14 +58,14 @@ function SignupForm() {
             {...register("confirmPassword", {
               required: "This field is required!",
               validate: (value) =>
-                value === refPassword.current ||
+                value === watch("password") ||
                 "Password do not match! Please try again",
             })}
           />
         </div>
         {errors.confirmPassword && (
           <p
-            style={{ position: "absolute", top: -39, fontSize: 12 }}
+            style={{ position: "absolute", top: 40, fontSize: 12 }}
             className="signup-form__error"
           >
             {errors.confirmPassword.message}
@@ -83,7 +82,7 @@ function SignupForm() {
             placeholder="*****"
             type={isShow ? "text" : "password"}
             name="password"
-            ref={refPassword}
+            // ref={refPassword}
             {...register("password", {
               required: "This field is required!",
               minLength: {
