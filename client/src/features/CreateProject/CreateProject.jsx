@@ -20,9 +20,14 @@ const CreateProject = (props) => {
   };
 
   const [form] = Form.useForm();
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const onFinish = (value) => {
-    dispatch(createProjectAsync({ ...value, owner: localStorage.getItem('access_token') }))
+    dispatch(
+      createProjectAsync({
+        ...value,
+        owner: localStorage.getItem('access_token'),
+      })
+    );
     handleOk();
   };
 

@@ -10,7 +10,7 @@ const Project = () => {
   const profile = useSelector((state) => state.userSetting);
   return (
     <Row gutter={[48, 16]} wrap={false} align="middle">
-      {profile.projects.map((project) => {
+      {profile.projects && profile.projects.map((project) => {
         const percent = 33;
 
         return (
@@ -69,8 +69,8 @@ const Project = () => {
                   maxStyle={{ color: "gray", backgroundColor: "lightgray" }}
                   style={{}}
                 >
-                  {project.members.map((member) => {
-                    return <Avatar key={member.id} src={member.avatar} />;
+                  {project.members && project.members.map((member) => {
+                    return <Avatar src={member.avatar} />;
                   })}
                 </Avatar.Group>
               </div>

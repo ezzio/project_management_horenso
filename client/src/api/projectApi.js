@@ -5,7 +5,6 @@ const API = 'https://servernckh.herokuapp.com/project';
 
 const projectApi = {
   createNew: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/create_a_project/`, params)
       .then((response) => {
