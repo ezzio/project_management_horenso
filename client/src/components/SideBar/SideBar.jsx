@@ -148,7 +148,7 @@ const SideBar = () => {
               <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
             </Link>
           ) : (
-            <Link to="/team-mate">
+            <Link to="/teammate">
               <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
             </Link>
           )}
