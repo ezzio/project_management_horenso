@@ -4,14 +4,14 @@ import "./ListMember.scss";
 
 const ListMember = ({ members }) => {
   const moreMember = members.length;
-
   return (
     <div className="member-list">
       {members.map((member, index) => {
         if (index < 5) {
+          console.log(member);
           return (
             <img
-              src={member[0].avatar}
+              src={member.avatar}
               alt="member"
               className="member"
               height="25"

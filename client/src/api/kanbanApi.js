@@ -28,6 +28,7 @@ const KanbanAPI = {
         priority: params.priority,
         start_time: params.start_time,
         end_time: params.end_time,
+        members: params.members,
       })
       .then((response) => {
         return response.data;
