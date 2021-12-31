@@ -8,13 +8,10 @@ const Project = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userSetting);
-
   return (
     <Row gutter={[48, 16]} wrap={false} align="middle">
-      {profile.projects.map((project) => {
-        const percent = Math.round(
-          (project.completedTask / project.totalTask) * 100
-        );
+      {profile.projects && profile.projects.map((project) => {
+        const percent = 33;
 
         return (
           <Col key={project.id} span={48}>
@@ -53,7 +50,7 @@ const Project = () => {
               />
               <h2 style={{ textAlign: "center" }}>{project.title}</h2>
               <h2 style={{ textAlign: "center", marginBottom: 0 }}>
-                {project.completedTask}/{project.totalTask}
+                0/0
               </h2>
               <p
                 style={{
@@ -72,8 +69,8 @@ const Project = () => {
                   maxStyle={{ color: "gray", backgroundColor: "lightgray" }}
                   style={{}}
                 >
-                  {project.members.map((member) => {
-                    return <Avatar key={member.id} src={member.avatar} />;
+                  {project.members && project.members.map((member) => {
+                    return <Avatar src={member.avatar} />;
                   })}
                 </Avatar.Group>
               </div>
