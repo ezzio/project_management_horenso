@@ -56,6 +56,7 @@ const KanbanDashBoard = () => {
       end_time: values.range_time[1].format("YYYY-MM-DD"),
       members: values.members,
     };
+    // console.log(newKanban);
     dispatch(addKanban(newKanban));
     dispatch(AddNewJobkanban(newKanban));
     setVisible(false);
@@ -135,9 +136,7 @@ const KanbanDashBoard = () => {
             ]}
           >
             <Select mode="multiple" placeholder="Search member...">
-              {/* <Select.Option value="red">Red</Select.Option>
-              <Select.Option value="green">Green</Select.Option>
-              <Select.Option value="blue">Blue</Select.Option> */}
+         
               {jobs.membersInProject.map((eachMember) => (
                 <Select.Option value={eachMember.name}>
                   {eachMember.name}
@@ -196,6 +195,7 @@ const CompleteTask = ({ jobs }) => {
   return (
     <div className="ctn-kanbandashboard__complete__content">
       {jobs.listJobs.map((job) => {
+        // console.log(job);
         if (job.is_completed)
           return (
             <JobTag

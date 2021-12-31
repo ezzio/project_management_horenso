@@ -73,11 +73,12 @@ export const userSettingSlice = createSlice({
         state.email = userInfo.email;
         state.avatarURL = userInfo.avatar;
         payload[1].allProject.forEach((project, index) => {
+          console.log(project);
           state.projects.push({
             ...project,
             totalTask: 140,
             completedTask: 90,
-            id: index,
+          
           });
         });
       }

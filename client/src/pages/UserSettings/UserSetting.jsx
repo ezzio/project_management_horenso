@@ -25,6 +25,7 @@ const UserSetting = () => {
 
   useEffect(() => {
     dispatch(listUserInfo());
+    localStorage.removeItem('projectowner')
   }, []);
 
   // ----------Upload avatar----------->
@@ -228,8 +229,6 @@ const EditProfile = ({ exitEditProfile, profile }) => {
   const { register, handleSubmit } = useForm();
 
   const handleEdit = (data) => {
-    // dispatch(editProfile(data));
-
     dispatch(editUserAsync(data));
     exitEditProfile();
   };
