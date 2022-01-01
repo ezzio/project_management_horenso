@@ -1,184 +1,215 @@
-import React, { useRef, useState } from "react";
-import "./SideBar.scss";
-import { Link, useLocation } from "react-router-dom";
-import { SiGooglehangoutsmeet } from "react-icons/si";
+import React from "react";
+import { Layout, Menu, Space, Tooltip, Typography } from "antd";
 import {
-  BsFillKanbanFill,
-  BsFillChatDotsFill,
-  BsThreeDots,
-} from "react-icons/bs";
-import {
-  AiFillGithub,
-  AiFillSetting,
-  AiFillSignal,
-  AiFillDatabase,
-} from "react-icons/ai";
-import { GiFlowerTwirl } from "react-icons/gi";
-import { RiTeamFill } from "react-icons/ri";
-import { MdDashboard } from "react-icons/md";
+  PieChartFilled,
+  HomeFilled,
+  GithubFilled,
+  CarryOutFilled,
+  DatabaseFilled,
+  SettingFilled,
+  ToolFilled,
+  RocketFilled,
+  VideoCameraFilled,
+  MessageFilled,
+  ScheduleFilled,
+  SkinFilled,
+} from "@ant-design/icons";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+const { SubMenu } = Menu;
+const { Sider } = Layout;
+const { Title } = Typography;
+
 const SideBar = () => {
-  const mouseEnter = () => {
-    setTimeout(() => {
-      let hiddenElement = document.querySelectorAll(".hidden");
-      for (var i = 0, len = hiddenElement.length; i < len; i++) {
-        hiddenElement[i].style.display = "block";
-      }
-    }, 100);
-  };
-  const mouseLeave = () => {
-    setTimeout(() => {
-      let hiddenElement = document.querySelectorAll(".hidden");
-      for (var i = 0, len = hiddenElement.length; i < len; i++) {
-        hiddenElement[i].style.display = "none";
-      }
-    }, 100);
-  };
+  const [isColapsed, setIsColapsed] = useState(false);
 
-  const location = useLocation();
-  const currentUrl = location.pathname.slice(1);
-
+  const onCollapse = (collapsed) => {
+    console.log(collapsed);
+    setIsColapsed(!isColapsed);
+  };
   return (
-    <div
-      className="side-bar ctn-side-bar"
-      onMouseEnter={mouseEnter}
-      onMouseLeave={mouseLeave}
-    >
-      <div className="side-bar__header">
-        <p className="hidden">Kanso</p>
-      </div>
-      <div className="side-bar__content">
-        <div className="side-bar__content__group">
-          {currentUrl === "dashboard" ? (
-            <Link to="/dashboard" className="sidebar-active">
-              <MdDashboard className="icon" />{" "}
-              <p className="hidden">Dashboard</p>
-            </Link>
-          ) : (
-            <Link to="/dashboard">
-              <MdDashboard className="icon" />{" "}
-              <p className="hidden">Dashboard</p>
-            </Link>
-          )}
-          {currentUrl === "kanban" ? (
-            <Link className="sidebar-active" to="/kanban">
-              <BsFillKanbanFill className="icon" />{" "}
-              <p className="hidden">Table</p>
-            </Link>
-          ) : (
-            <Link to="/kanban">
-              <BsFillKanbanFill className="icon" />{" "}
-              <p className="hidden">Table</p>
-            </Link>
-          )}
-
-          {currentUrl === "source" ? (
-            <Link className="sidebar-active" to="/source">
-              <AiFillDatabase className="icon" />{" "}
-              <p className="hidden">Storage</p>
-            </Link>
-          ) : (
-            <Link to="/source">
-              <AiFillDatabase className="icon" />{" "}
-              <p className="hidden">Storage</p>
-            </Link>
-          )}
-
-          {currentUrl === "github" ? (
-            <Link className="sidebar-active" to="/github">
-              <AiFillGithub className="icon" /> <p className="hidden">Github</p>
-            </Link>
-          ) : (
-            <Link to="/github">
-              <AiFillGithub className="icon" /> <p className="hidden">Github</p>
-            </Link>
-          )}
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        collapsible
+        collapsed={isColapsed}
+        onCollapse={onCollapse}
+        width={250}
+      >
+        <div
+          style={{
+            color: "white",
+            height: "2.5rem",
+            margin: "2rem 1rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Space style={isColapsed ? { gap: "0" } : { gap: "4px" }}>
+            <Title
+              level={2}
+              style={
+                !isColapsed
+                  ? {
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 1, 1)",
+                      color: "white",
+                      margin: "0",
+                    }
+                  : {
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 1, 1)",
+                      color: "white",
+                      fontSize: "1rem",
+                      margin: "0",
+                    }
+              }
+            >
+              Kanso
+            </Title>
+          </Space>
         </div>
-        <div className="side-bar__content__group">
-          {currentUrl === "meeting" ? (
-            <Link className="sidebar-active" to="/meeting">
-              <SiGooglehangoutsmeet className="icon" />{" "}
-              <p className="hidden">Meeting</p>
-              <div className="notify hidden">
-                <p>2</p>
-              </div>
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item
+            key="1"
+            icon={
+              <PieChartFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+          >
+            <Link to="/dashboard" style={{ color: "white" }}>
+              Dashboard
             </Link>
-          ) : (
-            <Link to="/meeting">
-              <SiGooglehangoutsmeet className="icon" />{" "}
-              <p className="hidden">Meeting</p>
-              <div className="notify hidden">
-                <p>2</p>
-              </div>
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            icon={
+              <CarryOutFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+          >
+            <Link to="/jobs" style={{ color: "white" }}>
+              Jobs
             </Link>
-          )}
-
-          {currentUrl === "conversation" ? (
-            <Link className="sidebar-active" to="/conversation">
-              <BsFillChatDotsFill className="icon" />{" "}
-              <p className="hidden">Conversation</p>
-              <div className="notify hidden">
-                <p>9+</p>
-              </div>
+          </Menu.Item>
+          <Menu.Item
+            key="3"
+            icon={
+              <DatabaseFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+          >
+            <Link to="/storage" style={{ color: "white" }}>
+              Storage
             </Link>
-          ) : (
-            <Link to="/conversation">
-              <BsFillChatDotsFill className="icon" />{" "}
-              <p className="hidden">Conversation</p>
-              <div className="notify hidden">
-                <p>9+</p>
-              </div>
+          </Menu.Item>
+          <Menu.Item
+            key="4"
+            icon={
+              <GithubFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+          >
+            <Link to="/github" style={{ color: "white" }}>
+              Github
             </Link>
-          )}
-
-          {currentUrl === "report" ? (
-            <Link className="sidebar-active" to="/report">
-              <AiFillSignal className="icon" />{" "}
-              <p className="hidden">Reports</p>
+          </Menu.Item>
+          <SubMenu
+            key="sub1"
+            icon={
+              <RocketFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+            title="Horenso"
+          >
+            <Menu.Item
+              key="5"
+              icon={
+                <VideoCameraFilled
+                  style={{ color: "white", fontSize: "1.15rem" }}
+                />
+              }
+            >
+              <Link to="/meeting" style={{ color: "white" }}>
+                Meeting
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="6"
+              icon={
+                <MessageFilled
+                  style={{ color: "white", fontSize: "1.15rem" }}
+                />
+              }
+            >
+              <Link to="/conversation" style={{ color: "white" }}>
+                Conversation
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="7"
+              icon={
+                <ScheduleFilled
+                  style={{ color: "white", fontSize: "1.15rem" }}
+                />
+              }
+            >
+              <Link to="/report" style={{ color: "white" }}>
+                Report
+              </Link>
+            </Menu.Item>
+          </SubMenu>
+          <SubMenu
+            key="sub2"
+            icon={
+              <ToolFilled style={{ color: "white", fontSize: "1.15rem" }} />
+            }
+            title="Option"
+          >
+            <Menu.Item
+              key="8"
+              icon={
+                <SkinFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              }
+            >
+              <Link to="/teammate" style={{ color: "white" }}>
+                Teammate
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="9"
+              icon={
+                <SettingFilled
+                  style={{ color: "white", fontSize: "1.15rem" }}
+                />
+              }
+            >
+              <Link to="/setting" style={{ color: "white" }}>
+                Setting
+              </Link>
+            </Menu.Item>
+          </SubMenu>
+        </Menu>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            position: "absolute",
+            bottom: "4rem",
+          }}
+        >
+          <Tooltip
+            title="Back to profile"
+            placement={isColapsed ? "left" : "top"}
+          >
+            <Link to="/" style={{ color: "white" }}>
+              <HomeFilled
+                style={{
+                  color: "white",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                }}
+              />
             </Link>
-          ) : (
-            <Link to="/report">
-              <AiFillSignal className="icon" />{" "}
-              <p className="hidden">Reports</p>
-            </Link>
-          )}
+          </Tooltip>
         </div>
-        <div className="side-bar__content__group">
-          {currentUrl === "team-mate" ? (
-            <Link className="sidebar-active" to="/team-mate">
-              <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
-            </Link>
-          ) : (
-            <Link to="/teammate">
-              <RiTeamFill className="icon" /> <p className="hidden">Teammate</p>
-            </Link>
-          )}
-
-          {currentUrl === "setting" ? (
-            <Link className="sidebar-active" to="/setting">
-              <AiFillSetting className="icon" />{" "}
-              <p className="hidden">Setting</p>
-            </Link>
-          ) : (
-            <Link to="/setting">
-              <AiFillSetting className="icon" />{" "}
-              <p className="hidden">Setting</p>
-            </Link>
-          )}
-        </div>
-      </div>
-      <div className="side-bar__footer">
-        <div className="side-bar__footer__user">
-          <img
-            src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.6435-9/212452707_4456077581098268_8477389473127673076_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=730e14&_nc_ohc=wy6_kQ6FPbsAX9RSQc6&tn=LRtYXF1z3QKLRooO&_nc_ht=scontent.fvca1-2.fna&oh=436e8235103f3149b0fd762fb9309efd&oe=60F0088B"
-            alt=""
-            height="40"
-            width="40"
-          />
-          <p className="hidden">Duong Dang Khoa</p>
-        </div>
-        <BsThreeDots className="icon hidden" />
-      </div>
-    </div>
+      </Sider>
+    </Layout>
   );
 };
 

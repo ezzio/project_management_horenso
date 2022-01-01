@@ -6,6 +6,7 @@ import timelineReducer from "features/ReportTimeline/TimelineSlice";
 import kanbanReducer from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import userSettingReducer from "pages/UserSettings/UserSettingSlice";
 import teammateReducer from "features/Teammate/teammateSlice";
+import createProjectReducer from "features/CreateProject/createProjectSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     kanban: kanbanReducer,
     userSetting: userSettingReducer,
     teammate: teammateReducer,
+    createProject: createProjectReducer,
   },
 });

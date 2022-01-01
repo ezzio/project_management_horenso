@@ -8,79 +8,78 @@ const Project = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userSetting);
-
   return (
     <Row gutter={[48, 16]} wrap={false} align="middle">
-      {profile.projects.map((project) => {
-        const percent = Math.round(
-          (project.completedTask / project.totalTask) * 100
-        );
-
-        return (
-          <Col key={project.id} span={48}>
-            <Card
-              onClick={() => history.push(`/${project.id}`)}
-              style={{
-                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-                borderRadius: 10,
-                minWidth: 270,
-                cursor: "pointer",
-              }}
-            >
-              <div>
-                <Progress
-                  percent={percent}
-                  showInfo={false}
-                  size="small"
-                  strokeColor={
-                    percent <= 30
-                      ? "red"
-                      : percent <= 50
-                      ? "orange"
-                      : percent <= 70
-                      ? "yellow"
-                      : percent <= 90
-                      ? "dodgerblue"
-                      : "lawngreen"
-                  }
-                  style={{ width: 50 }}
-                />
-              </div>
-              <Avatar
-                src={project.avatar}
-                size="large"
-                style={{ position: "relative", left: "41%" }}
-              />
-              <h2 style={{ textAlign: "center" }}>{project.title}</h2>
-              <h2 style={{ textAlign: "center", marginBottom: 0 }}>
-                {project.completedTask}/{project.totalTask}
-              </h2>
-              <p
+      {profile.projects &&
+        profile.projects.map((project) => {
+          const percent = 33;
+          return (
+            <Col key={project.idProject} span={48}>
+              <Card
+                onClick={() => {
+                  history.push(`/${project.idProject}`);
+                  localStorage.setItem("projectowner", project.idProject);
+                }}
                 style={{
-                  textAlign: "center",
-                  fontSize: 11,
-                  fontWeight: "bold",
-                  color: "lightgray",
+                  boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                  borderRadius: 10,
+                  minWidth: 270,
+                  cursor: "pointer",
                 }}
               >
-                task complete
-              </p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Avatar.Group
-                  maxCount={5}
-                  size="small"
-                  maxStyle={{ color: "gray", backgroundColor: "lightgray" }}
-                  style={{}}
+                <div>
+                  <Progress
+                    percent={percent}
+                    showInfo={false}
+                    size="small"
+                    strokeColor={
+                      percent <= 30
+                        ? "red"
+                        : percent <= 50
+                        ? "orange"
+                        : percent <= 70
+                        ? "yellow"
+                        : percent <= 90
+                        ? "dodgerblue"
+                        : "lawngreen"
+                    }
+                    style={{ width: 50 }}
+                  />
+                </div>
+                <Avatar
+                  src={project.avatar}
+                  size="large"
+                  style={{ position: "relative", left: "41%" }}
+                />
+                <h2 style={{ textAlign: "center" }}>{project.title}</h2>
+                <h2 style={{ textAlign: "center", marginBottom: 0 }}>0/0</h2>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: 11,
+                    fontWeight: "bold",
+                    color: "lightgray",
+                  }}
                 >
-                  {project.members.map((member) => {
-                    return <Avatar key={member.id} src={member.avatar} />;
-                  })}
-                </Avatar.Group>
-              </div>
-            </Card>
-          </Col>
-        );
-      })}
+                  task complete
+                </p>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Avatar.Group
+                    maxCount={5}
+                    size="small"
+                    maxStyle={{ color: "gray", backgroundColor: "lightgray" }}
+                    style={{}}
+                  >
+                    {project.members &&
+                      project.members.map((member) => {
+                        return <Avatar src={member.avatar} />;
+                      })}
+                  </Avatar.Group>
+                </div>
+              </Card>
+            </Col>
+          );
+        })}
     </Row>
   );
 };

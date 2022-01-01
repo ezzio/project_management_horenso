@@ -1,34 +1,34 @@
-import "./App.scss";
 import "antd/dist/antd.css";
+import NotFound from "components/Common/NotFound/NotFound";
+import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
+import SideBar from "components/SideBar/SideBar";
+import Board from "features/Board/Board";
+import DetailTask from "features/DetailTask/DetailTask";
+import KanbanDashBoard from "features/KanbanDashBoard/KanbanDashBoard";
+import LoginScreen from "features/Login/LoginScreen";
+import SignupScreen from "features/Signup/SignupScreen";
+import Dashboard from "pages/Dashboard/Dashboard";
+import Github from "pages/Github/Github";
+import Conversation from "pages/Horenso/Conversation/Conversation";
+import Meeting from "pages/Horenso/Meeting/Meeting";
+import Report from "pages/Horenso/Report/Report";
+import Source from "pages/Storage/Source/Source";
+import Teammate from "pages/Teammate/Teammate";
+import UserSetting from "pages/UserSettings/UserSetting";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
 } from "react-router-dom";
-import SideBar from "components/SideBar/SideBar";
-import { useEffect, useState } from "react";
-import Meeting from "pages/Horenso/Meeting/Meeting";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import KanbanDashBoard from "features/KanbanDashBoard/KanbanDashBoard";
-import Report from "pages/Horenso/Report/Report";
-import Github from "pages/Github/Github";
-import Board from "features/Board/Board";
-import SignupScreen from "features/Signup/SignupScreen";
-import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
-import NotFound from "components/Common/NotFound/NotFound";
-import LoginScreen from "features/Login/LoginScreen";
-import DetailTask from "features/DetailTask/DetailTask";
-import UserSetting from "pages/UserSettings/UserSetting";
-import Source from "pages/Storage/Source/Source";
-import Dashboard from "pages/Dashboard/Dashboard";
-import Teammate from "pages/Teammate/Teammate";
+
+import "./App.scss";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Board /> */}
         <Switch>
           <Route path="/login">
             <LoginScreen />
@@ -81,9 +81,9 @@ const AnimatedRouter = () => {
         <Route path="/dashboard" children={<Dashboard />} />
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        <Route exact path="/kanban" children={<KanbanDashBoard />} />
+        <Route exact path="/jobs" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
-        <Route path="/source" children={<Source />} />
+        <Route path="/storage" children={<Source />} />
         <Route path="/github" children={<Github />} />
         <Route path="/teammate" children={<Teammate />} />
       </Switch>

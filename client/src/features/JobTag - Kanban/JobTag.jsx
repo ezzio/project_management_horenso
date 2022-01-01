@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
-
+ 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);

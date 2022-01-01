@@ -1,18 +1,30 @@
 import { Button, Input, Space, Table } from "antd";
 import "antd/dist/antd.css";
-import UploadFile from "features/UploadFile-Storage/File";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { RiDeleteBin6Line, RiEditFill } from "react-icons/ri";
+import { RiEditFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import ModalAddTeammate from "./components/AddNewTeammate/ModalAddTeammate";
+import DeleteTeammate from "./components/DeleteTeammate/DeleteTeammate";
 import "./TeammateFeature.scss";
+import { ListUser } from "./teammateSlice";
 
 const TeammateFeature = () => {
-  const teammateData = useSelector((state) => state.teammate);
+  const teammateData = useSelector((state) => state.teammate.dataList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(ListUser());
+  }, []);
 
   const [teammate, setTeammate] = useState(teammateData);
+
   const [value, setValue] = useState("");
-  console.log("data", teammate);
+
+  useEffect(() => {
+    setTeammate(teammateData);
+  }, [teammateData]);
 
   const FilterByNameInput = (
     <Input
@@ -20,54 +32,74 @@ const TeammateFeature = () => {
       value={value}
       onChange={(e) => {
         const currValue = e.target.value;
-        console.log("search value: ", currValue);
         setValue(currValue);
-        const filteredData = teammateData.filter(
-          (entry) =>
-            entry.name.toLowerCase().includes(currValue) ||
-            entry.tag.toLowerCase().includes(currValue)
+        const filteredData = teammateData.filter((entry) =>
+          entry.user_name.toLowerCase().includes(currValue)
         );
+
         setTeammate(filteredData);
       }}
     />
   );
+
   const columns = [
+    // {
+    //   title: "Name",
+    //   dataIndex: "name",
+    //   key: "id",
+    //   render: (t, r) => (
+    //     <div className="user__tag">
+    //       <img src={`${r.avatar}`} alt={r.name} height="35px" width="35px" />
+    //       {r.name}
+    //     </div>
+    //   ),
+    // },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "id",
+      title: "Username",
+      dataIndex: "user_name",
+      key: "user_name",
       render: (t, r) => (
         <div className="user__tag">
-          <img src={`${r.avatar}`} alt={r.name} height="35px" width="35px" />
-          {r.name}
+          <img
+            src={`${r.avatar}`}
+            alt={r.user_name}
+            height="35px"
+            width="35px"
+          />
+          {r.user_name}
         </div>
       ),
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "id",
-      render: (t, r) => r.email,
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone_number",
-      key: "id",
-      render: (t, r) => r.phone_number,
-    },
-    {
-      title: "Tags",
-      dataIndex: "tag",
-      key: "Id",
-      render: (t, r) => r.tag,
-    },
+    // {
+    //   title: "Email",
+    //   dataIndex: "email",
+    //   key: "id",
+    //   render: (t, r) => r.email,
+    // },
+    // {
+    //   title: "Phone",
+    //   dataIndex: "phone_number",
+    //   key: "id",
+    //   render: (t, r) => r.phone_number,
+    // },
+    // {
+    //   title: "Tags",
+    //   dataIndex: "tag",
+    //   key: "Id",
+    //   render: (t, r) => r.tag,
+    // },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<RiEditFill />} size="small" />
-          <Button type="danger" icon={<RiDeleteBin6Line />} size="small" />
+          <Button
+            type="primary"
+            icon={<RiEditFill />}
+            size="small"
+            // teamateId={record.user_name}
+          />
+          <DeleteTeammate user_name={record.user_name} />
         </Space>
       ),
     },
@@ -82,8 +114,8 @@ const TeammateFeature = () => {
           </i>
           {FilterByNameInput}
         </div>
-        <div className="header__add-file">
-          <UploadFile />
+        <div className="header__add-teammate">
+          <ModalAddTeammate />
         </div>
         <div className="header__user-tag">
           <img
