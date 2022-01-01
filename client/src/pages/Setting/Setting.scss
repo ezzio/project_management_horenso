@@ -1,0 +1,31 @@
+.setting-ctn {
+  padding: 1rem 2rem;
+  background-color: #f6f7f8;
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    & .ant-card {
+      border-radius: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+    &__basic-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    &__danger {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid crimson;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+      &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
