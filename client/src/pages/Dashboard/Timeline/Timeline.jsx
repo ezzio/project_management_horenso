@@ -13,6 +13,9 @@ const TimelineChart = () => {
         <Timeline.Item label="2015-09-01 09:12:11">
           Network problems being solved
         </Timeline.Item>
+        <Timeline.Item label="2015-09-01 09:12:11">
+          Network problems being solved
+        </Timeline.Item>
       </Timeline>
     </>
   );

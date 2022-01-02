@@ -14,32 +14,37 @@ const Dashboard = () => {
       <Title level={1}>Dashboard</Title>
 
       <Row gutter={[8, 8]}>
-        <div className="circle_chart">
+        <div className="comparition-chart">
           <Space size="large">
-            <div className="circle_chart_box">
-              <Title level={4} className="circle_chart_title">
+            <div className="comparition-chart__circle-chart__box">
+              <Title
+                level={4}
+                className="comparition-chart__circle-chart__title"
+              >
                 Task Chart
               </Title>
-              <div className="circle_chart_item">
+              <div className="comparition-chart__circle-chart__item">
                 <TaskChart />
               </div>
             </div>
-            <div className="circle_chart_box">
-              <Title level={4} className="circle_chart_title">
+            <div className="comparition-chart__circle-chart__box">
+              <Title
+                level={4}
+                className="comparition-chart__circle-chart__title"
+              >
                 Kanban Chart
               </Title>
-              <div className="circle_chart_item">
+              <div className="comparition-chart__circle-chart__item">
                 <KanbanChart />
               </div>
             </div>
+            <div className="comparition-chart__timeline">
+              <Title level={4} className="comparition-chart__timeline__title">
+                Project Timeline
+              </Title>
+              <TimelineChart className="comparition-chart__timeline__item" />
+            </div>
           </Space>
-        </div>
-
-        <div className="timeline">
-          <Title level={4} className="timeline_title">
-            Project Timeline
-          </Title>
-          <TimelineChart className="timeline_item" />
         </div>
       </Row>
       <Row>

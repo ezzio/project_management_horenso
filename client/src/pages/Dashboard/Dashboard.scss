@@ -6,46 +6,44 @@
   height: 100vh;
 }
 
-.timeline {
-  width: 100%;
-  height: 100%;
-
-  background-color: #fff;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  // margin-bottom: 40px;
-  border-radius: 25px;
-
+.comparition-chart {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-  &_title {
-    margin-left: 20px;
-    margin-top: 10px;
-  }
-}
-
-.circle_chart {
-  // width: 60%;
-  // height: 100%;
-  display: flex;
-  // justify-content: space-around;
-  // margin-bottom: 40px;
-  &_box {
+  &__circle-chart__box {
     width: 100%;
     height: 100%;
     background-color: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 25px;
-    // margin-right: 40px;
   }
-  &_title {
+
+  &__circle-chart__title {
     padding-left: 15px;
     padding-top: 10px;
   }
-  &_item {
-    width: 400px;
+
+  &__circle-chart__item {
+    width: 545px;
     height: 250px;
+  }
+
+  &__timeline {
+    width: 700px;
+    height: 300px;
+
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__title {
+      padding: 10px 0 0 15px;
+    }
   }
 }
 
