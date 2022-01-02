@@ -6,7 +6,6 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import SideBar from 'components/SideBar/SideBar';
 import { useEffect, useState } from 'react';
 import Meeting from 'pages/Horenso/Meeting/Meeting';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
@@ -22,12 +21,12 @@ import DetailTask from 'features/DetailTask/DetailTask';
 import UserSetting from 'pages/UserSettings/UserSetting';
 import Source from 'pages/Storage/Source/Source';
 import Dashboard from 'pages/Dashboard/Dashboard';
+import SideBar from 'components/SideBar/SideBar';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Board /> */}
         <Switch>
           <Route path="/login">
             <LoginScreen />
@@ -80,9 +79,9 @@ const AnimatedRouter = () => {
         <Route path="/dashboard" children={<Dashboard />} />
         <Route path="/meeting" children={<Meeting />} />
         <Route path="/conversation" children={<Conversation />} />
-        <Route exact path="/kanban" children={<KanbanDashBoard />} />
+        <Route exact path="/jobs" children={<KanbanDashBoard />} />
         <Route path="/report" children={<Report />} />
-        <Route path="/source" children={<Source />} />
+        <Route path="/storage" children={<Source />} />
         <Route path="/github" children={<Github />} />
       </Switch>
     </div>

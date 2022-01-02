@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
-
+ 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -136,12 +136,12 @@ const JobTag = (props) => {
   );
 };
 
-JobTag.propTypes = {
-  title: PropTypes.string,
-  level: PropTypes.string,
-  process: PropTypes.string,
-  members: PropTypes.array,
-  onDeleteJob: PropTypes.func,
-};
+// JobTag.propTypes = {
+//   title: PropTypes.string,
+//   level: PropTypes.string,
+//   process: PropTypes.string,
+//   members: PropTypes.array,
+//   onDeleteJob: PropTypes.func,
+// };
 
 export default JobTag;

@@ -2,6 +2,8 @@ import axios from "axios";
 
 // const API = process.env.REACT_APP_API_URL;
 const API = "https://servernckh.herokuapp.com";
+// const API = "http://localhost:4000";
+
 const KanbanAPI = {
   ListKanbanOfJob: (params) => {
     return axios
@@ -26,6 +28,7 @@ const KanbanAPI = {
         priority: params.priority,
         start_time: params.start_time,
         end_time: params.end_time,
+        members: params.members,
       })
       .then((response) => {
         return response.data;
