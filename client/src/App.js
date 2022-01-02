@@ -22,6 +22,7 @@ import UserSetting from 'pages/UserSettings/UserSetting';
 import Source from 'pages/Storage/Source/Source';
 import Dashboard from 'pages/Dashboard/Dashboard';
 import SideBar from 'components/SideBar/SideBar';
+import Setting from 'pages/Setting/Setting';
 
 function App() {
   return (
@@ -83,6 +84,7 @@ const AnimatedRouter = () => {
         <Route path="/report" children={<Report />} />
         <Route path="/storage" children={<Source />} />
         <Route path="/github" children={<Github />} />
+        <Route path="/setting" children={<Setting />} />
       </Switch>
     </div>
   );
