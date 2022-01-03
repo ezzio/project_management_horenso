@@ -1,16 +1,6 @@
 import { Pie } from "@ant-design/charts";
 
-const KanbanChart = () => {
-  const data = [
-    {
-      type: "Total",
-      value: 5,
-    },
-    {
-      type: "Completed",
-      value: 2,
-    },
-  ];
+const KanbanChart = ({ data }) => {
   const config = {
     appendPadding: 10,
     data,

@@ -1,16 +1,6 @@
 import { Pie } from "@ant-design/charts";
 
-const TaskChart = () => {
-  const data = [
-    {
-      type: "Total",
-      value: 50,
-    },
-    {
-      type: "Completed",
-      value: 25,
-    },
-  ];
+const TaskChart = ({ data }) => {
   const config = {
     appendPadding: 10,
     data,

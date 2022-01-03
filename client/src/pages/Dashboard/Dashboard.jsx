@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Typography, Space, Col } from "antd";
+import { Row, Typography, Space, Col, Empty } from "antd";
 import "antd/dist/antd.css";
 import "./Dashboard.scss";
 import TaskChart from "./TaskChart/TaskChart";
@@ -9,6 +9,55 @@ import GrantChart from "./GrantChart/GrantChart";
 
 const { Title } = Typography;
 const Dashboard = () => {
+  const taskData = [
+    {
+      type: "Total",
+      value: 50,
+    },
+    {
+      type: "Completed",
+      value: 25,
+    },
+  ];
+
+  const kanbanData = [
+    {
+      type: "Total",
+      value: 5,
+    },
+    {
+      type: "Completed",
+      value: 2,
+    },
+  ];
+
+  const timelineData = [
+    {
+      id: 1,
+      label: "2015-09-01",
+      content: "Create a services",
+    },
+    {
+      id: 2,
+      label: "2015-09-01 09:12:11",
+      content: "Solve initial network problems",
+    },
+    {
+      id: 3,
+      label: "2015-09-01 09:12:11",
+      content: "Network problems being solved",
+    },
+    {
+      id: 4,
+      label: "2015-09-01 09:12:11",
+      content: "Network problems being solved",
+    },
+    {
+      id: 5,
+      label: "2015-09-01 09:12:11",
+      content: "Network problems being solved",
+    },
+  ];
   return (
     <div className="ctn dashboard">
       <Title level={1}>Dashboard</Title>
@@ -24,7 +73,11 @@ const Dashboard = () => {
                 Task Chart
               </Title>
               <div className="comparition-chart__circle-chart__item">
-                <TaskChart />
+                {taskData === null ? (
+                  <Empty style={{ paddingTop: "2rem" }} />
+                ) : (
+                  <TaskChart data={taskData} />
+                )}
               </div>
             </div>
             <div className="comparition-chart__circle-chart__box">
@@ -35,14 +88,25 @@ const Dashboard = () => {
                 Kanban Chart
               </Title>
               <div className="comparition-chart__circle-chart__item">
-                <KanbanChart />
+                {kanbanData === null ? (
+                  <Empty style={{ paddingTop: "2rem" }} />
+                ) : (
+                  <KanbanChart data={kanbanData} />
+                )}
               </div>
             </div>
             <div className="comparition-chart__timeline">
               <Title level={4} className="comparition-chart__timeline__title">
                 Project Timeline
               </Title>
-              <TimelineChart className="comparition-chart__timeline__item" />
+              {timelineData === null ? (
+                <Empty style={{ paddingTop: "2rem" }} />
+              ) : (
+                <TimelineChart
+                  className="comparition-chart__timeline__item"
+                  data={timelineData}
+                />
+              )}
             </div>
           </Space>
         </div>
