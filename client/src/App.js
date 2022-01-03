@@ -22,8 +22,9 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-
 import "./App.scss";
+} from 'react-router-dom';
+import Setting from 'pages/Setting/Setting';
 
 function App() {
   return (
@@ -86,6 +87,7 @@ const AnimatedRouter = () => {
         <Route path="/storage" children={<Source />} />
         <Route path="/github" children={<Github />} />
         <Route path="/teammate" children={<Teammate />} />
+        <Route path="/setting" children={<Setting />} />
       </Switch>
     </div>
   );
