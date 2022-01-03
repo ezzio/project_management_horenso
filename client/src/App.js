@@ -12,6 +12,7 @@ import Github from "pages/Github/Github";
 import Conversation from "pages/Horenso/Conversation/Conversation";
 import Meeting from "pages/Horenso/Meeting/Meeting";
 import Report from "pages/Horenso/Report/Report";
+import Setting from "pages/Setting/Setting";
 import Source from "pages/Storage/Source/Source";
 import Teammate from "pages/Teammate/Teammate";
 import UserSetting from "pages/UserSettings/UserSetting";
@@ -22,7 +23,6 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-
 import "./App.scss";
 
 function App() {
@@ -86,6 +86,7 @@ const AnimatedRouter = () => {
         <Route path="/storage" children={<Source />} />
         <Route path="/github" children={<Github />} />
         <Route path="/teammate" children={<Teammate />} />
+        <Route path="/setting" children={<Setting />} />
       </Switch>
     </div>
   );

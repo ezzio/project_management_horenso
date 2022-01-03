@@ -1,26 +1,23 @@
-import { Button, Input, Space, Table } from "antd";
+import { Input, Space, Table } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { RiEditFill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalAddTeammate from "./components/AddNewTeammate/ModalAddTeammate";
 import DeleteTeammate from "./components/DeleteTeammate/DeleteTeammate";
+import EditTeammate from "./components/EditTeammate/EditTeammate";
 import "./TeammateFeature.scss";
 import { ListUser } from "./teammateSlice";
 
 const TeammateFeature = () => {
   const teammateData = useSelector((state) => state.teammate.dataList);
+  const [teammate, setTeammate] = useState(teammateData);
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(ListUser());
   }, []);
-
-  const [teammate, setTeammate] = useState(teammateData);
-
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     setTeammate(teammateData);
@@ -33,8 +30,10 @@ const TeammateFeature = () => {
       onChange={(e) => {
         const currValue = e.target.value;
         setValue(currValue);
-        const filteredData = teammateData.filter((entry) =>
-          entry.user_name.toLowerCase().includes(currValue)
+        const filteredData = teammateData.filter(
+          (entry) =>
+            entry.user_name.toLowerCase().includes(currValue) ||
+            entry.display_name.toLowerCase().includes(currValue)
         );
 
         setTeammate(filteredData);
@@ -43,32 +42,27 @@ const TeammateFeature = () => {
   );
 
   const columns = [
-    // {
-    //   title: "Name",
-    //   dataIndex: "name",
-    //   key: "id",
-    //   render: (t, r) => (
-    //     <div className="user__tag">
-    //       <img src={`${r.avatar}`} alt={r.name} height="35px" width="35px" />
-    //       {r.name}
-    //     </div>
-    //   ),
-    // },
     {
-      title: "Username",
-      dataIndex: "user_name",
+      title: "Name",
+      dataIndex: "display_name",
       key: "user_name",
       render: (t, r) => (
         <div className="user__tag">
           <img
             src={`${r.avatar}`}
-            alt={r.user_name}
+            alt={r.display_name}
             height="35px"
             width="35px"
           />
-          {r.user_name}
+          {r.display_name ? r.display_name : `${r.user_name} (username)`}
         </div>
       ),
+    },
+    {
+      title: "Username",
+      dataIndex: "user_name",
+      key: "user_name",
+      render: (t, r) => r.user_name,
     },
     // {
     //   title: "Email",
@@ -82,24 +76,25 @@ const TeammateFeature = () => {
     //   key: "id",
     //   render: (t, r) => r.phone_number,
     // },
-    // {
-    //   title: "Tags",
-    //   dataIndex: "tag",
-    //   key: "Id",
-    //   render: (t, r) => r.tag,
-    // },
+    {
+      title: "Tags",
+      dataIndex: "tag",
+      key: "user_name",
+      render: (t, r) => r.tag,
+    },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button
-            type="primary"
-            icon={<RiEditFill />}
-            size="small"
-            // teamateId={record.user_name}
-          />
-          <DeleteTeammate user_name={record.user_name} />
+          {localStorage.getItem("access_token") ===
+            localStorage.getItem("projectowner") &&
+            record.tag !== "Leader" && (
+              <>
+                <EditTeammate user={record} />
+                <DeleteTeammate user_name={record.user_name} />
+              </>
+            )}
         </Space>
       ),
     },
@@ -115,7 +110,7 @@ const TeammateFeature = () => {
           {FilterByNameInput}
         </div>
         <div className="header__add-teammate">
-          <ModalAddTeammate />
+          <ModalAddTeammate listTeammate={teammate} />
         </div>
         <div className="header__user-tag">
           <img
@@ -127,7 +122,7 @@ const TeammateFeature = () => {
         </div>
       </div>
       <div className="content">
-        <Table dataSource={teammate} columns={columns}></Table>
+        <Table dataSource={teammate} columns={columns} />
       </div>
     </div>
   );

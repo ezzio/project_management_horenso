@@ -1,12 +1,14 @@
 import { Button, Form, message, Modal } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AddNewTeammate, addNewTeammate } from "../../teammateSlice";
+import { AddNewTeammate, addNewTeammate, ListUser } from "../../teammateSlice";
 import FormAddTeammate from "./FormAddTeammate";
 
 ModalAddTeammate.propTypes = {};
 
 function ModalAddTeammate(props) {
+  const { listTeammate } = props;
+  console.log(listTeammate);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [form] = Form.useForm();
@@ -14,10 +16,11 @@ function ModalAddTeammate(props) {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
+    console.log(values);
     const action = {
       user_name: values.user_name[0].value,
-      projectowner: localStorage.getItem("access_token"),
-      projectId: "61cc10d77f58160024c8bc39",
+      avatar: values.avatar,
+      tag: "Member",
     };
     setModalOpen(false);
     dispatch(addNewTeammate(action));
@@ -50,7 +53,11 @@ function ModalAddTeammate(props) {
             });
         }}
       >
-        <FormAddTeammate onFinish={onFinish} form={form} />
+        <FormAddTeammate
+          onFinish={onFinish}
+          form={form}
+          listTeammate={listTeammate}
+        />
       </Modal>
     </>
   );
