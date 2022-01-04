@@ -1,16 +1,20 @@
 @import 'styles/Color.scss';
 .user-setting-ctn {
-  background-color: lightgray;
+  background-color: #f6f7f8;
 }
 .ctn-userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
-  height: 90vh;
+  width: 320px;
+  height: 84.2vh;
+  border-style: hidden;
+  border-radius: 1rem;
   margin: 0 auto;
   left: 15%;
   top: 10%;
+  background-color: #fff;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
   position: absolute;
   p {
     color: #888;
@@ -257,201 +261,65 @@
   }
 }
 
-// .navBar {
-//   background-color: white;
-//   width: 100vw;
-//   height: 75px;
-//   border-style: solid;
-//   border-width: 1px;
-//   border-color: lightgray;
-//   position: absolute;
-//   display: flex;
-
-//   &__btn-ctn {
-//     position: relative;
-//     height: fit-content;
-//     width: fit-content;
-//     top: 35.8%;
-//     left: 33.3%;
-//     z-index: 3;
-//   }
-
-//   &__project {
-//     position: relative;
-//     height: 47px;
-//     width: 115px;
-//     border-style: solid;
-//     border-width: 0px 0px 1px 0px;
-//     border-color: lightgray;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 400;
-//       padding-left: 27px;
-//     }
-
-//     &:hover {
-//       transition-duration: 0.2s;
-//       border-width: 0px 0px 3px 0px;
-//       border-color: orange;
-//     }
-//   }
-
-//   &__project-selected {
-//     position: relative;
-//     height: 48px;
-//     width: 115px;
-//     border-style: solid;
-//     border-width: 0px 0px 4px 0px;
-//     border-color: orange;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 550;
-//       padding-left: 27px;
-//     }
-//   }
-
-//   &__task {
-//     position: relative;
-//     height: 47px;
-//     width: 115px;
-//     border: none;
-//     border-style: solid;
-//     border-width: 0px 0px 1px 0px;
-//     border-color: lightgray;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 400;
-//       padding-left: 2px;
-//     }
-
-//     &:hover {
-//       transition-duration: 0.2s;
-//       border-width: 0px 0px 3px 0px;
-//       border-color: orange;
-//     }
-//   }
-
-//   &__task-selected {
-//     position: relative;
-//     height: 48px;
-//     width: 115px;
-//     border: none;
-//     border-style: solid;
-//     border-width: 0px 0px 4px 0px;
-//     border-color: orange;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 550;
-//       padding-left: 2px;
-//     }
-//   }
-
-//   &__issues {
-//     position: relative;
-//     height: 47px;
-//     width: 104px;
-//     border-style: solid;
-//     border-width: 0px 0px 1px 0px;
-//     border-color: lightgray;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 400;
-//       padding-left: 15px;
-//     }
-
-//     &:hover {
-//       transition-duration: 0.2s;
-//       border-width: 0px 0px 3px 0px;
-//       border-color: orange;
-//     }
-//   }
-
-//   &__issues-selected {
-//     position: relative;
-//     height: 48px;
-//     width: 104px;
-//     border-style: solid;
-//     border-width: 0px 0px 4px 0px;
-//     border-color: orange;
-//     background-color: white;
-
-//     &__text {
-//       color: black;
-//       font-size: 14px;
-//       font-weight: 550;
-//       padding-left: 15px;
-//     }
-//   }
-
-//   &__task-number-ctn {
-//     position: absolute;
-//     background-color: lightgray;
-//     width: 20px;
-//     height: 20px;
-//     border-radius: 10px;
-//     align-content: center;
-//     bottom: 28%;
-//     left: 80%;
-//     padding-top: 2px;
-//     &__text {
-//       display: inline-block;
-//       font-weight: 600;
-//     }
-//   }
-
-//   &__type-btn {
-//     position: absolute;
-//     left: 50%;
-//   }
-// }
-
 .info-ctn {
+  position: relative;
+  height: 400px;
+  width: 940px;
+  top: 0%;
+  left: 0%;
+  border-style: hidden;
+  border-width: 2px;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+}
+
+.task-and-project-ctn {
   position: absolute;
-  height: fit-content;
-  width: 950px;
-  top: 13.8%;
-  left: 33.6%;
+  top: 10%;
+  left: 33.5%;
+  height: 800px;
+  width: 960px;
 }
 .project-ctn {
-  position: absolute;
-  left: 33.6%;
-  top: 20%;
-  height: 300px;
+  position: relative;
+  left: 0%;
+  top: 0%;
+  height: 320px;
   width: 940px;
   // border-style: solid;
   // border-width: 1px;
   // border-color: black;
   overflow-x: auto;
   padding-top: 1rem;
-  padding-left: 1rem;
+  padding-left: 0;
+
+  &__title {
+    width: 250px;
+    height: 66px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 .task-ctn {
-  position: absolute;
-  left: 33.6%;
-  top: 55%;
+  position: relative;
+  left: 0%;
+  top: 1rem;
   height: 400px;
   width: 940px;
   // border-style: solid;
   // border-width: 1px;
   // border-color: black;
-  overflow-x: auto;
+  overflow-y: auto;
   padding-top: 1rem;
   padding-left: 1rem;
+  padding-right: 1rem;
+  border-style: hidden;
+  border-width: 2px;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
 }
 
 .approved-decor {
@@ -463,11 +331,11 @@
   border-style: none;
   outline: none;
   padding-top: 8px;
-  background-color: rgb(177, 166, 240);
+  background-color: hsl(337, 77%, 64%, 0.1);
   &__text {
     font-weight: bold;
     font-size: 15px;
-    color: darkslateblue;
+    color: hsl(337, 77%, 64%);
   }
 }
 
@@ -480,11 +348,11 @@
   border-style: none;
   outline: none;
   padding-top: 8px;
-  background-color: rgb(204, 252, 204);
+  background-color: hsl(170, 79%, 43%, 0.1);
   &__text {
     font-weight: bold;
     font-size: 15px;
-    color: limegreen;
+    color: hsl(170, 79%, 43%);
   }
 }
 
@@ -497,10 +365,10 @@
   border-style: none;
   outline: none;
   padding-top: 8px;
-  background-color: lightpink;
+  background-color: hsl(22, 95%, 60%, 0.1);
   &__text {
     font-weight: bold;
     font-size: 15px;
-    color: red;
+    color: hsl(22, 95%, 60%);
   }
 }
