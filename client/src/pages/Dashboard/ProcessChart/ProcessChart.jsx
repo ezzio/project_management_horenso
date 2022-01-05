@@ -35,7 +35,7 @@ const ProcessChart = ({ data }) => {
           textOverflow: "ellipsis",
           fontSize: "24px",
         },
-        content: "Task",
+        content: "Process",
       },
     },
   };
