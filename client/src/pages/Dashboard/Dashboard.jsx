@@ -6,12 +6,28 @@ import TaskChart from "./TaskChart/TaskChart";
 import KanbanChart from "./KanbanChart/KanbanChart";
 import TimelineChart from "./Timeline/Timeline";
 import GrantChart from "./GrantChart/GrantChart";
+import ProcessChart from "./ProcessChart/ProcessChart";
 
 const { Title } = Typography;
 const Dashboard = () => {
   const taskData = [
     {
-      type: "Total",
+      type: "Reviewing",
+      value: 50,
+    },
+    {
+      type: "Completed",
+      value: 25,
+    },
+    {
+      type: "Deadline's Exceeded",
+      value: 25,
+    },
+  ];
+
+  const kanbanData = [
+    {
+      type: "Incompleted",
       value: 50,
     },
     {
@@ -20,14 +36,14 @@ const Dashboard = () => {
     },
   ];
 
-  const kanbanData = [
+  const processData = [
     {
-      type: "Total",
-      value: 5,
+      type: "Incompleted",
+      value: 50,
     },
     {
       type: "Completed",
-      value: 2,
+      value: 40,
     },
   ];
 
@@ -92,6 +108,21 @@ const Dashboard = () => {
                   <Empty style={{ paddingTop: "2rem" }} />
                 ) : (
                   <KanbanChart data={kanbanData} />
+                )}
+              </div>
+            </div>
+            <div className="comparition-chart__circle-chart__box">
+              <Title
+                level={4}
+                className="comparition-chart__circle-chart__title"
+              >
+                Proccess Chart
+              </Title>
+              <div className="comparition-chart__circle-chart__item">
+                {processData === null ? (
+                  <Empty style={{ paddingTop: "2rem" }} />
+                ) : (
+                  <ProcessChart data={processData} />
                 )}
               </div>
             </div>

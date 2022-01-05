@@ -15,8 +15,8 @@ const GrantChart = () => {
     [
       "Research",
       "Find sources",
-      new Date(2015, 0, 1),
-      new Date(2015, 0, 5),
+      new Date(2021, 1, 1),
+      new Date(2021, 3, 5),
       null,
       100,
       null,
@@ -25,17 +25,17 @@ const GrantChart = () => {
       "Write",
       "Write paper",
       null,
-      new Date(2015, 0, 9),
-      3 * 24 * 60 * 60 * 1000,
-      25,
+      new Date(2021, 5, 9),
+      3 * 7 * 24 * 60 * 60 * 1000,
+      70,
       "Research,Outline",
     ],
     [
       "Cite",
       "Create bibliography",
       null,
-      new Date(2015, 0, 7),
-      1 * 24 * 60 * 60 * 1000,
+      new Date(2021, 5, 7),
+      3 * 4 * 7 * 24 * 60 * 60 * 1000,
       20,
       "Research",
     ],
@@ -43,8 +43,8 @@ const GrantChart = () => {
       "Complete",
       "Hand in paper",
       null,
-      new Date(2015, 0, 10),
-      1 * 24 * 60 * 60 * 1000,
+      new Date(2021, 9, 10),
+      3 * 7 * 24 * 60 * 60 * 1000,
       0,
       "Cite,Write",
     ],
@@ -52,8 +52,8 @@ const GrantChart = () => {
       "Outline",
       "Outline paper",
       null,
-      new Date(2015, 0, 6),
-      1 * 24 * 60 * 60 * 1000,
+      new Date(2021, 12, 6),
+      3 * 7 * 24 * 60 * 60 * 1000,
       100,
       "Research",
     ],
@@ -67,6 +67,7 @@ const GrantChart = () => {
         loader={<div>Loading Chart</div>}
         data={ganttChartData}
         rootProps={{ "data-testid": "1" }}
+        style={{ overflow: "auto" }}
       />
     </div>
   );
