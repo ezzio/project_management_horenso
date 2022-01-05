@@ -62,16 +62,14 @@ function FormAddTeammate(props) {
         user_name: username,
       })
       .then((response) => {
-        var listTeammateUsername = listTeammate.map((user) => user.user_name);
-        console.log("username_list: ", listTeammateUsername);
-
         var searchTeammate = response.data.listUserFound;
         console.log("search list: ", searchTeammate);
 
         var finalSearchList = searchTeammate.filter(
-          (x) => !listTeammateUsername.includes(x.user_name)
+          (x) => !listTeammate.some((y) => x.user_name === y.user_name)
         );
-        // console.log("difference: ", finalSearchList);
+
+        console.log("difference: ", finalSearchList);
 
         return finalSearchList.map((user) => ({
           label: `${user.user_name} (${user.display_name})`,

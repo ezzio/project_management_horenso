@@ -17,6 +17,22 @@ export const AddNewTeammate = createAsyncThunk(
   }
 );
 
+export const DeleteTeammateByUsername = createAsyncThunk(
+  "teammate/AddTeammate",
+  async (username) => {
+    const current = await TeammateAPI.deleteTeammate(username);
+    return current;
+  }
+);
+
+export const EditTeammateByUsername = createAsyncThunk(
+  "teammate/AddTeammate",
+  async (params) => {
+    const current = await TeammateAPI.editTeammate(params);
+    return current;
+  }
+);
+
 const initialState = {
   dataList: [],
 };
@@ -30,18 +46,19 @@ export const teammateSlice = createSlice({
       state.dataList.push(action.payload);
     },
     deleteTeammate: (state, action) => {
+      console.log(action.payload);
       state.dataList = state.dataList.filter(
         (i) => i.user_name !== action.payload
       );
     },
     editTeammate: (state, action) => {
-      const { user_name, newTag } = action.payload;
+      const { user_name, newRole } = action.payload;
       const memberChangeIndex = state.dataList.findIndex(
         (item) => item.user_name === user_name
       );
 
       if (memberChangeIndex >= 0) {
-        state.dataList[memberChangeIndex].tag = newTag;
+        state.dataList[memberChangeIndex].tag = newRole;
       }
     },
   },
@@ -57,6 +74,18 @@ export const teammateSlice = createSlice({
     [AddNewTeammate.rejected]: (state) => {},
     [AddNewTeammate.fulfilled]: (state, action) => {
       console.log("added teammate: ", action.payload);
+    },
+
+    [DeleteTeammateByUsername.pending]: (state) => {},
+    [DeleteTeammateByUsername.rejected]: (state) => {},
+    [DeleteTeammateByUsername.fulfilled]: (state, action) => {
+      console.log("Delete teammate: ", action.payload);
+    },
+
+    [EditTeammateByUsername.pending]: (state) => {},
+    [EditTeammateByUsername.rejected]: (state) => {},
+    [EditTeammateByUsername.fulfilled]: (state, action) => {
+      console.log("Edit teammate: ", action.payload);
     },
   },
 });

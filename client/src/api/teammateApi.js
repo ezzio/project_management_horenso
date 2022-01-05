@@ -31,12 +31,28 @@ const TeammateAPI = {
       });
   },
 
-  deleteTeammate: (params) => {
+  deleteTeammate: (username) => {
     return axios
-      .delete(`${API}/project/deleteMember`, {
-        owner: localStorage.getItem("access_token"),
-        projectowner: localStorage.getItem("projectowner"),
+      .post(`${API}/project/deleteUserInProject`, {
+        user_name: username,
+        projectId: localStorage.getItem("projectId"),
+        owner: localStorage.getItem("projectowner"),
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  editTeammate: (params) => {
+    return axios
+      .post(`${API}/project/editRoleOfUser`, {
         user_name: params.user_name,
+        newRole: params.newRole,
+        projectId: localStorage.getItem("projectId"),
+        owner: localStorage.getItem("projectowner"),
       })
       .then((response) => {
         return response.data;
