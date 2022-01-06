@@ -6,6 +6,15 @@ const TaskChart = ({ data }) => {
     data,
     angleField: "value",
     colorField: "type",
+    color: ({ type }) => {
+      if (type === "Over Deadline") {
+        return "hsl(357, 96%, 60%)";
+      } else if (type === "Completed") {
+        return "#09814a";
+      } else {
+        return "#ea9010";
+      }
+    },
     radius: 1,
     innerRadius: 0.6,
     label: {

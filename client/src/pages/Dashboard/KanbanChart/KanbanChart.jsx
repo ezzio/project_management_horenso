@@ -6,6 +6,12 @@ const KanbanChart = ({ data }) => {
     data,
     angleField: "value",
     colorField: "type",
+    color: ({ type }) => {
+      if (type === "Incompleted") {
+        return "#ea9010";
+      }
+      return "#09814a";
+    },
     radius: 1,
     innerRadius: 0.6,
     label: {
@@ -35,7 +41,7 @@ const KanbanChart = ({ data }) => {
           textOverflow: "ellipsis",
           fontSize: "24px",
         },
-        content: "Kanban",
+        content: "Job",
       },
     },
   };

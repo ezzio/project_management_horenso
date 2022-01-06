@@ -1,12 +1,11 @@
 import React from "react";
-import { Row, Typography, Space, Col, Empty } from "antd";
+import { Typography, Empty } from "antd";
 import "antd/dist/antd.css";
 import "./Dashboard.scss";
 import TaskChart from "./TaskChart/TaskChart";
 import KanbanChart from "./KanbanChart/KanbanChart";
 import TimelineChart from "./Timeline/Timeline";
-import GrantChart from "./GrantChart/GrantChart";
-import ProcessChart from "./ProcessChart/ProcessChart";
+import GanttChart from "./GanttChart/GanttChart";
 
 const { Title } = Typography;
 const Dashboard = () => {
@@ -20,7 +19,7 @@ const Dashboard = () => {
       value: 25,
     },
     {
-      type: "Deadline's Exceeded",
+      type: "Over Deadline",
       value: 25,
     },
   ];
@@ -35,17 +34,7 @@ const Dashboard = () => {
       value: 25,
     },
   ];
-
-  const processData = [
-    {
-      type: "Incompleted",
-      value: 50,
-    },
-    {
-      type: "Completed",
-      value: 40,
-    },
-  ];
+  // null;
 
   const timelineData = [
     {
@@ -78,78 +67,53 @@ const Dashboard = () => {
     <div className="ctn dashboard">
       <Title level={1}>Dashboard</Title>
 
-      <Row gutter={[8, 8]}>
-        <div className="comparition-chart">
-          <Space size="large">
-            <div className="comparition-chart__circle-chart__box">
-              <Title
-                level={4}
-                className="comparition-chart__circle-chart__title"
-              >
-                Task Chart
-              </Title>
-              <div className="comparition-chart__circle-chart__item">
-                {taskData === null ? (
-                  <Empty style={{ paddingTop: "2rem" }} />
-                ) : (
-                  <TaskChart data={taskData} />
-                )}
-              </div>
-            </div>
-            <div className="comparition-chart__circle-chart__box">
-              <Title
-                level={4}
-                className="comparition-chart__circle-chart__title"
-              >
-                Kanban Chart
-              </Title>
-              <div className="comparition-chart__circle-chart__item">
-                {kanbanData === null ? (
-                  <Empty style={{ paddingTop: "2rem" }} />
-                ) : (
-                  <KanbanChart data={kanbanData} />
-                )}
-              </div>
-            </div>
-            <div className="comparition-chart__circle-chart__box">
-              <Title
-                level={4}
-                className="comparition-chart__circle-chart__title"
-              >
-                Proccess Chart
-              </Title>
-              <div className="comparition-chart__circle-chart__item">
-                {processData === null ? (
-                  <Empty style={{ paddingTop: "2rem" }} />
-                ) : (
-                  <ProcessChart data={processData} />
-                )}
-              </div>
-            </div>
-            <div className="comparition-chart__timeline">
-              <Title level={4} className="comparition-chart__timeline__title">
-                Project Timeline
-              </Title>
-              {timelineData === null ? (
-                <Empty style={{ paddingTop: "2rem" }} />
-              ) : (
-                <TimelineChart
-                  className="comparition-chart__timeline__item"
-                  data={timelineData}
-                />
-              )}
-            </div>
-          </Space>
-        </div>
-      </Row>
-      <Row>
-        <div className="gantt-chart">
-          <Title level={4} className="gantt-chart_title">
-            Grantt Chart
+      <div className="comparition-chart">
+        <div className="comparition-chart__circle-chart__box">
+          <Title level={4} className="comparition-chart__circle-chart__title">
+            Task Chart
           </Title>
-          <GrantChart className="gantt-chart_item" />
+          <div className="comparition-chart__circle-chart__item">
+            {taskData === null ? (
+              <Empty style={{ padding: "2rem 0 0 2rem" }} />
+            ) : (
+              <TaskChart data={taskData} />
+            )}
+          </div>
         </div>
-      </Row>
+        <div className="comparition-chart__circle-chart__box">
+          <Title level={4} className="comparition-chart__circle-chart__title">
+            Job Chart
+          </Title>
+          <div className="comparition-chart__circle-chart__item">
+            {kanbanData === null ? (
+              <Empty style={{ padding: "2rem 0 0 2rem" }} />
+            ) : (
+              <KanbanChart data={kanbanData} />
+            )}
+          </div>
+        </div>
+
+        <div className="comparition-chart__timeline">
+          <Title level={4} className="comparition-chart__timeline__title">
+            Project Timeline
+          </Title>
+          {timelineData === null ? (
+            <Empty style={{ padding: "2rem 0 0 2rem" }} />
+          ) : (
+            <TimelineChart
+              className="comparition-chart__timeline__item"
+              data={timelineData}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="gantt-chart">
+        <Title level={4} className="gantt-chart__title">
+          Gantt Chart
+        </Title>
+        <GanttChart className="gantt-chart__item" />
+      </div>
     </div>
   );
 };

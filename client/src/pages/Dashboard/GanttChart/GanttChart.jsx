@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "react-google-charts";
 
-const GrantChart = () => {
+const GanttChart = () => {
   const ganttChartData = [
     [
       { type: "string", label: "Task ID" },
@@ -28,7 +28,7 @@ const GrantChart = () => {
       new Date(2021, 5, 9),
       3 * 7 * 24 * 60 * 60 * 1000,
       70,
-      "Research,Outline",
+      "Research",
     ],
     [
       "Cite",
@@ -58,19 +58,32 @@ const GrantChart = () => {
       "Research",
     ],
   ];
+
+  const options = {
+    gantt: {
+      criticalPathEnabled: false, // Critical path arrows will be the same as other arrows.
+      arrow: {
+        angle: 100,
+        width: 5,
+        color: "hsl(215, 92%, 64%)",
+        radius: 0,
+      },
+    },
+  };
   return (
     <div className="container">
       <Chart
-        width={"95vw"}
-        height={"410px"}
+        width="100"
+        height="100vh"
         chartType="Gantt"
         loader={<div>Loading Chart</div>}
         data={ganttChartData}
         rootProps={{ "data-testid": "1" }}
         style={{ overflow: "auto" }}
+        options={options}
       />
     </div>
   );
 };
 
-export default GrantChart;
+export default GanttChart;
