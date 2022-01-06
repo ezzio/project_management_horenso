@@ -9,6 +9,22 @@ export default function Task() {
 
     const { TabPane } = Tabs;
 
+    const tasks = 
+    [
+        {
+        title: 'Fix bugs',
+        status: 'In Progress',
+        },
+        {
+        title: 'Design UI for login page',
+        status: 'Approved',
+        },
+        {
+        title: 'Add change language feature',
+        status: 'In Review',
+        },
+    ]
+
     return (
         <div>
             <Tabs
@@ -19,16 +35,16 @@ export default function Task() {
                 style={{fontWeight: 'bold'}}
                 >
                 <TabPane tab='All' key='1'>
-                    <AllTask />
+                    <AllTask tasks={tasks} />
                 </TabPane>
                 <TabPane tab='Important' key='2'>
-                    <ImportantTask />
+                    <ImportantTask tasks={tasks} />
                 </TabPane>
                 <TabPane tab='Note' key='3'>
-                    <Note />
+                    <Note tasks={tasks} />
                 </TabPane>
                 <TabPane tab='Link' key='4'>
-                    <Links />
+                    <Links tasks={tasks} />
                 </TabPane>
             </Tabs>
         </div>

@@ -1,23 +1,8 @@
 import React from 'react'
-import { List, Checkbox } from 'antd'
+import { List } from 'antd'
 
-const AllTask = () => {
+const AllTask = ({tasks}) => {
   const { Item } = List
-
-  const tasks = [
-    {
-      title: 'Fix bugs',
-      status: 'In Progress',
-    },
-    {
-      title: 'Design UI for login page',
-      status: 'Approved',
-    },
-    {
-      title: 'Add change language feature',
-      status: 'In Review',
-    },
-  ]
 
   return (
     <List
@@ -25,7 +10,6 @@ const AllTask = () => {
       dataSource={tasks}
       renderItem={item => (
         <Item>
-          <Checkbox style={{marginRight: 15}}/>
           <Item.Meta 
             title={
               <a style={{fontSize: 20}}>
