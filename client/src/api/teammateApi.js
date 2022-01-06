@@ -6,9 +6,7 @@ const TeammateAPI = {
   getAll: (params) => {
     return axios
       .post(`${API}/project/listMemberInProject`, {
-        // owner: localStorage.getItem("access_token"),
-        // projectowner: localStorage.getItem("projectowner"),
-        idProject: "61cc10d77f58160024c8bc39",
+        idProject: localStorage.getItem("projectId"),
       })
       .then((response) => {
         return response.data;
@@ -21,9 +19,9 @@ const TeammateAPI = {
   addTeammate: (params) => {
     return axios
       .post(`${API}/project/addAMemberIntoProject`, {
-        user_name: params.username,
-        projectowner: params.projectowner,
-        projectId: params.projectId,
+        user_name: params.user_name,
+        projectowner: localStorage.getItem("access_token"),
+        projectId: localStorage.getItem("projectId"),
       })
       .then((response) => {
         return response.data;

@@ -34,6 +34,16 @@ export const teammateSlice = createSlice({
         (i) => i.user_name !== action.payload
       );
     },
+    editTeammate: (state, action) => {
+      const { user_name, newTag } = action.payload;
+      const memberChangeIndex = state.dataList.findIndex(
+        (item) => item.user_name === user_name
+      );
+
+      if (memberChangeIndex >= 0) {
+        state.dataList[memberChangeIndex].tag = newTag;
+      }
+    },
   },
   extraReducers: {
     [ListUser.pending]: (state) => {},
@@ -51,5 +61,6 @@ export const teammateSlice = createSlice({
   },
 });
 
-export const { addNewTeammate, deleteTeammate } = teammateSlice.actions;
+export const { addNewTeammate, deleteTeammate, editTeammate } =
+  teammateSlice.actions;
 export default teammateSlice.reducer;

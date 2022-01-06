@@ -1,16 +1,17 @@
-import { Form, Input, Select, Spin } from "antd";
+import { Form, Select, Spin } from "antd";
 import axios from "axios";
 import debounce from "lodash/debounce";
 import React, { useMemo, useRef, useState } from "react";
 import "../../TeammateFeature.scss";
 
+const hideItem = {
+  display: "none",
+};
+
 FormAddTeammate.propTypes = {};
 
 function FormAddTeammate(props) {
-  const { onFinish, form } = props;
-  const [selectedOption, setSelectedOption] = useState({
-    user_name: "",
-  });
+  const { onFinish, form, listTeammate } = props;
 
   function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
     const [fetching, setFetching] = useState(false);
@@ -42,9 +43,11 @@ function FormAddTeammate(props) {
         notFoundContent={fetching ? <Spin size="small" /> : null}
         {...props}
         options={options}
-        onSelect={(param) =>
-          setSelectedOption({
-            user_name: param.value,
+        onSelect={(params, options) =>
+          form.setFieldsValue({
+            avatar: options.avatar,
+            // email: options.email,
+            // phone: options.phone,
           })
         }
         allowClear
@@ -59,9 +62,23 @@ function FormAddTeammate(props) {
         user_name: username,
       })
       .then((response) => {
-        return response.data.listUserFound.map((user) => ({
-          label: `${user.user_name}`,
+        var listTeammateUsername = listTeammate.map((user) => user.user_name);
+        console.log("username_list: ", listTeammateUsername);
+
+        var searchTeammate = response.data.listUserFound;
+        console.log("search list: ", searchTeammate);
+
+        var finalSearchList = searchTeammate.filter(
+          (x) => !listTeammateUsername.includes(x.user_name)
+        );
+        // console.log("difference: ", finalSearchList);
+
+        return finalSearchList.map((user) => ({
+          label: `${user.user_name} (${user.display_name})`,
           value: user.user_name,
+          avatar: user.avatar,
+          // email: user.email,
+          // phone: user.phone,
         }));
       })
       .catch((error) => {
@@ -88,7 +105,6 @@ function FormAddTeammate(props) {
       onFinish={onSubmitForm}
     >
       <Form.Item
-        initialValue={selectedOption.length > 0 ? selectedOption : []}
         name="user_name"
         rules={[{ required: true, message: "Please Select your teammate!" }]}
       >
@@ -105,6 +121,9 @@ function FormAddTeammate(props) {
           }}
         />
       </Form.Item>
+      <Form.Item style={hideItem} name="avatar"></Form.Item>
+      <Form.Item style={hideItem} name="email"></Form.Item>
+      <Form.Item style={hideItem} name="phone"></Form.Item>
     </Form>
   );
 }

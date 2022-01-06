@@ -12,6 +12,7 @@ import Github from "pages/Github/Github";
 import Conversation from "pages/Horenso/Conversation/Conversation";
 import Meeting from "pages/Horenso/Meeting/Meeting";
 import Report from "pages/Horenso/Report/Report";
+import Setting from "pages/Setting/Setting";
 import Source from "pages/Storage/Source/Source";
 import Teammate from "pages/Teammate/Teammate";
 import UserSetting from "pages/UserSettings/UserSetting";
