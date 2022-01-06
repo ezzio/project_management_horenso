@@ -7,17 +7,22 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { automaticChangeStatusTask, updateOnDnd } from './boardSlice';
+import {
+  automaticChangeStatusTask,
+  fetchBoard,
+  updateOnDnd,
+} from './boardSlice';
 
 const Board = (props) => {
+  const { idBoard } = useParams();
   // Automatic Change Status Task
   useEffect(() => {
-    dispatch(automaticChangeStatusTask());
+    // dispatch(automaticChangeStatusTask());
   });
 
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const columns = useSelector((state) => state.board.columns);
+  const columns = useSelector((state) => state.board.listTask);
 
   const openModal = () => {
     setModalOpen(true);
@@ -32,32 +37,12 @@ const Board = (props) => {
   // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
-    dispatch(automaticChangeStatusTask());
-  });
+    // dispatch(automaticChangeStatusTask());
+    dispatch(fetchBoard(idBoard));
+  }, []);
   // <----------------------
 
-  const members = [
-    {
-      avatar:
-        'https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa',
-    },
-    {
-      avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
-    },
-    {
-      avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
-    },
-    {
-      avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
-    },
-    {
-      avatar:
-        'http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144',
-    },
-  ];
+  const members = useSelector((state) => state.board.memberInJob);
 
   return (
     <div className="ctn ctn-board">
@@ -70,13 +55,19 @@ const Board = (props) => {
         endTime="21/12/2022"
       />
       <div>
-        <ModalNewTask modalOpen={modalOpen} closeModal={closeModal} />
+        <ModalNewTask
+          jobowner={idBoard}
+          modalOpen={modalOpen}
+          closeModal={closeModal}
+          members={members}
+        />
       </div>
       {/* render column */}
       <div className="board-content">
-        {columns.map((column) => {
-          return <Column column={column} openModal={openModal} />;
-        })}
+        {columns &&
+          columns.map((column) => {
+            return <Column column={column} openModal={openModal} />;
+          })}
       </div>
     </div>
   );
