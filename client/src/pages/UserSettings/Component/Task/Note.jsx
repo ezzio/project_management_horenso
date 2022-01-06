@@ -1,31 +1,21 @@
 import React from 'react'
-import { List, Checkbox } from 'antd'
+import { List } from 'antd'
 
-const Note = () => {
+const Note = ({tasks}) => {
   const { Item } = List
 
-  const tasks = [
-    {
-      title: 'Fix bugs',
-      status: 'In Progress',
-    },
-    {
-      title: 'Design UI for login page',
-      status: 'Approved',
-    },
-    {
-      title: 'Add change language feature',
-      status: 'In Review',
-    },
-  ]
+  const approvedTasks = tasks.filter((task) => {
+    if (task.status === "Approved") {
+      return task;
+    }
+  })
 
   return (
     <List
       itemLayout='horizontal'
-      dataSource={tasks}
+      dataSource={approvedTasks}
       renderItem={item => (
         <Item>
-          <Checkbox style={{marginRight: 15}}/>
           <Item.Meta 
             title={
               <a style={{fontSize: 20}}>
