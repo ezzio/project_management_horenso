@@ -77,21 +77,30 @@ const AnimatedRouter = () => {
       }}
     >
       <Switch location={displayLocation}>
-        <Route path="/:idProject/dashboard" children={<Dashboard />} />
-        <Route path="/:idProject/meeting" children={<Meeting />} />
-        <Route path="/:idProject/conversation" children={<Conversation />} />
+        <Route exact path="/:idProject/dashboard" children={<Dashboard />} />
+        <Route exact path="/:idProject/meeting" children={<Meeting />} />
+        <Route
+          exact
+          path="/:idProject/conversation"
+          children={<Conversation />}
+        />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
-        <Route path="/:idProject/report" children={<Report />} />
-        <Route path="/:idProject/storage" children={<Source />} />
-        <Route path="/:idProject/github" children={<Github />} />
-        <Route path="/:idProject/teammate" children={<Teammate />} />
-        <Route path="/:idProject/setting" children={<Setting />} />
-        <PrivateRoute exact path="/:idProject/jobs/:idBoard" children={<Board />} />
+        <Route exact path="/:idProject/report" children={<Report />} />
+        <Route exact path="/:idProject/storage" children={<Source />} />
+        <Route exact path="/:idProject/github" children={<Github />} />
+        <Route exact path="/:idProject/teammate" children={<Teammate />} />
+        <Route exact path="/:idProject/setting" children={<Setting />} />
+        <PrivateRoute
+          exact
+          path="/:idProject/jobs/:idBoard"
+          children={<Board />}
+        />
         <PrivateRoute
           exact
           path="/:idProject/jobs/:idBoard/:idTask"
           children={<DetailTask />}
         />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );
