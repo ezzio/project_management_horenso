@@ -36,29 +36,21 @@ function App() {
           <Route path="/login">
             <LoginScreen />
           </Route>
+
           <Route path="/sign-up">
             <SignupScreen />
           </Route>
+
           <PrivateRoute exact path="/">
             <UserSetting />
           </PrivateRoute>
-          <PrivateRoute exact path="/:idProject">
+
+          <PrivateRoute path="/:idProject">
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
 
-          <PrivateRoute
-            exact
-            path="/:idProject/:idBoard"
-            children={<Board />}
-          />
-          <PrivateRoute
-            exact
-            path="/:idProject/:idBoard/:idTask"
-            children={<DetailTask />}
-          />
-
-          <Route path="*" component={NotFound} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
@@ -85,15 +77,21 @@ const AnimatedRouter = () => {
       }}
     >
       <Switch location={displayLocation}>
-        <Route path="/dashboard" children={<Dashboard />} />
-        <Route path="/meeting" children={<Meeting />} />
-        <Route path="/conversation" children={<Conversation />} />
-        <Route exact path="/jobs" children={<KanbanDashBoard />} />
-        <Route path="/report" children={<Report />} />
-        <Route path="/storage" children={<Source />} />
-        <Route path="/github" children={<Github />} />
-        <Route path="/teammate" children={<Teammate />} />
-        <Route path="/setting" children={<Setting />} />
+        <Route path="/:idProject/dashboard" children={<Dashboard />} />
+        <Route path="/:idProject/meeting" children={<Meeting />} />
+        <Route path="/:idProject/conversation" children={<Conversation />} />
+        <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
+        <Route path="/:idProject/report" children={<Report />} />
+        <Route path="/:idProject/storage" children={<Source />} />
+        <Route path="/:idProject/github" children={<Github />} />
+        <Route path="/:idProject/teammate" children={<Teammate />} />
+        <Route path="/:idProject/setting" children={<Setting />} />
+        <PrivateRoute exact path="/:idProject/jobs/:idBoard" children={<Board />} />
+        <PrivateRoute
+          exact
+          path="/:idProject/jobs/:idBoard/:idTask"
+          children={<DetailTask />}
+        />
       </Switch>
     </div>
   );
