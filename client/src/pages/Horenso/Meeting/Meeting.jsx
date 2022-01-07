@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './Meeting.scss';
 import '../../../styles/ContainerContents.scss';
 import Header from './components/Header/Header';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, useParams } from 'react-router-dom';
 import Workplace from './components/Workplace/Workplace.jsx';
 import MeetingRoom from 'features/MeetingRoom/MeetingRoom.jsx';
 const Meeting = () => {
+  const { idProject } = useParams();
+  console.log(idProject)
   const [room, setRoom] = useState([
     {
       id: '291adw',
@@ -28,11 +30,11 @@ const Meeting = () => {
   return (
     <div className="ctn meeting">
       <Switch>
-        <Route exact path="/meeting">
+        <Route path={`/${idProject}/meeting`}>
           <Header room={room} />
           <Workplace room={room} />
         </Route>
-        <Route path="/meeting/id=291adw">
+        <Route path={`/${idProject}/meeting/id=:idRoom`}>
           <MeetingRoom />
         </Route>
       </Switch>
