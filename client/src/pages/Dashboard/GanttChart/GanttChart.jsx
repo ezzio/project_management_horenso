@@ -74,7 +74,7 @@ const GanttChart = () => {
     <div className="container">
       <Chart
         width="100"
-        height="100vh"
+        height="50vh"
         chartType="Gantt"
         loader={<div>Loading Chart</div>}
         data={ganttChartData}
