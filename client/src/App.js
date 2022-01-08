@@ -21,7 +21,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
+  useLocation
 } from "react-router-dom";
 import "./App.scss";
 

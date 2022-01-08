@@ -1,6 +1,5 @@
 import React from "react";
-import { Avatar, Button, Col, Row, Card, Progress } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
+import { Avatar, Col, Row, Card, Progress, Tooltip } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -9,7 +8,9 @@ const Project = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userSetting);
   return (
-    <Row gutter={[48, 16]} wrap={false} align="middle">
+    <Row gutter={[48, 16]} wrap={false} align="middle"
+         style={{position: "relative", top: "1rem", left: "1rem", width: 930}}
+    >
       {profile.projects &&
         profile.projects.map((project) => {
           const percent = 33;
@@ -23,7 +24,8 @@ const Project = () => {
                 style={{
                   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
                   borderRadius: 10,
-                  minWidth: 270,
+                  width: 300,
+                  height: 270,
                   cursor: "pointer",
                 }}
               >
@@ -43,18 +45,16 @@ const Project = () => {
                         ? "dodgerblue"
                         : "lawngreen"
                     }
-                    style={{ width: 50 }}
+                    style={{ position: "absolute", top: 10, left: 20, width: 50 }}
                   />
                 </div>
-                <Avatar
-                  src={project.avatar}
-                  size="large"
-                  style={{ position: "relative", left: "41%" }}
-                />
-                <h2 style={{ textAlign: "center" }}>{project.title}</h2>
-                <h2 style={{ textAlign: "center", marginBottom: 0 }}>0/0</h2>
+                <Tooltip placement="topLeft" title={project.title}>
+                  <h2 style={{ position: "relative", textAlign: "center", top: 30 }} className="project-ctn__title">{project.title}</h2>
+                </Tooltip>
+                <h2 style={{ position: "relative", textAlign: "center", top: "1rem"}}>0/0</h2>
                 <p
                   style={{
+                    position: "relative", 
                     textAlign: "center",
                     fontSize: 11,
                     fontWeight: "bold",
@@ -68,11 +68,11 @@ const Project = () => {
                     maxCount={5}
                     size="small"
                     maxStyle={{ color: "gray", backgroundColor: "lightgray" }}
-                    style={{}}
+                    style={{position: "relative", top: "1rem"}}
                   >
                     {project.members &&
                       project.members.map((member) => {
-                        return <Avatar src={member.avatar} />;
+                        return <Avatar src={member.avatar} size="large"/>;
                       })}
                   </Avatar.Group>
                 </div>

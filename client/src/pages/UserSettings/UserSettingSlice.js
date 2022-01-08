@@ -7,8 +7,16 @@ const initialState = {
   company: '',
   location: '',
   email: '',
-  avatarURL: '',
-  projects: [],
+  avatarURL: "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
+  projects: [
+    {
+      idProject: 1,
+      title: "React application wueifheruighoiughreroighrjtiopjripojropj[tpo",
+      members: [
+        "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png"
+      ]
+    }
+  ],
   loading: false,
 };
 export const listUserInfo = createAsyncThunk(
