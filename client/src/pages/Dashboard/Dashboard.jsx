@@ -6,6 +6,7 @@ import TaskChart from "./TaskChart/TaskChart";
 import KanbanChart from "./KanbanChart/KanbanChart";
 import TimelineChart from "./Timeline/Timeline";
 import GanttChart from "./GanttChart/GanttChart";
+import ProcessChart from "./ProcessChart/ProcessChart";
 
 const { Title } = Typography;
 const Dashboard = () => {
@@ -65,8 +66,7 @@ const Dashboard = () => {
   ];
   return (
     <div className="ctn dashboard">
-      <Title level={1}>Dashboard</Title>
-
+      <Title>Dashboard</Title>
       <div className="comparition-chart">
         <div className="comparition-chart__circle-chart__box">
           <Title level={4} className="comparition-chart__circle-chart__title">
@@ -107,12 +107,21 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-
-      <div className="gantt-chart">
-        <Title level={4} className="gantt-chart__title">
-          Gantt Chart
-        </Title>
-        <GanttChart className="gantt-chart__item" />
+      <div className="application-chart">
+        <div className="application-chart__gantt-chart">
+          <Title level={4} className="application-chart__gantt-chart__title">
+            Gantt Chart
+          </Title>
+          <GanttChart className="application-chart__gantt-chart__item" />
+        </div>
+        <div className="application-chart__process-chart">
+          <Title level={4} className="application-chart__process-chart__title">
+            Process Chart
+          </Title>
+          <div className="application-chart__process-chart__item">
+            <ProcessChart />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -73,13 +73,13 @@ const GanttChart = () => {
   return (
     <div className="container">
       <Chart
-        width="100"
+        width="100%"
         height="50vh"
         chartType="Gantt"
         loader={<div>Loading Chart</div>}
         data={ganttChartData}
         rootProps={{ "data-testid": "1" }}
-        style={{ overflow: "auto" }}
+        // style={{ overflow: "auto" }}
         options={options}
       />
     </div>
