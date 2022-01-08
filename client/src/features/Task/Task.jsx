@@ -6,7 +6,15 @@ import './Task.scss';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from 'features/Board/boardSlice';
-import { Menu, Dropdown, Badge } from 'antd';
+import {
+  Menu,
+  Dropdown,
+  Badge,
+  Avatar,
+  Tooltip,
+  Progress,
+  Typography,
+} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { Popconfirm, message } from 'antd';
@@ -14,6 +22,9 @@ import moment from 'moment';
 import ModalEditTask from './EditTaskForm/ModalEditTask';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
+
+const { Text } = Typography;
 
 const Task = (props) => {
   const { task, index, columnId } = props;
@@ -46,6 +57,7 @@ const Task = (props) => {
     console.log(e);
     // message.error("Click on No");
   }
+  console.log();
 
   const menu = (
     <Menu>
@@ -53,7 +65,7 @@ const Task = (props) => {
         <Link to={`${location.pathname}/${task.id}`}>Open</Link>
       </Menu.Item>
       <Menu.Item key="1" primary ghost>
-        <a onClick={openModal}>Edit task</a>
+        <Text onClick={openModal}>Edit task</Text>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="2" danger ghost>
@@ -64,7 +76,7 @@ const Task = (props) => {
           okText="Yes"
           cancelText="No"
         >
-          <a href="#">Delete task</a>
+          Delete task
         </Popconfirm>
       </Menu.Item>
     </Menu>
@@ -72,66 +84,54 @@ const Task = (props) => {
 
   return (
     <>
-      {task.isOverdue ? (
+      {moment().isAfter(task.end_time) ? (
         <Badge.Ribbon text="Overdue" color="red">
           <Dropdown overlay={menu} trigger={['contextMenu']}>
             <div className="kanban-task">
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
               </div>
-
-              <div className="kanban-task__progress">
-                <div
-                  className="kanban-task__progress__bar"
-                  style={{ width: `${task.progress}%` }}
-                >
-                  {task.progress > 10 && <p>{task.progress}%</p>}
-                </div>
-                {task.progress < 10 && <p>{task.progress}%</p>}
-              </div>
+              <Progress percent={task.process} status="active" />
               <div className="kanban-task__info">
                 <div
+                  style={{ padding: '0.35rem 1.5rem' }}
                   className={
-                    task.level === 'high'
+                    task.priority === 'high'
                       ? 'high'
-                      : task.level === 'low'
+                      : task.priority === 'low'
                       ? 'low'
                       : 'medium'
                   }
                 >
-                  {task.level}
+                  {task.priority}
                 </div>
-                <div className="kanban-task__info__time">Due in 2 days</div>
+                <div className="kanban-task__info__time">
+                  Overdue{' '}
+                  {moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(
+                    true
+                  )}
+                </div>
               </div>
               <div className="kanban-task__members-attach">
-                <div className="kanban-task__members-attach__members">
-                  {task.taskers.map((tasker, index) =>
-                    index < 4 ? (
-                      <img
+                <Avatar.Group
+                  maxCount={4}
+                  maxPopoverTrigger="click"
+                  maxStyle={{
+                    color: '#f56a00',
+                    backgroundColor: '#fde3cf',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {task.taskers.map((tasker) => (
+                    <Tooltip title={tasker.user_name} placement="top">
+                      <Avatar
                         src={tasker.avatar}
-                        alt="avatar"
-                        height="30"
-                        width="30"
+                        style={{ backgroundColor: '#87d068' }}
+                        icon={<UserOutlined />}
                       />
-                    ) : null
-                  )}
-                  {task.taskers.length > 4 && (
-                    <div
-                      style={{
-                        backgroundColor: '#eee',
-                        borderRadius: '50%',
-                        width: '30px',
-                        height: '30px',
-                        transform: 'translateX(-20px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <p>+{task.taskers.length - 4}</p>
-                    </div>
-                  )}
-                </div>
+                    </Tooltip>
+                  ))}
+                </Avatar.Group>
                 <div className="kanban-task__members-attach__attach">
                   <p>
                     <ImAttachment /> 2
@@ -157,68 +157,49 @@ const Task = (props) => {
           <div className="kanban-task">
             <div className="kanban-task__title">
               <h4>{task.title}</h4>
-
               <Dropdown overlay={menu} trigger={['click']}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <DownOutlined />
-                </a>
+                <DownOutlined />
               </Dropdown>
             </div>
-            <div className="kanban-task__progress">
-              <div
-                className="kanban-task__progress__bar"
-                style={{ width: `${task.progress}%` }}
-              >
-                {task.progress > 10 && <p>{task.progress}%</p>}
-              </div>
-              {task.progress < 10 && <p>{task.progress}%</p>}
-            </div>
+            <Progress percent={task.process} status="active" />
             <div className="kanban-task__info">
               <div
+                style={{ padding: '0.35rem 1.5rem' }}
                 className={
-                  task.level === 'high'
+                  task.priority === 'high'
                     ? 'high'
-                    : task.level === 'low'
+                    : task.priority === 'low'
                     ? 'low'
                     : 'medium'
                 }
               >
-                {task.level}
+                {task.priority === 'low' ? 'Low' : task.priority}
               </div>
-              <div className="kanban-task__info__time">Due in 2 days</div>
+              <div className="kanban-task__info__time">
+                Due in{' '}
+                {moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(true)}
+              </div>
             </div>
             <div className="kanban-task__members-attach">
-              <div className="kanban-task__members-attach__members">
-                {task.taskers.map((tasker, index) =>
-                  index < 4 ? (
-                    <img
+              <Avatar.Group
+                maxCount={4}
+                maxPopoverTrigger="click"
+                maxStyle={{
+                  color: '#f56a00',
+                  backgroundColor: '#fde3cf',
+                  cursor: 'pointer',
+                }}
+              >
+                {task.taskers.map((tasker) => (
+                  <Tooltip title={tasker.user_name} placement="top">
+                    <Avatar
                       src={tasker.avatar}
-                      alt="avatar"
-                      height="30"
-                      width="30"
+                      style={{ backgroundColor: '#87d068' }}
+                      icon={<UserOutlined />}
                     />
-                  ) : null
-                )}
-                {task.taskers.length > 4 && (
-                  <div
-                    style={{
-                      backgroundColor: '#eee',
-                      borderRadius: '50%',
-                      width: '30px',
-                      height: '30px',
-                      transform: 'translateX(-20px)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <p>+{task.taskers.length - 4}</p>
-                  </div>
-                )}
-              </div>
+                  </Tooltip>
+                ))}
+              </Avatar.Group>
               <div className="kanban-task__members-attach__attach">
                 <p>
                   <ImAttachment /> 2

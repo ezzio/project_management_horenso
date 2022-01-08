@@ -2,20 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BiArrowBack } from 'react-icons/bi';
 import { AiOutlineCalendar, AiOutlineMore } from 'react-icons/ai';
+import { UserOutlined } from '@ant-design/icons';
+
 import './HeaderBoard.scss';
+import { Avatar, Tooltip } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 const HeaderBoard = (props) => {
   const { title, level, startTime, endTime, status, members } = props;
+  const history = useHistory();
   return (
     <div className="header-board">
-      <BiArrowBack style={{ fontSize: '1.15rem' }} />
+      <BiArrowBack
+        style={{ fontSize: '1.15rem', cursor: 'pointer' }}
+        onClick={() => {
+          history.goBack();
+        }}
+      />
       <div className="header-board__2nd">
         <div style={{ width: '70%', lineHeight: '1.5' }}>
           <div className="header-board__2nd__title">
             <h2>
-              Well organized and easy to understand Web building tutorials with
-              lots of examples of how to use HTML, CSS, JavaScript, SQL, Python,
-              PHP, Bootstrap, Java, XML and more.
+              {title}
             </h2>
             <div className="header-board__2nd__title__time">
               <AiOutlineCalendar />
@@ -28,28 +36,39 @@ const HeaderBoard = (props) => {
             width: '20%',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
           }}
         >
           <div
             className={
               level === 'High' ? 'high' : level === 'Medium' ? 'medium' : 'low'
             }
+            style={{ marginRight: '1rem' }}
           >
             {level}
           </div>
-          <div className="header-board__2nd__members">
-            {members.map((member, index) => {
-              return index < 4 ? (
-                <img src={member.avatar} alt="avatar" height="40" width="40" />
-              ) : (
-                <div className="header-board__2nd__members__more">
-                  <p>+{members.length - 4}</p>
-                </div>
-              );
-            })}
-          </div>
-          <AiOutlineMore className="header-board__2nd__setting" />
+          <Avatar.Group
+            maxCount={5}
+            maxPopoverTrigger="click"
+            size="large"
+            maxStyle={{
+              color: '#f56a00',
+              backgroundColor: '#fde3cf',
+              cursor: 'pointer',
+            }}
+          >
+            {members.length > 0 &&
+              members.map((member, index) => {
+                return (
+                  <Tooltip
+                    title={member.display_name || member.user_name}
+                    placement="top"
+                  >
+                    <Avatar src={member.avatar} icon={<UserOutlined />} />
+                  </Tooltip>
+                );
+              })}
+          </Avatar.Group>
         </div>
       </div>
     </div>

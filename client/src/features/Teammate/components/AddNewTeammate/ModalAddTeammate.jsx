@@ -1,7 +1,7 @@
 import { Button, Form, message, Modal } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AddNewTeammate, addNewTeammate, ListUser } from "../../teammateSlice";
+import { AddNewTeammate, addNewTeammate } from "../../teammateSlice";
 import FormAddTeammate from "./FormAddTeammate";
 
 ModalAddTeammate.propTypes = {};

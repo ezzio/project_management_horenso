@@ -21,11 +21,9 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
+  useLocation
 } from "react-router-dom";
 import "./App.scss";
-} from 'react-router-dom';
-import Setting from 'pages/Setting/Setting';
 
 function App() {
   return (
@@ -46,10 +44,10 @@ function App() {
             <AnimatedRouter />
           </PrivateRoute>
 
-          <PrivateRoute exact path="/:idProject/:id" children={<Board />} />
+          <PrivateRoute exact path="/:idProject/:idBoard" children={<Board />} />
           <PrivateRoute
             exact
-            path="/:idProject/:idColumn/:idTask"
+            path="/:idProject/:idBoard/:idTask"
             children={<DetailTask />}
           />
 
