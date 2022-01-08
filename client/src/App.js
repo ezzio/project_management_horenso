@@ -44,10 +44,10 @@ function App() {
             <AnimatedRouter />
           </PrivateRoute>
 
-          <PrivateRoute exact path="/:idProject/:id" children={<Board />} />
+          <PrivateRoute exact path="/:idProject/:idBoard" children={<Board />} />
           <PrivateRoute
             exact
-            path="/:idProject/:idColumn/:idTask"
+            path="/:idProject/:idBoard/:idTask"
             children={<DetailTask />}
           />
 

@@ -1,11 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { MdMoreHoriz } from "react-icons/md";
-import "./Column.scss";
-import Task from "features/Task/Task";
-import { Droppable } from "react-beautiful-dnd";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { Badge } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { MdMoreHoriz } from 'react-icons/md';
+import './Column.scss';
+import Task from 'features/Task/Task';
+import { Droppable } from 'react-beautiful-dnd';
+import { AiFillPlusCircle } from 'react-icons/ai';
+import { Badge } from 'antd';
+
 
 const Column = (props) => {
   const { column, openModal } = props;
@@ -13,7 +14,15 @@ const Column = (props) => {
   return (
     <div className={`column`}>
       <div className="column__header">
-        <h4 className="column__header__title">{column.name}</h4>
+        <h4 className="column__header__title">
+          {column.id_column === 0
+            ? 'Backlogs'
+            : column.id_column === 1
+            ? 'In progress'
+            : column.id_column === 2
+            ? 'In review'
+            : 'Completed'}
+        </h4>
         {column.id_column === 0 && (
           <AiFillPlusCircle
             className="column__header__add"
@@ -22,8 +31,8 @@ const Column = (props) => {
         )}
       </div>
       <div className="column__content">
-        {column.tasks &&
-          column.tasks.map((task, index) => {
+        {column.eachColumnTask &&
+          column.eachColumnTask.map((task, index) => {
             return (
               <Task
                 task={task}
