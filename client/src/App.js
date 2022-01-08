@@ -21,11 +21,9 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
+  useLocation
 } from "react-router-dom";
 import "./App.scss";
-} from 'react-router-dom';
-import Setting from 'pages/Setting/Setting';
 
 function App() {
   return (

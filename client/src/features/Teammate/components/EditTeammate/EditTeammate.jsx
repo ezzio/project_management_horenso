@@ -1,5 +1,8 @@
 import { Button, message, Modal, Select } from "antd";
-import { editTeammate } from "features/Teammate/teammateSlice";
+import {
+  editTeammate,
+  EditTeammateByUsername,
+} from "features/Teammate/teammateSlice";
 import React, { useState } from "react";
 import { RiEditFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
@@ -33,9 +36,10 @@ function EditTeammate(props) {
     // console.log("Change to: ", newTag);
     const action = {
       user_name: user.user_name,
-      newTag: newTag,
+      newRole: newTag,
     };
     dispatch(editTeammate(action));
+    dispatch(EditTeammateByUsername(action));
     message.success(
       `Success !!! ${user.user_name}'s role has been updated to ${newTag}.`
     );

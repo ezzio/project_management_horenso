@@ -1,5 +1,8 @@
 import { Button } from "antd";
-import { deleteTeammate } from "features/Teammate/teammateSlice";
+import {
+  deleteTeammate,
+  DeleteTeammateByUsername,
+} from "features/Teammate/teammateSlice";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
@@ -12,9 +15,8 @@ function DeleteTeammate(props) {
   const dispatch = useDispatch();
 
   const handleConfirmClick = (user_name) => {
-    // console.log(id);
-    const action = deleteTeammate(user_name);
-    dispatch(action);
+    dispatch(deleteTeammate(user_name));
+    dispatch(DeleteTeammateByUsername(user_name));
     message.success(`Success !!! "${user_name}" has been deleted.`);
   };
 
