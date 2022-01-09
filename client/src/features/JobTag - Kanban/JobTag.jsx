@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
- 
+
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,7 +38,6 @@ const JobTag = (props) => {
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action))
-    // console.log(action);
     message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };

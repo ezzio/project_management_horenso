@@ -136,7 +136,7 @@ const KanbanDashBoard = () => {
             ]}
           >
             <Select mode="multiple" placeholder="Search member...">
-         
+
               {jobs.membersInProject.map((eachMember) => (
                 <Select.Option value={eachMember.name}>
                   {eachMember.name}

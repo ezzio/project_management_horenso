@@ -8,7 +8,6 @@ const ListMember = ({ members }) => {
     <div className="member-list">
       {members.map((member, index) => {
         if (index < 5) {
-          console.log(member);
           return (
             <img
               src={member.avatar}
