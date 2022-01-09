@@ -1,21 +1,20 @@
 import { Pie } from "@ant-design/charts";
 
-const TaskChart = () => {
-  const data = [
-    {
-      type: "Total",
-      value: 50,
-    },
-    {
-      type: "Completed",
-      value: 25,
-    },
-  ];
+const TaskChart = ({ data }) => {
   const config = {
     appendPadding: 10,
     data,
     angleField: "value",
     colorField: "type",
+    color: ({ type }) => {
+      if (type === "Over Deadline") {
+        return "hsl(357, 96%, 60%)";
+      } else if (type === "Completed") {
+        return "#09814a";
+      } else {
+        return "#ea9010";
+      }
+    },
     radius: 1,
     innerRadius: 0.6,
     label: {

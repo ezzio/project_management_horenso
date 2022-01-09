@@ -1,21 +1,17 @@
 import { Pie } from "@ant-design/charts";
 
-const KanbanChart = () => {
-  const data = [
-    {
-      type: "Total",
-      value: 5,
-    },
-    {
-      type: "Completed",
-      value: 2,
-    },
-  ];
+const KanbanChart = ({ data }) => {
   const config = {
     appendPadding: 10,
     data,
     angleField: "value",
     colorField: "type",
+    color: ({ type }) => {
+      if (type === "Incompleted") {
+        return "#ea9010";
+      }
+      return "#09814a";
+    },
     radius: 1,
     innerRadius: 0.6,
     label: {
@@ -45,7 +41,7 @@ const KanbanChart = () => {
           textOverflow: "ellipsis",
           fontSize: "24px",
         },
-        content: "Kanban",
+        content: "Job",
       },
     },
   };
