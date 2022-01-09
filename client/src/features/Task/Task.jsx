@@ -57,7 +57,7 @@ const Task = (props) => {
     console.log(e);
     // message.error("Click on No");
   }
-  console.log();
+
 
   const menu = (
     <Menu>

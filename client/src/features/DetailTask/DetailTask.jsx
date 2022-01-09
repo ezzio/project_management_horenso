@@ -1,4 +1,4 @@
-import './DetailTask.scss';
+import "./DetailTask.scss";
 import {
   Layout,
   Space,
@@ -15,7 +15,7 @@ import {
   Input,
   List,
   Upload,
-} from 'antd';
+} from "antd";
 
 import {
   UserOutlined,
@@ -23,23 +23,32 @@ import {
   CalendarOutlined,
   ArrowRightOutlined,
   UploadOutlined,
-} from '@ant-design/icons';
-import { useState } from 'react';
-import moment from 'moment';
-import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
-
+} from "@ant-design/icons";
+import { useState, useEffect } from "react";
+import moment from "moment";
+import ChatOnTask from "features/ChatOnTask/ChatOnTask";
+import { useSelector, useDispatch } from "react-redux";
+import { listAllDetailTaskAsync , createADetailTaskAsync } from "./DetailTaskSlice";
+import { useParams } from "react-router";
 const { Content } = Layout;
 const { Text, Title } = Typography;
 
 const DetailTask = (props) => {
   // ----------------------------->
   // Table detail tasks
+  const { idTask } = useParams();
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState([]);
+  const data = useSelector((state) => state.detailTask.allDetailTask);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState(
     data.filter((item) => item.isCompleted).map((item) => item.key)
   );
+
+  useEffect(() => {
+    dispatch(listAllDetailTaskAsync(idTask));
+  }, []);
+
   const rowSelection = {
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys);
@@ -56,10 +65,11 @@ const DetailTask = (props) => {
     const nvalues = {
       key: data.length + 1,
       ...values,
-      assignOn: moment().format('DD/MM/YYYY'),
+      assignOn: moment().format("DD/MM/YYYY"),
       isCompleted: false,
     };
-    setData([...data, nvalues]);
+    // console.log({});
+    dispatch(createADetailTaskAsync({...nvalues , idTask}))
     setVisible(false);
   };
 
@@ -91,29 +101,30 @@ const DetailTask = (props) => {
       name: value.name,
     });
 
-    setData(tmpData);
+    // setData(tmpData);
   };
 
   // Handle delete task
   const handleDelete = (key) => {
     const dataSource = [...data];
-    setData(dataSource.filter((item) => item.key !== key));
+    
+    // setData(dataSource.filter((item) => item.key !== key));
   };
 
   // Declare Col of table
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      width: '50%',
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: "50%",
       editable: true,
     },
-    { title: 'Assign On', dataIndex: 'assignOn', key: 'assignOn' },
+    { title: "Assign On", dataIndex: "assignOn", key: "assignOn" },
     {
-      title: 'Action',
-      dataIndex: '',
-      key: 'x',
+      title: "Action",
+      dataIndex: "",
+      key: "x",
       render: (_, record) => (
         <Space>
           <Button type="primary" onClick={() => handleEdit(record)}>
@@ -137,59 +148,59 @@ const DetailTask = (props) => {
   // Upload file ------------------>
   const [dataAttachment, setDataAttachment] = useState([
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      file_name: "document.docx",
+      upload_by: "Dang Khoa",
+      upload_at: "2021-10-30",
     },
   ]);
   // <------------------------------
@@ -212,7 +223,7 @@ const DetailTask = (props) => {
               onCreate(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >
@@ -223,7 +234,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: 'Please input the name of task',
+                message: "Please input the name of task",
               },
             ]}
           >
@@ -249,7 +260,7 @@ const DetailTask = (props) => {
               save(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >
@@ -265,7 +276,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: 'Please input the name of task',
+                message: "Please input the name of task",
               },
             ]}
           >
@@ -274,32 +285,32 @@ const DetailTask = (props) => {
         </Form>
       </Modal>
 
-      <Layout style={{ minWidth: '100vw', minHeight: '100vh' }}>
+      <Layout style={{ minWidth: "100vw", minHeight: "100vh" }}>
         <Space>
           <Content
-            style={{ padding: '1rem', display: 'flex', alignItems: 'center' }}
+            style={{ padding: "1rem", display: "flex", alignItems: "center" }}
           >
             <Space
               direction="vertical"
-              style={{ minWidth: '100%' }}
+              style={{ minWidth: "100%" }}
               size="large"
             >
               <Space
                 direction="vertical"
                 style={{
-                  width: '1450px',
-                  backgroundColor: 'white',
-                  padding: '1rem 2rem',
-                  height: '440px',
-                  overflow: 'auto',
-                  borderRadius: '8px',
+                  width: "1450px",
+                  backgroundColor: "white",
+                  padding: "1rem 2rem",
+                  height: "440px",
+                  overflow: "auto",
+                  borderRadius: "8px",
                 }}
               >
                 <PageHeader
                   ghost={false}
                   onBack={() => window.history.back()}
                   title="This is the title of task"
-                  style={{ padding: '0px' }}
+                  style={{ padding: "0px" }}
                   subTitle={<div className="high">High</div>}
                 >
                   <Descriptions size="small" column={6}>
@@ -317,20 +328,20 @@ const DetailTask = (props) => {
                   size="default"
                   maxCount={5}
                   maxStyle={{
-                    color: '#f56a00',
-                    backgroundColor: '#fde3cf',
+                    color: "#f56a00",
+                    backgroundColor: "#fde3cf",
                   }}
                 >
                   <Avatar src="https://joeschmoe.io/api/v1/random" />
-                  <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
+                  <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
                   <Tooltip title="Ant User" placement="top">
                     <Avatar
-                      style={{ backgroundColor: '#87d068' }}
+                      style={{ backgroundColor: "#87d068" }}
                       icon={<UserOutlined />}
                     />
                   </Tooltip>
                   <Avatar
-                    style={{ backgroundColor: '#1890ff' }}
+                    style={{ backgroundColor: "#1890ff" }}
                     icon={<AntDesignOutlined />}
                   />
                 </Avatar.Group>
@@ -351,8 +362,8 @@ const DetailTask = (props) => {
                   size="small"
                   direction="vertical"
                   style={{
-                    width: '100%',
-                    height: 'auto',
+                    width: "100%",
+                    height: "auto",
                   }}
                 >
                   <Title level={5}>Attachments:</Title>
@@ -366,7 +377,7 @@ const DetailTask = (props) => {
                       block
                       size="large"
                       type="primary"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: "8px" }}
                     >
                       Click to upload
                     </Button>
@@ -393,24 +404,24 @@ const DetailTask = (props) => {
               </Space>
               <div
                 style={{
-                  width: '1450px',
-                  backgroundColor: 'white',
-                  padding: '1rem 2rem',
-                  height: '470px',
-                  overflow: 'auto',
-                  borderRadius: '8px',
+                  width: "1450px",
+                  backgroundColor: "white",
+                  padding: "1rem 2rem",
+                  height: "470px",
+                  overflow: "auto",
+                  borderRadius: "8px",
                 }}
               >
-                <Title level={5} style={{ marginBottom: '1rem !important' }}>
+                <Title level={5} style={{ marginBottom: "1rem !important" }}>
                   {hasSelected
                     ? `Completed ${selectedRowKeys.length}/${data.length} of the detail task`
-                    : 'Detail task'}
+                    : "Detail task"}
                 </Title>
                 <Table
                   dataSource={data}
                   columns={columns}
                   rowSelection={{
-                    type: 'checkbox',
+                    type: "checkbox",
                     ...rowSelection,
                   }}
                   scroll={{ y: 240 }}
@@ -423,7 +434,7 @@ const DetailTask = (props) => {
                       onClick={() => {
                         setVisible(true);
                       }}
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: "8px" }}
                     >
                       Add new one
                     </Button>
@@ -439,6 +450,6 @@ const DetailTask = (props) => {
   );
 };
 
-DetailTask.propTypes = {};
+
 
 export default DetailTask;

@@ -84,7 +84,6 @@ const TeammateFeature = () => {
     },
     {
       title: "Action",
-      key: "action",
       render: (text, record) => (
         <Space size="middle">
           {localStorage.getItem("access_token") ===

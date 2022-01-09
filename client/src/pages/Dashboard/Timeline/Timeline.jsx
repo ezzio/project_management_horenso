@@ -1,18 +1,15 @@
 import { useState } from "react";
-import { Timeline, Radio } from "antd";
+import { Timeline } from "antd";
 
-const TimelineChart = () => {
+const TimelineChart = ({ data }) => {
   return (
     <>
       <Timeline mode="left">
-        <Timeline.Item label="2015-09-01">Create a services</Timeline.Item>
-        <Timeline.Item label="2015-09-01 09:12:11">
-          Solve initial network problems
-        </Timeline.Item>
-        <Timeline.Item>Technical testing</Timeline.Item>
-        <Timeline.Item label="2015-09-01 09:12:11">
-          Network problems being solved
-        </Timeline.Item>
+        {data.map((item) => (
+          <Timeline.Item key={item.id} label={item.label}>
+            {item.content}
+          </Timeline.Item>
+        ))}
       </Timeline>
     </>
   );

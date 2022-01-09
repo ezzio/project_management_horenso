@@ -1,33 +1,34 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
-import userApi from 'api/userApi';
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import userApi from "api/userApi";
 const initialState = {
-  name: '',
-  bio: '',
-  display_name: '',
-  company: '',
-  location: '',
-  email: '',
-  avatarURL: "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
+  name: "",
+  bio: "",
+  display_name: "",
+  company: "",
+  location: "",
+  email: "",
+  avatarURL:
+    "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
   projects: [
     {
       idProject: 1,
       title: "React application wueifheruighoiughreroighrjtiopjripojropj[tpo",
       members: [
-        "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png"
-      ]
-    }
+        "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
+      ],
+    },
   ],
   loading: false,
 };
 export const listUserInfo = createAsyncThunk(
-  'user/InfoUser',
+  "user/InfoUser",
   async (thunkAPI) => {
     const infoUser = await userApi.listUserInfo();
     return infoUser;
   }
 );
 export const editUserAsync = createAsyncThunk(
-  'user/editUser',
+  "user/editUser",
   async (params, thunkAPI) => {
     thunkAPI.dispatch(editProfile(params));
     const infoUser = await userApi.editUser(params);
@@ -36,7 +37,7 @@ export const editUserAsync = createAsyncThunk(
 );
 
 export const userSettingSlice = createSlice({
-  name: 'userSetting',
+  name: "userSetting",
   initialState,
   reducers: {
     editProfile: (state, action) => {
@@ -80,13 +81,12 @@ export const userSettingSlice = createSlice({
         state.location = userInfo.location;
         state.email = userInfo.email;
         state.avatarURL = userInfo.avatar;
+        state.projects = [];
         payload[1].allProject.forEach((project, index) => {
-          console.log(project);
           state.projects.push({
             ...project,
             totalTask: 140,
             completedTask: 90,
-          
           });
         });
       }
