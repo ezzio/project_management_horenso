@@ -1,9 +1,9 @@
 import React from "react";
 import { Liquid } from "@ant-design/plots";
-const ProcessChart = () => {
+const ProcessChart = ({ data }) => {
   const config = {
     autoFit: true,
-    percent: 0.5,
+    percent: data,
     outline: {
       border: 4,
       distance: 8,

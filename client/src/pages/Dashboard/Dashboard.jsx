@@ -10,6 +10,8 @@ import ProcessChart from "./ProcessChart/ProcessChart";
 
 const { Title } = Typography;
 const Dashboard = () => {
+  const processData = 0.5;
+
   const taskData = [
     {
       type: "Reviewing",
@@ -119,7 +121,11 @@ const Dashboard = () => {
             Process Chart
           </Title>
           <div className="application-chart__process-chart__item">
-            <ProcessChart />
+            {processData === null ? (
+              <Empty style={{ padding: "5rem 0 0 2rem" }} />
+            ) : (
+              <ProcessChart data={processData} />
+            )}
           </div>
         </div>
       </div>
