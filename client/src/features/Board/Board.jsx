@@ -53,10 +53,7 @@ const Board = (props) => {
       spinning={loading}
       style={{ width: '100%', height: '100%' }}
     >
-      <div
-        className="ctn ctn-board"
-        style={{ width: '100vw', height: '100vh' }}
-      >
+      <div className="ctn ctn-board" style={{ width: '100%', height: '100vh' }}>
         <HeaderBoard
           members={members}
           title="Design UI Home Page"

@@ -18,7 +18,7 @@ const Project = () => {
             <Col key={project.idProject} span={48}>
               <Card
                 onClick={() => {
-                  history.push(`/${project.idProject}`);
+                  history.push(`/${project.idProject}/dashboard`);
                   localStorage.setItem("projectowner", project.idProject);
                 }}
                 style={{
