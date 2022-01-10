@@ -13,9 +13,10 @@ import {
   Form,
   Popconfirm,
   Input,
-  List,
   Upload,
   Progress,
+  Menu,
+  Dropdown,
 } from 'antd';
 
 import {
@@ -24,6 +25,7 @@ import {
   CalendarOutlined,
   ArrowRightOutlined,
   UploadOutlined,
+  DownOutlined,
 } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
 import moment from 'moment';
@@ -34,15 +36,16 @@ import {
   createADetailTaskAsync,
 } from './DetailTaskSlice';
 import { useParams } from 'react-router';
-const { Content, Sider } = Layout;
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 const { Text, Title } = Typography;
 
 const DetailTask = (props) => {
   // ----------------------------->
   // Table detail tasks
-  const { idTask } = useParams();
+  const { idTask, idProject } = useParams();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const data = useSelector((state) => state.detailTask.allDetailTask);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState(
@@ -110,10 +113,15 @@ const DetailTask = (props) => {
 
   // Handle delete task
   const handleDelete = (key) => {
-    const dataSource = [...data];
+    // const dataSource = [...data];
+    console.log(key);
 
     // setData(dataSource.filter((item) => item.key !== key));
   };
+
+  // Upload file ------------------>
+  const handleUpload = (record) => {};
+  // <------------------------------
 
   // Declare Col of table
   const columns = [
@@ -121,53 +129,58 @@ const DetailTask = (props) => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: '50%',
+      width: '70%',
       editable: true,
     },
-    { title: 'Assign On', dataIndex: 'assignOn', key: 'assignOn' },
+    {
+      title: 'Assign On',
+      dataIndex: 'assignOn',
+      key: 'assignOn',
+      width: '20%',
+    },
     {
       title: 'Action',
       dataIndex: '',
       key: 'x',
+      width: '10%',
       render: (_, record) => (
-        <Space>
-          <Button type="primary" onClick={() => handleEdit(record)}>
-            Edit name
-          </Button>
-
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}
-          >
-            <Button type="primary" danger>
-              Delete
-            </Button>
-          </Popconfirm>
-        </Space>
+        <Dropdown
+          overlay={
+            <Menu>
+              <Menu.Item key="0">Upload attach</Menu.Item>
+              <Menu.Item key="1">Edit name</Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="2" danger>
+                Delete
+              </Menu.Item>
+            </Menu>
+          }
+          trigger={['click']}
+        >
+          <DownOutlined />
+        </Dropdown>
       ),
     },
   ];
   // <-----------------------------|
 
-  // Upload file ------------------>
-  const [dataAttachment, setDataAttachment] = useState([
+  const testdata = [
     {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
+      key: 1,
+      name: 'John Brown',
+      assignOn: '2021-10-10',
+      attachments: [
+        {
+          id: 1,
+          name: 'document.jsx',
+        },
+        {
+          id: 2,
+          name: 'document.docx',
+        },
+      ],
     },
-    {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
-    },
-    {
-      file_name: 'document.docx',
-      upload_by: 'Dang Khoa',
-      upload_at: '2021-10-30',
-    },
-  ]);
-  // <------------------------------
+  ];
 
   return (
     <>
@@ -347,7 +360,7 @@ const DetailTask = (props) => {
                 : 'Detail task'}
             </Title>
             <Table
-              dataSource={data}
+              dataSource={testdata}
               columns={columns}
               rowSelection={{
                 type: 'checkbox',
@@ -355,6 +368,17 @@ const DetailTask = (props) => {
               }}
               scroll={{ y: 240 }}
               pagination={false}
+              expandable={{
+                expandedRowRender: (record) =>
+                  record.attachments.length > 0 &&
+                  record.attachments.map((attach) => {
+                    return (
+                      <p onClick={() => history.push(`/${idProject}/storage`)}>
+                        {attach.name}
+                      </p>
+                    );
+                  }),
+              }}
               footer={() => (
                 <Button
                   type="primary"
@@ -372,8 +396,6 @@ const DetailTask = (props) => {
           </div>
         </Space>
         <ChatOnTask />
-
-        {/* <div style={{ width: '20%' }}></div> */}
       </div>
     </>
   );
