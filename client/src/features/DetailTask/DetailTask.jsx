@@ -15,6 +15,7 @@ import {
   Input,
   List,
   Upload,
+  Progress,
 } from 'antd';
 
 import {
@@ -265,7 +266,7 @@ const DetailTask = (props) => {
               width: '100%',
               backgroundColor: 'white',
               padding: '1rem 2rem',
-              height: '440px',
+              height: '400px',
               overflow: 'auto',
               borderRadius: '8px',
             }}
@@ -322,47 +323,11 @@ const DetailTask = (props) => {
                 facere?
               </Text>
             </Space>
-            <Space
-              size="small"
-              direction="vertical"
-              style={{
-                width: '100%',
-                height: 'auto',
-              }}
-            >
-              <Title level={5}>Attachments:</Title>
-              <Upload
-                name="file"
-                action=""
-                className="detail-task-upload-attach"
-              >
-                <Button
-                  icon={<UploadOutlined />}
-                  block
-                  size="large"
-                  type="primary"
-                  style={{ borderRadius: '8px' }}
-                >
-                  Click to upload
-                </Button>
-              </Upload>
-              <List
-                className="list-item-attachment"
-                itemLayout="horizontal"
-                dataSource={dataAttachment}
-                renderItem={(item) => (
-                  <List.Item>
-                    <List.Item.Meta
-                      avatar={
-                        <Avatar src="https://joeschmoe.io/api/v1/random" />
-                      }
-                      title={<a href="">{item.file_name}</a>}
-                      description={`${moment(item.upload_at).fromNow()} by ${
-                        item.upload_by
-                      }`}
-                    />
-                  </List.Item>
-                )}
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <Title level={5}>Progress:</Title>
+              <Progress
+                percent={parseInt((selectedRowKeys.length * 100) / data.length)}
+                status="active"
               />
             </Space>
           </Space>
@@ -371,7 +336,7 @@ const DetailTask = (props) => {
               width: '100%',
               backgroundColor: 'white',
               padding: '1rem 2rem',
-              height: '470px',
+              height: '500px',
               overflow: 'auto',
               borderRadius: '8px',
             }}
