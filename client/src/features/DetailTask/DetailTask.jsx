@@ -1,4 +1,4 @@
-import "./DetailTask.scss";
+import './DetailTask.scss';
 import {
   Layout,
   Space,
@@ -15,7 +15,7 @@ import {
   Input,
   List,
   Upload,
-} from "antd";
+} from 'antd';
 
 import {
   UserOutlined,
@@ -23,14 +23,17 @@ import {
   CalendarOutlined,
   ArrowRightOutlined,
   UploadOutlined,
-} from "@ant-design/icons";
-import { useState, useEffect } from "react";
-import moment from "moment";
-import ChatOnTask from "features/ChatOnTask/ChatOnTask";
-import { useSelector, useDispatch } from "react-redux";
-import { listAllDetailTaskAsync , createADetailTaskAsync } from "./DetailTaskSlice";
-import { useParams } from "react-router";
-const { Content } = Layout;
+} from '@ant-design/icons';
+import { useState, useEffect } from 'react';
+import moment from 'moment';
+import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  listAllDetailTaskAsync,
+  createADetailTaskAsync,
+} from './DetailTaskSlice';
+import { useParams } from 'react-router';
+const { Content, Sider } = Layout;
 const { Text, Title } = Typography;
 
 const DetailTask = (props) => {
@@ -65,11 +68,11 @@ const DetailTask = (props) => {
     const nvalues = {
       key: data.length + 1,
       ...values,
-      assignOn: moment().format("DD/MM/YYYY"),
+      assignOn: moment().format('DD/MM/YYYY'),
       isCompleted: false,
     };
     // console.log({});
-    dispatch(createADetailTaskAsync({...nvalues , idTask}))
+    dispatch(createADetailTaskAsync({ ...nvalues, idTask }));
     setVisible(false);
   };
 
@@ -107,24 +110,24 @@ const DetailTask = (props) => {
   // Handle delete task
   const handleDelete = (key) => {
     const dataSource = [...data];
-    
+
     // setData(dataSource.filter((item) => item.key !== key));
   };
 
   // Declare Col of table
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      width: "50%",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      width: '50%',
       editable: true,
     },
-    { title: "Assign On", dataIndex: "assignOn", key: "assignOn" },
+    { title: 'Assign On', dataIndex: 'assignOn', key: 'assignOn' },
     {
-      title: "Action",
-      dataIndex: "",
-      key: "x",
+      title: 'Action',
+      dataIndex: '',
+      key: 'x',
       render: (_, record) => (
         <Space>
           <Button type="primary" onClick={() => handleEdit(record)}>
@@ -148,59 +151,19 @@ const DetailTask = (props) => {
   // Upload file ------------------>
   const [dataAttachment, setDataAttachment] = useState([
     {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
+      file_name: 'document.docx',
+      upload_by: 'Dang Khoa',
+      upload_at: '2021-10-30',
     },
     {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
+      file_name: 'document.docx',
+      upload_by: 'Dang Khoa',
+      upload_at: '2021-10-30',
     },
     {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
-    },
-    {
-      file_name: "document.docx",
-      upload_by: "Dang Khoa",
-      upload_at: "2021-10-30",
+      file_name: 'document.docx',
+      upload_by: 'Dang Khoa',
+      upload_at: '2021-10-30',
     },
   ]);
   // <------------------------------
@@ -223,7 +186,7 @@ const DetailTask = (props) => {
               onCreate(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -234,7 +197,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please input the name of task",
+                message: 'Please input the name of task',
               },
             ]}
           >
@@ -260,7 +223,7 @@ const DetailTask = (props) => {
               save(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -276,7 +239,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please input the name of task",
+                message: 'Please input the name of task',
               },
             ]}
           >
@@ -285,171 +248,170 @@ const DetailTask = (props) => {
         </Form>
       </Modal>
 
-      <Layout style={{ minWidth: "100vw", minHeight: "100vh" }}>
-        <Space>
-          <Content
-            style={{ padding: "1rem", display: "flex", alignItems: "center" }}
+      <div
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '1rem',
+          backgroundColor: '#F3F5F7',
+        }}
+      >
+        <Space direction="vertical" style={{ width: '75%' }} size="large">
+          <Space
+            direction="vertical"
+            style={{
+              width: '100%',
+              backgroundColor: 'white',
+              padding: '1rem 2rem',
+              height: '440px',
+              overflow: 'auto',
+              borderRadius: '8px',
+            }}
           >
-            <Space
-              direction="vertical"
-              style={{ minWidth: "100%" }}
-              size="large"
+            <PageHeader
+              ghost={false}
+              onBack={() => window.history.back()}
+              title="This is the title of task"
+              style={{ padding: '0px' }}
+              subTitle={<div className="high">High</div>}
             >
-              <Space
-                direction="vertical"
-                style={{
-                  width: "1450px",
-                  backgroundColor: "white",
-                  padding: "1rem 2rem",
-                  height: "440px",
-                  overflow: "auto",
-                  borderRadius: "8px",
-                }}
-              >
-                <PageHeader
-                  ghost={false}
-                  onBack={() => window.history.back()}
-                  title="This is the title of task"
-                  style={{ padding: "0px" }}
-                  subTitle={<div className="high">High</div>}
-                >
-                  <Descriptions size="small" column={6}>
-                    <Descriptions.Item>
-                      <Space>
-                        <CalendarOutlined />
-                        <Text>
-                          28/10/2021 <ArrowRightOutlined /> 30/10/2021
-                        </Text>
-                      </Space>
-                    </Descriptions.Item>
-                  </Descriptions>
-                </PageHeader>
-                <Avatar.Group
-                  size="default"
-                  maxCount={5}
-                  maxStyle={{
-                    color: "#f56a00",
-                    backgroundColor: "#fde3cf",
-                  }}
-                >
-                  <Avatar src="https://joeschmoe.io/api/v1/random" />
-                  <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-                  <Tooltip title="Ant User" placement="top">
-                    <Avatar
-                      style={{ backgroundColor: "#87d068" }}
-                      icon={<UserOutlined />}
-                    />
-                  </Tooltip>
-                  <Avatar
-                    style={{ backgroundColor: "#1890ff" }}
-                    icon={<AntDesignOutlined />}
-                  />
-                </Avatar.Group>
-                <Space direction="vertical">
-                  <Title level={5}>Decription:</Title>
-                  <Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Asperiores perferendis quia ullam quaerat ipsam! Illo
-                    consequatur est modi quasi, id quae in quia animi veritatis
-                    voluptas dolorem vel, quam nostrum. Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Id dolore quod enim sit
-                    veritatis debitis ipsa, iste neque reiciendis, nostrum
-                    mollitia doloremque! Fugit animi odio eligendi quae soluta,
-                    delectus facere?
-                  </Text>
-                </Space>
-                <Space
-                  size="small"
-                  direction="vertical"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                >
-                  <Title level={5}>Attachments:</Title>
-                  <Upload
-                    name="file"
-                    action=""
-                    className="detail-task-upload-attach"
-                  >
-                    <Button
-                      icon={<UploadOutlined />}
-                      block
-                      size="large"
-                      type="primary"
-                      style={{ borderRadius: "8px" }}
-                    >
-                      Click to upload
-                    </Button>
-                  </Upload>
-                  <List
-                    className="list-item-attachment"
-                    itemLayout="horizontal"
-                    dataSource={dataAttachment}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <List.Item.Meta
-                          avatar={
-                            <Avatar src="https://joeschmoe.io/api/v1/random" />
-                          }
-                          title={<a href="">{item.file_name}</a>}
-                          description={`${moment(
-                            item.upload_at
-                          ).fromNow()} by ${item.upload_by}`}
-                        />
-                      </List.Item>
-                    )}
-                  />
-                </Space>
-              </Space>
-              <div
-                style={{
-                  width: "1450px",
-                  backgroundColor: "white",
-                  padding: "1rem 2rem",
-                  height: "470px",
-                  overflow: "auto",
-                  borderRadius: "8px",
-                }}
-              >
-                <Title level={5} style={{ marginBottom: "1rem !important" }}>
-                  {hasSelected
-                    ? `Completed ${selectedRowKeys.length}/${data.length} of the detail task`
-                    : "Detail task"}
-                </Title>
-                <Table
-                  dataSource={data}
-                  columns={columns}
-                  rowSelection={{
-                    type: "checkbox",
-                    ...rowSelection,
-                  }}
-                  scroll={{ y: 240 }}
-                  pagination={false}
-                  footer={() => (
-                    <Button
-                      type="primary"
-                      size="large"
-                      block
-                      onClick={() => {
-                        setVisible(true);
-                      }}
-                      style={{ borderRadius: "8px" }}
-                    >
-                      Add new one
-                    </Button>
-                  )}
+              <Descriptions size="small" column={6}>
+                <Descriptions.Item>
+                  <Space>
+                    <CalendarOutlined />
+                    <Text>
+                      28/10/2021 <ArrowRightOutlined /> 30/10/2021
+                    </Text>
+                  </Space>
+                </Descriptions.Item>
+              </Descriptions>
+            </PageHeader>
+            <Avatar.Group
+              size="default"
+              maxCount={5}
+              maxStyle={{
+                color: '#f56a00',
+                backgroundColor: '#fde3cf',
+              }}
+            >
+              <Avatar src="https://joeschmoe.io/api/v1/random" />
+              <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
+              <Tooltip title="Ant User" placement="top">
+                <Avatar
+                  style={{ backgroundColor: '#87d068' }}
+                  icon={<UserOutlined />}
                 />
-              </div>
+              </Tooltip>
+              <Avatar
+                style={{ backgroundColor: '#1890ff' }}
+                icon={<AntDesignOutlined />}
+              />
+            </Avatar.Group>
+            <Space direction="vertical">
+              <Title level={5}>Decription:</Title>
+              <Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Asperiores perferendis quia ullam quaerat ipsam! Illo
+                consequatur est modi quasi, id quae in quia animi veritatis
+                voluptas dolorem vel, quam nostrum. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Id dolore quod enim sit veritatis
+                debitis ipsa, iste neque reiciendis, nostrum mollitia
+                doloremque! Fugit animi odio eligendi quae soluta, delectus
+                facere?
+              </Text>
             </Space>
-          </Content>
-          <ChatOnTask />
+            <Space
+              size="small"
+              direction="vertical"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
+            >
+              <Title level={5}>Attachments:</Title>
+              <Upload
+                name="file"
+                action=""
+                className="detail-task-upload-attach"
+              >
+                <Button
+                  icon={<UploadOutlined />}
+                  block
+                  size="large"
+                  type="primary"
+                  style={{ borderRadius: '8px' }}
+                >
+                  Click to upload
+                </Button>
+              </Upload>
+              <List
+                className="list-item-attachment"
+                itemLayout="horizontal"
+                dataSource={dataAttachment}
+                renderItem={(item) => (
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={
+                        <Avatar src="https://joeschmoe.io/api/v1/random" />
+                      }
+                      title={<a href="">{item.file_name}</a>}
+                      description={`${moment(item.upload_at).fromNow()} by ${
+                        item.upload_by
+                      }`}
+                    />
+                  </List.Item>
+                )}
+              />
+            </Space>
+          </Space>
+          <div
+            style={{
+              width: '100%',
+              backgroundColor: 'white',
+              padding: '1rem 2rem',
+              height: '470px',
+              overflow: 'auto',
+              borderRadius: '8px',
+            }}
+          >
+            <Title level={5} style={{ marginBottom: '1rem !important' }}>
+              {hasSelected
+                ? `Completed ${selectedRowKeys.length}/${data.length} of the detail task`
+                : 'Detail task'}
+            </Title>
+            <Table
+              dataSource={data}
+              columns={columns}
+              rowSelection={{
+                type: 'checkbox',
+                ...rowSelection,
+              }}
+              scroll={{ y: 240 }}
+              pagination={false}
+              footer={() => (
+                <Button
+                  type="primary"
+                  size="large"
+                  block
+                  onClick={() => {
+                    setVisible(true);
+                  }}
+                  style={{ borderRadius: '8px' }}
+                >
+                  Add new one
+                </Button>
+              )}
+            />
+          </div>
         </Space>
-      </Layout>
+        <ChatOnTask />
+
+        {/* <div style={{ width: '20%' }}></div> */}
+      </div>
     </>
   );
 };
-
-
 
 export default DetailTask;

@@ -19,9 +19,7 @@ const ChatOnTask = () => {
   return (
     <div className="chat-on-task">
       <div className="chat-on-task__header">
-        <Title level={3}>
-          Task Chat
-        </Title>
+        <Title level={3}>Task Chat</Title>
       </div>
       <div className="chat-on-task__body">
         <Space
@@ -56,20 +54,11 @@ const ChatOnTask = () => {
           autoComplete="off"
           layout="inline"
           form={form}
-          style={{ width: '100%' }}
+          
         >
           <Form.Item name="mess">
             <div className="chat-on-task__footer__input-mess">
-              <Input
-                suffix={
-                  <Tooltip title="Upload file">
-                    <LinkOutlined
-                      style={{ fontSize: '16px', cursor: 'pointer' }}
-                    />
-                  </Tooltip>
-                }
-                bordered={false}
-              />
+              <Input bordered={false} />
               <Button type="primary" htmlType="submit">
                 SEND
               </Button>
