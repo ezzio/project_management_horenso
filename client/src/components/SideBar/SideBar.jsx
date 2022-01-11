@@ -27,7 +27,6 @@ const SideBar = () => {
   const { idProject } = useParams();
 
   const onCollapse = (collapsed) => {
-    console.log(collapsed);
     setIsColapsed(!isColapsed);
   };
   return (
@@ -54,16 +53,16 @@ const SideBar = () => {
               style={
                 !isColapsed
                   ? {
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                      color: 'white',
-                      margin: '0',
-                    }
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                    color: 'white',
+                    margin: '0',
+                  }
                   : {
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                      color: 'white',
-                      fontSize: '1rem',
-                      margin: '0',
-                    }
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                    color: 'white',
+                    fontSize: '1rem',
+                    margin: '0',
+                  }
               }
             >
               Kanso

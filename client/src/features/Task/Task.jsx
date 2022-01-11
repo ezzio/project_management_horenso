@@ -5,7 +5,7 @@ import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
-import { deleteTask } from 'features/Board/boardSlice';
+import { deleteTask, deleteTaskAsync } from 'features/Board/boardSlice';
 import {
   Menu,
   Dropdown,
@@ -21,26 +21,23 @@ import { Popconfirm, message } from 'antd';
 import moment from 'moment';
 import ModalEditTask from './EditTaskForm/ModalEditTask';
 import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
 const Task = (props) => {
   const { task, index, columnId } = props;
+  const { idBoard } = useParams();
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = React.useState(false);
   const location = useLocation();
   // const currentTime = moment();
   // const projectTime = moment(task.endTime);
   // const endTime = currentTime.from(projectTime);
-
   // Delete task
   const handleDeleteTask = (task) => {
-    const deleteTaskId = task.id;
-    const action = deleteTask({ deleteTaskId, columnId });
-    dispatch(action);
-    message.success('Success! Task has been deleted.');
+    dispatch(deleteTaskAsync({ id: task.id, columnId, idBoard }));
   };
 
   // Edit task
@@ -57,7 +54,6 @@ const Task = (props) => {
     console.log(e);
     // message.error("Click on No");
   }
-
 
   const menu = (
     <Menu>

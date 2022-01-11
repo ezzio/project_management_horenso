@@ -16,10 +16,6 @@ import { Spin } from 'antd';
 
 const Board = (props) => {
   const { idBoard } = useParams();
-  // Automatic Change Status Task
-  useEffect(() => {
-    // dispatch(automaticChangeStatusTask());
-  });
 
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -33,14 +29,12 @@ const Board = (props) => {
     setModalOpen(false);
   };
 
-  // <----------------------
-
-  // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
-    // dispatch(automaticChangeStatusTask());
     dispatch(fetchBoard(idBoard));
+    dispatch(automaticChangeStatusTask());
   }, []);
+
   // <----------------------
 
   const members = useSelector((state) => state.board.memberInJob);

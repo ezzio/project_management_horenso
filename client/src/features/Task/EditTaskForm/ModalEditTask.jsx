@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import {
   Modal,
   PageHeader,
@@ -8,13 +8,13 @@ import {
   Tabs,
   Select,
   Form,
-} from "antd";
-import "antd/dist/antd.css";
-import { useDispatch } from "react-redux";
-import { updateTask } from "../../Board/boardSlice.js";
-import moment from "moment";
-import { message } from "antd";
-import { useRef } from "react";
+} from 'antd';
+import 'antd/dist/antd.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { editTask, editTaskAsync, updateTask } from '../../Board/boardSlice.js';
+import moment from 'moment';
+import { message } from 'antd';
+import { useRef } from 'react';
 
 function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
@@ -22,29 +22,35 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
+  const memberInJob = useSelector((state) => state.board.memberInJob);
 
   const onFinish = (values) => {
     const action = {
       editTask: {
-        id: task.id,
+        taskId: task.id,
         title: values.title,
         description: values.description,
-        level: values.priority,
-        startTime: values.deadline[0].format("YYYY-MM-DD"),
-        endTime: values.deadline[1].format("YYYY-MM-DD"),
-        taskers: values.members,
+        priority: values.priority,
+        start_time: values.deadline[0].format('YYYY-MM-DD'),
+        end_time: values.deadline[1].format('YYYY-MM-DD'),
+        taskers: memberInJob.filter((mem) =>
+          values.members.includes(mem.user_name)
+        ),
       },
       columnId: columnId,
     };
-    console.log(action.editTask.taskers);
     closeModal();
-    dispatch(updateTask(action));
-    message.success("Success! Task has been updated.");
+    // console.log(action)
+    dispatch(editTaskAsync(action));
   };
 
   const { TabPane } = Tabs;
-  const [activeKey, setActiveKey] = React.useState("1");
+  const [activeKey, setActiveKey] = React.useState('1');
   const onKeyChange = (key) => setActiveKey(key);
+
+  useEffect(() => {
+    setActiveKey('1');
+  }, [modalOpen]);
 
   return (
     <div>
@@ -52,20 +58,19 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
         title="Edit task"
         visible={modalOpen}
         onCancel={closeModal}
-        okText={activeKey === "1" ? "Next" : "Confirm"}
+        okText={activeKey === '1' ? 'Next' : 'Confirm'}
         confirmLoading={confirmLoading}
         onOk={() => {
-          activeKey !== "1"
+          activeKey !== '1'
             ? form
                 .validateFields()
                 .then((values) => {
-                  // form.resetFields();
                   onFinish(values);
                 })
                 .catch((info) => {
-                  console.log("Validate Failed:", info);
+                  message.error('Please enter a valid value');
                 })
-            : onKeyChange("2");
+            : onKeyChange('2');
         }}
       >
         <Tabs
@@ -100,10 +105,10 @@ function Step1({ onFinish, form, task }) {
         onFinish={onFinish}
         autoComplete="off"
         initialValues={{
-          priority: task.level,
+          priority: task.priority,
           title: task.title,
           description: task.description,
-          deadline: [moment(task.startTime), moment(task.endTime)],
+          deadline: [moment(task.start_time), moment(task.end_time)],
         }}
       >
         <Form.Item label="Priority:" name="priority">
@@ -117,9 +122,9 @@ function Step1({ onFinish, form, task }) {
           label="Title: "
           name="title"
           rules={[
-            { required: true, message: "This field is required" },
-            { min: 6, message: "Title must be 6-30 characters long" },
-            { max: 30, message: "Title must be 6-30 characters long" },
+            { required: true, message: 'This field is required' },
+            { min: 6, message: 'Title must be 6-30 characters long' },
+            { max: 30, message: 'Title must be 6-30 characters long' },
           ]}
         >
           <Input
@@ -127,7 +132,6 @@ function Step1({ onFinish, form, task }) {
             maxLength={36}
             size="large"
             placeholder="Enter title here..."
-            style={{ marginBottom: 30 }}
             name="title"
           />
         </Form.Item>
@@ -135,15 +139,14 @@ function Step1({ onFinish, form, task }) {
           label="Description: "
           name="description"
           rules={[
-            { required: true, message: "This field is required" },
-            { min: 6, message: "Description must be 6-100 characters long" },
-            { max: 100, message: "Description must be 6-100 characters long" },
+            { required: true, message: 'This field is required' },
+            { min: 6, message: 'Description must be 6-100 characters long' },
+            { max: 100, message: 'Description must be 6-100 characters long' },
           ]}
         >
           <Input
             bordered={true}
             placeholder="Enter Description here..."
-            style={{ marginBottom: 30 }}
             size="large"
             maxLength={100}
           />
@@ -153,9 +156,9 @@ function Step1({ onFinish, form, task }) {
           name="deadline"
           rules={[
             {
-              type: "array",
+              type: 'array',
               required: true,
-              message: "This field is required",
+              message: 'This field is required',
             },
           ]}
         >
@@ -164,7 +167,7 @@ function Step1({ onFinish, form, task }) {
             allowClear
             showTime
             format="DD/MM/YYYY"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
           />
         </Form.Item>
       </Form>
@@ -173,60 +176,17 @@ function Step1({ onFinish, form, task }) {
 }
 
 function Step2({ onFinish, form, task }) {
-  const members = [
-    {
-      id: 0,
-      name: "Koih Hana",
-      avatar:
-        "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
-    },
-    {
-      id: 1,
-      name: "Jack Will",
-      avatar:
-        "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
-    },
-    {
-      id: 2,
-      name: "MenGuy124",
-      avatar:
-        "https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg",
-    },
-    {
-      id: 3,
-      name: "Nhut",
-      avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-    },
-    {
-      id: 4,
-      name: "Pum",
-      avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-    },
-    {
-      id: 5,
-      name: "Minh",
-      avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-    },
-    {
-      id: 6,
-      name: "Nguyen",
-      avatar:
-        "https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa",
-    },
-  ];
-
   const { Option } = Select;
 
   // from initalData
-  const tasker = task.taskers.map((tasker) => (
-    <div key={tasker.id}>
-      <Avatar src={tasker.avatar} alt="avatar" />
-      <label style={{ marginLeft: 5 }}>{tasker.name}</label>
-    </div>
-  ));
+  // const tasker = task.taskers.map((tasker) => (
+  //   <Option value={tasker.user_name}>
+  //     <Avatar src={tasker.avatar} alt="avatar" />
+  //     <label style={{ marginLeft: 5 }}>
+  //       {tasker.display_name || tasker.user_name}
+  //     </label>
+  //   </Option>
+  // ));
 
   return (
     <div>
@@ -236,31 +196,34 @@ function Step2({ onFinish, form, task }) {
         form={form}
         name="Step 2"
         onFinish={onFinish}
-        initialValues={{ members: tasker }}
+        initialValues={{
+          members: task.taskers.map((tasker) => tasker.user_name),
+        }}
       >
         <Form.Item
           name="members"
           rules={[
             {
-              required: true,
-              message: "This field is required",
-              type: "array",
+              type: 'array',
             },
           ]}
         >
           <Select
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             placeholder="Select members to assign task"
             size="large"
+            defaultValue={task.taskers.map((tasker) => tasker.user_name)}
           >
             {/* from initialValue --- all of taskers */}
-            {members.map((member) => {
+            {task.taskers.map((member) => {
               return (
                 <>
-                  <Option key={member.id} value={member.name}>
+                  <Option value={member.user_name}>
                     <Avatar src={member.avatar} alt="avatar" />
-                    <label style={{ marginLeft: 5 }}>{member.name}</label>
+                    <label style={{ marginLeft: 5 }}>
+                      {member.display_name || member.user_name}
+                    </label>
                   </Option>
                 </>
               );
