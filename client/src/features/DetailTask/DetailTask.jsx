@@ -373,7 +373,13 @@ const DetailTask = (props) => {
                   record.attachments.length > 0 &&
                   record.attachments.map((attach) => {
                     return (
-                      <p onClick={() => history.push(`/${idProject}/storage`)}>
+                      <p
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                          history.push(`/${idProject}/storage`);
+                          localStorage.setItem('sider', '3');
+                        }}
+                      >
                         {attach.name}
                       </p>
                     );
