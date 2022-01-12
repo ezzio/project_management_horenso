@@ -23,11 +23,9 @@ const { Title } = Typography;
 
 const SideBar = () => {
   const [isColapsed, setIsColapsed] = useState(false);
-
   const { idProject } = useParams();
 
   const onCollapse = (collapsed) => {
-    console.log(collapsed);
     setIsColapsed(!isColapsed);
   };
   return (
@@ -54,30 +52,39 @@ const SideBar = () => {
               style={
                 !isColapsed
                   ? {
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                      color: 'white',
-                      margin: '0',
-                    }
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                    color: 'white',
+                    margin: '0',
+                  }
                   : {
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                      color: 'white',
-                      fontSize: '1rem',
-                      margin: '0',
-                    }
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                    color: 'white',
+                    fontSize: '1rem',
+                    margin: '0',
+                  }
               }
             >
               Kanso
             </Title>
           </Space>
         </div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={[localStorage.getItem('sider')]}
+          selectedKeys={[localStorage.getItem('sider')]}
+          mode="inline"
+        >
           <Menu.Item
             key="1"
             icon={
               <PieChartFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
-            <Link to={`/${idProject}/dashboard`} style={{ color: 'white' }}>
+            <Link
+              to={`/${idProject}/dashboard`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '1')}
+            >
               Dashboard
             </Link>
           </Menu.Item>
@@ -87,7 +94,11 @@ const SideBar = () => {
               <CarryOutFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
-            <Link to={`/${idProject}/jobs`} style={{ color: 'white' }}>
+            <Link
+              to={`/${idProject}/jobs`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '2')}
+            >
               Jobs
             </Link>
           </Menu.Item>
@@ -97,7 +108,11 @@ const SideBar = () => {
               <DatabaseFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
-            <Link to={`/${idProject}/storage`} style={{ color: 'white' }}>
+            <Link
+              to={`/${idProject}/storage`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '3')}
+            >
               Storage
             </Link>
           </Menu.Item>
@@ -107,7 +122,11 @@ const SideBar = () => {
               <GithubFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
-            <Link to={`/${idProject}/github`} style={{ color: 'white' }}>
+            <Link
+              to={`/${idProject}/github`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '4')}
+            >
               Github
             </Link>
           </Menu.Item>
@@ -126,7 +145,11 @@ const SideBar = () => {
                 />
               }
             >
-              <Link to={`/${idProject}/meeting`} style={{ color: 'white' }}>
+              <Link
+                to={`/${idProject}/meeting`}
+                style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '5')}
+              >
                 Meeting
               </Link>
             </Menu.Item>
@@ -141,6 +164,7 @@ const SideBar = () => {
               <Link
                 to={`/${idProject}/conversation`}
                 style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '6')}
               >
                 Conversation
               </Link>
@@ -153,7 +177,11 @@ const SideBar = () => {
                 />
               }
             >
-              <Link to={`/${idProject}/report`} style={{ color: 'white' }}>
+              <Link
+                to={`/${idProject}/report`}
+                style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '7')}
+              >
                 Report
               </Link>
             </Menu.Item>
@@ -171,7 +199,11 @@ const SideBar = () => {
                 <SkinFilled style={{ color: 'white', fontSize: '1.15rem' }} />
               }
             >
-              <Link to={`/${idProject}/teammate`} style={{ color: 'white' }}>
+              <Link
+                to={`/${idProject}/teammate`}
+                style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '8')}
+              >
                 Teammate
               </Link>
             </Menu.Item>
@@ -183,7 +215,11 @@ const SideBar = () => {
                 />
               }
             >
-              <Link to={`/${idProject}/setting`} style={{ color: 'white' }}>
+              <Link
+                to={`/${idProject}/setting`}
+                style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '9')}
+              >
                 Setting
               </Link>
             </Menu.Item>

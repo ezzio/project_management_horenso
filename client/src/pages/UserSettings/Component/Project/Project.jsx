@@ -18,8 +18,9 @@ const Project = () => {
             <Col key={project.idProject} span={48}>
               <Card
                 onClick={() => {
-                  history.push(`/${project.idProject}`);
+                  history.push(`/${project.idProject}/dashboard`);
                   localStorage.setItem("projectowner", project.idProject);
+                  localStorage.setItem("sider", '1');
                 }}
                 style={{
                   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",

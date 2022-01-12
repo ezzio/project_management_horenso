@@ -3,23 +3,14 @@ import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
 import Column from 'features/Column/Column';
 import ModalNewTask from 'features/Board/ModalNewTask';
 import './Board.scss';
-import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import {
-  automaticChangeStatusTask,
-  fetchBoard,
-  updateOnDnd,
-} from './boardSlice';
+import { fetchBoard } from './boardSlice';
 import { Spin } from 'antd';
 
 const Board = (props) => {
   const { idBoard } = useParams();
-  // Automatic Change Status Task
-  useEffect(() => {
-    // dispatch(automaticChangeStatusTask());
-  });
 
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -33,14 +24,11 @@ const Board = (props) => {
     setModalOpen(false);
   };
 
-  // <----------------------
-
-  // ---------------------->
   // Automatic Change Status Task
   useEffect(() => {
-    // dispatch(automaticChangeStatusTask());
     dispatch(fetchBoard(idBoard));
   }, []);
+
   // <----------------------
 
   const members = useSelector((state) => state.board.memberInJob);
@@ -53,10 +41,7 @@ const Board = (props) => {
       spinning={loading}
       style={{ width: '100%', height: '100%' }}
     >
-      <div
-        className="ctn ctn-board"
-        style={{ width: '100vw', height: '100vh' }}
-      >
+      <div className="ctn ctn-board" style={{ width: '100%', height: '100vh' }}>
         <HeaderBoard
           members={members}
           title="Design UI Home Page"

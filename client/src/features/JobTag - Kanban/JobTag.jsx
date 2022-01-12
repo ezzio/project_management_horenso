@@ -1,17 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ListMember from './components/ListMember';
-import { BarsOutlined, LoginOutlined } from '@ant-design/icons';
-import './JobTag.scss';
-import { Button, message, Popconfirm, Popover, Space, Tooltip } from 'antd';
-import { useState } from 'react';
-import ModalEditKanban from 'features/KanbanDashBoard/components/ModalEditKanban';
+import React from "react";
+import PropTypes from "prop-types";
+import ListMember from "./components/ListMember";
+import { BarsOutlined, LoginOutlined } from "@ant-design/icons";
+import "./JobTag.scss";
+import {
+  Button,
+  Divider,
+  message,
+  Popconfirm,
+  Popover,
+  Space,
+  Tooltip,
+} from "antd";
+import { useState } from "react";
+import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
 import {
   updateKanban,
   EditAJob,
-} from 'features/KanbanDashBoard/KanbanDashBoardSlice';
-import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+} from "features/KanbanDashBoard/KanbanDashBoardSlice";
+import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
@@ -21,7 +29,7 @@ const JobTag = (props) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = (e) => {
+  const showModal = () => {
     setIsModalVisible(true);
   };
 
@@ -36,14 +44,14 @@ const JobTag = (props) => {
       priority: values.priority,
       process: job.process,
       is_completed: values.is_completed,
-      start_time: values.range_time[0].format('YYYY-MM-DD'),
-      end_time: values.range_time[1].format('YYYY-MM-DD'),
+      start_time: values.range_time[0].format("YYYY-MM-DD"),
+      end_time: values.range_time[1].format("YYYY-MM-DD"),
       members: values.members,
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action));
-    // console.log(action);
-    message.success('Success! This Job has been edited');
+    console.log(action);
+    message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };
 
@@ -58,22 +66,26 @@ const JobTag = (props) => {
       <div className="ctn-job-task">
         {/* <Link to={`/kanban/${id}`}> */}
         <div className="ctn-job-task__title">
-          <Link to={`/${idProject}/jobs/${job.id_job}`}>
-            <Tooltip title="Open Now" placement="topLeft">
-              <p>{title}</p>
-            </Tooltip>
-          </Link>
+          {!job.is_completed ? (
+            <Link to={`/${idProject}/jobs/${job.id_job}`}>
+              <Tooltip title="Open Now" placement="topLeft">
+                <p>{title}</p>
+              </Tooltip>
+            </Link>
+          ) : (
+            <p>{title}</p>
+          )}
         </div>
         <div className="ctn-job-task__process">
           <div
             className={
-              priority === 'High'
-                ? 'high'
-                : priority === 'Medium'
-                ? 'medium'
-                : 'low'
+              priority === "High"
+                ? "high"
+                : priority === "Medium"
+                ? "medium"
+                : "low"
             }
-            style={{ width: 'fit-content' }}
+            style={{ width: "fit-content" }}
           >
             {priority}
           </div>
@@ -98,7 +110,7 @@ const JobTag = (props) => {
                   <Popconfirm
                     title="Are you sure to delete this job?"
                     onConfirm={(event) => onDeleteJob(job, event)}
-                    onCancel={'cancel'}
+                    onCancel={"cancel"}
                     okText="Yes"
                     cancelText="No"
                     placement="topRight"
@@ -107,35 +119,39 @@ const JobTag = (props) => {
                   </Popconfirm>
                 </Space>
               }
-              trigger={!job.is_completed ? 'click' : ''}
+              trigger={!job.is_completed ? "click" : ""}
             >
               <Button
                 style={{
-                  border: 'none',
-                  backgroundColor: '#fff',
-                  width: 'fit-content',
+                  border: "none",
+                  backgroundColor: "#fff",
+                  width: "fit-content",
                 }}
               >
                 <BarsOutlined />
               </Button>
             </Popover>
-            <Link to={`/${idProject}/jobs/${job.id_job}`}>
-              <Tooltip title="Open Now">
-                <Button
-                  shape="circle"
-                  style={{
-                    border: 'none',
-                    backgroundColor: '#fff',
-                    width: 'fit-content',
-                  }}
-                >
-                  <LoginOutlined />
-                </Button>
-              </Tooltip>
-            </Link>
+
+            {!job.is_completed && (
+              <Link to={`/${idProject}/jobs/${job.id_job}`}>
+                <Tooltip title="Open Now">
+                  <Button
+                    shape="circle"
+                    style={{
+                      border: "none",
+                      backgroundColor: "#fff",
+                      width: "fit-content",
+                    }}
+                  >
+                    <LoginOutlined />
+                  </Button>
+                </Tooltip>
+              </Link>
+            )}
           </div>
         </div>
       </div>
+      <Divider classname="job-divider" style={{ margin: "0" }} />
     </>
   );
 };

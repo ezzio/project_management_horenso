@@ -16,10 +16,34 @@ export const boardApi = {
       });
   },
   addTask: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/Tasks/create_a_new_task/`, {
         ...params,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  editTask: (params) => {
+    return axios
+      .post(`${API}/Tasks/editTask`, {
+        ...params,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  deleteTask: (params) => {
+    return axios
+      .post(`${API}/Tasks/deleteTask`, {
+        taskId: params.id,
+        jobowner: params.idBoard,
       })
       .then((response) => {
         return response.data;
