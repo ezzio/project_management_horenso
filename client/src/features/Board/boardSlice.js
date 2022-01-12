@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import { message } from 'antd';
 import { boardApi } from 'api/boardApi';
 import moment from 'moment';
@@ -26,16 +26,37 @@ const initialState = {
   memberInJob: [],
 };
 
-export const fetchBoard = createAsyncThunk('board/fetch', async (params) => {
-  let res = await boardApi.fetch(params);
-  return res;
-});
+export const fetchBoard = createAsyncThunk(
+  'board/fetch',
+  async (params, thunkAPI) => {
+    let res = await boardApi.fetch(params);
+    return res;
+  }
+);
 
 export const addTask = createAsyncThunk(
   'board/add-task',
   async (params, thunkAPI) => {
+    thunkAPI.dispatch(addNewTask(params));
     let res = await boardApi.addTask(params);
-    // thunkAPI.dispatch(addNewTask(params));
+    return res;
+  }
+);
+
+export const editTaskAsync = createAsyncThunk(
+  'board/edit-task',
+  async (params, thunkAPI) => {
+    thunkAPI.dispatch(updateTask(params));
+    let res = await boardApi.editTask(params.editTask);
+    return res;
+  }
+);
+
+export const deleteTaskAsync = createAsyncThunk(
+  'board/delete-task',
+  async (params, thunkAPI) => {
+    thunkAPI.dispatch(deleteTask(params));
+    let res = await boardApi.deleteTask(params);
     return res;
   }
 );
@@ -45,69 +66,73 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     addNewTask: (state, action) => {
-      state.columns[0].tasks.push(action.payload);
+      state.listTask[0].eachColumnTask.push(action.payload);
     },
 
     deleteTask: (state, action) => {
-      const { deleteTaskId, columnId } = action.payload;
-      state.columns[columnId].tasks = state.columns[columnId].tasks.filter(
-        (task) => task.id !== deleteTaskId
+      const { id, columnId } = action.payload;
+      const temp = state.listTask[columnId].eachColumnTask.filter(
+        (task) => task.id !== id
       );
+      state.listTask[columnId].eachColumnTask = temp;
     },
 
     updateTask: (state, action) => {
-      // console.log(action.payload);
       const { editTask, columnId } = action.payload;
-      // console.log(editTask.id, columnId);
-      const taskIndex = state.columns[columnId].tasks.findIndex(
-        (task) => task.id === editTask.id
+      const taskIndex = state.listTask[columnId].eachColumnTask.findIndex(
+        (task) => task.id === editTask.taskId
       );
 
-      if (taskIndex >= 0) {
-        state.columns[columnId].tasks[taskIndex] = editTask;
+      const temp = {
+        id: editTask.taskId,
+        description: editTask.description,
+        end_time: editTask.end_time,
+        start_time: editTask.start_time,
+        priority: editTask.priority,
+        process: state.listTask[columnId].eachColumnTask[taskIndex].process,
+        title: editTask.title,
+        taskers: editTask.taskers,
+        isOverdue: state.listTask[columnId].eachColumnTask[taskIndex].isOverdue,
+        is_complete:
+          state.listTask[columnId].eachColumnTask[taskIndex].is_complete,
+      };
+      state.listTask[columnId].eachColumnTask[taskIndex] = temp;
+    },
+    changeOverdue: (state, action) => {
+      const { columnId, index } = action.payload;
+      if (columnId !== 3) {
+        state.listTask[columnId].eachColumnTask[index].isOverdue = true;
+      }
+      switch (columnId) {
+        case '1': {
+          state.listTask[0].eachColumnTask.push(
+            ...state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
+              return idx === index;
+            })
+          );
+          state.listTask[1].eachColumnTask =
+            state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
+              return idx !== index;
+            });
+          break;
+        }
+        case '2': {
+          state.listTask[0].eachColumnTask.push(
+            ...state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
+              return idx === index;
+            })
+          );
+          state.listTask[2].eachColumnTask =
+            state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
+              return idx !== index;
+            });
+          break;
+        }
+
+        default:
+          break;
       }
     },
-    // automaticChangeStatusTask: (state) => {
-    //   let currentTask;
-    //   if (state.columns[0].tasks)
-    //     state.columns[0].tasks.map((task, index) => {
-    //       if (moment().isBetween(task.startTime, task.endTime)) {
-    //         currentTask = task;
-    //         state.columns[1].tasks.push(currentTask);
-    //         state.columns[0].tasks.splice(index, 1);
-    //       }
-    //       if (moment().isAfter(task.endTime)) {
-    //         task.isOverdue = true;
-    //       } else {
-    //         task.isOverdue = false;
-    //       }
-    //     });
-    //   if (state.columns[1].tasks)
-    //     state.columns[1].tasks.map((task, index) => {
-    //       if (task.progress === '100') {
-    //         currentTask = task;
-    //         state.columns[2].tasks.push(currentTask);
-    //         state.columns[1].tasks.splice(index, 1);
-    //       } else if (moment().isAfter(task.endTime)) {
-    //         task.isOverdue = true;
-    //       } else {
-    //         task.isOverdue = false;
-    //       }
-    //       if (!moment().isBetween(task.startTime, task.endTime)) {
-    //         currentTask = task;
-    //         state.columns[0].tasks.push(currentTask);
-    //         state.columns[1].tasks.splice(index, 1);
-    //       }
-    //     });
-    //   if (state.columns[2].tasks)
-    //     state.columns[2].tasks.map((task, index) => {
-    //       if (task.is_completed) {
-    //         currentTask = task;
-    //         state.columns[3].tasks.push(currentTask);
-    //         state.columns[2].tasks.splice(index, 1);
-    //       }
-    //     });
-    // },
   },
   extraReducers: {
     [fetchBoard.pending]: (state) => {
@@ -119,9 +144,24 @@ export const boardSlice = createSlice({
     [fetchBoard.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        console.log(action.payload.ListTask);
         state.listTask = action.payload.ListTask;
         state.memberInJob = action.payload.memberInJob;
+        // Get task have being in progress
+        const inProgress = state.listTask[0].eachColumnTask.filter((task) => {
+          return moment().isBetween(
+            moment(task.start_time).format('YYYY-MM-DD'),
+            moment(task.end_time).format('YYYY-MM-DD')
+          );
+        });
+        state.listTask[0].eachColumnTask =
+          state.listTask[0].eachColumnTask.filter((task) => {
+            return !moment().isBetween(
+              moment(task.start_time).format('YYYY-MM-DD'),
+              moment(task.end_time).format('YYYY-MM-DD')
+            );
+          });
+        state.listTask[1].eachColumnTask.push(...inProgress);
+        // Get task have finished and pass to review
       }
     },
     [addTask.pending]: (state) => {
@@ -133,13 +173,36 @@ export const boardSlice = createSlice({
     [addTask.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        console.log(action.payload);
         message.success('Success! Task has been created.');
+      }
+    },
+    [editTaskAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [editTaskAsync.rejected]: (state) => {
+      state.loading = false;
+    },
+    [editTaskAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      if (action.payload) {
+        message.success('Success! Task has been updated.');
+      }
+    },
+    [deleteTaskAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteTaskAsync.rejected]: (state) => {
+      state.loading = false;
+    },
+    [deleteTaskAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      if (action.payload) {
+        message.success('Success! Task has been deleted.');
       }
     },
   },
 });
 
-export const { deleteTask, updateTask, automaticChangeStatusTask, addNewTask } =
+export const { deleteTask, updateTask, changeOverdue, addNewTask } =
   boardSlice.actions;
 export default boardSlice.reducer;
