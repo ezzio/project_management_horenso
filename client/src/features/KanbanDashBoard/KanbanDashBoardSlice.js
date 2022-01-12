@@ -1,5 +1,5 @@
 import KanbanAPI from "api/kanbanApi";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import moment from "moment";
 export const ListKanban = createAsyncThunk(
   "Kanan/ListKanban",
@@ -42,10 +42,8 @@ const kanban = createSlice({
       state.listJobs.push(action.payload);
     },
     deleteKanban: (state, action) => {
-      console.log(action.payload);
-      const deleteKanbanID = action.payload;
-      return state.listJobs.filter(
-        (kanban) => kanban.id_job !== deleteKanbanID
+      state.listJobs = state.listJobs.filter(
+        (kanban) => kanban.id_job !== action.payload
       );
     },
     updateKanban: (state, action) => {
@@ -54,7 +52,7 @@ const kanban = createSlice({
         (kanban) => kanban.id_job === editedKanban.id_job
       );
       if (kanbanIndex >= 0) {
-        state.splice(kanbanIndex, 1, editedKanban);
+        state.listJobs.splice(kanbanIndex, 1, editedKanban);
       }
     },
   },
