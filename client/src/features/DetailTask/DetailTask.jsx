@@ -77,7 +77,7 @@ const DetailTask = (props) => {
     const nvalues = {
       key: data.length + 1,
       ...values,
-      assignOn: moment().format('DD/MM/YYYY'),
+      assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
     };
     // console.log({});
