@@ -51,6 +51,7 @@ const DetailTask = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const data = useSelector((state) => state.detailTask.allDetailTask);
+  const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState(
@@ -272,7 +273,8 @@ const DetailTask = (props) => {
                 width: '100%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                height: '400px',
+                height: 'auto',
+                maxHeight: '400px',
                 overflow: 'auto',
                 borderRadius: '8px',
               }}
@@ -280,16 +282,16 @@ const DetailTask = (props) => {
               <PageHeader
                 ghost={false}
                 onBack={() => window.history.back()}
-                title="This is the title of task"
+                title={info.title || 'No title'}
                 style={{ padding: '0px' }}
-                subTitle={<div className="high">High</div>}
+                subTitle={<div className="high">{info.priority}</div>}
               >
                 <Descriptions size="small" column={6}>
                   <Descriptions.Item>
                     <Space>
                       <CalendarOutlined />
                       <Text>
-                        28/10/2021 <ArrowRightOutlined /> 30/10/2021
+                        {info.start_time} <ArrowRightOutlined /> {info.end_time}
                       </Text>
                     </Space>
                   </Descriptions.Item>
@@ -318,16 +320,7 @@ const DetailTask = (props) => {
               </Avatar.Group>
               <Space direction="vertical">
                 <Title level={5}>Decription:</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Asperiores perferendis quia ullam quaerat ipsam! Illo
-                  consequatur est modi quasi, id quae in quia animi veritatis
-                  voluptas dolorem vel, quam nostrum. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Id dolore quod enim sit
-                  veritatis debitis ipsa, iste neque reiciendis, nostrum
-                  mollitia doloremque! Fugit animi odio eligendi quae soluta,
-                  delectus facere?
-                </Text>
+                <Text>{info.description}</Text>
               </Space>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>

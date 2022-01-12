@@ -6,6 +6,7 @@ import { message } from 'antd';
 const initialDetailTask = {
   loading: false,
   allDetailTask: [],
+  infoTask: {},
 };
 
 export const listAllDetailTaskAsync = createAsyncThunk(
@@ -84,6 +85,7 @@ const detailTask = createSlice({
     [listAllDetailTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
+        console.log(action.payload);
         state.allDetailTask = action.payload.infoAllDetailTask.map((task) => {
           return {
             ...task,
@@ -91,6 +93,15 @@ const detailTask = createSlice({
             assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
           };
         });
+        state.infoTask = {
+          ...action.payload.infoTask,
+          start_time: moment(action.payload.infoTask.start_time).format(
+            'YYYY-MM-DD'
+          ),
+          end_time: moment(action.payload.infoTask.end_time).format(
+            'YYYY-MM-DD'
+          ),
+        };
       }
     },
     [createADetailTaskAsync.pending]: (state) => {
