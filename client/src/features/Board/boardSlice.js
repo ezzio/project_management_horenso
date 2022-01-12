@@ -98,7 +98,41 @@ export const boardSlice = createSlice({
       };
       state.listTask[columnId].eachColumnTask[taskIndex] = temp;
     },
-    automaticChangeStatusTask: (state) => {},
+    changeOverdue: (state, action) => {
+      const { columnId, index } = action.payload;
+      if (columnId !== 3) {
+        state.listTask[columnId].eachColumnTask[index].isOverdue = true;
+      }
+      switch (columnId) {
+        case '1': {
+          state.listTask[0].eachColumnTask.push(
+            ...state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
+              return idx === index;
+            })
+          );
+          state.listTask[1].eachColumnTask =
+            state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
+              return idx !== index;
+            });
+          break;
+        }
+        case '2': {
+          state.listTask[0].eachColumnTask.push(
+            ...state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
+              return idx === index;
+            })
+          );
+          state.listTask[2].eachColumnTask =
+            state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
+              return idx !== index;
+            });
+          break;
+        }
+
+        default:
+          break;
+      }
+    },
   },
   extraReducers: {
     [fetchBoard.pending]: (state) => {
@@ -126,8 +160,7 @@ export const boardSlice = createSlice({
               moment(task.end_time).format('YYYY-MM-DD')
             );
           });
-        state.listTask[1].eachColumnTask =
-          state.listTask[1].eachColumnTask.concat(inProgress);
+        state.listTask[1].eachColumnTask.push(...inProgress);
         // Get task have finished and pass to review
       }
     },
@@ -170,6 +203,6 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { deleteTask, updateTask, automaticChangeStatusTask, addNewTask } =
+export const { deleteTask, updateTask, changeOverdue, addNewTask } =
   boardSlice.actions;
 export default boardSlice.reducer;

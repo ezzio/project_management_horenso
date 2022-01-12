@@ -3,15 +3,10 @@ import HeaderBoard from 'features/HeaderBoard/HeaderBoard';
 import Column from 'features/Column/Column';
 import ModalNewTask from 'features/Board/ModalNewTask';
 import './Board.scss';
-import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import {
-  automaticChangeStatusTask,
-  fetchBoard,
-  updateOnDnd,
-} from './boardSlice';
+import { fetchBoard } from './boardSlice';
 import { Spin } from 'antd';
 
 const Board = (props) => {
@@ -32,7 +27,6 @@ const Board = (props) => {
   // Automatic Change Status Task
   useEffect(() => {
     dispatch(fetchBoard(idBoard));
-    dispatch(automaticChangeStatusTask());
   }, []);
 
   // <----------------------
