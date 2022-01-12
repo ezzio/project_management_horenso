@@ -36,6 +36,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   listAllDetailTaskAsync,
   createADetailTaskAsync,
+  editDetailTaskAsync,
+  deleteDetailTaskAsync,
 } from './DetailTaskSlice';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -101,26 +103,19 @@ const DetailTask = (props) => {
     }
   };
 
-  const save = (value) => {
+  const saveEdit = (value) => {
     setVisibleEdit(false);
-
-    const tmpData = [...data];
-    const index = tmpData.findIndex((item) => targetTask.key === item.key);
-    tmpData.splice(index, 1, {
-      ...targetTask,
-      name: value.name,
-    });
-
-    // setData(tmpData);
+    dispatch(editDetailTaskAsync({ idDetailTask: targetTask.id, ...value }));
   };
 
   // Handle delete task
-  const handleDelete = (key) => {
-    // const dataSource = [...data];
-    console.log(key);
-
-    // setData(dataSource.filter((item) => item.key !== key));
-  };
+  function confirmDelete(record) {
+    const temp = {
+      idDetailTask: record.id,
+      idTask: idTask,
+    };
+    dispatch(deleteDetailTaskAsync({ ...temp }));
+  }
 
   // Upload file ------------------>
   const handleUpload = (record) => {};
@@ -151,11 +146,25 @@ const DetailTask = (props) => {
           overlay={
             <Menu>
               <Menu.Item key="0">Upload attach</Menu.Item>
-              <Menu.Item key="1">Edit name</Menu.Item>
-              <Menu.Divider />
-              <Menu.Item key="2" danger>
-                Delete
+              <Menu.Item
+                key="1"
+                onClick={() => {
+                  handleEdit(record);
+                }}
+              >
+                Edit name
               </Menu.Item>
+              <Menu.Divider />
+              <Popconfirm
+                title="Are you sure to delete this task?"
+                onConfirm={() => confirmDelete(record)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Menu.Item key="2" danger>
+                  Delete
+                </Menu.Item>
+              </Popconfirm>
             </Menu>
           }
           trigger={['click']}
@@ -166,25 +175,6 @@ const DetailTask = (props) => {
     },
   ];
   // <-----------------------------|
-
-  const testdata = [
-    {
-      key: 1,
-      name: 'John Brown',
-      assignOn: '2021-10-10',
-      attachments: [
-        {
-          id: 1,
-          name: 'document.jsx',
-        },
-        {
-          id: 2,
-          name: 'document.docx',
-        },
-      ],
-    },
-  ];
-
   return (
     <>
       <Modal
@@ -236,20 +226,15 @@ const DetailTask = (props) => {
           form
             .validateFields()
             .then((values) => {
+              saveEdit(values);
               form.resetFields();
-              save(values);
             })
             .catch((info) => {
               console.log('Validate Failed:', info);
             });
         }}
       >
-        <Form
-          form={form}
-          layout="vertical"
-          name="form_edit_detail_task"
-          initialValue={{ name: targetTask }}
-        >
+        <Form form={form} layout="vertical" name="form_edit_detail_task">
           <Form.Item
             name="name"
             label="Name"
@@ -260,7 +245,11 @@ const DetailTask = (props) => {
               },
             ]}
           >
-            <Input autoFocus onChange={(e) => onChangeEdit(e.target.value)} />
+            <Input
+              autoFocus
+              onChange={(e) => onChangeEdit(e.target.value)}
+              placeholder={targetTask && targetTask.name}
+            />
           </Form.Item>
         </Form>
       </Modal>
@@ -366,13 +355,15 @@ const DetailTask = (props) => {
                   : 'Detail task'}
               </Title>
               <Table
+                className="table-detail-task"
                 dataSource={data}
                 columns={columns}
+                scroll={{ y: 300 }}
                 rowSelection={{
                   type: 'checkbox',
                   ...rowSelection,
                 }}
-                scroll={{ y: 240 }}
+                // scroll={{ y: 360 }}
                 pagination={false}
                 expandable={{
                   expandedRowRender: (record) =>
@@ -380,7 +371,7 @@ const DetailTask = (props) => {
                       record.attachmentsOfDetailTask.map((attach) => {
                         return (
                           <p
-                            style={{ cursor: 'pointer' }}
+                            className={'table-detail-task__name-attach'}
                             onClick={() => {
                               history.push(`/${idProject}/storage`);
                               localStorage.setItem('sider', '3');

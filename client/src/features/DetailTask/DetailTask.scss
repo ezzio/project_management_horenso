@@ -3,3 +3,16 @@
     width: 100%;
   }
 }
+
+.table-detail-task {
+  &__name-attach {
+    padding: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: #fafafa;
+      color: cornflowerblue;
+    }
+  }
+}
