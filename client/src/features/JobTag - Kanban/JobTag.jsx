@@ -151,7 +151,7 @@ const JobTag = (props) => {
           </div>
         </div>
       </div>
-      <Divider />
+      <Divider classname="job-divider" style={{ margin: "0" }} />
     </>
   );
 };

@@ -16,6 +16,10 @@
         flex: 2;
         font-size: 18px;
         font-weight: bold;
+
+        & p {
+            margin: 0 !important;
+        }
     }
 
     &__process {

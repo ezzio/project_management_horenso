@@ -33,6 +33,8 @@ const KanbanDashBoard = () => {
 
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
+
+  const isCompletedJobs = jobs.listJobs.filter((job) => job.is_completed);
   // List Kanban
   useEffect(() => {
     dispatch(ListKanban());
@@ -176,7 +178,7 @@ const KanbanDashBoard = () => {
             </Button>
           </div>
           <div className="ctn-kanbandashboard__working__content">
-            {jobs.listJobs ? (
+            {jobs.listJobs.length > 0 ? (
               jobs.listJobs.map((job) => {
                 if (!job.is_completed)
                   return (
@@ -203,7 +205,7 @@ const KanbanDashBoard = () => {
               Completed Job
             </Title>
           </div>
-          {showCompleteTask && <CompleteTask jobs={jobs} />}
+          {showCompleteTask && <CompleteTask jobs={isCompletedJobs} />}
         </div>
       </div>
     </>
