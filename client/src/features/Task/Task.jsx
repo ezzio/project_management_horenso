@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { RiChat1Line } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
-import { deleteTask, deleteTaskAsync } from 'features/Board/boardSlice';
+import {
+  changeOverdue,
+  deleteTask,
+  deleteTaskAsync,
+} from 'features/Board/boardSlice';
 import {
   Menu,
   Dropdown,
@@ -54,6 +58,10 @@ const Task = (props) => {
     console.log(e);
     // message.error("Click on No");
   }
+
+  useEffect(() => {
+    dispatch(changeOverdue({ columnId, index }));
+  }, []);
 
   const menu = (
     <Menu>
