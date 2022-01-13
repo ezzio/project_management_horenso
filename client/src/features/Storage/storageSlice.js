@@ -25,18 +25,16 @@ export const storageSlice = createSlice({
     [listFile.pending]: (state) => {},
     [listFile.rejected]: (state) => {},
     [listFile.fulfilled]: (state, action) => {
-      console.log("list file redux: ", action.payload);
-      // const urlParams = action.payload.nameParamValue
-      //   ? action.payload.nameParamValue
-      //   : "";
+      // console.log("list file redux: ", action.payload);
 
-      const urlParams = action.payload.nameParamValue;
+      const urlParams = action.payload.nameParamValue
+        ? action.payload.nameParamValue
+        : "";
 
       const filterData = action.payload.currentListFile.filter((entry) =>
         entry.name.includes(urlParams)
       );
 
-      // urlParams.length !== 0
       filterData.length > 0
         ? (state.dataFile = filterData.map((item, index) => {
             return {
@@ -45,15 +43,7 @@ export const storageSlice = createSlice({
               uploaded_at: moment(item.uploaded_at).format("YYYY-MM-DD"),
             };
           }))
-        : (state.dataFile = action.payload.currentListFile.map(
-            (item, index) => {
-              return {
-                ...item,
-                key: index,
-                uploaded_at: moment(item.uploaded_at).format("YYYY-MM-DD"),
-              };
-            }
-          ));
+        : (state.dataFile = []);
     },
   },
 });
