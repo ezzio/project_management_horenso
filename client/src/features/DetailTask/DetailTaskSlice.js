@@ -22,7 +22,7 @@ export const createADetailTaskAsync = createAsyncThunk(
     thunkAPI.dispatch(
       addADetailTask({
         name: params.name,
-        assignOn: moment().format('DD/MM/YYYY'),
+        assignOn: moment().format('YYYY-MM-DD'),
         isCompleted: false,
       })
     );
@@ -85,7 +85,6 @@ const detailTask = createSlice({
     [listAllDetailTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        console.log(action.payload);
         state.allDetailTask = action.payload.infoAllDetailTask.map((task) => {
           return {
             ...task,
