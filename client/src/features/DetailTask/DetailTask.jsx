@@ -55,7 +55,7 @@ const DetailTask = (props) => {
   const loading = useSelector((state) => state.detailTask.loading);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState(
-    data.filter((item) => item.isCompleted).map((item) => item.key)
+    data.filter((item) => item.is_complete).map((item) => item.key)
   );
 
   useEffect(() => {
@@ -147,6 +147,7 @@ const DetailTask = (props) => {
           overlay={
             <Menu>
               <Menu.Item key="0">Upload attach</Menu.Item>
+
               <Menu.Item
                 key="1"
                 onClick={() => {
@@ -273,8 +274,7 @@ const DetailTask = (props) => {
                 width: '100%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                height: 'auto',
-                maxHeight: '400px',
+                height: '313px',
                 overflow: 'auto',
                 borderRadius: '8px',
               }}
@@ -284,7 +284,7 @@ const DetailTask = (props) => {
                 onBack={() => window.history.back()}
                 title={info.title || 'No title'}
                 style={{ padding: '0px' }}
-                subTitle={<div className="high">{info.priority}</div>}
+                subTitle={<div className={info.priority}>{info.priority}</div>}
               >
                 <Descriptions size="small" column={6}>
                   <Descriptions.Item>
@@ -318,10 +318,6 @@ const DetailTask = (props) => {
                   icon={<AntDesignOutlined />}
                 />
               </Avatar.Group>
-              <Space direction="vertical">
-                <Title level={5}>Decription:</Title>
-                <Text>{info.description}</Text>
-              </Space>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>
                 <Progress
@@ -331,13 +327,17 @@ const DetailTask = (props) => {
                   status="active"
                 />
               </Space>
+              <Space direction="vertical">
+                <Title level={5}>Decription:</Title>
+                <Text>{info.description}</Text>
+              </Space>
             </Space>
             <div
               style={{
                 width: '100%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                height: '500px',
+                height: '600px',
                 overflow: 'auto',
                 borderRadius: '8px',
               }}
@@ -351,10 +351,11 @@ const DetailTask = (props) => {
                 className="table-detail-task"
                 dataSource={data}
                 columns={columns}
-                scroll={{ y: 300 }}
+                scroll={{ y: 500 }}
                 rowSelection={{
                   type: 'checkbox',
                   ...rowSelection,
+                  selectedRowKeys,
                 }}
                 // scroll={{ y: 360 }}
                 pagination={false}
@@ -366,7 +367,9 @@ const DetailTask = (props) => {
                           <p
                             className={'table-detail-task__name-attach'}
                             onClick={() => {
-                              history.push(`/${idProject}/storage`);
+                              history.push(
+                                `/${idProject}/storage/?name=${attach.name}`
+                              );
                               localStorage.setItem('sider', '3');
                             }}
                           >
