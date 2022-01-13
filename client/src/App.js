@@ -82,11 +82,15 @@ const AnimatedRouter = () => {
         <Route path="/:idProject/conversation" children={<Conversation />} />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
         <Route path="/:idProject/report" children={<Report />} />
-        <Route path="/:idProject/storage" children={<Source />} />
+        <Route path="/:idProject/storage/" children={<Source />} />
         <Route path="/:idProject/github" children={<Github />} />
         <Route path="/:idProject/teammate" children={<Teammate />} />
         <Route path="/:idProject/setting" children={<Setting />} />
-        <PrivateRoute exact path="/:idProject/jobs/:idBoard" children={<Board />} />
+        <PrivateRoute
+          exact
+          path="/:idProject/jobs/:idBoard"
+          children={<Board />}
+        />
         <PrivateRoute
           exact
           path="/:idProject/jobs/:idBoard/:idTask"

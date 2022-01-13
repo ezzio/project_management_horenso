@@ -6,11 +6,12 @@ import { message } from 'antd';
 const initialDetailTask = {
   loading: false,
   allDetailTask: [],
+  infoTask: {},
 };
 
 export const listAllDetailTaskAsync = createAsyncThunk(
   'detailTask/ListDetailTask',
-  async (params, thunkAPI) => {
+  async (params) => {
     let allDetailTask = await detailTaskApi.listAllDetailTask(params);
     return allDetailTask;
   }
@@ -21,13 +22,30 @@ export const createADetailTaskAsync = createAsyncThunk(
     thunkAPI.dispatch(
       addADetailTask({
         name: params.name,
-        assignOn: moment().format('DD/MM/YYYY'),
+        assignOn: moment().format('YYYY-MM-DD'),
         isCompleted: false,
       })
     );
 
     let createADetailTask = await detailTaskApi.createADetailTask(params);
     return createADetailTask;
+  }
+);
+export const editDetailTaskAsync = createAsyncThunk(
+  'detailTask/edit-detail-task',
+  async (params, thunkAPI) => {
+    thunkAPI.dispatch(editDetailTask(params));
+    const res = await detailTaskApi.editDetailTask(params);
+    return res;
+  }
+);
+
+export const deleteDetailTaskAsync = createAsyncThunk(
+  'detailTask/delete-detail-task',
+  async (params, thunkAPI) => {
+    thunkAPI.dispatch(deleteDetailTask(params));
+    const res = await detailTaskApi.deleteDetailTask(params);
+    return res;
   }
 );
 
@@ -38,6 +56,23 @@ const detailTask = createSlice({
     addADetailTask: (state, action) => {
       console.log(action.payload);
       state.allDetailTask.push(action.payload);
+    },
+    editDetailTask: (state, action) => {
+      const idx = state.allDetailTask.findIndex((task) => {
+        return action.payload.idDetailTask === task.id;
+      });
+      const temp = {
+        ...state.allDetailTask[idx],
+        name: action.payload.name,
+      };
+      state.allDetailTask.splice(idx, 1, temp);
+    },
+    deleteDetailTask: (state, action) => {
+      const idx = state.allDetailTask.findIndex((task) => {
+        return action.payload.idDetailTask === task.id;
+      });
+
+      state.allDetailTask.splice(idx, 1);
     },
   },
   extraReducers: {
@@ -50,15 +85,22 @@ const detailTask = createSlice({
     [listAllDetailTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        state.allDetailTask = action.payload.infoAllDetailTask.map(
-          (task, index) => {
-            return {
-              ...task,
-              key: index,
-              assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
-            };
-          }
-        );
+        state.allDetailTask = action.payload.infoAllDetailTask.map((task) => {
+          return {
+            ...task,
+            key: task.id,
+            assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
+          };
+        });
+        state.infoTask = {
+          ...action.payload.infoTask,
+          start_time: moment(action.payload.infoTask.start_time).format(
+            'YYYY-MM-DD'
+          ),
+          end_time: moment(action.payload.infoTask.end_time).format(
+            'YYYY-MM-DD'
+          ),
+        };
       }
     },
     [createADetailTaskAsync.pending]: (state) => {
@@ -76,4 +118,5 @@ const detailTask = createSlice({
 });
 
 export default detailTask.reducer;
-export const { addADetailTask } = detailTask.actions;
+export const { addADetailTask, editDetailTask, deleteDetailTask } =
+  detailTask.actions;

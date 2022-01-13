@@ -36,6 +36,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   listAllDetailTaskAsync,
   createADetailTaskAsync,
+  editDetailTaskAsync,
+  deleteDetailTaskAsync,
 } from './DetailTaskSlice';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -49,10 +51,11 @@ const DetailTask = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const data = useSelector((state) => state.detailTask.allDetailTask);
+  const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState(
-    data.filter((item) => item.isCompleted).map((item) => item.key)
+    data.filter((item) => item.is_complete).map((item) => item.key)
   );
 
   useEffect(() => {
@@ -75,7 +78,7 @@ const DetailTask = (props) => {
     const nvalues = {
       key: data.length + 1,
       ...values,
-      assignOn: moment().format('DD/MM/YYYY'),
+      assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
     };
     // console.log({});
@@ -101,26 +104,19 @@ const DetailTask = (props) => {
     }
   };
 
-  const save = (value) => {
+  const saveEdit = (value) => {
     setVisibleEdit(false);
-
-    const tmpData = [...data];
-    const index = tmpData.findIndex((item) => targetTask.key === item.key);
-    tmpData.splice(index, 1, {
-      ...targetTask,
-      name: value.name,
-    });
-
-    // setData(tmpData);
+    dispatch(editDetailTaskAsync({ idDetailTask: targetTask.id, ...value }));
   };
 
   // Handle delete task
-  const handleDelete = (key) => {
-    // const dataSource = [...data];
-    console.log(key);
-
-    // setData(dataSource.filter((item) => item.key !== key));
-  };
+  function confirmDelete(record) {
+    const temp = {
+      idDetailTask: record.id,
+      idTask: idTask,
+    };
+    dispatch(deleteDetailTaskAsync({ ...temp }));
+  }
 
   // Upload file ------------------>
   const handleUpload = (record) => {};
@@ -151,11 +147,26 @@ const DetailTask = (props) => {
           overlay={
             <Menu>
               <Menu.Item key="0">Upload attach</Menu.Item>
-              <Menu.Item key="1">Edit name</Menu.Item>
-              <Menu.Divider />
-              <Menu.Item key="2" danger>
-                Delete
+
+              <Menu.Item
+                key="1"
+                onClick={() => {
+                  handleEdit(record);
+                }}
+              >
+                Edit name
               </Menu.Item>
+              <Menu.Divider />
+              <Popconfirm
+                title="Are you sure to delete this task?"
+                onConfirm={() => confirmDelete(record)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Menu.Item key="2" danger>
+                  Delete
+                </Menu.Item>
+              </Popconfirm>
             </Menu>
           }
           trigger={['click']}
@@ -166,25 +177,6 @@ const DetailTask = (props) => {
     },
   ];
   // <-----------------------------|
-
-  const testdata = [
-    {
-      key: 1,
-      name: 'John Brown',
-      assignOn: '2021-10-10',
-      attachments: [
-        {
-          id: 1,
-          name: 'document.jsx',
-        },
-        {
-          id: 2,
-          name: 'document.docx',
-        },
-      ],
-    },
-  ];
-
   return (
     <>
       <Modal
@@ -236,20 +228,15 @@ const DetailTask = (props) => {
           form
             .validateFields()
             .then((values) => {
+              saveEdit(values);
               form.resetFields();
-              save(values);
             })
             .catch((info) => {
               console.log('Validate Failed:', info);
             });
         }}
       >
-        <Form
-          form={form}
-          layout="vertical"
-          name="form_edit_detail_task"
-          initialValue={{ name: targetTask }}
-        >
+        <Form form={form} layout="vertical" name="form_edit_detail_task">
           <Form.Item
             name="name"
             label="Name"
@@ -260,7 +247,11 @@ const DetailTask = (props) => {
               },
             ]}
           >
-            <Input autoFocus onChange={(e) => onChangeEdit(e.target.value)} />
+            <Input
+              autoFocus
+              onChange={(e) => onChangeEdit(e.target.value)}
+              placeholder={targetTask && targetTask.name}
+            />
           </Form.Item>
         </Form>
       </Modal>
@@ -283,7 +274,7 @@ const DetailTask = (props) => {
                 width: '100%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                height: '400px',
+                height: '313px',
                 overflow: 'auto',
                 borderRadius: '8px',
               }}
@@ -291,16 +282,16 @@ const DetailTask = (props) => {
               <PageHeader
                 ghost={false}
                 onBack={() => window.history.back()}
-                title="This is the title of task"
+                title={info.title || 'No title'}
                 style={{ padding: '0px' }}
-                subTitle={<div className="high">High</div>}
+                subTitle={<div className={info.priority}>{info.priority}</div>}
               >
                 <Descriptions size="small" column={6}>
                   <Descriptions.Item>
                     <Space>
                       <CalendarOutlined />
                       <Text>
-                        28/10/2021 <ArrowRightOutlined /> 30/10/2021
+                        {info.start_time} <ArrowRightOutlined /> {info.end_time}
                       </Text>
                     </Space>
                   </Descriptions.Item>
@@ -327,19 +318,6 @@ const DetailTask = (props) => {
                   icon={<AntDesignOutlined />}
                 />
               </Avatar.Group>
-              <Space direction="vertical">
-                <Title level={5}>Decription:</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Asperiores perferendis quia ullam quaerat ipsam! Illo
-                  consequatur est modi quasi, id quae in quia animi veritatis
-                  voluptas dolorem vel, quam nostrum. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Id dolore quod enim sit
-                  veritatis debitis ipsa, iste neque reiciendis, nostrum
-                  mollitia doloremque! Fugit animi odio eligendi quae soluta,
-                  delectus facere?
-                </Text>
-              </Space>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>
                 <Progress
@@ -349,13 +327,17 @@ const DetailTask = (props) => {
                   status="active"
                 />
               </Space>
+              <Space direction="vertical">
+                <Title level={5}>Decription:</Title>
+                <Text>{info.description}</Text>
+              </Space>
             </Space>
             <div
               style={{
                 width: '100%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                height: '500px',
+                height: '600px',
                 overflow: 'auto',
                 borderRadius: '8px',
               }}
@@ -366,13 +348,16 @@ const DetailTask = (props) => {
                   : 'Detail task'}
               </Title>
               <Table
+                className="table-detail-task"
                 dataSource={data}
                 columns={columns}
+                scroll={{ y: 500 }}
                 rowSelection={{
                   type: 'checkbox',
                   ...rowSelection,
+                  selectedRowKeys,
                 }}
-                scroll={{ y: 240 }}
+                // scroll={{ y: 360 }}
                 pagination={false}
                 expandable={{
                   expandedRowRender: (record) =>
@@ -380,9 +365,11 @@ const DetailTask = (props) => {
                       record.attachmentsOfDetailTask.map((attach) => {
                         return (
                           <p
-                            style={{ cursor: 'pointer' }}
+                            className={'table-detail-task__name-attach'}
                             onClick={() => {
-                              history.push(`/${idProject}/storage`);
+                              history.push(
+                                `/${idProject}/storage/?name=${attach.name}`
+                              );
                               localStorage.setItem('sider', '3');
                             }}
                           >
