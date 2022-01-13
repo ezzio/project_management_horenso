@@ -8,6 +8,8 @@ import userSettingReducer from "pages/UserSettings/UserSettingSlice";
 import teammateReducer from "features/Teammate/teammateSlice";
 import createProjectReducer from "features/CreateProject/createProjectSlice";
 import detailTaskReducer from "features/DetailTask/DetailTaskSlice";
+import storageReducer from "features/Storage/storageSlice";
+
 export const store = configureStore({
   reducer: {
     board: boardReducer,
@@ -18,6 +20,7 @@ export const store = configureStore({
     userSetting: userSettingReducer,
     teammate: teammateReducer,
     createProject: createProjectReducer,
-    detailTask: detailTaskReducer
+    detailTask: detailTaskReducer,
+    storage: storageReducer,
   },
 });

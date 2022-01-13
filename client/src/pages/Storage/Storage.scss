@@ -1,7 +1,7 @@
-@import "../../../styles/Color.scss";
-@import "../../../styles/ContainerContents.scss";
+@import "../../styles/Color.scss";
+@import "../../styles/ContainerContents.scss";
 
-.source {
+.storage {
   .header {
     width: 100%;
 
@@ -20,13 +20,12 @@
         margin-left: 10px;
         padding: 4px;
         font-size: 18px;
-        border: 0;
+        border: none;
       }
-    }
 
-    &__add-file {
-      max-width: 400px;
-      margin-right: 60px;
+      input:focus {
+        outline: none;
+      }
     }
 
     &__user-tag {
@@ -45,4 +44,8 @@
       }
     }
   }
+}
+
+.ant-input:focus {
+  outline: none;
 }
