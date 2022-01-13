@@ -4,9 +4,12 @@ import moment from "moment";
 
 export const listFile = createAsyncThunk(
   "storage/listFile",
-  async (idproject, thunkAPI) => {
-    const currentListFile = await storageAPI.getAll(idproject);
-    return currentListFile;
+  async (params, thunkAPI) => {
+    const currentListFile = await storageAPI.getAll(params);
+    return {
+      currentListFile: currentListFile,
+      nameParamValue: params.nameParamValue,
+    };
   }
 );
 
@@ -23,13 +26,34 @@ export const storageSlice = createSlice({
     [listFile.rejected]: (state) => {},
     [listFile.fulfilled]: (state, action) => {
       console.log("list file redux: ", action.payload);
-      state.dataFile = action.payload.map((item, index) => {
-        return {
-          ...item,
-          key: index,
-          uploaded_at: moment(item.uploaded_at).format("YYYY-MM-DD"),
-        };
-      });
+      // const urlParams = action.payload.nameParamValue
+      //   ? action.payload.nameParamValue
+      //   : "";
+
+      const urlParams = action.payload.nameParamValue;
+
+      const filterData = action.payload.currentListFile.filter((entry) =>
+        entry.name.includes(urlParams)
+      );
+
+      // urlParams.length !== 0
+      filterData.length > 0
+        ? (state.dataFile = filterData.map((item, index) => {
+            return {
+              ...item,
+              key: index,
+              uploaded_at: moment(item.uploaded_at).format("YYYY-MM-DD"),
+            };
+          }))
+        : (state.dataFile = action.payload.currentListFile.map(
+            (item, index) => {
+              return {
+                ...item,
+                key: index,
+                uploaded_at: moment(item.uploaded_at).format("YYYY-MM-DD"),
+              };
+            }
+          ));
     },
   },
 });

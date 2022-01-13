@@ -3,11 +3,11 @@ import axios from "axios";
 const API = "https://servernckh.herokuapp.com";
 
 const storageAPI = {
-  getAll(idproject) {
+  getAll(params) {
     return axios
       .post(`${API}/project/listAllAttachmentInProject`, {
         owner: localStorage.getItem("access_token"),
-        idproject: idproject,
+        idproject: params.idProject,
       })
       .then((response) => {
         // console.log(response.data.allAttachment);

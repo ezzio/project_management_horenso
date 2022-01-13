@@ -1,45 +1,74 @@
 import { Button, Input, Space, Table } from "antd";
 import "antd/dist/antd.css";
 import { listFile } from "features/Storage/storageSlice";
-import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBin6Line, RiDownload2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import "./Storage.scss";
 
 const Storage = () => {
   const dataApi = useSelector((state) => state.storage.dataFile);
+
   const [dataSource, setDataSource] = useState([]);
   const [value, setValue] = useState("");
 
+  const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
+  const typingTimeoutRef = useRef();
 
+  // Get name value from URL param
+  const useQuery = () => {
+    const { search } = useLocation();
+    return useMemo(() => new URLSearchParams(search), [search]);
+  };
+  const query = useQuery();
+  const nameParamValue = query.get("name");
+
+  const [paramValue, setParamValue] = useState(nameParamValue);
+
+  // Call api
   useEffect(() => {
-    dispatch(listFile(params.idProject));
-  }, []);
+    dispatch(
+      listFile({
+        idProject: params.idProject,
+        nameParamValue: paramValue,
+      })
+    );
+  }, [dispatch, params.idProject, paramValue]);
 
   useEffect(() => {
     setDataSource(dataApi);
   }, [dataApi]);
 
+  // debounce search start
+  const onSearchChange = (value) => {
+    setValue(value);
+
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    typingTimeoutRef.current = setTimeout(() => {
+      setParamValue(value);
+    }, 300);
+
+    history.push({
+      search: "?" + new URLSearchParams({ name: value }),
+    });
+  };
+
   const FilterByNameInput = (
     <Input
       bordered={false}
-      placeholder="Search file or task..."
+      placeholder="Search file name..."
       value={value}
-      onChange={(e) => {
-        const currValue = e.target.value;
-        setValue(currValue);
-        const filteredData = dataApi.filter((entry) =>
-          entry.name.toLowerCase().includes(currValue)
-        );
-        setDataSource(filteredData);
-      }}
+      onChange={(e) => onSearchChange(e.target.value)}
     />
   );
+
   const columns = [
     {
       title: "Name",
@@ -68,12 +97,6 @@ const Storage = () => {
       key: "uploaded_at",
       sorter: (a, b) => new Date(a.uploaded_at) - new Date(b.uploaded_at),
     },
-    // {
-    //   title: "Size",
-    //   dataIndex: "size",
-    //   key: "Id",
-    //   sorter: (a, b) => a.size - b.size,
-    // },
     // {
     //   title: "Member",
     //   dataIndex: "member",
