@@ -215,10 +215,11 @@ const KanbanDashBoard = () => {
 export default KanbanDashBoard;
 
 const CompleteTask = ({ jobs }) => {
+  console.log(jobs);
   return (
     <div className="ctn-kanbandashboard__complete__content">
-      {jobs.listJobs ? (
-        jobs.listJobs.map((job) => {
+      {jobs.length > 0 ? (
+        jobs.map((job) => {
           if (job.is_completed)
             return (
               <JobTag

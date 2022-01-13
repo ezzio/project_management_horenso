@@ -39,7 +39,7 @@ const KanbanAPI = {
   },
   deleteJob: (params) => {
     return axios
-      .post(`${API}/Job/delete_Job`, {
+      .post(`${API}/Job/deleteJob`, {
         owner: localStorage.getItem("access_token"),
         projectowner: localStorage.getItem("projectowner"),
         kanban_id: params.kanban_id,
@@ -54,14 +54,15 @@ const KanbanAPI = {
   editJob: (params) => {
     return axios
       .post(`${API}/Job/edit_Job`, {
-        owner: localStorage.getItem("access_token"),
-        projectowner: localStorage.getItem("projectowner"),
+        // owner: localStorage.getItem("access_token"),
+        // projectowner: localStorage.getItem("projectowner"),
         kanban_id: params.id_job,
         priority: params.priority,
         // process: params.process,
         start_time: params.start_time,
-        end_time: params.end_time.end_time,
+        end_time: params.end_time,
         title: params.title,
+        members: params.members,
       })
       .then((response) => {
         return response.data;

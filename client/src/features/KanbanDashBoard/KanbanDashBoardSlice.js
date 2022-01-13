@@ -2,28 +2,28 @@ import KanbanAPI from "api/kanbanApi";
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import moment from "moment";
 export const ListKanban = createAsyncThunk(
-  "Kanan/ListKanban",
+  "Kanban/ListKanban",
   async (params, thunkAPI) => {
     const currentListKanban = await KanbanAPI.ListKanbanOfJob();
     return currentListKanban;
   }
 );
 export const AddNewJobkanban = createAsyncThunk(
-  "Kanan/CreateAKanban",
+  "Kanban/CreateAKanban",
   async (params) => {
     const current = await KanbanAPI.AddNewJob(params);
     return current;
   }
 );
 export const DeleteAJob = createAsyncThunk(
-  "Kanan/deleteJob",
+  "Kanban/deleteJob",
   async (params) => {
     // console.log(params);
     const current = await KanbanAPI.deleteJob(params);
     return current;
   }
 );
-export const EditAJob = createAsyncThunk("Kanan/editJob", async (params) => {
+export const EditAJob = createAsyncThunk("Kaban/editJob", async (params) => {
   // console.log(params);
   const current = await KanbanAPI.editJob(params);
   return current;
