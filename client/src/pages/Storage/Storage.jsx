@@ -67,6 +67,7 @@ const Storage = () => {
       placeholder="Search file name..."
       value={value}
       onChange={(e) => onSearchChange(e.target.value)}
+      allowClear
     />
   );
 
