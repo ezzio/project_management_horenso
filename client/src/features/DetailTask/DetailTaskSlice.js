@@ -49,6 +49,15 @@ export const deleteDetailTaskAsync = createAsyncThunk(
   }
 );
 
+export const changeCompletedDetailTaskAsync = createAsyncThunk(
+  'detailTask/change-completed-detail-task',
+  async (params) => {
+    console.log(params);
+    // const res = await detailTaskApi.changeCompletedDetailTask(params);
+    // return res;
+  }
+);
+
 const detailTask = createSlice({
   name: 'detailTask',
   initialState: initialDetailTask,
