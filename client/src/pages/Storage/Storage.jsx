@@ -38,6 +38,7 @@ const Storage = () => {
         nameParamValue: paramValue,
       })
     );
+    setValue(paramValue);
   }, [dispatch, params.idProject, paramValue]);
 
   useEffect(() => {
