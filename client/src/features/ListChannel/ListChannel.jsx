@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FcFolder, FcBriefcase, FcCollaboration } from 'react-icons/fc';
-
+import { useSelector } from 'react-redux';
 import './ListChannel.scss';
 import { AiOutlinePlus } from 'react-icons/ai';
 import WorkspaceModal from './Modals/WorkspaceModal';
@@ -8,26 +8,25 @@ import OthersModal from './Modals/OthersModal';
 import TeamsModal from './Modals/TeamsModal'
 
 const Listchannel = () => {
-  const [workspace, setWorkspace] = useState([
-    'Project Ideas',
-    'Confirm Content',
-    'Waiting for review',
-  ]);
 
-  const [team, setTeam] = useState(['Developers', 'Designer']);
-  const [others, setOthers] = useState(['Off-Topic', 'Archive']);
+  const channels = useSelector((state) => state.createChannel);
+
+  // const [workspace, setWorkspace] = useState(channels.workspace);
+
+  // const [team, setTeam] = useState(channels.team);
+  // const [others, setOthers] = useState(channels.others);
 
   const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
   const [openTeamsModal, setOpenTeamsModal] = useState(false);
   const [openOthersModal, setOpenOthersModal] = useState(false);
 
-  const [members, setMembers] = useState([
-    'Dang Khoa',
-    'Huu Thang',
-    'Chanh Nhut',
-    'Phu Nguyen',
-    'Tuong Minh',
-  ]);
+  // const [members, setMembers] = useState([
+  //   'Dang Khoa',
+  //   'Huu Thang',
+  //   'Chanh Nhut',
+  //   'Phu Nguyen',
+  //   'Tuong Minh',
+  // ]);
 
   // const addWorkSpace = (key) => {
   //   switch (key) {
@@ -87,7 +86,7 @@ const Listchannel = () => {
               setOpenWorkspaceModal={setOpenWorkspaceModal}
             />
           </div>
-          {workspace.map((x) => {
+          {channels.workspace.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
@@ -109,7 +108,7 @@ const Listchannel = () => {
               setOpenTeamsModal={setOpenTeamsModal}
             />
           </div>
-          {team.map((x) => {
+          {channels.teams.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
@@ -131,7 +130,7 @@ const Listchannel = () => {
               setOpenOthersModal={setOpenOthersModal}
             />
           </div>
-          {others.map((x) => {
+          {channels.others.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
