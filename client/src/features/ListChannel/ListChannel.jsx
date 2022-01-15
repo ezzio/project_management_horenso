@@ -3,6 +3,9 @@ import { FcFolder, FcBriefcase, FcCollaboration } from 'react-icons/fc';
 
 import './ListChannel.scss';
 import { AiOutlinePlus } from 'react-icons/ai';
+import WorkspaceModal from './Modals/WorkspaceModal';
+import OthersModal from './Modals/OthersModal';
+import TeamsModal from './Modals/TeamsModal'
 
 const Listchannel = () => {
   const [workspace, setWorkspace] = useState([
@@ -10,8 +13,13 @@ const Listchannel = () => {
     'Confirm Content',
     'Waiting for review',
   ]);
+
   const [team, setTeam] = useState(['Developers', 'Designer']);
   const [others, setOthers] = useState(['Off-Topic', 'Archive']);
+
+  const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
+  const [openTeamsModal, setOpenTeamsModal] = useState(false);
+  const [openOthersModal, setOpenOthersModal] = useState(false);
 
   const [members, setMembers] = useState([
     'Dang Khoa',
@@ -21,18 +29,18 @@ const Listchannel = () => {
     'Tuong Minh',
   ]);
 
-  const addWorkSpace = (key) => {
-    switch (key) {
-      case 'workspace':
-        setWorkspace();
-        break;
+  // const addWorkSpace = (key) => {
+  //   switch (key) {
+  //     case 'workspace':
+  //       setWorkspace();
+  //       break;
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
-  const renderModal = (channel) => {};
+  // const renderModal = (channel) => {};
 
   return (
     <>
@@ -71,11 +79,17 @@ const Listchannel = () => {
               <FcBriefcase />
               <h5>WORKSPACE</h5>
             </section>
-            <AiOutlinePlus className="add" />
+            <AiOutlinePlus className="add" onClick={() => setOpenWorkspaceModal(true)}/>
+          </div>
+          <div>
+            <WorkspaceModal 
+              openWorkspaceModal={openWorkspaceModal}
+              setOpenWorkspaceModal={setOpenWorkspaceModal}
+            />
           </div>
           {workspace.map((x) => {
             return (
-              <li className="list-channel__group__btn">
+              <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
               </li>
             );
@@ -87,11 +101,17 @@ const Listchannel = () => {
               <FcCollaboration />
               <h5>TEAMS</h5>
             </section>
-            <AiOutlinePlus className="add" />
+            <AiOutlinePlus className="add"  onClick={() => setOpenTeamsModal(true)}/>
+          </div>
+          <div>
+            <TeamsModal 
+              openTeamsModal={openTeamsModal}
+              setOpenTeamsModal={setOpenTeamsModal}
+            />
           </div>
           {team.map((x) => {
             return (
-              <li className="list-channel__group__btn">
+              <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
               </li>
             );
@@ -103,11 +123,17 @@ const Listchannel = () => {
               <FcFolder />
               <h5>OTHERS</h5>
             </section>
-            <AiOutlinePlus className="add" />
+            <AiOutlinePlus className="add" onClick={() => setOpenOthersModal(true)}/>
+          </div>
+          <div>
+            <OthersModal 
+              openOthersModal={openOthersModal}
+              setOpenOthersModal={setOpenOthersModal}
+            />
           </div>
           {others.map((x) => {
             return (
-              <li className="list-channel__group__btn">
+              <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
               </li>
             );
