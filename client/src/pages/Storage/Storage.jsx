@@ -129,14 +129,6 @@ const Storage = () => {
           </i>
           {FilterByNameInput}
         </div>
-        <div className="header__user-tag">
-          <img
-            src="https://assets.dragoart.com/images/11939_501/how-to-draw-iron-man-easy_5e4c9ed9b16b58.14188289_53732_3_3.png"
-            alt="user-tag"
-            height="35px"
-            width="35px"
-          />
-        </div>
       </div>
       <div className="content">
         <Table dataSource={dataSource} columns={columns}></Table>
