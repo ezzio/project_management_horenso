@@ -13,6 +13,14 @@ export const listFile = createAsyncThunk(
   }
 );
 
+export const apiDeleteFile = createAsyncThunk(
+  "storage/deleteFile",
+  async (params, thunkAPI) => {
+    const response = await storageAPI.deleteFile(params);
+    return response;
+  }
+);
+
 const initialState = {
   dataFile: [],
 };
@@ -20,7 +28,14 @@ const initialState = {
 export const storageSlice = createSlice({
   name: "storage",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteFile: (state, action) => {
+      state.dataFile = state.dataFile.filter((item) => {
+        return item.name !== action.payload;
+      });
+    },
+  },
+
   extraReducers: {
     [listFile.pending]: (state) => {},
     [listFile.rejected]: (state) => {},
@@ -45,8 +60,14 @@ export const storageSlice = createSlice({
           }))
         : (state.dataFile = []);
     },
+
+    [apiDeleteFile.pending]: (state) => {},
+    [apiDeleteFile.rejected]: (state) => {},
+    [apiDeleteFile.fulfilled]: (state, action) => {
+      console.log(action.payload);
+    },
   },
 });
 
-// export const {} = teammateSlice.actions;
+export const { deleteFile } = storageSlice.actions;
 export default storageSlice.reducer;

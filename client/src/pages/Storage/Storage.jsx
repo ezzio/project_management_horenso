@@ -1,10 +1,10 @@
 import { Button, Input, Space, Table } from "antd";
 import "antd/dist/antd.css";
+import DeleteFile from "features/Storage/DeleteFile-Storage/deleteFile";
 import { listFile } from "features/Storage/storageSlice";
-import React, { useEffect, useMemo, useState } from "react";
-import { useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { RiDeleteBin6Line, RiDownload2Fill } from "react-icons/ri";
+import { RiDownload2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import "./Storage.scss";
@@ -115,11 +115,14 @@ const Storage = () => {
       render: (text, record) => (
         <Space size="middle">
           <Button type="primary" icon={<RiDownload2Fill />} size="medium" />
-          <Button type="danger" icon={<RiDeleteBin6Line />} size="medium" />
+          <DeleteFile fileName={record.name} />
         </Space>
       ),
     },
   ];
+
+
+  
   return (
     <div className="ctn storage">
       <div className="header">
