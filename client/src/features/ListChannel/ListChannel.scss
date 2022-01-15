@@ -97,6 +97,15 @@
           font-weight: bold;
         }
       }
+
+      &:focus {
+        background-color: hsla(170, 79%, 43%, 0.08);
+
+        & > a {
+          color: $_GREENBLUE;
+          font-weight: bold;
+        }
+      }
     }
   }
 }
