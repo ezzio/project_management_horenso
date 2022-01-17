@@ -1,13 +1,18 @@
 import React from 'react'
 import { Modal, Form, message, Input } from 'antd'
+import { useDispatch } from 'react-redux'
+import { addOthersChannel } from '../ListChannelSlice'
 
 function OthersModal({ openOthersModal, setOpenOthersModal }) {
 
     const [form] = Form.useForm();
 
+    const dispatch = useDispatch()
+    
     const onFinish = (value) => {
         console.log(value);
         setOpenOthersModal(false)
+        dispatch(addOthersChannel(value))
     }
 
     const onFinishFailed = () => {
@@ -37,7 +42,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal }) {
                 }}
             >
                 <Form 
-                    from={form}
+                    form={form}
                     layout='vertical'
                     autoComplete='off'
                     onFinish={onFinish}

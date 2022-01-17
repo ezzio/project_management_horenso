@@ -53,6 +53,18 @@ export const detailTaskApi = {
         console.log(error);
       });
   },
+  changeCompletedDetailTask: (params) => {
+    return axios
+      .post(`${API}/Tasks/completeAndUncompleteDetailTask`, {
+        ...params,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default detailTaskApi;

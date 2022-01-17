@@ -1,13 +1,18 @@
 import React from 'react'
 import { Modal, Form, message, Input } from 'antd'
+import { useDispatch } from 'react-redux'
+import { addTeamsChannel } from '../ListChannelSlice'
 
 function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
 
     const [form] = Form.useForm();
 
+    const dispatch = useDispatch();
+
     const onFinish = (value) => {
         console.log(value);
         setOpenTeamsModal(false)
+        dispatch(addTeamsChannel(value))
     }
 
     const onFinishFailed = () => {
@@ -36,7 +41,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
                 }}
             >
                 <Form 
-                    from={form}
+                    form={form}
                     layout='vertical'
                     autoComplete='off'
                     onFinish={onFinish}
