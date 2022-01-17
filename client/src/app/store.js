@@ -9,6 +9,7 @@ import teammateReducer from "features/Teammate/teammateSlice";
 import createProjectReducer from "features/CreateProject/createProjectSlice";
 import detailTaskReducer from "features/DetailTask/DetailTaskSlice";
 import createChannelReducer from "features/ListChannel/ListChannelSlice"
+import storageReducer from "features/Storage/storageSlice";
 
 export const store = configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export const store = configureStore({
     createProject: createProjectReducer,
     detailTask: detailTaskReducer,
     createChannel: createChannelReducer,
+    storage: storageReducer,
   },
 });
