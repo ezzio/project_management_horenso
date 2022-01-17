@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import moment from 'moment';
-import detailTaskApi from 'api/deilTask';
+import detailTaskApi from 'api/detailTaskAPI';
 import { message } from 'antd';
 
 const initialDetailTask = {
@@ -53,8 +53,8 @@ export const changeCompletedDetailTaskAsync = createAsyncThunk(
   'detailTask/change-completed-detail-task',
   async (params) => {
     console.log(params);
-    // const res = await detailTaskApi.changeCompletedDetailTask(params);
-    // return res;
+    const res = await detailTaskApi.changeCompletedDetailTask(params);
+    return res;
   }
 );
 
