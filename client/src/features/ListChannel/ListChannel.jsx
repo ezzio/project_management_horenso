@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
-import { FcFolder, FcBriefcase, FcCollaboration } from 'react-icons/fc';
-
-import './ListChannel.scss';
-import { AiOutlinePlus } from 'react-icons/ai';
-import WorkspaceModal from './Modals/WorkspaceModal';
-import OthersModal from './Modals/OthersModal';
-import TeamsModal from './Modals/TeamsModal'
+import React, { useState } from "react";
+import { FcFolder, FcBriefcase, FcCollaboration } from "react-icons/fc";
+import { useSelector } from "react-redux";
+import "./ListChannel.scss";
+import { AiOutlinePlus } from "react-icons/ai";
+import WorkspaceModal from "./Modals/WorkspaceModal";
+import OthersModal from "./Modals/OthersModal";
+import TeamsModal from "./Modals/TeamsModal";
 
 const Listchannel = () => {
-  const [workspace, setWorkspace] = useState([
-    'Project Ideas',
-    'Confirm Content',
-    'Waiting for review',
-  ]);
+  const channels = useSelector((state) => state.createChannel);
 
-  const [team, setTeam] = useState(['Developers', 'Designer']);
-  const [others, setOthers] = useState(['Off-Topic', 'Archive']);
+  // const [workspace, setWorkspace] = useState(channels.workspace);
+
+  // const [team, setTeam] = useState(channels.team);
+  // const [others, setOthers] = useState(channels.others);
 
   const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
   const [openTeamsModal, setOpenTeamsModal] = useState(false);
   const [openOthersModal, setOpenOthersModal] = useState(false);
 
-  const [members, setMembers] = useState([
-    'Dang Khoa',
-    'Huu Thang',
-    'Chanh Nhut',
-    'Phu Nguyen',
-    'Tuong Minh',
-  ]);
+  // const [members, setMembers] = useState([
+  //   'Dang Khoa',
+  //   'Huu Thang',
+  //   'Chanh Nhut',
+  //   'Phu Nguyen',
+  //   'Tuong Minh',
+  // ]);
 
   // const addWorkSpace = (key) => {
   //   switch (key) {
@@ -79,15 +77,18 @@ const Listchannel = () => {
               <FcBriefcase />
               <h5>WORKSPACE</h5>
             </section>
-            <AiOutlinePlus className="add" onClick={() => setOpenWorkspaceModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenWorkspaceModal(true)}
+            />
           </div>
           <div>
-            <WorkspaceModal 
+            <WorkspaceModal
               openWorkspaceModal={openWorkspaceModal}
               setOpenWorkspaceModal={setOpenWorkspaceModal}
             />
           </div>
-          {workspace.map((x) => {
+          {channels.workspace.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
@@ -101,15 +102,18 @@ const Listchannel = () => {
               <FcCollaboration />
               <h5>TEAMS</h5>
             </section>
-            <AiOutlinePlus className="add"  onClick={() => setOpenTeamsModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenTeamsModal(true)}
+            />
           </div>
           <div>
-            <TeamsModal 
+            <TeamsModal
               openTeamsModal={openTeamsModal}
               setOpenTeamsModal={setOpenTeamsModal}
             />
           </div>
-          {team.map((x) => {
+          {channels.teams.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>
@@ -123,15 +127,18 @@ const Listchannel = () => {
               <FcFolder />
               <h5>OTHERS</h5>
             </section>
-            <AiOutlinePlus className="add" onClick={() => setOpenOthersModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenOthersModal(true)}
+            />
           </div>
           <div>
-            <OthersModal 
+            <OthersModal
               openOthersModal={openOthersModal}
               setOpenOthersModal={setOpenOthersModal}
             />
           </div>
-          {others.map((x) => {
+          {channels.others.map((x) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{x}</a>

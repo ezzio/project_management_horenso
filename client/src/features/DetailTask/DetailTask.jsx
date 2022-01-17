@@ -26,9 +26,12 @@ import {
   Typography,
   Upload,
 } from "antd";
+import axios from "axios";
 import ChatOnTask from "features/ChatOnTask/ChatOnTask";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { AiFillFileZip } from "react-icons/ai";
+import { RiFileExcel2Fill, RiFileWord2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
@@ -39,12 +42,8 @@ import {
   editDetailTaskAsync,
   listAllDetailTaskAsync,
   uploadFile,
-  uploadFileAsync,
+  changeCompletedDetailTaskAsync,
 } from "./DetailTaskSlice";
-
-import { AiFillFileZip } from "react-icons/ai";
-import { RiFileWord2Fill, RiFileExcel2Fill } from "react-icons/ri";
-import axios from "axios";
 
 const { Text, Title } = Typography;
 
@@ -59,17 +58,27 @@ const DetailTask = (props) => {
   const loading = useSelector((state) => state.detailTask.loading);
   const [loadingPage, setLoadingPage] = useState(loading);
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState(
-    data.filter((item) => item.is_complete).map((item) => item.key)
-  );
-
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   useEffect(() => {
     dispatch(listAllDetailTaskAsync(idTask));
   }, []);
+  useEffect(() => {
+    const initialSelectedRowKey = data
+      .filter((item) => item.is_complete)
+      .map((item) => item.id);
+    setSelectedRowKeys(initialSelectedRowKey);
+  }, [data]);
 
   const rowSelection = {
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys);
+      dispatch(
+        changeCompletedDetailTaskAsync({
+          idDetailTask: selectedRowKeys,
+          idTask,
+          completed_by: localStorage.getItem("access_token"),
+        })
+      );
     },
     selectedRowKeys,
   };
@@ -85,6 +94,7 @@ const DetailTask = (props) => {
       ...values,
       assignOn: moment().format("YYYY-MM-DD"),
       isCompleted: false,
+      idProjectOwner: idProject,
     };
     // console.log({});
     dispatch(createADetailTaskAsync({ ...nvalues, idTask }));
@@ -433,11 +443,10 @@ const DetailTask = (props) => {
                 className="table-detail-task"
                 dataSource={data}
                 columns={columns}
-                scroll={{ y: 500 }}
+                scroll={{ y: 400 }}
                 rowSelection={{
                   type: "checkbox",
                   ...rowSelection,
-                  selectedRowKeys,
                 }}
                 // scroll={{ y: 360 }}
                 pagination={false}
