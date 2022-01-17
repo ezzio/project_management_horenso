@@ -89,6 +89,7 @@ const DetailTask = (props) => {
       ...values,
       assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
+      idProjectOwner: idProject,
     };
     // console.log({});
     dispatch(createADetailTaskAsync({ ...nvalues, idTask }));
