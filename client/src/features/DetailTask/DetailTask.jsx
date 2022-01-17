@@ -26,7 +26,6 @@ import {
   AntDesignOutlined,
   CalendarOutlined,
   ArrowRightOutlined,
-  UploadOutlined,
   DownOutlined,
 } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
@@ -38,9 +37,9 @@ import {
   createADetailTaskAsync,
   editDetailTaskAsync,
   deleteDetailTaskAsync,
+  changeCompletedDetailTaskAsync,
 } from './DetailTaskSlice';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 const { Text, Title } = Typography;
 
@@ -54,17 +53,27 @@ const DetailTask = (props) => {
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState(
-    data.filter((item) => item.is_complete).map((item) => item.key)
-  );
-
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   useEffect(() => {
     dispatch(listAllDetailTaskAsync(idTask));
   }, []);
+  useEffect(() => {
+    const initialSelectedRowKey = data
+      .filter((item) => item.is_complete)
+      .map((item) => item.id);
+    setSelectedRowKeys(initialSelectedRowKey);
+  }, [data]);
 
   const rowSelection = {
     onChange: (selectedRowKeys) => {
       setSelectedRowKeys(selectedRowKeys);
+      dispatch(
+        changeCompletedDetailTaskAsync({
+          idDetailTask: selectedRowKeys,
+          idTask,
+          completed_by: localStorage.getItem('access_token'),
+        })
+      );
     },
     selectedRowKeys,
   };
@@ -351,11 +360,10 @@ const DetailTask = (props) => {
                 className="table-detail-task"
                 dataSource={data}
                 columns={columns}
-                scroll={{ y: 500 }}
+                scroll={{ y: 400 }}
                 rowSelection={{
                   type: 'checkbox',
                   ...rowSelection,
-                  selectedRowKeys,
                 }}
                 // scroll={{ y: 360 }}
                 pagination={false}
