@@ -76,9 +76,7 @@ const Storage = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (t, r) => (
-        <a href={`${r.URL}`} target="_blank" rel="noreferrer">{`${r.name}`}</a>
-      ),
+      render: (t, r) => r.name,
     },
     // {
     //   title: "Task",
@@ -121,8 +119,6 @@ const Storage = () => {
     },
   ];
 
-
-  
   return (
     <div className="ctn storage">
       <div className="header">

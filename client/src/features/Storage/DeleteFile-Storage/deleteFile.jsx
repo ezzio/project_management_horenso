@@ -2,7 +2,7 @@ import { Button, message, Popconfirm } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { apiDeleteFile, deleteFile } from "../storageSlice";
+import { deleteFile, deleteFileAsync } from "../storageSlice";
 const DeleteFile = ({ fileName }) => {
   const dispatch = useDispatch();
   const params = useParams();
@@ -11,7 +11,7 @@ const DeleteFile = ({ fileName }) => {
     console.log("deleting...", fileName);
     dispatch(deleteFile(fileName));
     dispatch(
-      apiDeleteFile({
+      deleteFileAsync({
         idProject: params.idProject,
         name_attachment: fileName,
       })

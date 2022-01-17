@@ -13,7 +13,7 @@ export const listFile = createAsyncThunk(
   }
 );
 
-export const apiDeleteFile = createAsyncThunk(
+export const deleteFileAsync = createAsyncThunk(
   "storage/deleteFile",
   async (params, thunkAPI) => {
     const response = await storageAPI.deleteFile(params);
@@ -61,9 +61,9 @@ export const storageSlice = createSlice({
         : (state.dataFile = []);
     },
 
-    [apiDeleteFile.pending]: (state) => {},
-    [apiDeleteFile.rejected]: (state) => {},
-    [apiDeleteFile.fulfilled]: (state, action) => {
+    [deleteFileAsync.pending]: (state) => {},
+    [deleteFileAsync.rejected]: (state) => {},
+    [deleteFileAsync.fulfilled]: (state, action) => {
       console.log(action.payload);
     },
   },
