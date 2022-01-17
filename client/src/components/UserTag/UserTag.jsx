@@ -12,7 +12,7 @@ const UserTag = (props) => {
             className="user__role"
             style={{ backgroundColor: 'hsl(22, 95%, 60%,0.1)' }}
           >
-            <p style={{ color: 'hsl(22, 95%, 60%)' }}>Project Manager</p>
+            <p style={{ color: 'hsl(22, 95%, 60%)', margin: 0 }}>Project Manager</p>
           </div>
         );
       }
@@ -22,7 +22,7 @@ const UserTag = (props) => {
             className="user__role"
             style={{ backgroundColor: 'hsl(267, 66%, 54%, 0.1)' }}
           >
-            <p style={{ color: 'hsl(267, 66%, 54%)' }}>Developer</p>
+            <p style={{ color: 'hsl(267, 66%, 54%)', margin: 0 }}>Developer</p>
           </div>
         );
       }
