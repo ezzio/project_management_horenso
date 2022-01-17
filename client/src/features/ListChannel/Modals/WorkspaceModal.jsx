@@ -1,13 +1,18 @@
 import React from 'react'
 import { Modal, Form, message, Input } from 'antd'
+import { useDispatch } from 'react-redux'
+import { addWorkspaceChannel } from '../ListChannelSlice'
 
 function WorkspaceModal({ openWorkspaceModal, setOpenWorkspaceModal }) {
 
     const [form] = Form.useForm();
 
+    const dispatch = useDispatch()
+
     const onFinish = (value) => {
         console.log(value);
         setOpenWorkspaceModal(false)
+        dispatch(addWorkspaceChannel(value));
     }
 
     const onFinishFailed = () => {
@@ -36,7 +41,7 @@ function WorkspaceModal({ openWorkspaceModal, setOpenWorkspaceModal }) {
                 }}
             >
                 <Form 
-                    from={form}
+                    form={form}
                     layout='vertical'
                     autoComplete='off'
                     onFinish={onFinish}
