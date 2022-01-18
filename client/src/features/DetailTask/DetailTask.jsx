@@ -4,7 +4,8 @@ import {
   CalendarOutlined,
   DownOutlined,
   UserOutlined,
-} from "@ant-design/icons";
+  MessageOutlined,
+} from '@ant-design/icons';
 import {
   Avatar,
   Button,
@@ -25,17 +26,17 @@ import {
   Tooltip,
   Typography,
   Upload,
-} from "antd";
-import axios from "axios";
-import ChatOnTask from "features/ChatOnTask/ChatOnTask";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { AiFillFileZip } from "react-icons/ai";
-import { RiFileExcel2Fill, RiFileWord2Fill } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import { useHistory } from "react-router-dom";
-import "./DetailTask.scss";
+} from 'antd';
+import axios from 'axios';
+import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { AiFillFileZip } from 'react-icons/ai';
+import { RiFileExcel2Fill, RiFileWord2Fill } from 'react-icons/ri';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import './DetailTask.scss';
 import {
   createADetailTaskAsync,
   deleteDetailTaskAsync,
@@ -43,7 +44,7 @@ import {
   listAllDetailTaskAsync,
   uploadFile,
   changeCompletedDetailTaskAsync,
-} from "./DetailTaskSlice";
+} from './DetailTaskSlice';
 
 const { Text, Title } = Typography;
 
@@ -57,6 +58,7 @@ const DetailTask = (props) => {
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
   const [loadingPage, setLoadingPage] = useState(loading);
+  const [isVisibleChatOnTask, setIsvisibleChatOnTask] = useState(true);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   useEffect(() => {
@@ -76,7 +78,7 @@ const DetailTask = (props) => {
         changeCompletedDetailTaskAsync({
           idDetailTask: selectedRowKeys,
           idTask,
-          completed_by: localStorage.getItem("access_token"),
+          completed_by: localStorage.getItem('access_token'),
         })
       );
     },
@@ -92,7 +94,7 @@ const DetailTask = (props) => {
     const nvalues = {
       key: data.length + 1,
       ...values,
-      assignOn: moment().format("YYYY-MM-DD"),
+      assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
       idProjectOwner: idProject,
     };
@@ -134,7 +136,7 @@ const DetailTask = (props) => {
   }
 
   // Upload file ------------------>
-  const [idDetailTask, setIdDetailTask] = useState("");
+  const [idDetailTask, setIdDetailTask] = useState('');
   const [isLt5M, setIsLt5M] = useState(false);
 
   const onClickUpload = (detailTask_id) => {
@@ -145,7 +147,7 @@ const DetailTask = (props) => {
   // Check file size
   const beforeUploadFile = (file) => {
     if (file.size > 5120000) {
-      message.error("File size must be smaller than 5MB");
+      message.error('File size must be smaller than 5MB');
       setIsLt5M(false);
     } else {
       setIsLt5M(true);
@@ -155,11 +157,11 @@ const DetailTask = (props) => {
 
   const onFileChange = (info) => {
     if (isLt5M) {
-      if (info.file.status === "uploading") {
+      if (info.file.status === 'uploading') {
         setLoadingPage(true);
         return;
       }
-      if (info.file.status === "done") {
+      if (info.file.status === 'done') {
         setLoadingPage(false);
         message.success(`Upload file "${info.file.name}" successful`);
       }
@@ -168,18 +170,18 @@ const DetailTask = (props) => {
 
   const handleUploadFile = ({ file, onSuccess }) => {
     let formData = new FormData();
-    formData.append("my_file", file);
-    formData.append("idDetailTask", idDetailTask);
+    formData.append('my_file', file);
+    formData.append('idDetailTask', idDetailTask);
 
     isLt5M &&
       axios
         .post(
-          "https://servernckh.herokuapp.com/Tasks/uploadFileDetailTask",
+          'https://servernckh.herokuapp.com/Tasks/uploadFileDetailTask',
           formData
         )
         .then((response) => {
           if (response.data.isSuccess) {
-            onSuccess("ok");
+            onSuccess('ok');
             dispatch(uploadFile(response.data));
           }
         })
@@ -193,11 +195,11 @@ const DetailTask = (props) => {
   // get icon by file type
   const renderIconByFileType = (type) => {
     switch (type) {
-      case "application/zip":
+      case 'application/zip':
         return <AiFillFileZip />;
-      case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
         return <RiFileWord2Fill />;
-      case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         return <RiFileExcel2Fill />;
       default:
         break;
@@ -208,23 +210,23 @@ const DetailTask = (props) => {
   // Declare Col of table
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      width: "70%",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      width: '70%',
       editable: true,
     },
     {
-      title: "Assign On",
-      dataIndex: "assignOn",
-      key: "assignOn",
-      width: "20%",
+      title: 'Assign On',
+      dataIndex: 'assignOn',
+      key: 'assignOn',
+      width: '20%',
     },
     {
-      title: "Action",
-      dataIndex: "",
-      key: "x",
-      width: "10%",
+      title: 'Action',
+      dataIndex: '',
+      key: 'x',
+      width: '10%',
       render: (_, record) => (
         <Dropdown
           overlay={
@@ -261,7 +263,7 @@ const DetailTask = (props) => {
               </Popconfirm>
             </Menu>
           }
-          trigger={["click"]}
+          trigger={['click']}
         >
           <DownOutlined />
         </Dropdown>
@@ -287,7 +289,7 @@ const DetailTask = (props) => {
               onCreate(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -298,7 +300,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please input the name of task",
+                message: 'Please input the name of task',
               },
             ]}
           >
@@ -324,7 +326,7 @@ const DetailTask = (props) => {
               form.resetFields();
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -335,7 +337,7 @@ const DetailTask = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please input the name of task",
+                message: 'Please input the name of task',
               },
             ]}
           >
@@ -351,31 +353,31 @@ const DetailTask = (props) => {
       <Spin tip="Loading..." spinning={loadingPage}>
         <div
           style={{
-            width: "100%",
-            minHeight: "100vh",
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "1rem",
-            backgroundColor: "#F3F5F7",
+            width: '100%',
+            minHeight: '100vh',
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: '1rem',
+            backgroundColor: '#F3F5F7',
           }}
         >
-          <Space direction="vertical" style={{ width: "75%" }} size="large">
+          <Space direction="vertical" style={{ width: '90%%' }} size="large">
             <Space
               direction="vertical"
               style={{
-                width: "100%",
-                backgroundColor: "white",
-                padding: "1rem 2rem",
-                height: "313px",
-                overflow: "auto",
-                borderRadius: "8px",
+                width: '100%',
+                backgroundColor: 'white',
+                padding: '1rem 2rem',
+                height: '313px',
+                overflow: 'auto',
+                borderRadius: '8px',
               }}
             >
               <PageHeader
                 ghost={false}
                 onBack={() => window.history.back()}
-                title={info.title || "No title"}
-                style={{ padding: "0px" }}
+                title={info.title || 'No title'}
+                style={{ padding: '0px' }}
                 subTitle={<div className={info.priority}>{info.priority}</div>}
               >
                 <Descriptions size="small" column={6}>
@@ -393,24 +395,24 @@ const DetailTask = (props) => {
                 size="default"
                 maxCount={5}
                 maxStyle={{
-                  color: "#f56a00",
-                  backgroundColor: "#fde3cf",
+                  color: '#f56a00',
+                  backgroundColor: '#fde3cf',
                 }}
               >
                 <Avatar src="https://joeschmoe.io/api/v1/random" />
-                <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
+                <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
                 <Tooltip title="Ant User" placement="top">
                   <Avatar
-                    style={{ backgroundColor: "#87d068" }}
+                    style={{ backgroundColor: '#87d068' }}
                     icon={<UserOutlined />}
                   />
                 </Tooltip>
                 <Avatar
-                  style={{ backgroundColor: "#1890ff" }}
+                  style={{ backgroundColor: '#1890ff' }}
                   icon={<AntDesignOutlined />}
                 />
               </Avatar.Group>
-              <Space direction="vertical" style={{ width: "100%" }}>
+              <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>
                 <Progress
                   percent={parseInt(
@@ -426,18 +428,18 @@ const DetailTask = (props) => {
             </Space>
             <div
               style={{
-                width: "100%",
-                backgroundColor: "white",
-                padding: "1rem 2rem",
-                height: "600px",
-                overflow: "auto",
-                borderRadius: "8px",
+                width: '100%',
+                backgroundColor: 'white',
+                padding: '1rem 2rem',
+                height: '600px',
+                overflow: 'auto',
+                borderRadius: '8px',
               }}
             >
-              <Title level={5} style={{ marginBottom: "1rem !important" }}>
+              <Title level={5} style={{ marginBottom: '1rem !important' }}>
                 {hasSelected
                   ? `Completed ${selectedRowKeys.length}/${data.length} of the detail task`
-                  : "Detail task"}
+                  : 'Detail task'}
               </Title>
               <Table
                 className="table-detail-task"
@@ -445,7 +447,7 @@ const DetailTask = (props) => {
                 columns={columns}
                 scroll={{ y: 400 }}
                 rowSelection={{
-                  type: "checkbox",
+                  type: 'checkbox',
                   ...rowSelection,
                 }}
                 // scroll={{ y: 360 }}
@@ -457,12 +459,12 @@ const DetailTask = (props) => {
                         return (
                           <>
                             <p
-                              className={"table-detail-task__name-attach"}
+                              className={'table-detail-task__name-attach'}
                               onClick={() => {
                                 history.push(
                                   `/${idProject}/storage/?name=${attach.name}`
                                 );
-                                localStorage.setItem("sider", "3");
+                                localStorage.setItem('sider', '3');
                               }}
                             >
                               <i className="table-detail-task__icon-attach">
@@ -485,7 +487,7 @@ const DetailTask = (props) => {
                     onClick={() => {
                       setVisible(true);
                     }}
-                    style={{ borderRadius: "8px" }}
+                    style={{ borderRadius: '8px' }}
                   >
                     Add new one
                   </Button>
@@ -493,8 +495,21 @@ const DetailTask = (props) => {
               />
             </div>
           </Space>
-          <ChatOnTask />
+          <ChatOnTask
+            visible={!isVisibleChatOnTask}
+            onClose={() => setIsvisibleChatOnTask(true)}
+          />
         </div>
+        <Tooltip placement="left" title="Open chat">
+          <Button
+            shape={'circle'}
+            type="primary"
+            icon={<MessageOutlined />}
+            size="large"
+            onClick={() => setIsvisibleChatOnTask(false)}
+            className="open-drawer-chat-on-task"
+          />
+        </Tooltip>
       </Spin>
     </>
   );
