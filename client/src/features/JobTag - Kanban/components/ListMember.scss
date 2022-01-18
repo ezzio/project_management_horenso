@@ -1,39 +1,6 @@
-@import "styles/Color.scss";
+@import 'styles/Color.scss';
 
 .member-list {
-  height: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  & > img {
-    border: 0.05px solid #ccc;
-    border-radius: 50%;
-  }
-
-  & > img:nth-child(2) {
-    transform: translateX(-10px);
-  }
-  & > img:nth-child(3) {
-    transform: translateX(-20px);
-  }
-  & > img:nth-child(4) {
-    transform: translateX(-30px);
-  }
-  & > img:nth-child(5) {
-    transform: translateX(-40px);
-  }
-
-  .bonus-members {
-    width: 25px;
-    height: 25px;
-    background-color: $_GREENBLUE;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    align-items: center;
-    transform: translateX(-45px);
-    z-index: -1;
-    border: 0.05px solid #ccc;
-  }
+  margin-right: 1rem;
+  height: fit-content;
 }

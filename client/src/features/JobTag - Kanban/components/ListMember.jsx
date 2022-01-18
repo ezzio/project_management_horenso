@@ -1,30 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./ListMember.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './ListMember.scss';
+import { Avatar, Tooltip } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const ListMember = ({ members }) => {
-  const moreMember = members.length;
   return (
     <div className="member-list">
-      {members.map((member, index) => {
-        if (index < 5) {
+      <Avatar.Group maxCount={5}>
+        {members.map((member, index) => {
           return (
-            <img
-              src={member.avatar}
-              alt="member"
-              className="member"
-              height="25"
-              width="25"
-            />
+            <Tooltip title={member.user_name} placement="top">
+              <Avatar
+                style={{ backgroundColor: '#87d068' }}
+                icon={<UserOutlined />}
+                src={member.avatar}
+              />
+            </Tooltip>
           );
-        } else {
-          return (
-            <div className="bonus-members" height="25" width="25">
-              +{moreMember - 5}
-            </div>
-          );
-        }
-      })}
+        })}
+      </Avatar.Group>
     </div>
   );
 };
