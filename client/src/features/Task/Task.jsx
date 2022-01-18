@@ -98,10 +98,7 @@ const Task = (props) => {
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
               </div>
-              <Progress
-                percent={task.process}
-                status={task.process < 100 ? 'active' : ''}
-              />
+              <Progress percent={task.process} status="exception" />
               <div className="kanban-task__info">
                 <div
                   style={{ padding: '0.35rem 1.5rem' }}
@@ -173,7 +170,10 @@ const Task = (props) => {
             </div>
             <Progress
               percent={task.process}
-              status={task.process < 100 ? 'active' : ''}
+              status={!task.is_complete ? 'active' : ''}
+              strokeColor={
+                task.process === 100 && !task.is_complete ? '#FECD3D' : ''
+              }
             />
             <div className="kanban-task__info">
               <div
