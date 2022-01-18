@@ -100,7 +100,7 @@ const Task = (props) => {
                 <div
                   style={{ padding: '0.35rem 1.5rem' }}
                   className={
-                    task.priority === 'high'
+                    task.priority.toLowerCase() === 'high'
                       ? 'high'
                       : task.priority === 'low'
                       ? 'low'
@@ -165,14 +165,17 @@ const Task = (props) => {
                 <DownOutlined />
               </Dropdown>
             </div>
-            <Progress percent={task.process} status="active" />
+            <Progress
+              percent={task.process}
+              status={task.process < 100 ? 'active' : ''}
+            />
             <div className="kanban-task__info">
               <div
                 style={{ padding: '0.35rem 1.5rem' }}
                 className={
-                  task.priority === 'high'
+                  task.priority.toLowerCase() === 'high'
                     ? 'high'
-                    : task.priority === 'low'
+                    : task.priority.toLowerCase() === 'low'
                     ? 'low'
                     : 'medium'
                 }

@@ -427,7 +427,11 @@ const DetailTask = (props) => {
                     selectedRowKeys.length &&
                     parseInt((selectedRowKeys.length * 100) / data.length)
                   }
-                  status="active"
+                  status={
+                    parseInt((selectedRowKeys.length * 100) / data.length) < 100
+                      ? 'active'
+                      : ''
+                  }
                 />
               </Space>
               {info.description && (
