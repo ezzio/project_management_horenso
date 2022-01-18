@@ -59,9 +59,9 @@ const Task = (props) => {
     // message.error("Click on No");
   }
 
-  useEffect(() => {
-    dispatch(changeOverdue({ columnId, index }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(changeOverdue({ columnId, index }));
+  // }, []);
 
   const menu = (
     <Menu>

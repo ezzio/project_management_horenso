@@ -42,6 +42,7 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
       start_time: values.deadline[0].format('YYYY-MM-DD'),
       end_time: values.deadline[1].format('YYYY-MM-DD'),
       taskers: tempTasker,
+      owner: localStorage.getItem('access_token')
     };
     closeModal();
     dispatch(addTask(newTask));
