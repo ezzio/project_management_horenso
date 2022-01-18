@@ -4,7 +4,7 @@ import { RiChat1Line } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
 import { Draggable } from 'react-beautiful-dnd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   changeOverdue,
   deleteTask,
@@ -36,6 +36,7 @@ const Task = (props) => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = React.useState(false);
   const location = useLocation();
+  const loading = useSelector((state) => state.board.loading);
   // const currentTime = moment();
   // const projectTime = moment(task.endTime);
   // const endTime = currentTime.from(projectTime);
@@ -59,9 +60,11 @@ const Task = (props) => {
     // message.error("Click on No");
   }
 
-  // useEffect(() => {
-  //   dispatch(changeOverdue({ columnId, index }));
-  // }, []);
+  useEffect(() => {
+    if (!loading && moment().isAfter(task.end_time)) {
+      dispatch(changeOverdue({ columnId, index, taskPayload: task }));
+    }
+  }, [loading]);
 
   const menu = (
     <Menu>
@@ -95,7 +98,10 @@ const Task = (props) => {
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
               </div>
-              <Progress percent={task.process} status="active" />
+              <Progress
+                percent={task.process}
+                status={task.process < 100 ? 'active' : ''}
+              />
               <div className="kanban-task__info">
                 <div
                   style={{ padding: '0.35rem 1.5rem' }}
