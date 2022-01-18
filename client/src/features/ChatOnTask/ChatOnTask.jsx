@@ -1,72 +1,119 @@
-import { Avatar, Space, Input, Button, Form, Tooltip } from 'antd';
-import Title from 'antd/lib/typography/Title';
-import React from 'react';
-import { LinkOutlined } from '@ant-design/icons';
+import { Avatar, Space, Input, Button, Form, Drawer } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { SendOutlined } from '@ant-design/icons';
+import BubbleChat from './components/BubbleChat';
 
 import './ChatOnTask.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import Title from 'antd/lib/typography/Title';
+import { listUserInfo } from 'pages/UserSettings/UserSettingSlice';
+import moment from 'moment';
+import { sendMessage } from './chatOnTaskSlice';
 
-const ChatOnTask = () => {
+const ChatOnTask = ({ visible, onClose }) => {
+  const dispatch = useDispatch();
+
+  // declare data
+  const messages = useSelector((state) => state.chatOnTask.messages);
+  const user = useSelector((state) => state.userSetting);
+
+  useEffect(() => {
+    dispatch(listUserInfo());
+  }, []);
+
   // Hanlde form
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     if (values.mess) {
-      console.log('Success:', values);
       form.resetFields();
+      inputRef.current.focus({
+        cursor: 'start',
+      });
+      const tempMessage = {
+        user: {
+          user_name: user.name,
+          display_name: user.display_name,
+          avatar: user.avatarURL,
+        },
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        mess: [values.mess],
+      };
+      dispatch(sendMessage(tempMessage));
     }
   };
 
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  // focus
+  const inputRef = useRef(null);
+
+  // scroll
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    if (messagesEndRef.current !== null)
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+  useEffect(scrollToBottom, [messages]);
+
   return (
-    <div className="chat-on-task">
-      <div className="chat-on-task__header">
-        <Title level={3}>Task Chat</Title>
-      </div>
+    <Drawer
+      title="Chat on task"
+      placement="right"
+      onClose={onClose}
+      visible={visible}
+      size="large"
+      width={450}
+    >
       <div className="chat-on-task__body">
-        <Space
-          className="chat-on-task__body__box"
-          direction="vertical"
-          size={'middle'}
-        >
-          <Space>
-            <Avatar
-              src="https://joeschmoe.io/api/v1/random"
-              style={{ border: '1px solid #ccc' }}
+        {messages.length === 0 ? (
+          <Title level={2}>Let's talk with your partner now!</Title>
+        ) : (
+          messages.map((message, index) => (
+            <BubbleChat
+              key={index}
+              user={message.user}
+              sendAt={message.sentAt}
+              mess={message.mess}
             />
-            <div className="chat-on-task__body__box__bubble">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
-              suscipit id minima quo provident doloremque, cum nisi eius fuga
-              quod aspernatur. Cupiditate incidunt perspiciatis delectus
-              distinctio temporibus rerum tenetur unde!
-            </div>
-          </Space>
-          <div className="chat-on-task__body__box__bubble chat-on-task__body__box__bubble--owner">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
-            suscipit id minima quo provident doloremque, cum nisi eius fuga quod
-            aspernatur. Cupiditate incidunt perspiciatis delectus distinctio
-            temporibus rerum tenetur unde!
-          </div>
-        </Space>
+          ))
+        )}
+        <div ref={messagesEndRef} />
       </div>
       <div className="chat-on-task__footer">
         <Form
           name="chat-on-task"
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
           autoComplete="off"
-          layout="inline"
           form={form}
-          
         >
           <Form.Item name="mess">
-            <div className="chat-on-task__footer__input-mess">
-              <Input bordered={false} />
-              <Button type="primary" htmlType="submit">
-                SEND
-              </Button>
-            </div>
+            <Input
+              width={'400px'}
+              size="large"
+              suffix={
+                <Button
+                  shape="circle"
+                  type="primary"
+                  htmlType="submit"
+                  icon={<SendOutlined />}
+                />
+              }
+              ref={inputRef}
+              bordered={false}
+              style={{
+                backgroundColor: '#eee',
+                height: '50px',
+                borderRadius: '5px',
+              }}
+            />
           </Form.Item>
         </Form>
       </div>
-    </div>
+    </Drawer>
   );
 };
 

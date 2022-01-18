@@ -1,10 +1,8 @@
-@import "../../../styles/Color.scss";
-@import "../../../styles/ContainerContents.scss";
+@import "../../styles/Color.scss";
+@import "../../styles/ContainerContents.scss";
 
-.source {
+.storage {
   .header {
-    width: 100%;
-
     &__search {
       width: 100%;
       display: flex;
@@ -16,23 +14,10 @@
       }
 
       input {
-        width: 90%;
         margin-left: 10px;
         padding: 4px;
         font-size: 18px;
-        border: 0;
-      }
-    }
-
-    &__add-file {
-      max-width: 400px;
-      margin-right: 60px;
-    }
-
-    &__user-tag {
-      img {
-        border: 0.05px solid #000;
-        border-radius: 50%;
+        border: none;
       }
     }
   }
@@ -42,6 +27,14 @@
       img {
         border: 0.05px solid #000;
         border-radius: 50%;
+      }
+    }
+    .file__name {
+      display: flex;
+      align-items: center;
+      .icon {
+        font-size: 20px;
+        margin-right: 20px;
       }
     }
   }

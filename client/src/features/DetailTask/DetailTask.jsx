@@ -1,46 +1,51 @@
-import './DetailTask.scss';
 import {
-  Layout,
-  Space,
-  PageHeader,
-  Descriptions,
-  Typography,
-  Avatar,
-  Tooltip,
-  Table,
-  Button,
-  Modal,
-  Form,
-  Popconfirm,
-  Input,
-  Upload,
-  Progress,
-  Menu,
-  Dropdown,
-  Spin,
-  Empty,
-} from 'antd';
-
-import {
-  UserOutlined,
   AntDesignOutlined,
-  CalendarOutlined,
   ArrowRightOutlined,
+  CalendarOutlined,
   DownOutlined,
+  UserOutlined,
+  MessageOutlined,
 } from '@ant-design/icons';
-import { useState, useEffect } from 'react';
-import moment from 'moment';
-import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
-import { useSelector, useDispatch } from 'react-redux';
 import {
-  listAllDetailTaskAsync,
-  createADetailTaskAsync,
-  editDetailTaskAsync,
-  deleteDetailTaskAsync,
-  changeCompletedDetailTaskAsync,
-} from './DetailTaskSlice';
+  Avatar,
+  Button,
+  Descriptions,
+  Dropdown,
+  Empty,
+  Form,
+  Input,
+  Menu,
+  message,
+  Modal,
+  PageHeader,
+  Popconfirm,
+  Progress,
+  Space,
+  Spin,
+  Table,
+  Tooltip,
+  Typography,
+  Upload,
+} from 'antd';
+import axios from 'axios';
+import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { AiFillFileZip } from 'react-icons/ai';
+import { RiFileExcel2Fill, RiFileWord2Fill } from 'react-icons/ri';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import './DetailTask.scss';
+import {
+  createADetailTaskAsync,
+  deleteDetailTaskAsync,
+  editDetailTaskAsync,
+  listAllDetailTaskAsync,
+  uploadFile,
+  changeCompletedDetailTaskAsync,
+} from './DetailTaskSlice';
+
 const { Text, Title } = Typography;
 
 const DetailTask = (props) => {
@@ -53,6 +58,8 @@ const DetailTask = (props) => {
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
   const memberInTask = useSelector((state) => state.detailTask.memberInTask);
+  const [loadingPage, setLoadingPage] = useState(loading);
+  const [isVisibleChatOnTask, setIsvisibleChatOnTask] = useState(true);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   useEffect(() => {
@@ -92,6 +99,7 @@ const DetailTask = (props) => {
       ...values,
       assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
+      idProjectOwner: idProject,
     };
     // console.log({});
     dispatch(createADetailTaskAsync({ ...nvalues, idTask }));
@@ -131,7 +139,75 @@ const DetailTask = (props) => {
   }
 
   // Upload file ------------------>
-  const handleUpload = (record) => {};
+  const [idDetailTask, setIdDetailTask] = useState('');
+  const [isLt5M, setIsLt5M] = useState(false);
+
+  const onClickUpload = (detailTask_id) => {
+    console.log(detailTask_id);
+    setIdDetailTask(detailTask_id);
+  };
+
+  // Check file size
+  const beforeUploadFile = (file) => {
+    if (file.size > 5120000) {
+      message.error('File size must be smaller than 5MB');
+      setIsLt5M(false);
+    } else {
+      setIsLt5M(true);
+    }
+    return;
+  };
+
+  const onFileChange = (info) => {
+    if (isLt5M) {
+      if (info.file.status === 'uploading') {
+        setLoadingPage(true);
+        return;
+      }
+      if (info.file.status === 'done') {
+        setLoadingPage(false);
+        message.success(`Upload file "${info.file.name}" successful`);
+      }
+    }
+  };
+
+  const handleUploadFile = ({ file, onSuccess }) => {
+    let formData = new FormData();
+    formData.append('my_file', file);
+    formData.append('idDetailTask', idDetailTask);
+
+    isLt5M &&
+      axios
+        .post(
+          'https://servernckh.herokuapp.com/Tasks/uploadFileDetailTask',
+          formData
+        )
+        .then((response) => {
+          if (response.data.isSuccess) {
+            onSuccess('ok');
+            dispatch(uploadFile(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  };
+
+  // <------------------------------
+
+  // get icon by file type
+  const renderIconByFileType = (type) => {
+    switch (type) {
+      case 'application/zip':
+        return <AiFillFileZip />;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        return <RiFileWord2Fill />;
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return <RiFileExcel2Fill />;
+      default:
+        break;
+    }
+  };
   // <------------------------------
 
   // Declare Col of table
@@ -158,7 +234,16 @@ const DetailTask = (props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item key="0">Upload attach</Menu.Item>
+              <Menu.Item key="0" onClick={() => onClickUpload(record.id)}>
+                <Upload
+                  onChange={onFileChange}
+                  showUploadList={false}
+                  beforeUpload={beforeUploadFile}
+                  customRequest={handleUploadFile}
+                >
+                  Upload attach
+                </Upload>
+              </Menu.Item>
 
               <Menu.Item
                 key="1"
@@ -268,7 +353,7 @@ const DetailTask = (props) => {
         </Form>
       </Modal>
 
-      <Spin tip="Loading..." spinning={loading}>
+      <Spin tip="Loading..." spinning={loadingPage}>
         <div
           style={{
             width: '100%',
@@ -279,7 +364,7 @@ const DetailTask = (props) => {
             backgroundColor: '#F3F5F7',
           }}
         >
-          <Space direction="vertical" style={{ width: '75%' }} size="large">
+          <Space direction="vertical" style={{ width: '90%%' }} size="large">
             <Space
               direction="vertical"
               style={{
@@ -382,17 +467,22 @@ const DetailTask = (props) => {
                     record.attachmentsOfDetailTask.length > 0 ? (
                       record.attachmentsOfDetailTask.map((attach) => {
                         return (
-                          <p
-                            className={'table-detail-task__name-attach'}
-                            onClick={() => {
-                              history.push(
-                                `/${idProject}/storage/?name=${attach.name}`
-                              );
-                              localStorage.setItem('sider', '3');
-                            }}
-                          >
-                            {attach.name}
-                          </p>
+                          <>
+                            <p
+                              className={'table-detail-task__name-attach'}
+                              onClick={() => {
+                                history.push(
+                                  `/${idProject}/storage/?name=${attach.name}`
+                                );
+                                localStorage.setItem('sider', '3');
+                              }}
+                            >
+                              <i className="table-detail-task__icon-attach">
+                                {renderIconByFileType(attach.nameType)}
+                              </i>
+                              {attach.name}
+                            </p>
+                          </>
                         );
                       })
                     ) : (
@@ -415,8 +505,21 @@ const DetailTask = (props) => {
               />
             </div>
           </Space>
-          <ChatOnTask />
+          <ChatOnTask
+            visible={!isVisibleChatOnTask}
+            onClose={() => setIsvisibleChatOnTask(true)}
+          />
         </div>
+        <Tooltip placement="left" title="Open chat">
+          <Button
+            shape={'circle'}
+            type="primary"
+            icon={<MessageOutlined />}
+            size="large"
+            onClick={() => setIsvisibleChatOnTask(false)}
+            className="open-drawer-chat-on-task"
+          />
+        </Tooltip>
       </Spin>
     </>
   );

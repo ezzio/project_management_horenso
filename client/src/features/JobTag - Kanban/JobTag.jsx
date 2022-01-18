@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import ListMember from './components/ListMember';
 import { BarsOutlined, LoginOutlined } from '@ant-design/icons';
 import './JobTag.scss';
-import { Button, message, Popconfirm, Popover, Space, Tooltip } from 'antd';
+import {
+  Button,
+  Divider,
+  message,
+  Popconfirm,
+  Popover,
+  Progress,
+  Space,
+  Tooltip,
+} from 'antd';
 import { useState } from 'react';
 import ModalEditKanban from 'features/KanbanDashBoard/components/ModalEditKanban';
 import {
@@ -15,20 +24,18 @@ import { Link, useParams } from 'react-router-dom';
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
-
   const dispatch = useDispatch();
   const { idProject } = useParams();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = (e) => {
+  const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
   const handleEditJob = (values) => {
     const action = {
       id_job: job.id_job,
@@ -38,11 +45,12 @@ const JobTag = (props) => {
       is_completed: values.is_completed,
       start_time: values.range_time[0].format('YYYY-MM-DD'),
       end_time: values.range_time[1].format('YYYY-MM-DD'),
-      members: values.members,
+      members: job.members.filter((item) =>
+        values.members.includes(item.user_name)
+      ),
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action));
-    // console.log(action);
     message.success('Success! This Job has been edited');
     setIsModalVisible(false);
   };
@@ -59,17 +67,15 @@ const JobTag = (props) => {
         {/* <Link to={`/kanban/${id}`}> */}
         <div className="ctn-job-task__title">
           <Link to={`/${idProject}/jobs/${job.id_job}`}>
-            <Tooltip title="Open Now" placement="topLeft">
-              <p>{title}</p>
-            </Tooltip>
+            <p>{title}</p>
           </Link>
         </div>
-        <div className="ctn-job-task__process">
+        <div className="ctn-job-task__priority">
           <div
             className={
-              priority === 'High'
+              priority.toLowerCase() === 'high'
                 ? 'high'
-                : priority === 'Medium'
+                : priority === 'medium'
                 ? 'medium'
                 : 'low'
             }
@@ -80,9 +86,7 @@ const JobTag = (props) => {
         </div>
 
         <div className="ctn-job-task__process">
-          <div className="background-process">
-            <div className="process-work" style={{ width: process }}></div>
-          </div>
+          <Progress size="small" percent={process} />
         </div>
         {/* </Link> */}
         <div className="ctn-job-task__members">
@@ -107,35 +111,26 @@ const JobTag = (props) => {
                   </Popconfirm>
                 </Space>
               }
-              trigger={!job.is_completed ? 'click' : ''}
+              trigger={'click'}
             >
-              <Button
-                style={{
-                  border: 'none',
-                  backgroundColor: '#fff',
-                  width: 'fit-content',
-                }}
-              >
+              <Button shape="circle" type="text">
                 <BarsOutlined />
               </Button>
             </Popover>
-            <Link to={`/${idProject}/jobs/${job.id_job}`}>
-              <Tooltip title="Open Now">
-                <Button
-                  shape="circle"
-                  style={{
-                    border: 'none',
-                    backgroundColor: '#fff',
-                    width: 'fit-content',
-                  }}
-                >
-                  <LoginOutlined />
-                </Button>
-              </Tooltip>
-            </Link>
+
+            {job && (
+              <Link to={`/${idProject}/jobs/${job.id_job}`}>
+                <Tooltip title="Open Now">
+                  <Button shape="circle" type="text">
+                    <LoginOutlined />
+                  </Button>
+                </Tooltip>
+              </Link>
+            )}
           </div>
         </div>
       </div>
+      <Divider classname="job-divider" style={{ margin: '0' }} />
     </>
   );
 };

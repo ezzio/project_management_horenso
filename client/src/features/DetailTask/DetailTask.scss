@@ -6,6 +6,8 @@
 
 .table-detail-task {
   &__name-attach {
+    display: flex;
+    align-items: center;
     padding: 1rem;
     background-color: #fff;
     cursor: pointer;
@@ -15,4 +17,13 @@
       color: cornflowerblue;
     }
   }
+  &__icon-attach {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+}
+.open-drawer-chat-on-task {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
 }
