@@ -62,7 +62,7 @@ const ModalEditKanban = (props) => {
               moment(job.end_time, dateFormat),
             ],
             is_completed: job.is_completed,
-            members: job.members, // neu loi edit thi dong tai day
+            members: job.members.map((item) => item.user_name),
           }}
         >
           <Form.Item
@@ -111,7 +111,7 @@ const ModalEditKanban = (props) => {
               },
             ]}
           >
-            <Select mode="multiple" placeholder="Search member...">
+            <Select mode="multiple" placeholder="Search member..." disabled>
               {jobs.membersInProject.map((eachMember) => (
                 <Select.Option value={eachMember.name}>
                   {eachMember.name}

@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { FcFolder, FcBriefcase, FcCollaboration } from 'react-icons/fc';
-import { useSelector } from 'react-redux';
-import './ListChannel.scss';
-import { AiOutlinePlus } from 'react-icons/ai';
-import WorkspaceModal from './Modals/WorkspaceModal';
-import OthersModal from './Modals/OthersModal';
-import TeamsModal from './Modals/TeamsModal'
+import React, { useState } from "react";
+import { FcFolder, FcBriefcase, FcCollaboration } from "react-icons/fc";
+import { useSelector } from "react-redux";
+import "./ListChannel.scss";
+import { AiOutlinePlus } from "react-icons/ai";
+import WorkspaceModal from "./Modals/WorkspaceModal";
+import OthersModal from "./Modals/OthersModal";
+import TeamsModal from "./Modals/TeamsModal";
 
 const Listchannel = () => {
-
   const channels = useSelector((state) => state.createChannel);
 
   // const [workspace, setWorkspace] = useState(channels.workspace);
@@ -78,10 +77,13 @@ const Listchannel = () => {
               <FcBriefcase />
               <h5>WORKSPACE</h5>
             </section>
-            <AiOutlinePlus className="add" onClick={() => setOpenWorkspaceModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenWorkspaceModal(true)}
+            />
           </div>
           <div>
-            <WorkspaceModal 
+            <WorkspaceModal
               openWorkspaceModal={openWorkspaceModal}
               setOpenWorkspaceModal={setOpenWorkspaceModal}
             />
@@ -100,10 +102,13 @@ const Listchannel = () => {
               <FcCollaboration />
               <h5>TEAMS</h5>
             </section>
-            <AiOutlinePlus className="add"  onClick={() => setOpenTeamsModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenTeamsModal(true)}
+            />
           </div>
           <div>
-            <TeamsModal 
+            <TeamsModal
               openTeamsModal={openTeamsModal}
               setOpenTeamsModal={setOpenTeamsModal}
             />
@@ -122,10 +127,13 @@ const Listchannel = () => {
               <FcFolder />
               <h5>OTHERS</h5>
             </section>
-            <AiOutlinePlus className="add" onClick={() => setOpenOthersModal(true)}/>
+            <AiOutlinePlus
+              className="add"
+              onClick={() => setOpenOthersModal(true)}
+            />
           </div>
           <div>
-            <OthersModal 
+            <OthersModal
               openOthersModal={openOthersModal}
               setOpenOthersModal={setOpenOthersModal}
             />

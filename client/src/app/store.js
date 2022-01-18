@@ -8,7 +8,7 @@ import userSettingReducer from "pages/UserSettings/UserSettingSlice";
 import teammateReducer from "features/Teammate/teammateSlice";
 import createProjectReducer from "features/CreateProject/createProjectSlice";
 import detailTaskReducer from "features/DetailTask/DetailTaskSlice";
-import createChannelReducer from "features/ListChannel/ListChannelSlice"
+import createChannelReducer from "features/ListChannel/ListChannelSlice";
 import storageReducer from "features/Storage/storageSlice";
 
 export const store = configureStore({

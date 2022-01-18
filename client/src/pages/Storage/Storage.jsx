@@ -1,14 +1,15 @@
 import { Button, Input, Space, Table } from "antd";
 import "antd/dist/antd.css";
+import DeleteFile from "features/Storage/DeleteFile-Storage/deleteFile";
 import { listFile } from "features/Storage/storageSlice";
-import React, { useEffect, useMemo, useState } from "react";
-import { useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { RiDeleteBin6Line, RiDownload2Fill } from "react-icons/ri";
+import { RiDownload2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import "./Storage.scss";
-
+import { AiFillFileZip } from "react-icons/ai";
+import { RiFileExcel2Fill, RiFileWord2Fill } from "react-icons/ri";
 const Storage = () => {
   const dataApi = useSelector((state) => state.storage.dataFile);
 
@@ -71,20 +72,38 @@ const Storage = () => {
     />
   );
 
+  // get icon by file type
+  const renderIconByFileType = (type) => {
+    switch (type) {
+      case "application/zip":
+        return <AiFillFileZip className="icon" />;
+      case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        return <RiFileWord2Fill className="icon" />;
+      case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        return <RiFileExcel2Fill className="icon" />;
+      default:
+        break;
+    }
+  };
+  // <------------------------------
+
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
       render: (t, r) => (
-        <a href={`${r.URL}`} target="_blank" rel="noreferrer">{`${r.name}`}</a>
+        <div className="file__name">
+          {renderIconByFileType(r.nameType)}
+          {r.name}
+        </div>
       ),
     },
     // {
     //   title: "Task",
     //   dataIndex: "task",
     //   key: "Id",
-    //   sorter: (a, b) => a.task.localeCompare(b.task),
+    //   render: (t, r) => r.URL,
     // },
 
     {
@@ -114,12 +133,15 @@ const Storage = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<RiDownload2Fill />} size="medium" />
-          <Button type="danger" icon={<RiDeleteBin6Line />} size="medium" />
+          <a href={record.URL} download>
+            <Button type="primary" icon={<RiDownload2Fill />} size="medium" />
+          </a>
+          <DeleteFile fileName={record.name} />
         </Space>
       ),
     },
   ];
+
   return (
     <div className="ctn storage">
       <div className="header">

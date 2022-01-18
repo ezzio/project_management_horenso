@@ -1,35 +1,36 @@
 import KanbanAPI from "api/kanbanApi";
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import moment from "moment";
 export const ListKanban = createAsyncThunk(
-  "Kanan/ListKanban",
+  "Kanban/ListKanban",
   async (params, thunkAPI) => {
     const currentListKanban = await KanbanAPI.ListKanbanOfJob();
     return currentListKanban;
   }
 );
 export const AddNewJobkanban = createAsyncThunk(
-  "Kanan/CreateAKanban",
+  "Kanban/CreateAKanban",
   async (params) => {
     const current = await KanbanAPI.AddNewJob(params);
     return current;
   }
 );
 export const DeleteAJob = createAsyncThunk(
-  "Kanan/deleteJob",
+  "Kanban/deleteJob",
   async (params) => {
     // console.log(params);
     const current = await KanbanAPI.deleteJob(params);
     return current;
   }
 );
-export const EditAJob = createAsyncThunk("Kanan/editJob", async (params) => {
+export const EditAJob = createAsyncThunk("Kaban/editJob", async (params) => {
   // console.log(params);
   const current = await KanbanAPI.editJob(params);
   return current;
 });
 
 const initalKanbans = {
+  loading: false,
   listJobs: [],
   membersInProject: [],
 };
@@ -38,9 +39,9 @@ const kanban = createSlice({
   name: "kanbans",
   initialState: initalKanbans,
   reducers: {
-    addKanban: (state, action) => {
-      state.listJobs.push(action.payload);
-    },
+    // addKanban: (state, action) => {
+    //   state.listJobs.push(action.payload);
+    // },
     deleteKanban: (state, action) => {
       state.listJobs = state.listJobs.filter(
         (kanban) => kanban.id_job !== action.payload
@@ -57,8 +58,12 @@ const kanban = createSlice({
     },
   },
   extraReducers: {
-    [ListKanban.pending]: (state) => {},
-    [ListKanban.rejected]: (state) => {},
+    [ListKanban.pending]: (state) => {
+      state.loading = true;
+    },
+    [ListKanban.rejected]: (state) => {
+      state.loading = false;
+    },
     [ListKanban.fulfilled]: (state, action) => {
       let Job_List = action.payload;
       console.log(Job_List);
@@ -81,22 +86,44 @@ const kanban = createSlice({
           });
         });
         state.membersInProject = Job_List.memberInProject;
+        state.loading = false;
       }
     },
-    [AddNewJobkanban.pending]: (state) => {},
-    [AddNewJobkanban.rejected]: (state) => {},
+    [AddNewJobkanban.pending]: (state) => {
+      state.loading = true;
+    },
+    [AddNewJobkanban.rejected]: (state) => {
+      state.loading = false;
+    },
     [AddNewJobkanban.fulfilled]: (state, action) => {
       console.log(action.payload);
+      const newKanban = {
+        ...action.payload.infoJob,
+        id_job: action.payload.infoJob.idJob,
+        members: action.payload.infoJob.memberInJob,
+      };
+      state.listJobs.push(newKanban);
+      state.loading = false;
     },
-    [DeleteAJob.pending]: (state) => {},
-    [DeleteAJob.rejected]: (state) => {},
+    [DeleteAJob.pending]: (state) => {
+      state.loading = true;
+    },
+    [DeleteAJob.rejected]: (state) => {
+      state.loading = false;
+    },
     [DeleteAJob.fulfilled]: (state, action) => {
       console.log(action.payload);
+      state.loading = false;
     },
-    [EditAJob.pending]: (state) => {},
-    [EditAJob.rejected]: (state) => {},
+    [EditAJob.pending]: (state) => {
+      state.loading = true;
+    },
+    [EditAJob.rejected]: (state) => {
+      state.loading = false;
+    },
     [EditAJob.fulfilled]: (state, action) => {
       console.log(action.payload);
+      state.loading = false;
     },
   },
 });

@@ -6,6 +6,8 @@
 
 .table-detail-task {
   &__name-attach {
+    display: flex;
+    align-items: center;
     padding: 1rem;
     background-color: #fff;
     cursor: pointer;
@@ -14,5 +16,9 @@
       background-color: #fafafa;
       color: cornflowerblue;
     }
+  }
+  &__icon-attach {
+    font-size: 20px;
+    margin-right: 20px;
   }
 }
