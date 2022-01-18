@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 EditTeammate.propTypes = {};
 
 function EditTeammate(props) {
-  const { user } = props;
+  const { user, idProject } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { Option } = Select;
   const [newTag, setNewTag] = useState("");
@@ -37,6 +37,7 @@ function EditTeammate(props) {
     const action = {
       user_name: user.user_name,
       newRole: newTag,
+      idProject: idProject,
     };
     dispatch(editTeammate(action));
     dispatch(EditTeammateByUsername(action));
