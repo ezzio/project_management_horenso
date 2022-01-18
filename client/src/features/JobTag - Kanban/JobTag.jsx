@@ -53,7 +53,6 @@ const JobTag = (props) => {
     dispatch(EditAJob(action));
     message.success('Success! This Job has been edited');
     setIsModalVisible(false);
-    console.log(action);
   };
 
   return (

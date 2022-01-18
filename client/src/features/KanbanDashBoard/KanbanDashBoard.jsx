@@ -216,7 +216,12 @@ const KanbanDashBoard = () => {
                 Jobs is completed
               </Title>
             </div>
-            {showCompleteTask && <CompleteTask jobs={isCompletedJobs} />}
+            {showCompleteTask && (
+              <CompleteTask
+                jobs={isCompletedJobs}
+                handleDeleteJob={handleDeleteJob}
+              />
+            )}
           </div>
         </div>
       </Spin>
@@ -226,12 +231,11 @@ const KanbanDashBoard = () => {
 
 export default KanbanDashBoard;
 
-const CompleteTask = ({ jobs }) => {
+const CompleteTask = ({ jobs, handleDeleteJob }) => {
   return (
     <div className="ctn-kanbandashboard__complete__content">
       {jobs.length > 0 ? (
         jobs.map((job) => {
-          console.log(job);
           if (job.is_completed)
             return (
               <JobTag
@@ -241,6 +245,7 @@ const CompleteTask = ({ jobs }) => {
                 priority={job.priority}
                 process={job.process}
                 members={job.members}
+                onDeleteJob={handleDeleteJob}
               />
             );
         })
