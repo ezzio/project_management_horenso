@@ -57,6 +57,7 @@ const DetailTask = (props) => {
   const data = useSelector((state) => state.detailTask.allDetailTask);
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
+  const memberInTask = useSelector((state) => state.detailTask.memberInTask);
   const [loadingPage, setLoadingPage] = useState(loading);
   const [isVisibleChatOnTask, setIsvisibleChatOnTask] = useState(true);
 
@@ -65,10 +66,12 @@ const DetailTask = (props) => {
     dispatch(listAllDetailTaskAsync(idTask));
   }, []);
   useEffect(() => {
-    const initialSelectedRowKey = data
-      .filter((item) => item.is_complete)
-      .map((item) => item.id);
-    setSelectedRowKeys(initialSelectedRowKey);
+    if (data) {
+      const initialSelectedRowKey = data
+        .filter((item) => item.is_complete)
+        .map((item) => item.id);
+      setSelectedRowKeys(initialSelectedRowKey);
+    }
   }, [data]);
 
   const rowSelection = {
@@ -285,8 +288,8 @@ const DetailTask = (props) => {
           form
             .validateFields()
             .then((values) => {
-              form.resetFields();
               onCreate(values);
+              form.resetFields();
             })
             .catch((info) => {
               console.log('Validate Failed:', info);
@@ -378,7 +381,11 @@ const DetailTask = (props) => {
                 onBack={() => window.history.back()}
                 title={info.title || 'No title'}
                 style={{ padding: '0px' }}
-                subTitle={<div className={info.priority}>{info.priority}</div>}
+                subTitle={
+                  <div className={info.priority && info.priority.toLowerCase()}>
+                    {info.priority}
+                  </div>
+                }
               >
                 <Descriptions size="small" column={6}>
                   <Descriptions.Item>
@@ -399,32 +406,35 @@ const DetailTask = (props) => {
                   backgroundColor: '#fde3cf',
                 }}
               >
-                <Avatar src="https://joeschmoe.io/api/v1/random" />
-                <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
-                <Tooltip title="Ant User" placement="top">
-                  <Avatar
-                    style={{ backgroundColor: '#87d068' }}
-                    icon={<UserOutlined />}
-                  />
-                </Tooltip>
-                <Avatar
-                  style={{ backgroundColor: '#1890ff' }}
-                  icon={<AntDesignOutlined />}
-                />
+                {memberInTask.map((mem, index) => (
+                  <Tooltip
+                    title={mem.display_name || mem.user_name}
+                    placement="top"
+                  >
+                    <Avatar
+                      style={{ backgroundColor: '#87d068' }}
+                      icon={<UserOutlined />}
+                      src={mem.avatar}
+                    />
+                  </Tooltip>
+                ))}
               </Avatar.Group>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>
                 <Progress
-                  percent={parseInt(
-                    (selectedRowKeys.length * 100) / data.length
-                  )}
+                  percent={
+                    selectedRowKeys.length &&
+                    parseInt((selectedRowKeys.length * 100) / data.length)
+                  }
                   status="active"
                 />
               </Space>
-              <Space direction="vertical">
-                <Title level={5}>Decription:</Title>
-                <Text>{info.description}</Text>
-              </Space>
+              {info.description && (
+                <Space direction="vertical">
+                  <Title level={5}>Decription:</Title>
+                  <Text>{info.description}</Text>
+                </Space>
+              )}
             </Space>
             <div
               style={{

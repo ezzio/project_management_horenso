@@ -5,16 +5,17 @@ import moment from "moment";
 
 const initialDetailTask = {
   loading: false,
+  infoAllDetailTask: [],
   isUploadFileSuccess: false,
-  allDetailTask: [],
   infoTask: {},
+  memberInTask: [],
 };
 
 export const listAllDetailTaskAsync = createAsyncThunk(
   "detailTask/ListDetailTask",
   async (params) => {
-    let allDetailTask = await detailTaskApi.listAllDetailTask(params);
-    return allDetailTask;
+    let infoAllDetailTask = await detailTaskApi.listAllDetailTask(params);
+    return infoAllDetailTask;
   }
 );
 export const createADetailTaskAsync = createAsyncThunk(
@@ -64,8 +65,7 @@ const detailTask = createSlice({
   initialState: initialDetailTask,
   reducers: {
     addADetailTask: (state, action) => {
-      console.log(action.payload);
-      state.allDetailTask.push(action.payload);
+      state.infoAllDetailTask.push(action.payload);
     },
     editDetailTask: (state, action) => {
       const idx = state.allDetailTask.findIndex((task) => {
@@ -115,13 +115,15 @@ const detailTask = createSlice({
     [listAllDetailTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        state.allDetailTask = action.payload.infoAllDetailTask.map((task) => {
-          return {
-            ...task,
-            key: task.id,
-            assignOn: moment(task.assignOn).format("YYYY-MM-DD"),
-          };
-        });
+        state.infoAllDetailTask = action.payload.infoAllDetailTask.map(
+          (task) => {
+            return {
+              ...task,
+              key: task.id,
+              assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
+            };
+          }
+        );
         state.infoTask = {
           ...action.payload.infoTask,
           start_time: moment(action.payload.infoTask.start_time).format(
@@ -131,6 +133,7 @@ const detailTask = createSlice({
             "YYYY-MM-DD"
           ),
         };
+        state.memberInTask = action.payload.memberInTask;
       }
     },
     [createADetailTaskAsync.pending]: (state) => {
