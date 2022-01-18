@@ -37,8 +37,8 @@ export const fetchBoard = createAsyncThunk(
 export const addTask = createAsyncThunk(
   'board/add-task',
   async (params, thunkAPI) => {
-    thunkAPI.dispatch(addNewTask(params));
     let res = await boardApi.addTask(params);
+    thunkAPI.dispatch(addNewTask(res.infoTask));
     return res;
   }
 );
@@ -66,7 +66,19 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     addNewTask: (state, action) => {
-      state.listTask[0].eachColumnTask.push(action.payload);
+      const tempTask = {
+        id: action.payload.idTask,
+        title: 'action.payload.title',
+        is_complete: action.payload.is_complete,
+        description: action.payload.description,
+        isOverdue: action.payload.isOverdue,
+        process: action.payload.process,
+        priority: action.payload.priority,
+        start_time: moment(action.payload.start_time).format('YYYY-MM-DD'),
+        end_time: moment(action.payload.end_time).format('YYYY-MM-DD'),
+        taskers: action.payload.infoTaskers,
+      };
+      state.listTask[0].eachColumnTask.push(tempTask);
     },
 
     deleteTask: (state, action) => {
