@@ -9,20 +9,20 @@ import {
   Typography,
   Empty,
   Spin,
-} from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import JobTag from "features/JobTag - Kanban/JobTag";
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import "./KanbanDashBoard.scss";
+} from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import JobTag from 'features/JobTag - Kanban/JobTag';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './KanbanDashBoard.scss';
 import {
   addKanban,
   deleteKanban,
   ListKanban,
   AddNewJobkanban,
   DeleteAJob,
-} from "./KanbanDashBoardSlice";
+} from './KanbanDashBoardSlice';
 
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
@@ -48,7 +48,7 @@ const KanbanDashBoard = () => {
     const action = deleteKanban(deleteKanbanID);
     dispatch(action);
     dispatch(DeleteAJob({ kanban_id: deleteKanbanID }));
-    message.success("Success! This Job has been removed");
+    message.success('Success! This Job has been removed');
   };
 
   const showModal = () => {
@@ -65,18 +65,18 @@ const KanbanDashBoard = () => {
     const newKanban = {
       // id_job: jobs.id_job,
       title: values.title,
-      proccess: "0%",
+      proccess: 0,
       priority: values.priority,
       is_completed: false,
-      start_time: values.range_time[0].format("YYYY-MM-DD"),
-      end_time: values.range_time[1].format("YYYY-MM-DD"),
+      start_time: values.range_time[0].format('YYYY-MM-DD'),
+      end_time: values.range_time[1].format('YYYY-MM-DD'),
       members: values.members,
     };
     // console.log(newKanban);
     // dispatch(addKanban(newKanban));
     dispatch(AddNewJobkanban(newKanban));
     setVisible(false);
-    message.success("Success! This Job has been added");
+    message.success('Success! This Job has been added');
   };
   const [form] = Form.useForm();
 
@@ -95,12 +95,12 @@ const KanbanDashBoard = () => {
               onFinish(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
-        initialValues={{ priority: "Low" }}
+        initialValues={{ priority: 'Low' }}
       >
         <Form
           layout="vertical"
@@ -108,18 +108,18 @@ const KanbanDashBoard = () => {
           name="add_new_kanban"
           onFinish={onFinish}
           autoComplete="off"
-          initialValues={{ priority: "Low" }}
+          initialValues={{ priority: 'Low' }}
         >
           <Form.Item
             label="Title: "
             name="title"
             rules={[
-              { required: true, message: "Please input title of job !" },
+              { required: true, message: 'Please input title of job !' },
               {
                 max: 30,
-                message: "The title must be maximum 30 characters !",
+                message: 'The title must be maximum 30 characters !',
               },
-              { min: 5, message: "The title must be minimum 5 characters !" },
+              { min: 5, message: 'The title must be minimum 5 characters !' },
             ]}
           >
             <Input />
@@ -136,16 +136,16 @@ const KanbanDashBoard = () => {
             label="Range Time: "
             rules={[
               {
-                type: "array",
+                type: 'array',
                 required: true,
-                message: "Please select time!",
+                message: 'Please select time!',
               },
             ]}
           >
             <RangePicker
               allowClear
               format="YYYY-MM-DD"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             />
           </Form.Item>
           <Form.Item
@@ -154,8 +154,8 @@ const KanbanDashBoard = () => {
             rules={[
               {
                 required: true,
-                message: "Please select members on duty",
-                type: "array",
+                message: 'Please select members on duty',
+                type: 'array',
               },
             ]}
           >
@@ -176,13 +176,14 @@ const KanbanDashBoard = () => {
         <div className="ctn-kanbandashboard">
           <div className="ctn-kanbandashboard__working">
             <div className="ctn-kanbandashboard__working__title">
-              <Title level={2} className="title">
-                Jobs On Working
+              <Title level={3} className="title">
+                Jobs on working
               </Title>
               <Button
-                type={"primary"}
+                type={'primary'}
                 onClick={showModal}
                 icon={<PlusOutlined />}
+                className="add-new-job"
               >
                 Add new
               </Button>
@@ -205,14 +206,14 @@ const KanbanDashBoard = () => {
                     );
                 })
               ) : (
-                <Empty style={{ marginTop: "5rem" }} />
+                <Empty style={{ marginTop: '5rem' }} />
               )}
             </div>
           </div>
           <div className="ctn-kanbandashboard__complete">
             <div className="ctn-kanbandashboard__complete__title">
-              <Title level={2} className="title">
-                Completed Job
+              <Title level={3} className="title">
+                Jobs is completed
               </Title>
             </div>
             {showCompleteTask && (
@@ -249,7 +250,7 @@ const CompleteTask = ({ jobs, handleDeleteJob }) => {
             );
         })
       ) : (
-        <Empty style={{ marginTop: "5rem" }} />
+        <Empty style={{ marginTop: '5rem' }} />
       )}
     </div>
   );
