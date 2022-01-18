@@ -1,29 +1,30 @@
-import KanbanAPI from "api/kanbanApi";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import moment from "moment";
+import KanbanAPI from 'api/kanbanApi';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import moment from 'moment';
+import { message } from 'antd';
 export const ListKanban = createAsyncThunk(
-  "Kanban/ListKanban",
+  'Kanban/ListKanban',
   async (params, thunkAPI) => {
     const currentListKanban = await KanbanAPI.ListKanbanOfJob();
     return currentListKanban;
   }
 );
 export const AddNewJobkanban = createAsyncThunk(
-  "Kanban/CreateAKanban",
+  'Kanban/CreateAKanban',
   async (params) => {
     const current = await KanbanAPI.AddNewJob(params);
     return current;
   }
 );
 export const DeleteAJob = createAsyncThunk(
-  "Kanban/deleteJob",
+  'Kanban/deleteJob',
   async (params) => {
     // console.log(params);
     const current = await KanbanAPI.deleteJob(params);
     return current;
   }
 );
-export const EditAJob = createAsyncThunk("Kaban/editJob", async (params) => {
+export const EditAJob = createAsyncThunk('Kaban/editJob', async (params) => {
   // console.log(params);
   const current = await KanbanAPI.editJob(params);
   return current;
@@ -36,7 +37,7 @@ const initalKanbans = {
 };
 
 const kanban = createSlice({
-  name: "kanbans",
+  name: 'kanbans',
   initialState: initalKanbans,
   reducers: {
     // addKanban: (state, action) => {
@@ -80,8 +81,8 @@ const kanban = createSlice({
             process: Eachjob.process,
             priority: Eachjob.priority,
             is_completed: Eachjob.is_completed || false,
-            start_time: moment(Eachjob.start_time).format("YYYY-MM-DD"),
-            end_time: moment(Eachjob.end_time).format("YYYY-MM-DD"),
+            start_time: moment(Eachjob.start_time).format('YYYY-MM-DD'),
+            end_time: moment(Eachjob.end_time).format('YYYY-MM-DD'),
             members: members,
           });
         });
@@ -102,6 +103,7 @@ const kanban = createSlice({
         id_job: action.payload.infoJob.idJob,
         members: action.payload.infoJob.memberInJob,
       };
+      message.success('Success! This Job has been added');
       state.listJobs.push(newKanban);
       state.loading = false;
     },
