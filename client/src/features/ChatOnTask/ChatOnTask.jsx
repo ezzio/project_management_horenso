@@ -1,19 +1,62 @@
 import { Avatar, Space, Input, Button, Form, Drawer } from 'antd';
-import Title from 'antd/lib/typography/Title';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { SendOutlined } from '@ant-design/icons';
+import BubbleChat from './components/BubbleChat';
 
 import './ChatOnTask.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import Title from 'antd/lib/typography/Title';
+import { listUserInfo } from 'pages/UserSettings/UserSettingSlice';
+import moment from 'moment';
+import { sendMessage } from './chatOnTaskSlice';
 
 const ChatOnTask = ({ visible, onClose }) => {
+  const dispatch = useDispatch();
+
+  // declare data
+  const messages = useSelector((state) => state.chatOnTask.messages);
+  const user = useSelector((state) => state.userSetting);
+
+  useEffect(() => {
+    dispatch(listUserInfo());
+  }, []);
+
   // Hanlde form
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     if (values.mess) {
-      console.log('Success:', values);
       form.resetFields();
+      inputRef.current.focus({
+        cursor: 'start',
+      });
+      const tempMessage = {
+        user: {
+          user_name: user.name,
+          display_name: user.display_name,
+          avatar: user.avatarURL,
+        },
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        mess: [values.mess],
+      };
+      dispatch(sendMessage(tempMessage));
     }
   };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  // focus
+  const inputRef = useRef(null);
+
+  // scroll
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    if (messagesEndRef.current !== null)
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+  useEffect(scrollToBottom, [messages]);
 
   return (
     <Drawer
@@ -22,7 +65,55 @@ const ChatOnTask = ({ visible, onClose }) => {
       onClose={onClose}
       visible={visible}
       size="large"
-    ></Drawer>
+      width={450}
+    >
+      <div className="chat-on-task__body">
+        {messages.length === 0 ? (
+          <Title level={2}>Let's talk with your partner now!</Title>
+        ) : (
+          messages.map((message, index) => (
+            <BubbleChat
+              key={index}
+              user={message.user}
+              sendAt={message.sentAt}
+              mess={message.mess}
+            />
+          ))
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="chat-on-task__footer">
+        <Form
+          name="chat-on-task"
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+          form={form}
+        >
+          <Form.Item name="mess">
+            <Input
+              width={'400px'}
+              size="large"
+              suffix={
+                <Button
+                  shape="circle"
+                  type="primary"
+                  htmlType="submit"
+                  icon={<SendOutlined />}
+                />
+              }
+              ref={inputRef}
+              bordered={false}
+              style={{
+                backgroundColor: '#eee',
+                height: '50px',
+                borderRadius: '5px',
+              }}
+            />
+          </Form.Item>
+        </Form>
+      </div>
+    </Drawer>
   );
 };
 
