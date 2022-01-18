@@ -8,6 +8,7 @@ import {
   message,
   Typography,
   Empty,
+  Spin,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import JobTag from "features/JobTag - Kanban/JobTag";
@@ -29,6 +30,7 @@ const { Title } = Typography;
 const KanbanDashBoard = () => {
   const [showCompleteTask, setShowCompleteTask] = useState(true);
   const jobs = useSelector((state) => state.kanban);
+  const loading = useSelector((state) => state.kanban.loading);
   const dispatch = useDispatch();
 
   const [visible, setVisible] = React.useState(false);
@@ -61,7 +63,7 @@ const KanbanDashBoard = () => {
   //          Modal Form
   const onFinish = (values) => {
     const newKanban = {
-      id_job: jobs.listJobs.length + 1,
+      // id_job: jobs.id_job,
       title: values.title,
       proccess: "0%",
       priority: values.priority,
@@ -71,7 +73,7 @@ const KanbanDashBoard = () => {
       members: values.members,
     };
     // console.log(newKanban);
-    dispatch(addKanban(newKanban));
+    // dispatch(addKanban(newKanban));
     dispatch(AddNewJobkanban(newKanban));
     setVisible(false);
     message.success("Success! This Job has been added");
@@ -113,7 +115,10 @@ const KanbanDashBoard = () => {
             name="title"
             rules={[
               { required: true, message: "Please input title of job !" },
-              { max: 30, message: "The title must be maximum 30 characters !" },
+              {
+                max: 30,
+                message: "The title must be maximum 30 characters !",
+              },
               { min: 5, message: "The title must be minimum 5 characters !" },
             ]}
           >
@@ -130,7 +135,11 @@ const KanbanDashBoard = () => {
             name="range_time"
             label="Range Time: "
             rules={[
-              { type: "array", required: true, message: "Please select time!" },
+              {
+                type: "array",
+                required: true,
+                message: "Please select time!",
+              },
             ]}
           >
             <RangePicker
@@ -163,51 +172,53 @@ const KanbanDashBoard = () => {
         </Form>
       </Modal>
 
-      <div className="ctn-kanbandashboard">
-        <div className="ctn-kanbandashboard__working">
-          <div className="ctn-kanbandashboard__working__title">
-            <Title level={2} className="title">
-              Jobs On Working
-            </Title>
-            <Button
-              type={"primary"}
-              onClick={showModal}
-              icon={<PlusOutlined />}
-            >
-              Add new
-            </Button>
+      <Spin tip="Loading..." size="large" spinning={loading}>
+        <div className="ctn-kanbandashboard">
+          <div className="ctn-kanbandashboard__working">
+            <div className="ctn-kanbandashboard__working__title">
+              <Title level={2} className="title">
+                Jobs On Working
+              </Title>
+              <Button
+                type={"primary"}
+                onClick={showModal}
+                icon={<PlusOutlined />}
+              >
+                Add new
+              </Button>
+            </div>
+            <div className="ctn-kanbandashboard__working__content">
+              {jobs.listJobs.length > 0 ? (
+                jobs.listJobs.map((job) => {
+                  if (!job.is_completed)
+                    return (
+                      <JobTag
+                        key={job.id_job}
+                        onDeleteJob={handleDeleteJob}
+                        job={job}
+                        title={job.title}
+                        priority={job.priority}
+                        process={job.process}
+                        members={job.members}
+                        setVisible={setVisible}
+                      />
+                    );
+                })
+              ) : (
+                <Empty style={{ marginTop: "5rem" }} />
+              )}
+            </div>
           </div>
-          <div className="ctn-kanbandashboard__working__content">
-            {jobs.listJobs.length > 0 ? (
-              jobs.listJobs.map((job) => {
-                if (!job.is_completed)
-                  return (
-                    <JobTag
-                      key={job.id_job}
-                      onDeleteJob={handleDeleteJob}
-                      job={job}
-                      title={job.title}
-                      priority={job.priority}
-                      process={job.process}
-                      members={job.members}
-                      setVisible={setVisible}
-                    />
-                  );
-              })
-            ) : (
-              <Empty style={{ marginTop: "5rem" }} />
-            )}
+          <div className="ctn-kanbandashboard__complete">
+            <div className="ctn-kanbandashboard__complete__title">
+              <Title level={2} className="title">
+                Completed Job
+              </Title>
+            </div>
+            {showCompleteTask && <CompleteTask jobs={isCompletedJobs} />}
           </div>
         </div>
-        <div className="ctn-kanbandashboard__complete">
-          <div className="ctn-kanbandashboard__complete__title">
-            <Title level={2} className="title">
-              Completed Job
-            </Title>
-          </div>
-          {showCompleteTask && <CompleteTask jobs={isCompletedJobs} />}
-        </div>
-      </div>
+      </Spin>
     </>
   );
 };
@@ -217,11 +228,13 @@ export default KanbanDashBoard;
 const CompleteTask = ({ jobs }) => {
   return (
     <div className="ctn-kanbandashboard__complete__content">
-      {jobs.listJobs ? (
-        jobs.listJobs.map((job) => {
+      {jobs.length > 0 ? (
+        jobs.map((job) => {
+          console.log(job);
           if (job.is_completed)
             return (
               <JobTag
+                key={job.id_job}
                 job={job}
                 title={job.title}
                 priority={job.priority}

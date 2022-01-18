@@ -20,6 +20,7 @@ import {
 } from "features/KanbanDashBoard/KanbanDashBoardSlice";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob } = props;
@@ -36,7 +37,6 @@ const JobTag = (props) => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
   const handleEditJob = (values) => {
     const action = {
       id_job: job.id_job,
@@ -46,13 +46,15 @@ const JobTag = (props) => {
       is_completed: values.is_completed,
       start_time: values.range_time[0].format("YYYY-MM-DD"),
       end_time: values.range_time[1].format("YYYY-MM-DD"),
-      members: values.members,
+      members: job.members.filter((item) =>
+        values.members.includes(item.user_name)
+      ),
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action));
-    console.log(action);
     message.success("Success! This Job has been edited");
     setIsModalVisible(false);
+    console.log(action);
   };
 
   return (
@@ -119,7 +121,7 @@ const JobTag = (props) => {
                   </Popconfirm>
                 </Space>
               }
-              trigger={!job.is_completed ? "click" : ""}
+              trigger={"click"}
             >
               <Button
                 style={{
@@ -132,7 +134,7 @@ const JobTag = (props) => {
               </Button>
             </Popover>
 
-            {!job.is_completed && (
+            {job && (
               <Link to={`/${idProject}/jobs/${job.id_job}`}>
                 <Tooltip title="Open Now">
                   <Button
