@@ -6,7 +6,8 @@ const TeammateAPI = {
   getAll: (params) => {
     return axios
       .post(`${API}/project/listMemberInProject`, {
-        idProject: localStorage.getItem("projectId"),
+        idProject: params,
+        owner: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;
@@ -21,7 +22,7 @@ const TeammateAPI = {
       .post(`${API}/project/addAMemberIntoProject`, {
         user_name: params.user_name,
         projectowner: localStorage.getItem("access_token"),
-        projectId: localStorage.getItem("projectId"),
+        projectId: params.idProject,
       })
       .then((response) => {
         return response.data;
@@ -31,12 +32,12 @@ const TeammateAPI = {
       });
   },
 
-  deleteTeammate: (username) => {
+  deleteTeammate: (params) => {
     return axios
       .post(`${API}/project/deleteUserInProject`, {
-        user_name: username,
-        projectId: localStorage.getItem("projectId"),
-        owner: localStorage.getItem("projectowner"),
+        user_name: params.user_name,
+        projectId: params.idProject,
+        owner: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;
@@ -51,8 +52,8 @@ const TeammateAPI = {
       .post(`${API}/project/editRoleOfUser`, {
         user_name: params.user_name,
         newRole: params.newRole,
-        projectId: localStorage.getItem("projectId"),
-        owner: localStorage.getItem("projectowner"),
+        projectId: params.idProject,
+        owner: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;

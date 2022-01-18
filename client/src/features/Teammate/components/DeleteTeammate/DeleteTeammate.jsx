@@ -11,13 +11,18 @@ import { Popconfirm, message } from "antd";
 DeleteTeammate.propTypes = {};
 
 function DeleteTeammate(props) {
-  const { user_name } = props;
+  const { user_name, idProject } = props;
   const dispatch = useDispatch();
 
   const handleConfirmClick = (user_name) => {
     dispatch(deleteTeammate(user_name));
-    dispatch(DeleteTeammateByUsername(user_name));
-    message.success(`Success !!! "${user_name}" has been deleted.`);
+    dispatch(
+      DeleteTeammateByUsername({
+        user_name: user_name,
+        idProject: idProject,
+      })
+    );
+    // message.success(`Success !!! "${user_name}" has been deleted.`);
   };
 
   const cancel = (e) => {};
