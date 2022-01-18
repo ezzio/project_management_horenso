@@ -17,6 +17,21 @@ const storageAPI = {
         console.log(error);
       });
   },
+
+  deleteFile(params) {
+    return axios
+      .post(`${API}/zipFile/removeZipFile`, {
+        idProject: params.idProject,
+        name_attachment: params.name_attachment,
+      })
+      .then((response) => {
+        return response.data;
+        // console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default storageAPI;

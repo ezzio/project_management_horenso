@@ -29,5 +29,13 @@
         border-radius: 50%;
       }
     }
+    .file__name {
+      display: flex;
+      align-items: center;
+      .icon {
+        font-size: 20px;
+        margin-right: 20px;
+      }
+    }
   }
 }
