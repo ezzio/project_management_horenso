@@ -189,8 +189,18 @@ const Task = (props) => {
                 {task.priority === 'low' ? 'Low' : task.priority}
               </div>
               <div className="kanban-task__info__time">
-                Due in{' '}
-                {moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(true)}
+                {moment().isBetween(
+                  moment(task.start_time),
+                  moment(task.end_time)
+                )
+                  ? 'Due in ' +
+                    moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(
+                      true
+                    )
+                  : 'Start after ' +
+                    moment(moment(task.start_time).format('YYYY-MM-DD')).toNow(
+                      true
+                    )}
               </div>
             </div>
             <div className="kanban-task__members-attach">
