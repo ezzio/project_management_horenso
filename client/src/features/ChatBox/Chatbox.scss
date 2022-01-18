@@ -16,6 +16,10 @@
     overflow-y: scroll;
 
     line-height: 1.6;
+
+    & > p {
+      margin: 0;
+    }
   }
 
   &__control {

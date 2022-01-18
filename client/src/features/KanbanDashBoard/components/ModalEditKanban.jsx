@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { GiJetPack } from "react-icons/gi";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 const { RangePicker } = DatePicker;
 
@@ -22,6 +23,7 @@ const ModalEditKanban = (props) => {
   const [form] = Form.useForm();
   const dateFormat = "YYYY-MM-DD";
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const jobs = useSelector((state) => state.kanban);
 
   const onFinish = (values) => {
     if (onFinish) return handleEditClick(values);
@@ -60,7 +62,7 @@ const ModalEditKanban = (props) => {
               moment(job.end_time, dateFormat),
             ],
             is_completed: job.is_completed,
-            members: job.members,
+            members: job.members.map((item) => item.user_name),
           }}
         >
           <Form.Item
@@ -109,10 +111,14 @@ const ModalEditKanban = (props) => {
               },
             ]}
           >
-            <Select mode="multiple" placeholder="Search member...">
-              <Select.Option value="red">Red</Select.Option>
-              <Select.Option value="green">Green</Select.Option>
-              <Select.Option value="blue">Blue</Select.Option>
+            <Select mode="multiple" placeholder="Search member..." disabled>
+              {jobs.membersInProject.map((eachMember) => (
+                <Select.Option value={eachMember.name}>
+                  {eachMember.name}
+                </Select.Option>
+              ))}
+              {/* <Select.Option value={"red"}>red</Select.Option>
+              <Select.Option value={"blue"}>blue</Select.Option> */}
             </Select>
           </Form.Item>
         </Form>

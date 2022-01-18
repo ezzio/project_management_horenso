@@ -29,7 +29,7 @@ const UserSetting = () => {
   useEffect(() => {
     dispatch(listUserInfo());
     localStorage.removeItem('projectowner')
-  });
+  }, []);
 
   // ----------Upload avatar----------->
   const [isLoadingAvatar, setIsLoadingAvatar] = useState(false);

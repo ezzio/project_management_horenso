@@ -1,47 +1,41 @@
-@import "styles/Color.scss";
+@import 'styles/Color.scss';
 
 .ctn-job-task {
-    width: 100%;
-    height: fit-content;
+  width: 100%;
+  height: fit-content;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 1rem 1rem;
+  transition: ease-in 0.3s;
+  &:hover {
+    background-color: #fafafa;
+  }
+
+  &__title {
+    width: 50%;
+    font-size: 18px;
+    font-weight: bold;
+
+    & p {
+      margin: 0 !important;
+    }
+  }
+
+  &__priority {
+    width: fit-content;
+  }
+
+  &__process {
+    width: 20%;
+  }
+
+  &__members {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-    border-bottom: 1px solid #ccc;
-    padding: 1rem 0.5rem;
-    border-radius: 5px;
-
-    &__title {
-        flex: 2;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    &__process {
-        flex: 1;
-
-        .background-process {
-            width: 80%;
-            height: 0.2rem;
-            background-color: #ccc;
-            position: relative;
-
-            .process-work {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 0.2rem;
-                background-color: $_GREENBLUE;
-            }
-        }
-    }
-
-    &__members {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex: 1;
-    }
+    justify-content: flex-end;
+    width: fit-content;
+  }
 }
