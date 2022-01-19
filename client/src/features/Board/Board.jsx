@@ -6,7 +6,7 @@ import './Board.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { changeInprogress, fetchBoard, resetIsFetched } from './boardSlice';
+import { fetchBoard, setChangeColumnDone } from './boardSlice';
 import { Spin } from 'antd';
 
 const Board = (props) => {
@@ -15,7 +15,8 @@ const Board = (props) => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.board.listTask);
-  const isFetched = useSelector((state) => state.board.isFetched);
+  const changeColumnDone = useSelector((state) => state.board.changeColumnDone);
+  const loading = useSelector((state) => state.board.loading);
   const openModal = () => {
     setModalOpen(true);
   };
@@ -24,21 +25,20 @@ const Board = (props) => {
     setModalOpen(false);
   };
 
-  // Automatic Change Status Task
   useEffect(() => {
     dispatch(fetchBoard(idBoard));
   }, []);
-  
+
   useEffect(() => {
-    if (isFetched) {
-      dispatch(changeInprogress(idBoard));
-      dispatch(resetIsFetched());
+    if (changeColumnDone && !loading) {
+      console.table({ columns, idBoard });
+      dispatch(setChangeColumnDone(false));
     }
-  }, [isFetched]);
+  }, [changeColumnDone, loading]);
+
   // <----------------------
 
   const members = useSelector((state) => state.board.memberInJob);
-  const loading = useSelector((state) => state.board.loading);
 
   return (
     <Spin
