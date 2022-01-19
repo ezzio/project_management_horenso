@@ -5,8 +5,7 @@ import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  changeInReview,
-  changeOverdue,
+  automaticallyUpdateColumn,
   deleteTaskAsync,
 } from 'features/Board/boardSlice';
 import {
@@ -61,10 +60,7 @@ const Task = (props) => {
 
   useEffect(() => {
     if (!loading) {
-      if (moment().isAfter(task.end_time)) {
-        dispatch(changeOverdue({ columnId, index, taskPayload: task }));
-      }
-      if (task.process === 100) dispatch(changeInReview({ columnId, task }));
+      dispatch(automaticallyUpdateColumn({ columnId, task, index }));
     }
   }, [loading]);
 
