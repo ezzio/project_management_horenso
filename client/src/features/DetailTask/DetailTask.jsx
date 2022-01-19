@@ -22,6 +22,7 @@ import {
   Progress,
   Space,
   Spin,
+  Switch,
   Table,
   Tooltip,
   Typography,
@@ -275,6 +276,9 @@ const DetailTask = (props) => {
     },
   ];
   // <-----------------------------|
+
+  // chekc completed this task
+  console.log(info);
   return (
     <>
       <Modal
@@ -386,6 +390,15 @@ const DetailTask = (props) => {
                   <div className={info.priority && info.priority.toLowerCase()}>
                     {info.priority}
                   </div>
+                }
+                extra={
+                  info.process === 100 && [
+                    <Switch
+                      checkedChildren="Not finish"
+                      unCheckedChildren="Finished"
+                      defaultChecked={info.is_is_complete}
+                    />,
+                  ]
                 }
               >
                 <Descriptions size="small" column={6}>
