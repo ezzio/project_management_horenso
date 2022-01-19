@@ -5,6 +5,7 @@ import moment from 'moment';
 
 const initialState = {
   loading: false,
+  loadingCompleted: false,
   changeColumnDone: false,
   listTask: [
     {
@@ -58,6 +59,22 @@ export const deleteTaskAsync = createAsyncThunk(
   async (params, thunkAPI) => {
     thunkAPI.dispatch(deleteTask(params));
     let res = await boardApi.deleteTask(params);
+    return res;
+  }
+);
+
+export const automateChangeColAsync = createAsyncThunk(
+  'board/auto-change-col',
+  async (params) => {
+    let res = await boardApi.autoChangeColumn(params);
+    return res;
+  }
+);
+
+export const checkCompleted = createAsyncThunk(
+  'board/check-finished',
+  async (params) => {
+    let res = await boardApi.checkCompleted(params);
     return res;
   }
 );
@@ -242,6 +259,15 @@ export const boardSlice = createSlice({
       if (action.payload) {
         message.success('Success! Task has been deleted.');
       }
+    },
+    [checkCompleted.pending]: (state) => {
+      state.loadingCompleted = true;
+    },
+    [checkCompleted.rejected]: (state) => {
+      state.loadingCompleted = false;
+    },
+    [checkCompleted.fulfilled]: (state, action) => {
+      state.loadingCompleted = false;
     },
   },
 });

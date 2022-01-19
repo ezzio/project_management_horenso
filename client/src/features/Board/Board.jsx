@@ -6,7 +6,11 @@ import './Board.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { fetchBoard, setChangeColumnDone } from './boardSlice';
+import {
+  automateChangeColAsync,
+  fetchBoard,
+  setChangeColumnDone,
+} from './boardSlice';
 import { Spin } from 'antd';
 
 const Board = (props) => {
@@ -31,7 +35,7 @@ const Board = (props) => {
 
   useEffect(() => {
     if (changeColumnDone && !loading) {
-      console.table({ columns, idBoard });
+      dispatch(automateChangeColAsync({ columns, idBoard }));
       dispatch(setChangeColumnDone(false));
     }
   }, [changeColumnDone, loading]);
