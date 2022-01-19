@@ -22,12 +22,14 @@ import {
   Progress,
   Space,
   Spin,
+  Switch,
   Table,
   Tooltip,
   Typography,
   Upload,
 } from 'antd';
 import axios from 'axios';
+import { checkCompleted } from 'features/Board/boardSlice';
 import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -51,7 +53,7 @@ const { Text, Title } = Typography;
 const DetailTask = (props) => {
   // ----------------------------->
   // Table detail tasks
-  const { idTask, idProject } = useParams();
+  const { idTask, idProject, idBoard } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const data = useSelector((state) => state.detailTask.infoAllDetailTask);
@@ -275,6 +277,12 @@ const DetailTask = (props) => {
     },
   ];
   // <-----------------------------|
+
+  // check completed this task
+  const loadingCompleted = useSelector((state) => state.board.loadingCompleted);
+  function checkFinished(checked) {
+    dispatch(checkCompleted({ is_complete: checked, idTask, idBoard }));
+  }
   return (
     <>
       <Modal
@@ -386,6 +394,17 @@ const DetailTask = (props) => {
                   <div className={info.priority && info.priority.toLowerCase()}>
                     {info.priority}
                   </div>
+                }
+                extra={
+                  info.process === 100 && [
+                    <Switch
+                      onChange={checkFinished}
+                      checkedChildren="Not finish"
+                      unCheckedChildren="Finished"
+                      defaultChecked={info.is_complete}
+                      loading={loadingCompleted}
+                    />,
+                  ]
                 }
               >
                 <Descriptions size="small" column={6}>
