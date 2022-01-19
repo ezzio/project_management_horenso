@@ -22,12 +22,14 @@ import {
   Progress,
   Space,
   Spin,
+  Switch,
   Table,
   Tooltip,
   Typography,
   Upload,
 } from 'antd';
 import axios from 'axios';
+import { checkCompleted } from 'features/Board/boardSlice';
 import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -51,10 +53,10 @@ const { Text, Title } = Typography;
 const DetailTask = (props) => {
   // ----------------------------->
   // Table detail tasks
-  const { idTask, idProject } = useParams();
+  const { idTask, idProject, idBoard } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const data = useSelector((state) => state.detailTask.allDetailTask);
+  const data = useSelector((state) => state.detailTask.infoAllDetailTask);
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
   const memberInTask = useSelector((state) => state.detailTask.memberInTask);
@@ -82,6 +84,7 @@ const DetailTask = (props) => {
           idDetailTask: selectedRowKeys,
           idTask,
           completed_by: localStorage.getItem('access_token'),
+          progress: parseInt((selectedRowKeys.length * 100) / data.length),
         })
       );
     },
@@ -274,6 +277,12 @@ const DetailTask = (props) => {
     },
   ];
   // <-----------------------------|
+
+  // check completed this task
+  const loadingCompleted = useSelector((state) => state.board.loadingCompleted);
+  function checkFinished(checked) {
+    dispatch(checkCompleted({ is_complete: checked, idTask, idBoard }));
+  }
   return (
     <>
       <Modal
@@ -386,6 +395,17 @@ const DetailTask = (props) => {
                     {info.priority}
                   </div>
                 }
+                extra={
+                  info.process === 100 && [
+                    <Switch
+                      onChange={checkFinished}
+                      checkedChildren="Not finish"
+                      unCheckedChildren="Finished"
+                      defaultChecked={info.is_complete}
+                      loading={loadingCompleted}
+                    />,
+                  ]
+                }
               >
                 <Descriptions size="small" column={6}>
                   <Descriptions.Item>
@@ -426,7 +446,11 @@ const DetailTask = (props) => {
                     selectedRowKeys.length &&
                     parseInt((selectedRowKeys.length * 100) / data.length)
                   }
-                  status="active"
+                  status={
+                    parseInt((selectedRowKeys.length * 100) / data.length) < 100
+                      ? 'active'
+                      : ''
+                  }
                 />
               </Space>
               {info.description && (

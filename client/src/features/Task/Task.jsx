@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { RiChat1Line } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
-import { Draggable } from 'react-beautiful-dnd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  changeOverdue,
-  deleteTask,
+  automaticallyUpdateColumn,
   deleteTaskAsync,
 } from 'features/Board/boardSlice';
 import {
@@ -21,7 +19,7 @@ import {
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import { Popconfirm, message } from 'antd';
+import { Popconfirm } from 'antd';
 import moment from 'moment';
 import ModalEditTask from './EditTaskForm/ModalEditTask';
 import { useLocation } from 'react-router';
@@ -36,6 +34,7 @@ const Task = (props) => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = React.useState(false);
   const location = useLocation();
+  const loading = useSelector((state) => state.board.loading);
   // const currentTime = moment();
   // const projectTime = moment(task.endTime);
   // const endTime = currentTime.from(projectTime);
@@ -60,8 +59,10 @@ const Task = (props) => {
   }
 
   useEffect(() => {
-    dispatch(changeOverdue({ columnId, index }));
-  }, []);
+    if (!loading) {
+      dispatch(automaticallyUpdateColumn({ columnId, task, index }));
+    }
+  }, [loading]);
 
   const menu = (
     <Menu>
@@ -95,12 +96,12 @@ const Task = (props) => {
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
               </div>
-              <Progress percent={task.process} status="active" />
+              <Progress percent={task.process} status="exception" />
               <div className="kanban-task__info">
                 <div
                   style={{ padding: '0.35rem 1.5rem' }}
                   className={
-                    task.priority === 'high'
+                    task.priority.toLowerCase() === 'high'
                       ? 'high'
                       : task.priority === 'low'
                       ? 'low'
@@ -165,14 +166,20 @@ const Task = (props) => {
                 <DownOutlined />
               </Dropdown>
             </div>
-            <Progress percent={task.process} status="active" />
+            <Progress
+              percent={task.process}
+              status={!task.is_complete ? 'active' : ''}
+              strokeColor={
+                task.process === 100 && !task.is_complete ? '#FECD3D' : ''
+              }
+            />
             <div className="kanban-task__info">
               <div
                 style={{ padding: '0.35rem 1.5rem' }}
                 className={
-                  task.priority === 'high'
+                  task.priority.toLowerCase() === 'high'
                     ? 'high'
-                    : task.priority === 'low'
+                    : task.priority.toLowerCase() === 'low'
                     ? 'low'
                     : 'medium'
                 }
@@ -180,8 +187,18 @@ const Task = (props) => {
                 {task.priority === 'low' ? 'Low' : task.priority}
               </div>
               <div className="kanban-task__info__time">
-                Due in{' '}
-                {moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(true)}
+                {moment().isBetween(
+                  moment(task.start_time),
+                  moment(task.end_time)
+                )
+                  ? 'Due in ' +
+                    moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(
+                      true
+                    )
+                  : 'Start after ' +
+                    moment(moment(task.start_time).format('YYYY-MM-DD')).toNow(
+                      true
+                    )}
               </div>
             </div>
             <div className="kanban-task__members-attach">
@@ -234,101 +251,3 @@ Task.propTypes = {
 };
 
 export default Task;
-
-//   return (
-//     <Draggable draggableId={task.id.toString()} index={index}>
-//       {(provided) => (
-//         <Dropdown overlay={menu} trigger={["contextMenu"]}>
-//           <div
-//             className="kanban-task "
-//             {...provided.draggableProps}
-//             {...provided.dragHandleProps}
-//             ref={provided.innerRef}
-//           >
-//             <div className="kanban-task__title">
-//               <h4>{task.title}</h4>
-//             </div>
-//             <div className="kanban-task__progress">
-//               <div
-//                 className="kanban-task__progress__bar"
-//                 style={{ width: `${task.progress}%` }}
-//               >
-//                 {task.progress > 10 && <p>{task.progress}%</p>}
-//               </div>
-//               {task.progress < 10 && <p>{task.progress}%</p>}
-//             </div>
-//             <div className="kanban-task__info">
-//               <div
-//                 className={
-//                   task.level === "high"
-//                     ? "high"
-//                     : task.level === "low"
-//                     ? "low"
-//                     : "medium"
-//                 }
-//               >
-//                 {task.level}
-//               </div>
-//               <div className="kanban-task__info__time">Due in 2 days</div>
-//             </div>
-//             <div className="kanban-task__members-attach">
-//               <div className="kanban-task__members-attach__members">
-//                 {task.taskers.map((tasker, index) =>
-//                   index < 4 ? (
-//                     <img
-//                       src={tasker.avatar}
-//                       alt="avatar"
-//                       height="30"
-//                       width="30"
-//                     />
-//                   ) : null
-//                 )}
-//                 {task.taskers.length > 4 && (
-//                   <div
-//                     style={{
-//                       backgroundColor: "#eee",
-//                       borderRadius: "50%",
-//                       width: "30px",
-//                       height: "30px",
-//                       transform: "translateX(-20px)",
-//                       display: "flex",
-//                       alignItems: "center",
-//                       justifyContent: "center",
-//                     }}
-//                   >
-//                     <p>+{task.taskers.length - 4}</p>
-//                   </div>
-//                 )}
-//               </div>
-//               <div className="kanban-task__members-attach__attach">
-//                 <p>
-//                   <ImAttachment /> 2
-//                 </p>
-//                 <p>
-//                   <RiChat1Line /> 18
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div>
-//               <ModalEditTask
-//                 modalOpen={modalOpen}
-//                 closeModal={closeModal}
-//                 task={task}
-//                 columnId={columnId}
-//               />
-//             </div>
-//           </div>
-//         </Dropdown>
-//       )}
-//     </Draggable>
-//   );
-// };
-
-// Task.propTypes = {
-//   index: PropTypes.number.isRequired,
-//   task: PropTypes.object.isRequired,
-//   columnId: PropTypes.number.isRequired,
-// };
-
-// export default Task;
