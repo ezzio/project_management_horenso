@@ -54,7 +54,7 @@ const DetailTask = (props) => {
   const { idTask, idProject } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const data = useSelector((state) => state.detailTask.allDetailTask);
+  const data = useSelector((state) => state.detailTask.infoAllDetailTask);
   const info = useSelector((state) => state.detailTask.infoTask);
   const loading = useSelector((state) => state.detailTask.loading);
   const memberInTask = useSelector((state) => state.detailTask.memberInTask);
@@ -82,6 +82,7 @@ const DetailTask = (props) => {
           idDetailTask: selectedRowKeys,
           idTask,
           completed_by: localStorage.getItem('access_token'),
+          progress: parseInt((selectedRowKeys.length * 100) / data.length),
         })
       );
     },
@@ -426,7 +427,11 @@ const DetailTask = (props) => {
                     selectedRowKeys.length &&
                     parseInt((selectedRowKeys.length * 100) / data.length)
                   }
-                  status="active"
+                  status={
+                    parseInt((selectedRowKeys.length * 100) / data.length) < 100
+                      ? 'active'
+                      : ''
+                  }
                 />
               </Space>
               {info.description && (

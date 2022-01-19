@@ -165,7 +165,7 @@ function Step1({ onFinish, form, task }) {
           <RangePicker
             size="large"
             allowClear
-            showTime
+            showTime={false}
             format="DD/MM/YYYY"
             style={{ width: '100%' }}
           />

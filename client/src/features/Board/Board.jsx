@@ -6,7 +6,7 @@ import './Board.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { fetchBoard } from './boardSlice';
+import { changeInprogress, fetchBoard, resetIsFetched } from './boardSlice';
 import { Spin } from 'antd';
 
 const Board = (props) => {
@@ -15,7 +15,7 @@ const Board = (props) => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.board.listTask);
-
+  const isFetched = useSelector((state) => state.board.isFetched);
   const openModal = () => {
     setModalOpen(true);
   };
@@ -28,7 +28,13 @@ const Board = (props) => {
   useEffect(() => {
     dispatch(fetchBoard(idBoard));
   }, []);
-
+  
+  useEffect(() => {
+    if (isFetched) {
+      dispatch(changeInprogress(idBoard));
+      dispatch(resetIsFetched());
+    }
+  }, [isFetched]);
   // <----------------------
 
   const members = useSelector((state) => state.board.memberInJob);

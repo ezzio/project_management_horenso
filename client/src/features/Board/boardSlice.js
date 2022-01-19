@@ -5,6 +5,7 @@ import moment from 'moment';
 
 const initialState = {
   loading: false,
+  isFetched: false,
   listTask: [
     {
       id_column: 0,
@@ -39,6 +40,7 @@ export const addTask = createAsyncThunk(
   async (params, thunkAPI) => {
     let res = await boardApi.addTask(params);
     thunkAPI.dispatch(addNewTask(res.infoTask));
+    thunkAPI.dispatch(changeInprogress());
     return res;
   }
 );
@@ -110,40 +112,59 @@ export const boardSlice = createSlice({
       };
       state.listTask[columnId].eachColumnTask[taskIndex] = temp;
     },
+    resetIsFetched: (state) => {
+      state.isFetched = false;
+    },
     changeOverdue: (state, action) => {
-      const { columnId, index } = action.payload;
+      const { columnId, index, taskPayload } = action.payload;
       if (columnId !== 3) {
         state.listTask[columnId].eachColumnTask[index].isOverdue = true;
       }
       switch (columnId) {
-        case '1': {
+        case 1: {
           state.listTask[0].eachColumnTask.push(
-            ...state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
-              return idx === index;
+            ...state.listTask[1].eachColumnTask.filter((task) => {
+              return task.id === taskPayload.id;
             })
           );
           state.listTask[1].eachColumnTask =
-            state.listTask[1].eachColumnTask.filter(({ _, idx }) => {
-              return idx !== index;
+            state.listTask[1].eachColumnTask.filter((task) => {
+              return task.id !== taskPayload.id;
             });
+
           break;
         }
-        case '2': {
+        case 2: {
           state.listTask[0].eachColumnTask.push(
-            ...state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
-              return idx === index;
+            ...state.listTask[2].eachColumnTask.filter((task) => {
+              return task.id === taskPayload.id;
             })
           );
           state.listTask[2].eachColumnTask =
-            state.listTask[2].eachColumnTask.filter(({ _, idx }) => {
-              return idx !== index;
+            state.listTask[2].eachColumnTask.filter((task) => {
+              return task.id !== taskPayload.id;
             });
           break;
         }
-
         default:
           break;
       }
+    },
+    changeInprogress: (state) => {
+      const inProgress = state.listTask[0].eachColumnTask.filter((task) => {
+        return moment().isBetween(
+          moment(task.start_time).format('YYYY-MM-DD'),
+          moment(task.end_time).format('YYYY-MM-DD')
+        );
+      });
+      state.listTask[0].eachColumnTask =
+        state.listTask[0].eachColumnTask.filter((task) => {
+          return !moment().isBetween(
+            moment(task.start_time).format('YYYY-MM-DD'),
+            moment(task.end_time).format('YYYY-MM-DD')
+          );
+        });
+      state.listTask[1].eachColumnTask.push(...inProgress);
     },
   },
   extraReducers: {
@@ -158,22 +179,7 @@ export const boardSlice = createSlice({
       if (action.payload) {
         state.listTask = action.payload.ListTask;
         state.memberInJob = action.payload.memberInJob;
-        // Get task have being in progress
-        const inProgress = state.listTask[0].eachColumnTask.filter((task) => {
-          return moment().isBetween(
-            moment(task.start_time).format('YYYY-MM-DD'),
-            moment(task.end_time).format('YYYY-MM-DD')
-          );
-        });
-        state.listTask[0].eachColumnTask =
-          state.listTask[0].eachColumnTask.filter((task) => {
-            return !moment().isBetween(
-              moment(task.start_time).format('YYYY-MM-DD'),
-              moment(task.end_time).format('YYYY-MM-DD')
-            );
-          });
-        state.listTask[1].eachColumnTask.push(...inProgress);
-        // Get task have finished and pass to review
+        state.isFetched = true;
       }
     },
     [addTask.pending]: (state) => {
@@ -185,6 +191,7 @@ export const boardSlice = createSlice({
     [addTask.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
+        state.isFetched = true;
         message.success('Success! Task has been created.');
       }
     },
@@ -197,6 +204,7 @@ export const boardSlice = createSlice({
     [editTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
+        state.isFetched = true;
         message.success('Success! Task has been updated.');
       }
     },
@@ -209,12 +217,19 @@ export const boardSlice = createSlice({
     [deleteTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
+        state.isFetched = true;
         message.success('Success! Task has been deleted.');
       }
     },
   },
 });
 
-export const { deleteTask, updateTask, changeOverdue, addNewTask } =
-  boardSlice.actions;
+export const {
+  deleteTask,
+  updateTask,
+  changeOverdue,
+  addNewTask,
+  changeInprogress,
+  resetIsFetched,
+} = boardSlice.actions;
 export default boardSlice.reducer;
