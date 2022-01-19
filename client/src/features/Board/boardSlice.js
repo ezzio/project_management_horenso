@@ -96,7 +96,6 @@ export const boardSlice = createSlice({
       const taskIndex = state.listTask[columnId].eachColumnTask.findIndex(
         (task) => task.id === editTask.taskId
       );
-
       const temp = {
         id: editTask.taskId,
         description: editTask.description,
@@ -110,7 +109,18 @@ export const boardSlice = createSlice({
         is_complete:
           state.listTask[columnId].eachColumnTask[taskIndex].is_complete,
       };
-      state.listTask[columnId].eachColumnTask[taskIndex] = temp;
+
+      if (
+        columnId !== 0 &&
+        !moment().isBetween(
+          moment(editTask.start_time),
+          moment(editTask.end_time)
+        ) &&
+        moment().isBefore(editTask.end_time)
+      ) {
+        state.listTask[0].eachColumnTask.push(temp);
+        state.listTask[columnId].eachColumnTask.splice(taskIndex, 1);
+      } else state.listTask[columnId].eachColumnTask[taskIndex] = temp;
     },
     resetIsFetched: (state) => {
       state.isFetched = false;
