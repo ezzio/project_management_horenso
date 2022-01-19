@@ -6,6 +6,7 @@ import './Task.scss';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  changeInReview,
   changeOverdue,
   deleteTask,
   deleteTaskAsync,
@@ -61,8 +62,11 @@ const Task = (props) => {
   }
 
   useEffect(() => {
-    if (!loading && moment().isAfter(task.end_time)) {
-      dispatch(changeOverdue({ columnId, index, taskPayload: task }));
+    if (!loading) {
+      if (moment().isAfter(task.end_time)) {
+        dispatch(changeOverdue({ columnId, index, taskPayload: task }));
+      }
+      if (task.process === 100) dispatch(changeInReview({ columnId, task }));
     }
   }, [loading]);
 

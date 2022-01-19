@@ -5,7 +5,7 @@ import moment from 'moment';
 
 const initialState = {
   loading: false,
-  isFetched: false,
+  changeColumnDone: false,
   listTask: [
     {
       id_column: 0,
@@ -122,12 +122,12 @@ export const boardSlice = createSlice({
         state.listTask[columnId].eachColumnTask.splice(taskIndex, 1);
       } else state.listTask[columnId].eachColumnTask[taskIndex] = temp;
     },
-    resetIsFetched: (state) => {
-      state.isFetched = false;
+    setChangeColumnDone: (state, action) => {
+      state.changeColumnDone = action.payload;
     },
     changeOverdue: (state, action) => {
       const { columnId, index, taskPayload } = action.payload;
-      if (columnId !== 3) {
+      if (columnId !== 3 && state.listTask[columnId].eachColumnTask[index]) {
         state.listTask[columnId].eachColumnTask[index].isOverdue = true;
       }
       switch (columnId) {
@@ -176,6 +176,19 @@ export const boardSlice = createSlice({
         });
       state.listTask[1].eachColumnTask.push(...inProgress);
     },
+    changeInReview: (state, action) => {
+      const { columnId, task } = action.payload;
+      const indexTaskNeedChangePreview = state.listTask[
+        columnId
+      ].eachColumnTask.findIndex(
+        (item) => item.process === 100 && item.is_complete === false
+      );
+      state.listTask[2].eachColumnTask.push(task);
+      state.listTask[columnId].eachColumnTask.splice(
+        indexTaskNeedChangePreview,
+        1
+      );
+    },
   },
   extraReducers: {
     [fetchBoard.pending]: (state) => {
@@ -189,7 +202,6 @@ export const boardSlice = createSlice({
       if (action.payload) {
         state.listTask = action.payload.ListTask;
         state.memberInJob = action.payload.memberInJob;
-        state.isFetched = true;
       }
     },
     [addTask.pending]: (state) => {
@@ -201,7 +213,6 @@ export const boardSlice = createSlice({
     [addTask.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        state.isFetched = true;
         message.success('Success! Task has been created.');
       }
     },
@@ -214,7 +225,6 @@ export const boardSlice = createSlice({
     [editTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        state.isFetched = true;
         message.success('Success! Task has been updated.');
       }
     },
@@ -227,7 +237,6 @@ export const boardSlice = createSlice({
     [deleteTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        state.isFetched = true;
         message.success('Success! Task has been deleted.');
       }
     },
@@ -240,6 +249,7 @@ export const {
   changeOverdue,
   addNewTask,
   changeInprogress,
-  resetIsFetched,
+  setChangeColumnDone,
+  changeInReview,
 } = boardSlice.actions;
 export default boardSlice.reducer;
