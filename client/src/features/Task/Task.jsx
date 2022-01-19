@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { RiChat1Line } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import './Task.scss';
-import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeInReview,
   changeOverdue,
-  deleteTask,
   deleteTaskAsync,
 } from 'features/Board/boardSlice';
 import {
@@ -22,7 +20,7 @@ import {
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import { Popconfirm, message } from 'antd';
+import { Popconfirm } from 'antd';
 import moment from 'moment';
 import ModalEditTask from './EditTaskForm/ModalEditTask';
 import { useLocation } from 'react-router';
