@@ -77,11 +77,5 @@
 
 .line-plot {
   width: 100% !important;
-  height: 100% !important;
-  & > div {
-    height: 100% !important;
-    & > canvas {
-      height: 87% !important;
-    }
-  }
+  height: 40vh !important;
 }
