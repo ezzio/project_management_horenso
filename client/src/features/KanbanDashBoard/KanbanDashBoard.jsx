@@ -76,7 +76,6 @@ const KanbanDashBoard = () => {
     // dispatch(addKanban(newKanban));
     dispatch(AddNewJobkanban(newKanban));
     setVisible(false);
-    message.success('Success! This Job has been added');
   };
   const [form] = Form.useForm();
 

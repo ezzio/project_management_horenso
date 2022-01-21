@@ -120,7 +120,7 @@ const detailTask = createSlice({
             return {
               ...task,
               key: task.id,
-              assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
+              assignOn: moment(task.assignOn).format("YYYY-MM-DD"),
             };
           }
         );
