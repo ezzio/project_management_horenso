@@ -19,6 +19,7 @@ import ActivityFeed from "./components/ActivityFeed/ActivityFeed";
 import TaskCounter from "./components/TaskCounter/TaskCounter";
 import TaskStatus from "./components/TaskStatus/TaskStatus";
 import TargetPercent from "./components/TargetPercent/TargetPercent";
+import TreeChart from "./components/TreeChart/TreeChart";
 const { Title } = Typography;
 const { TabPane } = Tabs;
 
@@ -33,20 +34,21 @@ const Dashboard = () => {
           <div className="left-content">
             <div className="left-content__top">
               <Space style={{ marginBottom: "1rem" }}>
-                <FundOutlined style={{ fontSize: "1rem" }} />
+                <AlertOutlined style={{ fontSize: "1rem" }} />
                 <Title level={5} style={{ marginBottom: 0, lineHeight: 0 }}>
-                  Jobs Progress
+                  Project flow
                 </Title>
               </Space>
-              <LinePlot />
+              <TreeChart />
             </div>
             <div className="left-content__bottom">
               <Space style={{ marginBottom: "1rem" }}>
-                <AlertOutlined style={{ fontSize: "1rem" }} />
+                <FundOutlined style={{ fontSize: "1rem" }} />
                 <Title level={5} style={{ marginBottom: 0, lineHeight: 0 }}>
-                  Activity feed
+                  Jobs progress
                 </Title>
               </Space>
+              <LinePlot />
             </div>
           </div>
         </div>
