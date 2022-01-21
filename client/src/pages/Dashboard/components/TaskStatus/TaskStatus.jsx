@@ -1,7 +1,7 @@
 import React from "react";
 import { Pie } from "@ant-design/plots";
 
-const JobStatus = () => {
+const TaskStatus = () => {
   const data = [
     {
       type: "Backlogs",
@@ -44,4 +44,4 @@ const JobStatus = () => {
   return <Pie {...config} className="pie-chart" />;
 };
 
-export default JobStatus;
+export default TaskStatus;

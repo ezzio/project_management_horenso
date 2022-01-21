@@ -1,6 +1,7 @@
 import React from "react";
 // library dependencies
 import { Space, Typography, Tabs } from "antd";
+import Animate from "rc-animate";
 
 // icon
 import {
@@ -16,7 +17,7 @@ import "./Dashboard.scss";
 import LinePlot from "./components/LinePlot/LinePlot";
 import ActivityFeed from "./components/ActivityFeed/ActivityFeed";
 import TaskCounter from "./components/TaskCounter/TaskCounter";
-import JobStatus from "./components/JobStatus/JobStatus";
+import TaskStatus from "./components/TaskStatus/TaskStatus";
 import TargetPercent from "./components/TargetPercent/TargetPercent";
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -62,18 +63,22 @@ const Dashboard = () => {
                   }
                   key="1"
                 >
-                  <TargetPercent />
+                  <Animate transitionName="fade" showProp="show">
+                    <TargetPercent />
+                  </Animate>
                 </TabPane>
                 <TabPane
                   tab={
                     <span>
                       <PieChartOutlined style={{ fontSize: "1rem" }} />
-                      Job's Status
+                      Task's Status
                     </span>
                   }
                   key="2"
                 >
-                  <JobStatus />
+                  <Animate transitionName="fade" showProp="show">
+                    <TaskStatus />
+                  </Animate>
                 </TabPane>
               </Tabs>
             </div>
@@ -87,6 +92,10 @@ const Dashboard = () => {
                 </Space>
               </div>
               <div className="right-content__bottom__feeds">
+                <ActivityFeed />
+                <ActivityFeed />
+                <ActivityFeed />
+                <ActivityFeed />
                 <ActivityFeed />
                 <ActivityFeed />
                 <ActivityFeed />
