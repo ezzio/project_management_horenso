@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API = 'https://servernckh.herokuapp.com';
+const API = "https://servernckh.herokuapp.com";
 
 export const detailTaskApi = {
   listAllDetailTask: (params) => {
@@ -58,6 +58,18 @@ export const detailTaskApi = {
     return axios
       .post(`${API}/Tasks/completeAndUncompleteDetailTask`, {
         ...params,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  listConversationsInDetailTask: (params) => {
+    return axios
+      .post(`${API}/Tasks/listMessageInDetailTask`, {
+        taskOwner: params.idTask,
       })
       .then((response) => {
         return response.data;
