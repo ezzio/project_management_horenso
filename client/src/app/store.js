@@ -11,6 +11,8 @@ import detailTaskReducer from 'features/DetailTask/DetailTaskSlice';
 import createChannelReducer from 'features/ListChannel/ListChannelSlice';
 import storageReducer from 'features/Storage/storageSlice';
 import chatOnTaskReducer from 'features/ChatOnTask/chatOnTaskSlice';
+import chatBoxReducer from 'features/ChatBox/ChatBoxSlice';
+
 export const store = configureStore({
   reducer: {
     board: boardReducer,
@@ -25,5 +27,6 @@ export const store = configureStore({
     createChannel: createChannelReducer,
     storage: storageReducer,
     chatOnTask: chatOnTaskReducer,
+    chatBox: chatBoxReducer,
   },
 });
