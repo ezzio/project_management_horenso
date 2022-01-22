@@ -64,8 +64,9 @@ const Dashboard = () => {
                     </span>
                   }
                   key="1"
+                  forceRender="true"
                 >
-                  <Animate transitionName="fade" showProp="show">
+                  <Animate transitionName="fade">
                     <TargetPercent />
                   </Animate>
                 </TabPane>
@@ -77,8 +78,9 @@ const Dashboard = () => {
                     </span>
                   }
                   key="2"
+                  forceRender="true"
                 >
-                  <Animate transitionName="fade" showProp="show">
+                  <Animate transitionName="fade">
                     <TaskStatus />
                   </Animate>
                 </TabPane>
@@ -93,16 +95,18 @@ const Dashboard = () => {
                   </Title>
                 </Space>
               </div>
-              <div className="right-content__bottom__feeds">
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-                <ActivityFeed />
-              </div>
+              <Animate transitionName="fade" transitionAppear>
+                <div className="right-content__bottom__feeds">
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                  <ActivityFeed />
+                </div>
+              </Animate>
             </div>
           </div>
         </div>
