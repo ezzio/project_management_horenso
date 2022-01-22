@@ -37,6 +37,10 @@ const MRoom = () => {
         <div className="videocall__container-video__audiences">
           {/* render video chat here */}
           <CardVideo owner={{ name: 'Duong Dang Khoa' }} />
+          <CardVideo owner={{ name: 'Duong Dang Khoa' }} />
+          <CardVideo owner={{ name: 'Duong Dang Khoa' }} />
+          <CardVideo owner={{ name: 'Duong Dang Khoa' }} />
+          <CardVideo owner={{ name: 'Duong Dang Khoa' }} />
         </div>
       </div>
 
