@@ -31,31 +31,28 @@ import './App.scss';
 
 function App() {
   return (
-    // <Router>
-    //   <div className="App">
-    //     <Switch>
-    //       <Route path="/login">
-    //         <LoginScreen />
-    //       </Route>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <LoginScreen />
+          </Route>
 
-    //       <Route path="/sign-up">
-    //         <SignupScreen />
-    //       </Route>
+          <Route path="/sign-up">
+            <SignupScreen />
+          </Route>
 
-    //       <PrivateRoute exact path="/">
-    //         <UserSetting />
-    //       </PrivateRoute>
+          <PrivateRoute exact path="/">
+            <UserSetting />
+          </PrivateRoute>
 
-    //       <PrivateRoute path="/:idProject">
-    //         <SideBar />
-    //         <AnimatedRouter />
-    //       </PrivateRoute>
-
-    //       <Route component={NotFound} />
-    //     </Switch>
-    //   </div>
-    // </Router>
-    <MRoom />
+          <PrivateRoute path="/:idProject">
+            <SideBar />
+            <AnimatedRouter />
+          </PrivateRoute>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
@@ -80,7 +77,7 @@ const AnimatedRouter = () => {
     >
       <Switch location={displayLocation}>
         <Route path="/:idProject/dashboard" children={<Dashboard />} />
-        <Route path="/:idProject/meeting" children={<Meeting />} />
+        <Route exact path="/:idProject/meeting" children={<Meeting />} />
         <Route path="/:idProject/conversation" children={<Conversation />} />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
         <Route path="/:idProject/report" children={<Report />} />
@@ -98,6 +95,12 @@ const AnimatedRouter = () => {
           path="/:idProject/jobs/:idBoard/:idTask"
           children={<DetailTask />}
         />
+        <PrivateRoute
+          exact
+          path="/:idProject/meeting/:idRoom"
+          children={<MRoom />}
+        />
+
         <Route component={NotFound} />
       </Switch>
     </div>

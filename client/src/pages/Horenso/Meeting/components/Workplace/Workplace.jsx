@@ -1,10 +1,11 @@
-import React from "react";
-import propTypes from "prop-types";
-import { HiStatusOnline, HiStatusOffline } from "react-icons/hi";
-import "./Workplace.scss";
-import { Link } from "react-router-dom";
-import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import React from 'react';
+import propTypes from 'prop-types';
+import { HiStatusOnline, HiStatusOffline } from 'react-icons/hi';
+import './Workplace.scss';
+import { Link, useParams } from 'react-router-dom';
+import { AiOutlineVideoCameraAdd } from 'react-icons/ai';
 const Workplace = ({ room }) => {
+  const { idProject } = useParams();
   return (
     <>
       {room.length >= 1 ? (
@@ -13,7 +14,7 @@ const Workplace = ({ room }) => {
             return (
               <>
                 {x.status ? (
-                  <Link to="/meeting/id=291adw">
+                  <Link to={`/${idProject}/meeting/123`}>
                     <div className="workplace__room">
                       <div className="name">{x.name}</div>
                       <div className="dropdown">
