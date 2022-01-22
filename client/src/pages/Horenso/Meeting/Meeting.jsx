@@ -4,10 +4,9 @@ import '../../../styles/ContainerContents.scss';
 import Header from './components/Header/Header';
 import { Switch, Route, Link, useParams } from 'react-router-dom';
 import Workplace from './components/Workplace/Workplace.jsx';
-import MeetingRoom from 'features/MeetingRoom/MeetingRoom.jsx';
 const Meeting = () => {
   const { idProject } = useParams();
-  console.log(idProject)
+  console.log(idProject);
   const [room, setRoom] = useState([
     {
       id: '291adw',
@@ -29,15 +28,8 @@ const Meeting = () => {
 
   return (
     <div className="ctn meeting">
-      <Switch>
-        <Route path={`/${idProject}/meeting`}>
-          <Header room={room} />
-          <Workplace room={room} />
-        </Route>
-        <Route path={`/${idProject}/meeting/id=:idRoom`}>
-          <MeetingRoom />
-        </Route>
-      </Switch>
+      <Header room={room} />
+      <Workplace room={room} />
     </div>
   );
 };

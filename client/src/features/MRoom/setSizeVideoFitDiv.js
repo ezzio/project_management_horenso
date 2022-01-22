@@ -17,14 +17,14 @@ export const setSizeVideoFitDiv = () => {
   let height = String(100 / numberOfVideoCard) + "%";
   let width = "";
   if (numberOfVideoCard === 0 || numberOfVideoCard === 1) {
-    width = "100%";
-    height = "100%";
+    width = "80%";
+    height = "95%";
   } else if (numberOfVideoCard === 2) {
-    width = "55%";
-    height = "100%";
+    width = "47%";
+    height = "95%";
   } else if (numberOfVideoCard === 3 || numberOfVideoCard === 4) {
-    width = "50%";
-    height = "50%";
+    width = "45%";
+    height = "45%";
   } else {
     width = String(100 / numberOfVideoCard) + "%";
   }
