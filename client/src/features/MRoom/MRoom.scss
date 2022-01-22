@@ -1,6 +1,9 @@
 @import '../../styles/Color.scss';
 
 .videocall {
+  & p {
+    margin-bottom: 0;
+  }
   width: 100%;
   height: 100%;
 
@@ -12,21 +15,6 @@
     width: 100%;
     height: 90%;
     display: flex;
-    &__presenter {
-      height: 100%;
-      width: 100%;
-      flex: 3;
-      margin-bottom: 1%;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0 10px 10px;
-      & > video {
-        width: 100%;
-        height: 100%;
-        border-radius: 0px;
-        margin: 0;
-      }
-    }
 
     &__audiences {
       flex: 1;
@@ -54,12 +42,13 @@
       }
     }
   }
+
   &__footer {
     width: 100%;
     height: 10%;
-    padding: 10px;
+    padding: 0 2rem;
 
-    background-color: $_WHITE;
+    background-color: #ffffff;
 
     display: flex;
     justify-content: space-between;
@@ -81,28 +70,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      & > button {
-        cursor: pointer;
-
-        margin: 0 15px;
-
-        height: 4rem;
-        width: 4rem;
-        background-color: #fff;
-
-        border: 1px solid #ccc;
-
-        border-radius: 50%;
-
-        &:hover {
-          box-shadow: $_SHADOW;
-        }
-      }
-
-      & > button > svg {
-        font-size: 1.5em;
-      }
     }
 
     &__feat {
@@ -111,12 +78,6 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-
-      & > svg {
-        cursor: pointer;
-        font-size: 1.5rem;
-        margin: 0 15px;
-      }
     }
   }
 }
@@ -150,51 +111,24 @@
 }
 
 .teammate {
-  padding: 1% 2%;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  &__add-member {
-    cursor: pointer;
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-    height: 5%;
-    width: 50%;
-
-    border-radius: 6px;
-    border: none;
-
-    background-color: $_PRIMARY;
-    color: #fff;
-
-    & > svg {
-      font-size: 1.5rem;
-    }
-  }
   &__list-member {
     height: calc(80% / 2);
     width: 100%;
 
-    padding: 2%;
-
     border-top: 1px solid #ccc;
 
-    & > div {
-      height: 100%;
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
-
     &--online {
-      & > p {
+      & > b {
         color: $_SUCCESS;
         background-color: $_WHITE;
       }
     }
-    &--offline > p {
+    &--offline > b {
       color: $_ERROR;
       background-color: $_WHITE;
     }

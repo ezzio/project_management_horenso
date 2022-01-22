@@ -1,32 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // import components
-import NotFound from "components/Common/NotFound/NotFound";
-import PrivateRoute from "components/Common/PrivateRoute/PrivateRoute";
-import SideBar from "components/SideBar/SideBar";
-import Board from "features/Board/Board";
-import DetailTask from "features/DetailTask/DetailTask";
-import KanbanDashBoard from "features/KanbanDashBoard/KanbanDashBoard";
-import LoginScreen from "features/Login/LoginScreen";
-import SignupScreen from "features/Signup/SignupScreen";
-import Dashboard from "pages/Dashboard/Dashboard";
-import Github from "pages/Github/Github";
-import Conversation from "pages/Horenso/Conversation/Conversation";
-import Meeting from "pages/Horenso/Meeting/Meeting";
-import Report from "pages/Horenso/Report/Report";
-import Setting from "pages/Setting/Setting";
-import Storage from "pages/Storage/Storage";
-import Teammate from "pages/Teammate/Teammate";
-import UserSetting from "pages/UserSettings/UserSetting";
+import NotFound from 'components/Common/NotFound/NotFound';
+import PrivateRoute from 'components/Common/PrivateRoute/PrivateRoute';
+import SideBar from 'components/SideBar/SideBar';
+import Board from 'features/Board/Board';
+import DetailTask from 'features/DetailTask/DetailTask';
+import KanbanDashBoard from 'features/KanbanDashBoard/KanbanDashBoard';
+import LoginScreen from 'features/Login/LoginScreen';
+import SignupScreen from 'features/Signup/SignupScreen';
+import Dashboard from 'pages/Dashboard/Dashboard';
+import Github from 'pages/Github/Github';
+import Conversation from 'pages/Horenso/Conversation/Conversation';
+import Meeting from 'pages/Horenso/Meeting/Meeting';
+import Report from 'pages/Horenso/Report/Report';
+import Setting from 'pages/Setting/Setting';
+import Storage from 'pages/Storage/Storage';
+import Teammate from 'pages/Teammate/Teammate';
+import UserSetting from 'pages/UserSettings/UserSetting';
+import MRoom from 'features/MRoom/MRoom';
 // import library
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
-} from "react-router-dom";
+} from 'react-router-dom';
 // import css
-import "antd/dist/antd.css";
-import "./App.scss";
+import 'antd/dist/antd.css';
+import './App.scss';
 
 function App() {
   return (
@@ -49,8 +50,6 @@ function App() {
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
-
-          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
@@ -60,25 +59,25 @@ function App() {
 // Effect change page
 const AnimatedRouter = () => {
   const location = useLocation();
-  const [transitionStage, setTransitionStage] = useState("in");
+  const [transitionStage, setTransitionStage] = useState('in');
   const [displayLocation, setDisplayLocation] = useState(location);
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname)
-      setTransitionStage("out");
+      setTransitionStage('out');
   }, [displayLocation.pathname, location]);
   return (
     <div
-      className={transitionStage === "in" ? "slide-bottom" : "slide-top"}
+      className={transitionStage === 'in' ? 'slide-bottom' : 'slide-top'}
       onAnimationEnd={() => {
-        if (transitionStage === "out") {
-          setTransitionStage("in");
+        if (transitionStage === 'out') {
+          setTransitionStage('in');
           setDisplayLocation(location);
         }
       }}
     >
       <Switch location={displayLocation}>
         <Route path="/:idProject/dashboard" children={<Dashboard />} />
-        <Route path="/:idProject/meeting" children={<Meeting />} />
+        <Route exact path="/:idProject/meeting" children={<Meeting />} />
         <Route path="/:idProject/conversation" children={<Conversation />} />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
         <Route path="/:idProject/report" children={<Report />} />
@@ -96,6 +95,12 @@ const AnimatedRouter = () => {
           path="/:idProject/jobs/:idBoard/:idTask"
           children={<DetailTask />}
         />
+        <PrivateRoute
+          exact
+          path="/:idProject/meeting/:idRoom"
+          children={<MRoom />}
+        />
+
         <Route component={NotFound} />
       </Switch>
     </div>

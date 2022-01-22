@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
-import "./CardVideo.scss";
-import { openStream } from "features/MeetingRoom/MeetingRoom";
+import './CardVideo.scss';
+import { openStream } from '../MRoom';
+
 const CardVideo = (props) => {
   const { owner } = props;
   const videoEl = useRef(null);
