@@ -52,16 +52,16 @@ const SideBar = () => {
               style={
                 !isColapsed
                   ? {
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                    color: 'white',
-                    margin: '0',
-                  }
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                      color: 'white',
+                      margin: '0',
+                    }
                   : {
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
-                    color: 'white',
-                    fontSize: '1rem',
-                    margin: '0',
-                  }
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                      color: 'white',
+                      fontSize: '1rem',
+                      margin: '0',
+                    }
               }
             >
               Kanso
@@ -116,20 +116,7 @@ const SideBar = () => {
               Storage
             </Link>
           </Menu.Item>
-          <Menu.Item
-            key="4"
-            icon={
-              <GithubFilled style={{ color: 'white', fontSize: '1.15rem' }} />
-            }
-          >
-            <Link
-              to={`/${idProject}/github`}
-              style={{ color: 'white' }}
-              onClick={() => localStorage.setItem('sider', '4')}
-            >
-              Github
-            </Link>
-          </Menu.Item>
+
           <SubMenu
             key="sub1"
             icon={
@@ -167,22 +154,6 @@ const SideBar = () => {
                 onClick={() => localStorage.setItem('sider', '6')}
               >
                 Conversation
-              </Link>
-            </Menu.Item>
-            <Menu.Item
-              key="7"
-              icon={
-                <ScheduleFilled
-                  style={{ color: 'white', fontSize: '1.15rem' }}
-                />
-              }
-            >
-              <Link
-                to={`/${idProject}/report`}
-                style={{ color: 'white' }}
-                onClick={() => localStorage.setItem('sider', '7')}
-              >
-                Report
               </Link>
             </Menu.Item>
           </SubMenu>
