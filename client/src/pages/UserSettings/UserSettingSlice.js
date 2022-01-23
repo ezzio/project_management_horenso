@@ -1,34 +1,31 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
-import userApi from "api/userApi";
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import userApi from 'api/userApi';
 const initialState = {
-  name: "",
-  bio: "",
-  display_name: "",
-  company: "",
-  location: "",
-  email: "",
-  avatarURL:
-    "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
+  name: '',
+  bio: '',
+  display_name: '',
+  company: '',
+  location: '',
+  email: '',
+  avatarURL: '',
   projects: [
     {
       idProject: 1,
-      title: "React application wueifheruighoiughreroighrjtiopjripojropj[tpo",
-      members: [
-        "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png",
-      ],
+      title: '',
+      members: [''],
     },
   ],
   loading: false,
 };
 export const listUserInfo = createAsyncThunk(
-  "user/InfoUser",
+  'user/InfoUser',
   async (thunkAPI) => {
     const infoUser = await userApi.listUserInfo();
     return infoUser;
   }
 );
 export const editUserAsync = createAsyncThunk(
-  "user/editUser",
+  'user/editUser',
   async (params, thunkAPI) => {
     thunkAPI.dispatch(editProfile(params));
     const infoUser = await userApi.editUser(params);
@@ -37,17 +34,15 @@ export const editUserAsync = createAsyncThunk(
 );
 
 export const userSettingSlice = createSlice({
-  name: "userSetting",
+  name: 'userSetting',
   initialState,
   reducers: {
     editProfile: (state, action) => {
-      state.name = action.payload.name;
+      state.display_name = action.payload.display_name;
       state.bio = action.payload.bio;
       state.company = action.payload.company;
       state.location = action.payload.location;
       state.email = action.payload.email;
-      state.link = action.payload.link;
-      state.facebook = action.payload.facebook;
     },
     uploadAvatar: (state, action) => {
       state.avatarURL = action.payload;
