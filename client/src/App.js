@@ -15,7 +15,7 @@ import Setting from 'pages/Setting/Setting';
 import Storage from 'pages/Storage/Storage';
 import Teammate from 'pages/Teammate/Teammate';
 import UserSetting from 'pages/UserSettings/UserSetting';
-import MRoom from 'features/MRoom/MRoom';
+
 // import library
 import {
   BrowserRouter as Router,
@@ -26,6 +26,7 @@ import {
 // import css
 import 'antd/dist/antd.css';
 import './App.scss';
+import MeetingRoom from 'features/MRoom/MeetingRoom';
 
 function App() {
   return (
@@ -94,7 +95,7 @@ const AnimatedRouter = () => {
         <PrivateRoute
           exact
           path="/:idProject/meeting/:idRoom"
-          children={<MRoom />}
+          children={<MeetingRoom />}
         />
 
         <Route component={NotFound} />

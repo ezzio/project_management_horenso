@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { setSizeVideoFitDiv } from './setSizeVideoFitDiv';
-
 import CardVideo from './CardVideo/CardVideo';
 import ChattingMeeting from 'features/ChattingMeeting/ChattingMeeting';
 
@@ -18,10 +17,10 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Button, Space, Tooltip } from 'antd';
 
-import './MRoom.scss';
+import './MeetingRoom.scss';
 import Title from 'antd/lib/typography/Title';
 
-const MRoom = () => {
+const MeetingRoom = () => {
   const [openTeammates, setOpenTeammates] = useState(false);
   const [openChatting, setOpenChatting] = useState(false);
   const [openMicro, setOpenMicro] = useState(false);
@@ -182,4 +181,4 @@ const MRoom = () => {
   );
 };
 
-export default MRoom;
+export default MeetingRoom;
