@@ -16,6 +16,7 @@ const initialState = {
     },
   ],
   loading: false,
+  tasks: [],
 };
 export const listUserInfo = createAsyncThunk(
   'user/InfoUser',
