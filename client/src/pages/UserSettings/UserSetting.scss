@@ -311,7 +311,6 @@
   // border-style: solid;
   // border-width: 1px;
   // border-color: black;
-  overflow-y: auto;
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -320,6 +319,15 @@
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
+  & .ant-list-items {
+    overflow: auto;
+    height: 255px;
+
+    & .ant-list-item {
+      margin-right: 0.5rem;
+    }
+  }
 }
 
 .approved-decor {
