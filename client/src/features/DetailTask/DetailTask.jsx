@@ -242,12 +242,17 @@ const DetailTask = (props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item key="0" onClick={() => onClickUpload(record)}>
+              <Menu.Item
+                key="0"
+                onClick={() => onClickUpload(record)}
+                disabled={info.is_complete}
+              >
                 <Upload
                   onChange={onFileChange}
                   showUploadList={false}
                   beforeUpload={beforeUploadFile}
                   customRequest={handleUploadFile}
+                  disabled={info.is_complete}
                 >
                   Upload attach
                 </Upload>
@@ -258,6 +263,7 @@ const DetailTask = (props) => {
                 onClick={() => {
                   handleEdit(record);
                 }}
+                disabled={info.is_complete}
               >
                 Edit name
               </Menu.Item>
@@ -268,7 +274,11 @@ const DetailTask = (props) => {
                 okText="Yes"
                 cancelText="No"
               >
-                <Menu.Item key="2" danger>
+                <Menu.Item
+                  key="2"
+                  danger={!info.is_complete}
+                  disabled={info.is_complete}
+                >
                   Delete
                 </Menu.Item>
               </Popconfirm>
@@ -526,6 +536,7 @@ const DetailTask = (props) => {
                     type="primary"
                     size="large"
                     block
+                    disabled={info.is_complete}
                     onClick={() => {
                       setVisible(true);
                     }}
