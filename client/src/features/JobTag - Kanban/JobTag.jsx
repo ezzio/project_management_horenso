@@ -41,7 +41,7 @@ const JobTag = (props) => {
       id_job: job.id_job,
       title: values.title,
       priority: values.priority,
-      process: job.process,
+      progress: job.progress,
       is_completed: values.is_completed,
       start_time: values.range_time[0].format('YYYY-MM-DD'),
       end_time: values.range_time[1].format('YYYY-MM-DD'),

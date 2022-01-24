@@ -65,7 +65,7 @@ const KanbanDashBoard = () => {
     const newKanban = {
       // id_job: jobs.id_job,
       title: values.title,
-      proccess: 0,
+      progress: 0,
       priority: values.priority,
       is_completed: false,
       start_time: values.range_time[0].format('YYYY-MM-DD'),
@@ -198,7 +198,7 @@ const KanbanDashBoard = () => {
                         job={job}
                         title={job.title}
                         priority={job.priority}
-                        process={job.process}
+                        progress={job.progress}
                         members={job.members}
                         setVisible={setVisible}
                       />
@@ -242,7 +242,7 @@ const CompleteTask = ({ jobs, handleDeleteJob }) => {
                 job={job}
                 title={job.title}
                 priority={job.priority}
-                process={job.process}
+                progress={job.progress}
                 members={job.members}
                 onDeleteJob={handleDeleteJob}
               />
