@@ -109,9 +109,14 @@ const TeammateFeature = () => {
             </i>
             {FilterByNameInput}
           </div>
-          <div className="header__add-teammate">
-            <ModalAddTeammate listTeammate={teammate} idProject={idProject} />
-          </div>
+
+          {isProjectOwner ? (
+            <div className="header__add-teammate">
+              <ModalAddTeammate listTeammate={teammate} idProject={idProject} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="content">
           <Table dataSource={teammate} columns={columns} />
