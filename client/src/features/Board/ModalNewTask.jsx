@@ -34,7 +34,7 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
       };
     });
     const newTask = {
-      jobowner,
+      idBoard: jobowner,
       title: values.title,
       description: values.description,
       progress: 0,
@@ -42,7 +42,7 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
       start_time: values.deadline[0].format('YYYY-MM-DD'),
       end_time: values.deadline[1].format('YYYY-MM-DD'),
       taskers: tempTasker,
-      owner: localStorage.getItem('access_token')
+      owner: localStorage.getItem('access_token'),
     };
     closeModal();
     dispatch(addTask(newTask));
