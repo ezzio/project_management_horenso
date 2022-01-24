@@ -362,7 +362,7 @@ const DetailTask = (props) => {
         </Form>
       </Modal>
 
-      <Spin tip="Loading..." spinning={loadingPage}>
+      <Spin tip="Loading..." spinning={loading}>
         <div
           style={{
             width: '100%',
