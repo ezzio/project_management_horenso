@@ -90,7 +90,7 @@ export const boardSlice = createSlice({
         is_complete: action.payload.is_complete,
         description: action.payload.description,
         isOverdue: action.payload.isOverdue,
-        process: action.payload.process,
+        progress: 0,
         priority: action.payload.priority,
         start_time: moment(action.payload.start_time).format('YYYY-MM-DD'),
         end_time: moment(action.payload.end_time).format('YYYY-MM-DD'),
@@ -122,7 +122,7 @@ export const boardSlice = createSlice({
         end_time: editTask.end_time,
         start_time: editTask.start_time,
         priority: editTask.priority,
-        process: state.listTask[columnId].eachColumnTask[taskIndex].process,
+        progress: state.listTask[columnId].eachColumnTask[taskIndex].progress,
         title: editTask.title,
         taskers: editTask.taskers,
         isOverdue: state.listTask[columnId].eachColumnTask[taskIndex].isOverdue,
@@ -151,11 +151,11 @@ export const boardSlice = createSlice({
       const { columnId, task, index } = action.payload;
       if (task.is_complete) return;
 
-      if (task.process === 100) {
+      if (task.progress === 100) {
         const indexTaskNeedChangePreview = state.listTask[
           columnId
         ].eachColumnTask.findIndex(
-          (item) => item.process === 100 && item.is_complete === false
+          (item) => item.progress === 100 && item.is_complete === false
         );
         state.listTask[2].eachColumnTask.push(task);
         state.listTask[columnId].eachColumnTask.splice(
@@ -220,6 +220,7 @@ export const boardSlice = createSlice({
     [fetchBoard.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
+        console.log(action.payload);
         state.listTask = action.payload.ListTask;
         state.memberInJob = action.payload.memberInJob;
       }
