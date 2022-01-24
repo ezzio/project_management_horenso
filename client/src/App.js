@@ -9,15 +9,13 @@ import KanbanDashBoard from 'features/KanbanDashBoard/KanbanDashBoard';
 import LoginScreen from 'features/Login/LoginScreen';
 import SignupScreen from 'features/Signup/SignupScreen';
 import Dashboard from 'pages/Dashboard/Dashboard';
-import Github from 'pages/Github/Github';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Meeting from 'pages/Horenso/Meeting/Meeting';
-import Report from 'pages/Horenso/Report/Report';
 import Setting from 'pages/Setting/Setting';
 import Storage from 'pages/Storage/Storage';
 import Teammate from 'pages/Teammate/Teammate';
 import UserSetting from 'pages/UserSettings/UserSetting';
-import MRoom from 'features/MRoom/MRoom';
+
 // import library
 import {
   BrowserRouter as Router,
@@ -28,6 +26,7 @@ import {
 // import css
 import 'antd/dist/antd.css';
 import './App.scss';
+import MeetingRoom from 'features/MRoom/MeetingRoom';
 
 function App() {
   return (
@@ -80,9 +79,7 @@ const AnimatedRouter = () => {
         <Route exact path="/:idProject/meeting" children={<Meeting />} />
         <Route path="/:idProject/conversation" children={<Conversation />} />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
-        <Route path="/:idProject/report" children={<Report />} />
         <Route path="/:idProject/storage/" children={<Storage />} />
-        <Route path="/:idProject/github" children={<Github />} />
         <Route path="/:idProject/teammate" children={<Teammate />} />
         <Route path="/:idProject/setting" children={<Setting />} />
         <PrivateRoute
@@ -98,7 +95,7 @@ const AnimatedRouter = () => {
         <PrivateRoute
           exact
           path="/:idProject/meeting/:idRoom"
-          children={<MRoom />}
+          children={<MeetingRoom />}
         />
 
         <Route component={NotFound} />

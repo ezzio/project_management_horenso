@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { message } from "antd";
-import detailTaskApi from "api/detailTask";
-import moment from "moment";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { message } from 'antd';
+import detailTaskApi from 'api/detailTask';
+import moment from 'moment';
 
 const initialDetailTask = {
   loading: false,
@@ -12,29 +12,26 @@ const initialDetailTask = {
 };
 
 export const listAllDetailTaskAsync = createAsyncThunk(
-  "detailTask/ListDetailTask",
+  'detailTask/ListDetailTask',
   async (params) => {
     let infoAllDetailTask = await detailTaskApi.listAllDetailTask(params);
     return infoAllDetailTask;
   }
 );
 export const createADetailTaskAsync = createAsyncThunk(
-  "detailTask/CreateDetailTask",
+  'detailTask/CreateDetailTask',
   async (params, thunkAPI) => {
-    thunkAPI.dispatch(
-      addADetailTask({
-        name: params.name,
-        assignOn: moment().format("YYYY-MM-DD"),
-        isCompleted: false,
-      })
-    );
-
-    let createADetailTask = await detailTaskApi.createADetailTask(params);
-    return createADetailTask;
+    let res = await detailTaskApi.createADetailTask(params);
+    return {
+      idDetailTask: res.idDetailTask,
+      name: params.name,
+      assignOn: moment().format('YYYY-MM-DD'),
+      isCompleted: false,
+    };
   }
 );
 export const editDetailTaskAsync = createAsyncThunk(
-  "detailTask/edit-detail-task",
+  'detailTask/edit-detail-task',
   async (params, thunkAPI) => {
     thunkAPI.dispatch(editDetailTask(params));
     const res = await detailTaskApi.editDetailTask(params);
@@ -43,7 +40,7 @@ export const editDetailTaskAsync = createAsyncThunk(
 );
 
 export const deleteDetailTaskAsync = createAsyncThunk(
-  "detailTask/delete-detail-task",
+  'detailTask/delete-detail-task',
   async (params, thunkAPI) => {
     thunkAPI.dispatch(deleteDetailTask(params));
     const res = await detailTaskApi.deleteDetailTask(params);
@@ -52,7 +49,7 @@ export const deleteDetailTaskAsync = createAsyncThunk(
 );
 
 export const changeCompletedDetailTaskAsync = createAsyncThunk(
-  "detailTask/change-completed-detail-task",
+  'detailTask/change-completed-detail-task',
   async (params) => {
     console.log(params);
     const res = await detailTaskApi.changeCompletedDetailTask(params);
@@ -61,28 +58,28 @@ export const changeCompletedDetailTaskAsync = createAsyncThunk(
 );
 
 const detailTask = createSlice({
-  name: "detailTask",
+  name: 'detailTask',
   initialState: initialDetailTask,
   reducers: {
     addADetailTask: (state, action) => {
       state.infoAllDetailTask.push(action.payload);
     },
     editDetailTask: (state, action) => {
-      const idx = state.allDetailTask.findIndex((task) => {
-        return action.payload.idDetailTask === task.id;
-      });
+      const idx = state.infoAllDetailTask.findIndex(
+        (task) => action.payload.idDetailTask === task.id
+      );
       const temp = {
-        ...state.allDetailTask[idx],
+        ...state.infoAllDetailTask[idx],
         name: action.payload.name,
       };
-      state.allDetailTask.splice(idx, 1, temp);
+      state.infoAllDetailTask.splice(idx, 1, temp);
     },
     deleteDetailTask: (state, action) => {
-      const idx = state.allDetailTask.findIndex((task) => {
+      const idx = state.infoAllDetailTask.findIndex((task) => {
         return action.payload.idDetailTask === task.id;
       });
 
-      state.allDetailTask.splice(idx, 1);
+      state.infoAllDetailTask.splice(idx, 1);
     },
 
     uploadFile: (state, action) => {
@@ -92,16 +89,16 @@ const detailTask = createSlice({
         name: action.payload.newAttachment.name,
         nameType: action.payload.newAttachment.nameType,
         upload_at: moment(action.payload.newAttachment.upload_at).format(
-          "YYYY-MM-DD"
+          'YYYY-MM-DD'
         ),
       };
       const idDetailTask = action.payload.idDetailTask;
-      const index = state.allDetailTask.findIndex(
+      const index = state.infoAllDetailTask.findIndex(
         (item) => item.id === idDetailTask
       );
 
       if (action.payload && action.payload.isSuccess) {
-        state.allDetailTask[index].attachmentsOfDetailTask.push(data);
+        state.infoAllDetailTask[index].attachmentsOfDetailTask.push(data);
       }
     },
   },
@@ -120,17 +117,17 @@ const detailTask = createSlice({
             return {
               ...task,
               key: task.id,
-              assignOn: moment(task.assignOn).format("YYYY-MM-DD"),
+              assignOn: moment(task.assignOn).format('YYYY-MM-DD'),
             };
           }
         );
         state.infoTask = {
           ...action.payload.infoTask,
           start_time: moment(action.payload.infoTask.start_time).format(
-            "YYYY-MM-DD"
+            'YYYY-MM-DD'
           ),
           end_time: moment(action.payload.infoTask.end_time).format(
-            "YYYY-MM-DD"
+            'YYYY-MM-DD'
           ),
         };
         state.memberInTask = action.payload.memberInTask;
@@ -145,7 +142,10 @@ const detailTask = createSlice({
     [createADetailTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
 
-      if (action.payload) message.success("Create successful");
+      if (action.payload) {
+        state.infoAllDetailTask.push(action.payload);
+        message.success('Create successful');
+      }
     },
   },
 });

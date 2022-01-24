@@ -23,18 +23,13 @@ import {
   VideoCameraOutlined,
   PoweroffOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Avatar, Button, Space, Tooltip } from "antd";
+} from '@ant-design/icons';
+import { Avatar, Button, Space, Tooltip } from 'antd';
 
-import "./MRoom.scss";
-import Title from "antd/lib/typography/Title";
-let socket = io("servervideocall.herokuapp.com");
-let peer = new Peer({
-  secure: true,
-  host: "mypeerserverjs.herokuapp.com",
-  port: 443,
-});
-const MRoom = () => {
+import './MeetingRoom.scss';
+import Title from 'antd/lib/typography/Title';
+
+const MeetingRoom = () => {
   const [openTeammates, setOpenTeammates] = useState(false);
   const [openChatting, setOpenChatting] = useState(false);
   const [openMicro, setOpenMicro] = useState(false);
@@ -239,4 +234,4 @@ const MRoom = () => {
   );
 };
 
-export default MRoom;
+export default MeetingRoom;

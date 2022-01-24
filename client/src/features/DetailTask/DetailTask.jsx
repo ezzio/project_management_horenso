@@ -145,9 +145,9 @@ const DetailTask = (props) => {
   const [idDetailTask, setIdDetailTask] = useState('');
   const [isLt5M, setIsLt5M] = useState(false);
 
-  const onClickUpload = (detailTask_id) => {
-    console.log(detailTask_id);
-    setIdDetailTask(detailTask_id);
+  const onClickUpload = (record) => {
+    console.log('Id task: ', record.idDetailTask || record.id);
+    setIdDetailTask(record.idDetailTask || record.id);
   };
 
   // Check file size
@@ -237,7 +237,7 @@ const DetailTask = (props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item key="0" onClick={() => onClickUpload(record.id)}>
+              <Menu.Item key="0" onClick={() => onClickUpload(record)}>
                 <Upload
                   onChange={onFileChange}
                   showUploadList={false}
@@ -362,7 +362,7 @@ const DetailTask = (props) => {
         </Form>
       </Modal>
 
-      <Spin tip="Loading..." spinning={loadingPage}>
+      <Spin tip="Loading..." spinning={loading}>
         <div
           style={{
             width: '100%',
@@ -488,7 +488,7 @@ const DetailTask = (props) => {
                 pagination={false}
                 expandable={{
                   expandedRowRender: (record) =>
-                    record.attachmentsOfDetailTask.length > 0 ? (
+                    record.attachmentsOfDetailTask?.length > 0 ? (
                       record.attachmentsOfDetailTask.map((attach) => {
                         return (
                           <>

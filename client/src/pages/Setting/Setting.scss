@@ -16,10 +16,12 @@
     }
     &__danger {
       background-color: #fff;
-      padding: 2rem;
-      border-radius: 1rem;
       border: 1px solid crimson;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+      & .ant-card-head-title {
+        color: crimson;
+      }
 
       &__content {
         display: flex;
