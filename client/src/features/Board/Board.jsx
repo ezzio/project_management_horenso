@@ -12,6 +12,7 @@ import {
   setChangeColumnDone,
 } from './boardSlice';
 import { Spin } from 'antd';
+import moment from 'moment';
 
 const Board = (props) => {
   const { idBoard } = useParams();
@@ -20,6 +21,7 @@ const Board = (props) => {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.board.listTask);
   const changeColumnDone = useSelector((state) => state.board.changeColumnDone);
+  const jobInfo = useSelector((state) => state.board.jobInfo);
   const loading = useSelector((state) => state.board.loading);
   const openModal = () => {
     setModalOpen(true);
@@ -54,11 +56,9 @@ const Board = (props) => {
       <div className="ctn ctn-board" style={{ width: '100%', height: '100vh' }}>
         <HeaderBoard
           members={members}
-          title="Design UI Home Page"
-          status="Active"
-          level="Medium"
-          startTime="10/08/2021"
-          endTime="21/12/2022"
+          title={jobInfo.title}
+          startTime={moment(jobInfo.start_time).format('YYYY-MM-DD')}
+          endTime={moment(jobInfo.end_time).format('YYYY-MM-DD')}
         />
         <div>
           <ModalNewTask

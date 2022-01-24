@@ -188,7 +188,7 @@ const KanbanDashBoard = () => {
               </Button>
             </div>
             <div className="ctn-kanbandashboard__working__content">
-              {jobs.listJobs.length > 0 ? (
+              {jobs.listJobs?.length > 0 ? (
                 jobs.listJobs.map((job) => {
                   if (!job.is_completed)
                     return (
@@ -198,7 +198,7 @@ const KanbanDashBoard = () => {
                         job={job}
                         title={job.title}
                         priority={job.priority}
-                        process={job.process}
+                        process={parseInt(job.progress)}
                         members={job.members}
                         setVisible={setVisible}
                       />
@@ -242,7 +242,7 @@ const CompleteTask = ({ jobs, handleDeleteJob }) => {
                 job={job}
                 title={job.title}
                 priority={job.priority}
-                process={job.process}
+                process={job.progress}
                 members={job.members}
                 onDeleteJob={handleDeleteJob}
               />

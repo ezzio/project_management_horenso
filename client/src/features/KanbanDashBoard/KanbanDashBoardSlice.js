@@ -78,7 +78,7 @@ const kanban = createSlice({
           state.listJobs.push({
             id_job: Eachjob._id,
             title: Eachjob.title,
-            process: Eachjob.process,
+            progress: Eachjob.progess,
             priority: Eachjob.priority,
             is_completed: Eachjob.is_completed || false,
             start_time: moment(Eachjob.start_time).format('YYYY-MM-DD'),
