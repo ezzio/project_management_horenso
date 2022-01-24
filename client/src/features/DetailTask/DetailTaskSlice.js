@@ -153,6 +153,9 @@ const detailTask = createSlice({
         message.success('Create successful');
       }
     },
+    [changeCompletedDetailTaskAsync.fulfilled]: (state) => {
+      message.success('The task has been updated');
+    },
   },
 });
 
