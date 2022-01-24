@@ -37,7 +37,7 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
       jobowner,
       title: values.title,
       description: values.description,
-      process: '0',
+      progress: 0,
       priority: values.priority,
       start_time: values.deadline[0].format('YYYY-MM-DD'),
       end_time: values.deadline[1].format('YYYY-MM-DD'),
