@@ -35,6 +35,31 @@ const chatOnTaskSlice = createSlice({
         );
       } else state.messages.push(action.payload);
     },
+    newMessage: (state, action) => {
+      console.log(action.payload);
+      let newMessage = action.payload;
+      let newMessageRecive = {
+        user: {
+          user_name: newMessage.user_name,
+          display_name: newMessage.display_name,
+          avatar: newMessage.avatarURL,
+        },
+        sendAt: Date.now(),
+        mess: [newMessage.message],
+      };
+      if (
+        newMessage.user_name ==
+          current(state.messages)[state.messages.length - 1].user.user_name &&
+        moment(newMessageRecive.sendAt).diff(
+          current(state.messages)[state.messages.length - 1].sendAt,
+          'second'
+        ) < 60
+      ) {
+        state.messages[state.messages.length - 1].mess.push(newMessage.message);
+      } else {
+        state.messages.push(newMessageRecive);
+      }
+    },
   },
   extraReducers: {
     [listChatAsync.pending]: (state) => {
