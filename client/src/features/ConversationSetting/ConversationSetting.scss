@@ -1,0 +1,38 @@
+.conversation-setting {
+    height: 100%;
+    width: 15%;
+    padding: 1rem 0 1rem 1rem;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    border-left: 1px solid #ddd;
+
+    &__role {
+        height: 100%;
+        width: 100%;
+
+        &__list-members-online {
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 1rem;
+
+            & .currently-online-members {
+                margin-bottom: 1rem;
+            }
+        }
+
+        &__list-members-offline {
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 1rem;
+
+            & .currently-offline-members {
+                margin-bottom: 1rem;
+
+                opacity: 0.3;
+            }
+        }
+    }
+}
