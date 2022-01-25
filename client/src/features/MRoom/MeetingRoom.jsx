@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { setSizeVideoFitDiv } from "./setSizeVideoFitDiv";
 import { io } from "socket.io-client";
 import CardVideo from "./CardVideo/CardVideo";
 import { useSelector, useDispatch } from "react-redux";
 import Peer from "peerjs";
 import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
-
+import {
+  joinRoom,
+  someOneJoinRoom,
+  someOneDisconnect,
+  selectuserInRoom,
+  GetInfoUser,
+} from "./MRoomSlice";
 import {
   AudioMutedOutlined,
   AudioOutlined,
@@ -19,45 +25,21 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Button, Space, Tooltip } from "antd";
-import {
-  selectuserInRoom,
-  stopAudioOnly,
-  stopVideoOnly,
-  someOneJoinRoom,
-  stopAudioButton,
-  stopVideoButton,
-  someOneDisconnect,
-} from "./meetingRoomSlice";
-import "./MeetingRoom.scss";
 
+// import "./MRoom.scss";
 import Title from "antd/lib/typography/Title";
-import { useHistory } from "react-router-dom";
 let socket = io("servervideocall.herokuapp.com");
-// let socket = io("http://localhost:8000");
 let peer = new Peer({
   secure: true,
   host: "mypeerserverjs.herokuapp.com",
   port: 443,
 });
-// let peer = new Peer({
-//   host: "/",
-//   port: 3002,
-// });
 const MeetingRoom = () => {
   const [openTeammates, setOpenTeammates] = useState(false);
   const [openChatting, setOpenChatting] = useState(false);
   const [openMicro, setOpenMicro] = useState(false);
   const [openCamera, setOpenCamera] = useState(false);
-
-  const dataGrid = useSelector((state) => state.roomMeeting.MemberInRoom);
-  const MyVideo = useRef();
-  const avatarUrl = useSelector((state) => console.log(state));
-  const [device, setdevice] = useState(true);
-  const audio = useSelector((state) => state.roomMeeting.audio);
-  const video = useSelector((state) => state.roomMeeting.video);
-
   const dispatch = useDispatch();
-  const history = useHistory();
   useEffect(() => {
     setSizeVideoFitDiv();
     // dispatch(GetInfoUser({ owner: localStorage.getItem("owner") }));
@@ -67,7 +49,7 @@ const MeetingRoom = () => {
       socket.emit("join_room", {
         username: localStorage.getItem("username"),
         // room_id: currentURL.pathname.slice(13),
-        ownerId: localStorage.getItem("access_token"),
+        ownerId: localStorage.getItem("owner"),
         peerId: id,
         avatar: localStorage.getItem("avatar"),
       });
@@ -104,87 +86,18 @@ const MeetingRoom = () => {
       // message.info(data.message);
     });
     socket.on("SomeOneCloseCamara", async (data) => {});
-
-    openStrem(video, audio)
-      .then(async (stream) => {
-        if (MyVideo.current != null) {
-          MyVideo.current.srcObject = stream;
-        }
-      })
-      .catch((error) => {
-        if (error) {
-          setdevice(false);
-        }
-      });
-    peer.on("call", (call) => {
-      call.answer(MyVideo.current.srcObject);
-      call.on("stream", (remoteStream) => {
-        let videoGird = document.getElementById("video-grid");
-        let allvideo = document.querySelectorAll("video");
-        if (document.getElementById(call.options.metadata) == undefined) {
-          let videoTest = document.createElement("video");
-          videoTest.id = call.options.metadata;
-          videoTest.className = "camera";
-          videoTest.srcObject = remoteStream;
-          videoTest.autoplay = true;
-          if (videoGird) {
-            videoGird.append(videoTest);
-          }
-        }
-      });
-    });
   }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(stopAudioOnly(MyVideo.current.srcObject));
-    } catch (e) {
-      console.log("chua set up");
-    }
-  }, [audio]);
-
-  useEffect(() => {
-    try {
-      dispatch(stopVideoOnly(MyVideo.current.srcObject));
-      socket.emmit("close-video", localStorage.getItem("owner"));
-    } catch (e) {}
-  }, [video]);
-
-  function openStrem(videoValue, audioValue) {
-    return navigator.mediaDevices.getUserMedia({
-      video: videoValue,
-      audio: audioValue,
-    });
-  }
 
   return (
     <div className="videocall">
       <div className="videocall__container-video">
-        <div className="videocall__container-video__audiences" id="video-grid">
+        <div className="videocall__container-video__audiences">
           {/* render video chat here */}
-          {
-            // device ? (
-            <video className="camera" ref={MyVideo} autoPlay muted></video>
-            // )
-            // : (
-            //   <img width="100%" src={userAvater.avatarUrl} alt="avatar"></img>
-            // )
-          }
-          {dataGrid.length > 0 &&
-            dataGrid.map((video) => {
-              if (video.idUser != localStorage.getItem("owner")) {
-                if (MyVideo.current.srcObject) {
-                  return (
-                    <CardVideo
-                      MyVideoCall={MyVideo.current.srcObject}
-                      nameId={video.idUser}
-                      connectionPeerjs={peer}
-                      CallTo={video.peerId}
-                    />
-                  );
-                }
-              }
-            })}
+          <CardVideo owner={{ name: "Duong Dang Khoa" }} />
+          <CardVideo owner={{ name: "Duong Dang Khoa" }} />
+          <CardVideo owner={{ name: "Duong Dang Khoa" }} />
+          <CardVideo owner={{ name: "Duong Dang Khoa" }} />
+          <CardVideo owner={{ name: "Duong Dang Khoa" }} />
         </div>
       </div>
 
@@ -202,10 +115,7 @@ const MeetingRoom = () => {
                 size="large"
                 icon={openMicro ? <AudioMutedOutlined /> : <AudioOutlined />}
                 danger={openMicro}
-                onClick={() => {
-                  setOpenMicro(!openMicro);
-                  dispatch(stopAudioButton({ socketRoom: socket }));
-                }}
+                onClick={() => setOpenMicro(!openMicro)}
               />
             </Tooltip>
             <Tooltip title={"Leave now"}>
@@ -214,13 +124,6 @@ const MeetingRoom = () => {
                 shape={"circle"}
                 size="large"
                 icon={<PoweroffOutlined />}
-                onClick={() => {
-                
-                  MyVideo.current.srcObject.getTracks().forEach(function(track) {
-                    track.stop();
-                  });
-                  history.goBack();
-                }}
                 danger
               />
             </Tooltip>
@@ -236,10 +139,7 @@ const MeetingRoom = () => {
                   )
                 }
                 danger={openCamera}
-                onClick={() => {
-                  setOpenCamera(!openCamera);
-                  dispatch(stopVideoButton({ socket: socket }));
-                }}
+                onClick={() => setOpenCamera(!openCamera)}
               />
             </Tooltip>
           </Space>
