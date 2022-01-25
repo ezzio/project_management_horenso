@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RiChat1Line } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
@@ -24,7 +24,11 @@ import moment from 'moment';
 import ModalEditTask from './EditTaskForm/ModalEditTask';
 import { useLocation } from 'react-router';
 import { Link, useParams } from 'react-router-dom';
-import { UserOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  ApartmentOutlined,
+  MessageOutlined,
+} from '@ant-design/icons';
 
 const { Text } = Typography;
 
@@ -222,12 +226,16 @@ const Task = (props) => {
                 ))}
               </Avatar.Group>
               <div className="kanban-task__members-attach__attach">
-                <p>
-                  <ImAttachment /> 2
-                </p>
-                <p>
-                  <RiChat1Line /> 18
-                </p>
+                <Tooltip title="Number of sub-tasks">
+                  <p>
+                    <ApartmentOutlined /> {task.totalDetilTask}
+                  </p>
+                </Tooltip>
+                <Tooltip title="Number of messages">
+                  <p>
+                    <MessageOutlined /> {task.totalConversation}
+                  </p>
+                </Tooltip>
               </div>
             </div>
             <div>

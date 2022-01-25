@@ -125,16 +125,17 @@
       align-items: center;
       justify-content: flex-end;
 
-      & > p:first-child {
+      & p:first-child {
         margin-right: 1.15rem;
       }
 
-      & > p > svg {
+      & svg {
         color: #999;
       }
 
-      & > p {
+      & p {
         font-weight: bold;
+        color: #555;
       }
     }
   }
