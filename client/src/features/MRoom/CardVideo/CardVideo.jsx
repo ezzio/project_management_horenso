@@ -1,28 +1,37 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+// import { selectuserInRoom } from 'pages/Room/RoomSlice';
 
-import './CardVideo.scss';
-import { openStream } from '../meetingRoomSlice';
+const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
+  const MyVideo = useRef();
 
-
-const CardVideo = (props) => {
-  const { owner } = props;
-  const videoEl = useRef(null);
   useEffect(() => {
-    if (!videoEl) {
-      return;
-    }
-    openStream(videoEl);
-  }, [videoEl]);
+    try {
+      let videoGird = document.getElementById("video-grid");
+      if (videoGird) {
+        videoGird.classList.remove(nameId);
+      }
+      let call = connectionPeerjs.call(CallTo, MyVideoCall, {
+        metadata: localStorage.getItem("access_token"),
+      });
+
+      call.on("stream", (remoteStream) => {
+        if (MyVideo.current != null) {
+          MyVideo.current.srcObject = remoteStream;
+        }
+      });
+    } catch (err) {}
+  }, []);
   return (
-    <video className="camera" ref={videoEl}>
-      <p>{owner.name}</p>
-    </video>
+    <video
+      id={nameId}
+      className="camera"
+      ref={MyVideo}
+      autoPlay
+      muted
+    ></video>
   );
 };
 
-CardVideo.propTypes = {
-  owner: PropTypes.object,
-};
-
 export default CardVideo;
+// VideoCall
