@@ -7,6 +7,7 @@ const initialState = {
   loading: false,
   loadingCompleted: false,
   changeColumnDone: false,
+  jobInfo: {},
   listTask: [
     {
       id_column: 0,
@@ -86,7 +87,7 @@ export const boardSlice = createSlice({
     addNewTask: (state, action) => {
       const tempTask = {
         id: action.payload.idTask,
-        title: 'action.payload.title',
+        title: action.payload.title,
         is_complete: action.payload.is_complete,
         description: action.payload.description,
         isOverdue: action.payload.isOverdue,
@@ -95,6 +96,8 @@ export const boardSlice = createSlice({
         start_time: moment(action.payload.start_time).format('YYYY-MM-DD'),
         end_time: moment(action.payload.end_time).format('YYYY-MM-DD'),
         taskers: action.payload.infoTaskers,
+        totalConversation: 0,
+        totalDetilTask: 0,
       };
       state.listTask[0].eachColumnTask.push(tempTask);
 
@@ -220,7 +223,7 @@ export const boardSlice = createSlice({
     [fetchBoard.fulfilled]: (state, action) => {
       state.loading = false;
       if (action.payload) {
-        console.log(action.payload);
+        state.jobInfo = action.payload.jobInfo;
         state.listTask = action.payload.ListTask;
         state.memberInJob = action.payload.memberInJob;
       }

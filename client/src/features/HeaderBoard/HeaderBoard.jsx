@@ -5,11 +5,11 @@ import { AiOutlineCalendar, AiOutlineMore } from 'react-icons/ai';
 import { UserOutlined } from '@ant-design/icons';
 
 import './HeaderBoard.scss';
-import { Avatar, Tooltip } from 'antd';
+import { Avatar, Space, Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
 
 const HeaderBoard = (props) => {
-  const { title, level, startTime, endTime, status, members } = props;
+  const { title, startTime, endTime, members } = props;
   const history = useHistory();
   return (
     <div className="header-board">
@@ -22,13 +22,11 @@ const HeaderBoard = (props) => {
       <div className="header-board__2nd">
         <div style={{ width: '70%', lineHeight: '1.5' }}>
           <div className="header-board__2nd__title">
-            <h2>
-              {title}
-            </h2>
-            <div className="header-board__2nd__title__time">
+            <h2>{title}</h2>
+            <Space className="header-board__2nd__title__time">
               <AiOutlineCalendar />
               {startTime} - {endTime}
-            </div>
+            </Space>
           </div>
         </div>
         <div
@@ -39,14 +37,6 @@ const HeaderBoard = (props) => {
             justifyContent: 'flex-end',
           }}
         >
-          <div
-            className={
-              level === 'High' ? 'high' : level === 'Medium' ? 'medium' : 'low'
-            }
-            style={{ marginRight: '1rem' }}
-          >
-            {level}
-          </div>
           <Avatar.Group
             maxCount={5}
             maxPopoverTrigger="click"
