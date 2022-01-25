@@ -37,6 +37,7 @@ const KanbanDashBoard = () => {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
 
   const isCompletedJobs = jobs.listJobs.filter((job) => job.is_completed);
+  
   // List Kanban
   useEffect(() => {
     dispatch(ListKanban());
