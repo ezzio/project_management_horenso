@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API = "https://servernckhv2.herokuapp.com";
+import { API } from "./configApi";
 
 const storageAPI = {
   getAll(params) {
