@@ -36,11 +36,11 @@ const Board = (props) => {
   }, []);
 
   useEffect(() => {
-    if (changeColumnDone && !loading) {
+    if (changeColumnDone) {
       dispatch(automateChangeColAsync({ columns, idBoard }));
       dispatch(setChangeColumnDone(false));
     }
-  }, [changeColumnDone, loading]);
+  }, [changeColumnDone]);
 
   // <----------------------
 
