@@ -25,7 +25,8 @@ const TargetPercent = ({ targetPercent }) => {
           lineHeight: '44px',
           color: '#4B535E',
         },
-        formatter: () => 'Keep Going 😉',
+        formatter: () =>
+          targetPercent === 0 ? 'Keep going 🚀' : 'Good job ✅',
       },
     },
   };
