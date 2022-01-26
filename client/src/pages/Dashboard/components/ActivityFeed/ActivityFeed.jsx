@@ -1,21 +1,37 @@
-import React from "react";
-import { Avatar, Comment, Tooltip, Typography } from "antd";
-import moment from "moment";
+import React from 'react';
+import { Avatar, Comment, Tooltip, Typography } from 'antd';
+import moment from 'moment';
+import { Link, useParams } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
-const ActivityFeed = () => {
+const ActivityFeed = ({ item }) => {
+  const { idProject } = useParams();
+
   return (
     <Comment
       // actions={actions}
-      author={<Title level={5}>Han Solo</Title>}
+      author={<Title level={5}>{item.display_name || item.username}</Title>}
       avatar={
-        <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+        <Avatar src={item.avatar} alt={item.display_name || item.username} />
       }
-      content={<Text>Hello There.</Text>}
+      content={
+        <Text>
+          {item.action} a new task{' '}
+          {item.job ? (
+            <Link
+              to={`/${idProject}/jobs/${item.job.idJobOwner}/${item.idTask}`}
+            >
+              ({item.taskTitle})
+            </Link>
+          ) : (
+            <b>({item.taskTitle})</b>
+          )}
+        </Text>
+      }
       datetime={
-        <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-          <span>{moment().fromNow()}</span>
+        <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
+          <span>{moment(item.createAt).fromNow()}</span>
         </Tooltip>
       }
     />

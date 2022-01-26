@@ -34,6 +34,11 @@ const Dashboard = () => {
   const tasks = useSelector((state) => state.dashboard.tasks);
   const activity = useSelector((state) => state.dashboard.activity);
 
+  // Target percent
+  const jobIsComplete = jobs.filter((job) => job.is_completed);
+  const targetPercent = parseInt(jobIsComplete?.lenght / jobs?.lenght);
+
+  // Job status
   const backlogs = tasks.filter(
     (task) => !moment().isBetween(task.start_time, task.end_time)
   );
@@ -98,7 +103,7 @@ const Dashboard = () => {
                     forceRender="true"
                   >
                     <Animate transitionName="fade">
-                      <TargetPercent />
+                      <TargetPercent targetPercent={targetPercent} />
                     </Animate>
                   </TabPane>
                   <TabPane
@@ -133,14 +138,9 @@ const Dashboard = () => {
                 </div>
                 <Animate transitionName="fade" transitionAppear>
                   <div className="right-content__bottom__feeds">
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
-                    <ActivityFeed />
+                    {activity.map((item) => (
+                      <ActivityFeed item={item} />
+                    ))}
                   </div>
                 </Animate>
               </div>
