@@ -7,6 +7,7 @@ import { UserOutlined } from '@ant-design/icons';
 import './HeaderBoard.scss';
 import { Avatar, Space, Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { ArrowRightOutlined } from '@ant-design/icons';
 
 const HeaderBoard = (props) => {
   const { title, startTime, endTime, members } = props;
@@ -25,7 +26,7 @@ const HeaderBoard = (props) => {
             <h2>{title}</h2>
             <Space className="header-board__2nd__title__time">
               <AiOutlineCalendar />
-              {startTime} - {endTime}
+              {startTime} <ArrowRightOutlined /> {endTime}
             </Space>
           </div>
         </div>
