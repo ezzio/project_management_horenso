@@ -1,6 +1,5 @@
-import axios from 'axios';
-
-const API = 'https://servernckhv2.herokuapp.com';
+import axios from "axios";
+import { API } from "./configApi";
 
 export const detailTaskApi = {
   listAllDetailTask: (params) => {
