@@ -12,6 +12,7 @@ import createChannelReducer from 'features/ListChannel/ListChannelSlice';
 import storageReducer from 'features/Storage/storageSlice';
 import chatOnTaskReducer from 'features/ChatOnTask/chatOnTaskSlice';
 import chatBoxReducer from 'features/ChatBox/ChatBoxSlice';
+import settingReducer from 'features/Setting/settingSlice';
 import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
 
@@ -30,6 +31,7 @@ export const store = configureStore({
     storage: storageReducer,
     chatOnTask: chatOnTaskReducer,
     chatBox: chatBoxReducer,
+    setting: settingReducer,
     roomMeeting: meetingRoomReducer,
     dashboard: dashboardReducer,
   },

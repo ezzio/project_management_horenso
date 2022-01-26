@@ -10,7 +10,7 @@ import { listUserInfo } from "pages/UserSettings/UserSettingSlice";
 import moment from "moment";
 import { sendMessage, newMessage, listChatAsync } from "./chatOnTaskSlice";
 import { io, Socket } from "socket.io-client";
-let socket = io("https://servernckh.herokuapp.com");
+let socket = io("https://servernckhv2.herokuapp.com");
 // let socket = io("http://localhost:4000");
 const ChatOnTask = ({ visible, onClose }) => {
   const dispatch = useDispatch();

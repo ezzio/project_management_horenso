@@ -1,7 +1,5 @@
-const { default: axios } = require("axios");
-
-const API = 'https://servernckh.herokuapp.com/project';
-// const API = "http://localhost:4000/project";
+import { API } from "./configApi";
+import axios from "axios";
 
 const projectApi = {
   createNew: (params) => {

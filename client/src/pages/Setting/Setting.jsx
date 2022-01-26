@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
-import { Button, Form, Input, message, Card, Typography, Space } from 'antd';
-import './Setting.scss';
+import React, { useState } from "react";
+import { Button, Form, Input, message, Card, Typography, Space } from "antd";
+import "./Setting.scss";
+import { useDispatch } from "react-redux";
+import { deleteProject } from "features/Setting/settingSlice";
+import { useParams } from "react-router-dom";
 
 const { Text, Title } = Typography;
 
 const Setting = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+
   // Change name
   const projectNameConfig = {
     rules: [
       {
         required: true,
-        message: 'Please enter name of project!',
+        message: "Please enter name of project!",
       },
     ],
   };
 
   const [projectName, setProjectName] = useState(
-    'Du an con cac gi do toi khong biet nua'
+    "Du an con cac gi do toi khong biet nua"
   );
   const [disabledChangeName, setDisabledChangeName] = useState(true);
 
@@ -26,8 +32,14 @@ const Setting = () => {
   };
 
   const onFinishChangeName = (value) => {
-    message.success('Renaming!');
+    message.success("Renaming!");
     console.log(value);
+  };
+
+  const handleDeleteProject = () => {
+    const idProject = params.idProject;
+    console.log("idProject: ", idProject);
+    dispatch(deleteProject(idProject));
   };
 
   return (
@@ -35,7 +47,7 @@ const Setting = () => {
       <Title>Setting</Title>
       <div className="setting-ctn__content">
         <div className="setting-ctn__content__basic-info">
-          <Card title="Project name" bordered={false} style={{ width: '100%' }}>
+          <Card title="Project name" bordered={false} style={{ width: "100%" }}>
             <Form
               name="project-name"
               onFinish={onFinishChangeName}
@@ -63,12 +75,12 @@ const Setting = () => {
         </div>
 
         <Card
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           title="Danger settings"
           bordered={false}
           className="setting-ctn__content__danger"
         >
-          <Space size="middle" direction="vertical" style={{ width: '100%' }}>
+          <Space size="middle" direction="vertical" style={{ width: "100%" }}>
             <div>
               <b>Transfer ownership</b>
               <div className="setting-ctn__content__danger__content">
@@ -80,7 +92,7 @@ const Setting = () => {
                   type="primary"
                   size="large"
                   danger
-                  style={{ width: '100px' }}
+                  style={{ width: "100px" }}
                 >
                   Transfer
                 </Button>
@@ -97,7 +109,8 @@ const Setting = () => {
                   type="primary"
                   size="large"
                   danger
-                  style={{ width: '100px' }}
+                  style={{ width: "100px" }}
+                  onClick={handleDeleteProject}
                 >
                   Delete
                 </Button>
