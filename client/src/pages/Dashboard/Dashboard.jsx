@@ -16,13 +16,13 @@ import './Dashboard.scss';
 // components
 import LinePlot from './components/LinePlot/LinePlot';
 import ActivityFeed from './components/ActivityFeed/ActivityFeed';
-import TaskCounter from './components/TaskCounter/TaskCounter';
 import TaskStatus from './components/TaskStatus/TaskStatus';
 import TargetPercent from './components/TargetPercent/TargetPercent';
 import TreeChart from './components/TreeChart/TreeChart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJob, getAllTask, getTimeLine } from './dashboardSlice';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 const { Title } = Typography;
 const { TabPane } = Tabs;
 
@@ -30,6 +30,23 @@ const Dashboard = () => {
   const { idProject } = useParams();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.dashboard.loading);
+  const jobs = useSelector((state) => state.dashboard.jobs);
+  const tasks = useSelector((state) => state.dashboard.tasks);
+  const activity = useSelector((state) => state.dashboard.activity);
+
+  const backlogs = tasks.filter(
+    (task) => !moment().isBetween(task.start_time, task.end_time)
+  );
+  const inProgress = tasks.filter(
+    (task) =>
+      moment().isBetween(task.start_time, task.end_time) && task.progress < 100
+  );
+  const inPreview = tasks.filter(
+    (task) =>
+      moment().isBetween(task.start_time, task.end_time) &&
+      task.progress === 100
+  );
+  const completed = tasks.filter((task) => task.is_complete);
 
   useEffect(() => {
     dispatch(getAllJob(idProject));
@@ -95,7 +112,12 @@ const Dashboard = () => {
                     forceRender="true"
                   >
                     <Animate transitionName="fade">
-                      <TaskStatus />
+                      <TaskStatus
+                        backlogs={backlogs}
+                        inProgress={inProgress}
+                        inPreview={inPreview}
+                        completed={completed}
+                      />
                     </Animate>
                   </TabPane>
                 </Tabs>

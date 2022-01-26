@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API } from './configApi';
 
-const API = 'https://servernckh.herokuapp.com';
+
 
 const dashboardApi = {
   getAllJob: (params) => {
