@@ -3,7 +3,7 @@ import { Gauge } from '@ant-design/plots';
 
 const TargetPercent = ({ targetPercent }) => {
   const config = {
-    percent: targetPercent,
+    percent: targetPercent === 0 ? 0.00001 : targetPercent / 100,
     range: {
       color: 'l(0) 0:#B8E1FF 1:#3D76DD',
     },
