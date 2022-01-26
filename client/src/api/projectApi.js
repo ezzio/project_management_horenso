@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 
-const API = 'https://servernckh.herokuapp.com/project';
+const API = 'https://servernckhv2.herokuapp.com';
 // const API = "http://localhost:4000/project";
 
 const projectApi = {
