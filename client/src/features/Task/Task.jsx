@@ -142,12 +142,16 @@ const Task = (props) => {
                   ))}
                 </Avatar.Group>
                 <div className="kanban-task__members-attach__attach">
-                  <p>
-                    <ImAttachment /> 2
-                  </p>
-                  <p>
-                    <RiChat1Line /> 18
-                  </p>
+                  <Tooltip title="Number of sub-tasks">
+                    <p>
+                      <ApartmentOutlined /> {task.totalDetilTask}
+                    </p>
+                  </Tooltip>
+                  <Tooltip title="Number of messages">
+                    <p>
+                      <MessageOutlined /> {task.totalConversation}
+                    </p>
+                  </Tooltip>
                 </div>
               </div>
               <div>

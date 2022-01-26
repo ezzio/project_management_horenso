@@ -36,11 +36,13 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
         taskers: memberInJob.filter((mem) =>
           values.members.includes(mem.user_name)
         ),
+        totalConversation: task.totalConversation,
+        totalDetilTask: task.totalDetilTask,
       },
       columnId: columnId,
     };
     closeModal();
-    // console.log(action)
+    console.log(action)
     dispatch(editTaskAsync(action));
   };
 

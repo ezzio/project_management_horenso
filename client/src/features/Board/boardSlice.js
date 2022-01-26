@@ -128,6 +128,8 @@ export const boardSlice = createSlice({
         isOverdue: state.listTask[columnId].eachColumnTask[taskIndex].isOverdue,
         is_complete:
           state.listTask[columnId].eachColumnTask[taskIndex].is_complete,
+        totalConversation: editTask.totalConversation,
+        totalDetilTask: editTask.totalDetilTask,
       };
 
       if (
