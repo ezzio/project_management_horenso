@@ -1,75 +1,34 @@
 import React, { useState } from "react";
-import { FcFolder, FcBriefcase, FcCollaboration } from "react-icons/fc";
+import { FcFolder, FcBriefcase, FcCollaboration, FcSettings } from "react-icons/fc";
 import { useSelector } from "react-redux";
 import "./ListChannel.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 import WorkspaceModal from "./Modals/WorkspaceModal";
 import OthersModal from "./Modals/OthersModal";
 import TeamsModal from "./Modals/TeamsModal";
+import ChannelDrawer from "./component/ChannelDrawer";
 
 const Listchannel = () => {
   const channels = useSelector((state) => state.createChannel);
 
-  // const [workspace, setWorkspace] = useState(channels.workspace);
-
-  // const [team, setTeam] = useState(channels.team);
-  // const [others, setOthers] = useState(channels.others);
-
   const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
   const [openTeamsModal, setOpenTeamsModal] = useState(false);
   const [openOthersModal, setOpenOthersModal] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false)
+  const [channelID, setChannelID] = useState(0);
+  const [channelName, setChannelName] = useState('');
+  const [channelType, setChannelType] = useState('');
 
-  // const [members, setMembers] = useState([
-  //   'Dang Khoa',
-  //   'Huu Thang',
-  //   'Chanh Nhut',
-  //   'Phu Nguyen',
-  //   'Tuong Minh',
-  // ]);
 
-  // const addWorkSpace = (key) => {
-  //   switch (key) {
-  //     case 'workspace':
-  //       setWorkspace();
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
-  // const renderModal = (channel) => {};
+  const openDrawer = (id, name, type) => {
+      setChannelID(id);
+      setChannelName(name)
+      setChannelType(type)
+      setDrawerVisible(true)
+  }
 
   return (
     <>
-      {/* <div className="create-new">
-        <div className="create-new__content">
-          <div className="create-new__content__title">
-            <h5>Create new channel</h5>
-            <i>In somewhere </i>
-          </div>
-          <div className="create-new__content__member">
-            <h5>MEMBER</h5>
-            <div>
-              {members.map((member) => {
-                return <input type="radio" name="member" value={member} />;
-              })}
-            </div>
-          </div>
-          <div className="create-new__content__name">
-            <h5>Name's channel</h5>
-            <input type="text" />
-          </div>
-          <div className="create-new__content__footer">
-            <button className="create-new__content__btn create-new__content__btn--cancle">
-              Cancle
-            </button>
-            <button className="create-new__content__btn create-new__content__btn--confirm">
-              Confirm
-            </button>
-          </div>
-        </div>
-      </div> */}
       <div className="list-channel">
         <ul className="list-channel__group">
           <div className="list-channel__group__title">
@@ -88,10 +47,14 @@ const Listchannel = () => {
               setOpenWorkspaceModal={setOpenWorkspaceModal}
             />
           </div>
-          {channels.workspace.map((x) => {
+          {channels.workspace.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{x}</a>
+                <a href="#">{channel.name}</a>
+                <FcSettings 
+                    style={{position: 'absolute', right: 50}}
+                    onClick={() => openDrawer(channel.id, channel.name, 'workspace')}
+                />
               </li>
             );
           })}
@@ -113,10 +76,14 @@ const Listchannel = () => {
               setOpenTeamsModal={setOpenTeamsModal}
             />
           </div>
-          {channels.teams.map((x) => {
+          {channels.teams.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{x}</a>
+                <a href="#">{channel.name}</a>
+                <FcSettings 
+                    style={{position: 'absolute', right: 50}}
+                    onClick={() => openDrawer(channel.id, channel.name, 'teams')}
+                />
               </li>
             );
           })}
@@ -138,10 +105,14 @@ const Listchannel = () => {
               setOpenOthersModal={setOpenOthersModal}
             />
           </div>
-          {channels.others.map((x) => {
+          {channels.others.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{x}</a>
+                <a href="#">{channel.name}</a>
+                <FcSettings 
+                    style={{position: 'absolute', right: 50}}
+                    onClick={() => openDrawer(channel.id, channel.name, 'others')}
+                />
               </li>
             );
           })}
@@ -150,6 +121,13 @@ const Listchannel = () => {
           <AiOutlinePlus />
         </div>
       </div>
+      <ChannelDrawer 
+        id={channelID}
+        name={channelName}
+        type={channelType}
+        drawerVisible={drawerVisible}
+        setDrawerVisible={setDrawerVisible}
+      />
     </>
   );
 };
