@@ -4,15 +4,13 @@ import { ImAttachment } from 'react-icons/im';
 import { BiConfused, BiImageAdd } from 'react-icons/bi';
 import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
 import './Chatbox.scss';
-import { RiSendPlaneFill } from 'react-icons/ri';
 import { sendMessage } from './ChatBoxSlice';
-import { useForm } from 'react-hook-form';
-import { message } from 'antd';
+import { Form, message, Input, Button, Space } from 'antd';
 import moment from 'moment';
-import Title from "antd/lib/typography/Title";
+import Title from 'antd/lib/typography/Title';
+import { SendOutlined } from '@ant-design/icons';
 
 const Chatbox = () => {
-
   // const [messages, setMessages] = useState([
   //   {
   //     userId: 1,
@@ -42,20 +40,15 @@ const Chatbox = () => {
   //     role: 'dev',
   //   },
   // ]);
-  const { 
-    register,
-    handleSubmit,
-    reset,
-  } = useForm();
 
-  const dispatch = useDispatch()
-  const messages = useSelector((state) => state.chatBox.messages)
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.chatBox.messages);
 
-    // const inputRef = useRef();
+  // const inputRef = useRef();
 
   const onHandleSubmit = (data) => {
     if (data.message) {
-      reset(message);
+      // reset(message);
       // inputRef.current.focus({
       //   cursor: "start",
       // });
@@ -65,22 +58,23 @@ const Chatbox = () => {
           display_name: 'loo',
           avatar: 'lmao',
         },
-        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [data.message],
       };
+      form.resetFields();
       dispatch(sendMessage(tempMessage));
     }
   };
 
-
   const messagesEndRef = useRef(null);
-
 
   const scrollToBottom = () => {
     if (messagesEndRef.current !== null)
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
   useEffect(scrollToBottom, [messages]);
+
+  const [form] = Form.useForm();
 
   return (
     <div className="chatbox">
@@ -91,38 +85,62 @@ const Chatbox = () => {
           messages.map((message, index) => (
             <BubbleChat
               key={index}
+              index={index}
               user={message.user}
               sendAt={message.sentAt}
               mess={message.mess}
+              message={message}
             />
           ))
         )}
         <div ref={messagesEndRef} />
       </div>
-      <form onSubmit={handleSubmit(onHandleSubmit)} className="chatbox__control">
+      <Form form={form} onFinish={onHandleSubmit} className="chatbox__control">
+        <Form.Item name="message" style={{ width: '100%' }}>
+          <Input
+            placeholder="Enter your message..."
+            autoSize={{ minRows: 1, maxRows: 6 }}
+            size="large"
+            suffix={
+              <Space>
+                <ImAttachment />
+                <BiImageAdd />
+                <BiConfused />
+                <Button type="primary" htmlType="submit">
+                  <SendOutlined />
+                </Button>
+              </Space>
+            }
+          />
+        </Form.Item>
+      </Form>
+      {/* <form
+        onSubmit={handleSubmit(onHandleSubmit)}
+        className="chatbox__control"
+      >
         <input
           // ref={inputRef}
           type="text"
           name="message"
           className="chatbox__control__input"
           placeholder="Enter your message..."
-          autoComplete='off'
+          autoComplete="off"
           {...register('message', {
-              required: 'This field is required',
+            required: 'This field is required',
           })}
-        />
+        /> */}
 
-        <section className="chatbox__control__optional">
+      {/* <section className="chatbox__control__optional">
           <section>
             <ImAttachment />
             <BiImageAdd />
             <BiConfused />
           </section>
-          <button className="send" type='submit'>
+          <button className="send" type="submit">
             <RiSendPlaneFill />
           </button>
-        </section>
-      </form>
+        </section> */}
+      {/* </form> */}
     </div>
   );
 };

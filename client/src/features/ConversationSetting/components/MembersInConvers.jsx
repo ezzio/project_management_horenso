@@ -4,17 +4,16 @@ import React from 'react';
 const { Text } = Typography;
 const MembersInConvers = (props) => {
   const { user_displayName, avatarUrl, is_online } = props;
-  console.log(props);
   return (
     <>
       <Badge
-        dot='true'
+        dot="true"
         status={is_online === true ? 'success' : 'default'}
         offset={[-5, 5]}
       >
-        <Avatar size='large' src={avatarUrl} alt='Han Solo' />
+        <Avatar size="large" src={avatarUrl} alt="Han Solo" />
       </Badge>
-      <Text style={{ marginLeft: '1rem' }} className='user-display-name'>
+      <Text style={{ marginLeft: '1rem' }} className="user-display-name">
         {user_displayName}
       </Text>
     </>
