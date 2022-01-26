@@ -46,6 +46,7 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
     };
     closeModal();
     dispatch(addTask(newTask));
+    setActiveTab('1');
   };
 
   const { TabPane } = Tabs;
