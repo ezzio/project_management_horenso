@@ -1,17 +1,10 @@
 import { Form, Select, Spin } from "antd";
-import { API } from "api/configApi";
 import axios from "axios";
 import debounce from "lodash/debounce";
 import React, { useMemo, useRef, useState } from "react";
-import "../../TeammateFeature.scss";
-const hideItem = {
-  display: "none",
-};
 
-FormAddTeammate.propTypes = {};
-
-function FormAddTeammate(props) {
-  const { form, listTeammate } = props;
+function FormTransferOwnership(props) {
+  const { onFinish, form, projectOwner } = props;
 
   function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
     const [fetching, setFetching] = useState(false);
@@ -43,11 +36,6 @@ function FormAddTeammate(props) {
         notFoundContent={fetching ? <Spin size="small" /> : null}
         {...props}
         options={options}
-        onSelect={(params, options) =>
-          form.setFieldsValue({
-            avatar: options.avatar,
-          })
-        }
         allowClear
       />
     );
@@ -56,7 +44,7 @@ function FormAddTeammate(props) {
   async function fetchUserList(username) {
     console.log("fetching user", username);
     return axios
-      .post(`${API}/user/findUserName`, {
+      .post("https://servernckhv2.herokuapp.com/user/findUserName", {
         user_name: username,
       })
       .then((response) => {
@@ -64,7 +52,7 @@ function FormAddTeammate(props) {
         console.log("search list: ", searchTeammate);
 
         var finalSearchList = searchTeammate.filter(
-          (x) => !listTeammate.some((y) => x.user_name === y.user_name)
+          (x) => x.user_name !== projectOwner
         );
 
         console.log("difference: ", finalSearchList);
@@ -72,7 +60,6 @@ function FormAddTeammate(props) {
         return finalSearchList.map((user) => ({
           label: `${user.user_name} (${user.display_name})`,
           value: user.user_name,
-          avatar: user.avatar,
         }));
       })
       .catch((error) => {
@@ -80,8 +67,7 @@ function FormAddTeammate(props) {
       });
   }
 
-  const onSubmitForm = (values) => {
-    // onFinish(values);
+  const onSubmitForm = () => {
     setValue([]);
   };
 
@@ -100,12 +86,12 @@ function FormAddTeammate(props) {
     >
       <Form.Item
         name="user_name"
-        rules={[{ required: true, message: "Please Select your teammate!" }]}
+        rules={[{ required: true, message: "Please select user!" }]}
       >
         <DebounceSelect
           mode="multiple"
           value={value}
-          placeholder="Select users"
+          placeholder="Select user by user_name"
           onChange={(newValue) => {
             setValue(newValue);
           }}
@@ -115,9 +101,8 @@ function FormAddTeammate(props) {
           }}
         />
       </Form.Item>
-      <Form.Item style={hideItem} name="avatar"></Form.Item>
     </Form>
   );
 }
 
-export default FormAddTeammate;
+export default FormTransferOwnership;

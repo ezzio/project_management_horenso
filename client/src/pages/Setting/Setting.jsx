@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { Button, Form, Input, message, Card, Typography, Space } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  message,
+  Card,
+  Typography,
+  Space,
+  Popconfirm,
+} from "antd";
 import "./Setting.scss";
 import { useDispatch } from "react-redux";
-import { deleteProject } from "features/Setting/settingSlice";
+import { deleteProject, renameProject } from "features/Setting/settingSlice";
 import { useParams } from "react-router-dom";
+import ModalTransferOwnership from "features/Setting/TransferOwnership/ModalTransferOwnership";
 
 const { Text, Title } = Typography;
 
@@ -11,6 +21,9 @@ const Setting = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
+  const idProject = params.idProject;
+
+  const projectOwner = "dangkhoa";
   // Change name
   const projectNameConfig = {
     rules: [
@@ -22,7 +35,7 @@ const Setting = () => {
   };
 
   const [projectName, setProjectName] = useState(
-    "Du an con cac gi do toi khong biet nua"
+    "kanban horenso cai gi do khong biet"
   );
   const [disabledChangeName, setDisabledChangeName] = useState(true);
 
@@ -32,13 +45,18 @@ const Setting = () => {
   };
 
   const onFinishChangeName = (value) => {
-    message.success("Renaming!");
-    console.log(value);
+    const actionRenameProject = {
+      idProject: idProject,
+      newProjectName: value.projectName,
+    };
+    setProjectName(value.projectName);
+    setDisabledChangeName(true);
+    dispatch(renameProject(actionRenameProject));
+    message.success(`Project is renamed to "${value.projectName}"`);
   };
 
   const handleDeleteProject = () => {
-    const idProject = params.idProject;
-    console.log("idProject: ", idProject);
+    // console.log("idProject: ", idProject);
     dispatch(deleteProject(idProject));
   };
 
@@ -88,14 +106,10 @@ const Setting = () => {
                   Transfer this repository to another user or to an organization
                   where you have the ability to create repositories
                 </Text>
-                <Button
-                  type="primary"
-                  size="large"
-                  danger
-                  style={{ width: "100px" }}
-                >
-                  Transfer
-                </Button>
+                <ModalTransferOwnership
+                  projectOwner={projectOwner}
+                  idProject={idProject}
+                />
               </div>
             </div>
             <div>
@@ -105,15 +119,22 @@ const Setting = () => {
                   Once you delete a repository, there is no going back. Please
                   be certain.
                 </Text>
-                <Button
-                  type="primary"
-                  size="large"
-                  danger
-                  style={{ width: "100px" }}
-                  onClick={handleDeleteProject}
+                <Popconfirm
+                  title="Are you sure to delete this project?"
+                  onConfirm={handleDeleteProject}
+                  onCancel={(e) => {}}
+                  okText="Yes"
+                  cancelText="No"
                 >
-                  Delete
-                </Button>
+                  <Button
+                    type="primary"
+                    size="large"
+                    danger
+                    style={{ width: "100px" }}
+                  >
+                    Delete
+                  </Button>
+                </Popconfirm>
               </div>
             </div>
           </Space>
