@@ -17,7 +17,7 @@ const TargetPercent = ({ targetPercent }) => {
           fontSize: '36px',
           color: '#4B535E',
         },
-        formatter: () => '70%',
+        formatter: () => `${targetPercent}%`,
       },
       content: {
         style: {

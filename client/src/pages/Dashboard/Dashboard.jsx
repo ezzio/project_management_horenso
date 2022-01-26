@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   // Target percent
   const jobIsComplete = jobs.filter((job) => job.is_completed);
-  const targetPercent = parseInt(jobIsComplete?.lenght / jobs?.lenght);
+  const targetPercent = parseInt(jobIsComplete?.length / jobs?.length);
 
   // Job status
   const backlogs = tasks.filter(
