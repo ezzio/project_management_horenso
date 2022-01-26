@@ -13,6 +13,7 @@ import storageReducer from "features/Storage/storageSlice";
 import chatOnTaskReducer from "features/ChatOnTask/chatOnTaskSlice";
 import chatBoxReducer from "features/ChatBox/ChatBoxSlice";
 import settingReducer from "features/Setting/settingSlice";
+import meetingRoomReducer from "features/MRoom/meetingRoomSlice";
 
 export const store = configureStore({
   reducer: {
@@ -30,5 +31,6 @@ export const store = configureStore({
     chatOnTask: chatOnTaskReducer,
     chatBox: chatBoxReducer,
     setting: settingReducer,
+    roomMeeting: meetingRoomReducer,
   },
 });

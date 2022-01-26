@@ -46,6 +46,8 @@ import {
   listAllDetailTaskAsync,
   uploadFile,
   changeCompletedDetailTaskAsync,
+  setIsCompleted,
+  setProgress,
 } from './DetailTaskSlice';
 
 const { Text, Title } = Typography;
@@ -86,6 +88,9 @@ const DetailTask = (props) => {
           completed_by: localStorage.getItem('access_token'),
           progress: parseInt((selectedRowKeys.length * 100) / data.length),
         })
+      );
+      dispatch(
+        setProgress(parseInt((selectedRowKeys.length * 100) / data.length))
       );
     },
     selectedRowKeys,
@@ -237,12 +242,17 @@ const DetailTask = (props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item key="0" onClick={() => onClickUpload(record)}>
+              <Menu.Item
+                key="0"
+                onClick={() => onClickUpload(record)}
+                disabled={info.is_complete}
+              >
                 <Upload
                   onChange={onFileChange}
                   showUploadList={false}
                   beforeUpload={beforeUploadFile}
                   customRequest={handleUploadFile}
+                  disabled={info.is_complete}
                 >
                   Upload attach
                 </Upload>
@@ -253,6 +263,7 @@ const DetailTask = (props) => {
                 onClick={() => {
                   handleEdit(record);
                 }}
+                disabled={info.is_complete}
               >
                 Edit name
               </Menu.Item>
@@ -263,7 +274,11 @@ const DetailTask = (props) => {
                 okText="Yes"
                 cancelText="No"
               >
-                <Menu.Item key="2" danger>
+                <Menu.Item
+                  key="2"
+                  danger={!info.is_complete}
+                  disabled={info.is_complete}
+                >
                   Delete
                 </Menu.Item>
               </Popconfirm>
@@ -281,6 +296,7 @@ const DetailTask = (props) => {
   // check completed this task
   const loadingCompleted = useSelector((state) => state.board.loadingCompleted);
   function checkFinished(checked) {
+    dispatch(setIsCompleted(checked));
     dispatch(checkCompleted({ is_complete: checked, idTask, idBoard }));
   }
   return (
@@ -396,7 +412,7 @@ const DetailTask = (props) => {
                   </div>
                 }
                 extra={
-                  info.process === 100 && [
+                  info.progress === 100 && [
                     <Switch
                       onChange={checkFinished}
                       checkedChildren="Not finish"
@@ -480,10 +496,12 @@ const DetailTask = (props) => {
                 dataSource={data}
                 columns={columns}
                 scroll={{ y: 400 }}
-                rowSelection={{
-                  type: 'checkbox',
-                  ...rowSelection,
-                }}
+                rowSelection={
+                  !info.is_complete && {
+                    type: 'checkbox',
+                    ...rowSelection,
+                  }
+                }
                 // scroll={{ y: 360 }}
                 pagination={false}
                 expandable={{
@@ -518,6 +536,7 @@ const DetailTask = (props) => {
                     type="primary"
                     size="large"
                     block
+                    disabled={info.is_complete}
                     onClick={() => {
                       setVisible(true);
                     }}

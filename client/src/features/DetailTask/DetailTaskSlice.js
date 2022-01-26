@@ -101,6 +101,12 @@ const detailTask = createSlice({
         state.infoAllDetailTask[index].attachmentsOfDetailTask.push(data);
       }
     },
+    setIsCompleted: (state, action) => {
+      state.infoTask.is_complete = action.payload;
+    },
+    setProgress: (state, action) => {
+      state.infoTask.progress = action.payload;
+    },
   },
   extraReducers: {
     [listAllDetailTaskAsync.pending]: (state) => {
@@ -147,9 +153,18 @@ const detailTask = createSlice({
         message.success('Create successful');
       }
     },
+    [changeCompletedDetailTaskAsync.fulfilled]: (state) => {
+      message.success('The task has been updated');
+    },
   },
 });
 
 export default detailTask.reducer;
-export const { addADetailTask, editDetailTask, deleteDetailTask, uploadFile } =
-  detailTask.actions;
+export const {
+  addADetailTask,
+  editDetailTask,
+  deleteDetailTask,
+  uploadFile,
+  setProgress,
+  setIsCompleted,
+} = detailTask.actions;

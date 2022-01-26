@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const API = process.env.REACT_APP_API_URL;
-const API = "https://servernckh.herokuapp.com";
+const API = "https://servernckhv2.herokuapp.com";
 // const API = "http://localhost:4000";
 
 const KanbanAPI = {
