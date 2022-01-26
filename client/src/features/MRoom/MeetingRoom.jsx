@@ -73,9 +73,12 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
+      console.log(userOnlineInRoom);
+      setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
     socket.on("memberInRoom", (users) => {
+      setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
     socket.on("someOneDisconnect", async (userOut) => {
@@ -89,7 +92,7 @@ const MeetingRoom = () => {
             }
           });
         }, 2000);
-
+        setSizeVideoFitDiv();
         dispatch(
           someOneDisconnect({
             userDisconect: userOut.idUserDisconnect,
