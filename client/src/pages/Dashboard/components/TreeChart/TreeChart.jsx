@@ -1,58 +1,46 @@
 import React from 'react';
 import { DecompositionTreeGraph } from '@ant-design/graphs';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import moment from 'moment';
 const TreeChart = () => {
+  const jobs = useSelector((state) => state.dashboard.jobs);
+  const nameProject = useSelector((state) => state.dashboard.nameProject);
+  const createAtProject = useSelector(
+    (state) => state.dashboard.createAtProject
+  );
+  const { idProject } = useParams();
+
+  const nest = (items, id = null, link = 'parent') =>
+    items
+      .filter((item) => item[link] === id)
+      .map((item) => ({
+        id: item._id,
+        value: {
+          title: item.title,
+          items: [
+            {
+              text: 'Progress: ',
+              value: `${item.progess}%`,
+            },
+          ],
+        },
+        children: nest(items, item._id),
+      }));
+
+  const dataTree = nest(jobs);
   const data = {
-    id: 'A0',
+    id: 'root',
     value: {
-      title:
-        'Build a project management application for student it base on Kanban and Horenso',
+      title: nameProject,
       items: [
         {
-          text: 'Progress',
-          value: '30%',
+          text: 'Create at: ',
+          value: moment(createAtProject).format('YYYY-MM-DD'),
         },
       ],
     },
-    children: [
-      {
-        id: 'A1',
-        value: {
-          title: 'Build UX/UI',
-          items: [
-            {
-              text: 'Progress',
-              value: '30%',
-            },
-          ],
-        },
-        children: [
-          {
-            id: 'A11',
-            value: {
-              title: 'This is task',
-              items: [
-                {
-                  text: 'Progress',
-                  value: '40%',
-                },
-              ],
-            },
-          },
-        ],
-      },
-      {
-        id: 'A2',
-        value: {
-          title: 'Handle event',
-          items: [
-            {
-              text: 'Progress',
-              value: '30%',
-            },
-          ],
-        },
-      },
-    ],
+    children: dataTree,
   };
 
   const config = {

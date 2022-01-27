@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import dashboardApi from 'api/dashboardApi';
 
 const initialState = {
+  nameProject: '',
+  createAtProject: '',
   loading: false,
   jobs: [],
   tasks: [],
@@ -46,7 +48,9 @@ export const dashboardSlice = createSlice({
     },
     [getAllJob.fulfilled]: (state, action) => {
       state.loading = false;
-      state.jobs = action.payload;
+      state.jobs = action.payload.result;
+      state.nameProject = action.payload.infoProject.name;
+      state.createAtProject = action.payload.infoProject.createAt
     },
     [getAllTask.pending]: (state) => {
       state.loading = true;
