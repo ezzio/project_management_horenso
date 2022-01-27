@@ -14,6 +14,7 @@ import 'antd/dist/antd.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from './boardSlice';
 import moment from 'moment';
+import { useParams } from 'react-router-dom';
 // import { register } from 'serviceWorker';
 
 function ModalNewTask({
@@ -26,7 +27,7 @@ function ModalNewTask({
 }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState('1');
-
+  const { idProject } = useParams();
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function ModalNewTask({
       end_time: values.deadline[1].format('YYYY-MM-DD'),
       taskers: tempTasker,
       owner: localStorage.getItem('access_token'),
+      projectowner: idProject,
     };
     closeModal();
     dispatch(addTask(newTask));
