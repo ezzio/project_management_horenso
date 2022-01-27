@@ -1,4 +1,0 @@
-# lấy thông tin người dùng
-https://api.github.com/user 
-# tạo repo
-https://api.github.com/user/repos
