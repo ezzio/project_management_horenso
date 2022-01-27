@@ -42,7 +42,7 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
       columnId: columnId,
     };
     closeModal();
-    console.log(action)
+    console.log(action);
     dispatch(editTaskAsync(action));
   };
 
@@ -96,6 +96,18 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
 function Step1({ onFinish, form, task }) {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
+
+  function disabledDate(current) {
+    let startCheck = true;
+    let endCheck = true;
+    if (task.start_time) {
+      startCheck = current < moment(task.start_time, 'YYYY-MM-DD');
+    }
+    if (task.end_time) {
+      endCheck = current > moment(task.end_time, 'YYYY-MM-DD');
+    }
+    return (task.start_time && startCheck) || (task.end_time && endCheck);
+  }
 
   return (
     <div>
@@ -170,6 +182,7 @@ function Step1({ onFinish, form, task }) {
             showTime={false}
             format="DD/MM/YYYY"
             style={{ width: '100%' }}
+            disabledDate={disabledDate}
           />
         </Form.Item>
       </Form>
