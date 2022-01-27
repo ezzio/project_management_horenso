@@ -28,16 +28,13 @@ const Setting = () => {
   const params = useParams();
   const loading = useSelector((state) => state.setting.loading);
   const currentProjectName = useSelector((state) => state.setting.projectName);
+  const projectOwner = useSelector((state) => state.userSetting.name);
   const [disabledChangeName, setDisabledChangeName] = useState(true);
 
   const idProject = params.idProject;
   useEffect(() => {
     dispatch(getInfoProjectAsync(idProject));
   }, []);
-
-  // test api transfer ownership
-  const projectOwner = "";
-  // -------------------------------
 
   // rename project
   const projectNameConfig = {
