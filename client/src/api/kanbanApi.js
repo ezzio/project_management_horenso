@@ -1,12 +1,12 @@
-import axios from "axios";
-import { API } from "./configApi";
+import axios from 'axios';
+import { API } from './configApi';
 
 const KanbanAPI = {
   ListKanbanOfJob: (params) => {
     return axios
       .post(`${API}/Job/ListJobs`, {
-        owner: localStorage.getItem("access_token"),
-        projectowner: localStorage.getItem("projectowner"),
+        owner: localStorage.getItem('access_token'),
+        projectowner: localStorage.getItem('projectowner'),
       })
       .then((response) => {
         return response.data;
@@ -19,13 +19,14 @@ const KanbanAPI = {
   AddNewJob: (params) => {
     return axios
       .post(`${API}/Job/create_a_Job`, {
-        owner: localStorage.getItem("access_token"),
-        projectowner: localStorage.getItem("projectowner"),
+        owner: localStorage.getItem('access_token'),
+        projectowner: localStorage.getItem('projectowner'),
         title: params.title,
         priority: params.priority,
         start_time: params.start_time,
         end_time: params.end_time,
         members: params.members,
+        parent: params.parent,
       })
       .then((response) => {
         return response.data;
@@ -37,8 +38,8 @@ const KanbanAPI = {
   deleteJob: (params) => {
     return axios
       .post(`${API}/Job/deleteJob`, {
-        owner: localStorage.getItem("access_token"),
-        projectowner: localStorage.getItem("projectowner"),
+        owner: localStorage.getItem('access_token'),
+        projectowner: localStorage.getItem('projectowner'),
         kanban_id: params.kanban_id,
       })
       .then((response) => {
@@ -57,6 +58,7 @@ const KanbanAPI = {
       end_time: params.end_time,
       priority: params.priority,
       is_completed: params.is_completed,
+      parent: params.parent,
       members: params.members.map((item) => item.user_name),
     };
     return axios

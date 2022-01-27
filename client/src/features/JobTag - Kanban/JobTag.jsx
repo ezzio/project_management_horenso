@@ -48,6 +48,7 @@ const JobTag = (props) => {
       members: job.members.filter((item) =>
         values.members.includes(item.user_name)
       ),
+      parent: values.parent,
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action));
