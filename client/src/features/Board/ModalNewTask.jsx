@@ -13,9 +13,17 @@ import {
 import 'antd/dist/antd.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from './boardSlice';
+import moment from 'moment';
 // import { register } from 'serviceWorker';
 
-function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
+function ModalNewTask({
+  modalOpen,
+  closeModal,
+  jobowner,
+  members,
+  startTime,
+  endTime,
+}) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState('1');
 
@@ -102,7 +110,12 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
       >
         <Tabs defaultActiveKey="1" activeKey={activeTab} onChange={changeTab}>
           <TabPane tab="Step 1" key="1">
-            <Step1 onFinish={onFinish} form={form} />
+            <Step1
+              onFinish={onFinish}
+              form={form}
+              startTime={startTime}
+              endTime={endTime}
+            />
           </TabPane>
           <TabPane tab="Step 2" key="2">
             <Step2 onFinish={onFinish} form={form} members={members} />
@@ -113,9 +126,21 @@ function ModalNewTask({ modalOpen, closeModal, jobowner, members }) {
   );
 }
 
-function Step1({ onFinish, form }) {
+function Step1({ onFinish, form, startTime, endTime }) {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
+
+  function disabledDate(current) {
+    let startCheck = true;
+    let endCheck = true;
+    if (startTime) {
+      startCheck = current < moment(startTime);
+    }
+    if (endTime) {
+      endCheck = current > moment(endTime);
+    }
+    return (startTime && startCheck) || (endTime && endCheck);
+  }
 
   return (
     <div>
@@ -140,8 +165,8 @@ function Step1({ onFinish, form }) {
           name="title"
           rules={[
             { required: true, message: 'This field is required' },
-            { min: 6, message: 'Title must be 6-30 characters long' },
-            { max: 30, message: 'Title must be 6-30 characters long' },
+            { min: 6, message: 'Title must be 6-50 characters long' },
+            { max: 50, message: 'Title must be 6-50 characters long' },
           ]}
         >
           <Input
@@ -186,6 +211,7 @@ function Step1({ onFinish, form }) {
             allowClear
             format="YYYY-MM-DD"
             style={{ width: '100%' }}
+            disabledDate={disabledDate}
           />
         </Form.Item>
       </Form>

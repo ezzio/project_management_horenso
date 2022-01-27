@@ -66,6 +66,8 @@ const Board = (props) => {
             modalOpen={modalOpen}
             closeModal={closeModal}
             members={members}
+            startTime={moment(jobInfo.start_time).format('YYYY-MM-DD')}
+            endTime={moment(jobInfo.end_time).format('YYYY-MM-DD')}
           />
         </div>
         {/* render column */}
