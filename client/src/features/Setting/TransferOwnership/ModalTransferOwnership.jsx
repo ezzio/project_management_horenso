@@ -1,14 +1,15 @@
 import { Button, Form, message, Modal } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { transferOwnerShip } from "../settingSlice";
 import FormTransferOwnership from "./FormTransferOwnership";
 
 function ModalTransferOwnership(props) {
   const { projectOwner, idProject } = props;
   const [modalOpen, setModalOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [allowRedirect, setAllowRedirect] = useState(false);
   const [form] = Form.useForm();
-
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
@@ -17,13 +18,21 @@ function ModalTransferOwnership(props) {
       user_name: user_name,
       idProject: idProject,
     };
-    console.log(action);
+
+    localStorage.setItem("sider", 8);
+    dispatch(transferOwnerShip(action));
     setModalOpen(false);
-    message.success(`Success! Project has been transfered to "${user_name}"!`);
+    setTimeout(() => {
+      setAllowRedirect(true);
+      message.success(
+        `Success! Project has been transfered to "${user_name}"!`
+      );
+    }, 500);
   };
 
   return (
     <>
+      {allowRedirect && <Redirect to={`/${idProject}/teammate`} />}
       <Button
         type="primary"
         size="large"
@@ -38,7 +47,6 @@ function ModalTransferOwnership(props) {
         title="Transfer your project"
         visible={modalOpen}
         onCancel={() => setModalOpen(false)}
-        confirmLoading={confirmLoading}
         onOk={() => {
           form
             .validateFields()
