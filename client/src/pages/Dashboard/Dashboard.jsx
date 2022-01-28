@@ -45,7 +45,7 @@ const Dashboard = () => {
   const jobIsComplete = jobs.filter((job) => job.is_completed);
   useEffect(() => {
     setTargetPercent(parseInt(jobIsComplete?.length / jobs?.length));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jobIsComplete]);
 
   // Job status
@@ -66,10 +66,14 @@ const Dashboard = () => {
   // line plot
   const linePlot = useSelector((state) => state.dashboard.linePlot);
 
-  const converToLinePlotChart = linePlot.map((item) => {
+  const clearUndefined = linePlot.filter((item) =>
+    jobs.some((job) => job._id === item?.jobEdit)
+  );
+
+  const converToLinePlotChart = clearUndefined.map((item) => {
     return {
       title: jobs.filter((job) => job._id === item.jobEdit)[0]?.title,
-      time: moment(item.createAt).format('YYYY-MM-DD'),
+      time: moment(item.createAt).format('YYYY-MM-DD HH:mm:ss'),
       progress: item.progress,
     };
   });
@@ -85,7 +89,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!isNaN(targetPercent))
       dispatch(updateProgressProject({ idProject, progress: targetPercent }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetPercent]);
 
   return (

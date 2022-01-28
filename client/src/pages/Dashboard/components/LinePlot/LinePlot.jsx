@@ -9,7 +9,7 @@ const LinePlot = ({ converToLinePlotChart }) => {
     },
   ];
   const config = {
-    data,
+    data: data,
     xField: 'time',
     yField: 'progress',
     seriesField: 'title',
