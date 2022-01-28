@@ -35,6 +35,14 @@ export const getTimeLine = createAsyncThunk(
   }
 );
 
+export const getLinePlot = createAsyncThunk(
+  'dashboard/get-line-plot',
+  async (params) => {
+    const res = await dashboardApi.getLinePlot(params);
+    return res;
+  }
+);
+
 export const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
@@ -50,7 +58,7 @@ export const dashboardSlice = createSlice({
       state.loading = false;
       state.jobs = action.payload.result;
       state.nameProject = action.payload.infoProject.name;
-      state.createAtProject = action.payload.infoProject.createAt
+      state.createAtProject = action.payload.infoProject.createAt;
     },
     [getAllTask.pending]: (state) => {
       state.loading = true;
@@ -69,6 +77,16 @@ export const dashboardSlice = createSlice({
       state.loading = false;
     },
     [getTimeLine.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.activity = action.payload;
+    },
+    [getLinePlot.pending]: (state) => {
+      state.loading = true;
+    },
+    [getLinePlot.rejected]: (state) => {
+      state.loading = false;
+    },
+    [getLinePlot.fulfilled]: (state, action) => {
       state.loading = false;
       state.activity = action.payload;
     },

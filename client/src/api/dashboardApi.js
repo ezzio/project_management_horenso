@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { API } from './configApi';
 
-
-
 const dashboardApi = {
   getAllJob: (params) => {
     return axios
@@ -31,6 +29,18 @@ const dashboardApi = {
   getTimeLine: (params) => {
     return axios
       .post(`${API}/dashboard/get-time-line`, {
+        idProject: params,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  getLinePlot: (params) => {
+    return axios
+      .post(`${API}/`, {
         idProject: params,
       })
       .then((response) => {
