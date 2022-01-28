@@ -460,10 +460,10 @@ const DetailTask = (props) => {
                 <Progress
                   percent={
                     selectedRowKeys.length &&
-                    parseInt((selectedRowKeys.length * 100) / data.length)
+                    info.progress
                   }
                   status={
-                    parseInt((selectedRowKeys.length * 100) / data.length) < 100
+                    info.progress < 100
                       ? 'active'
                       : ''
                   }
