@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import dashboardApi from 'api/dashboardApi';
+import projectApi from 'api/projectApi';
 
 const initialState = {
   nameProject: '',
@@ -8,7 +9,7 @@ const initialState = {
   jobs: [],
   tasks: [],
   activity: [],
-  tree: [],
+  linePlot: [],
 };
 
 export const getAllJob = createAsyncThunk(
@@ -39,6 +40,14 @@ export const getLinePlot = createAsyncThunk(
   'dashboard/get-line-plot',
   async (params) => {
     const res = await dashboardApi.getLinePlot(params);
+    return res;
+  }
+);
+
+export const updateProgressProject = createAsyncThunk(
+  'dashboard/update-progress-project',
+  async (params) => {
+    const res = await projectApi.updateProgress(params);
     return res;
   }
 );
@@ -88,7 +97,7 @@ export const dashboardSlice = createSlice({
     },
     [getLinePlot.fulfilled]: (state, action) => {
       state.loading = false;
-      state.activity = action.payload;
+      state.linePlot = action.payload;
     },
   },
 });

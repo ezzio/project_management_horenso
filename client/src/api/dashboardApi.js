@@ -40,7 +40,7 @@ const dashboardApi = {
   },
   getLinePlot: (params) => {
     return axios
-      .post(`${API}/`, {
+      .post(`${API}/dashboard/get-line-plot`, {
         idProject: params,
       })
       .then((response) => {
