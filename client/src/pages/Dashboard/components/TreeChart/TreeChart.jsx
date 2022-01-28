@@ -21,7 +21,7 @@ const TreeChart = () => {
           items: [
             {
               text: 'Progress: ',
-              value: `${item.progess}%`,
+              value: `${parseInt(item.progess)}%`,
             },
           ],
         },
