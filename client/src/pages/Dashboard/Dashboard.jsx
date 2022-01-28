@@ -45,6 +45,7 @@ const Dashboard = () => {
   const jobIsComplete = jobs.filter((job) => job.is_completed);
   useEffect(() => {
     setTargetPercent(parseInt(jobIsComplete?.length / jobs?.length));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jobIsComplete]);
 
   // Job status
@@ -84,14 +85,12 @@ const Dashboard = () => {
   useEffect(() => {
     if (!isNaN(targetPercent))
       dispatch(updateProgressProject({ idProject, progress: targetPercent }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetPercent]);
 
   return (
     <Spin tip="Loading..." spinning={loading}>
       <div className="dashboard">
-        {/* <div className="dashboard__header">
-        <TaskCounter />
-      </div> */}
         <div className="dashboard__body">
           <div className="dashboard__body__left">
             <div className="left-content">
