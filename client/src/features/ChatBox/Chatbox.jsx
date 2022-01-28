@@ -1,57 +1,30 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImAttachment } from 'react-icons/im';
 import { BiConfused, BiImageAdd } from 'react-icons/bi';
 import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
 import './Chatbox.scss';
-import { sendMessage } from './ChatBoxSlice';
+import { sendMessage, sendRepliedMessage } from './ChatBoxSlice';
 import { Form, message, Input, Button, Space } from 'antd';
 import moment from 'moment';
 import Title from 'antd/lib/typography/Title';
-import { SendOutlined } from '@ant-design/icons';
+import { SendOutlined, CloseOutlined } from '@ant-design/icons';
+import Text from 'antd/lib/typography/Text';
 
 const Chatbox = () => {
-  // const [messages, setMessages] = useState([
-  //   {
-  //     userId: 1,
-  //     createAt: '12/04/2021 16:30:18',
-  //     userName: 'Dang Khoa',
-  //     textChat: 'Hi, this is a first message',
-  //     fileUrl: null,
-  //     statusPin: false,
-  //     role: 'pm',
-  //   },
-  //   {
-  //     userId: 2,
-  //     createAt: '12/04/2021 16:30:20',
-  //     userName: 'Phu Nguyen',
-  //     textChat: 'yeah !',
-  //     fileUrl: null,
-  //     statusPin: false,
-  //     role: 'dev',
-  //   },
-  //   {
-  //     userId: 2,
-  //     createAt: '12/04/2021 16:30:22',
-  //     userName: 'Phu Nguyen',
-  //     textChat: 'it is working',
-  //     fileUrl: null,
-  //     statusPin: false,
-  //     role: 'dev',
-  //   },
-  // ]);
-
+  const [repliedMessage, setRepliedMessage] = useState('');
+  const [repliedContainer, setRepliedContainer] = useState(false);
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chatBox.messages);
 
-  // const inputRef = useRef();
+  console.log(repliedMessage);
 
+  const onClickReplyMessage = (item) => {
+    setRepliedContainer(true);
+    setRepliedMessage(item);
+  };
   const onHandleSubmit = (data) => {
-    if (data.message) {
-      // reset(message);
-      // inputRef.current.focus({
-      //   cursor: "start",
-      // });
+    if (data.message && !repliedMessage) {
       const tempMessage = {
         user: {
           user_name: 'Tuong Minh',
@@ -60,9 +33,27 @@ const Chatbox = () => {
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [data.message],
+        replied_message: null,
       };
       form.resetFields();
+      setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
+      console.log(tempMessage);
+    } else if (data.message && repliedMessage) {
+      const feedbackMessage = {
+        user: {
+          user_name: 'Tuong Minh',
+          display_name: 'loo',
+          avatar: 'lmao',
+        },
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        mess: [data.message],
+        replied_message: repliedMessage,
+      };
+      form.resetFields();
+      setRepliedContainer(false);
+      setRepliedMessage('');
+      dispatch(sendRepliedMessage(feedbackMessage));
     }
   };
 
@@ -89,17 +80,40 @@ const Chatbox = () => {
               user={message.user}
               sendAt={message.sentAt}
               mess={message.mess}
+              replied_message={message.replied_message}
               message={message}
+              handleClickReply={onClickReplyMessage}
             />
           ))
         )}
         <div ref={messagesEndRef} />
       </div>
-      <Form form={form} onFinish={onHandleSubmit} className="chatbox__control">
+
+      <Form
+        layout="horizontal"
+        size="small"
+        form={form}
+        onFinish={onHandleSubmit}
+        className="chatbox__control"
+      >
+        {repliedContainer && (
+          <div className="chatbox__control__replied-container">
+            <Text style={{ color: '#fff', marginBottom: '0' }}>
+              {repliedMessage}
+            </Text>
+            <Button
+              onClick={() => setRepliedContainer(false)}
+              type="default"
+              shape="circle"
+              icon={<CloseOutlined />}
+              size="small"
+            />
+          </div>
+        )}
+
         <Form.Item name="message" style={{ width: '100%' }}>
           <Input
             placeholder="Enter your message..."
-            autoSize={{ minRows: 1, maxRows: 6 }}
             size="large"
             suffix={
               <Space>

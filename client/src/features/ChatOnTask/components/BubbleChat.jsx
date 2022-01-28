@@ -11,10 +11,12 @@ import {
 } from '@ant-design/icons';
 
 const BubbleChat = (props) => {
-  const { user, mess, sendAt, index, message } = props;
+  const { user, mess, sendAt, handleClickReply, replied_message } = props;
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
+  // const [repliedMessage, setRepliedMessage] = useState(false);
+  // const [reply, setReply] = useState('');
 
   const like = () => {
     setLikes(1);
@@ -28,62 +30,60 @@ const BubbleChat = (props) => {
     setAction('disliked');
   };
 
-  const handleClickReply = () => {
-    console.log(mess);
-  };
-
-  const menu = (
-    <Menu>
-      {/* <Menu.Item key="1">
-        <LikeOutlined style={{ marginRight: '0.3rem' }} /> Like
-      </Menu.Item>
-      <Menu.Item key="2">
-        <DislikeOutlined style={{ marginRight: '0.3rem' }} />
-        Dislike
-      </Menu.Item> */}
-      <Menu.Item key="1" onClick={handleClickReply}>
-        <CommentOutlined style={{ marginRight: '0.3rem' }} />
-        Reply to
-      </Menu.Item>
-    </Menu>
-  );
+  // const handleClickReply = (item) => {
+  //   console.log(item);
+  //   if (!item) return;
+  // };
 
   const actions = [
-    <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
-        {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
-        <span className="comment-action">{likes}</span>
-      </span>
-    </Tooltip>,
-    <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
-        {React.createElement(
-          action === 'disliked' ? DislikeFilled : DislikeOutlined
-        )}
-        <span className="comment-action">{dislikes}</span>
-      </span>
-    </Tooltip>,
-    // <span key="comment-basic-reply-to">Reply to</span>,
+    // <Tooltip key="comment-basic-like" title="Like">
+    //   <span onClick={like}>
+    //     {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
+    //     <span className="comment-action">{likes}</span>
+    //   </span>
+    // </Tooltip>,
+    // <Tooltip key="comment-basic-dislike" title="Dislike">
+    //   <span onClick={dislike}>
+    //     {React.createElement(
+    //       action === 'disliked' ? DislikeFilled : DislikeOutlined
+    //     )}
+    //     <span className="comment-action">{dislikes}</span>
+    //   </span>
+    // </Tooltip>,
+    <span key="comment-basic-reply-to">Reply to: {replied_message}</span>,
   ];
   return (
-    <Comment
-      actions={actions}
-      author={<Text>{user.user_name}</Text>}
-      avatar={<Avatar src={user.avatar} alt={user.user_name} />}
-      content={mess.map((item, index) => (
-        <>
-          <Dropdown overlay={menu} trigger={['contextMenu']}>
-            <Text key={index}>{item}</Text>
-          </Dropdown>
-          <br />
-        </>
-      ))}
-      datetime={
-        <Tooltip title={moment(sendAt).format('YYYY-MM-DD HH:mm:ss')}>
-          <span>{moment(sendAt).fromNow()}</span>
-        </Tooltip>
-      }
-    />
+    <>
+      <Comment
+        actions={replied_message ? actions : null}
+        author={<Text>{user.user_name}</Text>}
+        avatar={<Avatar src={user.avatar} alt={user.user_name} />}
+        content={mess.map((item, index) => (
+          <>
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item key="1" onClick={() => handleClickReply(item)}>
+                    <CommentOutlined style={{ marginRight: '0.3rem' }} />
+                    Reply to
+                  </Menu.Item>
+                </Menu>
+              }
+              trigger={['contextMenu']}
+            >
+              <Text key={index}>{item}</Text>
+            </Dropdown>
+
+            <br />
+          </>
+        ))}
+        datetime={
+          <Tooltip title={moment(sendAt).format('YYYY-MM-DD HH:mm:ss')}>
+            <span>{moment(sendAt).fromNow()}</span>
+          </Tooltip>
+        }
+      />
+    </>
   );
 };
 

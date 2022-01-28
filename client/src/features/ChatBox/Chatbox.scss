@@ -24,9 +24,22 @@
 
   &__control {
     width: 100%;
-    height: 7%;
 
-    display: flex;
+    &__replied-container {
+      width: 100%;
+      padding: 0 1rem;
+
+      background-color: $_GREENBLUE;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    // display: flex;
 
     // & .selection-type-messages {
     //   width: 10%;
