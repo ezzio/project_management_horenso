@@ -40,7 +40,7 @@ const Dashboard = () => {
   const tasks = useSelector((state) => state.dashboard.tasks);
   const activity = useSelector((state) => state.dashboard.activity);
   const [targetPercent, setTargetPercent] = useState();
-
+  const numberOfFetch = useSelector((state) => state.dashboard.numberOfFetch);
   // Target percent
   const jobIsComplete = jobs.filter((job) => job.is_completed);
   useEffect(() => {
@@ -83,8 +83,14 @@ const Dashboard = () => {
     dispatch(getAllJob(idProject));
     dispatch(getAllTask(idProject));
     dispatch(getTimeLine(idProject));
-    dispatch(getLinePlot(idProject));
   }, []);
+
+  useEffect(() => {
+    console.log(numberOfFetch);
+    if (numberOfFetch === 3) {
+      dispatch(getLinePlot(idProject));
+    }
+  }, [numberOfFetch]);
 
   useEffect(() => {
     if (!isNaN(targetPercent))

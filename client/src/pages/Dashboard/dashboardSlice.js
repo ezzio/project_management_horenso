@@ -10,6 +10,7 @@ const initialState = {
   tasks: [],
   activity: [],
   linePlot: [],
+  numberOfFetch: 0,
 };
 
 export const getAllJob = createAsyncThunk(
@@ -64,10 +65,11 @@ export const dashboardSlice = createSlice({
       state.loading = false;
     },
     [getAllJob.fulfilled]: (state, action) => {
-      state.loading = false;
       state.jobs = action.payload.result;
       state.nameProject = action.payload.infoProject.name;
       state.createAtProject = action.payload.infoProject.createAt;
+
+      state.numberOfFetch += 1;
     },
     [getAllTask.pending]: (state) => {
       state.loading = true;
@@ -76,8 +78,8 @@ export const dashboardSlice = createSlice({
       state.loading = false;
     },
     [getAllTask.fulfilled]: (state, action) => {
-      state.loading = false;
       state.tasks = action.payload;
+      state.numberOfFetch += 1;
     },
     [getTimeLine.pending]: (state) => {
       state.loading = true;
@@ -86,8 +88,8 @@ export const dashboardSlice = createSlice({
       state.loading = false;
     },
     [getTimeLine.fulfilled]: (state, action) => {
-      state.loading = false;
       state.activity = action.payload;
+      state.numberOfFetch += 1;
     },
     [getLinePlot.pending]: (state) => {
       state.loading = true;
@@ -98,6 +100,7 @@ export const dashboardSlice = createSlice({
     [getLinePlot.fulfilled]: (state, action) => {
       state.loading = false;
       state.linePlot = action.payload;
+      state.numberOfFetch = 0;
     },
   },
 });
