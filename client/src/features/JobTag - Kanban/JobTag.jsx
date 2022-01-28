@@ -76,7 +76,7 @@ const JobTag = (props) => {
             className={
               priority.toLowerCase() === 'high'
                 ? 'high'
-                : priority === 'medium'
+                : priority.toLowerCase() === 'medium'
                 ? 'medium'
                 : 'low'
             }
