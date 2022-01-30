@@ -1,7 +1,7 @@
-import { Avatar, Comment, Dropdown, Menu, Tooltip } from 'antd';
+import { Avatar, Comment, Dropdown, Image, Menu, Tooltip } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import moment from 'moment';
-import React, { createElement, useState } from 'react';
+import React, { useState } from 'react';
 import {
   DislikeOutlined,
   LikeOutlined,
@@ -11,12 +11,19 @@ import {
 } from '@ant-design/icons';
 
 const BubbleChat = (props) => {
-  const { user, mess, sendAt, handleClickReply, replied_message } = props;
+  const {
+    user,
+    mess,
+    sendAt,
+    handleClickReply,
+    replied_message,
+    message,
+    type,
+  } = props;
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
-  // const [repliedMessage, setRepliedMessage] = useState(false);
-  // const [reply, setReply] = useState('');
+  console.log(message);
 
   const like = () => {
     setLikes(1);
@@ -30,26 +37,7 @@ const BubbleChat = (props) => {
     setAction('disliked');
   };
 
-  // const handleClickReply = (item) => {
-  //   console.log(item);
-  //   if (!item) return;
-  // };
-
   const actions = [
-    // <Tooltip key="comment-basic-like" title="Like">
-    //   <span onClick={like}>
-    //     {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
-    //     <span className="comment-action">{likes}</span>
-    //   </span>
-    // </Tooltip>,
-    // <Tooltip key="comment-basic-dislike" title="Dislike">
-    //   <span onClick={dislike}>
-    //     {React.createElement(
-    //       action === 'disliked' ? DislikeFilled : DislikeOutlined
-    //     )}
-    //     <span className="comment-action">{dislikes}</span>
-    //   </span>
-    // </Tooltip>,
     <span key="comment-basic-reply-to">Reply to: {replied_message}</span>,
   ];
   return (
@@ -67,13 +55,30 @@ const BubbleChat = (props) => {
                     <CommentOutlined style={{ marginRight: '0.3rem' }} />
                     Reply to
                   </Menu.Item>
+                  <Menu.Item key="2" onClick={like}>
+                    {action === 'liked' ? (
+                      <LikeFilled style={{ marginRight: '0.3rem' }} />
+                    ) : (
+                      <LikeOutlined style={{ marginRight: '0.3rem' }} />
+                    )}
+                    <Text style={{ marginRight: '0.3rem' }}>{likes}</Text>
+                    Like
+                  </Menu.Item>
+                  <Menu.Item key="3" onClick={dislike}>
+                    {action === 'disliked' ? (
+                      <DislikeFilled style={{ marginRight: '0.3rem' }} />
+                    ) : (
+                      <DislikeOutlined style={{ marginRight: '0.3rem' }} />
+                    )}
+                    <Text style={{ marginRight: '0.3rem' }}>{dislikes}</Text>
+                    Dislike
+                  </Menu.Item>
                 </Menu>
               }
               trigger={['contextMenu']}
             >
               <Text key={index}>{item}</Text>
             </Dropdown>
-
             <br />
           </>
         ))}

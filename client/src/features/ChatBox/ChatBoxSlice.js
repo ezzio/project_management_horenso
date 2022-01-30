@@ -56,8 +56,12 @@ export const chatBoxSlice = createSlice({
     sendRepliedMessage: (state, action) => {
       state.messages.push(action.payload);
     },
+    sendImage: (state, action) => {
+      state.messages.push(action.payload);
+    },
   },
 });
 
-export const { sendMessage, sendRepliedMessage } = chatBoxSlice.actions;
+export const { sendMessage, sendRepliedMessage, sendImage } =
+  chatBoxSlice.actions;
 export default chatBoxSlice.reducer;

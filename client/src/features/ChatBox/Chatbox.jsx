@@ -4,11 +4,15 @@ import { ImAttachment } from 'react-icons/im';
 import { BiConfused, BiImageAdd } from 'react-icons/bi';
 import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
 import './Chatbox.scss';
-import { sendMessage, sendRepliedMessage } from './ChatBoxSlice';
-import { Form, message, Input, Button, Space } from 'antd';
+import { sendMessage, sendRepliedMessage, sendImage } from './ChatBoxSlice';
+import { Form, Input, Button, Space, Upload, message } from 'antd';
 import moment from 'moment';
 import Title from 'antd/lib/typography/Title';
-import { SendOutlined, CloseOutlined } from '@ant-design/icons';
+import {
+  SendOutlined,
+  CloseOutlined,
+  FileImageOutlined,
+} from '@ant-design/icons';
 import Text from 'antd/lib/typography/Text';
 
 const Chatbox = () => {
@@ -18,6 +22,61 @@ const Chatbox = () => {
   const messages = useSelector((state) => state.chatBox.messages);
 
   console.log(repliedMessage);
+
+  //---------Upload Image-------------->
+
+  const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  };
+
+  const beforeUpload = (file) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || 'image/png';
+    const isLt5M = file.size / 1024 / 1024 < 5;
+    if (!isJpgOrPng) {
+      message.error('Invalid file type or format');
+    }
+    if (!isLt5M) {
+      message.error('File size must be smaller than 5MB');
+    }
+    return isJpgOrPng && isLt5M;
+  };
+
+  const handleChangeUpload = (info) => {
+    if (info.file.status === 'uploading') {
+      return;
+    }
+    if (info.file.status === 'done') {
+      console.log(info);
+      getBase64(info.file.originFileObj, (imageUrl) => {
+        const newMessage = {
+          user: {
+            user_name: 'Tuong Minh',
+            display_name: 'loo',
+            avatar: 'lmao',
+          },
+          sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+          replied_message: null,
+          mess: imageUrl,
+          type: 'image',
+        };
+        dispatch(sendImage(newMessage));
+        message.success('Upload avatar successful');
+      });
+    }
+  };
+
+  const dummyRequest = ({ file, onSuccess }) => {
+    let data = new FormData();
+    data.append('file', file);
+    data.append('owner', localStorage.getItem('access_token') || '');
+    // data.append('room_id', roomId);
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+  //<----------------------------------
 
   const onClickReplyMessage = (item) => {
     setRepliedContainer(true);
@@ -34,6 +93,7 @@ const Chatbox = () => {
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [data.message],
         replied_message: null,
+        type: 'text',
       };
       form.resetFields();
       setRepliedContainer(false);
@@ -49,6 +109,7 @@ const Chatbox = () => {
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [data.message],
         replied_message: repliedMessage,
+        type: 'text',
       };
       form.resetFields();
       setRepliedContainer(false);
@@ -81,6 +142,7 @@ const Chatbox = () => {
               sendAt={message.sentAt}
               mess={message.mess}
               replied_message={message.replied_message}
+              type={message.type}
               message={message}
               handleClickReply={onClickReplyMessage}
             />
@@ -115,10 +177,19 @@ const Chatbox = () => {
           <Input
             placeholder="Enter your message..."
             size="large"
+            autoFocus
             suffix={
               <Space>
                 <ImAttachment />
-                <BiImageAdd />
+                <Upload
+                  name="image"
+                  showUploadList={false}
+                  customRequest={dummyRequest}
+                  onChange={handleChangeUpload}
+                  beforeUpload={beforeUpload}
+                >
+                  <FileImageOutlined />
+                </Upload>
                 <BiConfused />
                 <Button type="primary" htmlType="submit">
                   <SendOutlined />
@@ -128,33 +199,6 @@ const Chatbox = () => {
           />
         </Form.Item>
       </Form>
-      {/* <form
-        onSubmit={handleSubmit(onHandleSubmit)}
-        className="chatbox__control"
-      >
-        <input
-          // ref={inputRef}
-          type="text"
-          name="message"
-          className="chatbox__control__input"
-          placeholder="Enter your message..."
-          autoComplete="off"
-          {...register('message', {
-            required: 'This field is required',
-          })}
-        /> */}
-
-      {/* <section className="chatbox__control__optional">
-          <section>
-            <ImAttachment />
-            <BiImageAdd />
-            <BiConfused />
-          </section>
-          <button className="send" type="submit">
-            <RiSendPlaneFill />
-          </button>
-        </section> */}
-      {/* </form> */}
     </div>
   );
 };
