@@ -14,6 +14,7 @@ import {
   FileImageOutlined,
 } from '@ant-design/icons';
 import Text from 'antd/lib/typography/Text';
+import RenderImgMessage from './components/RenderImgMessage';
 
 const Chatbox = () => {
   const [repliedMessage, setRepliedMessage] = useState('');
@@ -134,19 +135,36 @@ const Chatbox = () => {
         {messages.length === 0 ? (
           <Title level={2}>Let's talk with your partner now!</Title>
         ) : (
-          messages.map((message, index) => (
-            <BubbleChat
-              key={index}
-              index={index}
-              user={message.user}
-              sendAt={message.sentAt}
-              mess={message.mess}
-              replied_message={message.replied_message}
-              type={message.type}
-              message={message}
-              handleClickReply={onClickReplyMessage}
-            />
-          ))
+          messages.map((message, index) => {
+            if (message.type === 'text')
+              return (
+                <BubbleChat
+                  key={index}
+                  index={index}
+                  user={message.user}
+                  sendAt={message.sentAt}
+                  mess={message.mess}
+                  replied_message={message.replied_message}
+                  type={message.type}
+                  message={message}
+                  handleClickReply={onClickReplyMessage}
+                />
+              );
+            else if (message.type === 'image')
+              return (
+                <RenderImgMessage
+                  key={index}
+                  index={index}
+                  user={message.user}
+                  sendAt={message.sentAt}
+                  mess={message.mess}
+                  replied_message={message.replied_message}
+                  type={message.type}
+                  message={message}
+                  handleClickReply={onClickReplyMessage}
+                />
+              );
+          })
         )}
         <div ref={messagesEndRef} />
       </div>
