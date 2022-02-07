@@ -1,17 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ImAttachment } from 'react-icons/im';
-import { BiConfused, BiImageAdd } from 'react-icons/bi';
 import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
 import './Chatbox.scss';
 import { sendMessage, sendRepliedMessage, sendImage } from './ChatBoxSlice';
-import { Form, Input, Button, Space, Upload, message } from 'antd';
+import { Form, Input, Button, Space, Upload, message, Tooltip } from 'antd';
 import moment from 'moment';
 import Title from 'antd/lib/typography/Title';
 import {
   SendOutlined,
   CloseOutlined,
-  FileImageOutlined,
+  PictureOutlined,
+  FileAddOutlined,
+  SmileOutlined,
 } from '@ant-design/icons';
 import Text from 'antd/lib/typography/Text';
 import RenderImgMessage from './components/RenderImgMessage';
@@ -193,12 +193,17 @@ const Chatbox = () => {
 
         <Form.Item name="message" style={{ width: '100%' }}>
           <Input
+            autocomplete="off"
+            style={{ padding: '0.5rem' }}
             placeholder="Enter your message..."
             size="large"
             autoFocus
             suffix={
               <Space>
-                <ImAttachment />
+                <Tooltip title="Attach File">
+                  <FileAddOutlined className="hover-section" />
+                </Tooltip>
+
                 <Upload
                   name="image"
                   showUploadList={false}
@@ -206,10 +211,19 @@ const Chatbox = () => {
                   onChange={handleChangeUpload}
                   beforeUpload={beforeUpload}
                 >
-                  <FileImageOutlined />
+                  <Tooltip title="Upload Picture">
+                    <PictureOutlined className="hover-section" />
+                  </Tooltip>
                 </Upload>
-                <BiConfused />
-                <Button type="primary" htmlType="submit">
+                <Tooltip title="Smile!!!">
+                  <SmileOutlined className="hover-section" />
+                </Tooltip>
+
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{ width: '2.5rem' }}
+                >
                   <SendOutlined />
                 </Button>
               </Space>

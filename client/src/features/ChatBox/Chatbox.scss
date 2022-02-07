@@ -93,6 +93,15 @@
   }
 }
 
+.hover-section {
+  font-size: 1.3rem;
+  padding-right: 0.3rem;
+}
+
+.hover-section:hover {
+  cursor: pointer;
+}
+
 .send {
   cursor: pointer;
 
