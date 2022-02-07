@@ -132,6 +132,7 @@ const MeetingRoom = () => {
           videoTest.autoplay = true;
           if (videoGird) {
             videoGird.append(videoTest);
+            setSizeVideoFitDiv();
           }
         }
       });

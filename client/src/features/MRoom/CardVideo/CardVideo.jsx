@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 // import { selectuserInRoom } from 'pages/Room/RoomSlice';
-
+import { setSizeVideoFitDiv } from "../setSizeVideoFitDiv";
 const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
   const MyVideo = useRef();
 
@@ -20,6 +20,7 @@ const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
           MyVideo.current.srcObject = remoteStream;
         }
       });
+      setSizeVideoFitDiv();
     } catch (err) {}
   }, []);
   return (
