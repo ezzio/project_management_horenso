@@ -36,11 +36,11 @@ const Board = (props) => {
   }, []);
 
   useEffect(() => {
-    if (changeColumnDone && !loading) {
+    if (changeColumnDone) {
       dispatch(automateChangeColAsync({ columns, idBoard }));
       dispatch(setChangeColumnDone(false));
     }
-  }, [changeColumnDone, loading]);
+  }, [changeColumnDone]);
 
   // <----------------------
 
@@ -66,6 +66,8 @@ const Board = (props) => {
             modalOpen={modalOpen}
             closeModal={closeModal}
             members={members}
+            startTime={moment(jobInfo.start_time).format('YYYY-MM-DD')}
+            endTime={moment(jobInfo.end_time).format('YYYY-MM-DD')}
           />
         </div>
         {/* render column */}

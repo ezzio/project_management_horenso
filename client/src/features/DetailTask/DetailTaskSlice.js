@@ -23,10 +23,12 @@ export const createADetailTaskAsync = createAsyncThunk(
   async (params, thunkAPI) => {
     let res = await detailTaskApi.createADetailTask(params);
     return {
-      idDetailTask: res.idDetailTask,
+      id: res.idDetailTask,
       name: params.name,
       assignOn: moment().format('YYYY-MM-DD'),
       isCompleted: false,
+      attachmentsOfDetailTask: [],
+      key: res.idDetailTask
     };
   }
 );

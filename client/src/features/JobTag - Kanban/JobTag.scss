@@ -16,7 +16,7 @@
   }
 
   &__title {
-    width: 50%;
+    flex: 5 10;
     font-size: 18px;
     font-weight: bold;
 
@@ -26,16 +26,16 @@
   }
 
   &__priority {
-    width: fit-content;
+    flex: 1 10;
   }
 
   &__process {
-    width: 20%;
+    flex: 2 10;
   }
 
   &__members {
     display: flex;
     justify-content: flex-end;
-    width: fit-content;
+    flex: 2 10;
   }
 }

@@ -32,6 +32,7 @@ const initialState = {
 export const fetchBoard = createAsyncThunk(
   'board/fetch',
   async (params, thunkAPI) => {
+    thunkAPI.dispatch(removeTaskCurrent());
     let res = await boardApi.fetch(params);
     return res;
   }
@@ -100,8 +101,6 @@ export const boardSlice = createSlice({
         totalDetilTask: 0,
       };
       state.listTask[0].eachColumnTask.push(tempTask);
-
-      state.changeColumnDone = true;
     },
 
     deleteTask: (state, action) => {
@@ -110,8 +109,6 @@ export const boardSlice = createSlice({
         (task) => task.id !== id
       );
       state.listTask[columnId].eachColumnTask = temp;
-
-      state.changeColumnDone = true;
     },
 
     updateTask: (state, action) => {
@@ -131,6 +128,8 @@ export const boardSlice = createSlice({
         isOverdue: state.listTask[columnId].eachColumnTask[taskIndex].isOverdue,
         is_complete:
           state.listTask[columnId].eachColumnTask[taskIndex].is_complete,
+        totalConversation: editTask.totalConversation,
+        totalDetilTask: editTask.totalDetilTask,
       };
 
       if (
@@ -144,11 +143,29 @@ export const boardSlice = createSlice({
         state.listTask[0].eachColumnTask.push(temp);
         state.listTask[columnId].eachColumnTask.splice(taskIndex, 1);
       } else state.listTask[columnId].eachColumnTask[taskIndex] = temp;
-
-      state.changeColumnDone = true;
     },
     setChangeColumnDone: (state, action) => {
       state.changeColumnDone = action.payload;
+    },
+    removeTaskCurrent: (state) => {
+      state.listTask = [
+        {
+          id_column: 0,
+          eachColumnTask: [],
+        },
+        {
+          id_column: 1,
+          eachColumnTask: [],
+        },
+        {
+          id_column: 2,
+          eachColumnTask: [],
+        },
+        {
+          id_column: 3,
+          eachColumnTask: [],
+        },
+      ];
     },
     automaticallyUpdateColumn: (state, action) => {
       const { columnId, task, index } = action.payload;
@@ -210,7 +227,6 @@ export const boardSlice = createSlice({
             break;
         }
       }
-      state.changeColumnDone = true;
     },
   },
   extraReducers: {
@@ -222,11 +238,10 @@ export const boardSlice = createSlice({
     },
     [fetchBoard.fulfilled]: (state, action) => {
       state.loading = false;
-      if (action.payload) {
-        state.jobInfo = action.payload.jobInfo;
-        state.listTask = action.payload.ListTask;
-        state.memberInJob = action.payload.memberInJob;
-      }
+      state.jobInfo = action.payload.jobInfo;
+      state.listTask = action.payload.ListTask;
+      state.memberInJob = action.payload.memberInJob;
+      state.changeColumnDone = true;
     },
     [addTask.pending]: (state) => {
       state.loading = true;
@@ -236,9 +251,8 @@ export const boardSlice = createSlice({
     },
     [addTask.fulfilled]: (state, action) => {
       state.loading = false;
-      if (action.payload) {
-        message.success('Success! Task has been created.');
-      }
+      message.success('Success! Task has been created.');
+      state.changeColumnDone = true;
     },
     [editTaskAsync.pending]: (state) => {
       state.loading = true;
@@ -248,9 +262,8 @@ export const boardSlice = createSlice({
     },
     [editTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      if (action.payload) {
-        message.success('Success! Task has been updated.');
-      }
+      message.success('Success! Task has been updated.');
+      state.changeColumnDone = true;
     },
     [deleteTaskAsync.pending]: (state) => {
       state.loading = true;
@@ -260,9 +273,8 @@ export const boardSlice = createSlice({
     },
     [deleteTaskAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      if (action.payload) {
-        message.success('Success! Task has been deleted.');
-      }
+      message.success('Success! Task has been deleted.');
+      state.changeColumnDone = true;
     },
     [checkCompleted.pending]: (state) => {
       state.loadingCompleted = true;
@@ -282,5 +294,6 @@ export const {
   addNewTask,
   setChangeColumnDone,
   automaticallyUpdateColumn,
+  removeTaskCurrent,
 } = boardSlice.actions;
 export default boardSlice.reducer;

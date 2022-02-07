@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Modal,
   Button,
@@ -10,18 +10,18 @@ import {
   DatePicker,
   Switch,
   Checkbox,
-} from "antd";
-import { useState } from "react";
-import { GiJetPack } from "react-icons/gi";
-import moment from "moment";
-import { useSelector } from "react-redux";
+} from 'antd';
+import { useState } from 'react';
+import { GiJetPack } from 'react-icons/gi';
+import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 const { RangePicker } = DatePicker;
 
 const ModalEditKanban = (props) => {
   const { handleCancel, state, job, handleEditClick } = props;
   const [form] = Form.useForm();
-  const dateFormat = "YYYY-MM-DD";
+  const dateFormat = 'YYYY-MM-DD';
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const jobs = useSelector((state) => state.kanban);
 
@@ -41,7 +41,7 @@ const ModalEditKanban = (props) => {
               onFinish(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
         onCancel={handleCancel}
@@ -63,12 +63,13 @@ const ModalEditKanban = (props) => {
             ],
             is_completed: job.is_completed,
             members: job.members.map((item) => item.user_name),
+            parent: job.parent,
           }}
         >
           <Form.Item
             label="Title: "
             name="title"
-            rules={[{ required: true, message: "Please type in title!" }]}
+            rules={[{ required: true, message: 'Please type in title!' }]}
           >
             <Input placeholder="Title..." />
           </Form.Item>
@@ -83,14 +84,14 @@ const ModalEditKanban = (props) => {
             name="range_time"
             label="Range Time: "
             rules={[
-              { required: true, type: "array", message: "Please select time!" },
+              { required: true, type: 'array', message: 'Please select time!' },
             ]}
           >
             <RangePicker
               allowClear
               showTime
               format="YYYY-MM-DD"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             />
           </Form.Item>
           <Form.Item
@@ -105,8 +106,8 @@ const ModalEditKanban = (props) => {
             label="Members:"
             rules={[
               {
-                message: "Please select members on duty!",
-                type: "array",
+                message: 'Please select members on duty!',
+                type: 'array',
                 required: true,
               },
             ]}
@@ -119,6 +120,23 @@ const ModalEditKanban = (props) => {
               ))}
               {/* <Select.Option value={"red"}>red</Select.Option>
               <Select.Option value={"blue"}>blue</Select.Option> */}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="parent"
+            label="Parent job"
+            rules={[
+              {
+                required: true,
+                message: 'Please select one',
+              },
+            ]}
+          >
+            <Select defaultValue={job.parent}>
+              <Select.Option value={'not'}>Not available</Select.Option>
+              {jobs.listJobs.map((job) => (
+                <Select.Option value={job.id_job}>{job.title}</Select.Option>
+              ))}
             </Select>
           </Form.Item>
         </Form>

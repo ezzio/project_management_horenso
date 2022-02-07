@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // library dependencies
-import { Space, Typography, Tabs, Spin } from 'antd';
+import { Space, Typography, Tabs, Spin, Empty } from 'antd';
 import Animate from 'rc-animate';
 
 // icon
@@ -20,7 +20,13 @@ import TaskStatus from './components/TaskStatus/TaskStatus';
 import TargetPercent from './components/TargetPercent/TargetPercent';
 import TreeChart from './components/TreeChart/TreeChart';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllJob, getAllTask, getTimeLine } from './dashboardSlice';
+import {
+  getAllJob,
+  getAllTask,
+  getLinePlot,
+  getTimeLine,
+  updateProgressProject,
+} from './dashboardSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 const { Title } = Typography;
@@ -33,10 +39,14 @@ const Dashboard = () => {
   const jobs = useSelector((state) => state.dashboard.jobs);
   const tasks = useSelector((state) => state.dashboard.tasks);
   const activity = useSelector((state) => state.dashboard.activity);
-
+  const [targetPercent, setTargetPercent] = useState();
+  const numberOfFetch = useSelector((state) => state.dashboard.numberOfFetch);
   // Target percent
   const jobIsComplete = jobs.filter((job) => job.is_completed);
-  const targetPercent = parseInt(jobIsComplete?.length / jobs?.length);
+  useEffect(() => {
+    setTargetPercent(parseInt(jobIsComplete?.length / jobs?.length));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobIsComplete]);
 
   // Job status
   const backlogs = tasks.filter(
@@ -53,18 +63,44 @@ const Dashboard = () => {
   );
   const completed = tasks.filter((task) => task.is_complete);
 
+  // line plot
+  const linePlot = useSelector((state) => state.dashboard.linePlot);
+
+  const clearUndefined = linePlot.filter((item) =>
+    jobs.some((job) => job._id === item?.jobEdit)
+  );
+
+  const converToLinePlotChart = clearUndefined.map((item) => {
+    return {
+      title: jobs.filter((job) => job._id === item.jobEdit)[0]?.title,
+      time: moment(item.createAt).format('YYYY-MM-DD HH:mm:ss'),
+      progress: item.progress,
+    };
+  });
+  console.log(converToLinePlotChart);
+
   useEffect(() => {
     dispatch(getAllJob(idProject));
     dispatch(getAllTask(idProject));
     dispatch(getTimeLine(idProject));
   }, []);
 
+  useEffect(() => {
+    console.log(numberOfFetch);
+    if (numberOfFetch === 3) {
+      dispatch(getLinePlot(idProject));
+    }
+  }, [numberOfFetch]);
+
+  useEffect(() => {
+    if (!isNaN(targetPercent))
+      dispatch(updateProgressProject({ idProject, progress: targetPercent }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetPercent]);
+
   return (
     <Spin tip="Loading..." spinning={loading}>
       <div className="dashboard">
-        {/* <div className="dashboard__header">
-        <TaskCounter />
-      </div> */}
         <div className="dashboard__body">
           <div className="dashboard__body__left">
             <div className="left-content">
@@ -84,7 +120,7 @@ const Dashboard = () => {
                     Jobs progress
                   </Title>
                 </Space>
-                <LinePlot />
+                <LinePlot converToLinePlotChart={converToLinePlotChart} />
               </div>
             </div>
           </div>
@@ -138,9 +174,11 @@ const Dashboard = () => {
                 </div>
                 <Animate transitionName="fade" transitionAppear>
                   <div className="right-content__bottom__feeds">
-                    {activity.map((item) => (
-                      <ActivityFeed item={item} />
-                    ))}
+                    {activity && activity.length ? (
+                      activity.map((item) => <ActivityFeed item={item} />)
+                    ) : (
+                      <Empty />
+                    )}
                   </div>
                 </Animate>
               </div>
