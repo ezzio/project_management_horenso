@@ -25,7 +25,7 @@ const ActivityFeed = ({ item }) => {
               ({item.taskTitle})
             </Link>
           ) : (
-            <b>({item.taskTitle})</b>
+            <b>({item.taskTitle} - Closed )</b>
           )}
         </Text>
       }

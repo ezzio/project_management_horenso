@@ -37,7 +37,7 @@ const KanbanDashBoard = () => {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
 
   const isCompletedJobs = jobs.listJobs.filter((job) => job.is_completed);
-  
+
   // List Kanban
   useEffect(() => {
     dispatch(ListKanban());
@@ -49,7 +49,6 @@ const KanbanDashBoard = () => {
     const action = deleteKanban(deleteKanbanID);
     dispatch(action);
     dispatch(DeleteAJob({ kanban_id: deleteKanbanID }));
-    message.success('Success! This Job has been removed');
   };
 
   const showModal = () => {
@@ -72,6 +71,7 @@ const KanbanDashBoard = () => {
       start_time: values.range_time[0].format('YYYY-MM-DD'),
       end_time: values.range_time[1].format('YYYY-MM-DD'),
       members: values.members,
+      parent: values.parent,
     };
     // console.log(newKanban);
     // dispatch(addKanban(newKanban));
@@ -108,7 +108,7 @@ const KanbanDashBoard = () => {
           name="add_new_kanban"
           onFinish={onFinish}
           autoComplete="off"
-          initialValues={{ priority: 'Low' }}
+          initialValues={{ priority: 'Low', parent: 'not' }}
         >
           <Form.Item
             label="Title: "
@@ -116,8 +116,8 @@ const KanbanDashBoard = () => {
             rules={[
               { required: true, message: 'Please input title of job !' },
               {
-                max: 30,
-                message: 'The title must be maximum 30 characters !',
+                max: 50,
+                message: 'The title must be maximum 50 characters !',
               },
               { min: 5, message: 'The title must be minimum 5 characters !' },
             ]}
@@ -165,8 +165,23 @@ const KanbanDashBoard = () => {
                   {eachMember.name}
                 </Select.Option>
               ))}
-              {/* <Select.Option value={"red"}>red</Select.Option>
-              <Select.Option value={"blue"}>blue</Select.Option> */}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="parent"
+            label="Parent job"
+            rules={[
+              {
+                required: true,
+                message: 'Please select one',
+              },
+            ]}
+          >
+            <Select defaultValue="not">
+              <Select.Option value={'not'}>Not available</Select.Option>
+              {jobs.listJobs.map((job) => (
+                <Select.Option value={job.id_job}>{job.title}</Select.Option>
+              ))}
             </Select>
           </Form.Item>
         </Form>

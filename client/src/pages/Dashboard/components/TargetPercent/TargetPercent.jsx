@@ -3,7 +3,10 @@ import { Gauge } from '@ant-design/plots';
 
 const TargetPercent = ({ targetPercent }) => {
   const config = {
-    percent: targetPercent === 0 ? 0.00001 : targetPercent / 100,
+    percent:
+      targetPercent === 0 || isNaN(targetPercent)
+        ? 0.00001
+        : targetPercent / 100,
     range: {
       color: 'l(0) 0:#B8E1FF 1:#3D76DD',
     },
@@ -17,7 +20,7 @@ const TargetPercent = ({ targetPercent }) => {
           fontSize: '36px',
           color: '#4B535E',
         },
-        formatter: () => `${targetPercent}%`,
+        formatter: () => `${isNaN(targetPercent) ? 0 : targetPercent}%`,
       },
       content: {
         style: {
@@ -26,7 +29,9 @@ const TargetPercent = ({ targetPercent }) => {
           color: '#4B535E',
         },
         formatter: () =>
-          targetPercent === 0 ? 'Keep going 🚀' : 'Good job ✅',
+          targetPercent === 0 || isNaN(targetPercent)
+            ? 'Keep going 🚀'
+            : 'Good job ✅',
       },
     },
   };

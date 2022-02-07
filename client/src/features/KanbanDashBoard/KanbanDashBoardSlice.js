@@ -116,6 +116,7 @@ const kanban = createSlice({
     [DeleteAJob.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.loading = false;
+      message.success('Success! This Job has been removed');
     },
     [EditAJob.pending]: (state) => {
       state.loading = true;
@@ -126,6 +127,7 @@ const kanban = createSlice({
     [EditAJob.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.loading = false;
+      message.success('Success! This Job has been updated');
     },
   },
 });
