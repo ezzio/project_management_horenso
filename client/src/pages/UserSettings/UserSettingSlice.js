@@ -17,6 +17,7 @@ const initialState = {
   ],
   loading: false,
   tasks: [],
+  allTask: [],
 };
 export const listUserInfo = createAsyncThunk(
   'user/InfoUser',
@@ -64,10 +65,16 @@ export const userSettingSlice = createSlice({
     },
   },
   extraReducers: {
-    [listUserInfo.pending]: (state) => {},
-    [listUserInfo.rejected]: (state) => {},
+    [listUserInfo.pending]: (state) => {
+      state.loading = true;
+    },
+    [listUserInfo.rejected]: (state) => {
+      state.loading = false;
+    },
     [listUserInfo.fulfilled]: (state, action) => {
       let payload = action.payload;
+      state.loading = false;
+
       if (payload) {
         let userInfo = payload[0].userInfo;
         state.name = userInfo.user_name;
@@ -85,6 +92,7 @@ export const userSettingSlice = createSlice({
             completedTask: 90,
           });
         });
+        state.allTask = payload[1].allTask;
       }
     },
     [editUserAsync.pending]: (state, action) => {},
