@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, message, Typography } from 'antd';
 
-import './SignUp.scss';
+import './Register.scss';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUp } from './signUpSlice';
+import { signUp } from './registerSlice';
 import axios from 'axios';
 import { API } from 'api/configApi';
 
