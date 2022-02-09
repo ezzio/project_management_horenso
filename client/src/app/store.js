@@ -15,12 +15,12 @@ import chatBoxReducer from 'features/ChatBox/ChatBoxSlice';
 import settingReducer from 'features/Setting/settingSlice';
 import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
-
+import signUpReducer from 'features/SignUp/signUpSlice';
 export const store = configureStore({
   reducer: {
     board: boardReducer,
     login: loginReducer,
-    signup: signupReducer,
+    signup: signUpReducer,
     timeline: timelineReducer,
     kanban: kanbanReducer,
     userSetting: userSettingReducer,
