@@ -26,7 +26,7 @@ import {
 import 'antd/dist/antd.css';
 import './App.scss';
 import MeetingRoom from 'features/MRoom/MeetingRoom';
-import SignUp from 'features/SignUp/SignUp';
+import SignUp from 'features/Register/Register';
 
 function App() {
   return (
