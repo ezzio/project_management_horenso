@@ -20,7 +20,7 @@ export const store = configureStore({
   reducer: {
     board: boardReducer,
     login: loginReducer,
-    signup: signUpReducer,
+    signUp: signUpReducer,
     timeline: timelineReducer,
     kanban: kanbanReducer,
     userSetting: userSettingReducer,
