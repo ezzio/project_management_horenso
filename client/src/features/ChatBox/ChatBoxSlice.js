@@ -59,9 +59,30 @@ export const chatBoxSlice = createSlice({
     sendImage: (state, action) => {
       state.messages.push(action.payload);
     },
+    messageReactionLike: (state, action) => {
+      state.messages[action.payload.bubbleChatIndex].mess[
+        action.payload.index
+      ].isLiked = true;
+      state.messages[action.payload.bubbleChatIndex].mess[
+        action.payload.index
+      ].isDisLiked = false;
+    },
+    messageReactionDisLike: (state, action) => {
+      state.messages[action.payload.bubbleChatIndex].mess[
+        action.payload.index
+      ].isLiked = false;
+      state.messages[action.payload.bubbleChatIndex].mess[
+        action.payload.index
+      ].isDisLiked = true;
+    },
   },
 });
 
-export const { sendMessage, sendRepliedMessage, sendImage } =
-  chatBoxSlice.actions;
+export const {
+  sendMessage,
+  sendRepliedMessage,
+  sendImage,
+  messageReactionLike,
+  messageReactionDisLike,
+} = chatBoxSlice.actions;
 export default chatBoxSlice.reducer;

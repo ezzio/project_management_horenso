@@ -8,9 +8,17 @@ import {
   DislikeFilled,
   LikeFilled,
   CommentOutlined,
+  LikeTwoTone,
+  DislikeTwoTone,
 } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import {
+  messageReactionDisLike,
+  messageReactionLike,
+} from 'features/ChatBox/ChatBoxSlice';
 
 const BubbleChat = (props) => {
+  const dispatch = useDispatch();
   const {
     user,
     mess,
@@ -18,32 +26,37 @@ const BubbleChat = (props) => {
     handleClickReply,
     replied_message,
     message,
-    type,
+    bubbleChatIndex,
   } = props;
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
   console.log(message);
 
-  const like = () => {
+  const like = (item, index) => {
     setLikes(1);
     setDislikes(0);
     setAction('liked');
+    console.log(index, item);
+    dispatch(messageReactionLike({ item, index, bubbleChatIndex }));
   };
 
-  const dislike = () => {
+  const dislike = (item, index) => {
     setLikes(0);
     setDislikes(1);
     setAction('disliked');
+    console.log(index, item);
+    dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
   };
 
-  const actions = [
-    <span key="comment-basic-reply-to">Reply to: {replied_message}</span>,
-  ];
   return (
     <>
+      {replied_message && (
+        <div className="render-replied-message" style={{ opacity: '0.3' }}>
+          replied: {replied_message}
+        </div>
+      )}
       <Comment
-        actions={replied_message ? actions : null}
         author={<Text>{user.user_name}</Text>}
         avatar={<Avatar src={user.avatar} alt={user.user_name} />}
         content={mess.map((item, index) => (
@@ -51,35 +64,62 @@ const BubbleChat = (props) => {
             <Dropdown
               overlay={
                 <Menu>
-                  <Menu.Item key="1" onClick={() => handleClickReply(item)}>
+                  <Menu.Item
+                    key="1"
+                    onClick={() => handleClickReply(item.text)}
+                  >
                     <CommentOutlined style={{ marginRight: '0.3rem' }} />
                     Reply to
                   </Menu.Item>
-                  <Menu.Item key="2" onClick={like}>
+                  <Menu.Item key="2" onClick={() => like(item, index)}>
                     {action === 'liked' ? (
                       <LikeFilled style={{ marginRight: '0.3rem' }} />
                     ) : (
                       <LikeOutlined style={{ marginRight: '0.3rem' }} />
                     )}
-                    <Text style={{ marginRight: '0.3rem' }}>{likes}</Text>
                     Like
                   </Menu.Item>
-                  <Menu.Item key="3" onClick={dislike}>
+                  <Menu.Item key="3" onClick={() => dislike(item, index)}>
                     {action === 'disliked' ? (
                       <DislikeFilled style={{ marginRight: '0.3rem' }} />
                     ) : (
                       <DislikeOutlined style={{ marginRight: '0.3rem' }} />
                     )}
-                    <Text style={{ marginRight: '0.3rem' }}>{dislikes}</Text>
                     Dislike
                   </Menu.Item>
                 </Menu>
               }
               trigger={['contextMenu']}
             >
-              <Text key={index}>{item}</Text>
+              <Text key={index} className="text-container">
+                {item.text}{' '}
+                {item.isLiked || item.isDisLiked ? (
+                  <div className="text-container__reaction-container">
+                    <span>
+                      {item.isLiked === true && (
+                        <>
+                          <LikeTwoTone
+                            style={{ fontSize: '1rem', marginRight: '0.2rem' }}
+                          />
+                          <span style={{ color: 'white' }}>{likes}</span>
+                        </>
+                      )}
+                    </span>
+
+                    <span>
+                      {item.isDisLiked === true && (
+                        <>
+                          <DislikeTwoTone
+                            style={{ fontSize: '1rem', marginRight: '0.2rem' }}
+                          />
+                          <span style={{ color: 'white' }}>{dislikes}</span>
+                        </>
+                      )}
+                    </span>
+                  </div>
+                ) : null}
+              </Text>
             </Dropdown>
-            <br />
           </>
         ))}
         datetime={

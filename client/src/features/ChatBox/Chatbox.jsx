@@ -82,6 +82,7 @@ const Chatbox = () => {
   const onClickReplyMessage = (item) => {
     setRepliedContainer(true);
     setRepliedMessage(item);
+    console.log(item);
   };
   const onHandleSubmit = (data) => {
     if (data.message && !repliedMessage) {
@@ -92,14 +93,13 @@ const Chatbox = () => {
           avatar: 'lmao',
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
-        mess: [data.message],
+        mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
         replied_message: null,
         type: 'text',
       };
       form.resetFields();
       setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
-      console.log(tempMessage);
     } else if (data.message && repliedMessage) {
       const feedbackMessage = {
         user: {
@@ -108,7 +108,7 @@ const Chatbox = () => {
           avatar: 'lmao',
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
-        mess: [data.message],
+        mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
         replied_message: repliedMessage,
         type: 'text',
       };
@@ -140,7 +140,7 @@ const Chatbox = () => {
               return (
                 <BubbleChat
                   key={index}
-                  index={index}
+                  bubbleChatIndex={index}
                   user={message.user}
                   sendAt={message.sentAt}
                   mess={message.mess}
@@ -215,7 +215,7 @@ const Chatbox = () => {
                     <PictureOutlined className="hover-section" />
                   </Tooltip>
                 </Upload>
-                <Tooltip title="Smile!!!">
+                <Tooltip title="Smileee!!!">
                   <SmileOutlined className="hover-section" />
                 </Tooltip>
 

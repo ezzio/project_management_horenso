@@ -20,6 +20,11 @@
     & > p {
       margin: 0;
     }
+
+    & .ant-comment-content-detail {
+      display: flex !important;
+      flex-direction: column !important;
+    }
   }
 
   &__control {
@@ -100,6 +105,18 @@
 
 .hover-section:hover {
   cursor: pointer;
+}
+
+.text-container {
+  &__reaction-container {
+    background-color: $_GREENBLUE;
+
+    width: 2.5rem;
+    text-align: center;
+    margin: 0;
+
+    border-radius: 1rem;
+  }
 }
 
 .send {
