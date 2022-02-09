@@ -1,37 +1,40 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
 import userApi from 'api/userApi';
 
 const initialState = {
-  id: '',
   loading: false,
   error: '',
 };
 
-export const userSignUp = createAsyncThunk('user/sign-up', async (params) => {
-  const response = await userApi.signUp(params);
-  return response;
+export const signUp = createAsyncThunk('user/login', async (params) => {
+  const currentUser = await userApi.signUp(params);
+  return currentUser;
 });
 
 export const signUpSlice = createSlice({
-  name: 'signUp',
+  name: 'sign-up',
   initialState,
   reducers: {},
   extraReducers: {
-    [userSignUp.pending]: (state) => {
+    [signUp.pending]: (state) => {
       state.loading = true;
     },
-    [userSignUp.rejected]: (state) => {
+    [signUp.rejected]: (state) => {
       state.loading = false;
-      state.error = 'Sign up failed!';
+      message.error('Login failed, please try later');
     },
-    [userSignUp.fulfilled]: (state, action) => {
+    [signUp.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
-      if (action.payload.data.isSuccess) {
-        message.success('Sign up successfully!');
-      } else {
+      console.log(action.payload.data);
+      if (!action.payload.data.isSuccess) {
         message.error(action.payload.data.error);
+      } else {
+        message.success('Sign up successfully!');
+        localStorage.setItem('access_token', action.payload.data.id);
+        setTimeout(() => {
+          window.location.replace('/');
+        }, 500);
       }
     },
   },

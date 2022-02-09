@@ -4,7 +4,7 @@ import axios from 'axios';
 const projectApi = {
   createNew: (params) => {
     return axios
-      .post(`${API}/create_a_project/`, params)
+      .post(`${API}/project/create_a_project/`, params)
       .then((response) => {
         return response.data;
       })
