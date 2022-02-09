@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API } from "./configApi";
+import axios from 'axios';
+import { API } from './configApi';
 
 const userApi = {
   login: (params) => {
@@ -17,14 +17,7 @@ const userApi = {
   },
   signUp: (params) => {
     return axios
-      .post(
-        `${API}/register/`,
-
-        {
-          user_name: params.username,
-          password: params.password,
-        }
-      )
+      .post(`${API}/register/`, params)
       .then((response) => {
         return response;
       })
@@ -35,7 +28,7 @@ const userApi = {
   listUserInfo: () => {
     return axios
       .post(`${API}/user`, {
-        owner: localStorage.getItem("access_token"),
+        owner: localStorage.getItem('access_token'),
       })
       .then((response) => {
         return response.data;
@@ -57,7 +50,7 @@ const userApi = {
   editUser: (params) => {
     return axios
       .post(`${API}/user/editUserInfo`, {
-        owner: localStorage.getItem("access_token"),
+        owner: localStorage.getItem('access_token'),
         display_name: params.display_name,
         bio: params.bio,
         company: params.company,
