@@ -187,7 +187,7 @@ const DetailTask = (props) => {
     isLt5M &&
       axios
         .post(
-          'https://servernckh.herokuapp.com/Tasks/uploadFileDetailTask',
+          'https://servernckhv2.herokuapp.com/Tasks/uploadFileDetailTask',
           formData
         )
         .then((response) => {
@@ -458,15 +458,8 @@ const DetailTask = (props) => {
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Title level={5}>Progress:</Title>
                 <Progress
-                  percent={
-                    selectedRowKeys.length &&
-                    info.progress
-                  }
-                  status={
-                    info.progress < 100
-                      ? 'active'
-                      : ''
-                  }
+                  percent={selectedRowKeys.length && info.progress}
+                  status={info.progress < 100 ? 'active' : ''}
                 />
               </Space>
               {info.description && (

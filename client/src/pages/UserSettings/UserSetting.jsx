@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Project from './Component/Project/Project';
 import NoProject from './Component/Project/NoProject';
 import Task from './Component/Task/Task';
-import { Avatar, Button, Image, message, Tooltip, Upload } from 'antd';
+import { Avatar, Button, Image, message, Spin, Tooltip, Upload } from 'antd';
 import './UserSetting.scss';
 import { GoLocation } from 'react-icons/go';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
@@ -28,7 +28,7 @@ const UserSetting = () => {
 
   useEffect(() => {
     dispatch(listUserInfo());
-    localStorage.removeItem('projectowner')
+    localStorage.removeItem('projectowner');
   }, []);
 
   // ----------Upload avatar----------->
@@ -84,6 +84,9 @@ const UserSetting = () => {
 
   // <---------Create project------------
 
+  const loading = useSelector((state) => state.userSetting.loading);
+  const allTask = useSelector((state) => state.userSetting.allTask)
+
   return (
     <>
       <Header />
@@ -93,26 +96,31 @@ const UserSetting = () => {
           setIsModalVisible={setIsModalCreateProject}
         />
 
-        <div className='task-and-project-ctn'>
+        <div className="task-and-project-ctn">
           <div className="info-ctn">
-              <Button
-                type="primary"
-                size="large"
-                icon={<PlusOutlined />}
-                style={{ borderRadius: '5px', top: 10, left: 15}}
-                onClick={() => setIsModalCreateProject(true)}
-              >
-                Create Project
-              </Button>
-              <div className="project-ctn">
-                { profile.projects === undefined || profile.projects.length === 0 ? 
-                  <NoProject /> : <Project />
-                }
-              </div>
+            <Button
+              type="primary"
+              size="large"
+              icon={<PlusOutlined />}
+              style={{ borderRadius: '5px', top: 10, left: 15 }}
+              onClick={() => setIsModalCreateProject(true)}
+            >
+              Create Project
+            </Button>
+            <div className="project-ctn">
+              <Spin spinning={loading}>
+                {profile.projects === undefined ||
+                profile.projects.length === 0 ? (
+                  <NoProject />
+                ) : (
+                  <Project />
+                )}
+              </Spin>
             </div>
+          </div>
           <div className="task-ctn">
-            <h2 style={{ fontWeight: 'bold' }}>Task</h2>
-            <Task />
+            <h2 style={{ fontWeight: 'bold' }}>Your tasks</h2>
+            <Task allTask={allTask}/>
           </div>
         </div>
         <div className="ctn-userinfo">
