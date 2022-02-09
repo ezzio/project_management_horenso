@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import loginReducer from 'features/Login/LoginSlice';
-import signupReducer from 'features/Signup/SignupSlice';
+import registerReducer from 'features/Register/registerSlice';
 import boardReducer from 'features/Board/boardSlice';
 import timelineReducer from 'features/ReportTimeline/TimelineSlice';
 import kanbanReducer from 'features/KanbanDashBoard/KanbanDashBoardSlice';
@@ -15,12 +15,12 @@ import chatBoxReducer from 'features/ChatBox/ChatBoxSlice';
 import settingReducer from 'features/Setting/settingSlice';
 import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
-
+import signUpReducer from 'features/Register/registerSlice';
 export const store = configureStore({
   reducer: {
     board: boardReducer,
     login: loginReducer,
-    signup: signupReducer,
+    signUp: registerReducer,
     timeline: timelineReducer,
     kanban: kanbanReducer,
     userSetting: userSettingReducer,

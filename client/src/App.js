@@ -7,7 +7,6 @@ import Board from 'features/Board/Board';
 import DetailTask from 'features/DetailTask/DetailTask';
 import KanbanDashBoard from 'features/KanbanDashBoard/KanbanDashBoard';
 import LoginScreen from 'features/Login/LoginScreen';
-import SignupScreen from 'features/Signup/SignupScreen';
 import Dashboard from 'pages/Dashboard/Dashboard';
 import Conversation from 'pages/Horenso/Conversation/Conversation';
 import Meeting from 'pages/Horenso/Meeting/Meeting';
@@ -27,6 +26,7 @@ import {
 import 'antd/dist/antd.css';
 import './App.scss';
 import MeetingRoom from 'features/MRoom/MeetingRoom';
+import SignUp from 'features/Register/Register';
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
           </Route>
 
           <Route path="/sign-up">
-            <SignupScreen />
+            <SignUp />
           </Route>
 
           <PrivateRoute exact path="/">
