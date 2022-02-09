@@ -16,7 +16,7 @@ const Project = () => {
     >
       {profile.projects &&
         profile.projects.map((project) => {
-          const percent = 30;
+          const percent = project.progress;
           return (
             <Col key={project.idProject} span={48}>
               <Card
@@ -60,6 +60,7 @@ const Project = () => {
                     {project.title}
                   </h2>
                 </Tooltip>
+
                 <h2
                   style={{
                     position: 'relative',
@@ -67,7 +68,13 @@ const Project = () => {
                     top: '1rem',
                   }}
                 >
-                  0/0
+                  <Tooltip title="Tasks completed">
+                    {project.totalTaskComplete}
+                  </Tooltip>
+                  /
+                  <Tooltip title="Total tasks">
+                    {project.totalTaskInProject}
+                  </Tooltip>
                 </h2>
                 <p
                   style={{

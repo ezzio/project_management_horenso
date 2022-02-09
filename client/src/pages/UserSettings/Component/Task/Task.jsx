@@ -7,8 +7,9 @@ export default function Task({ allTask }) {
   const { TabPane } = Tabs;
 
   const backlogs = allTask.filter((task) => moment().isBefore(task.start_time));
-  const inProgress = allTask.filter((task) =>
-    moment().isBetween(task.start_time, task.end_time)
+  const inProgress = allTask.filter(
+    (task) =>
+      moment().isBetween(task.start_time, task.end_time) && !task.is_complete
   );
   const inReview = allTask.filter(
     (task) => task.progress === 100 && task.is_complete === false
@@ -24,16 +25,19 @@ export default function Task({ allTask }) {
         tabBarGutter={64}
         style={{ fontWeight: 'bold' }}
       >
-        <TabPane tab="Backlogs" key="1">
+        <TabPane tab="All" key="1">
+          <TaskItemRender tasks={allTask} />
+        </TabPane>
+        <TabPane tab="Backlogs" key="2">
           <TaskItemRender tasks={backlogs} />
         </TabPane>
-        <TabPane tab="In progress" key="2">
+        <TabPane tab="In progress" key="3">
           <TaskItemRender tasks={inProgress} />
         </TabPane>
-        <TabPane tab="In review" key="3">
+        <TabPane tab="In review" key="4">
           <TaskItemRender tasks={inReview} />
         </TabPane>
-        <TabPane tab="Completed" key="4">
+        <TabPane tab="Completed" key="5">
           <TaskItemRender tasks={completed} />
         </TabPane>
       </Tabs>

@@ -1,0 +1,8 @@
+.list-task-of-user {
+  & .ant-list-item-meta-content {
+    white-space: nowrap;
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

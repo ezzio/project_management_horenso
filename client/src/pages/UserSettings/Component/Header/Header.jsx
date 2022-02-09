@@ -24,11 +24,16 @@ const Header = () => {
     </Menu>
   );
 
+  const logOut = () => {
+    localStorage.removeItem('access_token');
+    window.location.replace('/login');
+  };
+
   return (
     <div className="user-setting-header">
       <div className="user-setting-header__content">
         <Title level={2}>Kanso</Title>
-        <Space size={'large'} style={{marginRight: '4%'}}>
+        <Space size={'large'} style={{ marginRight: '4%' }}>
           <Badge dot={Boolean(notifications.length > 0)}>
             {notifications.length > 0 ? (
               <Dropdown overlay={notificationsListRender} trigger={['click']}>
@@ -43,7 +48,10 @@ const Header = () => {
             )}
           </Badge>
           <Tooltip title="Log out">
-            <LogoutOutlined style={{ fontSize: 24, cursor: 'pointer' }} />
+            <LogoutOutlined
+              style={{ fontSize: 24, cursor: 'pointer' }}
+              onClick={logOut}
+            />
           </Tooltip>
         </Space>
       </div>
