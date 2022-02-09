@@ -58,7 +58,7 @@ function FormAddTeammate(props) {
   async function fetchUserList(username) {
     console.log("fetching user", username);
     return axios
-      .post("https://servernckh.herokuapp.com/user/findUserName", {
+      .post("https://servernckhv2.herokuapp.com/user/findUserName", {
         user_name: username,
       })
       .then((response) => {
