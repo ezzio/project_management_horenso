@@ -1,137 +1,74 @@
-import React, { useState } from 'react';
-import './LoginForm.scss';
-import { useForm } from 'react-hook-form';
-import { AiOutlineMail, AiOutlineLock, AiFillGithub } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
+import React from 'react';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../LoginSlice';
-import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
-function LoginForm(props) {
-  const [error, setError] = useState('');
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+const LoginForm = () => {
+  const loading = useSelector((state) => state.login.loading);
   const dispatch = useDispatch();
 
-  const handleLogin = async (data) => {
-    await dispatch(userLogin(data));
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    message.success('Login Completed!');
+    dispatch(userLogin(values));
   };
 
-  const loading = useSelector(state => state.login.loading);
-
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+    // message.error('Your password or account is not valid!');
+  };
   return (
-    <form onSubmit={handleSubmit(handleLogin)} className="login-form">
-      <div className="login-form__title">
-        <span className="login-form__title__text">Welcome!</span>
-      </div>
-      <div className="login-form__email-container">
-        <div className="email-textbox">
-          <input
-            className="email-textbox__input"
-            placeholder="Enter your username"
-            type="text"
-            name="username"
-            autocomplete="off"
-            {...register('username', {
-              required: 'This field is required',
-              pattern: {
-                message: 'Invalid username',
-              },
-            })}
-          />
-          <span className="login-form__email-container__label">Username</span>
-        </div>
-        {errors.username && (
-          <p
-            style={{ position: 'absolute', top: 40, fontSize: 14 }}
-            className="login-form__error"
-          >
-            {errors.username.message}
-          </p>
-        )}
-      </div>
-      <div className="login-form__password-container">
-        <span className="login-form__password-container__label">Password</span>
-        <div className="password-textbox">
-          <input
-            className="password-textbox__input"
-            placeholder="Enter password"
-            type="password"
-            name="password"
-            {...register('password', {
-              required: 'This field is required',
-              minLength: {
-                value: 5,
-                message: 'Password must be 5-18 characters long',
-              },
-              maxLength: {
-                value: 18,
-                message: 'Password must be 5-18 characters long',
-              },
-            })}
-          />
-        </div>
-        {errors.password && (
-          <p
-            style={{ position: 'absolute', top: 42, fontSize: 14 }}
-            className="login-form__error"
-          >
-            {errors.password.message}
-          </p>
-        )}
-      </div>
-      <Link className="login-form__forgotpassword" path="/ForgotPassword">
-        Forgot Password?
-      </Link>
-      <AiOutlineMail
-        style={{
-          top: 145,
-          left: 64,
-          position: 'absolute',
-          fontSize: 25,
-          color: 'gray',
-        }}
-      />
-      <AiOutlineLock
-        style={{
-          top: 227,
-          left: 64,
-          position: 'absolute',
-          fontSize: 25,
-          color: 'gray',
-        }}
-      />
-      <div>
-        {error !== '' ? (
-          <p
-            style={{ position: 'absolute', top: 95, left: 162, fontSize: 14 }}
-            className="login-form__error"
-          >
-            {error}
-          </p>
-        ) : (
-          ''
-        )}
-      </div>
-      <div className="login-form__login-btn-container">
-        <Button type='primary' size='large' block style={{borderRadius: '5px'}} loading={loading} htmlType="submit">
+    <Form
+      name="basic"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+      layout="vertical"
+      size="large"
+    >
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input prefix={<UserOutlined />} placeholder="Username" />
+      </Form.Item>
+
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+      </Form.Item>
+
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Link style={{ float: 'right' }} path="/ForgotPassword">
+          Forgot Password ?
+        </Link>
+      </Form.Item>
+
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: '100%' }}
+          loading={loading}
+        >
           Login
         </Button>
-      </div>
+      </Form.Item>
 
-      <button type="button" className="github-btn">
-        <AiFillGithub
-          style={{ position: 'absolute', fontSize: 25, left: 20, bottom: 3 }}
-        />
-        <span className="github-btn__text">Or Log in with Github</span>
-      </button>
-    </form>
+      <Link style={{ float: 'right' }} path="/sign-up">
+        Register Now!
+      </Link>
+    </Form>
   );
-}
+};
 
 export default LoginForm;
