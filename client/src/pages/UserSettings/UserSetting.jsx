@@ -2,7 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Project from './Component/Project/Project';
 import NoProject from './Component/Project/NoProject';
 import Task from './Component/Task/Task';
-import { Avatar, Button, Image, message, Spin, Tooltip, Upload } from 'antd';
+import {
+  Avatar,
+  Typography,
+  Button,
+  Image,
+  message,
+  Spin,
+  Tooltip,
+  Upload,
+} from 'antd';
 import './UserSetting.scss';
 import { GoLocation } from 'react-icons/go';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
@@ -16,6 +25,7 @@ import CreateProject from 'features/CreateProject/CreateProject';
 import userApi from 'api/userApi';
 import Header from './Component/Header/Header';
 
+const { Text } = Typography;
 const UserSetting = () => {
   const dispatch = useDispatch();
   const [isEditProfile, setIsEditProfile] = useState(false);
@@ -85,7 +95,7 @@ const UserSetting = () => {
   // <---------Create project------------
 
   const loading = useSelector((state) => state.userSetting.loading);
-  const allTask = useSelector((state) => state.userSetting.allTask)
+  const allTask = useSelector((state) => state.userSetting.allTask);
 
   return (
     <>
@@ -120,23 +130,27 @@ const UserSetting = () => {
           </div>
           <div className="task-ctn">
             <h2 style={{ fontWeight: 'bold' }}>Your tasks</h2>
-            <Task allTask={allTask}/>
+            <Task allTask={allTask} />
           </div>
         </div>
         <div className="ctn-userinfo">
           <div className="userinfo__sidebar">
             <div className="userinfo__sidebar__name">
-              <Avatar
-                icon={<UserOutlined />}
-                src={
-                  <Image
-                    src={imageUrl || profile.avatarURL}
-                    style={{ width: 256 }}
-                    preview={false}
-                  />
-                }
-                size={256}
-              />
+              {imageUrl || profile.avatarURL ? (
+                <Avatar
+                  icon={<UserOutlined />}
+                  src={
+                    <Image
+                      src={imageUrl || profile.avatarURL}
+                      style={{ width: 256, height: 256 }}
+                      preview={false}
+                    />
+                  }
+                  size={256}
+                />
+              ) : (
+                <Avatar icon={<UserOutlined />} size={256} />
+              )}
               <div style={{ position: 'absolute', bottom: '60%', right: '5%' }}>
                 <Tooltip title="Upload avatar">
                   <Upload
@@ -198,9 +212,11 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
             <HiOutlineOfficeBuilding
               style={{ position: 'relative', fontSize: 18, marginRight: 5 }}
             />
-            <span className="userinfo__sidebar__bio__location">
-              {profile.company}
-            </span>
+            {profile.company ? (
+              <Text>{profile.company}</Text>
+            ) : (
+              <Text type="secondary">Not updated yet</Text>
+            )}
           </Tooltip>
         </div>
         <div>
@@ -213,9 +229,11 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
                 marginRight: 5,
               }}
             />
-            <span className="userinfo__sidebar__bio__location">
-              {profile.location}
-            </span>
+            {profile.location ? (
+              <Text>{profile.location}</Text>
+            ) : (
+              <Text type="secondary">Not updated yet</Text>
+            )}
           </Tooltip>
         </div>
         <div>
@@ -228,9 +246,12 @@ const InfoProfile = ({ setIsEditProfile, profile }) => {
                 marginRight: 5,
               }}
             />
-            <span className="userinfo__sidebar__bio__email">
-              {profile.email}
-            </span>
+
+            {profile.email ? (
+              <Text>{profile.email}</Text>
+            ) : (
+              <Text type="secondary">Not updated yet</Text>
+            )}
           </Tooltip>
         </div>
       </div>

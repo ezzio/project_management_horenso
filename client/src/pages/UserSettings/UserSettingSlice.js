@@ -81,15 +81,15 @@ export const userSettingSlice = createSlice({
         state.display_name = userInfo.display_name;
         state.bio = userInfo.bio;
         state.company = userInfo.company;
-        state.location = userInfo.location;
+        state.location = userInfo.address;
         state.email = userInfo.email;
         state.avatarURL = userInfo.avatar;
         state.projects = [];
         payload[1].allProject.forEach((project, index) => {
           state.projects.push({
             ...project,
-            totalTask: 140,
-            completedTask: 90,
+            totalTask: project.totalTaskInProject,
+            completedTask: project.totalTaskComplete,
           });
         });
         state.allTask = payload[1].allTask;
