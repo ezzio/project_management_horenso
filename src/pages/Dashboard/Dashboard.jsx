@@ -44,9 +44,11 @@ const Dashboard = () => {
   // Target percent
   const jobIsComplete = jobs.filter((job) => job.is_completed);
   useEffect(() => {
-    setTargetPercent(parseInt(jobIsComplete?.length / jobs?.length));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [jobIsComplete]);
+    if (jobIsComplete?.length > 0)
+      setTargetPercent(
+        parseFloat(jobIsComplete?.length / jobs?.length).toFixed(1) * 100
+      );
+  }, [jobIsComplete, jobs?.length]);
 
   // Job status
   const backlogs = tasks.filter(
@@ -77,8 +79,6 @@ const Dashboard = () => {
       progress: item.progress,
     };
   });
-  console.log(converToLinePlotChart);
-
   useEffect(() => {
     dispatch(getAllJob(idProject));
     dispatch(getAllTask(idProject));
@@ -86,7 +86,6 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    console.log(numberOfFetch);
     if (numberOfFetch === 3) {
       dispatch(getLinePlot(idProject));
     }
