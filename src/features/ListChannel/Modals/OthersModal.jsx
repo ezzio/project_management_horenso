@@ -1,9 +1,9 @@
-import React from "react";
-import { Modal, Form, message, Input } from "antd";
-import { useDispatch } from "react-redux";
-import { addOthersChannel } from "../ListChannelSlice";
+import React from 'react';
+import { Modal, Form, message, Input, Select } from 'antd';
+import { useDispatch } from 'react-redux';
+import { addOthersChannel } from '../ListChannelSlice';
 
-function OthersModal({ openOthersModal, setOpenOthersModal }) {
+function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal }) {
   };
 
   const onFinishFailed = () => {
-    message.error("Submit Failed!");
+    message.error('Submit Failed!');
   };
 
   return (
@@ -34,7 +34,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal }) {
               onFinish(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -48,9 +48,26 @@ function OthersModal({ openOthersModal, setOpenOthersModal }) {
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true }, { type: "string", min: 6 }]}
+            rules={[{ required: true }, { type: 'string', min: 6 }]}
           >
             <Input placeholder="Enter name of others channel" size="large" />
+          </Form.Item>
+
+          <Form.Item
+            label="Members"
+            name="members"
+            rules={[
+              {
+                required: true,
+                message: 'Please choose member to this conversation',
+              },
+            ]}
+          >
+            <Select mode="multiple" placeholder="Members in this conversation">
+              {members.map((item) => (
+                <Select.Option value={item.name}>{item.name}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Modal>
