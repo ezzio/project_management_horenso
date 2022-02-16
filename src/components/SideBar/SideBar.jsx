@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Menu, Space, Tooltip, Typography } from 'antd';
 import {
   PieChartFilled,
@@ -16,6 +16,8 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { checkRoleUser } from './sideBarSlice';
+import { useDispatch } from 'react-redux';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -24,10 +26,20 @@ const { Title } = Typography;
 const SideBar = () => {
   const [isColapsed, setIsColapsed] = useState(false);
   const { idProject } = useParams();
+  const dispatch = useDispatch();
 
   const onCollapse = (collapsed) => {
     setIsColapsed(!isColapsed);
   };
+
+  useEffect(() => {
+    dispatch(
+      checkRoleUser({
+        id: localStorage.getItem('access_token'),
+        idProject,
+      })
+    );
+  });
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
