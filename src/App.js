@@ -27,32 +27,34 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import MeetingRoom from 'features/MRoom/MeetingRoom';
 import SignUp from 'features/Register/Register';
+import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheckProfileMember';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/login">
-            <LoginScreen />
-          </Route>
+    // <Router>
+    //   <div className="App">
+    //     <Switch>
+    //       <Route path="/login">
+    //         <LoginScreen />
+    //       </Route>
 
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
+    //       <Route path="/sign-up">
+    //         <SignUp />
+    //       </Route>
 
-          <PrivateRoute exact path="/">
-            <UserSetting />
-          </PrivateRoute>
+    //       <PrivateRoute exact path="/">
+    //         <UserSetting />
+    //       </PrivateRoute>
 
-          <PrivateRoute path="/:idProject">
-            <SideBar />
-            <AnimatedRouter />
-          </PrivateRoute>
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </Router>
+    //       <PrivateRoute path="/:idProject">
+    //         <SideBar />
+    //         <AnimatedRouter />
+    //       </PrivateRoute>
+    //       <Route component={NotFound} />
+    //     </Switch>
+    //   </div>
+    // </Router>
+    <ModalCheckProfileMember visible={true} />
   );
 }
 
