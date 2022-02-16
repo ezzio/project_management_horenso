@@ -1,39 +1,44 @@
-# Xây dựng hệ thống quản lý dự án cho sinh viên công nghệ thông tin theo mô hình Kanban và Horenso.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Quy tắc làm việc trong dự án:
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/laa6VfksVug)
+## Available Scripts
 
-## Làm việc với GitHub:
+In the project directory, you can run:
 
-[Hướng dẫn cơ bản cho người mới bắt đầu của Roger Dudler](https://rogerdudler.github.io/git-guide/index.vi.html)
+### `yarn start`
 
-## Messages Commit
-### Commit Sample
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```
-git commit -m "messages"
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-VD: git commit -m "docs: describe rules of project"
-```
+### `yarn test`
 
-> [type](optional scope): [subject]
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Type
-Phải là một trong những loại sau:
-* feat: thêm một feature
-* fix: fix bug cho hệ thống
-* refactor: sửa code nhưng không fix bug cũng không thêm feature hoặc đôi khi bug cũng được fix từ việc refactor.
-* docs: thêm/thay đổi document
-* chore: những sửa đổi nhỏ nhặt không liên quan tới code
-* style: những thay đổi không làm thay đổi ý nghĩa của code như thay đổi css/ui chẳng hạn.
-* perf: code cải tiến về mặt hiệu năng xử lý
-* vendor: cập nhật version cho các dependencies, packages.
+### `yarn build`
 
-### Scope (không bắt buộc)
-Có thể được cung cấp cho `type` của `commit`, để cung cấp thông tin ngữ cảnh bổ sung và được chứa trong dấu ngoặc đơn, ví dụ: `feat(parser): add ability to parse arrays`
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Subject
-Để viết Subject dễ, có thể đặt nó vào câu sau: Nếu được áp dụng, commit này sẽ ... (If applied, this commit will ...). Phần trong dấu "..." chính là Subject.
-Chủ đề chứa mô tả thành công về sự thay đổi:
-* Sử dụng thì hiện tại mệnh lệnh: "change" not "changed" nor "changes"
-* Không có dấu chấm `.` ở cuối.
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
