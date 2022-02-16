@@ -1,9 +1,11 @@
-import React from "react";
-import { Modal, Form, message, Input } from "antd";
-import { useDispatch } from "react-redux";
-import { addTeamsChannel } from "../ListChannelSlice";
+import React, { useEffect } from 'react';
+import { Modal, Form, message, Input, Select } from 'antd';
+import { useDispatch } from 'react-redux';
+import { addTeamsChannel } from '../ListChannelSlice';
 
-function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
+const { Option } = Select;
+
+function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
   };
 
   const onFinishFailed = () => {
-    message.error("Submit Failed!");
+    message.error('Submit Failed!');
   };
 
   return (
@@ -34,7 +36,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
               onFinish(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -48,9 +50,25 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal }) {
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true }, { type: "string", min: 6 }]}
+            rules={[{ required: true }, { type: 'string', min: 6 }]}
           >
             <Input placeholder="Enter name of team" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Members"
+            name="members"
+            rules={[
+              {
+                required: true,
+                message: 'Please choose member to this conversation',
+              },
+            ]}
+          >
+            <Select mode="multiple" placeholder="Members in this conversation">
+              {members.map((item) => (
+                <Select.Option value={item.name}>{item.name}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Modal>

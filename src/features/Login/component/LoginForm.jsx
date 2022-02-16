@@ -48,7 +48,7 @@ const LoginForm = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <Link style={{ float: 'right' }} path="/ForgotPassword">
+        <Link style={{ float: 'right' }} to="/ForgotPassword">
           Forgot Password ?
         </Link>
       </Form.Item>
@@ -64,7 +64,7 @@ const LoginForm = () => {
         </Button>
       </Form.Item>
 
-      <Link style={{ float: 'right' }} path="/sign-up">
+      <Link style={{ float: 'right' }} to="/sign-up">
         Register Now!
       </Link>
     </Form>

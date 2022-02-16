@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-import { FcFolder, FcBriefcase, FcCollaboration, FcSettings } from "react-icons/fc";
-import { useSelector } from "react-redux";
-import "./ListChannel.scss";
-import { AiOutlinePlus } from "react-icons/ai";
-import WorkspaceModal from "./Modals/WorkspaceModal";
-import OthersModal from "./Modals/OthersModal";
-import TeamsModal from "./Modals/TeamsModal";
-import ChannelDrawer from "./component/ChannelDrawer";
+import React, { useState } from 'react';
+import {
+  FcFolder,
+  FcBriefcase,
+  FcCollaboration,
+  FcSettings,
+} from 'react-icons/fc';
+import { useSelector } from 'react-redux';
+import './ListChannel.scss';
+import { AiOutlinePlus } from 'react-icons/ai';
+import WorkspaceModal from './Modals/WorkspaceModal';
+import OthersModal from './Modals/OthersModal';
+import TeamsModal from './Modals/TeamsModal';
+import ChannelDrawer from './component/ChannelDrawer';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { ListKanban } from 'features/KanbanDashBoard/KanbanDashBoardSlice';
 
 const Listchannel = () => {
   const channels = useSelector((state) => state.createChannel);
@@ -14,18 +22,26 @@ const Listchannel = () => {
   const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
   const [openTeamsModal, setOpenTeamsModal] = useState(false);
   const [openOthersModal, setOpenOthersModal] = useState(false);
-  const [drawerVisible, setDrawerVisible] = useState(false)
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const [channelID, setChannelID] = useState(0);
   const [channelName, setChannelName] = useState('');
   const [channelType, setChannelType] = useState('');
 
+  const members = useSelector((state) => state.kanban.membersInProject);
+  console.log(members);
+
+  const dispatch = useDispatch();
 
   const openDrawer = (id, name, type) => {
-      setChannelID(id);
-      setChannelName(name)
-      setChannelType(type)
-      setDrawerVisible(true)
-  }
+    setChannelID(id);
+    setChannelName(name);
+    setChannelType(type);
+    setDrawerVisible(true);
+  };
+
+  useEffect(() => {
+    dispatch(ListKanban());
+  }, []);
 
   return (
     <>
@@ -43,6 +59,7 @@ const Listchannel = () => {
           </div>
           <div>
             <WorkspaceModal
+              members={members}
               openWorkspaceModal={openWorkspaceModal}
               setOpenWorkspaceModal={setOpenWorkspaceModal}
             />
@@ -51,9 +68,11 @@ const Listchannel = () => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{channel.name}</a>
-                <FcSettings 
-                    style={{position: 'absolute', right: 50}}
-                    onClick={() => openDrawer(channel.id, channel.name, 'workspace')}
+                <FcSettings
+                  style={{ position: 'absolute', right: 50 }}
+                  onClick={() =>
+                    openDrawer(channel.id, channel.name, 'workspace')
+                  }
                 />
               </li>
             );
@@ -72,6 +91,7 @@ const Listchannel = () => {
           </div>
           <div>
             <TeamsModal
+              members={members}
               openTeamsModal={openTeamsModal}
               setOpenTeamsModal={setOpenTeamsModal}
             />
@@ -80,9 +100,9 @@ const Listchannel = () => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{channel.name}</a>
-                <FcSettings 
-                    style={{position: 'absolute', right: 50}}
-                    onClick={() => openDrawer(channel.id, channel.name, 'teams')}
+                <FcSettings
+                  style={{ position: 'absolute', right: 50 }}
+                  onClick={() => openDrawer(channel.id, channel.name, 'teams')}
                 />
               </li>
             );
@@ -101,6 +121,7 @@ const Listchannel = () => {
           </div>
           <div>
             <OthersModal
+              members={members}
               openOthersModal={openOthersModal}
               setOpenOthersModal={setOpenOthersModal}
             />
@@ -109,9 +130,9 @@ const Listchannel = () => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
                 <a href="#">{channel.name}</a>
-                <FcSettings 
-                    style={{position: 'absolute', right: 50}}
-                    onClick={() => openDrawer(channel.id, channel.name, 'others')}
+                <FcSettings
+                  style={{ position: 'absolute', right: 50 }}
+                  onClick={() => openDrawer(channel.id, channel.name, 'others')}
                 />
               </li>
             );
@@ -121,7 +142,7 @@ const Listchannel = () => {
           <AiOutlinePlus />
         </div>
       </div>
-      <ChannelDrawer 
+      <ChannelDrawer
         id={channelID}
         name={channelName}
         type={channelType}
