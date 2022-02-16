@@ -26,8 +26,7 @@ export const registerSlice = createSlice({
     },
     [signUp.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload.data);
-      if (!action.payload.data.isSuccess) {
+      if (action.payload && !action.payload.data.isSuccess) {
         message.error(action.payload.data.error);
       } else {
         message.success('Sign up successfully!');
