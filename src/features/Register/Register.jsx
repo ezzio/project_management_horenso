@@ -211,13 +211,11 @@ const SignUp = () => {
               },
             ]}
           >
-            <Tooltip title="What do you want others to call you?">
-              <Input
-                placeholder="Display Name"
-                size="large"
-                prefix={<ContactsOutlined />}
-              />
-            </Tooltip>
+            <Input
+              placeholder="Display Name"
+              size="large"
+              prefix={<ContactsOutlined />}
+            />
           </Form.Item>
 
           <Form.Item name="company">
