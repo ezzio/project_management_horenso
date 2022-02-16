@@ -49,6 +49,7 @@ function App() {
             <SideBar />
             <AnimatedRouter />
           </PrivateRoute>
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
@@ -97,8 +98,6 @@ const AnimatedRouter = () => {
           path="/:idProject/meeting/:idRoom"
           children={<MeetingRoom />}
         />
-
-        <Route component={NotFound} />
       </Switch>
     </div>
   );
