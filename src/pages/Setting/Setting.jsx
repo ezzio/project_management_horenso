@@ -42,7 +42,7 @@ const Setting = () => {
     dispatch(deleteProject(idProject));
   };
   const role = useSelector((state) => state.sidebar.role);
-  if (role) {
+  if (role !== 'Leader') {
     return <Redirect to={'/'}></Redirect>;
   } else
     return (
