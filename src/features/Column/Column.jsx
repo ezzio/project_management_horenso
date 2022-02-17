@@ -7,9 +7,8 @@ import { Droppable } from 'react-beautiful-dnd';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Badge } from 'antd';
 
-
 const Column = (props) => {
-  const { column, openModal } = props;
+  const { column, openModal, role } = props;
 
   return (
     <div className={`column`}>
@@ -23,12 +22,13 @@ const Column = (props) => {
             ? 'In review'
             : 'Completed'}
         </h4>
-        {column.id_column === 0 && (
-          <AiFillPlusCircle
-            className="column__header__add"
-            onClick={openModal}
-          />
-        )}
+        {column.id_column === 0 &&
+          (role === 'Leader' || role === 'Project Manager') && (
+            <AiFillPlusCircle
+              className="column__header__add"
+              onClick={openModal}
+            />
+          )}
       </div>
       <div className="column__content">
         {column.eachColumnTask &&

@@ -17,7 +17,7 @@ import {
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { checkRoleUser } from './sideBarSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -27,6 +27,7 @@ const SideBar = () => {
   const [isColapsed, setIsColapsed] = useState(false);
   const { idProject } = useParams();
   const dispatch = useDispatch();
+  const role = useSelector((state) => state.sidebar.role);
 
   const onCollapse = (collapsed) => {
     setIsColapsed(!isColapsed);
@@ -190,22 +191,24 @@ const SideBar = () => {
                 Teammate
               </Link>
             </Menu.Item>
-            <Menu.Item
-              key="9"
-              icon={
-                <SettingFilled
-                  style={{ color: 'white', fontSize: '1.15rem' }}
-                />
-              }
-            >
-              <Link
-                to={`/${idProject}/setting`}
-                style={{ color: 'white' }}
-                onClick={() => localStorage.setItem('sider', '9')}
+            {role === 'Leader' && (
+              <Menu.Item
+                key="9"
+                icon={
+                  <SettingFilled
+                    style={{ color: 'white', fontSize: '1.15rem' }}
+                  />
+                }
               >
-                Setting
-              </Link>
-            </Menu.Item>
+                <Link
+                  to={`/${idProject}/setting`}
+                  style={{ color: 'white' }}
+                  onClick={() => localStorage.setItem('sider', '9')}
+                >
+                  Setting
+                </Link>
+              </Menu.Item>
+            )}
           </SubMenu>
         </Menu>
         <div
