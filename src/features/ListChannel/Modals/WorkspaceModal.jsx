@@ -1,25 +1,28 @@
-import React from 'react';
-import { Modal, Form, message, Input, Select } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addWorkspaceChannel } from '../ListChannelSlice';
+import { Form, Input, message, Modal, Select } from "antd";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addWorkSpaceChannelAsync } from "../ListChannelSlice";
 
 function WorkspaceModal({
   openWorkspaceModal,
   setOpenWorkspaceModal,
   members,
+  conversationId,
 }) {
+  console.log("conver ID: ", conversationId);
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
 
   const onFinish = (value) => {
-    console.log(value);
+    // console.log(value);
     setOpenWorkspaceModal(false);
-    dispatch(addWorkspaceChannel(value));
+    dispatch(addWorkSpaceChannelAsync({ conversationId, ...value }));
+    setTimeout(message.success("Add channel successfull"), 500);
   };
 
   const onFinishFailed = () => {
-    message.error('Submit Failed!');
+    message.error("Submit Failed!");
   };
 
   return (
@@ -38,7 +41,7 @@ function WorkspaceModal({
               onFinish(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >
@@ -52,7 +55,7 @@ function WorkspaceModal({
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true }, { type: 'string', min: 6 }]}
+            rules={[{ required: true }, { type: "string", min: 6 }]}
           >
             <Input placeholder="Enter name of workspace" size="large" />
           </Form.Item>
@@ -63,7 +66,7 @@ function WorkspaceModal({
             rules={[
               {
                 required: true,
-                message: 'Please choose member to this conversation',
+                message: "Please choose member to this conversation",
               },
             ]}
           >
