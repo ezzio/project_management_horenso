@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, message, Typography } from 'antd';
-
+import { Button, Form, Input, message, Tooltip, Typography } from 'antd';
 import './Register.scss';
+import {
+  UserOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  LockOutlined,
+  ContactsOutlined,
+} from '@ant-design/icons';
+import { GoLocation } from 'react-icons/go';
+import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from './registerSlice';
@@ -86,7 +94,6 @@ const SignUp = () => {
           Create your Kanso Account
         </Title>
         <Form
-          {...formItemLayout}
           form={form}
           name="register"
           onFinish={onFinish}
@@ -95,7 +102,6 @@ const SignUp = () => {
         >
           <Form.Item
             name="username"
-            label="Username"
             rules={[
               {
                 required: true,
@@ -103,11 +109,14 @@ const SignUp = () => {
               },
             ]}
           >
-            <Input />
+            <Input
+              placeholder="Username"
+              size="large"
+              prefix={<UserOutlined />}
+            />
           </Form.Item>
           <Form.Item
             name="email"
-            label="E-mail"
             rules={[
               {
                 type: 'email',
@@ -119,11 +128,14 @@ const SignUp = () => {
               },
             ]}
           >
-            <Input />
+            <Input
+              placeholder="E-mail"
+              size="large"
+              prefix={<MailOutlined />}
+            />
           </Form.Item>
           <Form.Item
             name="password"
-            label="Password"
             rules={[
               {
                 required: true,
@@ -136,12 +148,15 @@ const SignUp = () => {
             ]}
             hasFeedback
           >
-            <Input.Password />
+            <Input.Password
+              placeholder="Password"
+              size="large"
+              prefix={<LockOutlined />}
+            />
           </Form.Item>
 
           <Form.Item
             name="confirm"
-            label="Confirm Password"
             dependencies={['password']}
             hasFeedback
             rules={[
@@ -164,12 +179,15 @@ const SignUp = () => {
               }),
             ]}
           >
-            <Input.Password />
+            <Input.Password
+              placeholder="Confirm Password"
+              size="large"
+              prefix={<LockOutlined />}
+            />
           </Form.Item>
 
           <Form.Item
             name="phone"
-            label="Phone Number"
             rules={[
               {
                 required: true,
@@ -178,15 +196,13 @@ const SignUp = () => {
             ]}
           >
             <Input
-              style={{
-                width: '100%',
-              }}
+              size="large"
+              placeholder="Phone Number"
+              prefix={<PhoneOutlined />}
             />
           </Form.Item>
           <Form.Item
             name="displayName"
-            label="Display Name"
-            tooltip="What do you want others to call you?"
             rules={[
               {
                 required: true,
@@ -195,39 +211,46 @@ const SignUp = () => {
               },
             ]}
           >
-            <Input />
+            <Input
+              placeholder="Display Name"
+              size="large"
+              prefix={<ContactsOutlined />}
+            />
           </Form.Item>
 
-          <Form.Item name="company" label="Company">
+          <Form.Item name="company">
             <Input
-              style={{
-                width: '100%',
-              }}
+              placeholder="Company"
+              size="large"
+              prefix={<HiOutlineOfficeBuilding />}
             />
           </Form.Item>
-          <Form.Item name="address" label="Address">
-            <Input
-              style={{
-                width: '100%',
-              }}
+          <Form.Item name="address">
+            <Input size="large" placeholder="Address" prefix={<GoLocation />} />
+          </Form.Item>
+          <Form.Item name="bio">
+            <Input.TextArea
+              showCount
+              maxLength={100}
+              placeholder="Intro"
+              size="large"
             />
           </Form.Item>
-          <Form.Item name="bio" label="Intro">
-            <Input.TextArea showCount maxLength={100} />
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout} className="register__form__footer">
+          <Form.Item className="register__form__footer">
             <Button
               type="primary"
               style={{ borderRadius: '4px', padding: '0 1.5rem' }}
+              block
               loading={loading || loadingCheckUsername}
               htmlType="submit"
+              size="large"
             >
               Sign up
             </Button>
-            <Text style={{ margin: 0 }}>
-              <Link to="/login">Sign in instead</Link>
-            </Text>
           </Form.Item>
+          <Text style={{ width: ' 100%', textAlign: 'center' }}>
+            <Link to="/login">Sign in instead</Link>
+          </Text>
         </Form>
       </div>
     </div>
