@@ -1,51 +1,85 @@
-import React, { useState } from 'react';
-import { Button, Form, Input, message, Card, Typography, Space } from 'antd';
-import './Setting.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteProject } from 'features/Setting/settingSlice';
-import { useParams, Redirect } from 'react-router-dom';
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  message,
+  Popconfirm,
+  Space,
+  Spin,
+  Typography,
+} from "antd";
+import {
+  deleteProject,
+  getInfoProjectAsync,
+  renameProject,
+  renameProjectAsync,
+} from "features/Setting/settingSlice";
+import ModalTransferOwnership from "features/Setting/TransferOwnership/ModalTransferOwnership";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import "./Setting.scss";
 
 const { Text, Title } = Typography;
 
 const Setting = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const loading = useSelector((state) => state.setting.loading);
+  const currentProjectName = useSelector((state) => state.setting.projectName);
+  const projectOwner = useSelector((state) => state.userSetting.name);
+  const [disabledChangeName, setDisabledChangeName] = useState(true);
 
-  // Change name
+  const idProject = params.idProject;
+  useEffect(() => {
+    dispatch(getInfoProjectAsync(idProject));
+  }, []);
+
+  // rename project
   const projectNameConfig = {
     rules: [
       {
         required: true,
-        message: 'Please enter name of project!',
+        message: "Please enter name of project!",
       },
     ],
   };
 
-  const [projectName, setProjectName] = useState(
-    'Du an con cac gi do toi khong biet nua'
-  );
-  const [disabledChangeName, setDisabledChangeName] = useState(true);
-
   const onChangeProjectName = (value) => {
-    if (value !== projectName) setDisabledChangeName(false);
-    else setDisabledChangeName(true);
+    if (value !== currentProjectName) {
+      setDisabledChangeName(false);
+    } else setDisabledChangeName(true);
   };
 
   const onFinishChangeName = (value) => {
-    message.success('Renaming!');
-    console.log(value);
-  };
+    const actionRenameProject = {
+      idProject: idProject,
+      newProjectName: value.projectName,
+    };
+    setDisabledChangeName(true);
+    dispatch(renameProject(actionRenameProject));
+    dispatch(renameProjectAsync(actionRenameProject));
 
+    setTimeout(() => {
+      message.success(`Project is renamed to "${value.projectName}"`);
+    }, 500);
+  };
+  // ---------------------------------------
+
+  // delete project
   const handleDeleteProject = () => {
-    const idProject = params.idProject;
-    console.log('idProject: ', idProject);
     dispatch(deleteProject(idProject));
   };
-  const role = useSelector((state) => state.sidebar.role);
-  if (role !== 'Leader') {
-    return <Redirect to={'/'}></Redirect>;
-  } else
-    return (
+  // -----------------------------
+
+  return (
+    <Spin
+      tip="Loading..."
+      size="large"
+      spinning={loading}
+      style={{ width: "100%", height: "100%" }}
+    >
       <div className="ctn setting-ctn">
         <Title>Setting</Title>
         <div className="setting-ctn__content">
@@ -53,18 +87,19 @@ const Setting = () => {
             <Card
               title="Project name"
               bordered={false}
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
             >
               <Form
                 name="project-name"
                 onFinish={onFinishChangeName}
                 autoComplete="off"
+                initialValues={{ projectName: currentProjectName }}
               >
                 <Form.Item name="projectName" {...projectNameConfig}>
                   <Input
                     size="large"
                     onChange={(e) => onChangeProjectName(e.target.value)}
-                    defaultValue={projectName}
+                    placeholder={currentProjectName}
                   />
                 </Form.Item>
                 <Form.Item>
@@ -82,12 +117,12 @@ const Setting = () => {
           </div>
 
           <Card
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             title="Danger settings"
             bordered={false}
             className="setting-ctn__content__danger"
           >
-            <Space size="middle" direction="vertical" style={{ width: '100%' }}>
+            <Space size="middle" direction="vertical" style={{ width: "100%" }}>
               <div>
                 <b>Transfer ownership</b>
                 <div className="setting-ctn__content__danger__content">
@@ -96,14 +131,10 @@ const Setting = () => {
                     organization where you have the ability to create
                     repositories
                   </Text>
-                  <Button
-                    type="primary"
-                    size="large"
-                    danger
-                    style={{ width: '100px' }}
-                  >
-                    Transfer
-                  </Button>
+                  <ModalTransferOwnership
+                    projectOwner={projectOwner}
+                    idProject={idProject}
+                  />
                 </div>
               </div>
               <div>
@@ -113,22 +144,30 @@ const Setting = () => {
                     Once you delete a repository, there is no going back. Please
                     be certain.
                   </Text>
-                  <Button
-                    type="primary"
-                    size="large"
-                    danger
-                    style={{ width: '100px' }}
-                    onClick={handleDeleteProject}
+                  <Popconfirm
+                    title="Are you sure to delete this project?"
+                    onConfirm={handleDeleteProject}
+                    onCancel={(e) => {}}
+                    okText="Yes"
+                    cancelText="No"
                   >
-                    Delete
-                  </Button>
+                    <Button
+                      type="primary"
+                      size="large"
+                      danger
+                      style={{ width: "100px" }}
+                    >
+                      Delete
+                    </Button>
+                  </Popconfirm>
                 </div>
               </div>
             </Space>
           </Card>
         </div>
       </div>
-    );
+    </Spin>
+  );
 };
 
 export default Setting;
