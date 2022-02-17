@@ -81,7 +81,7 @@ const TeammateFeature = () => {
       title: 'Action',
       render: (text, record) => (
         <Space size="middle">
-          {role === 'Leader' && (
+          {isProjectOwner && record.tag !== 'Leader' && role === 'Leader' && (
             <>
               <EditTeammate user={record} idProject={idProject} />
               <DeleteTeammate
