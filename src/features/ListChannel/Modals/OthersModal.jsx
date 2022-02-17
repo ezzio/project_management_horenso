@@ -1,9 +1,14 @@
-import React from 'react';
-import { Modal, Form, message, Input, Select } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addOthersChannel } from '../ListChannelSlice';
+import React from "react";
+import { Modal, Form, message, Input, Select } from "antd";
+import { useDispatch } from "react-redux";
+import { addOtherChannelAsync, addOthersChannel } from "../ListChannelSlice";
 
-function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
+function OthersModal({
+  openOthersModal,
+  setOpenOthersModal,
+  members,
+  conversationId,
+}) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -11,11 +16,12 @@ function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
   const onFinish = (value) => {
     console.log(value);
     setOpenOthersModal(false);
-    dispatch(addOthersChannel(value));
+    dispatch(addOtherChannelAsync({ conversationId, ...value }));
+    setTimeout(message.success("Add channel successfull"), 500);
   };
 
   const onFinishFailed = () => {
-    message.error('Submit Failed!');
+    message.error("Submit Failed!");
   };
 
   return (
@@ -34,7 +40,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
               onFinish(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >
@@ -48,7 +54,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true }, { type: 'string', min: 6 }]}
+            rules={[{ required: true }, { type: "string", min: 6 }]}
           >
             <Input placeholder="Enter name of others channel" size="large" />
           </Form.Item>
@@ -59,7 +65,7 @@ function OthersModal({ openOthersModal, setOpenOthersModal, members }) {
             rules={[
               {
                 required: true,
-                message: 'Please choose member to this conversation',
+                message: "Please choose member to this conversation",
               },
             ]}
           >

@@ -36,5 +36,6 @@ export const store = configureStore({
     roomMeeting: meetingRoomReducer,
     dashboard: dashboardReducer,
     sidebar: sidebarReducer,
+    
   },
 });
