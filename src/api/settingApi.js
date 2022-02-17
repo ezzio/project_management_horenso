@@ -30,7 +30,18 @@ const settingApi = {
         console.log(error);
       });
   },
-  deleteProject: (params) => {},
+  deleteProject: (idProject) => {
+    return axios
+      .post(`${API}/project/deleteProject`, {
+        idProject: idProject,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 
   transferOwnerShip: (params) => {
     return axios

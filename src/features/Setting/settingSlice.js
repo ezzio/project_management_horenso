@@ -25,6 +25,14 @@ export const transferOwnerShip = createAsyncThunk(
   }
 );
 
+export const deleteProjectAsync = createAsyncThunk(
+  "teammate/deleteProjectAsync",
+  async (idProject, thunkAPI) => {
+    const response = await settingApi.deleteProject(idProject);
+    return response;
+  }
+);
+
 const initialState = {
   projectName: "",
   loading: false,
@@ -69,6 +77,15 @@ export const settingSlice = createSlice({
     [transferOwnerShip.fulfilled]: (state, action) => {
       state.loading = false;
       console.log("transferOwnerShip Project: ", action.payload);
+    },
+
+    [deleteProjectAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteProjectAsync.rejected]: (state) => {},
+    [deleteProjectAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log("deleteProjectAsync Project: ", action.payload);
     },
   },
 });
