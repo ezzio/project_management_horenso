@@ -23,7 +23,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 const JobTag = (props) => {
-  const { title, priority, process, members, job, onDeleteJob } = props;
+  const { title, priority, process, members, job, onDeleteJob, role } = props;
   const dispatch = useDispatch();
   const { idProject } = useParams();
 
@@ -93,31 +93,33 @@ const JobTag = (props) => {
         <div className="ctn-job-task__members">
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
-            <Popover
-              placement="topLeft"
-              content={
-                <Space>
-                  <Button onClick={showModal} type="primary">
-                    Edit
-                  </Button>
-                  <Popconfirm
-                    title="Are you sure to delete this job?"
-                    onConfirm={(event) => onDeleteJob(job, event)}
-                    onCancel={'cancel'}
-                    okText="Yes"
-                    cancelText="No"
-                    placement="topRight"
-                  >
-                    <Button danger>Delete</Button>
-                  </Popconfirm>
-                </Space>
-              }
-              trigger={'click'}
-            >
-              <Button shape="circle" type="text">
-                <BarsOutlined />
-              </Button>
-            </Popover>
+            {(role === 'Leader' || role === 'Project Manager') && (
+              <Popover
+                placement="topLeft"
+                content={
+                  <Space>
+                    <Button onClick={showModal} type="primary">
+                      Edit
+                    </Button>
+                    <Popconfirm
+                      title="Are you sure to delete this job?"
+                      onConfirm={(event) => onDeleteJob(job, event)}
+                      onCancel={'cancel'}
+                      okText="Yes"
+                      cancelText="No"
+                      placement="topRight"
+                    >
+                      <Button danger>Delete</Button>
+                    </Popconfirm>
+                  </Space>
+                }
+                trigger={'click'}
+              >
+                <Button shape="circle" type="text">
+                  <BarsOutlined />
+                </Button>
+              </Popover>
+            )}
 
             {job && (
               <Link to={`/${idProject}/jobs/${job.id_job}`}>

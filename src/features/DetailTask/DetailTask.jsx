@@ -64,6 +64,8 @@ const DetailTask = (props) => {
   const memberInTask = useSelector((state) => state.detailTask.memberInTask);
   const [loadingPage, setLoadingPage] = useState(loading);
   const [isVisibleChatOnTask, setIsvisibleChatOnTask] = useState(true);
+  const role = useSelector((state) => state.sidebar.role);
+  // const role = 'Member';
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   useEffect(() => {
@@ -151,7 +153,6 @@ const DetailTask = (props) => {
   const [isLt5M, setIsLt5M] = useState(false);
 
   const onClickUpload = (record) => {
-    console.log('Id task: ', record.idDetailTask || record.id);
     setIdDetailTask(record.idDetailTask || record.id);
   };
 
@@ -412,11 +413,12 @@ const DetailTask = (props) => {
                   </div>
                 }
                 extra={
-                  info.progress === 100 && [
+                  info.progress === 100 &&
+                  (role === 'Leader' || role === 'Project Manager') && [
                     <Switch
                       onChange={checkFinished}
-                      checkedChildren="Not finish"
-                      unCheckedChildren="Finished"
+                      unCheckedChildren="Not finish"
+                      checkedChildren="Finished"
                       defaultChecked={info.is_complete}
                       loading={loadingCompleted}
                     />,

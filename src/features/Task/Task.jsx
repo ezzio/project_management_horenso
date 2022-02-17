@@ -68,26 +68,32 @@ const Task = (props) => {
     }
   }, [loading]);
 
+  const role = useSelector((state) => state.sidebar.role);
+
   const menu = (
     <Menu>
       <Menu.Item key="0" primary ghost>
         <Link to={`${location.pathname}/${task.id}`}>Open</Link>
       </Menu.Item>
-      <Menu.Item key="1" primary ghost>
-        <Text onClick={openModal}>Edit task</Text>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="2" danger ghost>
-        <Popconfirm
-          title="Are you sure to delete this task?"
-          onConfirm={() => handleDeleteTask(task)}
-          onCancel={cancel}
-          okText="Yes"
-          cancelText="No"
-        >
-          Delete task
-        </Popconfirm>
-      </Menu.Item>
+      {(role === 'Leader' || role === 'Project Manager') && (
+        <>
+          <Menu.Item key="1" primary ghost>
+            <Text onClick={openModal}>Edit task</Text>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="2" danger ghost>
+            <Popconfirm
+              title="Are you sure to delete this task?"
+              onConfirm={() => handleDeleteTask(task)}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+            >
+              Delete task
+            </Popconfirm>
+          </Menu.Item>
+        </>
+      )}
     </Menu>
   );
 
