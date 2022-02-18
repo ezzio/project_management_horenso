@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
-import { Modal, Form, message, Input, Select } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addTeamsChannel } from '../ListChannelSlice';
+import { Form, Input, message, Modal, Select } from "antd";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addTeamChannelAsync } from "../ListChannelSlice";
 
 const { Option } = Select;
 
-function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
+function TeamsModal({
+  openTeamsModal,
+  setOpenTeamsModal,
+  members,
+  conversationId,
+}) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -13,11 +18,12 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
   const onFinish = (value) => {
     console.log(value);
     setOpenTeamsModal(false);
-    dispatch(addTeamsChannel(value));
+    dispatch(addTeamChannelAsync({ conversationId, ...value }));
+    setTimeout(message.success("Add channel successfull"), 500);
   };
 
   const onFinishFailed = () => {
-    message.error('Submit Failed!');
+    message.error("Submit Failed!");
   };
 
   return (
@@ -36,7 +42,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
               onFinish(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >
@@ -50,7 +56,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true }, { type: 'string', min: 6 }]}
+            rules={[{ required: true }, { type: "string", min: 6 }]}
           >
             <Input placeholder="Enter name of team" size="large" />
           </Form.Item>
@@ -60,7 +66,7 @@ function TeamsModal({ openTeamsModal, setOpenTeamsModal, members }) {
             rules={[
               {
                 required: true,
-                message: 'Please choose member to this conversation',
+                message: "Please choose member to this conversation",
               },
             ]}
           >

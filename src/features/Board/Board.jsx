@@ -45,6 +45,7 @@ const Board = (props) => {
   // <----------------------
 
   const members = useSelector((state) => state.board.memberInJob);
+  const role = useSelector((state) => state.sidebar.role);
 
   return (
     <Spin
@@ -74,7 +75,9 @@ const Board = (props) => {
         <div className="board-content">
           {columns &&
             columns.map((column) => {
-              return <Column column={column} openModal={openModal} />;
+              return (
+                <Column column={column} openModal={openModal} role={role} />
+              );
             })}
         </div>
       </div>

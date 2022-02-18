@@ -82,6 +82,8 @@ const KanbanDashBoard = () => {
 
   // -----------------------------
 
+  const role = useSelector((state) => state.sidebar.role);
+
   return (
     <>
       <Modal
@@ -194,14 +196,16 @@ const KanbanDashBoard = () => {
               <Title level={3} className="title">
                 Jobs on working
               </Title>
-              <Button
-                type={'primary'}
-                onClick={showModal}
-                icon={<PlusOutlined />}
-                className="add-new-job"
-              >
-                Add new
-              </Button>
+              {(role === 'Leader' || role === 'Project Manager') && (
+                <Button
+                  type={'primary'}
+                  onClick={showModal}
+                  icon={<PlusOutlined />}
+                  className="add-new-job"
+                >
+                  Add new
+                </Button>
+              )}
             </div>
             <div className="ctn-kanbandashboard__working__content">
               {jobs.listJobs?.length > 0 ? (
@@ -217,6 +221,7 @@ const KanbanDashBoard = () => {
                         process={parseInt(job.progress)}
                         members={job.members}
                         setVisible={setVisible}
+                        role={role}
                       />
                     );
                 })

@@ -9,6 +9,8 @@ import DeleteTeammate from "./components/DeleteTeammate/DeleteTeammate";
 import EditTeammate from "./components/EditTeammate/EditTeammate";
 import "./TeammateFeature.scss";
 import { ListUser } from "./teammateSlice";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 const TeammateFeature = () => {
   const teammateData = useSelector((state) => state.teammate.dataList);
@@ -17,6 +19,7 @@ const TeammateFeature = () => {
   const [teammate, setTeammate] = useState(teammateData);
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const role = useSelector((state) => state.sidebar.role);
 
   const params = useParams();
   const idProject = params.idProject;
@@ -54,11 +57,11 @@ const TeammateFeature = () => {
       key: "user_name",
       render: (t, r) => (
         <div className="user__tag">
-          <img
-            src={`${r.avatar}`}
-            alt={r.display_name}
-            height="35px"
-            width="35px"
+          <Avatar
+            className="img"
+            size={32}
+            icon={<UserOutlined />}
+            src={r.avatar}
           />
           {r.display_name ? r.display_name : `${r.user_name} (username)`}
         </div>
@@ -80,7 +83,7 @@ const TeammateFeature = () => {
       title: "Action",
       render: (text, record) => (
         <Space size="middle">
-          {isProjectOwner && record.tag !== "Leader" && (
+          {isProjectOwner && record.tag !== "Leader" && role === "Leader" && (
             <>
               <EditTeammate user={record} idProject={idProject} />
               <DeleteTeammate

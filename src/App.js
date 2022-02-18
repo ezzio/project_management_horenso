@@ -100,6 +100,7 @@ const AnimatedRouter = () => {
           path="/:idProject/meeting/:idRoom"
           children={<MeetingRoom />}
         />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );

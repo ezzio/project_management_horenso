@@ -9,20 +9,22 @@ const LoginForm = () => {
   const loading = useSelector((state) => state.login.loading);
   const dispatch = useDispatch();
 
+  const [form] = Form.useForm();
+
   const onFinish = (values) => {
     console.log('Success:', values);
-    message.success('Login Completed!');
+    form.resetFields();
     dispatch(userLogin(values));
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
-    // message.error('Your password or account is not valid!');
   };
   return (
     <Form
+      form={form}
       name="basic"
-      initialValues={{ remember: true }}
+      initialValues={{ remember: false }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"

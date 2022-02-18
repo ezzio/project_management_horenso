@@ -7,7 +7,7 @@ const initialState = {
   error: '',
 };
 
-export const signUp = createAsyncThunk('user/login', async (params) => {
+export const signUp = createAsyncThunk('user/register', async (params) => {
   const currentUser = await userApi.signUp(params);
   return currentUser;
 });
@@ -26,8 +26,7 @@ export const registerSlice = createSlice({
     },
     [signUp.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload.data);
-      if (!action.payload.data.isSuccess) {
+      if (action.payload && !action.payload.data.isSuccess) {
         message.error(action.payload.data.error);
       } else {
         message.success('Sign up successfully!');
