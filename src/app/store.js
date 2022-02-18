@@ -16,6 +16,7 @@ import settingReducer from 'features/Setting/settingSlice';
 import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
 import signUpReducer from 'features/Register/registerSlice';
+import CheckProfileMemberReducer from 'features/ModalCheckProfileMember/CheckProfileMemberSlice';
 export const store = configureStore({
   reducer: {
     board: boardReducer,
@@ -34,5 +35,6 @@ export const store = configureStore({
     setting: settingReducer,
     roomMeeting: meetingRoomReducer,
     dashboard: dashboardReducer,
+    checkProfileMember: CheckProfileMemberReducer,
   },
 });
