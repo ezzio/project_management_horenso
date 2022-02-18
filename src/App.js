@@ -31,30 +31,29 @@ import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheck
 
 function App() {
   return (
-    // <Router>
-    //   <div className="App">
-    //     <Switch>
-    //       <Route path="/login">
-    //         <LoginScreen />
-    //       </Route>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <LoginScreen />
+          </Route>
 
-    //       <Route path="/sign-up">
-    //         <SignUp />
-    //       </Route>
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
 
-    //       <PrivateRoute exact path="/">
-    //         <UserSetting />
-    //       </PrivateRoute>
+          <PrivateRoute exact path="/">
+            <UserSetting />
+          </PrivateRoute>
 
-    //       <PrivateRoute path="/:idProject">
-    //         <SideBar />
-    //         <AnimatedRouter />
-    //       </PrivateRoute>
-    //       <Route component={NotFound} />
-    //     </Switch>
-    //   </div>
-    // </Router>
-    <ModalCheckProfileMember visible={true} />
+          <PrivateRoute path="/:idProject">
+            <SideBar />
+            <AnimatedRouter />
+          </PrivateRoute>
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
