@@ -30,7 +30,7 @@ export const addTeamChannelAsync = createAsyncThunk(
 export const addOtherChannelAsync = createAsyncThunk(
   "channel/addOtherChannelAsync",
   async (params, thunkAPI) => {
-    console.log(params);
+
     const currentData = await channelApi.addOtherChannel(params);
     return currentData;
   }
@@ -130,7 +130,7 @@ export const createChannelSlice = createSlice({
         const newChannelList = state.workspace.filter((channel) => {
           if (channel.id === action.payload.id) {
             channel.members = action.payload.members;
-            console.log(channel.members);
+
           }
           return channel;
         });
@@ -139,7 +139,7 @@ export const createChannelSlice = createSlice({
         const newChannelList = state.teams.filter((channel) => {
           if (channel.id === action.payload.id) {
             channel.members = action.payload.members;
-            console.log(channel.members);
+
           }
           return channel;
         });
@@ -148,7 +148,7 @@ export const createChannelSlice = createSlice({
         const newChannelList = state.others.filter((channel) => {
           if (channel.id === action.payload.id) {
             channel.members = action.payload.members;
-            console.log(channel.members);
+
           }
           return channel;
         });
@@ -163,7 +163,7 @@ export const createChannelSlice = createSlice({
     [getListChannel.rejected]: (state) => {},
     [getListChannel.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log("getListChannel: ", action.payload);
+
       state.conversationId = action.payload.idConversation;
       state.workspace = action.payload.result[0].roomConversation;
       state.teams = action.payload.result[1].roomConversation;
@@ -176,7 +176,7 @@ export const createChannelSlice = createSlice({
     [addWorkSpaceChannelAsync.rejected]: (state) => {},
     [addWorkSpaceChannelAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log("addWorkSpaceChannelAsync: ", action.payload);
+
       const newChannel = {
         id: action.payload.modal._id,
         name: action.payload.modal.name,
@@ -193,7 +193,7 @@ export const createChannelSlice = createSlice({
     [addTeamChannelAsync.rejected]: (state) => {},
     [addTeamChannelAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log("addTeamChannelAsync: ", action.payload);
+
       const newChannel = {
         id: action.payload.modal._id,
         name: action.payload.modal.name,
@@ -210,7 +210,7 @@ export const createChannelSlice = createSlice({
     [addOtherChannelAsync.rejected]: (state) => {},
     [addOtherChannelAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log("addOtherChannelAsync: ", action.payload);
+
       const newChannel = {
         id: action.payload.modal._id,
         name: action.payload.modal.name,

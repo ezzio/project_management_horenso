@@ -67,7 +67,7 @@ const kanban = createSlice({
     },
     [ListKanban.fulfilled]: (state, action) => {
       let Job_List = action.payload;
-      console.log(Job_List);
+
       if (Job_List) {
         state.listJobs = [];
         Job_List.ListJob.map((Eachjob) => {
@@ -97,7 +97,7 @@ const kanban = createSlice({
       state.loading = false;
     },
     [AddNewJobkanban.fulfilled]: (state, action) => {
-      console.log(action.payload);
+   
       const newKanban = {
         ...action.payload.infoJob,
         id_job: action.payload.infoJob.idJob,
@@ -114,7 +114,6 @@ const kanban = createSlice({
       state.loading = false;
     },
     [DeleteAJob.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       message.success('Success! This Job has been removed');
     },
@@ -125,7 +124,6 @@ const kanban = createSlice({
       state.loading = false;
     },
     [EditAJob.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       message.success('Success! This Job has been updated');
     },

@@ -9,7 +9,6 @@ function WorkspaceModal({
   members,
   conversationId,
 }) {
-  console.log("conver ID: ", conversationId);
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
