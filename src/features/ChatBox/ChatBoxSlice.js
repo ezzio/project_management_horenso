@@ -33,6 +33,7 @@ const initialState = {
     //   role: 'dev',
     // },
   ],
+  membersInConvers: []
 };
 export const listRoomChatAsync = createAsyncThunk(
   "ConversationTask/listMesageInRoom",
@@ -122,39 +123,19 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
-      console.log(action.payload);
       const stateUpdate = [];
-      const { infoRoom } = action.payload;
-
-      infoRoom.textChat.forEach((message) => {
-        console.log(message.avatar);
-        if (stateUpdate?.length === 0) {
-          stateUpdate.push({
-            user: {
-              avatar: message.avatar,
-              displayName: message.displayName,
-              sendAt: message.sendAt,
-              user_name: message.user_name,
-            },
-            // mess: [message.line_text],
-            sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-            mess: [
-              { text: message.line_text, isLiked: false, isDisLiked: false },
-            ],
-            replied_message: null,
-            type: "text",
-          });
-        } else {
-          if (
-            stateUpdate[stateUpdate?.length - 1].user.user_name ===
-              message.user_name &&
-            moment(stateUpdate[stateUpdate?.length - 1].user.sendAt).diff(
-              moment(message.sendAt),
-              "second"
-            ) < 60
-          ) {
-            stateUpdate[stateUpdate?.length - 1].mess.push(message.line_text);
-          } else {
+      const { infoRoom, isSuccess } = action.payload;
+   
+      if (isSuccess) {
+        state.membersInConvers = infoRoom.memberInRoom.map((item)=> {
+          let newObject = {
+            ...item,
+            is_online: true
+          }
+          return newObject;
+        })
+        infoRoom.textChat.forEach((message) => {
+          if (stateUpdate?.length === 0) {
             stateUpdate.push({
               user: {
                 avatar: message.avatar,
@@ -162,7 +143,6 @@ export const chatBoxSlice = createSlice({
                 sendAt: message.sendAt,
                 user_name: message.user_name,
               },
-              // mess: [message.line_text],
               sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
               mess: [
                 { text: message.line_text, isLiked: false, isDisLiked: false },
@@ -170,10 +150,47 @@ export const chatBoxSlice = createSlice({
               replied_message: null,
               type: "text",
             });
+          } else {
+          
+            if (
+              stateUpdate[stateUpdate?.length - 1].user.user_name ===
+                message.user_name &&
+              moment(message.sendAt).diff(
+                moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
+                "second"
+              ) < 60
+            ) {
+              stateUpdate[stateUpdate?.length - 1].mess.push({
+                text: message.line_text,
+                isLiked: false,
+                isDisLiked: false,
+              });
+            } else {
+              // console.log('tao dong tin nhan moi');
+              stateUpdate.push({
+                user: {
+                  avatar: message.avatar,
+                  displayName: message.displayName,
+                  sendAt: message.sendAt,
+                  user_name: message.user_name,
+                },
+                // mess: [message.line_text],
+                sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                mess: [
+                  {
+                    text: message.line_text,
+                    isLiked: false,
+                    isDisLiked: false,
+                  },
+                ],
+                replied_message: null,
+                type: "text",
+              });
+            }
           }
-        }
-      });
-      state.messages = stateUpdate;
+        });
+        state.messages = stateUpdate;
+      }
     },
   },
 });

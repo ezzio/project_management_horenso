@@ -46,8 +46,10 @@ const Chatbox = ({ socket }) => {
   };
 
   useEffect(() => {
-    dispatch(listRoomChatAsync({idRoom}));
-  }, []);
+    console.log(idRoom);
+    dispatch(listRoomChatAsync({ idRoom }));
+    // console.log('change room');
+  }, [idRoom]);
 
   const handleChangeUpload = (info) => {
     if (info.file.status === "uploading") {
@@ -107,9 +109,7 @@ const Chatbox = ({ socket }) => {
       socket.emit("sendMessageConversation", {
         room_id: idRoom,
         mess: data.message,
-        avatarURL: infoUser.avatarURL,
-        display_name: infoUser.display_name,
-        user_name: infoUser.name,
+        idUser: localStorage.getItem("access_token"),
         type: "text",
       });
     } else if (data.message && repliedMessage) {
