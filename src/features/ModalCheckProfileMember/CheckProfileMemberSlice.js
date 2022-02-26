@@ -1,25 +1,59 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import userApi from 'api/userApi';
 
 const initialState = {
-  username: 'ddkhoa120620',
-  displayName: 'Duong Dang Khoa',
-  avatarURL: 'https://joeschmoe.io/api/v1/random',
-  phone: '012345678',
-  bio: "Hi😋, I'm Pum",
-  email: 'khoab1809697@student.ctu.edu.vn',
-  company: 'App Core',
-  location: 'Soc Trang',
-  projectOwner: [
-    { id: 1, title: 'Horenso', progress: 30 },
-    { id: 2, title: 'Kanso', progress: 91 },
-  ],
+  user_name: '',
+  displayName: '',
+  avatarURL: '',
+  bio: '',
+  email: '',
+  company: '',
+  address: '',
+  projectOwner: [],
+  loading: false,
 };
+
+export const viewMemberInfo = createAsyncThunk(
+  '/user/getInfoUser',
+  async (params, thunkAPI) => {
+    const memberInfo = await userApi.checkProfileMember(params);
+    return memberInfo;
+  }
+);
 
 export const CheckProfileMember = createSlice({
   name: 'checkProfileMember',
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [viewMemberInfo.pending]: (state) => {
+      state.loading = true;
+    },
+    [viewMemberInfo.rejected]: (state) => {
+      state.loading = false;
+    },
+    [viewMemberInfo.fulfilled]: (state, action) => {
+      state.loading = false;
+      const payload = action.payload;
+      if (payload) {
+        let memberInfo = payload[0].userInfo;
+        state.user_name = memberInfo.username;
+        state.displayName = memberInfo.displayName;
+        state.avatarURL = memberInfo.avatarURL;
+        state.bio = memberInfo.bio;
+        state.email = memberInfo.email;
+        state.company = memberInfo.company;
+        state.address = memberInfo.address;
+        state.projectOwner = [];
+        payload[1].projectOwner.forEach((item) => {
+          state.projectOwner.push({
+            title: item.title,
+            progress: item.progress,
+          });
+        });
+      }
+    },
+  },
 });
 
 export default CheckProfileMember.reducer;

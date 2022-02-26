@@ -64,6 +64,17 @@ const userApi = {
         console.log(error);
       });
   },
+
+  checkProfileMember: (params) => {
+    return axios
+      .post(`${API}/user/getInfoUser`, { user_name: params })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default userApi;
