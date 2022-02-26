@@ -27,7 +27,6 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import MeetingRoom from 'features/MRoom/MeetingRoom';
 import SignUp from 'features/Register/Register';
-import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheckProfileMember';
 
 function App() {
   return (
@@ -99,6 +98,7 @@ const AnimatedRouter = () => {
           path="/:idProject/meeting/:idRoom"
           children={<MeetingRoom />}
         />
+
         <Route component={NotFound} />
       </Switch>
     </div>
