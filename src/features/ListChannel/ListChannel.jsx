@@ -15,7 +15,7 @@ import ChannelDrawer from "./component/ChannelDrawer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ListKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { getListChannel } from "./ListChannelSlice";
 import { message, Spin } from "antd";
 
@@ -25,9 +25,9 @@ const Listchannel = () => {
     (state) => state.createChannel.conversationId
   );
 
-  console.log("ID: ", conversationId);
   const dispatch = useDispatch();
   const params = useParams();
+  const history = useHistory();
 
   const [openWorkspaceModal, setOpenWorkspaceModal] = useState(false);
   const [openTeamsModal, setOpenTeamsModal] = useState(false);
@@ -77,8 +77,8 @@ const Listchannel = () => {
           </div>
           {channels.workspace.map((channel) => {
             return (
-              <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{channel.name}</a>
+              <li tabIndex="-1" className="list-channel__group__btn" >
+                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>{channel.name}</Link>
                 <FcSettings
                   style={{ position: "absolute", right: 50 }}
                   onClick={() =>

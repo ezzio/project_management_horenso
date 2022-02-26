@@ -6,7 +6,6 @@ import { Switch, Route, Link, useParams } from 'react-router-dom';
 import Workplace from './components/Workplace/Workplace.jsx';
 const Meeting = () => {
   const { idProject } = useParams();
-  console.log(idProject);
   const [room, setRoom] = useState([
     {
       id: '291adw',

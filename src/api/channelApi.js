@@ -33,7 +33,6 @@ const channelApi = {
   },
 
   addTeamChannel: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
@@ -50,13 +49,24 @@ const channelApi = {
   },
 
   addOtherChannel: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
         roomNameConversation: "others",
         memberInRoomUserName: params.members,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  listRoomConversation: (params) => {
+    return axios
+      .post(`${API}/conversation/listRoomConversation`, {
+        idRoomConversation: params.idRoom,
       })
       .then((response) => {
         return response.data;
