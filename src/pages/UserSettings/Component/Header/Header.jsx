@@ -6,8 +6,11 @@ import { Badge, Dropdown, Menu, Space, Tooltip, Typography } from 'antd';
 import { BellOutlined, LogoutOutlined } from '@ant-design/icons';
 // -> css
 import './Header.scss';
+
+import { useHistory } from 'react-router-dom';
 const { Title, Text } = Typography;
 const Header = () => {
+  const history = useHistory();
   const [notifications, setNotifications] = useState([
     { title: 'Bạn vừa nhận một task #012 trong dự án #12' },
   ]);
@@ -26,7 +29,7 @@ const Header = () => {
 
   const logOut = () => {
     localStorage.removeItem('access_token');
-    window.location.replace('/login');
+    history.replace('/login');
   };
 
   return (
