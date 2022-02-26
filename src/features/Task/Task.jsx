@@ -29,6 +29,8 @@ import {
   ApartmentOutlined,
   MessageOutlined,
 } from '@ant-design/icons';
+import { viewMemberInfo } from 'features/ModalCheckProfileMember/CheckProfileMemberSlice';
+import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheckProfileMember';
 
 const { Text } = Typography;
 
@@ -37,11 +39,19 @@ const Task = (props) => {
   const { idBoard } = useParams();
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const [userName, setUserName] = React.useState('');
   const location = useLocation();
   const loading = useSelector((state) => state.board.loading);
   // const currentTime = moment();
   // const projectTime = moment(task.endTime);
   // const endTime = currentTime.from(projectTime);
+
+  const viewProfile = (item) => {
+    setUserName(item);
+    setVisible(true);
+    dispatch(viewMemberInfo(item));
+  };
   // Delete task
   const handleDeleteTask = (task) => {
     dispatch(deleteTaskAsync({ id: task.id, columnId, idBoard }));
@@ -99,6 +109,9 @@ const Task = (props) => {
 
   return (
     <>
+      {visible && (
+        <ModalCheckProfileMember visible={true} setVisible={setVisible} />
+      )}
       {moment().isAfter(task.end_time) ? (
         <Badge.Ribbon text="Overdue" color="red">
           <Dropdown overlay={menu} trigger={['contextMenu']}>
@@ -229,8 +242,9 @@ const Task = (props) => {
                   <Tooltip title={tasker.user_name} placement="top">
                     <Avatar
                       src={tasker.avatar}
-                      style={{ backgroundColor: '#87d068' }}
+                      style={{ backgroundColor: '#87d068', cursor: 'pointer' }}
                       icon={<UserOutlined />}
+                      onClick={() => viewProfile(tasker.user_name)}
                     />
                   </Tooltip>
                 ))}
