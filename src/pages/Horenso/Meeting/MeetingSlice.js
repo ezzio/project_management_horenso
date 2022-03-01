@@ -11,6 +11,7 @@ const initialState = {
             description:
                 'Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúngta cần thảo luận về hướng giải quyết và phát triển của dự án ở giai đoạn một. Với 2 nhiệm vụ chính trong giai đoạn này là thiết kế mô hình ứng dụng và nghiên cứu API / Liberty liên quan',
             startTime: '19:00 12/06/2021',
+            endTime: '19:30 12/06/2021',
             members: [
                 {
                     name: 'Khoa', 
@@ -19,7 +20,10 @@ const initialState = {
                     name: 'Thang',
                 },
             ],
-            moment: moment('19:00 12/06/2022', 'HH:mm DD/MM/YYYY'),
+            duration: [
+                moment('19:00 12/06/2022', 'HH:mm DD/MM/YYYY'),
+                moment('19:30 12/06/2022', 'HH:mm DD/MM/YYYY'),
+            ]
         },
         {
             id: '291a2dw',
@@ -27,6 +31,7 @@ const initialState = {
             description:
                 'Cuộc họp được lên khi chúng ta cần thảo luận về hướng giải quyết và phát triển của dự án ở giai đoạn một. Với 2 nhiệm vụ chính trong giai đoạn này là thiết kế mô hình ứng dụng và nghiên cứu API / Liberty liên quan',
             startTime: '19:00 12/06/2021',
+            endTime: '19:00 12/06/2021',
             members: [
                 {
                     name: 'Khoa', 
@@ -35,7 +40,10 @@ const initialState = {
                     name: 'Thang',
                 },
             ],
-            moment: moment('19:00 12/06/2021', 'HH:mm DD/MM/YYYY'),
+            duration: [
+                moment('19:00 12/06/2021', 'HH:mm DD/MM/YYYY'),
+                moment('19:30 12/06/2021', 'HH:mm DD/MM/YYYY'),
+            ]
         },
     ],
     teamMembers: [
@@ -67,17 +75,16 @@ export const meetingSlice = createSlice({
     initialState,
     reducers: {
         createMeeting: (state, action) => {
-            const current = moment();
             const newMeeting = {
                 id: '291adw',
                 name: action.payload.name,
                 description: action.payload.description,
                 startTime: action.payload.startTime,
+                endTime: action.payload.endTime,
+                duration: action.payload.duration,
                 members: action.payload.members,
-                moment: action.payload.moment
             }
             console.log(newMeeting)
-            console.log(newMeeting.moment.isAfter(current))
             state.meetingRooms.push(newMeeting)
         },
     },

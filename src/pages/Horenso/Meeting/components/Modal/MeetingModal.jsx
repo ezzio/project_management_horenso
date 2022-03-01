@@ -9,6 +9,7 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.meeting.teamMembers)
 
+  const { RangePicker } = DatePicker
  
   const [form] = Form.useForm();
 
@@ -22,13 +23,15 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
   };
 
   const onFinish = (value) => {
-    const startTime = value.STime.format('HH:mm DD/MM/YYYY')
+    const startTime = value.duration[0].format('HH:mm DD/MM/YYYY');
+    const endTime = value.duration[1].format('HH:mm DD/MM/YYYY');
     const newMeeting = {
         name: value.name,
         description: value.desc,
         startTime,
+        endTime,
+        duration: value.duration, 
         members: value.members,
-        moment: value.STime
     }
     setIsModalVisible(false)
     dispatch(createMeeting(newMeeting))
@@ -81,11 +84,11 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
                      <Input placeholder="Enter meeting description" size="large" />
                 </Form.Item>
                 <Form.Item
-                    name="STime"
-                    label="Start time"
-                    rules={[{ required: true, message: "Please specify starting time" }]}
+                    name="duration"
+                    label="Duration"
+                    rules={[{ required: true, message: "Please specify meeting duration" }]}
                 >
-                    <DatePicker 
+                    <RangePicker 
                         format="HH:mm DD/MM/YYYY"
                         disabledDate={disabledDate}
                         showTime={{ defaultValue: moment('00:00', 'HH:mm') }}

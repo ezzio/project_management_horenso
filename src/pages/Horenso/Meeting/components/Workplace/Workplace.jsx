@@ -18,7 +18,7 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
           {room.map((x) => {
             return (
               <>
-                {x.moment.isAfter(current) ? (
+                {current.isBetween(x.duration[0], x.duration[1]) ? (
                   <div
                     onClick={() => {
                       window.location.replace(`http://localhost:3000/${idProject}/meeting/123`);
@@ -34,7 +34,6 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                           </div>
                         </div>
                         <div className="info">
-                          {x.status ? (
                             <>
                               <p>Bắt đầu lúc: {x.startTime}</p>
                               <div className="status status--online">
@@ -42,15 +41,6 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                                 Online
                               </div>
                             </>
-                          ) : (
-                            <>
-                              <p>Bắt đầu sau: 2 ngày 19 phút</p>
-                              <div className="status status--offline">
-                                <HiStatusOffline className="icon" />
-                                Offline
-                              </div>
-                            </>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -66,15 +56,6 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                         </div>
                       </div>
                       <div className="info">
-                        {x.status ? (
-                          <>
-                            <p>Bắt đầu lúc: {x.startTime}</p>
-                            <div className="status status--online">
-                              <HiStatusOnline className="icon" />
-                              Online
-                            </div>
-                          </>
-                        ) : (
                           <>
                             <p>Bắt đầu sau: 2 ngày 19 phút</p>
                             <div className="status status--offline">
@@ -82,7 +63,6 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                               Offline
                             </div>
                           </>
-                        )}
                       </div>
                     </div>
                   </div>
