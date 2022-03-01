@@ -1,17 +1,17 @@
-import { Spin } from "antd";
-import Chatbox from "features/ChatBox/Chatbox";
-import ConversationSetting from "features/ConversationSetting/ConversationSetting";
-import Listchannel from "features/ListChannel/ListChannel";
-import React, { useState, useEffect } from "react";
-import { Route, Switch, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { io, Socket } from "socket.io-client";
-import { listRoomChatAsync } from "features/ChatBox/ChatBoxSlice";
-import { useDispatch } from "react-redux";
+import { Spin } from 'antd';
+import Chatbox from 'features/ChatBox/Chatbox';
+import ConversationSetting from 'features/ConversationSetting/ConversationSetting';
+import Listchannel from 'features/ListChannel/ListChannel';
+import React, { useState, useEffect } from 'react';
+import { Route, Switch, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { io, Socket } from 'socket.io-client';
+import { listRoomChatAsync } from 'features/ChatBox/ChatBoxSlice';
+import { useDispatch } from 'react-redux';
 
-import { newMessage } from "features/ChatBox/ChatBoxSlice";
-import "./Conversation.scss";
-let socket = io("http://localhost:4000");
+import { newMessage } from 'features/ChatBox/ChatBoxSlice';
+import './Conversation.scss';
+let socket = io('http://localhost:4000');
 const Conversation = () => {
   const [openCreatechannel, setOpenCreatechannel] = useState(false);
   const loading = useSelector((state) => state.createChannel.loading);
@@ -20,28 +20,29 @@ const Conversation = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.emit("chat-connectToRoomConversation", {
-      id: localStorage.getItem("access_token"),
+    socket.emit('chat-connectToRoomConversation', {
+      id: localStorage.getItem('access_token'),
       avatarURL: user.avatarURL,
       display_name: user.display_name,
       user_name: user.name,
       room_id: idRoom,
     });
-    socket.on("newMessagesConversation", (message) => {
+    socket.on('newMessagesConversation', (message) => {
       dispatch(newMessage(message));
       // console.log(message);
     });
   }, []);
 
   return (
-    <>
-      <div className="ctn ctn-con">
-        {/* <Spin
-          tip="Loading..."
-          size="large"
-          spinning={loading}
-          style={{ width: "100%", height: "100%" }}
-        > */}
+    <div className="spin-ctn">
+      <Spin
+        tip="Loading..."
+        size="large"
+        spinning={loading}
+        style={{ width: '100%', height: '100%' }}
+        className="spinning"
+      >
+        <div className="ctn ctn-con">
           <Listchannel />
 
           <Switch>
@@ -50,9 +51,9 @@ const Conversation = () => {
               <ConversationSetting />
             </Route>
           </Switch>
-        {/* </Spin> */}
-      </div>
-    </>
+        </div>
+      </Spin>
+    </div>
   );
 };
 

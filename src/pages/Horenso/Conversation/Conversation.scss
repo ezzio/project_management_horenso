@@ -1,3 +1,15 @@
+.spin-ctn {
+  height: 100%;
+
+  & .ant-spin-nested-loading {
+    height: 100%;
+
+    & .ant-spin-container {
+      height: 100%;
+    }
+  }
+}
+
 .ctn-con {
   display: flex;
 }

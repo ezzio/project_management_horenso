@@ -36,6 +36,18 @@ const TaskItemRender = ({ tasks }) => {
             }
           />
           <div
+            className={
+              item.priority.toLowerCase() === 'high'
+                ? 'high'
+                : item.priority.toLowerCase() === 'medium'
+                ? 'medium'
+                : 'low'
+            }
+            style={{ width: 'fit-content', marginRight: '1rem' }}
+          >
+            {item.priority}
+          </div>
+          <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
