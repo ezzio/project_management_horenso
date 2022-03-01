@@ -17,6 +17,8 @@ import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
 import signUpReducer from 'features/Register/registerSlice';
 import sidebarReducer from 'components/SideBar/sideBarSlice';
+import meetingReducer from 'pages/Horenso/Meeting/MeetingSlice';
+
 export const store = configureStore({
   reducer: {
     board: boardReducer,
@@ -36,6 +38,6 @@ export const store = configureStore({
     roomMeeting: meetingRoomReducer,
     dashboard: dashboardReducer,
     sidebar: sidebarReducer,
-    
+    meeting: meetingReducer,
   },
 });

@@ -66,7 +66,7 @@ const CreateProject = (props) => {
           label="Name"
           rules={[{ required: true }, { type: 'string', min: 6 }]}
         >
-          <Input placeholder="enter name of project" size="large" />
+          <Input placeholder="Enter project name" size="large" />
         </Form.Item>
       </Form>
     </Modal>

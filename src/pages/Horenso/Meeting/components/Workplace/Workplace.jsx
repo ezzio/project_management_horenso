@@ -4,8 +4,13 @@ import { HiStatusOnline, HiStatusOffline } from "react-icons/hi";
 import "./Workplace.scss";
 import { Link, useParams } from "react-router-dom";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
-const Workplace = ({ room }) => {
+import moment from "moment";
+
+const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
   const { idProject } = useParams();
+
+  let current = moment();
+
   return (
     <>
       {room.length >= 1 ? (
@@ -13,7 +18,7 @@ const Workplace = ({ room }) => {
           {room.map((x) => {
             return (
               <>
-                {x.status ? (
+                {x.moment.isAfter(current) ? (
                   <div
                     onClick={() => {
                       window.location.replace(`http://localhost:3000/${idProject}/meeting/123`);
@@ -25,13 +30,13 @@ const Workplace = ({ room }) => {
                         <div className="description">
                           <b>Mô tả</b>
                           <div>
-                            <p>{x.decription}</p>
+                            <p>{x.description}</p>
                           </div>
                         </div>
                         <div className="info">
                           {x.status ? (
                             <>
-                              <p>Bắt đầu lúc: {x.timeStart}</p>
+                              <p>Bắt đầu lúc: {x.startTime}</p>
                               <div className="status status--online">
                                 <HiStatusOnline className="icon" />
                                 Online
@@ -57,13 +62,13 @@ const Workplace = ({ room }) => {
                       <div className="description">
                         <b>Mô tả</b>
                         <div>
-                          <p>{x.decription}</p>
+                          <p>{x.description}</p>
                         </div>
                       </div>
                       <div className="info">
                         {x.status ? (
                           <>
-                            <p>Bắt đầu lúc: {x.timeStart}</p>
+                            <p>Bắt đầu lúc: {x.startTime}</p>
                             <div className="status status--online">
                               <HiStatusOnline className="icon" />
                               Online
@@ -93,7 +98,9 @@ const Workplace = ({ room }) => {
             Để bất đầu cuộc hợp mới nhấp vào <b>Cuộc họp mới</b>
           </p>
           <button className="creator__new-room">
-            <AiOutlineVideoCameraAdd className="icon" />
+            <AiOutlineVideoCameraAdd className="icon" 
+              onClick={() => setIsModalVisible(true)}
+            />
             Cuộc họp mới
           </button>
         </div>

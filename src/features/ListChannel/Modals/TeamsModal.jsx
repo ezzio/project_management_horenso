@@ -19,7 +19,7 @@ function TeamsModal({
     console.log(value);
     setOpenTeamsModal(false);
     dispatch(addTeamChannelAsync({ conversationId, ...value }));
-    setTimeout(message.success("Add channel successfull"), 500);
+    setTimeout(message.success("Channel successfully created!"), 500);
   };
 
   const onFinishFailed = () => {
@@ -66,7 +66,7 @@ function TeamsModal({
             rules={[
               {
                 required: true,
-                message: "Please choose member to this conversation",
+                message: "Please choose members to add to this conversation",
               },
             ]}
           >
