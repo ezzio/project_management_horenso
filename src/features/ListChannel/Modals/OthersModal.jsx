@@ -17,7 +17,7 @@ function OthersModal({
     console.log(value);
     setOpenOthersModal(false);
     dispatch(addOtherChannelAsync({ conversationId, ...value }));
-    setTimeout(message.success("Add channel successfull"), 500);
+    setTimeout(message.success("Channel successfully created!"), 500);
   };
 
   const onFinishFailed = () => {
@@ -27,8 +27,8 @@ function OthersModal({
   return (
     <div>
       <Modal
-        visible={openOthersModal}
         title="Add others channel"
+        visible={openOthersModal}
         okText="Create"
         cancelText="Cancel"
         onCancel={() => setOpenOthersModal(false)}
@@ -58,14 +58,13 @@ function OthersModal({
           >
             <Input placeholder="Enter name of others channel" size="large" />
           </Form.Item>
-
           <Form.Item
             label="Members"
             name="members"
             rules={[
               {
                 required: true,
-                message: "Please choose member to this conversation",
+                message: "Please choose members to add to this conversation",
               },
             ]}
           >

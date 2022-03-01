@@ -16,10 +16,9 @@ import settingReducer from 'features/Setting/settingSlice';
 import meetingRoomReducer from 'features/MRoom/meetingRoomSlice';
 import dashboardReducer from 'pages/Dashboard/dashboardSlice';
 import signUpReducer from 'features/Register/registerSlice';
-
 import CheckProfileMemberReducer from 'features/ModalCheckProfileMember/CheckProfileMemberSlice';
-
 import sidebarReducer from 'components/SideBar/sideBarSlice';
+import meetingReducer from 'pages/Horenso/Meeting/MeetingSlice';
 
 export const store = configureStore({
   reducer: {
@@ -39,11 +38,8 @@ export const store = configureStore({
     setting: settingReducer,
     roomMeeting: meetingRoomReducer,
     dashboard: dashboardReducer,
-
     checkProfileMember: CheckProfileMemberReducer,
-
     sidebar: sidebarReducer,
-    
-
+    meeting: meetingReducer,
   },
 });

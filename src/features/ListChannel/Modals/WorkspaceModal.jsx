@@ -17,7 +17,7 @@ function WorkspaceModal({
     // console.log(value);
     setOpenWorkspaceModal(false);
     dispatch(addWorkSpaceChannelAsync({ conversationId, ...value }));
-    setTimeout(message.success("Add channel successfull"), 500);
+    setTimeout(message.success("Channel successfully created!"), 500);
   };
 
   const onFinishFailed = () => {
@@ -65,7 +65,7 @@ function WorkspaceModal({
             rules={[
               {
                 required: true,
-                message: "Please choose member to this conversation",
+                message: "Please choose members to add to this conversation",
               },
             ]}
           >
