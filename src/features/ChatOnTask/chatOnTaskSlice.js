@@ -36,7 +36,6 @@ const chatOnTaskSlice = createSlice({
       } else state.messages.push(action.payload);
     },
     newMessage: (state, action) => {
-      console.log(action.payload);
       let newMessage = action.payload;
       let newMessageRecive = {
         user: {

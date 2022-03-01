@@ -31,7 +31,6 @@ const BubbleChat = (props) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
-  console.log(message);
 
   const like = (item, index) => {
     setLikes(1);
