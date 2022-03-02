@@ -1,100 +1,59 @@
 @import "styles/Color.scss";
-.chatbox {
+.spinning-ctn-conversation {
   width: 70%;
-  height: 100%;
-  padding: 0.5rem 3rem;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: flex-end;
-
-  &__content {
-    flex: -1;
+  & .ant-spin-nested-loading {
     width: 100%;
-    margin-bottom: 1rem;
 
-    overflow-y: scroll;
-
-    line-height: 1.6;
-
-    & > p {
-      margin: 0;
-    }
-
-    & .ant-comment-content-detail {
-      display: flex !important;
-      flex-direction: column !important;
+    & .ant-spin-container {
+      width: 100%;
     }
   }
 
-  &__control {
+  & .chatbox {
     width: 100%;
+    height: 100%;
+    padding: 0.5rem 3rem;
+    display: flex;
+    flex-direction: column;
 
-    &__replied-container {
+    justify-content: flex-end;
+
+    &__content {
+      flex: -1;
       width: 100%;
-      padding: 0 1rem;
+      margin-bottom: 1rem;
 
-      background-color: $_GREENBLUE;
+      overflow-y: scroll;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      line-height: 1.6;
 
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
+      & > p {
+        margin: 0;
+      }
+
+      & .ant-comment-content-detail {
+        display: flex !important;
+        flex-direction: column !important;
+      }
     }
 
-    // display: flex;
+    &__control {
+      width: 100%;
 
-    // & .selection-type-messages {
-    //   width: 10%;
-    //   height: 32px;
-    //   display: flex;
-    //   justify-content: space-evenly;
-    //   align-content: center;
-    //   padding-top: 0.5rem;
-    //   border-top: solid 1px #ddd;
-    //   border-bottom: solid 1px #ddd;
-    // }
+      &__replied-container {
+        width: 100%;
+        padding: 0 1rem;
 
-    // &__input {
-    //   width: 100%;
-    //   height: 60%;
+        background-color: $_GREENBLUE;
 
-    //   padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    //   border-radius: 10px 0 0 10px;
-    //   border: 1px solid #ccc;
-    //   border-right: none;
-
-    //   flex: 8;
-
-    //   &:focus {
-    //     outline: none;
-    //   }
-    // }
-
-    // &__optional {
-    //   display: flex;
-    //   align-items: center;
-    //   color: $_GRAY;
-    //   height: 40%;
-    //   width: 100%;
-    //   flex: 2;
-    //   & > section {
-    //     height: 150%;
-    //     width: 100%;
-    //     display: flex;
-    //     align-items: center;
-    //     border: 1px solid #ccc;
-    //     border-left: none;
-    //     & > svg {
-    //       cursor: pointer;
-    //       font-size: 1.5rem;
-    //       margin: 0 1rem;
-    //     }
-    //   }
-    // }
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+    }
   }
 }
 
