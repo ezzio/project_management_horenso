@@ -31,6 +31,8 @@ import {
 import axios from 'axios';
 import { checkCompleted } from 'features/Board/boardSlice';
 import ChatOnTask from 'features/ChatOnTask/ChatOnTask';
+import { viewMemberInfo } from 'features/ModalCheckProfileMember/CheckProfileMemberSlice';
+import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheckProfileMember';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { AiFillFileZip } from 'react-icons/ai';
@@ -99,9 +101,18 @@ const DetailTask = (props) => {
   };
   const hasSelected = selectedRowKeys.length > 0;
 
+  // View member's profile
+  const [visible, setVisible] = useState(false);
+  const [userName, setUserName] = useState('');
+  const viewProfile = (item) => {
+    setUserName(item);
+    setVisible(true);
+    dispatch(viewMemberInfo(item));
+  };
+
   // Modal form add new one
   const [form] = Form.useForm();
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const onCreate = (values) => {
     const nvalues = {
@@ -302,13 +313,16 @@ const DetailTask = (props) => {
   }
   return (
     <>
+      {visible && (
+        <ModalCheckProfileMember visible={true} setVisible={setVisible} />
+      )}
       <Modal
-        visible={visible}
+        visible={isVisible}
         title="Create a new detail task"
         okText="Create"
         cancelText="Cancel"
         onCancel={() => {
-          setVisible(false);
+          setIsVisible(false);
         }}
         onOk={() => {
           form
@@ -450,9 +464,10 @@ const DetailTask = (props) => {
                     placement="top"
                   >
                     <Avatar
-                      style={{ backgroundColor: '#87d068' }}
+                      style={{ backgroundColor: '#87d068', cursor: 'pointer' }}
                       icon={<UserOutlined />}
                       src={mem.avatar}
+                      onClick={() => viewProfile(mem.user_name)}
                     />
                   </Tooltip>
                 ))}
