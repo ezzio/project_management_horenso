@@ -85,7 +85,9 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
             Cuộc họp mới
           </button> */}
           <Empty description={<span>No meeting yet!</span>}>
-            <Button type="primary">Create Now</Button>
+            <Button type="primary" onClick={() => setIsModalVisible(true)}>
+                Create Now
+            </Button>
           </Empty>
         </div>
       )}
