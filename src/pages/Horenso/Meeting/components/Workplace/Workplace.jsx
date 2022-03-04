@@ -6,9 +6,10 @@ import { Link, useParams } from "react-router-dom";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import moment from "moment";
 
-const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
+const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
   const { idProject } = useParams();
 
+  console.log(room);
   let current = moment();
 
   return (
@@ -21,7 +22,9 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                 {x.moment.isAfter(current) ? (
                   <div
                     onClick={() => {
-                      window.location.replace(`http://localhost:3000/${idProject}/meeting/123`);
+                      window.location.replace(
+                        `http://localhost:3000/${idProject}/meeting/123`
+                      );
                     }}
                   >
                     <div className="workplace__room">
@@ -98,7 +101,8 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
             Để bất đầu cuộc hợp mới nhấp vào <b>Cuộc họp mới</b>
           </p>
           <button className="creator__new-room">
-            <AiOutlineVideoCameraAdd className="icon" 
+            <AiOutlineVideoCameraAdd
+              className="icon"
               onClick={() => setIsModalVisible(true)}
             />
             Cuộc họp mới
