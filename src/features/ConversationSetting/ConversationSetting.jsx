@@ -1,9 +1,9 @@
-import { Typography } from "antd";
+import { Typography } from 'antd';
 // import { useDispatch, useSelector } from "react-redux";
-import React from "react";
-import { useSelector } from "react-redux";
-import MembersInConvers from "./components/MembersInConvers";
-import "./ConversationSetting.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import MembersInConvers from './components/MembersInConvers';
+import './ConversationSetting.scss';
 
 const { Title } = Typography;
 const ConversationSetting = () => {
@@ -31,7 +31,6 @@ const ConversationSetting = () => {
   //   is_online: true,
   // },
   // ];
-console.log(membersInConvers);
   return (
     <div className="conversation-setting">
       <div className="conversation-setting__role">
@@ -47,7 +46,7 @@ console.log(membersInConvers);
                       userId={item.userId}
                       user_displayName={item.user_displayName}
                       avatarUrl={item.avatarUrl}
-                      is_online= {item.is_online}
+                      is_online={item.is_online}
                     />
                   </div>
                 );

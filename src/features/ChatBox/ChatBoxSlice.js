@@ -1,7 +1,7 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import moment from "moment";
+import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
+import moment from 'moment';
 // import { createSlice, current,  } from "@reduxjs/toolkit";
-import channelApi from "api/channelApi";
+import channelApi from 'api/channelApi';
 const initialState = {
   loading: false,
   messages: [
@@ -33,10 +33,10 @@ const initialState = {
     //   role: 'dev',
     // },
   ],
-  membersInConvers: []
+  membersInConvers: [],
 };
 export const listRoomChatAsync = createAsyncThunk(
-  "ConversationTask/listMesageInRoom",
+  'ConversationTask/listMesageInRoom',
   async (params, thunkAPI) => {
     let sendChatOnTask = await channelApi.listRoomConversation(params);
     return sendChatOnTask;
@@ -44,7 +44,7 @@ export const listRoomChatAsync = createAsyncThunk(
 );
 
 export const chatBoxSlice = createSlice({
-  name: "chatbox",
+  name: 'chatbox',
   initialState,
   reducers: {
     sendMessage: (state, action) => {
@@ -54,7 +54,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          "second"
+          'second'
         ) < 60
       ) {
         state.messages[state.messages.length - 1].mess.push(
@@ -77,10 +77,10 @@ export const chatBoxSlice = createSlice({
           display_name: newMessage.display_name,
           avatar: newMessage.avatarURL,
         },
-        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
         replied_message: null,
-        type: "text",
+        type: 'text',
       };
       if (
         state.messages[state.messages.length - 1] &&
@@ -88,7 +88,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          "second"
+          'second'
         ) < 60
       ) {
         state.messages[state.messages.length - 1].mess.push({
@@ -123,17 +123,18 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
+      state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
-   
+
       if (isSuccess) {
-        state.membersInConvers = infoRoom.memberInRoom.map((item)=> {
+        state.membersInConvers = infoRoom.memberInRoom.map((item) => {
           let newObject = {
             ...item,
-            is_online: true
-          }
+            is_online: true,
+          };
           return newObject;
-        })
+        });
         infoRoom.textChat.forEach((message) => {
           if (stateUpdate?.length === 0) {
             stateUpdate.push({
@@ -143,21 +144,20 @@ export const chatBoxSlice = createSlice({
                 sendAt: message.sendAt,
                 user_name: message.user_name,
               },
-              sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+              sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
               mess: [
                 { text: message.line_text, isLiked: false, isDisLiked: false },
               ],
               replied_message: null,
-              type: "text",
+              type: 'text',
             });
           } else {
-          
             if (
               stateUpdate[stateUpdate?.length - 1].user.user_name ===
                 message.user_name &&
               moment(message.sendAt).diff(
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
-                "second"
+                'second'
               ) < 60
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
@@ -175,7 +175,7 @@ export const chatBoxSlice = createSlice({
                   user_name: message.user_name,
                 },
                 // mess: [message.line_text],
-                sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 mess: [
                   {
                     text: message.line_text,
@@ -184,7 +184,7 @@ export const chatBoxSlice = createSlice({
                   },
                 ],
                 replied_message: null,
-                type: "text",
+                type: 'text',
               });
             }
           }
