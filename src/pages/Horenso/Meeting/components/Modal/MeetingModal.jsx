@@ -6,8 +6,12 @@ import { createMeeting, createMettingRoom } from "../../MeetingSlice";
 import { Switch, Route, Link, useParams } from "react-router-dom";
 function MeetingModal({ isModalVisible, setIsModalVisible }) {
   const dispatch = useDispatch();
-  const members = useSelector((state) => state.meeting.teamMembers);
+
   const { idProject } = useParams();
+  const members = useSelector((state) => state.meeting.teamMembers)
+
+  const { RangePicker } = DatePicker
+ 
   const [form] = Form.useForm();
 
   function disabledDate(current) {
@@ -20,11 +24,13 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
   };
 
   const onFinish = (value) => {
-    const startTime = value.STime.format("HH:mm DD/MM/YYYY");
+    const startTime = value.duration[0].format('HH:mm DD/MM/YYYY');
+    const endTime = value.duration[1].format('HH:mm DD/MM/YYYY');
     const newMeeting = {
       name: value.name,
       description: value.desc,
       startTime,
+      endTime,
       members: value.members,
       moment: value.STime,
       idProject,
@@ -108,28 +114,61 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
               size="large"
             />
           </Form.Item>
-          <Form.Item
-            label="Members"
-            name="members"
-            rules={[
-              {
-                required: true,
-                message: "Please choose member to add to this meeting",
-              },
-            ]}
-          >
-            <Select
+      
+            {/* <Select
               mode="multiple"
               placeholder="Members in this conversation"
               size="large"
-            >
-              {members.map((item) => (
-                <Select.Option value={item.name}>{item.name}</Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        </Form>
-      </Modal>
+            > */}
+                <Form.Item
+                    name="name"
+                    label="Name"
+                    rules={[{ required: true, message: "This field is required" }, 
+                        { type: 'string', min: 6, message: "Name must be longer than 6 characters"}]}
+                >
+                     <Input placeholder="Enter meeting name" size="large" />
+                </Form.Item>
+                <Form.Item
+                    name="desc"
+                    label="Description"
+                    rules={[{ required: true, message: "This field is required" }, 
+                        { type: 'string', min: 6, max: 200, message: "Description must be between than 6-200 characters"}]}
+                >
+                     <Input placeholder="Enter meeting description" size="large" />
+                </Form.Item>
+                <Form.Item
+                    name="duration"
+                    label="Duration"
+                    rules={[{ required: true, message: "Please specify meeting duration" }]}
+                >
+                    <RangePicker 
+                        format="HH:mm DD/MM/YYYY"
+                        disabledDate={disabledDate}
+                        showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
+                        size='large'
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Members"
+                    name="members"
+                    rules={[
+                    {
+                        required: true,
+                        message: "Please choose member to add to this meeting",
+                    },
+                    ]}
+                >
+                    <Select mode="multiple" 
+                        placeholder="Members in this conversation"
+                        size='large'
+                    >
+                        {members.map((item) => (
+                            <Select.Option value={item.name}>{item.name}</Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
+            </Form>
+        </Modal>
     </div>
   );
 }

@@ -3,7 +3,8 @@ import propTypes from "prop-types";
 import { HiStatusOnline, HiStatusOffline } from "react-icons/hi";
 import "./Workplace.scss";
 import { Link, useParams } from "react-router-dom";
-import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+// import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { Empty, Button } from "antd";
 import moment from "moment";
 
 const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
@@ -19,7 +20,7 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
           {room.map((x) => {
             return (
               <>
-                {x.moment.isAfter(current) ? (
+                {current.isBetween(x.duration[0], x.duration[1]) ? (
                   <div
                     onClick={() => {
                       window.location.replace(
@@ -37,7 +38,6 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                           </div>
                         </div>
                         <div className="info">
-                          {x.status ? (
                             <>
                               <p>Bắt đầu lúc: {x.startTime}</p>
                               <div className="status status--online">
@@ -45,15 +45,6 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                                 Online
                               </div>
                             </>
-                          ) : (
-                            <>
-                              <p>Bắt đầu sau: 2 ngày 19 phút</p>
-                              <div className="status status--offline">
-                                <HiStatusOffline className="icon" />
-                                Offline
-                              </div>
-                            </>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -69,15 +60,6 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                         </div>
                       </div>
                       <div className="info">
-                        {x.status ? (
-                          <>
-                            <p>Bắt đầu lúc: {x.startTime}</p>
-                            <div className="status status--online">
-                              <HiStatusOnline className="icon" />
-                              Online
-                            </div>
-                          </>
-                        ) : (
                           <>
                             <p>Bắt đầu sau: 2 ngày 19 phút</p>
                             <div className="status status--offline">
@@ -85,7 +67,6 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                               Offline
                             </div>
                           </>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -96,7 +77,7 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
         </div>
       ) : (
         <div className="creator">
-          <h1>Hiện tại dự án chưa có cuộc họp nào.</h1>
+          {/* <h1>Hiện tại dự án chưa có cuộc họp nào.</h1>
           <p>
             Để bất đầu cuộc hợp mới nhấp vào <b>Cuộc họp mới</b>
           </p>
@@ -106,7 +87,10 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
               onClick={() => setIsModalVisible(true)}
             />
             Cuộc họp mới
-          </button>
+          </button> */}
+          <Empty description={<span>No meeting yet!</span>}>
+            <Button type="primary">Create Now</Button>
+          </Empty>
         </div>
       )}
     </>
