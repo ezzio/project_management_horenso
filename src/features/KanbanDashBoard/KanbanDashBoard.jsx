@@ -33,10 +33,43 @@ const KanbanDashBoard = () => {
   const loading = useSelector((state) => state.kanban.loading);
   const dispatch = useDispatch();
 
+  //-------------- Jobs On Working -------------->
+  const highJobsOnWorking = jobs.listJobs.filter(
+    (item) => item.priority === 'High'
+  );
+  const mediumJobsOnWorking = jobs.listJobs.filter(
+    (item) => item.priority === 'Medium'
+  );
+  const lowJobsOnWorking = jobs.listJobs.filter(
+    (item) => item.priority === 'Low'
+  );
+  const resultJobsOnWorking = [
+    ...highJobsOnWorking,
+    ...mediumJobsOnWorking,
+    ...lowJobsOnWorking,
+  ];
+  // <--------------------------------------------
+
+  //------------ Jobs In Completed Space -------->
+  const isCompletedJobs = jobs.listJobs.filter((job) => job.is_completed);
+  const highCompletedJobs = isCompletedJobs.filter(
+    (item) => item.priority === 'High'
+  );
+  const mediumCompletedJobs = isCompletedJobs.filter(
+    (item) => item.priority === 'Medium'
+  );
+  const lowCompletedJobs = isCompletedJobs.filter(
+    (item) => item.priority === 'Low'
+  );
+  const resultCompletedJobs = [
+    ...highCompletedJobs,
+    ...mediumCompletedJobs,
+    ...lowCompletedJobs,
+  ];
+  //<---------------------------------------------
+
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
-
-  const isCompletedJobs = jobs.listJobs.filter((job) => job.is_completed);
 
   // List Kanban
   useEffect(() => {
@@ -209,7 +242,7 @@ const KanbanDashBoard = () => {
             </div>
             <div className="ctn-kanbandashboard__working__content">
               {jobs.listJobs?.length > 0 ? (
-                jobs.listJobs.map((job) => {
+                resultJobsOnWorking.map((job) => {
                   if (!job.is_completed)
                     return (
                       <JobTag
@@ -238,7 +271,7 @@ const KanbanDashBoard = () => {
             </div>
             {showCompleteTask && (
               <CompleteTask
-                jobs={isCompletedJobs}
+                jobs={resultCompletedJobs}
                 handleDeleteJob={handleDeleteJob}
               />
             )}
