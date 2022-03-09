@@ -6,12 +6,13 @@ import { Link, useParams } from "react-router-dom";
 // import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { Empty, Button } from "antd";
 import moment from "moment";
+import { WebsitURl } from "api/configApi";
 
-const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
+const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
   const { idProject } = useParams();
 
   let current = moment();
-
+  console.log(room);
   return (
     <>
       {room.length >= 1 ? (
@@ -22,7 +23,9 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                 {current.isBetween(x.duration[0], x.duration[1]) ? (
                   <div
                     onClick={() => {
-                      window.location.replace(`http://localhost:3000/${idProject}/meeting/123`);
+                      window.location.replace(
+                        `${WebsitURl}/${idProject}/meeting/${x.id}`
+                      );
                     }}
                   >
                     <div className="workplace__room">
@@ -35,28 +38,35 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                           </div>
                         </div>
                         <div className="info">
-                            <>
-                              <p>Bắt đầu lúc: {x.startTime}</p>
-                              <div className="status status--online">
-                                <HiStatusOnline className="icon" />
-                                Online
-                              </div>
-                            </>
+                          <>
+                            <p>Bắt đầu lúc: {x.startTime}</p>
+                            <div className="status status--online">
+                              <HiStatusOnline className="icon" />
+                              Online
+                            </div>
+                          </>
                         </div>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="workplace__room">
-                    <div className="name">{x.name}</div>
-                    <div className="dropdown">
-                      <div className="description">
-                        <b>Mô tả</b>
-                        <div>
-                          <p>{x.description}</p>
+                  <div
+                    onClick={() => {
+                      window.location.replace(
+                        `${WebsitURl}/${idProject}/meeting/${x.id}`
+                      );
+                    }}
+                  >
+                    <div className="workplace__room">
+                      <div className="name">{x.name}</div>
+                      <div className="dropdown">
+                        <div className="description">
+                          <b>Mô tả</b>
+                          <div>
+                            <p>{x.description}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="info">
+                        <div className="info">
                           <>
                             <p>Bắt đầu sau: 2 ngày 19 phút</p>
                             <div className="status status--offline">
@@ -64,6 +74,7 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
                               Offline
                             </div>
                           </>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -79,14 +90,15 @@ const Workplace = ({ room, setIsModalVisible={setIsModalVisible} }) => {
             Để bất đầu cuộc hợp mới nhấp vào <b>Cuộc họp mới</b>
           </p>
           <button className="creator__new-room">
-            <AiOutlineVideoCameraAdd className="icon" 
+            <AiOutlineVideoCameraAdd
+              className="icon"
               onClick={() => setIsModalVisible(true)}
             />
             Cuộc họp mới
           </button> */}
           <Empty description={<span>No meeting yet!</span>}>
             <Button type="primary" onClick={() => setIsModalVisible(true)}>
-                Create Now
+              Create Now
             </Button>
           </Empty>
         </div>

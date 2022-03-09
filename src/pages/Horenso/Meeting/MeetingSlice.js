@@ -1,96 +1,101 @@
-import { createSlice  } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createChannelSlice } from "features/ListChannel/ListChannelSlice";
+import MeetingRoomApi from "api/MeetingRoom";
 import moment from "moment";
 
 const initialState = {
-    loading: false,
-    meetingRooms: [
-        {
-            id: '291adw',
-            name: 'Phân tích giai đoạn xây dựng giao diện người dùng',
-            description:
-                'Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúng Cuộc họp được lên khi chúngta cần thảo luận về hướng giải quyết và phát triển của dự án ở giai đoạn một. Với 2 nhiệm vụ chính trong giai đoạn này là thiết kế mô hình ứng dụng và nghiên cứu API / Liberty liên quan',
-            startTime: '19:00 12/06/2021',
-            endTime: '19:30 12/06/2021',
-            members: [
-                {
-                    name: 'Khoa', 
-                },
-                {
-                    name: 'Thang',
-                },
-            ],
-            duration: [
-                moment('19:00 12/06/2022', 'HH:mm DD/MM/YYYY'),
-                moment('19:30 12/06/2022', 'HH:mm DD/MM/YYYY'),
-            ]
-        },
-        {
-            id: '291a2dw',
-            name: 'Phân tích giai đoạn 1',
-            description:
-                'Cuộc họp được lên khi chúng ta cần thảo luận về hướng giải quyết và phát triển của dự án ở giai đoạn một. Với 2 nhiệm vụ chính trong giai đoạn này là thiết kế mô hình ứng dụng và nghiên cứu API / Liberty liên quan',
-            startTime: '19:00 12/06/2021',
-            endTime: '19:00 12/06/2021',
-            members: [
-                {
-                    name: 'Khoa', 
-                },
-                {
-                    name: 'Thang',
-                },
-            ],
-            duration: [
-                moment('19:00 12/06/2021', 'HH:mm DD/MM/YYYY'),
-                moment('19:30 12/06/2021', 'HH:mm DD/MM/YYYY'),
-            ]
-        },
-    ],
-    teamMembers: [
-        {   
-            id: 1,
-            name: 'Khoa',
-        },
-        {   
-            id: 2,
-            name: 'Thang',
-        },
-        {   
-            id: 3,
-            name: 'Nguyen',
-        },
-        {   
-            id: 4,
-            name: 'Nhut',
-        },
-        {   
-            id: 5,
-            name: 'Minh',
-        },
-    ],
-}
+  loading: false,
+  meetingRooms: [],
+  teamMembers: [
+    {
+      id: 1,
+      name: "Khoa",
+    },
+    {
+      id: 2,
+      name: "Thang",
+    },
+    {
+      id: 3,
+      name: "Nguyen",
+    },
+    {
+      id: 4,
+      name: "Nhut",
+    },
+    {
+      id: 5,
+      name: "Minh",
+    },
+  ],
+};
+
+export const listMeetingRoom = createAsyncThunk(
+  "/meetingRoom/ListMeetingRoom",
+  async (params, thunkAPI) => {
+    const response = await MeetingRoomApi.listMeetingRoomInProject(params);
+    return response;
+  }
+);
+export const createMettingRoom = createAsyncThunk(
+  "/meetingRoom/CreateMettingRoom",
+  async (params, thunkAPI) => {
+    const response = await MeetingRoomApi.createMeetingRoom(params);
+
+    return response;
+  }
+);
 
 export const meetingSlice = createSlice({
-    name: "meeting",
-    initialState,
-    reducers: {
-        createMeeting: (state, action) => {
-            const newMeeting = {
-                id: '291adw',
-                name: action.payload.name,
-                description: action.payload.description,
-                startTime: action.payload.startTime,
-                endTime: action.payload.endTime,
-                duration: action.payload.duration,
-                members: action.payload.members,
-            }
-            console.log(newMeeting)
-            state.meetingRooms.push(newMeeting)
-        },
+  name: "meeting",
+  initialState,
+  reducers: {
+    createMeeting: (state, action) => {
+      console.log();
+      // const current = moment();
+      const newMeeting = {
+        id: "291adw",
+        name: action.payload.name,
+        description: action.payload.description,
+        timeStartMeeting: action.payload.timeStartMeeting,
+        members: action.payload.members,
+        duration: [action.payload.start_time, action.payload.end_time],
+      };
+      // console.log(newMeeting);
+      // console.log(newMeeting.moment.isAfter(current));
+      state.meetingRooms.push(newMeeting);
     },
-})
+  },
+  extraReducers: {
+    [listMeetingRoom.pending]: (state) => {},
+    [listMeetingRoom.rejected]: (state, action) => {},
+    [listMeetingRoom.fulfilled]: (state, action) => {
+      const { isSuccess, infoMeetingRoom, memberInProject } = action.payload;
+      if (isSuccess) {
+        state.meetingRooms = infoMeetingRoom.map((room) => ({
+          id: room.id,
+          name: room.name,
+          description: room.description,
+          startTime: room.start_time,
+          members: room.members,
+          duration: [room.start_time, room.end_time],
+        }));
+        let members = memberInProject.map((member, index) => {
+          return { id: index, name: member.user_name };
+        });
+        state.teamMembers = members;
+      }
+    },
+    [createMettingRoom.pending]: (state) => {},
+    [createMettingRoom.rejected]: (state, action) => {},
+    [createMettingRoom.fulfilled]: (state, action) => {
+      const { isSuccess } = action.payload;
+      if (isSuccess) {
+        console.log(action.payload);
+      }
+    },
+  },
+});
 
-export const {
-    createMeeting,
-} = meetingSlice.actions;
+export const { createMeeting } = meetingSlice.actions;
 export default meetingSlice.reducer;
