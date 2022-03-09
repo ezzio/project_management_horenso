@@ -51,17 +51,18 @@ export const meetingSlice = createSlice({
   initialState,
   reducers: {
     createMeeting: (state, action) => {
-      const current = moment();
+      console.log();
+      // const current = moment();
       const newMeeting = {
         id: "291adw",
         name: action.payload.name,
         description: action.payload.description,
-        startTime: action.payload.startTime,
+        timeStartMeeting: action.payload.timeStartMeeting,
         members: action.payload.members,
-        moment: action.payload.moment,
+        duration: [action.payload.start_time, action.payload.end_time],
       };
-      console.log(newMeeting);
-      console.log(newMeeting.moment.isAfter(current));
+      // console.log(newMeeting);
+      // console.log(newMeeting.moment.isAfter(current));
       state.meetingRooms.push(newMeeting);
     },
   },
@@ -77,7 +78,7 @@ export const meetingSlice = createSlice({
           description: room.description,
           startTime: room.start_time,
           members: room.members,
-          moment: moment(room.start_time, "HH:mm DD/MM/YYYY"),
+          duration: [room.start_time, room.end_time],
         }));
         let members = memberInProject.map((member, index) => {
           return { id: index, name: member.user_name };

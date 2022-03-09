@@ -16,6 +16,7 @@ const meetingRoomApi = {
       });
   },
   createMeetingRoom: (params) => {
+    console.log(params);
     return axios
       .post(`${API}/MeetingRoom/createMeetingRoom`, {
         name: params.name,
@@ -23,7 +24,8 @@ const meetingRoomApi = {
         timeStartMeeting: params.startTime,
         projectowner: params.idProject,
         memberInMeetingRoom: params.members,
-
+        end_time: params.endTime,
+        start_time: params.startTime,
         // name: "Cuoc Hop Hang Tuan",
         // description: "Tajo Thu",
         // timeStartMeeting: "2022-02-03",
