@@ -26,10 +26,6 @@ const meetingRoomApi = {
         memberInMeetingRoom: params.members,
         end_time: params.endTime,
         start_time: params.startTime,
-        // name: "Cuoc Hop Hang Tuan",
-        // description: "Tajo Thu",
-        // timeStartMeeting: "2022-02-03",
-        // projectowner: "620f026c36bc630024b33ede",
       })
       .then((response) => {
         return response.data;
@@ -38,18 +34,19 @@ const meetingRoomApi = {
         console.log(error);
       });
   },
-  //   listmeetingRoomInProject: (params) => {
-  //     return axios
-  //       .post(`${API}/MeetingRoom/listMeetingRoom`, {
-  //         idProject: params.idProject,
-  //       })
-  //       .then((response) => {
-  //         return response.data;
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
+  deleteMeetingRoom: (params) => {
+
+    return axios
+      .post(`${API}/MeetingRoom/deleteMeetingRoom`, {
+        idMeetingRoom: params.idRoom,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default meetingRoomApi;

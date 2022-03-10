@@ -29,7 +29,7 @@ import {
   someOneDisconnect,
 } from "./meetingRoomSlice";
 import "./MeetingRoom.scss";
-
+import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
 let socket = io("servervideocall.herokuapp.com");
@@ -55,7 +55,7 @@ const MeetingRoom = () => {
   const [device, setdevice] = useState(true);
   const audio = useSelector((state) => state.roomMeeting.audio);
   const video = useSelector((state) => state.roomMeeting.video);
-
+  const { idProject, idRoom } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -66,7 +66,7 @@ const MeetingRoom = () => {
       // localStorage.setItem("currentRoom", currentURL.pathname.slice(13));
       socket.emit("join_room", {
         username: localStorage.getItem("username"),
-        // room_id: currentURL.pathname.slice(13),
+        room_id: idRoom,
         ownerId: localStorage.getItem("access_token"),
         peerId: id,
         avatar: localStorage.getItem("avatar"),
@@ -132,7 +132,7 @@ const MeetingRoom = () => {
           videoTest.autoplay = true;
           if (videoGird) {
             videoGird.append(videoTest);
-            // setSizeVideoFitDiv();
+            setSizeVideoFitDiv();
           }
         }
       });
@@ -219,10 +219,11 @@ const MeetingRoom = () => {
                 size="large"
                 icon={<PoweroffOutlined />}
                 onClick={() => {
-                
-                  MyVideo.current.srcObject.getTracks().forEach(function(track) {
-                    track.stop();
-                  });
+                  MyVideo.current.srcObject
+                    .getTracks()
+                    .forEach(function (track) {
+                      track.stop();
+                    });
                   history.goBack();
                 }}
                 danger

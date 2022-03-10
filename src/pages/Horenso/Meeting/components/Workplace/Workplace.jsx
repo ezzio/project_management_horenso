@@ -3,16 +3,44 @@ import propTypes from "prop-types";
 import { HiStatusOnline, HiStatusOffline } from "react-icons/hi";
 import "./Workplace.scss";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 // import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { deleteMeetingRoom } from "../../MeetingSlice";
+import { Popconfirm } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Menu, Dropdown } from "antd";
 import { Empty, Button } from "antd";
 import moment from "moment";
 import { WebsitURl } from "api/configApi";
 
 const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
-  const { idProject } = useParams();
+  const { idProject, idRoom } = useParams();
+  const dispatch = useDispatch();
+  function cancel(e) {}
+  const handleDeleteTask = (idRoom) => {
+    // dispatch(deleteTaskAsync({ id: task.id, columnId, idBoard }));
+    dispatch(deleteMeetingRoom({ idRoom: idRoom }));
+  };
 
+  const menu = (idRoom) => {
+    return (
+      <Menu>
+        <Menu.Item key="1" danger icon={<DeleteOutlined />}>
+          <Popconfirm
+            title="Are you sure to delete this room ?"
+            onConfirm={() => handleDeleteTask(idRoom)}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            Remove
+          </Popconfirm>
+        </Menu.Item>
+      </Menu>
+    );
+  };
   let current = moment();
-  console.log(room);
+
   return (
     <>
       {room.length >= 1 ? (
@@ -21,63 +49,67 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
             return (
               <>
                 {current.isBetween(x.duration[0], x.duration[1]) ? (
-                  <div
-                    onClick={() => {
-                      window.location.replace(
-                        `${WebsitURl}/${idProject}/meeting/${x.id}`
-                      );
-                    }}
-                  >
-                    <div className="workplace__room">
-                      <div className="name">{x.name}</div>
-                      <div className="dropdown">
-                        <div className="description">
-                          <b>Mô tả</b>
-                          <div>
-                            <p>{x.description}</p>
-                          </div>
-                        </div>
-                        <div className="info">
-                          <>
-                            <p>Bắt đầu lúc: {x.startTime}</p>
-                            <div className="status status--online">
-                              <HiStatusOnline className="icon" />
-                              Online
+                  <Dropdown overlay={menu(x.id)} trigger={["contextMenu"]}>
+                    <div
+                      onClick={() => {
+                        window.location.replace(
+                          `${WebsitURl}/${idProject}/meeting/${x.id}`
+                        );
+                      }}
+                    >
+                      <div className="workplace__room">
+                        <div className="name">{x.name}</div>
+                        <div className="dropdown">
+                          <div className="description">
+                            <b>Mô tả</b>
+                            <div>
+                              <p>{x.description}</p>
                             </div>
-                          </>
+                          </div>
+                          <div className="info">
+                            <>
+                              <p>Bắt đầu lúc: {x.startTime}</p>
+                              <div className="status status--online">
+                                <HiStatusOnline className="icon" />
+                                Online
+                              </div>
+                            </>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Dropdown>
                 ) : (
-                  <div
-                    onClick={() => {
-                      window.location.replace(
-                        `${WebsitURl}/${idProject}/meeting/${x.id}`
-                      );
-                    }}
-                  >
-                    <div className="workplace__room">
-                      <div className="name">{x.name}</div>
-                      <div className="dropdown">
-                        <div className="description">
-                          <b>Mô tả</b>
-                          <div>
-                            <p>{x.description}</p>
-                          </div>
-                        </div>
-                        <div className="info">
-                          <>
-                            <p>Bắt đầu sau: 2 ngày 19 phút</p>
-                            <div className="status status--offline">
-                              <HiStatusOffline className="icon" />
-                              Offline
+                  <Dropdown overlay={menu(x.id)} trigger={["contextMenu"]}>
+                    <div
+                      onClick={() => {
+                        window.location.replace(
+                          `${WebsitURl}/${idProject}/meeting/${x.id}`
+                        );
+                      }}
+                    >
+                      <div className="workplace__room">
+                        <div className="name">{x.name}</div>
+                        <div className="dropdown">
+                          <div className="description">
+                            <b>Mô tả</b>
+                            <div>
+                              <p>{x.description}</p>
                             </div>
-                          </>
+                          </div>
+                          <div className="info">
+                            <>
+                              <p>Bắt đầu sau: 2 ngày 19 phút</p>
+                              <div className="status status--offline">
+                                <HiStatusOffline className="icon" />
+                                Offline
+                              </div>
+                            </>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Dropdown>
                 )}
               </>
             );
