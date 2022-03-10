@@ -46,30 +46,27 @@ export const createMettingRoom = createAsyncThunk(
   }
 );
 
+export const deleteMeetingRoom = createAsyncThunk(
+  "/meeting/DeleteMeetingRoom",
+  async (params, thunkAPI) => {
+    const response = await MeetingRoomApi.deleteMeetingRoom(params);
+    return response;
+  }
+);
+
 export const meetingSlice = createSlice({
   name: "meeting",
   initialState,
-  reducers: {
-    createMeeting: (state, action) => {
-      console.log();
-      // const current = moment();
-      const newMeeting = {
-        id: "291adw",
-        name: action.payload.name,
-        description: action.payload.description,
-        timeStartMeeting: action.payload.timeStartMeeting,
-        members: action.payload.members,
-        duration: [action.payload.start_time, action.payload.end_time],
-      };
-      // console.log(newMeeting);
-      // console.log(newMeeting.moment.isAfter(current));
-      state.meetingRooms.push(newMeeting);
-    },
-  },
+  reducers: {},
   extraReducers: {
-    [listMeetingRoom.pending]: (state) => {},
-    [listMeetingRoom.rejected]: (state, action) => {},
+    [listMeetingRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [listMeetingRoom.rejected]: (state, action) => {
+      state.loading = true;
+    },
     [listMeetingRoom.fulfilled]: (state, action) => {
+      state.loading = false;
       const { isSuccess, infoMeetingRoom, memberInProject } = action.payload;
       if (isSuccess) {
         state.meetingRooms = infoMeetingRoom.map((room) => ({
@@ -86,12 +83,42 @@ export const meetingSlice = createSlice({
         state.teamMembers = members;
       }
     },
-    [createMettingRoom.pending]: (state) => {},
-    [createMettingRoom.rejected]: (state, action) => {},
+    [createMettingRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [createMettingRoom.rejected]: (state, action) => {
+      state.loading = true;
+    },
     [createMettingRoom.fulfilled]: (state, action) => {
-      const { isSuccess } = action.payload;
+      state.loading = false;
+      const { isSuccess, newMeetingRoom } = action.payload;
       if (isSuccess) {
-        console.log(action.payload);
+        let newMeetingRoomCreate = {
+          id: newMeetingRoom._id,
+          name: newMeetingRoom.name,
+          description: newMeetingRoom.description,
+          startTime: newMeetingRoom.timeStartMeeting,
+          members: newMeetingRoom.members,
+          duration: [newMeetingRoom.start_time, newMeetingRoom.end_time],
+        };
+        state.meetingRooms.push(newMeetingRoomCreate);
+      }
+    },
+    [deleteMeetingRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteMeetingRoom.rejected]: (state, action) => {
+      state.loading = true;
+    },
+    [deleteMeetingRoom.fulfilled]: (state, action) => {
+      state.loading = false;
+      const { isSuccess, idRoomRemove } = action.payload;
+      if (isSuccess) {
+        let newMeetingRoom = state.meetingRooms.filter(
+          (eachMeetingRoom) => eachMeetingRoom.id != idRoomRemove
+        );
+        state.meetingRooms = newMeetingRoom;
+        state.loading = false;
       }
     },
   },

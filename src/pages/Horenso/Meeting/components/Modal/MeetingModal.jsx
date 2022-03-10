@@ -34,7 +34,6 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
   const onFinish = (value) => {
     const startTime = value.duration[0].format("HH:mm YYYY-MM-DD");
     const endTime = value.duration[1].format("HH:mm YYYY-MM-DD");
-    // console.log()
     const newMeeting = {
       name: value.name,
       description: value.desc,
