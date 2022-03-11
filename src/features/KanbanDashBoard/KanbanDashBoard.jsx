@@ -168,7 +168,7 @@ const KanbanDashBoard = () => {
           </Form.Item>
           <Form.Item
             name="range_time"
-            label="Range Time: "
+            label="Time range: "
             rules={[
               {
                 type: 'array',
