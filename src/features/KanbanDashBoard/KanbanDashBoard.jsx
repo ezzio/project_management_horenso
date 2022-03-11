@@ -227,7 +227,7 @@ const KanbanDashBoard = () => {
           <div className="ctn-kanbandashboard__working">
             <div className="ctn-kanbandashboard__working__title">
               <Title level={3} className="title">
-                Jobs on working
+                Jobs in progress
               </Title>
               {(role === 'Leader' || role === 'Project Manager') && (
                 <Button
@@ -266,7 +266,7 @@ const KanbanDashBoard = () => {
           <div className="ctn-kanbandashboard__complete">
             <div className="ctn-kanbandashboard__complete__title">
               <Title level={3} className="title">
-                Jobs is completed
+                Completed jobs
               </Title>
             </div>
             {showCompleteTask && (
