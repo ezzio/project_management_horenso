@@ -24,7 +24,6 @@ export const loginSlice = createSlice({
     },
     [userLogin.rejected]: (state) => {
       state.loading = false;
-      message.error('Login failed, please try later');
     },
     [userLogin.fulfilled]: (state, action) => {
       state.loading = false;
@@ -33,6 +32,8 @@ export const loginSlice = createSlice({
         message.success('Login successfully!');
         localStorage.setItem('access_token', action.payload.id);
         window.location.replace('/');
+      } else if (!action.payload?.isSuccess) {
+        message.error('Login failed, please try later!');
       }
     },
   },
