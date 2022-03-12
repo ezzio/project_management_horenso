@@ -2,31 +2,27 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import { accountApi } from "api/accountApi";
 // import { MeetingRoom } from "api/MeetingAPI";
 // import { RootState } from "app/store";
-// import { RoomMeeting } from "constants/RoomMeeting";
+import MeetingRoom from "api/MeetingRoom";
 
 const initialState = {
   socketId: "",
   username: "",
+  displayName: "",
   avatarUrl: "",
+  memberInMeeting: [],
   MemberInRoom: [],
   loadding: true,
   video: true,
   audio: true,
 };
-// export const GetInfoUser = createAsyncThunk(
-//   "Room/infoUser",
-//   async (user) => {
-//     const response: any = await accountApi.UserInfo(user);
-//     return response.data;
-//   }
-// );
-// export const CheckRoomExists = createAsyncThunk(
-//   "Room/CheckMeetingRoomIsExists",
-//   async (RoomId: any) => {
-//     const response: any = await MeetingRoom.CheckMeetingRoomIsExists(RoomId);
-//     return response.data;
-//   }
-// );
+
+export const listMemberInCanJoinMeetingRoomAsync = createAsyncThunk(
+  "Room/CheckMeetingRoomIsExists",
+  async (params) => {
+    const response = await MeetingRoom.listMemberInCanJoinMeetingRoom(params);
+    return response;
+  }
+);
 export const RoomMeetingSlice = createSlice({
   name: "RoomMeeting",
   initialState,
@@ -82,6 +78,9 @@ export const RoomMeetingSlice = createSlice({
     someOneJoinRoom: (state, action) => {
       state.MemberInRoom = action.payload;
     },
+    memberInRoomMeeting: (state, action) => {
+      state.memberInMeeting = action.payload;
+    },
     someOneDisconnect: (state, action) => {
       state.MemberInRoom = action.payload.userCurrent;
       let userDisconect = action.payload.userDisconect;
@@ -91,26 +90,24 @@ export const RoomMeetingSlice = createSlice({
       // }
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(GetInfoUser.pending, (state) => {
-  //     state.loadding = true;
-  //   });
-  //   builder.addCase(GetInfoUser.rejected, (state) => {
-  //     state.loadding = false;
-  //   });
-  //   builder.addCase(GetInfoUser.fulfilled, (state, action) => {
-  //     if (action.payload.isSuccess) {
-  //       state.username = action.payload.username;
-  //       state.avatarUrl = action.payload.avatar;
-  //       localStorage.setItem("username", action.payload.username);
-  //     }
-  //     /// commet khi chay online
-  //     // else {
-  //     //   window.location.replace(`http://localhost:3000/sign`);
-  //     //   localStorage.clear();
-  //     // }
-  //   });
-  // },
+  extraReducers: {
+    [listMemberInCanJoinMeetingRoomAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [listMemberInCanJoinMeetingRoomAsync.rejected]: (state, action) => {
+      state.loading = true;
+    },
+    [listMemberInCanJoinMeetingRoomAsync.fulfilled]: (state, action) => {
+      const { isSuccess, memberInMeetingRoom, infoUser } = action.payload;
+      console.log("hello");
+      if (isSuccess) {
+        state.username = infoUser.user_name;
+        state.displayName = infoUser.display_name;
+        state.avatarUrl = infoUser.avatar;
+        state.memberInMeeting = memberInMeetingRoom;
+      }
+    },
+  },
 });
 export default RoomMeetingSlice.reducer;
 export const {
@@ -121,6 +118,7 @@ export const {
   stopVideoOnly,
   stopAudioButton,
   stopVideoButton,
+  memberInRoomMeeting,
 } = RoomMeetingSlice.actions;
 
 // const { reducer, actions } = kanban;

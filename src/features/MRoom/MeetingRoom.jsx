@@ -18,7 +18,7 @@ import {
   PoweroffOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Space, Tooltip } from "antd";
+import { Avatar, Button, Space, Tooltip, message } from "antd";
 import {
   selectuserInRoom,
   stopAudioOnly,
@@ -27,6 +27,8 @@ import {
   stopAudioButton,
   stopVideoButton,
   someOneDisconnect,
+  memberInRoomMeeting,
+  listMemberInCanJoinMeetingRoomAsync,
 } from "./meetingRoomSlice";
 import "./MeetingRoom.scss";
 import { useParams } from "react-router-dom";
@@ -50,20 +52,28 @@ const MeetingRoom = () => {
   const [openCamera, setOpenCamera] = useState(false);
 
   const dataGrid = useSelector((state) => state.roomMeeting.MemberInRoom);
+  const dataUser = useSelector((state) => state.roomMeeting);
+  const memberOnlineInMeeting = useSelector(
+    (state) => state.roomMeeting.memberInMeeting
+  );
+
   const MyVideo = useRef();
-  const avatarUrl = useSelector((state) => console.log(state));
+  // const avatarUrl = useSelector((state) => console.log(state));
   const [device, setdevice] = useState(true);
   const audio = useSelector((state) => state.roomMeeting.audio);
   const video = useSelector((state) => state.roomMeeting.video);
   const { idProject, idRoom } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const checkCameraAndAudio = () => {};
   useEffect(() => {
     setSizeVideoFitDiv();
-    // dispatch(GetInfoUser({ owner: localStorage.getItem("owner") }));
+
+    dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
     peer.on("open", async (id) => {
       await localStorage.setItem("peerid", id);
       // localStorage.setItem("currentRoom", currentURL.pathname.slice(13));
+
       socket.emit("join_room", {
         username: localStorage.getItem("username"),
         room_id: idRoom,
@@ -73,7 +83,7 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      console.log(userOnlineInRoom);
+      dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
@@ -104,8 +114,9 @@ const MeetingRoom = () => {
       }
     });
     socket.on("newUserJoin", (data) => {
-      // message.info(data.message);
+      message.info(data.message);
     });
+
     socket.on("SomeOneCloseCamara", async (data) => {});
 
     openStrem(video, audio)
@@ -219,12 +230,16 @@ const MeetingRoom = () => {
                 size="large"
                 icon={<PoweroffOutlined />}
                 onClick={() => {
-                  MyVideo.current.srcObject
-                    .getTracks()
-                    .forEach(function (track) {
-                      track.stop();
-                    });
-                  history.goBack();
+                  try {
+                    MyVideo.current.srcObject
+                      .getTracks()
+                      .forEach(function (track) {
+                        track.stop();
+                      });
+                    history.goBack();
+                  } catch (e) {
+                    history.goBack();
+                  }
                 }}
                 danger
               />
@@ -308,10 +323,20 @@ const MeetingRoom = () => {
                 overflow: "auto",
               }}
             >
-              <Space size="middle">
-                <Avatar icon={<UserOutlined />} />
-                <p>Han solo</p>
-              </Space>
+              {dataGrid.length > 1 ? (
+                dataGrid.map((eachMemBerOnline) => (
+                  // console.log(eachMemBerOnline)
+                  <Space size="middle">
+                    <Avatar icon={<UserOutlined />} />
+                    <p>Han solo</p>
+                  </Space>
+                ))
+              ) : (
+                <Space size="middle">
+                  <Avatar icon={<UserOutlined />} />
+                  <p>{dataUser.displayName}</p>
+                </Space>
+              )}
             </Space>
           </div>
           <div className="teammate__list-member teammate__list-member--offline">
