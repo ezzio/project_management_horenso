@@ -18,7 +18,7 @@ import {
   PoweroffOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Space, Tooltip } from "antd";
+import { Avatar, Button, Space, Tooltip, message, notification } from "antd";
 import {
   selectuserInRoom,
   stopAudioOnly,
@@ -27,8 +27,11 @@ import {
   stopAudioButton,
   stopVideoButton,
   someOneDisconnect,
+  memberInRoomMeeting,
+  listMemberInCanJoinMeetingRoomAsync,
 } from "./meetingRoomSlice";
 import "./MeetingRoom.scss";
+
 import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
@@ -50,20 +53,43 @@ const MeetingRoom = () => {
   const [openCamera, setOpenCamera] = useState(false);
 
   const dataGrid = useSelector((state) => state.roomMeeting.MemberInRoom);
+  const dataUser = useSelector((state) => state.roomMeeting);
+  const memberOnlineInMeeting = useSelector(
+    (state) => state.roomMeeting.memberInMeeting
+  );
+
   const MyVideo = useRef();
-  const avatarUrl = useSelector((state) => console.log(state));
+  const avatarUrl = useSelector((state) => state.roomMeeting.avatarUrl);
   const [device, setdevice] = useState(true);
   const audio = useSelector((state) => state.roomMeeting.audio);
   const video = useSelector((state) => state.roomMeeting.video);
   const { idProject, idRoom } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const close = () => {
+    history.goBack();
+  };
+  const openNotification = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => history.goBack()}>
+        Confirm
+      </Button>
+    );
+    notification.open({
+      message: "Notification Title",
+      description: "Ban chua mo Video Call",
+      btn,
+      key,
+      onClose: close,
+    });
+  };
+
   useEffect(() => {
     setSizeVideoFitDiv();
-    // dispatch(GetInfoUser({ owner: localStorage.getItem("owner") }));
+    dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
     peer.on("open", async (id) => {
       await localStorage.setItem("peerid", id);
-      // localStorage.setItem("currentRoom", currentURL.pathname.slice(13));
       socket.emit("join_room", {
         username: localStorage.getItem("username"),
         room_id: idRoom,
@@ -73,7 +99,7 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      console.log(userOnlineInRoom);
+      dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
@@ -104,8 +130,9 @@ const MeetingRoom = () => {
       }
     });
     socket.on("newUserJoin", (data) => {
-      // message.info(data.message);
+      message.info(data.message);
     });
+
     socket.on("SomeOneCloseCamara", async (data) => {});
 
     openStrem(video, audio)
@@ -115,9 +142,25 @@ const MeetingRoom = () => {
         }
       })
       .catch((error) => {
-        if (error) {
-          setdevice(false);
-        }
+        console.log(error);
+        navigator.mediaDevices
+          .getUserMedia({
+            video: false,
+            audio: true,
+          })
+          .then(async (stream) => {
+            console.log(stream);
+            if (MyVideo.current != null) {
+              MyVideo.current.srcObject = stream;
+              setdevice(false);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            if (error) {
+              openNotification();
+            }
+          });
       });
     peer.on("call", (call) => {
       call.answer(MyVideo.current.srcObject);
@@ -165,15 +208,21 @@ const MeetingRoom = () => {
     <div className="videocall">
       <div className="videocall__container-video">
         <div className="videocall__container-video__audiences" id="video-grid">
-          {/* render video chat here */}
-          {
-            // device ? (
+          {device ? (
             <video className="camera" ref={MyVideo} autoPlay muted></video>
-            // )
-            // : (
-            //   <img width="100%" src={userAvater.avatarUrl} alt="avatar"></img>
-            // )
-          }
+          ) : (
+            // console.log(avatarUrl.split(" ").join("%20"))
+            <video
+              style={{
+                backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
+                backgroundRepeat: "no-repeat",
+              }}
+              className="camera"
+              ref={MyVideo}
+              autoPlay
+              muted
+            ></video>
+          )}
           {dataGrid.length > 0 &&
             dataGrid.map((video) => {
               if (video.idUser != localStorage.getItem("access_token")) {
@@ -219,12 +268,16 @@ const MeetingRoom = () => {
                 size="large"
                 icon={<PoweroffOutlined />}
                 onClick={() => {
-                  MyVideo.current.srcObject
-                    .getTracks()
-                    .forEach(function (track) {
-                      track.stop();
-                    });
-                  history.goBack();
+                  try {
+                    MyVideo.current.srcObject
+                      .getTracks()
+                      .forEach(function (track) {
+                        track.stop();
+                      });
+                    history.goBack();
+                  } catch (e) {
+                    history.goBack();
+                  }
                 }}
                 danger
               />
@@ -308,10 +361,20 @@ const MeetingRoom = () => {
                 overflow: "auto",
               }}
             >
-              <Space size="middle">
-                <Avatar icon={<UserOutlined />} />
-                <p>Han solo</p>
-              </Space>
+              {dataGrid.length > 1 ? (
+                dataGrid.map((eachMemBerOnline) => (
+                  // console.log(eachMemBerOnline)
+                  <Space size="middle">
+                    <Avatar icon={<UserOutlined />} />
+                    <p>Han solo</p>
+                  </Space>
+                ))
+              ) : (
+                <Space size="middle">
+                  <Avatar icon={<UserOutlined />} />
+                  <p>{dataUser.displayName}</p>
+                </Space>
+              )}
             </Space>
           </div>
           <div className="teammate__list-member teammate__list-member--offline">

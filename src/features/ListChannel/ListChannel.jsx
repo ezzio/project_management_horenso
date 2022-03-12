@@ -77,8 +77,10 @@ const Listchannel = () => {
           </div>
           {channels.workspace.map((channel) => {
             return (
-              <li tabIndex="-1" className="list-channel__group__btn" >
-                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>{channel.name}</Link>
+              <li tabIndex="-1" className="list-channel__group__btn">
+                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                  {channel.name}
+                </Link>
                 <FcSettings
                   style={{ position: "absolute", right: 50 }}
                   onClick={() =>
@@ -111,7 +113,9 @@ const Listchannel = () => {
           {channels.teams.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{channel.name}</a>
+                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                  {channel.name}
+                </Link>
                 <FcSettings
                   style={{ position: "absolute", right: 50 }}
                   onClick={() => openDrawer(channel.id, channel.name, "teams")}
@@ -142,7 +146,9 @@ const Listchannel = () => {
           {channels.others.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <a href="#">{channel.name}</a>
+                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                  {channel.name}
+                </Link>
                 <FcSettings
                   style={{ position: "absolute", right: 50 }}
                   onClick={() => openDrawer(channel.id, channel.name, "others")}

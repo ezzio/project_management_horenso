@@ -7,6 +7,7 @@ const meetingRoomApi = {
     return axios
       .post(`${API}/MeetingRoom/listMeetingRoom`, {
         idProject: params.idProject,
+        idUser: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;
@@ -35,10 +36,23 @@ const meetingRoomApi = {
       });
   },
   deleteMeetingRoom: (params) => {
-
     return axios
       .post(`${API}/MeetingRoom/deleteMeetingRoom`, {
         idMeetingRoom: params.idRoom,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  listMemberInCanJoinMeetingRoom: (params) => {
+
+    return axios
+      .post(`${API}/MeetingRoom/ListMemberInMemberInMeetingRoom`, {
+        idMeetingRoom: params.idRoom,
+        idUser: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;
