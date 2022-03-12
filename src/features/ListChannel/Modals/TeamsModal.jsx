@@ -1,4 +1,4 @@
-import { Form, Input, message, Modal, Select } from "antd";
+import { Avatar, Form, Input, message, Modal, Select } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addTeamChannelAsync } from "../ListChannelSlice";
@@ -72,7 +72,10 @@ function TeamsModal({
           >
             <Select mode="multiple" placeholder="Members in this conversation">
               {members.map((item) => (
-                <Select.Option value={item.name}>{item.name}</Select.Option>
+                <Select.Option value={item.user_name}>
+                  <Avatar src={item.avaURL} />
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>

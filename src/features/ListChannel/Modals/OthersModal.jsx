@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, message, Input, Select } from "antd";
+import { Modal, Form, message, Input, Select, Avatar } from "antd";
 import { useDispatch } from "react-redux";
 import { addOtherChannelAsync, addOthersChannel } from "../ListChannelSlice";
 
@@ -70,7 +70,10 @@ function OthersModal({
           >
             <Select mode="multiple" placeholder="Members in this conversation">
               {members.map((item) => (
-                <Select.Option value={item.name}>{item.name}</Select.Option>
+                <Select.Option value={item.name}>
+                  <Avatar src={item.avaURL} />
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>

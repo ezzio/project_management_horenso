@@ -1,4 +1,4 @@
-import { Form, Input, message, Modal, Select } from "antd";
+import { Form, Input, message, Modal, Select, Avatar } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addWorkSpaceChannelAsync } from "../ListChannelSlice";
@@ -71,7 +71,10 @@ function WorkspaceModal({
           >
             <Select mode="multiple" placeholder="Members in this conversation">
               {members.map((item) => (
-                <Select.Option value={item.name}>{item.name}</Select.Option>
+                <Select.Option value={item.name}>
+                  <Avatar src={item.avaURL} />
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
