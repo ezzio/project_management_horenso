@@ -548,7 +548,7 @@ const DetailTask = (props) => {
                     block
                     disabled={info.is_complete}
                     onClick={() => {
-                      setVisible(true);
+                      setIsVisible(true);
                     }}
                     style={{ borderRadius: '8px' }}
                   >

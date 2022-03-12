@@ -10,16 +10,16 @@ import { Badge } from 'antd';
 const Column = (props) => {
   const { column, openModal, role } = props;
 
-  const highTask = column.eachColumnTask.filter(
-    (item) => item.priority === 'High'
-  );
-  const mediumTask = column.eachColumnTask.filter(
-    (item) => item.priority === 'Medium'
-  );
-  const lowTask = column.eachColumnTask.filter(
-    (item) => item.priority === 'Low'
-  );
-  const resultTask = [...highTask, ...mediumTask, ...lowTask];
+  // const highTask = column.eachColumnTask.filter(
+  //   (item) => item.priority === 'High'
+  // );
+  // const mediumTask = column.eachColumnTask.filter(
+  //   (item) => item.priority === 'Medium'
+  // );
+  // const lowTask = column.eachColumnTask.filter(
+  //   (item) => item.priority === 'Low'
+  // );
+  // const resultTask = [...highTask, ...mediumTask, ...lowTask];
 
   return (
     <div className={`column`}>
@@ -43,7 +43,7 @@ const Column = (props) => {
       </div>
       <div className="column__content">
         {column.eachColumnTask &&
-          resultTask.map((task, index) => {
+          column.eachColumnTask.map((task, index) => {
             return (
               <Task
                 task={task}

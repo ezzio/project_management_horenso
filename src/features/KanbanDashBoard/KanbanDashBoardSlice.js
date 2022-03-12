@@ -25,7 +25,7 @@ export const DeleteAJob = createAsyncThunk(
   }
 );
 export const EditAJob = createAsyncThunk('Kaban/editJob', async (params) => {
-  // console.log(params);
+  console.log(params);
   const current = await KanbanAPI.editJob(params);
   return current;
 });
