@@ -18,7 +18,7 @@ import {
   PoweroffOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Space, Tooltip, message } from "antd";
+import { Avatar, Button, Space, Tooltip, message, notification } from "antd";
 import {
   selectuserInRoom,
   stopAudioOnly,
@@ -31,6 +31,7 @@ import {
   listMemberInCanJoinMeetingRoomAsync,
 } from "./meetingRoomSlice";
 import "./MeetingRoom.scss";
+
 import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
@@ -58,22 +59,37 @@ const MeetingRoom = () => {
   );
 
   const MyVideo = useRef();
-  // const avatarUrl = useSelector((state) => console.log(state));
+  const avatarUrl = useSelector((state) => state.roomMeeting.avatarUrl);
   const [device, setdevice] = useState(true);
   const audio = useSelector((state) => state.roomMeeting.audio);
   const video = useSelector((state) => state.roomMeeting.video);
   const { idProject, idRoom } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const checkCameraAndAudio = () => {};
+  const close = () => {
+    history.goBack();
+  };
+  const openNotification = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => history.goBack()}>
+        Confirm
+      </Button>
+    );
+    notification.open({
+      message: "Notification Title",
+      description: "Ban chua mo Video Call",
+      btn,
+      key,
+      onClose: close,
+    });
+  };
+
   useEffect(() => {
     setSizeVideoFitDiv();
-
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
     peer.on("open", async (id) => {
       await localStorage.setItem("peerid", id);
-      // localStorage.setItem("currentRoom", currentURL.pathname.slice(13));
-
       socket.emit("join_room", {
         username: localStorage.getItem("username"),
         room_id: idRoom,
@@ -126,9 +142,25 @@ const MeetingRoom = () => {
         }
       })
       .catch((error) => {
-        if (error) {
-          setdevice(false);
-        }
+        console.log(error);
+        navigator.mediaDevices
+          .getUserMedia({
+            video: false,
+            audio: true,
+          })
+          .then(async (stream) => {
+            console.log(stream);
+            if (MyVideo.current != null) {
+              MyVideo.current.srcObject = stream;
+              setdevice(false);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            if (error) {
+              openNotification();
+            }
+          });
       });
     peer.on("call", (call) => {
       call.answer(MyVideo.current.srcObject);
@@ -176,15 +208,21 @@ const MeetingRoom = () => {
     <div className="videocall">
       <div className="videocall__container-video">
         <div className="videocall__container-video__audiences" id="video-grid">
-          {/* render video chat here */}
-          {
-            // device ? (
+          {device ? (
             <video className="camera" ref={MyVideo} autoPlay muted></video>
-            // )
-            // : (
-            //   <img width="100%" src={userAvater.avatarUrl} alt="avatar"></img>
-            // )
-          }
+          ) : (
+            // console.log(avatarUrl.split(" ").join("%20"))
+            <video
+              style={{
+                backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
+                backgroundRepeat: "no-repeat",
+              }}
+              className="camera"
+              ref={MyVideo}
+              autoPlay
+              muted
+            ></video>
+          )}
           {dataGrid.length > 0 &&
             dataGrid.map((video) => {
               if (video.idUser != localStorage.getItem("access_token")) {

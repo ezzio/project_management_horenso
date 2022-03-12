@@ -12,6 +12,7 @@ const initialState = {
   memberInMeeting: [],
   MemberInRoom: [],
   loadding: true,
+  VideoAndAudio: true,
   video: true,
   audio: true,
 };
@@ -89,6 +90,7 @@ export const RoomMeetingSlice = createSlice({
       //   videoGird.classList.remove(userDisconect);
       // }
     },
+   
   },
   extraReducers: {
     [listMemberInCanJoinMeetingRoomAsync.pending]: (state) => {
@@ -119,6 +121,7 @@ export const {
   stopAudioButton,
   stopVideoButton,
   memberInRoomMeeting,
+
 } = RoomMeetingSlice.actions;
 
 // const { reducer, actions } = kanban;
