@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Form, message, Input, Select, Avatar } from "antd";
 import { useDispatch } from "react-redux";
-import { addOtherChannelAsync, addOthersChannel } from "../ListChannelSlice";
+import { addOtherChannelAsync } from "../ListChannelSlice";
 
 function OthersModal({
   openOthersModal,
