@@ -72,7 +72,9 @@ function WorkspaceModal({
             <Select mode="multiple" placeholder="Members in this conversation">
               {members.map((item) => (
                 <Select.Option value={item.name}>
-                  <Avatar src={item.avaURL} />
+                  <Avatar src={item.avaURL} alt='profile picture'
+                    style={{marginRight: 10}}
+                  />
                   {item.name}
                 </Select.Option>
               ))}
