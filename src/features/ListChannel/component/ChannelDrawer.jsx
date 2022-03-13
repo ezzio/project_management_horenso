@@ -14,7 +14,7 @@ function ChannelDrawer({ id, name, type, drawerVisible, setDrawerVisible }) {
   const [openInviteModal, setOpenInviteModal] = useState(false);
   const params = useParams();
 
-  const drawerTitle = name + ' channel settings';
+  // const drawerTitle = name + ' channel settings';
 
   const dispatch = useDispatch((state) => state.createChannel);
   const idProject = params.idProject;
@@ -38,7 +38,7 @@ function ChannelDrawer({ id, name, type, drawerVisible, setDrawerVisible }) {
   return (
     <div>
       <Drawer
-        title={drawerTitle}
+        title={<Title level={3}>{name}</Title>}
         placement="left"
         width={500}
         onClose={() => setDrawerVisible(false)}
@@ -77,6 +77,7 @@ function ChannelDrawer({ id, name, type, drawerVisible, setDrawerVisible }) {
         type={type}
         openNameChangeModal={openNameChangeModal}
         setOpenNameChangeModal={setOpenNameChangeModal}
+        setDrawerVisible={setDrawerVisible}
       />
       <ChannelInviteModal
         id={id}
@@ -84,6 +85,7 @@ function ChannelDrawer({ id, name, type, drawerVisible, setDrawerVisible }) {
         type={type}
         openInviteModal={openInviteModal}
         setOpenInviteModal={setOpenInviteModal}
+        setDrawerVisible={setDrawerVisible}
       />
     </div>
   );

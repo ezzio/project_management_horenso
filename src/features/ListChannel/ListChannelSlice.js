@@ -37,9 +37,17 @@ export const addOtherChannelAsync = createAsyncThunk(
 );
 
 export const deleteChannelAsync = createAsyncThunk(
-  'channel/deleteChannel',
+  'channel/deleteChannelAsync',
   async (params) => {
     const current = await channelApi.deleteChannel(params);
+    return current;
+  }
+);
+
+export const inviteMemberToRoom = createAsyncThunk(
+  'channel/inviteMemberToRoom',
+  async (params) => {
+    const current = await channelApi.inviteMemberToRoom(params);
     return current;
   }
 );
@@ -136,24 +144,24 @@ export const createChannelSlice = createSlice({
     inviteMember: (state, action) => {
       if (action.payload.type === 'workSpace') {
         const newChannelList = state.workspace.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
         state.workspace = newChannelList;
       } else if (action.payload.type === 'teams') {
         const newChannelList = state.teams.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
         state.teams = newChannelList;
       } else if (action.payload.type === 'others') {
         const newChannelList = state.others.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
@@ -238,6 +246,20 @@ export const createChannelSlice = createSlice({
       message.success('Channel deleted successfully!');
     },
     //<--------------------------------------------
+
+    //------------ Invite Member -------------------->
+    [inviteMemberToRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [inviteMemberToRoom.rejected]: (state) => {
+      state.loading = false;
+    },
+    [inviteMemberToRoom.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      message.success('Invite successfully!');
+    },
+    //<-----------------------------------------------
   },
 });
 

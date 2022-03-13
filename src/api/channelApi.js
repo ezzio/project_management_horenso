@@ -91,6 +91,21 @@ const channelApi = {
         console.log(error);
       });
   },
+
+  inviteMemberToRoom: (params) => {
+    console.log(params);
+    return axios
+      .post(`${API}/conversation/inviteMemberToChannel`, {
+        idRoom: params.idRoom,
+        listUserInviteToChannel: params.listUserInviteToChannel,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default channelApi;
