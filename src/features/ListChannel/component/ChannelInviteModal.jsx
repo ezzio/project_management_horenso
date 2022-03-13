@@ -27,7 +27,6 @@ function ChannelInviteModal({
       type,
       members: value.members,
     };
-    console.log(memberInfo);
     dispatch(inviteMember(memberInfo));
     dispatch(
       inviteMemberToRoom({ idRoom: id, listUserInviteToChannel: value.members })

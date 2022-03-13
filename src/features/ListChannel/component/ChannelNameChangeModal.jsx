@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Form, message, Input, Avatar, Checkbox } from 'antd';
 import { useDispatch } from 'react-redux';
-import { changeChannelName } from '../ListChannelSlice';
+import { changeChannelName, changeNameOfRoom } from '../ListChannelSlice';
 
 function ChannelNameChangeModal({
   id,
@@ -11,7 +11,7 @@ function ChannelNameChangeModal({
   setOpenNameChangeModal,
   setDrawerVisible,
 }) {
-  const ModalTitle = 'Enter new name for ' + name;
+  const ModalTitle = `Enter new name for ${name}`;
 
   const [form] = Form.useForm();
 
@@ -23,9 +23,15 @@ function ChannelNameChangeModal({
       type,
       newName: value.newName,
     };
-    console.log(value);
     dispatch(changeChannelName(info));
+    dispatch(
+      changeNameOfRoom({
+        idRoom: id,
+        nameChange: value.newName,
+      })
+    );
     setOpenNameChangeModal(false);
+    setDrawerVisible(false);
   };
 
   const onFinishFailed = () => {

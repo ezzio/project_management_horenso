@@ -77,7 +77,6 @@ const channelApi = {
   },
 
   deleteChannel: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/conversation/deletRoomInConversation`, {
         idRoom: params.idRoom,
@@ -93,11 +92,24 @@ const channelApi = {
   },
 
   inviteMemberToRoom: (params) => {
-    console.log(params);
     return axios
       .post(`${API}/conversation/inviteMemberToChannel`, {
         idRoom: params.idRoom,
         listUserInviteToChannel: params.listUserInviteToChannel,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  changeNameOfRoom: (params) => {
+    return axios
+      .post(`${API}/conversation/renameChannel`, {
+        idRoom: params.idRoom,
+        nameChange: params.nameChange,
       })
       .then((response) => {
         return response.data;

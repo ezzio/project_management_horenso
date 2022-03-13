@@ -52,44 +52,20 @@ export const inviteMemberToRoom = createAsyncThunk(
   }
 );
 
+export const changeNameOfRoom = createAsyncThunk(
+  'channel/changeNameOfRoom',
+  async (params) => {
+    const current = await channelApi.changeNameOfRoom(params);
+    return current;
+  }
+);
+
 const initialState = {
   loading: false,
   conversationId: '',
   workspace: [],
   teams: [],
   others: [],
-  members: [
-    {
-      id: 1,
-      user_name: 'Dang Khoa',
-      avaURL:
-        'https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg',
-    },
-    {
-      id: 2,
-      user_name: 'Huu Thang',
-      avaURL:
-        'https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg',
-    },
-    {
-      id: 3,
-      user_name: 'Chanh Nhut',
-      avaURL:
-        'https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg',
-    },
-    {
-      id: 4,
-      user_name: 'Phu Nguyen',
-      avaURL:
-        'https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg',
-    },
-    {
-      id: 5,
-      user_name: 'Tuong Minh',
-      avaURL:
-        'https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg',
-    },
-  ],
 };
 
 export const createChannelSlice = createSlice({
@@ -258,6 +234,20 @@ export const createChannelSlice = createSlice({
       state.loading = false;
       console.log(action.payload);
       message.success('Invite successfully!');
+    },
+    //<-----------------------------------------------
+
+    //--------------- Change Name Of Room ----------->
+    [changeNameOfRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [changeNameOfRoom.rejected]: (state) => {
+      state.loading = false;
+    },
+    [changeNameOfRoom.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      message.success('Name of channel has been changed!');
     },
     //<-----------------------------------------------
   },
