@@ -167,7 +167,7 @@ export const createChannelSlice = createSlice({
       state.loading = false;
 
       const newChannel = {
-        id: action.payload.modal._id,
+        idRoom: action.payload.modal._id,
         name: action.payload.modal.name,
         members: action.payload.modal.memberInRoom,
       };
@@ -184,7 +184,7 @@ export const createChannelSlice = createSlice({
       state.loading = false;
 
       const newChannel = {
-        id: action.payload.modal._id,
+        idRoom: action.payload.modal._id,
         name: action.payload.modal.name,
         members: action.payload.modal.memberInRoom,
       };
@@ -201,7 +201,7 @@ export const createChannelSlice = createSlice({
       state.loading = false;
 
       const newChannel = {
-        id: action.payload.modal._id,
+        idRoom: action.payload.modal._id,
         name: action.payload.modal.name,
         members: action.payload.modal.memberInRoom,
       };
