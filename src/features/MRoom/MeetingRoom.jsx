@@ -35,8 +35,8 @@ import "./MeetingRoom.scss";
 import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
-let socket = io("servervideocall.herokuapp.com");
-// let socket = io("http://localhost:8000");
+// let socket = io("servervideocall.herokuapp.com");
+let socket = io("http://localhost:8000");
 let peer = new Peer({
   secure: true,
   host: "mypeerserverjs.herokuapp.com",
@@ -47,22 +47,24 @@ let peer = new Peer({
 //   port: 3002,
 // });
 const MeetingRoom = () => {
-  const [openTeammates, setOpenTeammates] = useState(false);
+  const [openTeammates, setOpenTeammates] = useState(true);
   const [openChatting, setOpenChatting] = useState(false);
   const [openMicro, setOpenMicro] = useState(false);
   const [openCamera, setOpenCamera] = useState(false);
 
   const dataGrid = useSelector((state) => state.roomMeeting.MemberInRoom);
-  const dataUser = useSelector((state) => state.roomMeeting);
-  const memberOnlineInMeeting = useSelector(
+  const dataUserInMeeting = useSelector(
     (state) => state.roomMeeting.memberInMeeting
   );
+  const [listMemberInRoom, setListMemberInRoom] = useState([]);
+  const dataUser = useSelector((state) => state.roomMeeting);
 
   const MyVideo = useRef();
   const avatarUrl = useSelector((state) => state.roomMeeting.avatarUrl);
   const [device, setdevice] = useState(true);
   const audio = useSelector((state) => state.roomMeeting.audio);
   const video = useSelector((state) => state.roomMeeting.video);
+
   const { idProject, idRoom } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -85,31 +87,37 @@ const MeetingRoom = () => {
     });
   };
 
+  socket.on("totalInfoMemberInRoom", (data) => {
+    console.log(data);
+  });
   useEffect(() => {
     setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
+
     peer.on("open", async (id) => {
       await localStorage.setItem("peerid", id);
       socket.emit("join_room", {
-        username: localStorage.getItem("username"),
+        username: sessionStorage.getItem("name"),
         room_id: idRoom,
         ownerId: localStorage.getItem("access_token"),
         peerId: id,
-        avatar: localStorage.getItem("avatar"),
+        avatar: sessionStorage.getItem("avatarURL"),
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
+      // console.log(userOnlineInRoom);
+      console.log("hello");
       dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
     socket.on("memberInRoom", (users) => {
+      console.log(users);
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
     socket.on("someOneDisconnect", async (userOut) => {
       try {
-        // message.info(userOut.messages);
         let allvideo = document.querySelectorAll("video");
         setTimeout(function () {
           allvideo.forEach((video) => {
@@ -129,10 +137,6 @@ const MeetingRoom = () => {
         console.log(err);
       }
     });
-    socket.on("newUserJoin", (data) => {
-      message.info(data.message);
-    });
-
     socket.on("SomeOneCloseCamara", async (data) => {});
 
     openStrem(video, audio)
@@ -142,7 +146,6 @@ const MeetingRoom = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
         navigator.mediaDevices
           .getUserMedia({
             video: false,
@@ -175,6 +178,7 @@ const MeetingRoom = () => {
           videoTest.autoplay = true;
           if (videoGird) {
             videoGird.append(videoTest);
+
             setSizeVideoFitDiv();
           }
         }
@@ -197,13 +201,17 @@ const MeetingRoom = () => {
     } catch (e) {}
   }, [video]);
 
+  // useEffect(() => {
+  //   setListMemberInRoom(dataGrid);
+  //   console.log(dataGrid);
+  // }, [dataGrid]);
+
   function openStrem(videoValue, audioValue) {
     return navigator.mediaDevices.getUserMedia({
       video: videoValue,
       audio: audioValue,
     });
   }
-
   return (
     <div className="videocall">
       <div className="videocall__container-video">
@@ -211,7 +219,6 @@ const MeetingRoom = () => {
           {device ? (
             <video className="camera" ref={MyVideo} autoPlay muted></video>
           ) : (
-            // console.log(avatarUrl.split(" ").join("%20"))
             <video
               style={{
                 backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
@@ -324,6 +331,7 @@ const MeetingRoom = () => {
               type="primary"
               icon={<MessageOutlined />}
               onClick={() => {
+                setListMemberInRoom(dataGrid);
                 if (openTeammates) {
                   setOpenChatting(!openChatting);
                   setOpenTeammates(false);
@@ -361,20 +369,28 @@ const MeetingRoom = () => {
                 overflow: "auto",
               }}
             >
-              {dataGrid.length > 1 ? (
-                dataGrid.map((eachMemBerOnline) => (
-                  // console.log(eachMemBerOnline)
+              {
+                // console.log(dataGrid)
+                dataUserInMeeting.length > 1 ? (
+                  dataUserInMeeting.map((eachMemBerOnline) => (
+                    <Space size="middle">
+                      <Avatar
+                        icon={<UserOutlined />}
+                        src={eachMemBerOnline.avatar}
+                      />
+                      <p>{eachMemBerOnline.username}</p>
+                    </Space>
+                  ))
+                ) : (
                   <Space size="middle">
-                    <Avatar icon={<UserOutlined />} />
-                    <p>Han solo</p>
+                    <Avatar
+                      src={`${dataUser.avatarUrl}`}
+                      icon={<UserOutlined />}
+                    />
+                    <p>{dataUser.displayName}</p>
                   </Space>
-                ))
-              ) : (
-                <Space size="middle">
-                  <Avatar icon={<UserOutlined />} />
-                  <p>{dataUser.displayName}</p>
-                </Space>
-              )}
+                )
+              }
             </Space>
           </div>
           <div className="teammate__list-member teammate__list-member--offline">

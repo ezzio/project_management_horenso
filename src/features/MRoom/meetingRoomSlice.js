@@ -77,9 +77,11 @@ export const RoomMeetingSlice = createSlice({
       });
     },
     someOneJoinRoom: (state, action) => {
+      console.log(action.payload)
       state.MemberInRoom = action.payload;
     },
     memberInRoomMeeting: (state, action) => {
+      console.log(action.payload)
       state.memberInMeeting = action.payload;
     },
     someOneDisconnect: (state, action) => {
@@ -101,8 +103,9 @@ export const RoomMeetingSlice = createSlice({
     },
     [listMemberInCanJoinMeetingRoomAsync.fulfilled]: (state, action) => {
       const { isSuccess, memberInMeetingRoom, infoUser } = action.payload;
-      console.log("hello");
+     
       if (isSuccess) {
+        console.log('lay data xong')
         state.username = infoUser.user_name;
         state.displayName = infoUser.display_name;
         state.avatarUrl = infoUser.avatar;
