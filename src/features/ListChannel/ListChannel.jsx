@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   FcFolder,
   FcBriefcase,
   FcCollaboration,
   FcSettings,
-} from "react-icons/fc";
-import { useSelector } from "react-redux";
-import "./ListChannel.scss";
-import { AiOutlinePlus } from "react-icons/ai";
-import WorkspaceModal from "./Modals/WorkspaceModal";
-import OthersModal from "./Modals/OthersModal";
-import TeamsModal from "./Modals/TeamsModal";
-import ChannelDrawer from "./component/ChannelDrawer";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { ListKanban } from "features/KanbanDashBoard/KanbanDashBoardSlice";
-import { useParams, useHistory, Link } from "react-router-dom";
-import { getListChannel } from "./ListChannelSlice";
-import { message, Spin } from "antd";
+} from 'react-icons/fc';
+import { useSelector } from 'react-redux';
+import './ListChannel.scss';
+import { AiOutlinePlus } from 'react-icons/ai';
+import WorkspaceModal from './Modals/WorkspaceModal';
+import OthersModal from './Modals/OthersModal';
+import TeamsModal from './Modals/TeamsModal';
+import ChannelDrawer from './component/ChannelDrawer';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { ListKanban } from 'features/KanbanDashBoard/KanbanDashBoardSlice';
+import { useParams, useHistory, Link } from 'react-router-dom';
+import { getListChannel } from './ListChannelSlice';
+import { message, Spin } from 'antd';
 
 const Listchannel = () => {
   const channels = useSelector((state) => state.createChannel);
@@ -34,14 +34,14 @@ const Listchannel = () => {
   const [openOthersModal, setOpenOthersModal] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [channelID, setChannelID] = useState(0);
-  const [channelName, setChannelName] = useState("");
-  const [channelType, setChannelType] = useState("");
+  const [channelName, setChannelName] = useState('');
+  const [channelType, setChannelType] = useState('');
 
   const members = useSelector((state) => state.kanban.membersInProject);
   // console.log(members);
 
-  const openDrawer = (id, name, type) => {
-    setChannelID(id);
+  const openDrawer = (idRoom, name, type) => {
+    setChannelID(idRoom);
     setChannelName(name);
     setChannelType(type);
     setDrawerVisible(true);
@@ -82,9 +82,9 @@ const Listchannel = () => {
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: "absolute", right: 50 }}
+                  style={{ position: 'absolute', right: 50 }}
                   onClick={() =>
-                    openDrawer(channel.id, channel.name, "workspace")
+                    openDrawer(channel.idRoom, channel.name, 'workSpace')
                   }
                 />
               </li>
@@ -117,8 +117,10 @@ const Listchannel = () => {
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: "absolute", right: 50 }}
-                  onClick={() => openDrawer(channel.id, channel.name, "teams")}
+                  style={{ position: 'absolute', right: 50 }}
+                  onClick={() =>
+                    openDrawer(channel.idRoom, channel.name, 'teams')
+                  }
                 />
               </li>
             );
@@ -150,8 +152,10 @@ const Listchannel = () => {
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: "absolute", right: 50 }}
-                  onClick={() => openDrawer(channel.id, channel.name, "others")}
+                  style={{ position: 'absolute', right: 50 }}
+                  onClick={() =>
+                    openDrawer(channel.idRoom, channel.name, 'others')
+                  }
                 />
               </li>
             );

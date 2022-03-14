@@ -124,7 +124,7 @@ const DetailTask = (props) => {
     };
     // console.log({});
     dispatch(createADetailTaskAsync({ ...nvalues, idTask }));
-    setVisible(false);
+    setIsVisible(false);
   };
 
   // modal form edit task

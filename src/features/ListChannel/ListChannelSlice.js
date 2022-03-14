@@ -1,8 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import channelApi from "api/channelApi";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { message } from 'antd';
+import channelApi from 'api/channelApi';
 
 export const getListChannel = createAsyncThunk(
-  "channel/getListChannel",
+  'channel/getListChannel',
   async (idProject, thunkAPI) => {
     const currentData = await channelApi.getListChannel(idProject);
     return currentData;
@@ -10,7 +11,7 @@ export const getListChannel = createAsyncThunk(
 );
 
 export const addWorkSpaceChannelAsync = createAsyncThunk(
-  "channel/addWorkSpaceChannelAsync",
+  'channel/addWorkSpaceChannelAsync',
   async (params, thunkAPI) => {
     console.log(params);
     const currentData = await channelApi.addWorkSpaceChannel(params);
@@ -19,7 +20,7 @@ export const addWorkSpaceChannelAsync = createAsyncThunk(
 );
 
 export const addTeamChannelAsync = createAsyncThunk(
-  "channel/addTeamChannelAsync",
+  'channel/addTeamChannelAsync',
   async (params, thunkAPI) => {
     console.log(params);
     const currentData = await channelApi.addTeamChannel(params);
@@ -28,96 +29,87 @@ export const addTeamChannelAsync = createAsyncThunk(
 );
 
 export const addOtherChannelAsync = createAsyncThunk(
-  "channel/addOtherChannelAsync",
+  'channel/addOtherChannelAsync',
   async (params, thunkAPI) => {
-
     const currentData = await channelApi.addOtherChannel(params);
     return currentData;
   }
 );
 
+export const deleteChannelAsync = createAsyncThunk(
+  'channel/deleteChannelAsync',
+  async (params) => {
+    const current = await channelApi.deleteChannel(params);
+    return current;
+  }
+);
+
+export const inviteMemberToRoom = createAsyncThunk(
+  'channel/inviteMemberToRoom',
+  async (params) => {
+    const current = await channelApi.inviteMemberToRoom(params);
+    return current;
+  }
+);
+
+export const changeNameOfRoom = createAsyncThunk(
+  'channel/changeNameOfRoom',
+  async (params) => {
+    const current = await channelApi.changeNameOfRoom(params);
+    return current;
+  }
+);
+
 const initialState = {
   loading: false,
-  conversationId: "",
+  conversationId: '',
   workspace: [],
   teams: [],
   others: [],
-  members: [
-    {
-      id: 1,
-      user_name: "Dang Khoa",
-      avaURL:
-        "https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg",
-    },
-    {
-      id: 2,
-      user_name: "Huu Thang",
-      avaURL:
-        "https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg",
-    },
-    {
-      id: 3,
-      user_name: "Chanh Nhut",
-      avaURL:
-        "https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg",
-    },
-    {
-      id: 4,
-      user_name: "Phu Nguyen",
-      avaURL:
-        "https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg",
-    },
-    {
-      id: 5,
-      user_name: "Tuong Minh",
-      avaURL:
-        "https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg",
-    },
-  ],
 };
 
 export const createChannelSlice = createSlice({
-  name: "createChannel",
+  name: 'createChannel',
   initialState,
   reducers: {
     deleteChannel: (state, action) => {
-      if (action.payload.type === "workspace") {
+      if (action.payload.type === 'workSpace') {
         const newChannelList = state.workspace.filter((channel) => {
-          return channel.id != action.payload.id;
+          return channel.idRoom !== action.payload.id;
         });
         state.workspace = newChannelList;
-      } else if (action.payload.type === "teams") {
+      } else if (action.payload.type === 'teams') {
         const newChannelList = state.teams.filter((channel) => {
-          return channel.id != action.payload.id;
+          return channel.idRoom !== action.payload.id;
         });
         state.teams = newChannelList;
-      } else if (action.payload.type === "others") {
+      } else if (action.payload.type === 'others') {
         const newChannelList = state.others.filter((channel) => {
-          return channel.id != action.payload.id;
+          return channel.idRoom !== action.payload.id;
         });
         state.others = newChannelList;
       }
     },
     changeChannelName: (state, action) => {
-      if (action.payload.type === "workspace") {
+      if (action.payload.type === 'workSpace') {
         const newChannelList = state.workspace.filter((channel) => {
-          if (channel.id === action.payload.id) {
+          if (channel.idRoom === action.payload.id) {
             channel.name = action.payload.newName;
           }
           return channel;
         });
         state.workspace = newChannelList;
-      } else if (action.payload.type === "teams") {
+      } else if (action.payload.type === 'teams') {
         const newChannelList = state.teams.filter((channel) => {
-          if (channel.id === action.payload.id) {
+          if (channel.idRoom === action.payload.id) {
             channel.name = action.payload.newName;
           }
           return channel;
         });
         state.teams = newChannelList;
-      } else if (action.payload.type === "others") {
+      } else if (action.payload.type === 'others') {
         const newChannelList = state.others.filter((channel) => {
-          if (channel.id === action.payload.id) {
+          if (channel.idRoom === action.payload.id) {
             channel.name = action.payload.newName;
           }
           return channel;
@@ -126,29 +118,26 @@ export const createChannelSlice = createSlice({
       }
     },
     inviteMember: (state, action) => {
-      if (action.payload.type === "workspace") {
+      if (action.payload.type === 'workSpace') {
         const newChannelList = state.workspace.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
-
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
         state.workspace = newChannelList;
-      } else if (action.payload.type === "teams") {
+      } else if (action.payload.type === 'teams') {
         const newChannelList = state.teams.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
-
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
         state.teams = newChannelList;
-      } else if (action.payload.type === "others") {
+      } else if (action.payload.type === 'others') {
         const newChannelList = state.others.filter((channel) => {
-          if (channel.id === action.payload.id) {
-            channel.members = action.payload.members;
-
+          if (channel.idRoom === action.payload.id) {
+            channel.memberInRoom = action.payload.members;
           }
           return channel;
         });
@@ -219,6 +208,48 @@ export const createChannelSlice = createSlice({
       console.log(newChannel);
       state.others.push(newChannel);
     },
+
+    //---------- Delete WorkSpace Channel -------->
+    [deleteChannelAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteChannelAsync.rejected]: (state) => {
+      state.loading = false;
+    },
+    [deleteChannelAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      message.success('Channel deleted successfully!');
+    },
+    //<--------------------------------------------
+
+    //------------ Invite Member -------------------->
+    [inviteMemberToRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [inviteMemberToRoom.rejected]: (state) => {
+      state.loading = false;
+    },
+    [inviteMemberToRoom.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      message.success('Invite successfully!');
+    },
+    //<-----------------------------------------------
+
+    //--------------- Change Name Of Room ----------->
+    [changeNameOfRoom.pending]: (state) => {
+      state.loading = true;
+    },
+    [changeNameOfRoom.rejected]: (state) => {
+      state.loading = false;
+    },
+    [changeNameOfRoom.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      message.success('Name of channel has been changed!');
+    },
+    //<-----------------------------------------------
   },
 });
 
