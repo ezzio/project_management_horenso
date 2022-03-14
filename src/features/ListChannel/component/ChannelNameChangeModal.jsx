@@ -1,10 +1,17 @@
-import React from "react";
-import { Modal, Form, message, Input, Avatar, Checkbox } from "antd";
-import { useDispatch } from "react-redux";
-import { changeChannelName } from "../ListChannelSlice";
+import React from 'react';
+import { Modal, Form, message, Input, Avatar, Checkbox } from 'antd';
+import { useDispatch } from 'react-redux';
+import { changeChannelName, changeNameOfRoom } from '../ListChannelSlice';
 
-function ChannelNameChangeModal({ id, name, type, openNameChangeModal, setOpenNameChangeModal}) {
-  const ModalTitle = 'Enter new name for ' + name;
+function ChannelNameChangeModal({
+  id,
+  name,
+  type,
+  openNameChangeModal,
+  setOpenNameChangeModal,
+  setDrawerVisible,
+}) {
+  const ModalTitle = `Enter new name for ${name}`;
 
   const [form] = Form.useForm();
 
@@ -12,17 +19,23 @@ function ChannelNameChangeModal({ id, name, type, openNameChangeModal, setOpenNa
 
   const onFinish = (value) => {
     const info = {
-        id,
-        type,
-        newName: value.newName,
-    }
-    console.log(value);
+      id,
+      type,
+      newName: value.newName,
+    };
     dispatch(changeChannelName(info));
+    dispatch(
+      changeNameOfRoom({
+        idRoom: id,
+        nameChange: value.newName,
+      })
+    );
     setOpenNameChangeModal(false);
+    setDrawerVisible(false);
   };
 
   const onFinishFailed = () => {
-    message.error("Submit Failed!");
+    message.error('Submit Failed!');
   };
 
   return (
@@ -41,7 +54,7 @@ function ChannelNameChangeModal({ id, name, type, openNameChangeModal, setOpenNa
               onFinish(values);
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              console.log('Validate Failed:', info);
             });
         }}
       >
@@ -55,7 +68,7 @@ function ChannelNameChangeModal({ id, name, type, openNameChangeModal, setOpenNa
           <Form.Item
             name="newName"
             label="New name"
-            rules={[{ required: true }, { type: "string", min: 6 }]}
+            rules={[{ required: true }, { type: 'string', min: 6 }]}
           >
             <Input placeholder="Enter channel's new name" size="large" />
           </Form.Item>
