@@ -24,7 +24,6 @@ const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
     } catch (err) {}
   }, []);
   return (
-    
     <video id={nameId} className="camera" ref={MyVideo} autoPlay muted></video>
   );
 };
