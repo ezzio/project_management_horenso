@@ -35,8 +35,8 @@ import "./MeetingRoom.scss";
 import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
-let socket = io("servervideocall.herokuapp.com");
-// let socket = io("http://localhost:8000");
+// let socket = io("servervideocall.herokuapp.com");
+let socket = io("http://localhost:8000");
 let peer = new Peer({
   secure: true,
   host: "mypeerserverjs.herokuapp.com",
@@ -47,7 +47,7 @@ let peer = new Peer({
 //   port: 3002,
 // });
 const MeetingRoom = () => {
-  const [openTeammates, setOpenTeammates] = useState(true);
+  const [openTeammates, setOpenTeammates] = useState(false);
   const [openChatting, setOpenChatting] = useState(false);
   const [openMicro, setOpenMicro] = useState(false);
   const [openCamera, setOpenCamera] = useState(false);
@@ -71,6 +71,7 @@ const MeetingRoom = () => {
   const close = () => {
     history.goBack();
   };
+
   const openNotification = () => {
     const key = `open${Date.now()}`;
     const btn = (
@@ -87,9 +88,6 @@ const MeetingRoom = () => {
     });
   };
 
-  socket.on("totalInfoMemberInRoom", (data) => {
-    console.log(data);
-  });
   useEffect(() => {
     setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
@@ -105,16 +103,19 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      // console.log(userOnlineInRoom);
-      console.log("hello");
+      message.info('1 người vừa tham gia')
       dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
     socket.on("memberInRoom", (users) => {
-      console.log(users);
+      
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
+    });
+
+    socket.on("totalInfoMemberInRoom", (data) => {
+      dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
       try {
@@ -158,7 +159,6 @@ const MeetingRoom = () => {
             audio: true,
           })
           .then(async (stream) => {
-            console.log(stream);
             if (MyVideo.current != null) {
               MyVideo.current.srcObject = stream;
               setdevice(false);
@@ -211,7 +211,7 @@ const MeetingRoom = () => {
   //   setListMemberInRoom(dataGrid);
   //   console.log(dataGrid);
   // }, [dataGrid]);
-
+  // console.log(dataUserInMeeting)
   function openStrem(videoValue, audioValue) {
     return navigator.mediaDevices.getUserMedia({
       video: videoValue,
@@ -287,11 +287,11 @@ const MeetingRoom = () => {
                       .forEach(function (track) {
                         track.stop();
                       });
-                    // history.goBack();
-                    history.push(`/${idProject}/meeting`);
+                    history.goBack();
+                    // history.push(`/${idProject}/meeting`);
                   } catch (e) {
-                    // history.goBack();
-                    history.push(`/${idProject}/meeting`);
+                    history.goBack();
+                    // history.push(`/${idProject}/meeting`);
                   }
                 }}
                 danger
@@ -377,28 +377,26 @@ const MeetingRoom = () => {
                 overflow: "auto",
               }}
             >
-              {
-                // console.log(dataGrid)
-                dataUserInMeeting.length > 1 ? (
-                  dataUserInMeeting.map((eachMemBerOnline) => (
-                    <Space size="middle">
-                      <Avatar
-                        icon={<UserOutlined />}
-                        src={eachMemBerOnline.avatar}
-                      />
-                      <p>{eachMemBerOnline.username}</p>
-                    </Space>
-                  ))
-                ) : (
+              {dataGrid.length > 1 ? (
+                dataGrid.map((eachMemBerOnline) => (
+                  // console.log(eachMemBerOnline)
                   <Space size="middle">
                     <Avatar
-                      src={`${dataUser.avatarUrl}`}
                       icon={<UserOutlined />}
+                      src={eachMemBerOnline.avatar}
                     />
-                    <p>{dataUser.displayName}</p>
+                    <p>{eachMemBerOnline.display_name}</p>
                   </Space>
-                )
-              }
+                ))
+              ) : (
+                <Space size="middle">
+                  <Avatar
+                    src={`${dataUser.avatarUrl}`}
+                    icon={<UserOutlined />}
+                  />
+                  <p>{dataUser.displayName}</p>
+                </Space>
+              )}
             </Space>
           </div>
           <div className="teammate__list-member teammate__list-member--offline">
@@ -413,18 +411,43 @@ const MeetingRoom = () => {
                 overflow: "auto",
               }}
             >
-              <Space size="middle">
-                <Avatar icon={<UserOutlined />} />
-                <p>Han solo</p>
-              </Space>
+              {dataGrid > 1
+                ? dataUserInMeeting.map(
+                    (eachMemBerOnline) =>
+                      eachMemBerOnline.id !==
+                        localStorage.getItem("access_token") && (
+                        <Space size="middle">
+                          <Avatar
+                            icon={<UserOutlined />}
+                            src={eachMemBerOnline.avatar}
+                          />
+                          <p>{eachMemBerOnline.display_name}</p>
+                        </Space>
+                      )
+                  )
+                : dataUserInMeeting.map((eachMemBerOnline) => {
+                    if (
+                      eachMemBerOnline.id !==
+                      localStorage.getItem("access_token")
+                    ) {
+                      let listDataId = dataGrid.map((items) => {
+                        return items.id;
+                      });
+                      if (!listDataId.includes(eachMemBerOnline.id)) {
+                        return (
+                          <Space size="middle">
+                            <Avatar
+                              icon={<UserOutlined />}
+                              src={eachMemBerOnline.avatar}
+                            />
+                            <p>{eachMemBerOnline.display_name}</p>
+                          </Space>
+                        );
+                      }
+                    }
+                  })}
             </Space>
           </div>
-        </div>
-      )}
-      {openChatting && (
-        <div className="ctn-video-feat chatting">
-          <p>Chatting</p>
-          <ChattingMeeting />
         </div>
       )}
     </div>
