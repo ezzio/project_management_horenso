@@ -4,6 +4,7 @@ import { setSizeVideoFitDiv } from "./setSizeVideoFitDiv";
 import { io } from "socket.io-client";
 import CardVideo from "./CardVideo/CardVideo";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 import Peer from "peerjs";
 import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
 
@@ -56,6 +57,7 @@ const MeetingRoom = () => {
   const dataUserInMeeting = useSelector(
     (state) => state.roomMeeting.memberInMeeting
   );
+  const infoRoom = useSelector((state) => state.roomMeeting);
   const [listMemberInRoom, setListMemberInRoom] = useState([]);
   const dataUser = useSelector((state) => state.roomMeeting);
 
@@ -103,13 +105,12 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      message.info('1 người vừa tham gia')
+      message.info("1 người vừa tham gia");
       dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
     });
     socket.on("memberInRoom", (users) => {
-      
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
@@ -236,14 +237,14 @@ const MeetingRoom = () => {
               muted
             ></video>
           )}
-          {dataGrid.length > 0 &&
+          {dataGrid.length > 1 &&
             dataGrid.map((video) => {
-              if (video.idUser != localStorage.getItem("access_token")) {
+              if (video.id != localStorage.getItem("access_token")) {
                 if (MyVideo.current.srcObject) {
                   return (
                     <CardVideo
                       MyVideoCall={MyVideo.current.srcObject}
-                      nameId={video.idUser}
+                      nameId={video.id}
                       connectionPeerjs={peer}
                       CallTo={video.peerId}
                     />
@@ -256,7 +257,12 @@ const MeetingRoom = () => {
 
       <div className="videocall__footer">
         <div className="videocall__footer__info-room">
-          <b>22:03 | Báo cáo giai đoạn 1</b>
+          <b>
+            {
+              (moment(infoRoom.startTime).format("YYYY-MM-DD"),
+              +" || " + infoRoom.roomName)
+            }
+          </b>
         </div>
         <div className="videocall__footer__controller">
           <Space size="large">
