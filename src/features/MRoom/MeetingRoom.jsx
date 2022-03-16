@@ -137,7 +137,13 @@ const MeetingRoom = () => {
         console.log(err);
       }
     });
-    socket.on("SomeOneCloseCamara", async (data) => {});
+    socket.on("SomeOneCloseCamara", async (data) => {
+      let { username, avatar, ownerId, currentRoom } = data;
+      let getUserCloseCamera = document.getElementById(ownerId);
+      let newDiv = document.createElement("div");
+      newDiv.style.backgroundImage = ` url(${avatar})`;
+      getUserCloseCamera.appendChild(newDiv);
+    });
 
     openStrem(video, audio)
       .then(async (stream) => {
@@ -303,7 +309,7 @@ const MeetingRoom = () => {
                 danger={openCamera}
                 onClick={() => {
                   setOpenCamera(!openCamera);
-                  dispatch(stopVideoButton({ socket: socket }));
+                  dispatch(stopVideoButton({ socket: socket, roomId: idRoom }));
                 }}
               />
             </Tooltip>
