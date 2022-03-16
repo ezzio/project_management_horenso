@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 // import { accountApi } from "api/accountApi";
 // import { MeetingRoom } from "api/MeetingAPI";
 // import { RootState } from "app/store";
@@ -78,12 +78,27 @@ export const RoomMeetingSlice = createSlice({
       });
     },
     someOneJoinRoom: (state, action) => {
-      console.log(action.payload);
-      state.MemberInRoom = action.payload;
+      let newMemberInRoom = action.payload.map((item, index) => {
+        return {
+          id: item.idUser,
+          display_name: item.username,
+          user_name: item.username,
+          avatar: item.avatar,
+        };
+      });
+      state.MemberInRoom = newMemberInRoom;
     },
     memberInRoomMeeting: (state, action) => {
-      console.log(action.payload);
-      state.memberInMeeting = action.payload;
+   
+      let newMemberInRoom = action.payload.map((item, index) => {
+        return {
+          id: item.idUser,
+          display_name: item.username,
+          user_name: item.username,
+          avatar: item.avatar,
+        };
+      });
+      state.MemberInRoom = newMemberInRoom;
     },
     someOneDisconnect: (state, action) => {
       state.MemberInRoom = action.payload.userCurrent;
@@ -105,7 +120,6 @@ export const RoomMeetingSlice = createSlice({
       const { isSuccess, memberInMeetingRoom, infoUser } = action.payload;
 
       if (isSuccess) {
-        console.log("lay data xong");
         state.username = infoUser.user_name;
         state.displayName = infoUser.display_name;
         state.avatarUrl = infoUser.avatar;
