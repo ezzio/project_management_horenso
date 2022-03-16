@@ -60,11 +60,12 @@ export const RoomMeetingSlice = createSlice({
       state.audio = !state.audio;
     },
     stopVideoButton: (state, action) => {
-      action.payload.socket.emit("close_camera", {
-        username: localStorage.getItem("username"),
-        avatar: localStorage.getItem("avatar"),
-        ownerId: localStorage.getItem("owner"),
-        currentRoom: localStorage.getItem("currentRoom"),
+      let { socket, roomId } = action.payload;
+      socket.emit("close_camera", {
+        username: sessionStorage.getItem("name"),
+        avatar: sessionStorage.getItem("avatarURL"),
+        ownerId: localStorage.getItem("access_token"),
+        currentRoom: roomId,
       });
       state.video = !state.video;
     },
@@ -77,9 +78,11 @@ export const RoomMeetingSlice = createSlice({
       });
     },
     someOneJoinRoom: (state, action) => {
+      console.log(action.payload);
       state.MemberInRoom = action.payload;
     },
     memberInRoomMeeting: (state, action) => {
+      console.log(action.payload);
       state.memberInMeeting = action.payload;
     },
     someOneDisconnect: (state, action) => {
@@ -90,7 +93,6 @@ export const RoomMeetingSlice = createSlice({
       //   videoGird.classList.remove(userDisconect);
       // }
     },
-   
   },
   extraReducers: {
     [listMemberInCanJoinMeetingRoomAsync.pending]: (state) => {
@@ -101,8 +103,9 @@ export const RoomMeetingSlice = createSlice({
     },
     [listMemberInCanJoinMeetingRoomAsync.fulfilled]: (state, action) => {
       const { isSuccess, memberInMeetingRoom, infoUser } = action.payload;
-      console.log("hello");
+
       if (isSuccess) {
+        console.log("lay data xong");
         state.username = infoUser.user_name;
         state.displayName = infoUser.display_name;
         state.avatarUrl = infoUser.avatar;
@@ -121,7 +124,6 @@ export const {
   stopAudioButton,
   stopVideoButton,
   memberInRoomMeeting,
-
 } = RoomMeetingSlice.actions;
 
 // const { reducer, actions } = kanban;

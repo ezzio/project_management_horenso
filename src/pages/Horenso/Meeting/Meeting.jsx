@@ -5,6 +5,7 @@ import "../../../styles/ContainerContents.scss";
 import Header from "./components/Header/Header";
 import Workplace from "./components/Workplace/Workplace.jsx";
 import MeetingModal from "./components/Modal/MeetingModal";
+import { listUserInfo } from "pages/UserSettings/UserSettingSlice";
 import { Switch, Route, Link, useParams } from "react-router-dom";
 import { listMeetingRoom } from "./MeetingSlice";
 import { Spin } from "antd";
@@ -14,6 +15,7 @@ const Meeting = () => {
   const { idProject } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(listUserInfo());
     dispatch(listMeetingRoom({ idProject }));
   }, []);
   const room = useSelector((state) => state.meeting.meetingRooms);
