@@ -230,6 +230,7 @@ const MeetingRoom = () => {
               style={{
                 backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
                 backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
               }}
               className="camera"
               ref={MyVideo}
