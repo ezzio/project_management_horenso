@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 // import { accountApi } from "api/accountApi";
 // import { MeetingRoom } from "api/MeetingAPI";
 // import { RootState } from "app/store";
@@ -6,6 +6,8 @@ import MeetingRoom from "api/MeetingRoom";
 
 const initialState = {
   socketId: "",
+  roomName: "",
+  startTime: "",
   username: "",
   displayName: "",
   avatarUrl: "",
@@ -60,11 +62,12 @@ export const RoomMeetingSlice = createSlice({
       state.audio = !state.audio;
     },
     stopVideoButton: (state, action) => {
-      action.payload.socket.emit("close_camera", {
-        username: localStorage.getItem("username"),
-        avatar: localStorage.getItem("avatar"),
-        ownerId: localStorage.getItem("owner"),
-        currentRoom: localStorage.getItem("currentRoom"),
+      let { socket, roomId } = action.payload;
+      socket.emit("close_camera", {
+        username: sessionStorage.getItem("name"),
+        avatar: sessionStorage.getItem("avatarURL"),
+        ownerId: localStorage.getItem("access_token"),
+        currentRoom: roomId,
       });
       state.video = !state.video;
     },
@@ -77,10 +80,42 @@ export const RoomMeetingSlice = createSlice({
       });
     },
     someOneJoinRoom: (state, action) => {
-      state.MemberInRoom = action.payload;
+      console.log(action.payload);
+      let newMemberInRoom = action.payload.map((item, index) => {
+        return {
+          id: item.idUser,
+          display_name: item.username,
+          user_name: item.username,
+          avatar: item.avatar,
+          RoomJoin: item.RoomJoin,
+          audio: item.audio,
+
+          camera: item.camera,
+
+          peerId: item.peerId,
+          socketId: item.socketId,
+        };
+      });
+      state.MemberInRoom = newMemberInRoom;
     },
     memberInRoomMeeting: (state, action) => {
-      state.memberInMeeting = action.payload;
+      console.log(action.payload);
+      let newMemberInRoom = action.payload.map((item, index) => {
+        return {
+          id: item.idUser,
+          display_name: item.username,
+          user_name: item.username,
+          avatar: item.avatar,
+          RoomJoin: item.RoomJoin,
+          audio: item.audio,
+
+          camera: item.camera,
+
+          peerId: item.peerId,
+          socketId: item.socketId,
+        };
+      });
+      state.MemberInRoom = newMemberInRoom;
     },
     someOneDisconnect: (state, action) => {
       state.MemberInRoom = action.payload.userCurrent;
@@ -90,7 +125,6 @@ export const RoomMeetingSlice = createSlice({
       //   videoGird.classList.remove(userDisconect);
       // }
     },
-   
   },
   extraReducers: {
     [listMemberInCanJoinMeetingRoomAsync.pending]: (state) => {
@@ -100,9 +134,18 @@ export const RoomMeetingSlice = createSlice({
       state.loading = true;
     },
     [listMemberInCanJoinMeetingRoomAsync.fulfilled]: (state, action) => {
-      const { isSuccess, memberInMeetingRoom, infoUser } = action.payload;
-      console.log("hello");
+      const {
+        isSuccess,
+        memberInMeetingRoom,
+        infoUser,
+        timeStartMeeting,
+        name,
+      } = action.payload;
+
+      console.log(action.payload);
       if (isSuccess) {
+        state.roomName = name;
+        state.startTime = timeStartMeeting;
         state.username = infoUser.user_name;
         state.displayName = infoUser.display_name;
         state.avatarUrl = infoUser.avatar;
@@ -121,7 +164,6 @@ export const {
   stopAudioButton,
   stopVideoButton,
   memberInRoomMeeting,
-
 } = RoomMeetingSlice.actions;
 
 // const { reducer, actions } = kanban;

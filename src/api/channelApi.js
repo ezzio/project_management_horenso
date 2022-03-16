@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API } from "./configApi";
+import axios from 'axios';
+import { API } from './configApi';
 
 const channelApi = {
   getListChannel: (idProject) => {
@@ -21,7 +21,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: "workSpace",
+        roomNameConversation: 'workSpace',
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -37,7 +37,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: "teams",
+        roomNameConversation: 'teams',
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -53,7 +53,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: "others",
+        roomNameConversation: 'others',
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -67,6 +67,49 @@ const channelApi = {
     return axios
       .post(`${API}/conversation/listRoomConversation`, {
         idRoomConversation: params.idRoom,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  deleteChannel: (params) => {
+    return axios
+      .post(`${API}/conversation/deletRoomInConversation`, {
+        idRoom: params.idRoom,
+        idProject: params.idProject,
+        roomNameConversation: params.roomNameConversation,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  inviteMemberToRoom: (params) => {
+    return axios
+      .post(`${API}/conversation/inviteMemberToChannel`, {
+        idRoom: params.idRoom,
+        listUserInviteToChannel: params.listUserInviteToChannel,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  changeNameOfRoom: (params) => {
+    return axios
+      .post(`${API}/conversation/renameChannel`, {
+        idRoom: params.idRoom,
+        nameChange: params.nameChange,
       })
       .then((response) => {
         return response.data;

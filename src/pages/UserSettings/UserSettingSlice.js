@@ -85,6 +85,9 @@ export const userSettingSlice = createSlice({
         state.email = userInfo.email;
         state.avatarURL = userInfo.avatar;
         state.projects = [];
+        sessionStorage.setItem('avatarURL' , userInfo.avatar)
+        sessionStorage.setItem('name' , userInfo.display_name)
+        console.log(sessionStorage)
         payload[1].allProject.forEach((project, index) => {
           state.projects.push({
             ...project,
