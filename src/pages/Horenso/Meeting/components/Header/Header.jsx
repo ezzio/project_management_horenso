@@ -20,7 +20,7 @@ const Header = ({ room, setIsModalVisible }) => {
       <div className="header__control">
         <div className="header__control__time-tracker">
           <Title level={5} style={{ margin: '0px' }}>
-            <Clock format={'MMMM Mo, YYYY • h:mm:ss A'} ticking={true} />
+            <Clock format={'MMMM Do, YYYY • h:mm:ss A'} ticking={true} />
           </Title>
         </div>
         {room.length > 0 && (
