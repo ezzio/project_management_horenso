@@ -1,9 +1,14 @@
-import React from "react";
-import { AiFillSetting } from "react-icons/ai";
-import "./Header.scss";
-import propTypes from "prop-types";
-import { SiGooglehangoutsmeet } from "react-icons/si";
-import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import React from 'react';
+import { AiFillSetting } from 'react-icons/ai';
+import './Header.scss';
+import propTypes from 'prop-types';
+import { SiGooglehangoutsmeet } from 'react-icons/si';
+import { AiOutlineVideoCameraAdd } from 'react-icons/ai';
+import moment from 'moment';
+import { Typography } from 'antd';
+import Clock from 'react-live-clock';
+
+const { Title } = Typography;
 
 const Header = ({ room, setIsModalVisible }) => {
   return (
@@ -14,15 +19,16 @@ const Header = ({ room, setIsModalVisible }) => {
       </div>
       <div className="header__control">
         <div className="header__control__time-tracker">
-          <p>2:14</p> <p>•</p> <p>Th5, 01/07/2021</p>
+          <Title level={5} style={{ margin: '0px' }}>
+            <Clock format={'MMMM Do, YYYY • h:mm:ss A'} ticking={true} />
+          </Title>
         </div>
-        { 
-          room.length > 0 && 
-          <AiOutlineVideoCameraAdd className="icon" 
+        {room.length > 0 && (
+          <AiOutlineVideoCameraAdd
+            className="icon"
             onClick={() => setIsModalVisible(true)}
           />
-        }
-        <AiFillSetting className="icon" />
+        )}
       </div>
     </div>
   );
