@@ -1,14 +1,10 @@
-import { Button, Form, Input, message, Modal } from "antd";
+import { Form, Input, message, Modal } from "antd";
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-
 import { createProjectAsync } from "./createProjectSlice";
 
 const CreateProject = (props) => {
   const { isModalVisible, setIsModalVisible } = props;
-  const [allowRedirect, setAllowRedirect] = useState(false);
 
   const idProject = useSelector((state) => state.createProject.idProject);
   const showModal = () => {
@@ -40,44 +36,40 @@ const CreateProject = (props) => {
   };
 
   return (
-    <>
-      {allowRedirect && <Redirect to={`/${idProject}/dashboard`} />}
-
-      <Modal
-        title="Create new project"
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        okText="Create"
-        cancelText="Cancel"
-        onOk={() => {
-          form
-            .validateFields()
-            .then((values) => {
-              form.resetFields();
-              onFinish(values);
-            })
-            .catch((info) => {
-              console.log("Validate Failed:", info);
-            });
-        }}
+    <Modal
+      title="Create new project"
+      visible={isModalVisible}
+      onCancel={handleCancel}
+      okText="Create"
+      cancelText="Cancel"
+      onOk={() => {
+        form
+          .validateFields()
+          .then((values) => {
+            form.resetFields();
+            onFinish(values);
+          })
+          .catch((info) => {
+            console.log("Validate Failed:", info);
+          });
+      }}
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
+        <Form.Item
+          name="name"
+          label="Name"
+          rules={[{ required: true }, { type: "string", min: 6 }]}
         >
-          <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true }, { type: "string", min: 6 }]}
-          >
-            <Input placeholder="Enter project name" size="large" />
-          </Form.Item>
-        </Form>
-      </Modal>
-    </>
+          <Input placeholder="Enter project name" size="large" />
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 
