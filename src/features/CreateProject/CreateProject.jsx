@@ -1,12 +1,16 @@
-import { Button, Form, Input, message, Modal } from 'antd';
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createProjectAsync } from './createProjectSlice';
+import { Button, Form, Input, message, Modal } from "antd";
+import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+
+import { createProjectAsync } from "./createProjectSlice";
 
 const CreateProject = (props) => {
   const { isModalVisible, setIsModalVisible } = props;
+  const [allowRedirect, setAllowRedirect] = useState(false);
 
+  const idProject = useSelector((state) => state.createProject.idProject);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -25,51 +29,55 @@ const CreateProject = (props) => {
     dispatch(
       createProjectAsync({
         ...value,
-        owner: localStorage.getItem('access_token'),
+        owner: localStorage.getItem("access_token"),
       })
     );
     handleOk();
   };
 
   const onFinishFailed = () => {
-    message.error('Submit failed!');
+    message.error("Submit failed!");
   };
 
   return (
-    <Modal
-      title="Create new project"
-      visible={isModalVisible}
-      onCancel={handleCancel}
-      okText="Create"
-      cancelText="Cancel"
-      onOk={() => {
-        form
-          .validateFields()
-          .then((values) => {
-            form.resetFields();
-            onFinish(values);
-          })
-          .catch((info) => {
-            console.log('Validate Failed:', info);
-          });
-      }}
-    >
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+    <>
+      {allowRedirect && <Redirect to={`/${idProject}/dashboard`} />}
+
+      <Modal
+        title="Create new project"
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        okText="Create"
+        cancelText="Cancel"
+        onOk={() => {
+          form
+            .validateFields()
+            .then((values) => {
+              form.resetFields();
+              onFinish(values);
+            })
+            .catch((info) => {
+              console.log("Validate Failed:", info);
+            });
+        }}
       >
-        <Form.Item
-          name="name"
-          label="Name"
-          rules={[{ required: true }, { type: 'string', min: 6 }]}
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input placeholder="Enter project name" size="large" />
-        </Form.Item>
-      </Form>
-    </Modal>
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true }, { type: "string", min: 6 }]}
+          >
+            <Input placeholder="Enter project name" size="large" />
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
   );
 };
 
