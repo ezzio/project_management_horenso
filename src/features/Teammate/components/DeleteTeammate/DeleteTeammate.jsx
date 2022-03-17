@@ -29,7 +29,7 @@ function DeleteTeammate(props) {
 
   return (
     <Popconfirm
-      title="Are you sure to delete this task?"
+      title="Are you sure you want to remove this member?"
       onConfirm={() => handleConfirmClick(user_name)}
       onCancel={cancel}
       okText="Yes"

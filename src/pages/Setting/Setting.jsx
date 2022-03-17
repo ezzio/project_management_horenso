@@ -127,7 +127,7 @@ const Setting = () => {
 
             <Card
               style={{ width: "100%" }}
-              title="Danger settings"
+              title="High risk settings"
               bordered={false}
               className="setting-ctn__content__danger"
             >
