@@ -1,12 +1,12 @@
-import { Button, Form, Input, message, Modal } from 'antd';
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createProjectAsync } from './createProjectSlice';
+import { Form, Input, message, Modal } from "antd";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createProjectAsync } from "./createProjectSlice";
 
 const CreateProject = (props) => {
   const { isModalVisible, setIsModalVisible } = props;
 
+  const idProject = useSelector((state) => state.createProject.idProject);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -25,14 +25,14 @@ const CreateProject = (props) => {
     dispatch(
       createProjectAsync({
         ...value,
-        owner: localStorage.getItem('access_token'),
+        owner: localStorage.getItem("access_token"),
       })
     );
     handleOk();
   };
 
   const onFinishFailed = () => {
-    message.error('Submit failed!');
+    message.error("Submit failed!");
   };
 
   return (
@@ -50,7 +50,7 @@ const CreateProject = (props) => {
             onFinish(values);
           })
           .catch((info) => {
-            console.log('Validate Failed:', info);
+            console.log("Validate Failed:", info);
           });
       }}
     >
@@ -64,7 +64,7 @@ const CreateProject = (props) => {
         <Form.Item
           name="name"
           label="Name"
-          rules={[{ required: true }, { type: 'string', min: 6 }]}
+          rules={[{ required: true }, { type: "string", min: 6 }]}
         >
           <Input placeholder="Enter project name" size="large" />
         </Form.Item>
