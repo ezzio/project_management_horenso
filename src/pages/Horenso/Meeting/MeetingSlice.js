@@ -97,7 +97,7 @@ export const meetingSlice = createSlice({
           id: newMeetingRoom._id,
           name: newMeetingRoom.name,
           description: newMeetingRoom.description,
-          startTime: newMeetingRoom.timeStartMeeting,
+          // startTime: newMeetingRoom.timeStartMeeting,
           members: newMeetingRoom.members,
           duration: [newMeetingRoom.start_time, newMeetingRoom.end_time],
         };

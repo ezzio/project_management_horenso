@@ -40,12 +40,11 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
       startTime,
       endTime,
       members: value.members,
-      timeStartMeeting: value.STime.format("HH:mm YYYY-MM-DD"),
+      // timeStartMeeting: value.STime.format("HH:mm YYYY-MM-DD"),
       idProject,
     };
     dispatch(createMettingRoom(newMeeting));
     setIsModalVisible(false);
-    dispatch(createMeeting(newMeeting));
     setTimeout(message.success("Meeting successfully created!"), 500);
   };
   const onFinishFailed = () => {
@@ -107,7 +106,7 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
           >
             <Input placeholder="Enter meeting description" size="large" />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name="STime"
             label="Start time"
             rules={[
@@ -115,7 +114,7 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
             ]}
           >
             <TimePicker label="timeStartMeeting" />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item
             name="duration"
@@ -125,7 +124,7 @@ function MeetingModal({ isModalVisible, setIsModalVisible }) {
             ]}
           >
             <RangePicker
-              format="DD/MM/YYYY"
+              format="YYYY-MM-DD HH:mm"
               disabledDate={disabledDate}
               showTime={{ defaultValue: moment("00:00", "HH:mm") }}
               size="large"

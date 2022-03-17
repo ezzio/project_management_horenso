@@ -62,14 +62,14 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                         <div className="name">{x.name}</div>
                         <div className="dropdown">
                           <div className="description">
-                            <b>Mô tả</b>
+                            <b>Description</b>
                             <div>
                               <p>{x.description}</p>
                             </div>
                           </div>
                           <div className="info">
                             <>
-                              <p>Bắt đầu lúc: {x.startTime}</p>
+                              <p>Start at: {moment(x.startTime).format("MMMM Do, YYYY • h:mm:ss A")}</p>
                               <div className="status status--online">
                                 <HiStatusOnline className="icon" />
                                 Online
@@ -93,14 +93,14 @@ const Workplace = ({ room, setIsModalVisible = { setIsModalVisible } }) => {
                         <div className="name">{x.name}</div>
                         <div className="dropdown">
                           <div className="description">
-                            <b>Mô tả</b>
+                            <b>Description</b>
                             <div>
                               <p>{x.description}</p>
                             </div>
                           </div>
                           <div className="info">
                             <>
-                              <p>Bắt đầu sau: 2 ngày 19 phút</p>
+                              <p>Start {moment(x.duration[0]).fromNow()}</p>
                               <div className="status status--offline">
                                 <HiStatusOffline className="icon" />
                                 Offline
