@@ -5,6 +5,7 @@ import { addNewProject } from "pages/UserSettings/UserSettingSlice";
 
 const initialState = {
   loading: false,
+  idProject: "",
 };
 
 export const createProjectAsync = createAsyncThunk(
@@ -33,7 +34,9 @@ export const createProjectSlice = createSlice({
       if (action.payload) {
         message.success("Create successful");
         localStorage.setItem("projectowner", action.payload.idProject);
-        window.location.replace(`http://localhost:3000/${action.payload.idProject}`)
+        window.location.replace(
+          `http://localhost:3000/${action.payload.idProject}/dashboard`
+        );
       } else {
         message.error("Something went wrong!");
       }
