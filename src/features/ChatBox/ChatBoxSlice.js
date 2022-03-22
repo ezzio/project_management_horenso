@@ -43,6 +43,22 @@ export const listRoomChatAsync = createAsyncThunk(
   }
 );
 
+export const reactionMessage = createAsyncThunk(
+  'Chatbox/reactionMessage',
+  async (params, thunkAPI) => {
+    const current = await channelApi.reactionMessage(params);
+    return current;
+  }
+);
+
+export const replyMessageAsync = createAsyncThunk(
+  'Chatbox/replyMessageAsync',
+  async (params, thunkAPI) => {
+    const current = await channelApi.replyMessage(params);
+    return current;
+  }
+);
+
 export const chatBoxSlice = createSlice({
   name: 'chatbox',
   initialState,
@@ -123,6 +139,7 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
@@ -146,7 +163,12 @@ export const chatBoxSlice = createSlice({
               },
               sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
               mess: [
-                { text: message.line_text, isLiked: false, isDisLiked: false },
+                {
+                  idTextChat: message._id,
+                  text: message.line_text,
+                  isLiked: false,
+                  isDisLiked: false,
+                },
               ],
               replied_message: null,
               type: 'text',
@@ -161,6 +183,7 @@ export const chatBoxSlice = createSlice({
               ) < 60
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
+                idTextChat: message._id,
                 text: message.line_text,
                 isLiked: false,
                 isDisLiked: false,
@@ -178,6 +201,7 @@ export const chatBoxSlice = createSlice({
                 sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 mess: [
                   {
+                    idTextChat: message._id,
                     text: message.line_text,
                     isLiked: false,
                     isDisLiked: false,
@@ -191,6 +215,28 @@ export const chatBoxSlice = createSlice({
         });
         state.messages = stateUpdate;
       }
+    },
+
+    [reactionMessage.pending]: (state) => {
+      state.loading = true;
+    },
+    [reactionMessage.rejected]: (state) => {
+      state.loading = false;
+    },
+    [reactionMessage.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+    },
+
+    [replyMessageAsync.pending]: (state) => {
+      state.loading = true;
+    },
+    [replyMessageAsync.rejected]: (state) => {
+      state.loading = false;
+    },
+    [replyMessageAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
     },
   },
 });

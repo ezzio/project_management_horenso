@@ -2,6 +2,7 @@ import { Avatar, Comment, Dropdown, Image, Menu, Tooltip } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   DislikeOutlined,
   LikeOutlined,
@@ -15,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import {
   messageReactionDisLike,
   messageReactionLike,
+  reactionMessage,
 } from 'features/ChatBox/ChatBoxSlice';
 
 const BubbleChat = (props) => {
@@ -31,21 +33,40 @@ const BubbleChat = (props) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
+  const { idRoom } = useParams();
 
   const like = (item, index) => {
     setLikes(1);
     setDislikes(0);
     setAction('liked');
-    console.log(index, item);
-    dispatch(messageReactionLike({ item, index, bubbleChatIndex }));
+    const infoLiked = {
+      idTextChat: item.idTextChat,
+      type: 'like',
+      idRoom: idRoom,
+      idUser: localStorage.getItem('access_token'),
+    };
+    dispatch(
+      messageReactionLike({
+        item,
+        index,
+        bubbleChatIndex,
+      })
+    );
+    dispatch(reactionMessage(infoLiked));
   };
 
   const dislike = (item, index) => {
     setLikes(0);
     setDislikes(1);
     setAction('disliked');
-    console.log(index, item);
+    const infoDisLiked = {
+      idTextChat: item.idTextChat,
+      type: 'dislike',
+      idRoom: idRoom,
+      idUser: localStorage.getItem('access_token'),
+    };
     dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
+    dispatch(reactionMessage(infoDisLiked));
   };
 
   return (
@@ -65,7 +86,7 @@ const BubbleChat = (props) => {
                 <Menu>
                   <Menu.Item
                     key="1"
-                    onClick={() => handleClickReply(item.text)}
+                    onClick={() => handleClickReply(item.text, item.idTextChat)}
                   >
                     <CommentOutlined style={{ marginRight: '0.3rem' }} />
                     Reply to
