@@ -2,7 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
 import './Chatbox.scss';
-import { sendMessage, sendRepliedMessage, sendImage } from './ChatBoxSlice';
+import {
+  sendMessage,
+  sendRepliedMessage,
+  sendImage,
+  replyMessageAsync,
+} from './ChatBoxSlice';
 import {
   Form,
   Input,
@@ -30,6 +35,7 @@ import { listRoomChatAsync } from './ChatBoxSlice';
 const Chatbox = ({ socket }) => {
   const [repliedMessage, setRepliedMessage] = useState('');
   const [repliedContainer, setRepliedContainer] = useState(false);
+  const [idText, setIdText] = useState('');
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chatBox.messages);
   const infoUser = useSelector((state) => state.userSetting);
@@ -95,9 +101,11 @@ const Chatbox = ({ socket }) => {
   };
   //<----------------------------------
 
-  const onClickReplyMessage = (item) => {
+  const onClickReplyMessage = (item, secondItem) => {
     setRepliedContainer(true);
     setRepliedMessage(item);
+    setIdText(secondItem);
+    console.log(secondItem);
   };
   const onHandleSubmit = (data) => {
     if (data.message && !repliedMessage) {
@@ -125,19 +133,26 @@ const Chatbox = ({ socket }) => {
     } else if (data.message && repliedMessage) {
       const feedbackMessage = {
         user: {
-          user_name: 'Tuong Minh',
-          display_name: 'loo',
-          avatar: 'lmao',
+          user_name: infoUser.name,
+          display_name: infoUser.display_name,
+          avatar: infoUser.avatarURL,
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
         replied_message: repliedMessage,
         type: 'text',
       };
+      const replyMessage = {
+        idRoom: idRoom,
+        idTextChat: idText,
+        messageReply: data.message,
+        idUser: localStorage.getItem('access_token'),
+      };
       form.resetFields();
       setRepliedContainer(false);
       setRepliedMessage('');
       dispatch(sendRepliedMessage(feedbackMessage));
+      dispatch(replyMessageAsync(replyMessage));
     }
   };
 
