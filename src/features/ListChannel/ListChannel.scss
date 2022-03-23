@@ -106,6 +106,15 @@
           font-weight: bold;
         }
       }
+
+      &__name {
+        display: inline-block;
+        height: fit-content;
+        width: 100%;
+        white-space: nowrap;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
