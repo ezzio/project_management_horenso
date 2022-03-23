@@ -273,6 +273,8 @@ const KanbanDashBoard = () => {
               <CompleteTask
                 jobs={resultCompletedJobs}
                 handleDeleteJob={handleDeleteJob}
+                setVisible={setVisible}
+                role={role}
               />
             )}
           </div>
@@ -284,7 +286,7 @@ const KanbanDashBoard = () => {
 
 export default KanbanDashBoard;
 
-const CompleteTask = ({ jobs, handleDeleteJob }) => {
+const CompleteTask = ({ jobs, handleDeleteJob, setVisible, role }) => {
   return (
     <div className="ctn-kanbandashboard__complete__content">
       {jobs.length > 0 ? (
@@ -293,12 +295,14 @@ const CompleteTask = ({ jobs, handleDeleteJob }) => {
             return (
               <JobTag
                 key={job.id_job}
+                onDeleteJob={handleDeleteJob}
                 job={job}
                 title={job.title}
                 priority={job.priority}
-                process={job.progress}
+                process={parseInt(job.progress)}
                 members={job.members}
-                onDeleteJob={handleDeleteJob}
+                setVisible={setVisible}
+                role={role}
               />
             );
         })
