@@ -111,8 +111,7 @@
         display: inline-block;
         height: fit-content;
         width: 100%;
-        white-space: nowrap;
-        overflow-y: hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
       }
     }
