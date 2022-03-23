@@ -118,6 +118,40 @@ const channelApi = {
         console.log(error);
       });
   },
+
+  reactionMessage: (params) => {
+    console.log(params);
+    return axios
+      .post(`${API}/conversation/likeAndDislikeText`, {
+        idRoom: params.idRoom,
+        idTextChat: params.idTextChat,
+        type: params.type,
+        idUser: params.idUser,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  replyMessage: (params) => {
+    console.log(params);
+    return axios
+      .post(`${API}/conversation/replyMessage`, {
+        idRoom: params.idRoom,
+        idTextChat: params.idTextChat,
+        messageReply: params.messageReply,
+        idUser: params.idUser,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default channelApi;
