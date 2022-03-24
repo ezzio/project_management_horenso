@@ -1,8 +1,11 @@
-import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
-import moment from 'moment';
+import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
 // import { createSlice, current,  } from "@reduxjs/toolkit";
-import channelApi from 'api/channelApi';
+import channelApi from "api/channelApi";
 const initialState = {
+  avatar: "",
+  display_name: "",
+  user_name: "",
   loading: false,
   messages: [
     // {
@@ -35,8 +38,16 @@ const initialState = {
   ],
   membersInConvers: [],
 };
+
+export const getInfoUser = createAsyncThunk(
+  "ConversationTask/getInfoUser",
+  async (params) => {
+    const response = await channelApi.getInfoUser(params);
+    return response;
+  }
+);
 export const listRoomChatAsync = createAsyncThunk(
-  'ConversationTask/listMesageInRoom',
+  "ConversationTask/listMesageInRoom",
   async (params, thunkAPI) => {
     let sendChatOnTask = await channelApi.listRoomConversation(params);
     return sendChatOnTask;
@@ -44,7 +55,7 @@ export const listRoomChatAsync = createAsyncThunk(
 );
 
 export const reactionMessage = createAsyncThunk(
-  'Chatbox/reactionMessage',
+  "Chatbox/reactionMessage",
   async (params, thunkAPI) => {
     const current = await channelApi.reactionMessage(params);
     return current;
@@ -52,7 +63,7 @@ export const reactionMessage = createAsyncThunk(
 );
 
 export const replyMessageAsync = createAsyncThunk(
-  'Chatbox/replyMessageAsync',
+  "Chatbox/replyMessageAsync",
   async (params, thunkAPI) => {
     const current = await channelApi.replyMessage(params);
     return current;
@@ -60,17 +71,18 @@ export const replyMessageAsync = createAsyncThunk(
 );
 
 export const chatBoxSlice = createSlice({
-  name: 'chatbox',
+  name: "chatbox",
   initialState,
   reducers: {
     sendMessage: (state, action) => {
+      console.log(action.payload);
       if (
         state.messages[state.messages.length - 1] &&
         current(state.messages)[state.messages.length - 1].user.user_name ===
           action.payload.user.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          'second'
+          "second"
         ) < 60
       ) {
         state.messages[state.messages.length - 1].mess.push(
@@ -90,13 +102,13 @@ export const chatBoxSlice = createSlice({
       let newMessageRecive = {
         user: {
           user_name: newMessage.user_name,
-          display_name: newMessage.display_name,
+          display_name: newMessage.displayName,
           avatar: newMessage.avatarURL,
         },
-        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
         mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
         replied_message: null,
-        type: 'text',
+        type: "text",
       };
       if (
         state.messages[state.messages.length - 1] &&
@@ -104,7 +116,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          'second'
+          "second"
         ) < 60
       ) {
         state.messages[state.messages.length - 1].mess.push({
@@ -132,6 +144,17 @@ export const chatBoxSlice = createSlice({
     },
   },
   extraReducers: {
+    [getInfoUser.pending]: (state, action) => {},
+
+    [getInfoUser.rejected]: (state, action) => {},
+    [getInfoUser.fulfilled]: (state, action) => {
+      let { isSuccess, infoUser } = action.payload;
+      if (isSuccess) {
+        state.avatar = infoUser.avatar;
+        state.display_name = infoUser.displayName;
+        state.user_name = infoUser.user_name;
+      }
+    },
     [listRoomChatAsync.pending]: (state) => {
       state.loading = true;
     },
@@ -161,7 +184,7 @@ export const chatBoxSlice = createSlice({
                 sendAt: message.sendAt,
                 user_name: message.user_name,
               },
-              sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+              sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
               mess: [
                 {
                   idTextChat: message._id,
@@ -171,7 +194,7 @@ export const chatBoxSlice = createSlice({
                 },
               ],
               replied_message: null,
-              type: 'text',
+              type: "text",
             });
           } else {
             if (
@@ -179,7 +202,7 @@ export const chatBoxSlice = createSlice({
                 message.user_name &&
               moment(message.sendAt).diff(
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
-                'second'
+                "second"
               ) < 60
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
@@ -198,7 +221,7 @@ export const chatBoxSlice = createSlice({
                   user_name: message.user_name,
                 },
                 // mess: [message.line_text],
-                sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+                sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
                 mess: [
                   {
                     idTextChat: message._id,
@@ -208,7 +231,7 @@ export const chatBoxSlice = createSlice({
                   },
                 ],
                 replied_message: null,
-                type: 'text',
+                type: "text",
               });
             }
           }

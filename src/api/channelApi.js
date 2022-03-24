@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { API } from './configApi';
+import axios from "axios";
+import { API } from "./configApi";
 
 const channelApi = {
   getListChannel: (idProject) => {
@@ -21,7 +21,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: 'workSpace',
+        roomNameConversation: "workSpace",
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -37,7 +37,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: 'teams',
+        roomNameConversation: "teams",
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -53,7 +53,7 @@ const channelApi = {
       .post(`${API}/conversation/createARoomInConversation`, {
         name: params.name,
         idConversation: params.conversationId,
-        roomNameConversation: 'others',
+        roomNameConversation: "others",
         memberInRoomUserName: params.members,
       })
       .then((response) => {
@@ -144,6 +144,18 @@ const channelApi = {
         idTextChat: params.idTextChat,
         messageReply: params.messageReply,
         idUser: params.idUser,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  getInfoUser: (params) => {
+    return axios
+      .post(`${API}/conversation/getInfoUser`, {
+        idUSer: localStorage.getItem("access_token"),
       })
       .then((response) => {
         return response.data;
