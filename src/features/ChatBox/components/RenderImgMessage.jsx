@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 import moment from 'moment';
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 const RenderImgMessage = (props) => {
   const {
@@ -32,7 +32,6 @@ const RenderImgMessage = (props) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
-  console.log(message);
 
   const like = () => {
     setLikes(1);
@@ -55,12 +54,21 @@ const RenderImgMessage = (props) => {
         actions={replied_message ? actions : null}
         author={<Text>{user.user_name}</Text>}
         avatar={<Avatar src={user.avatar} alt={user.user_name} />}
-        content={mess.map((item, index) => (
+        content={
           <>
             <Dropdown
               overlay={
                 <Menu>
-                  <Menu.Item key="1" onClick={() => handleClickReply(item)}>
+                  <Menu.Item
+                    key="1"
+                    onClick={() =>
+                      handleClickReply(
+                        <Title level={5} style={{ margin: 0 }}>
+                          Picture Attached
+                        </Title>
+                      )
+                    }
+                  >
                     <CommentOutlined style={{ marginRight: '0.3rem' }} />
                     Reply to
                   </Menu.Item>
@@ -90,11 +98,11 @@ const RenderImgMessage = (props) => {
               }
               trigger={['contextMenu']}
             >
-              <Image width={300} src={item} />
+              <Image width={300} src={mess} />
             </Dropdown>
             <br />
           </>
-        ))}
+        }
         datetime={
           <Tooltip title={moment(sendAt).format('YYYY-MM-DD HH:mm:ss')}>
             <span>{moment(sendAt).fromNow()}</span>
