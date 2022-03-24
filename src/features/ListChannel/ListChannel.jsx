@@ -78,11 +78,13 @@ const Listchannel = () => {
           {channels.workspace.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                <Link
+                  className="list-channel__group__btn__name" 
+                  to={`/${idProject}/conversation/${channel.idRoom}`}>
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: 'absolute', right: 50 }}
+                  style={{ position: 'absolute', right: "0%", margin: '1rem' }}
                   onClick={() =>
                     openDrawer(channel.idRoom, channel.name, 'workSpace')
                   }
@@ -113,11 +115,14 @@ const Listchannel = () => {
           {channels.teams.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                <Link
+                  className="list-channel__group__btn__name"  
+                  to={`/${idProject}/conversation/${channel.idRoom}`}
+                >
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: 'absolute', right: 50 }}
+                  style={{ position: 'absolute', right: "0%", margin: '1rem' }}
                   onClick={() =>
                     openDrawer(channel.idRoom, channel.name, 'teams')
                   }
@@ -148,11 +153,14 @@ const Listchannel = () => {
           {channels.others.map((channel) => {
             return (
               <li tabIndex="-1" className="list-channel__group__btn">
-                <Link to={`/${idProject}/conversation/${channel.idRoom}`}>
+                <Link
+                  className="list-channel__group__btn__name"  
+                  to={`/${idProject}/conversation/${channel.idRoom}`}
+                >
                   {channel.name}
                 </Link>
                 <FcSettings
-                  style={{ position: 'absolute', right: 50 }}
+                  style={{ position: 'absolute', right: "0%", margin: '1rem' }}
                   onClick={() =>
                     openDrawer(channel.idRoom, channel.name, 'others')
                   }
