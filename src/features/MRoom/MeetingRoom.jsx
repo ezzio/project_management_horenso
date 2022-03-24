@@ -36,8 +36,8 @@ import './MeetingRoom.scss';
 import { useParams } from 'react-router-dom';
 import Title from 'antd/lib/typography/Title';
 import { useHistory } from 'react-router-dom';
-// let socket = io("servervideocall.herokuapp.com");
-let socket = io('http://localhost:8000');
+let socket = io("servervideocall.herokuapp.com");
+// let socket = io('http://localhost:8000');
 let peer = new Peer({
   secure: true,
   host: 'mypeerserverjs.herokuapp.com',
