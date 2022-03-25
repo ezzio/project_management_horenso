@@ -32,6 +32,7 @@ import { useParams } from "react-router-dom";
 import Text from "antd/lib/typography/Text";
 import RenderImgMessage from "./components/RenderImgMessage";
 import { listRoomChatAsync } from "./ChatBoxSlice";
+import channelApi from "api/channelApi";
 
 const Chatbox = ({ socket }) => {
   const [repliedMessage, setRepliedMessage] = useState("");
@@ -86,6 +87,20 @@ const Chatbox = ({ socket }) => {
           type: "image",
         };
         dispatch(sendImage(newMessage));
+        let data = new FormData();
+        data.append("file", info.file.originFileObj);
+        data.append("idUser", localStorage.getItem("access_token"));
+        data.append("sendAt", newMessage.sendAt);
+        data.append("type", "image");
+        data.append("room_id", idRoom);
+        channelApi.sendImage(data);
+        // socket.emit("sendMessageConversation", {
+        //   room_id: idRoom,
+        //   mess: data,
+        //   idUser: localStorage.getItem("access_token"),
+        //   type: "image",
+        // });
+
         message.success("Upload avatar successful");
       });
     }
@@ -123,7 +138,6 @@ const Chatbox = ({ socket }) => {
       form.resetFields();
       setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
-      // console.log({});
       socket.emit("sendMessageConversation", {
         room_id: idRoom,
         mess: data.message,

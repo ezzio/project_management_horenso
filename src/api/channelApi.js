@@ -164,6 +164,16 @@ const channelApi = {
         console.log(error);
       });
   },
+  sendImage: (params) => {
+    return axios
+      .post(`http://localhost:4000/conversation/sendImage`, params)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default channelApi;

@@ -94,7 +94,7 @@ export const chatBoxSlice = createSlice({
       state.messages.push(action.payload);
     },
     sendImage: (state, action) => {
-      state.messages.push(action.payload);
+      // state.messages.push(action.payload);
     },
     newMessage: (state, action) => {
       console.log(action.payload);
@@ -194,7 +194,7 @@ export const chatBoxSlice = createSlice({
                 },
               ],
               replied_message: null,
-              type: "text",
+              type: message.type,
             });
           } else {
             if (
@@ -231,7 +231,7 @@ export const chatBoxSlice = createSlice({
                   },
                 ],
                 replied_message: null,
-                type: "text",
+                type: message.type,
               });
             }
           }
@@ -259,8 +259,17 @@ export const chatBoxSlice = createSlice({
     },
     [replyMessageAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
     },
+
+    // [sendImage.pending]: (state) => {
+    //   state.loading = true;
+    // },
+    // [sendImage.rejected]: (state) => {
+    //   state.loading = false;
+    // },
+    // [sendImage.fulfilled]: (state, action) => {
+    //   state.loading = false;
+    // },
   },
 });
 
