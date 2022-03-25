@@ -71,11 +71,11 @@ const BubbleChat = (props) => {
 
   return (
     <>
-      {replied_message && (
+      {replied_message?.length > 0 ? (
         <div className="render-replied-message" style={{ opacity: '0.3' }}>
           replied: {replied_message}
         </div>
-      )}
+      ) : null}
       <Comment
         author={<Text>{user.user_name}</Text>}
         avatar={<Avatar src={user.avatar} alt={user.user_name} />}
