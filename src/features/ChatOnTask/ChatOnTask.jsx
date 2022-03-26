@@ -17,7 +17,7 @@ const ChatOnTask = ({ visible, onClose }) => {
 
   // declare data
   const messages = useSelector((state) => state.chatOnTask.messages);
-  console.log(messages);
+  
   const user = useSelector((state) => state.userSetting);
   const { idTask } = useParams();
 

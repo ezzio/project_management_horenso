@@ -141,6 +141,9 @@ const Chatbox = ({ socket }) => {
       socket.emit("sendMessageConversation", {
         room_id: idRoom,
         mess: data.message,
+        user_name: infoUser.user_name,
+        displayName: infoUser.display_name,
+        avatarURL: infoUser.avatar,
         idUser: localStorage.getItem("access_token"),
         type: "text",
       });
@@ -258,10 +261,6 @@ const Chatbox = ({ socket }) => {
                 autoFocus
                 suffix={
                   <Space>
-                    <Tooltip title="Attach File">
-                      <FileAddOutlined className="hover-section" />
-                    </Tooltip>
-
                     <Upload
                       name="image"
                       showUploadList={false}
@@ -273,9 +272,6 @@ const Chatbox = ({ socket }) => {
                         <PictureOutlined className="hover-section" />
                       </Tooltip>
                     </Upload>
-                    <Tooltip title="Smileee!!!">
-                      <SmileOutlined className="hover-section" />
-                    </Tooltip>
 
                     <Button
                       type="primary"
