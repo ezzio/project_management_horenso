@@ -86,10 +86,7 @@ const AnimatedRouter = () => {
       <Switch location={displayLocation}>
         <Route path="/:idProject/dashboard" children={<Dashboard />} />
         <Route exact path="/:idProject/meeting" children={<Meeting />} />
-        <Route
-          path="/:idProject/conversation/:idRoom"
-          children={<Conversation />}
-        />
+        <Route path="/:idProject/conversation" children={<Conversation />} />
         <Route exact path="/:idProject/jobs" children={<KanbanDashBoard />} />
         <Route path="/:idProject/storage/" children={<Storage />} />
         <Route path="/:idProject/teammate" children={<Teammate />} />
@@ -108,6 +105,11 @@ const AnimatedRouter = () => {
           exact
           path="/:idProject/meeting/:idRoom"
           children={<MeetingRoom />}
+        />
+        <PrivateRoute
+          exact
+          path="/:idProject/conversation/:idRoom"
+          children={<Conversation />}
         />
 
         <Route component={NotFound} />
