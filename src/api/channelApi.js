@@ -166,7 +166,17 @@ const channelApi = {
   },
   sendImage: (params) => {
     return axios
-      .post(`http://localhost:4000/conversation/sendImage`, params)
+      .post(`${API}/conversation/sendImage`, params)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  getLastedImage: (params) => {
+    return axios
+      .post(`${API}/conversation/getlastMessage`, params)
       .then((response) => {
         return response.data;
       })
