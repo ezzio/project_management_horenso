@@ -32,7 +32,7 @@ import {
 import { useParams } from "react-router-dom";
 import Text from "antd/lib/typography/Text";
 import RenderImgMessage from "./components/RenderImgMessage";
-import { listRoomChatAsync, newMessage } from "./ChatBoxSlice";
+import { listRoomChatAsync, newMessage, getLastedImage } from "./ChatBoxSlice";
 import channelApi from "api/channelApi";
 
 const Chatbox = ({ socket }) => {
@@ -80,13 +80,13 @@ const Chatbox = ({ socket }) => {
     });
     socket.on("chatnewImageInConversation", (data) => {
       console.log("new image");
-      dispatch(listRoomChatAsync({ idRoom }));
+      dispatch(getLastedImage({ idRoom }));
     });
   }, []);
 
-  socket.on("chatnewImageInConversation", (data) => {
-    dispatch(listRoomChatAsync({ idRoom }));
-  });
+  // socket.on("chatnewImageInConversation", (data) => {
+  //   dispatch(listRoomChatAsync({ idRoom }));
+  // });
   useEffect(() => {
     dispatch(getInfoUser());
     dispatch(setSocketInChatBox({ socket }));
@@ -119,6 +119,7 @@ const Chatbox = ({ socket }) => {
         data.append("room_id", idRoom);
         channelApi.sendImage(data).then((data) => {
           socket.emit("chat-sendImageInConversation", { idRoom });
+          dispatch(getLastedImage({ idRoom }));
         });
         // const reader = new FileReader();
 

@@ -71,6 +71,14 @@ export const replyMessageAsync = createAsyncThunk(
   }
 );
 
+export const getLastedImage = createAsyncThunk(
+  "Chatbox/replyMessageAsync",
+  async (params, thunkAPI) => {
+    const response = await channelApi.getLastedImage(params);
+    return response;
+  }
+);
+
 export const chatBoxSlice = createSlice({
   name: "chatbox",
   initialState,
@@ -264,15 +272,42 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
 
-    // [sendImage.pending]: (state) => {
-    //   state.loading = true;
-    // },
-    // [sendImage.rejected]: (state) => {
-    //   state.loading = false;
-    // },
-    // [sendImage.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    // },
+    [getLastedImage.pending]: (state) => {
+      // state.loading = true;
+    },
+    [getLastedImage.rejected]: (state) => {
+      // state.loading = false;
+    },
+    [getLastedImage.fulfilled]: (state, action) => {
+      let newMessage = action.payload;
+      let newMessageRecive = {
+        user: {
+          user_name: newMessage.user_name,
+          display_name: newMessage.displayName,
+          avatar: newMessage.avatarURL,
+        },
+        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
+        replied_message: null,
+        type: "image",
+      };
+      if (
+        state.messages[state.messages.length - 1] &&
+        current(state.messages)[state.messages.length - 1].user.user_name ===
+          action.payload.user_name &&
+        moment(action.payload.sendAt).diff(
+          moment(current(state.messages)[state.messages.length - 1].sendAt),
+          "second"
+        ) < 60 &&
+        state.messages[state.messages.length - 1].type === newMessageRecive.type
+      ) {
+        state.messages[state.messages.length - 1].mess.push({
+          text: newMessage.mess,
+          isLiked: false,
+          isDisLiked: false,
+        });
+      } else state.messages.push(newMessageRecive);
+    },
   },
 });
 
