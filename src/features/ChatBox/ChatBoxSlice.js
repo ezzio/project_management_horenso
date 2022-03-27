@@ -6,6 +6,7 @@ const initialState = {
   avatar: "",
   display_name: "",
   user_name: "",
+  socket: "",
   loading: false,
   messages: [
     // {
@@ -74,8 +75,10 @@ export const chatBoxSlice = createSlice({
   name: "chatbox",
   initialState,
   reducers: {
+    setSocketInChatBox: (state, action) => {
+      state.socket = action.socket;
+    },
     sendMessage: (state, action) => {
-      console.log(action.payload);
       if (
         state.messages[state.messages.length - 1] &&
         current(state.messages)[state.messages.length - 1].user.user_name ===
@@ -97,7 +100,6 @@ export const chatBoxSlice = createSlice({
       // state.messages.push(action.payload);
     },
     newMessage: (state, action) => {
-      console.log(action.payload);
       let newMessage = action.payload;
       let newMessageRecive = {
         user: {
@@ -162,7 +164,6 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
@@ -280,5 +281,6 @@ export const {
   newMessage,
   messageReactionLike,
   messageReactionDisLike,
+  setSocketInChatBox
 } = chatBoxSlice.actions;
 export default chatBoxSlice.reducer;

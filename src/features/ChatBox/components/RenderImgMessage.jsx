@@ -54,8 +54,8 @@ const RenderImgMessage = (props) => {
         actions={replied_message ? actions : null}
         author={<Text>{user.user_name}</Text>}
         avatar={<Avatar src={user.avatar} alt={user.user_name} />}
-        content={mess.map((item) => {
-          console.log(item.text);
+        content={mess.map((item) => (
+         
           <>
             <Dropdown
               overlay={
@@ -99,11 +99,14 @@ const RenderImgMessage = (props) => {
               }
               trigger={["contextMenu"]}
             >
-              <Image width={300} src={item.text.split(" ").join("%20")} />
+              <Image
+                width={200}
+                src={item.text.split(" ").join("%20")}
+              />
             </Dropdown>
             <br />
-          </>;
-        })}
+          </>
+        ))}
         datetime={
           <Tooltip title={moment(sendAt).format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment(sendAt).fromNow()}</span>

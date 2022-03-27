@@ -8,6 +8,7 @@ import {
   sendImage,
   replyMessageAsync,
   getInfoUser,
+  setSocketInChatBox,
 } from "./ChatBoxSlice";
 import {
   Form,
@@ -31,7 +32,7 @@ import {
 import { useParams } from "react-router-dom";
 import Text from "antd/lib/typography/Text";
 import RenderImgMessage from "./components/RenderImgMessage";
-import { listRoomChatAsync } from "./ChatBoxSlice";
+import { listRoomChatAsync, newMessage } from "./ChatBoxSlice";
 import channelApi from "api/channelApi";
 
 const Chatbox = ({ socket }) => {
@@ -42,6 +43,7 @@ const Chatbox = ({ socket }) => {
   const messages = useSelector((state) => state.chatBox.messages);
   const infoUser = useSelector((state) => state.chatBox);
   const loading = useSelector((state) => state.chatBox.loading);
+
   const { idRoom } = useParams();
   //---------Upload Image-------------->
 
@@ -65,8 +67,30 @@ const Chatbox = ({ socket }) => {
 
   useEffect(() => {
     dispatch(getInfoUser());
+
+    socket.emit("chat-connectToRoomConversation", {
+      id: localStorage.getItem("access_token"),
+      avatarURL: sessionStorage.getItem("avatarURL"),
+      display_name: infoUser.display_name,
+      user_name: sessionStorage.getItem("name"),
+      room_id: idRoom,
+    });
+    socket.on("newMessagesConversation", (message) => {
+      dispatch(newMessage(message));
+    });
+    socket.on("chatnewImageInConversation", (data) => {
+      console.log("new image");
+      dispatch(listRoomChatAsync({ idRoom }));
+    });
+  }, []);
+
+  socket.on("chatnewImageInConversation", (data) => {
     dispatch(listRoomChatAsync({ idRoom }));
-    // console.log('change room');
+  });
+  useEffect(() => {
+    dispatch(getInfoUser());
+    dispatch(setSocketInChatBox({ socket }));
+    dispatch(listRoomChatAsync({ idRoom }));
   }, [idRoom]);
 
   const handleChangeUpload = (info) => {
@@ -93,7 +117,22 @@ const Chatbox = ({ socket }) => {
         data.append("sendAt", newMessage.sendAt);
         data.append("type", "image");
         data.append("room_id", idRoom);
-        channelApi.sendImage(data);
+        channelApi.sendImage(data).then((data) => {
+          socket.emit("chat-sendImageInConversation", { idRoom });
+        });
+        // const reader = new FileReader();
+
+        // // reader.onload = function () {
+        // //   console.log(reader.result);
+        // //   const bytes = new Uint8Array(info.file.originFileObj);
+        // //   console.log(bytes);
+        // //   socket.emit("chat-sendImageInConversation", bytes);
+        // // };
+        // reader.readAsArrayBuffer(info.file.originFileObj);
+
+        // console.log(reader);
+
+        // socket.emit('chat-sendImageInConversation' ,info.file.originFileObj)
         // socket.emit("sendMessageConversation", {
         //   room_id: idRoom,
         //   mess: data,
