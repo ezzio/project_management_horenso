@@ -119,7 +119,8 @@ export const chatBoxSlice = createSlice({
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
           "second"
-        ) < 60
+        ) < 60 &&
+        state.messages[state.messages.length - 1].type === newMessageRecive.type
       ) {
         state.messages[state.messages.length - 1].mess.push({
           text: newMessage.mess,
@@ -204,7 +205,8 @@ export const chatBoxSlice = createSlice({
               moment(message.sendAt).diff(
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
                 "second"
-              ) < 60
+              ) < 60 &&
+              stateUpdate[stateUpdate?.length - 1].type === message.type
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
                 idTextChat: message._id,
@@ -281,6 +283,6 @@ export const {
   newMessage,
   messageReactionLike,
   messageReactionDisLike,
-  setSocketInChatBox
+  setSocketInChatBox,
 } = chatBoxSlice.actions;
 export default chatBoxSlice.reducer;
