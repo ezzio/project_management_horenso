@@ -164,6 +164,26 @@ const channelApi = {
         console.log(error);
       });
   },
+  sendImage: (params) => {
+    return axios
+      .post(`${API}/conversation/sendImage`, params)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  getLastedImage: (params) => {
+    return axios
+      .post(`${API}/conversation/getlastMessage`, params)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default channelApi;

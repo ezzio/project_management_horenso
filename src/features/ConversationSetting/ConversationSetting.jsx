@@ -1,9 +1,9 @@
-import { Typography } from 'antd';
+import { Typography } from "antd";
 // import { useDispatch, useSelector } from "react-redux";
-import React from 'react';
-import { useSelector } from 'react-redux';
-import MembersInConvers from './components/MembersInConvers';
-import './ConversationSetting.scss';
+import React from "react";
+import { useSelector } from "react-redux";
+import MembersInConvers from "./components/MembersInConvers";
+import "./ConversationSetting.scss";
 
 const { Title } = Typography;
 const ConversationSetting = () => {
@@ -35,7 +35,7 @@ const ConversationSetting = () => {
     <div className="conversation-setting">
       <div className="conversation-setting__role">
         <div className="conversation-setting__role__list-members-online">
-          <Title level={5}>Online</Title>
+          <Title level={5}>Member in Conversation</Title>
           {membersInConvers.length > 0 &&
             membersInConvers.map((item) => {
               if (item.is_online === true)
@@ -53,7 +53,7 @@ const ConversationSetting = () => {
               else return null;
             })}
         </div>
-        <OfflineMembers membersInConvers={membersInConvers} />
+        {/* <OfflineMembers membersInConvers={membersInConvers} /> */}
       </div>
     </div>
   );

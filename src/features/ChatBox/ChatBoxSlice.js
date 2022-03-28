@@ -6,6 +6,7 @@ const initialState = {
   avatar: '',
   display_name: '',
   user_name: '',
+  socket: '',
   loading: false,
   messages: [
     // {
@@ -70,12 +71,22 @@ export const replyMessageAsync = createAsyncThunk(
   }
 );
 
+export const getLastedImage = createAsyncThunk(
+  'Chatbox/replyMessageAsync',
+  async (params, thunkAPI) => {
+    const response = await channelApi.getLastedImage(params);
+    return response;
+  }
+);
+
 export const chatBoxSlice = createSlice({
   name: 'chatbox',
   initialState,
   reducers: {
+    setSocketInChatBox: (state, action) => {
+      state.socket = action.socket;
+    },
     sendMessage: (state, action) => {
-      console.log(action.payload);
       if (
         state.messages[state.messages.length - 1] &&
         current(state.messages)[state.messages.length - 1].user.user_name ===
@@ -94,10 +105,9 @@ export const chatBoxSlice = createSlice({
       state.messages.push(action.payload);
     },
     sendImage: (state, action) => {
-      state.messages.push(action.payload);
+      // state.messages.push(action.payload);
     },
     newMessage: (state, action) => {
-      console.log(action.payload);
       let newMessage = action.payload;
       let newMessageRecive = {
         user: {
@@ -117,7 +127,8 @@ export const chatBoxSlice = createSlice({
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
           'second'
-        ) < 60
+        ) < 60 &&
+        state.messages[state.messages.length - 1].type === newMessageRecive.type
       ) {
         state.messages[state.messages.length - 1].mess.push({
           text: newMessage.mess,
@@ -162,7 +173,6 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
@@ -197,6 +207,8 @@ export const chatBoxSlice = createSlice({
                 (item) => item.textchat
               ),
               type: 'text',
+              // replied_message: null,
+              // type: message.type,
             });
           } else {
             if (
@@ -205,7 +217,8 @@ export const chatBoxSlice = createSlice({
               moment(message.sendAt).diff(
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
                 'second'
-              ) < 60
+              ) < 60 &&
+              stateUpdate[stateUpdate?.length - 1].type === message.type
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
                 idTextChat: message._id,
@@ -236,6 +249,8 @@ export const chatBoxSlice = createSlice({
                   (item) => item.textchat
                 ),
                 type: 'text',
+                // replied_message: null,
+                // type: message.type,
               });
             }
           }
@@ -263,7 +278,43 @@ export const chatBoxSlice = createSlice({
     },
     [replyMessageAsync.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
+    },
+
+    [getLastedImage.pending]: (state) => {
+      // state.loading = true;
+    },
+    [getLastedImage.rejected]: (state) => {
+      // state.loading = false;
+    },
+    [getLastedImage.fulfilled]: (state, action) => {
+      let newMessage = action.payload;
+      let newMessageRecive = {
+        user: {
+          user_name: newMessage.user_name,
+          display_name: newMessage.displayName,
+          avatar: newMessage.avatarURL,
+        },
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
+        replied_message: null,
+        type: 'image',
+      };
+      if (
+        state.messages[state.messages.length - 1] &&
+        current(state.messages)[state.messages.length - 1].user.user_name ===
+          action.payload.user_name &&
+        moment(action.payload.sendAt).diff(
+          moment(current(state.messages)[state.messages.length - 1].sendAt),
+          'second'
+        ) < 60 &&
+        state.messages[state.messages.length - 1].type === newMessageRecive.type
+      ) {
+        state.messages[state.messages.length - 1].mess.push({
+          text: newMessage.mess,
+          isLiked: false,
+          isDisLiked: false,
+        });
+      } else state.messages.push(newMessageRecive);
     },
   },
 });
@@ -275,5 +326,6 @@ export const {
   newMessage,
   messageReactionLike,
   messageReactionDisLike,
+  setSocketInChatBox,
 } = chatBoxSlice.actions;
 export default chatBoxSlice.reducer;

@@ -106,6 +106,11 @@ const AnimatedRouter = () => {
           path="/:idProject/meeting/:idRoom"
           children={<MeetingRoom />}
         />
+        <PrivateRoute
+          exact
+          path="/:idProject/conversation/:idRoom"
+          children={<Conversation />}
+        />
 
         <Route component={NotFound} />
       </Switch>
