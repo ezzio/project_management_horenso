@@ -1,8 +1,8 @@
-import { Avatar, Comment, Dropdown, Image, Menu, Tooltip } from 'antd';
-import Text from 'antd/lib/typography/Text';
-import moment from 'moment';
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Avatar, Comment, Dropdown, Image, Menu, Tooltip } from "antd";
+import Text from "antd/lib/typography/Text";
+import moment from "moment";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   DislikeOutlined,
   LikeOutlined,
@@ -11,13 +11,13 @@ import {
   CommentOutlined,
   LikeTwoTone,
   DislikeTwoTone,
-} from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+} from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 import {
   messageReactionDisLike,
   messageReactionLike,
   reactionMessage,
-} from 'features/ChatBox/ChatBoxSlice';
+} from "features/ChatBox/ChatBoxSlice";
 
 const BubbleChat = (props) => {
   const dispatch = useDispatch();
@@ -37,13 +37,13 @@ const BubbleChat = (props) => {
 
   const like = (item, index) => {
     setLikes(1);
-    setDislikes(0);
-    setAction('liked');
+    // setDislikes(0);
+    setAction("liked");
     const infoLiked = {
       idTextChat: item.idTextChat,
-      type: 'like',
+      type: "like",
       idRoom: idRoom,
-      idUser: localStorage.getItem('access_token'),
+      idUser: localStorage.getItem("access_token"),
     };
     dispatch(
       messageReactionLike({
@@ -52,27 +52,29 @@ const BubbleChat = (props) => {
         bubbleChatIndex,
       })
     );
-    dispatch(reactionMessage(infoLiked));
+    // dispatch(reactionMessage(infoLiked));
   };
 
   const dislike = (item, index) => {
-    setLikes(0);
+    // setLikes(0);
     setDislikes(1);
-    setAction('disliked');
+    setAction("disliked");
     const infoDisLiked = {
       idTextChat: item.idTextChat,
-      type: 'dislike',
+      type: "dislike",
       idRoom: idRoom,
-      idUser: localStorage.getItem('access_token'),
+      idUser: localStorage.getItem("access_token"),
     };
     dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
-    dispatch(reactionMessage(infoDisLiked));
+    // dispatch(reactionMessage(infoDisLiked));
   };
+
+  console.log(mess);
 
   return (
     <>
       {replied_message?.length > 0 ? (
-        <div className="render-replied-message" style={{ opacity: '0.3' }}>
+        <div className="render-replied-message" style={{ opacity: "0.3" }}>
           replied: {replied_message}
         </div>
       ) : null}
@@ -88,51 +90,51 @@ const BubbleChat = (props) => {
                     key="1"
                     onClick={() => handleClickReply(item.text, item.idTextChat)}
                   >
-                    <CommentOutlined style={{ marginRight: '0.3rem' }} />
+                    <CommentOutlined style={{ marginRight: "0.3rem" }} />
                     Reply to
                   </Menu.Item>
                   <Menu.Item key="2" onClick={() => like(item, index)}>
-                    {action === 'liked' ? (
-                      <LikeFilled style={{ marginRight: '0.3rem' }} />
+                    {action === "liked" ? (
+                      <LikeFilled style={{ marginRight: "0.3rem" }} />
                     ) : (
-                      <LikeOutlined style={{ marginRight: '0.3rem' }} />
+                      <LikeOutlined style={{ marginRight: "0.3rem" }} />
                     )}
                     Like
                   </Menu.Item>
                   <Menu.Item key="3" onClick={() => dislike(item, index)}>
-                    {action === 'disliked' ? (
-                      <DislikeFilled style={{ marginRight: '0.3rem' }} />
+                    {action === "disliked" ? (
+                      <DislikeFilled style={{ marginRight: "0.3rem" }} />
                     ) : (
-                      <DislikeOutlined style={{ marginRight: '0.3rem' }} />
+                      <DislikeOutlined style={{ marginRight: "0.3rem" }} />
                     )}
                     Dislike
                   </Menu.Item>
                 </Menu>
               }
-              trigger={['contextMenu']}
+              trigger={["contextMenu"]}
             >
               <Text key={index} className="text-container">
-                {item.text}{' '}
+                {item.text}{" "}
                 {item.isLiked || item.isDisLiked ? (
                   <div className="text-container__reaction-container">
                     <span>
-                      {item.isLiked === true && (
+                      {item.isLiked && (
                         <>
                           <LikeTwoTone
-                            style={{ fontSize: '1rem', marginRight: '0.2rem' }}
+                            style={{ fontSize: "1rem", marginRight: "0.2rem" }}
                           />
-                          <span style={{ color: 'white' }}>{likes}</span>
+                          <span style={{ color: "white" }}>{likes}</span>
                         </>
                       )}
                     </span>
 
                     <span>
-                      {item.isDisLiked === true && (
+                      {item.isDisLiked && (
                         <>
                           <DislikeTwoTone
-                            style={{ fontSize: '1rem', marginRight: '0.2rem' }}
+                            style={{ fontSize: "1rem", marginRight: "0.2rem" }}
                           />
-                          <span style={{ color: 'white' }}>{dislikes}</span>
+                          <span style={{ color: "white" }}>{dislikes}</span>
                         </>
                       )}
                     </span>
@@ -143,7 +145,7 @@ const BubbleChat = (props) => {
           </>
         ))}
         datetime={
-          <Tooltip title={moment(sendAt).format('YYYY-MM-DD HH:mm:ss')}>
+          <Tooltip title={moment(sendAt).format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment(sendAt).fromNow()}</span>
           </Tooltip>
         }

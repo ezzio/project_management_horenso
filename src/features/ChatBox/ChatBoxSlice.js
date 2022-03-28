@@ -1,12 +1,12 @@
-import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
-import moment from 'moment';
+import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
 // import { createSlice, current,  } from "@reduxjs/toolkit";
-import channelApi from 'api/channelApi';
+import channelApi from "api/channelApi";
 const initialState = {
-  avatar: '',
-  display_name: '',
-  user_name: '',
-  socket: '',
+  avatar: "",
+  display_name: "",
+  user_name: "",
+  socket: "",
   loading: false,
   messages: [
     // {
@@ -41,14 +41,14 @@ const initialState = {
 };
 
 export const getInfoUser = createAsyncThunk(
-  'ConversationTask/getInfoUser',
+  "ConversationTask/getInfoUser",
   async (params) => {
     const response = await channelApi.getInfoUser(params);
     return response;
   }
 );
 export const listRoomChatAsync = createAsyncThunk(
-  'ConversationTask/listMesageInRoom',
+  "ConversationTask/listMesageInRoom",
   async (params, thunkAPI) => {
     let sendChatOnTask = await channelApi.listRoomConversation(params);
     return sendChatOnTask;
@@ -56,7 +56,7 @@ export const listRoomChatAsync = createAsyncThunk(
 );
 
 export const reactionMessage = createAsyncThunk(
-  'Chatbox/reactionMessage',
+  "Chatbox/reactionMessage",
   async (params, thunkAPI) => {
     const current = await channelApi.reactionMessage(params);
     return current;
@@ -64,7 +64,7 @@ export const reactionMessage = createAsyncThunk(
 );
 
 export const replyMessageAsync = createAsyncThunk(
-  'Chatbox/replyMessageAsync',
+  "Chatbox/replyMessageAsync",
   async (params, thunkAPI) => {
     const current = await channelApi.replyMessage(params);
     return current;
@@ -72,7 +72,7 @@ export const replyMessageAsync = createAsyncThunk(
 );
 
 export const getLastedImage = createAsyncThunk(
-  'Chatbox/replyMessageAsync',
+  "Chatbox/getLastedImageAsync",
   async (params, thunkAPI) => {
     const response = await channelApi.getLastedImage(params);
     return response;
@@ -80,7 +80,7 @@ export const getLastedImage = createAsyncThunk(
 );
 
 export const chatBoxSlice = createSlice({
-  name: 'chatbox',
+  name: "chatbox",
   initialState,
   reducers: {
     setSocketInChatBox: (state, action) => {
@@ -93,7 +93,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          'second'
+          "second"
         ) < 60
       ) {
         state.messages[state.messages.length - 1].mess.push(
@@ -115,10 +115,10 @@ export const chatBoxSlice = createSlice({
           display_name: newMessage.displayName,
           avatar: newMessage.avatarURL,
         },
-        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
         mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
         replied_message: null,
-        type: 'text',
+        type: "text",
       };
       if (
         state.messages[state.messages.length - 1] &&
@@ -126,7 +126,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          'second'
+          "second"
         ) < 60 &&
         state.messages[state.messages.length - 1].type === newMessageRecive.type
       ) {
@@ -173,6 +173,7 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
@@ -193,8 +194,11 @@ export const chatBoxSlice = createSlice({
                 displayName: message.displayName,
                 sendAt: message.sendAt,
                 user_name: message.user_name,
+                like: message.like?.length,
+                dislike: message.dislike?.length,
               },
-              sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+              sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
               mess: [
                 {
                   idTextChat: message._id,
@@ -206,9 +210,9 @@ export const chatBoxSlice = createSlice({
               replied_message: message.replyMessage.map(
                 (item) => item.textchat
               ),
-              type: 'text',
+              // type: 'text',
               // replied_message: null,
-              // type: message.type,
+              type: message.type,
             });
           } else {
             if (
@@ -216,7 +220,7 @@ export const chatBoxSlice = createSlice({
                 message.user_name &&
               moment(message.sendAt).diff(
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
-                'second'
+                "second"
               ) < 60 &&
               stateUpdate[stateUpdate?.length - 1].type === message.type
             ) {
@@ -225,6 +229,8 @@ export const chatBoxSlice = createSlice({
                 text: message.line_text,
                 isLiked: false,
                 isDisLiked: false,
+                like: message.like?.length,
+                dislike: message.dislike?.length,
               });
             } else {
               // console.log('tao dong tin nhan moi');
@@ -236,7 +242,8 @@ export const chatBoxSlice = createSlice({
                   user_name: message.user_name,
                 },
                 // mess: [message.line_text],
-                sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+                sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
                 mess: [
                   {
                     idTextChat: message._id,
@@ -248,9 +255,9 @@ export const chatBoxSlice = createSlice({
                 replied_message: message.replyMessage.map(
                   (item) => item.textchat
                 ),
-                type: 'text',
+                // type: 'text',
                 // replied_message: null,
-                // type: message.type,
+                type: message.type,
               });
             }
           }
@@ -294,10 +301,10 @@ export const chatBoxSlice = createSlice({
           display_name: newMessage.displayName,
           avatar: newMessage.avatarURL,
         },
-        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
         mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
         replied_message: null,
-        type: 'image',
+        type: "image",
       };
       if (
         state.messages[state.messages.length - 1] &&
@@ -305,7 +312,7 @@ export const chatBoxSlice = createSlice({
           action.payload.user_name &&
         moment(action.payload.sendAt).diff(
           moment(current(state.messages)[state.messages.length - 1].sendAt),
-          'second'
+          "second"
         ) < 60 &&
         state.messages[state.messages.length - 1].type === newMessageRecive.type
       ) {
