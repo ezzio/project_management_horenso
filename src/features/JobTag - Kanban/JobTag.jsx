@@ -98,9 +98,11 @@ const JobTag = (props) => {
                 placement="topLeft"
                 content={
                   <Space>
-                    <Button onClick={showModal} type="primary">
-                      Edit
-                    </Button>
+                    {!job.is_completed ? (
+                      <Button onClick={showModal} type="primary">
+                        Edit
+                      </Button>
+                    ) : null}
                     <Popconfirm
                       title="Are you sure to delete this job?"
                       onConfirm={(event) => onDeleteJob(job, event)}

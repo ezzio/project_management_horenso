@@ -69,7 +69,7 @@ const UserSetting = () => {
       return;
     }
     if (info.file.status === 'done') {
-      console.log(info);
+
       getBase64(info.file.originFileObj, (imageUrl) => {
         setImageUrl(imageUrl);
         setIsLoadingAvatar(false);
@@ -79,6 +79,7 @@ const UserSetting = () => {
   };
 
   const uploadAvatar = ({ file, onSuccess }) => {
+    console.log(file)
     let data = new FormData();
     data.append('file', file);
     data.append('owner', localStorage.getItem('access_token') || '');

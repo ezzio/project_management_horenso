@@ -36,8 +36,8 @@ import './MeetingRoom.scss';
 import { useParams } from 'react-router-dom';
 import Title from 'antd/lib/typography/Title';
 import { useHistory } from 'react-router-dom';
-// let socket = io("servervideocall.herokuapp.com");
-let socket = io('http://localhost:8000');
+let socket = io("servervideocall.herokuapp.com");
+// let socket = io('http://localhost:8000');
 let peer = new Peer({
   secure: true,
   host: 'mypeerserverjs.herokuapp.com',
@@ -228,8 +228,9 @@ const MeetingRoom = () => {
           ) : (
             <video
               style={{
-                backgroundImage: `url('${avatarUrl.split(' ').join('%20')}')`,
-                backgroundRepeat: 'no-repeat',
+                backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
               }}
               className="camera"
               ref={MyVideo}

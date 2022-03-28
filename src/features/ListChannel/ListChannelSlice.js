@@ -232,7 +232,7 @@ export const createChannelSlice = createSlice({
     },
     [inviteMemberToRoom.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
+     
       message.success('Invite successfully!');
     },
     //<-----------------------------------------------
@@ -246,7 +246,7 @@ export const createChannelSlice = createSlice({
     },
     [changeNameOfRoom.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
+    
       message.success('Name of channel has been changed!');
     },
     //<-----------------------------------------------

@@ -6,18 +6,18 @@ import {
   Menu,
   Tooltip,
   Typography,
-} from 'antd';
-import React, { useState } from 'react';
+} from "antd";
+import React, { useState } from "react";
 import {
   CommentOutlined,
   LikeFilled,
   LikeOutlined,
   DislikeFilled,
   DislikeOutlined,
-} from '@ant-design/icons';
-import moment from 'moment';
+} from "@ant-design/icons";
+import moment from "moment";
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 const RenderImgMessage = (props) => {
   const {
@@ -32,18 +32,17 @@ const RenderImgMessage = (props) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
-  console.log(message);
 
   const like = () => {
     setLikes(1);
     setDislikes(0);
-    setAction('liked');
+    setAction("liked");
   };
 
   const dislike = () => {
     setLikes(0);
     setDislikes(1);
-    setAction('disliked');
+    setAction("disliked");
   };
 
   const actions = [
@@ -55,48 +54,61 @@ const RenderImgMessage = (props) => {
         actions={replied_message ? actions : null}
         author={<Text>{user.user_name}</Text>}
         avatar={<Avatar src={user.avatar} alt={user.user_name} />}
-        content={mess.map((item, index) => (
+        content={mess.map((item) => (
+         
           <>
             <Dropdown
               overlay={
                 <Menu>
-                  <Menu.Item key="1" onClick={() => handleClickReply(item)}>
-                    <CommentOutlined style={{ marginRight: '0.3rem' }} />
+                  <Menu.Item
+                    key="1"
+                    onClick={() =>
+                      handleClickReply(
+                        <Title level={5} style={{ margin: 0 }}>
+                          Picture Attached
+                        </Title>
+                      )
+                    }
+                  >
+                    <CommentOutlined style={{ marginRight: "0.3rem" }} />
                     Reply to
                   </Menu.Item>
                   <Menu.Item key="2" onClick={like}>
-                    {action === 'liked' ? (
-                      <LikeFilled style={{ marginRight: '0.3rem' }} />
+                    {action === "liked" ? (
+                      <LikeFilled style={{ marginRight: "0.3rem" }} />
                     ) : (
-                      <LikeOutlined style={{ marginRight: '0.3rem' }} />
+                      <LikeOutlined style={{ marginRight: "0.3rem" }} />
                     )}
-                    <Text style={{ marginRight: '0.3rem' }}>
+                    <Text style={{ marginRight: "0.3rem" }}>
                       {likes && likes}
                     </Text>
                     Like
                   </Menu.Item>
                   <Menu.Item key="3" onClick={dislike}>
-                    {action === 'disliked' ? (
-                      <DislikeFilled style={{ marginRight: '0.3rem' }} />
+                    {action === "disliked" ? (
+                      <DislikeFilled style={{ marginRight: "0.3rem" }} />
                     ) : (
-                      <DislikeOutlined style={{ marginRight: '0.3rem' }} />
+                      <DislikeOutlined style={{ marginRight: "0.3rem" }} />
                     )}
-                    <Text style={{ marginRight: '0.3rem' }}>
+                    <Text style={{ marginRight: "0.3rem" }}>
                       {dislike && dislikes}
                     </Text>
                     Dislike
                   </Menu.Item>
                 </Menu>
               }
-              trigger={['contextMenu']}
+              trigger={["contextMenu"]}
             >
-              <Image width={300} src={item} />
+              <Image
+                width={200}
+                src={item.text.split(" ").join("%20")}
+              />
             </Dropdown>
             <br />
           </>
         ))}
         datetime={
-          <Tooltip title={moment(sendAt).format('YYYY-MM-DD HH:mm:ss')}>
+          <Tooltip title={moment(sendAt).format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment(sendAt).fromNow()}</span>
           </Tooltip>
         }

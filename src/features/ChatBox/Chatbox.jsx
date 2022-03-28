@@ -7,6 +7,8 @@ import {
   sendRepliedMessage,
   sendImage,
   replyMessageAsync,
+  getInfoUser,
+  setSocketInChatBox,
 } from './ChatBoxSlice';
 import {
   Form,
@@ -30,7 +32,8 @@ import {
 import { useParams } from 'react-router-dom';
 import Text from 'antd/lib/typography/Text';
 import RenderImgMessage from './components/RenderImgMessage';
-import { listRoomChatAsync } from './ChatBoxSlice';
+import { listRoomChatAsync, newMessage, getLastedImage } from './ChatBoxSlice';
+import channelApi from 'api/channelApi';
 
 const Chatbox = ({ socket }) => {
   const [repliedMessage, setRepliedMessage] = useState('');
@@ -38,8 +41,9 @@ const Chatbox = ({ socket }) => {
   const [idText, setIdText] = useState('');
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chatBox.messages);
-  const infoUser = useSelector((state) => state.userSetting);
+  const infoUser = useSelector((state) => state.chatBox);
   const loading = useSelector((state) => state.chatBox.loading);
+
   const { idRoom } = useParams();
   //---------Upload Image-------------->
 
@@ -62,9 +66,31 @@ const Chatbox = ({ socket }) => {
   };
 
   useEffect(() => {
-    console.log(idRoom);
+    dispatch(getInfoUser());
+
+    socket.emit('chat-connectToRoomConversation', {
+      id: localStorage.getItem('access_token'),
+      avatarURL: sessionStorage.getItem('avatarURL'),
+      display_name: infoUser.display_name,
+      user_name: sessionStorage.getItem('name'),
+      room_id: idRoom,
+    });
+    socket.on('newMessagesConversation', (message) => {
+      dispatch(newMessage(message));
+    });
+    socket.on('chatnewImageInConversation', (data) => {
+      console.log('new image');
+      dispatch(getLastedImage({ idRoom }));
+    });
+  }, []);
+
+  // socket.on("chatnewImageInConversation", (data) => {
+  //   dispatch(listRoomChatAsync({ idRoom }));
+  // });
+  useEffect(() => {
+    dispatch(getInfoUser());
+    dispatch(setSocketInChatBox({ socket }));
     dispatch(listRoomChatAsync({ idRoom }));
-    // console.log('change room');
   }, [idRoom]);
 
   const handleChangeUpload = (info) => {
@@ -75,9 +101,9 @@ const Chatbox = ({ socket }) => {
       getBase64(info.file.originFileObj, (imageUrl) => {
         const newMessage = {
           user: {
-            user_name: 'Tuong Minh',
-            display_name: 'loo',
-            avatar: 'lmao',
+            user_name: infoUser.user_name,
+            display_name: infoUser.display_name,
+            avatar: infoUser.avatar,
           },
           sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
           replied_message: null,
@@ -85,6 +111,36 @@ const Chatbox = ({ socket }) => {
           type: 'image',
         };
         dispatch(sendImage(newMessage));
+        let data = new FormData();
+        data.append('file', info.file.originFileObj);
+        data.append('idUser', localStorage.getItem('access_token'));
+        data.append('sendAt', newMessage.sendAt);
+        data.append('type', 'image');
+        data.append('room_id', idRoom);
+        channelApi.sendImage(data).then((data) => {
+          socket.emit('chat-sendImageInConversation', { idRoom });
+          dispatch(getLastedImage({ idRoom }));
+        });
+        // const reader = new FileReader();
+
+        // // reader.onload = function () {
+        // //   console.log(reader.result);
+        // //   const bytes = new Uint8Array(info.file.originFileObj);
+        // //   console.log(bytes);
+        // //   socket.emit("chat-sendImageInConversation", bytes);
+        // // };
+        // reader.readAsArrayBuffer(info.file.originFileObj);
+
+        // console.log(reader);
+
+        // socket.emit('chat-sendImageInConversation' ,info.file.originFileObj)
+        // socket.emit("sendMessageConversation", {
+        //   room_id: idRoom,
+        //   mess: data,
+        //   idUser: localStorage.getItem("access_token"),
+        //   type: "image",
+        // });
+
         message.success('Upload avatar successful');
       });
     }
@@ -105,15 +161,14 @@ const Chatbox = ({ socket }) => {
     setRepliedContainer(true);
     setRepliedMessage(item);
     setIdText(secondItem);
-    console.log(secondItem);
   };
   const onHandleSubmit = (data) => {
     if (data.message && !repliedMessage) {
       const tempMessage = {
         user: {
-          user_name: infoUser.name,
+          user_name: infoUser.user_name,
           display_name: infoUser.display_name,
-          avatar: infoUser.avatarURL,
+          avatar: infoUser.avatar,
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
@@ -123,19 +178,21 @@ const Chatbox = ({ socket }) => {
       form.resetFields();
       setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
-      // console.log({});
       socket.emit('sendMessageConversation', {
         room_id: idRoom,
         mess: data.message,
+        user_name: infoUser.user_name,
+        displayName: infoUser.display_name,
+        avatarURL: infoUser.avatar,
         idUser: localStorage.getItem('access_token'),
         type: 'text',
       });
     } else if (data.message && repliedMessage) {
       const feedbackMessage = {
         user: {
-          user_name: infoUser.name,
+          user_name: infoUser.user_name,
           display_name: infoUser.display_name,
-          avatar: infoUser.avatarURL,
+          avatar: infoUser.avatar,
         },
         sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
@@ -163,6 +220,8 @@ const Chatbox = ({ socket }) => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
   useEffect(scrollToBottom, [messages]);
+
+  
 
   const [form] = Form.useForm();
 
@@ -244,10 +303,6 @@ const Chatbox = ({ socket }) => {
                 autoFocus
                 suffix={
                   <Space>
-                    <Tooltip title="Attach File">
-                      <FileAddOutlined className="hover-section" />
-                    </Tooltip>
-
                     <Upload
                       name="image"
                       showUploadList={false}
@@ -259,9 +314,6 @@ const Chatbox = ({ socket }) => {
                         <PictureOutlined className="hover-section" />
                       </Tooltip>
                     </Upload>
-                    <Tooltip title="Smileee!!!">
-                      <SmileOutlined className="hover-section" />
-                    </Tooltip>
 
                     <Button
                       type="primary"

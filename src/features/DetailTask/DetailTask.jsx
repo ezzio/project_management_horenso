@@ -318,7 +318,7 @@ const DetailTask = (props) => {
       )}
       <Modal
         visible={isVisible}
-        title="Create a new detail task"
+        title="Create a new Sub-task"
         okText="Create"
         cancelText="Cancel"
         onCancel={() => {
@@ -354,7 +354,7 @@ const DetailTask = (props) => {
 
       <Modal
         visible={visibleEdit}
-        title="Edit the detail task"
+        title="Edit the Sub-task"
         okText="Update"
         cancelText="Cancel"
         okButtonProps={{ disabled: !allowEdit }}
@@ -498,8 +498,8 @@ const DetailTask = (props) => {
             >
               <Title level={5} style={{ marginBottom: '1rem !important' }}>
                 {hasSelected
-                  ? `Completed ${selectedRowKeys.length}/${data.length} of the detail task`
-                  : 'Detail task'}
+                  ? `Completed ${selectedRowKeys.length}/${data.length} of the Sub-task`
+                  : 'Sub-task'}
               </Title>
               <Table
                 className="table-detail-task"
