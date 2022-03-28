@@ -72,7 +72,7 @@ export const replyMessageAsync = createAsyncThunk(
 );
 
 export const getLastedImage = createAsyncThunk(
-  "Chatbox/replyMessageAsync",
+  "Chatbox/getLastedImageAsync",
   async (params, thunkAPI) => {
     const response = await channelApi.getLastedImage(params);
     return response;
@@ -128,7 +128,9 @@ export const chatBoxSlice = createSlice({
           moment(current(state.messages)[state.messages.length - 1].sendAt),
           "second"
         ) < 60 &&
-        state.messages[state.messages.length - 1].type === newMessageRecive.type
+        state.messages[state.messages.length - 1].type ===
+          newMessageRecive.type &&
+        state.messages[state.messages.length - 1].replied_message !== null
       ) {
         state.messages[state.messages.length - 1].mess.push({
           text: newMessage.mess,
@@ -173,10 +175,11 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
-
+      console.log(infoRoom);
       if (isSuccess) {
         state.membersInConvers = infoRoom.memberInRoom.map((item) => {
           let newObject = {
@@ -193,8 +196,11 @@ export const chatBoxSlice = createSlice({
                 displayName: message.displayName,
                 sendAt: message.sendAt,
                 user_name: message.user_name,
+                like: message.like?.length,
+                dislike: message.dislike?.length,
               },
               sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
               mess: [
                 {
                   idTextChat: message._id,
@@ -203,7 +209,11 @@ export const chatBoxSlice = createSlice({
                   isDisLiked: false,
                 },
               ],
-              replied_message: null,
+              replied_message: message.replyMessage.map(
+                (item) => item.textchat
+              ),
+              // type: 'text',
+              // replied_message: null,
               type: message.type,
             });
           } else {
@@ -214,36 +224,108 @@ export const chatBoxSlice = createSlice({
                 moment(stateUpdate[stateUpdate?.length - 1].user.sendAt),
                 "second"
               ) < 60 &&
-              stateUpdate[stateUpdate?.length - 1].type === message.type
+              stateUpdate[stateUpdate?.length - 1].type === message.type &&
+              message.replyMessage.length < 0
             ) {
               stateUpdate[stateUpdate?.length - 1].mess.push({
                 idTextChat: message._id,
                 text: message.line_text,
                 isLiked: false,
                 isDisLiked: false,
+                like: message.like?.length,
+                dislike: message.dislike?.length,
               });
             } else {
-              // console.log('tao dong tin nhan moi');
-              stateUpdate.push({
-                user: {
-                  avatar: message.avatar,
-                  displayName: message.displayName,
-                  sendAt: message.sendAt,
-                  user_name: message.user_name,
-                },
-                // mess: [message.line_text],
-                sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-                mess: [
-                  {
-                    idTextChat: message._id,
-                    text: message.line_text,
-                    isLiked: false,
-                    isDisLiked: false,
+              if (message.replyMessage.length > 0 && message.type !== "image") {
+                let newMessageRely = [];
+
+                stateUpdate.push({
+                  user: {
+                    avatar: message.avatar,
+                    displayName: message.displayName,
+                    sendAt: message.sendAt,
+                    user_name: message.user_name,
+                    like: message.like?.length,
+                    dislike: message.dislike?.length,
                   },
-                ],
-                replied_message: null,
-                type: message.type,
-              });
+                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
+                  mess: [
+                    {
+                      idTextChat: message._id,
+                      text: message.line_text,
+                      isLiked: false,
+                      isDisLiked: false,
+                    },
+                  ],
+                  replied_message: null,
+                  type: message.type,
+                });
+                message.replyMessage.forEach((item, index) => {
+                  if (
+                    index !== 0 &&
+                    item.user_name ===
+                      newMessageRely[newMessageRely.length - 1].user_name
+                  ) {
+                    newMessageRely[newMessageRely.length - 1].textchat.push(
+                      item.textchat
+                    );
+                  } else {
+                    newMessageRely.push({
+                      avatar: item.avatar,
+                      displayName: item.displayName,
+                      replyAt: item.replyAt,
+                      textchat: [item.textchat],
+                      user_name: item.user_name,
+                    });
+                  }
+                });
+                newMessageRely.forEach((item) => {
+                  // item.textchat.forEach((textChatRely) => {
+                  stateUpdate.push({
+                    user: {
+                      avatar: item.avatar,
+                      displayName: item.displayName,
+                      sendAt: item.sendAt,
+                      user_name: item.user_name,
+                    },
+                    sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
+                    mess: item.textchat.map((textChatRely) => {
+                      return {
+                        idTextChat: item._id,
+                        text: textChatRely,
+                        isLiked: false,
+                        isDisLiked: false,
+                      };
+                    }),
+                    replied_message: message.line_text,
+                    type: message.type,
+                  });
+                  // });
+                });
+              } else {
+                stateUpdate.push({
+                  user: {
+                    avatar: message.avatar,
+                    displayName: message.displayName,
+                    sendAt: message.sendAt,
+                    user_name: message.user_name,
+                  },
+                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+
+                  mess: [
+                    {
+                      idTextChat: message._id,
+                      text: message.line_text,
+                      isLiked: false,
+                      isDisLiked: false,
+                    },
+                  ],
+                  replied_message: null,
+                  type: message.type,
+                });
+              }
             }
           }
         });

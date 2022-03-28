@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import BubbleChat from "features/ChatOnTask/components/BubbleChat";
-import "./Chatbox.scss";
+import React, { useRef, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import BubbleChat from 'features/ChatOnTask/components/BubbleChat';
+import './Chatbox.scss';
 import {
   sendMessage,
   sendRepliedMessage,
@@ -9,7 +9,7 @@ import {
   replyMessageAsync,
   getInfoUser,
   setSocketInChatBox,
-} from "./ChatBoxSlice";
+} from './ChatBoxSlice';
 import {
   Form,
   Input,
@@ -19,26 +19,26 @@ import {
   message,
   Tooltip,
   Spin,
-} from "antd";
-import moment from "moment";
-import Title from "antd/lib/typography/Title";
+} from 'antd';
+import moment from 'moment';
+import Title from 'antd/lib/typography/Title';
 import {
   SendOutlined,
   CloseOutlined,
   PictureOutlined,
   FileAddOutlined,
   SmileOutlined,
-} from "@ant-design/icons";
-import { useParams } from "react-router-dom";
-import Text from "antd/lib/typography/Text";
-import RenderImgMessage from "./components/RenderImgMessage";
-import { listRoomChatAsync, newMessage, getLastedImage } from "./ChatBoxSlice";
-import channelApi from "api/channelApi";
+} from '@ant-design/icons';
+import { useParams } from 'react-router-dom';
+import Text from 'antd/lib/typography/Text';
+import RenderImgMessage from './components/RenderImgMessage';
+import { listRoomChatAsync, newMessage, getLastedImage } from './ChatBoxSlice';
+import channelApi from 'api/channelApi';
 
 const Chatbox = ({ socket }) => {
-  const [repliedMessage, setRepliedMessage] = useState("");
+  const [repliedMessage, setRepliedMessage] = useState('');
   const [repliedContainer, setRepliedContainer] = useState(false);
-  const [idText, setIdText] = useState("");
+  const [idText, setIdText] = useState('');
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chatBox.messages);
   const infoUser = useSelector((state) => state.chatBox);
@@ -49,18 +49,18 @@ const Chatbox = ({ socket }) => {
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
+    reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
   };
 
   const beforeUpload = (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || "image/png";
+    const isJpgOrPng = file.type === 'image/jpeg' || 'image/png';
     const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isJpgOrPng) {
-      message.error("Invalid file type or format");
+      message.error('Invalid file type or format');
     }
     if (!isLt5M) {
-      message.error("File size must be smaller than 5MB");
+      message.error('File size must be smaller than 5MB');
     }
     return isJpgOrPng && isLt5M;
   };
@@ -68,18 +68,18 @@ const Chatbox = ({ socket }) => {
   useEffect(() => {
     dispatch(getInfoUser());
 
-    socket.emit("chat-connectToRoomConversation", {
-      id: localStorage.getItem("access_token"),
-      avatarURL: sessionStorage.getItem("avatarURL"),
+    socket.emit('chat-connectToRoomConversation', {
+      id: localStorage.getItem('access_token'),
+      avatarURL: sessionStorage.getItem('avatarURL'),
       display_name: infoUser.display_name,
-      user_name: sessionStorage.getItem("name"),
+      user_name: sessionStorage.getItem('name'),
       room_id: idRoom,
     });
-    socket.on("newMessagesConversation", (message) => {
+    socket.on('newMessagesConversation', (message) => {
       dispatch(newMessage(message));
     });
-    socket.on("chatnewImageInConversation", (data) => {
-      console.log("new image");
+    socket.on('chatnewImageInConversation', (data) => {
+      console.log('new image');
       dispatch(getLastedImage({ idRoom }));
     });
   }, []);
@@ -94,10 +94,10 @@ const Chatbox = ({ socket }) => {
   }, [idRoom]);
 
   const handleChangeUpload = (info) => {
-    if (info.file.status === "uploading") {
+    if (info.file.status === 'uploading') {
       return;
     }
-    if (info.file.status === "done") {
+    if (info.file.status === 'done') {
       getBase64(info.file.originFileObj, (imageUrl) => {
         const newMessage = {
           user: {
@@ -105,20 +105,20 @@ const Chatbox = ({ socket }) => {
             display_name: infoUser.display_name,
             avatar: infoUser.avatar,
           },
-          sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+          sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
           replied_message: null,
           mess: imageUrl,
-          type: "image",
+          type: 'image',
         };
         dispatch(sendImage(newMessage));
         let data = new FormData();
-        data.append("file", info.file.originFileObj);
-        data.append("idUser", localStorage.getItem("access_token"));
-        data.append("sendAt", newMessage.sendAt);
-        data.append("type", "image");
-        data.append("room_id", idRoom);
+        data.append('file', info.file.originFileObj);
+        data.append('idUser', localStorage.getItem('access_token'));
+        data.append('sendAt', newMessage.sendAt);
+        data.append('type', 'image');
+        data.append('room_id', idRoom);
         channelApi.sendImage(data).then((data) => {
-          socket.emit("chat-sendImageInConversation", { idRoom });
+          socket.emit('chat-sendImageInConversation', { idRoom });
           dispatch(getLastedImage({ idRoom }));
         });
         // const reader = new FileReader();
@@ -141,18 +141,18 @@ const Chatbox = ({ socket }) => {
         //   type: "image",
         // });
 
-        message.success("Upload avatar successful");
+        message.success('Upload avatar successful');
       });
     }
   };
 
   const dummyRequest = ({ file, onSuccess }) => {
     let data = new FormData();
-    data.append("file", file);
-    data.append("owner", localStorage.getItem("access_token") || "");
+    data.append('file', file);
+    data.append('owner', localStorage.getItem('access_token') || '');
     // data.append('room_id', roomId);
     setTimeout(() => {
-      onSuccess("ok");
+      onSuccess('ok');
     }, 0);
   };
   //<----------------------------------
@@ -170,22 +170,22 @@ const Chatbox = ({ socket }) => {
           display_name: infoUser.display_name,
           avatar: infoUser.avatar,
         },
-        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
         replied_message: null,
-        type: "text",
+        type: 'text',
       };
       form.resetFields();
       setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
-      socket.emit("sendMessageConversation", {
+      socket.emit('sendMessageConversation', {
         room_id: idRoom,
         mess: data.message,
         user_name: infoUser.user_name,
         displayName: infoUser.display_name,
         avatarURL: infoUser.avatar,
-        idUser: localStorage.getItem("access_token"),
-        type: "text",
+        idUser: localStorage.getItem('access_token'),
+        type: 'text',
       });
     } else if (data.message && repliedMessage) {
       const feedbackMessage = {
@@ -194,20 +194,20 @@ const Chatbox = ({ socket }) => {
           display_name: infoUser.display_name,
           avatar: infoUser.avatar,
         },
-        sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        sendAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         mess: [{ text: data.message, isLiked: false, isDisLiked: false }],
         replied_message: repliedMessage,
-        type: "text",
+        type: 'text',
       };
       const replyMessage = {
         idRoom: idRoom,
         idTextChat: idText,
         messageReply: data.message,
-        idUser: localStorage.getItem("access_token"),
+        idUser: localStorage.getItem('access_token'),
       };
       form.resetFields();
       setRepliedContainer(false);
-      setRepliedMessage("");
+      setRepliedMessage('');
       dispatch(sendRepliedMessage(feedbackMessage));
       dispatch(replyMessageAsync(replyMessage));
     }
@@ -217,9 +217,11 @@ const Chatbox = ({ socket }) => {
 
   const scrollToBottom = () => {
     if (messagesEndRef.current !== null)
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
   useEffect(scrollToBottom, [messages]);
+
+  
 
   const [form] = Form.useForm();
 
@@ -237,7 +239,7 @@ const Chatbox = ({ socket }) => {
               <Title level={2}>Let's talk with your partner now!</Title>
             ) : (
               messages.map((message, index) => {
-                if (message.type === "text")
+                if (message.type === 'text')
                   return (
                     <BubbleChat
                       key={index}
@@ -251,7 +253,7 @@ const Chatbox = ({ socket }) => {
                       handleClickReply={onClickReplyMessage}
                     />
                   );
-                else if (message.type === "image")
+                else if (message.type === 'image')
                   return (
                     <RenderImgMessage
                       key={index}
@@ -279,7 +281,7 @@ const Chatbox = ({ socket }) => {
           >
             {repliedContainer && (
               <div className="chatbox__control__replied-container">
-                <Text style={{ color: "#fff", marginBottom: "0" }}>
+                <Text style={{ color: '#fff', marginBottom: '0' }}>
                   {repliedMessage}
                 </Text>
                 <Button
@@ -292,10 +294,10 @@ const Chatbox = ({ socket }) => {
               </div>
             )}
 
-            <Form.Item name="message" style={{ width: "100%" }}>
+            <Form.Item name="message" style={{ width: '100%' }}>
               <Input
                 autocomplete="off"
-                style={{ padding: "0.5rem" }}
+                style={{ padding: '0.5rem' }}
                 placeholder="Enter your message..."
                 size="large"
                 autoFocus
@@ -316,7 +318,7 @@ const Chatbox = ({ socket }) => {
                     <Button
                       type="primary"
                       htmlType="submit"
-                      style={{ width: "2.5rem" }}
+                      style={{ width: '2.5rem' }}
                     >
                       <SendOutlined />
                     </Button>
