@@ -221,7 +221,7 @@ const Chatbox = ({ socket }) => {
   };
   useEffect(scrollToBottom, [messages]);
 
-  console.log(messages);
+  
 
   const [form] = Form.useForm();
 

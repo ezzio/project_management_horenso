@@ -69,7 +69,7 @@ const BubbleChat = (props) => {
     // dispatch(reactionMessage(infoDisLiked));
   };
 
-  console.log(mess);
+
 
   return (
     <>
