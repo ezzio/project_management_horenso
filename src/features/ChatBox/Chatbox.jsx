@@ -224,7 +224,7 @@ const Chatbox = ({ socket }) => {
   
 
   const [form] = Form.useForm();
-
+  
   return (
     <div className="spinning-ctn-conversation">
       <Spin
@@ -239,13 +239,14 @@ const Chatbox = ({ socket }) => {
               <Title level={2}>Let's talk with your partner now!</Title>
             ) : (
               messages.map((message, index) => {
+         
                 if (message.type === 'text')
                   return (
                     <BubbleChat
                       key={index}
                       bubbleChatIndex={index}
                       user={message.user}
-                      sendAt={message.sentAt}
+                      sendAt={message.sendAt}
                       mess={message.mess}
                       replied_message={message.replied_message}
                       type={message.type}
@@ -259,7 +260,7 @@ const Chatbox = ({ socket }) => {
                       key={index}
                       index={index}
                       user={message.user}
-                      sendAt={message.sentAt}
+                      sendAt={message.sendAt}
                       mess={message.mess}
                       replied_message={message.replied_message}
                       type={message.type}

@@ -175,7 +175,6 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
@@ -199,7 +198,7 @@ export const chatBoxSlice = createSlice({
                 like: message.like?.length,
                 dislike: message.dislike?.length,
               },
-              sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+              sendAt: message.sendAt,
 
               mess: [
                 {
@@ -248,7 +247,7 @@ export const chatBoxSlice = createSlice({
                     like: message.like?.length,
                     dislike: message.dislike?.length,
                   },
-                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                  sendAt: message.sendAt,
 
                   mess: [
                     {
@@ -289,7 +288,7 @@ export const chatBoxSlice = createSlice({
                       sendAt: item.sendAt,
                       user_name: item.user_name,
                     },
-                    sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                    sendAt: message.sendAt,
 
                     mess: item.textchat.map((textChatRely) => {
                       return {
@@ -312,7 +311,7 @@ export const chatBoxSlice = createSlice({
                     sendAt: message.sendAt,
                     user_name: message.user_name,
                   },
-                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                  sendAt: message.sendAt,
 
                   mess: [
                     {

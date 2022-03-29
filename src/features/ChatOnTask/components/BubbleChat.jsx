@@ -34,7 +34,7 @@ const BubbleChat = (props) => {
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
   const { idRoom } = useParams();
-
+  console.log(moment(sendAt).fromNow());
   const like = (item, index) => {
     setLikes(1);
     // setDislikes(0);
@@ -68,8 +68,6 @@ const BubbleChat = (props) => {
     dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
     // dispatch(reactionMessage(infoDisLiked));
   };
-
-
 
   return (
     <>
