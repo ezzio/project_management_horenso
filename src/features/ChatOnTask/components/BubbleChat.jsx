@@ -1,4 +1,4 @@
-import { Avatar, Comment, Dropdown, Image, Menu, Tooltip } from "antd";
+import { Avatar, Comment, Dropdown, Image, Menu, Tooltip, Popover } from "antd";
 import Text from "antd/lib/typography/Text";
 import moment from "moment";
 import React, { useState } from "react";
@@ -12,7 +12,7 @@ import {
   LikeTwoTone,
   DislikeTwoTone,
 } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   messageReactionDisLike,
   messageReactionLike,
@@ -28,36 +28,33 @@ const BubbleChat = (props) => {
     handleClickReply,
     replied_message,
     message,
+    likeState,
+    dislikeState,
     bubbleChatIndex,
   } = props;
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
   const { idRoom } = useParams();
-  console.log(moment(sendAt).fromNow());
+
   const like = (item, index) => {
-    setLikes(1);
-    // setDislikes(0);
-    setAction("liked");
     const infoLiked = {
       idTextChat: item.idTextChat,
       type: "like",
       idRoom: idRoom,
+      user_name: sessionStorage.getItem('name'),
       idUser: localStorage.getItem("access_token"),
     };
     dispatch(
       messageReactionLike({
         item,
         index,
+        infoLiked,
         bubbleChatIndex,
       })
     );
-    // dispatch(reactionMessage(infoLiked));
+    dispatch(reactionMessage(infoLiked));
   };
 
   const dislike = (item, index) => {
-    // setLikes(0);
-    setDislikes(1);
     setAction("disliked");
     const infoDisLiked = {
       idTextChat: item.idTextChat,
@@ -66,8 +63,43 @@ const BubbleChat = (props) => {
       idUser: localStorage.getItem("access_token"),
     };
     dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
-    // dispatch(reactionMessage(infoDisLiked));
+    dispatch(reactionMessage(infoDisLiked));
   };
+
+  const reduceLikeAndDislike = (arr) => {
+    let reduceArray = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (reduceArray.length === 0) {
+        reduceArray.push({ user_name: arr[i].user_name, count: 1 });
+      } else {
+        if (arr[i].user_name == reduceArray[reduceArray.length - 1].user_name) {
+          reduceArray[reduceArray.length - 1].count++;
+        } else {
+          reduceArray.push({ user_name: arr[i].user_name, count: 1 });
+        }
+      }
+    }
+
+    return reduceArray;
+  };
+
+  const contentLike = (
+    <div>
+      {likeState.length > 0 &&
+        reduceLikeAndDislike(likeState).map((item) => {
+          return <p>{item.count + " " + item.user_name}</p>;
+        })}
+    </div>
+  );
+
+  const contentDislike = (
+    <div>
+      {dislikeState.length > 0 &&
+        reduceLikeAndDislike(dislikeState).map((item) => {
+          return <p>{item.count + " " + item.user_name}</p>;
+        })}
+    </div>
+  );
 
   return (
     <>
@@ -113,31 +145,63 @@ const BubbleChat = (props) => {
             >
               <Text key={index} className="text-container">
                 {item.text}{" "}
-                {item.isLiked || item.isDisLiked ? (
-                  <div className="text-container__reaction-container">
-                    <span>
-                      {item.isLiked && (
-                        <>
+                <div className="" style={{ display: "flex" }}>
+                  {likeState.length > 0 && (
+                    <span
+                      style={{
+                        marginRight: "0.2rem",
+                        borderRadius: "3px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <Popover content={contentLike} title="Like">
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "6px",
+                            padding: "0 6px",
+                            border: " 1px solid blue",
+                            borderRadius: "3px",
+                            backgroundColor: "#b3e6ff",
+                          }}
+                        >
                           <LikeTwoTone
-                            style={{ fontSize: "1rem", marginRight: "0.2rem" }}
+                            style={{
+                              fontSize: "1rem",
+                              marginTop: "0.1rem",
+                            }}
                           />
-                          <span style={{ color: "white" }}>{likes}</span>
-                        </>
-                      )}
+                          <span>{likeState.length}</span>
+                        </div>
+                      </Popover>
                     </span>
-
+                  )}
+                  {dislikeState.length > 0 && (
                     <span>
-                      {item.isDisLiked && (
-                        <>
+                      <Popover content={contentDislike} title="dislike">
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "6px",
+                            padding: "0 6px",
+                            border: " 1px solid blue",
+                            borderRadius: "3px",
+                            backgroundColor: "#b3e6ff",
+                          }}
+                        >
                           <DislikeTwoTone
-                            style={{ fontSize: "1rem", marginRight: "0.2rem" }}
+                            style={{
+                              fontSize: "1rem",
+                              marginRight: "0.2rem",
+                              marginTop: "0.2rem",
+                            }}
                           />
-                          <span style={{ color: "white" }}>{dislikes}</span>
-                        </>
-                      )}
+                          <span>{dislikeState.length}</span>
+                        </div>
+                      </Popover>
                     </span>
-                  </div>
-                ) : null}
+                  )}
+                </div>
               </Text>
             </Dropdown>
           </>
