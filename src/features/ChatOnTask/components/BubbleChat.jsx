@@ -40,9 +40,10 @@ const BubbleChat = (props) => {
       idTextChat: item.idTextChat,
       type: "like",
       idRoom: idRoom,
-      user_name: sessionStorage.getItem('name'),
+      user_name: sessionStorage.getItem("name"),
       idUser: localStorage.getItem("access_token"),
     };
+
     dispatch(
       messageReactionLike({
         item,
@@ -61,8 +62,11 @@ const BubbleChat = (props) => {
       type: "dislike",
       idRoom: idRoom,
       idUser: localStorage.getItem("access_token"),
+      user_name: sessionStorage.getItem("name"),
     };
-    dispatch(messageReactionDisLike({ item, index, bubbleChatIndex }));
+    dispatch(
+      messageReactionDisLike({ item, index, bubbleChatIndex, infoDisLiked })
+    );
     dispatch(reactionMessage(infoDisLiked));
   };
 

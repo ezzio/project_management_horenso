@@ -114,15 +114,14 @@ export const chatBoxSlice = createSlice({
       } else state.messages.push(newMessageRecive);
     },
     messageReactionLike: (state, action) => {
-      console.log(action.payload);
+      state.messages[action.payload.bubbleChatIndex].like.push({
+        user_name: action.payload.infoLiked.user_name,
+      });
     },
     messageReactionDisLike: (state, action) => {
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isLiked = false;
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isDisLiked = true;
+      state.messages[action.payload.bubbleChatIndex].dislike.push({
+        user_name: action.payload.infoDisLiked.user_name,
+      });
     },
   },
   extraReducers: {
