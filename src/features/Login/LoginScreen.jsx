@@ -18,7 +18,7 @@ const LoginScreen = () => {
     <div className="ctn login">
       <div className="login__form">
         <Title level={1} style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          Welcome!
+          Welcome to Kanso!
         </Title>
         <LoginForm />
       </div>
