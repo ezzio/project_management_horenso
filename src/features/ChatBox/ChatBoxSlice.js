@@ -8,36 +8,10 @@ const initialState = {
   user_name: "",
   socket: "",
   loading: false,
-  messages: [
-    // {
-    //   userId: 1,
-    //   createAt: '2021-04-12 16:30:18',
-    //   userName: 'Dang Khoa',
-    //   textChat: 'Hi, this is a first message',
-    //   fileUrl: null,
-    //   statusPin: false,
-    //   role: 'pm',
-    // },
-    // {
-    //   userId: 2,
-    //   createAt: '2021-04-12 16:30:20',
-    //   userName: 'Phu Nguyen',
-    //   textChat: 'yeah !',
-    //   fileUrl: null,
-    //   statusPin: false,
-    //   role: 'dev',
-    // },
-    // {s
-    //   userId: 2,
-    //   createAt: '2021-04-12 16:30:22',
-    //   userName: 'Phu Nguyen',
-    //   textChat: 'it is working',
-    //   fileUrl: null,
-    //   statusPin: false,
-    //   role: 'dev',
-    // },
-  ],
+  messages: [],
   membersInConvers: [],
+  like: [],
+  dislike: [],
 };
 
 export const getInfoUser = createAsyncThunk(
@@ -140,20 +114,14 @@ export const chatBoxSlice = createSlice({
       } else state.messages.push(newMessageRecive);
     },
     messageReactionLike: (state, action) => {
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isLiked = true;
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isDisLiked = false;
+      state.messages[action.payload.bubbleChatIndex].like.push({
+        user_name: action.payload.infoLiked.user_name,
+      });
     },
     messageReactionDisLike: (state, action) => {
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isLiked = false;
-      state.messages[action.payload.bubbleChatIndex].mess[
-        action.payload.index
-      ].isDisLiked = true;
+      state.messages[action.payload.bubbleChatIndex].dislike.push({
+        user_name: action.payload.infoDisLiked.user_name,
+      });
     },
   },
   extraReducers: {
@@ -175,11 +143,10 @@ export const chatBoxSlice = createSlice({
       state.loading = false;
     },
     [listRoomChatAsync.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       const stateUpdate = [];
       const { infoRoom, isSuccess } = action.payload;
-      console.log(infoRoom);
+
       if (isSuccess) {
         state.membersInConvers = infoRoom.memberInRoom.map((item) => {
           let newObject = {
@@ -196,11 +163,10 @@ export const chatBoxSlice = createSlice({
                 displayName: message.displayName,
                 sendAt: message.sendAt,
                 user_name: message.user_name,
-                like: message.like?.length,
-                dislike: message.dislike?.length,
               },
-              sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-
+              sendAt: message.sendAt,
+              like: message.like,
+              dislike: message.dislike,
               mess: [
                 {
                   idTextChat: message._id,
@@ -230,10 +196,9 @@ export const chatBoxSlice = createSlice({
               stateUpdate[stateUpdate?.length - 1].mess.push({
                 idTextChat: message._id,
                 text: message.line_text,
-                isLiked: false,
-                isDisLiked: false,
-                like: message.like?.length,
-                dislike: message.dislike?.length,
+                like: message.like,
+                dislike: message.dislike,
+                like: message.like,
               });
             } else {
               if (message.replyMessage.length > 0 && message.type !== "image") {
@@ -245,17 +210,16 @@ export const chatBoxSlice = createSlice({
                     displayName: message.displayName,
                     sendAt: message.sendAt,
                     user_name: message.user_name,
-                    like: message.like?.length,
-                    dislike: message.dislike?.length,
                   },
-                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-
+                  sendAt: message.sendAt,
+                  like: message.like,
+                  dislike: message.dislike,
                   mess: [
                     {
                       idTextChat: message._id,
                       text: message.line_text,
-                      isLiked: false,
-                      isDisLiked: false,
+                      isLiked: message.like,
+                      isDisLiked: message.dislike,
                     },
                   ],
                   replied_message: null,
@@ -289,7 +253,7 @@ export const chatBoxSlice = createSlice({
                       sendAt: item.sendAt,
                       user_name: item.user_name,
                     },
-                    sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                    sendAt: message.sendAt,
 
                     mess: item.textchat.map((textChatRely) => {
                       return {
@@ -312,8 +276,9 @@ export const chatBoxSlice = createSlice({
                     sendAt: message.sendAt,
                     user_name: message.user_name,
                   },
-                  sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-
+                  sendAt: message.sendAt,
+                  like: message.like,
+                  dislike: message.dislike,
                   mess: [
                     {
                       idTextChat: message._id,
@@ -368,6 +333,8 @@ export const chatBoxSlice = createSlice({
           display_name: newMessage.displayName,
           avatar: newMessage.avatarURL,
         },
+        like: [],
+        dislike: [],
         sendAt: moment().format("YYYY-MM-DD HH:mm:ss"),
         mess: [{ text: newMessage.mess, isLiked: false, isDisLiked: false }],
         replied_message: null,
