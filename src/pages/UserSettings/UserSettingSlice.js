@@ -87,7 +87,8 @@ export const userSettingSlice = createSlice({
         state.projects = [];
         sessionStorage.setItem('avatarURL' , userInfo.avatar)
         sessionStorage.setItem('name' , userInfo.display_name)
-    
+        sessionStorage.setItem('user_name' , userInfo.user_name)
+        
         payload[1].allProject.forEach((project, index) => {
           state.projects.push({
             ...project,

@@ -1,7 +1,7 @@
 import { Avatar, Comment, Dropdown, Image, Menu, Tooltip, Popover } from "antd";
 import Text from "antd/lib/typography/Text";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   DislikeOutlined,
@@ -28,6 +28,7 @@ const BubbleChat = (props) => {
     handleClickReply,
     replied_message,
     message,
+    socket,
     likeState,
     dislikeState,
     bubbleChatIndex,
@@ -35,12 +36,29 @@ const BubbleChat = (props) => {
   const [action, setAction] = useState(null);
   const { idRoom } = useParams();
 
+  useEffect(() => {
+    socket.on("chat-likeInConversation", (infoLiked, bubbleChatIndex) => {
+      dispatch(
+        messageReactionLike({
+          infoLiked,
+          bubbleChatIndex,
+        })
+      );
+    });
+    socket.on(
+      "chat-dislikeOutConversation",
+      (bubbleChatIndex, infoDisLiked) => {
+        dispatch(messageReactionDisLike({ bubbleChatIndex, infoDisLiked }));
+      }
+    );
+  }, []);
+
   const like = (item, index) => {
     const infoLiked = {
       idTextChat: item.idTextChat,
       type: "like",
       idRoom: idRoom,
-      user_name: sessionStorage.getItem("name"),
+      user_name: sessionStorage.getItem("user_name"),
       idUser: localStorage.getItem("access_token"),
     };
 
@@ -52,6 +70,10 @@ const BubbleChat = (props) => {
         bubbleChatIndex,
       })
     );
+    socket.emit("chat-likeMessageInConversation", {
+      idRoom,
+      user_name: sessionStorage.getItem("user_name"),
+    });
     dispatch(reactionMessage(infoLiked));
   };
 
@@ -62,11 +84,15 @@ const BubbleChat = (props) => {
       type: "dislike",
       idRoom: idRoom,
       idUser: localStorage.getItem("access_token"),
-      user_name: sessionStorage.getItem("name"),
+      user_name: sessionStorage.getItem("user_name"),
     };
     dispatch(
       messageReactionDisLike({ item, index, bubbleChatIndex, infoDisLiked })
     );
+    socket.emit("chat-dislikeMessageInConversation", {
+      idRoom,
+      user_name: sessionStorage.getItem("user_name"),
+    });
     dispatch(reactionMessage(infoDisLiked));
   };
 
