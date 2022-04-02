@@ -114,6 +114,7 @@ export const chatBoxSlice = createSlice({
       } else state.messages.push(newMessageRecive);
     },
     messageReactionLike: (state, action) => {
+      console.log(state.messages[action.payload.bubbleChatIndex])
       state.messages[action.payload.bubbleChatIndex].like.push({
         user_name: action.payload.infoLiked.user_name,
       });

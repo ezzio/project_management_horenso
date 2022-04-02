@@ -37,25 +37,14 @@ const BubbleChat = (props) => {
   const { idRoom } = useParams();
 
   useEffect(() => {
-    socket.on("chat-likeInConversation", (infoLiked, bubbleChatIndex) => {
-      dispatch(
-        messageReactionLike({
-          infoLiked,
-          bubbleChatIndex,
-        })
-      );
-    });
-    socket.on(
-      "chat-dislikeOutConversation",
-      (bubbleChatIndex, infoDisLiked) => {
-        dispatch(messageReactionDisLike({ bubbleChatIndex, infoDisLiked }));
-      }
-    );
     socket.on("chat-someOneLikeInConversation", (data) => {
-
+      dispatch(messageReactionLike(data));
+    });
+    socket.on("chat-someOneDislikeInConversation", (data) => {
+      dispatch(messageReactionDisLike(data));
     });
   }, []);
-
+  // like
   const like = (item, index) => {
     const infoLiked = {
       idTextChat: item.idTextChat,
@@ -65,12 +54,18 @@ const BubbleChat = (props) => {
       idUser: localStorage.getItem("access_token"),
     };
     socket.emit("chat-likeMessageInConversation", {
-      idRoom,
-      user_name: sessionStorage.getItem("user_name"),
+      bubbleChatIndex,
+      infoLiked: {
+        idTextChat: item.idTextChat,
+        type: "like",
+        idRoom: idRoom,
+        user_name: sessionStorage.getItem("user_name"),
+      },
     });
-    // dispatch(reactionMessage(infoLiked));
+    dispatch(messageReactionLike({ item, index, bubbleChatIndex, infoLiked }));
+    dispatch(reactionMessage(infoLiked));
   };
-
+  // dislike
   const dislike = (item, index) => {
     setAction("disliked");
     const infoDisLiked = {
@@ -84,8 +79,13 @@ const BubbleChat = (props) => {
       messageReactionDisLike({ item, index, bubbleChatIndex, infoDisLiked })
     );
     socket.emit("chat-dislikeMessageInConversation", {
-      idRoom,
-      user_name: sessionStorage.getItem("user_name"),
+      bubbleChatIndex,
+      infoDisLiked: {
+        idTextChat: item.idTextChat,
+        type: "dislike",
+        idRoom: idRoom,
+        user_name: sessionStorage.getItem("user_name"),
+      },
     });
     dispatch(reactionMessage(infoDisLiked));
   };
