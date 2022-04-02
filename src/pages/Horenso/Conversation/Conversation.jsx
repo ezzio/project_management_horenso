@@ -11,8 +11,8 @@ import { useDispatch } from 'react-redux';
 
 import { newMessage } from 'features/ChatBox/ChatBoxSlice';
 import './Conversation.scss';
-let socket = io('https://servernckhv2.herokuapp.com');
-// let socket = io("http://localhost:4000");
+// let socket = io('https://servernckhv2.herokuapp.com');
+let socket = io("http://localhost:4000");
 const Conversation = () => {
   const [openCreatechannel, setOpenCreatechannel] = useState(false);
   const loading = useSelector((state) => state.createChannel.loading);

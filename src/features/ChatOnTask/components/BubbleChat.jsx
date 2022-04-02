@@ -51,6 +51,9 @@ const BubbleChat = (props) => {
         dispatch(messageReactionDisLike({ bubbleChatIndex, infoDisLiked }));
       }
     );
+    socket.on("chat-someOneLikeInConversation", (data) => {
+
+    });
   }, []);
 
   const like = (item, index) => {
@@ -61,20 +64,11 @@ const BubbleChat = (props) => {
       user_name: sessionStorage.getItem("user_name"),
       idUser: localStorage.getItem("access_token"),
     };
-
-    dispatch(
-      messageReactionLike({
-        item,
-        index,
-        infoLiked,
-        bubbleChatIndex,
-      })
-    );
     socket.emit("chat-likeMessageInConversation", {
       idRoom,
       user_name: sessionStorage.getItem("user_name"),
     });
-    dispatch(reactionMessage(infoLiked));
+    // dispatch(reactionMessage(infoLiked));
   };
 
   const dislike = (item, index) => {

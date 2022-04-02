@@ -121,26 +121,6 @@ const Chatbox = ({ socket }) => {
           socket.emit("chat-sendImageInConversation", { idRoom });
           dispatch(getLastedImage({ idRoom }));
         });
-        // const reader = new FileReader();
-
-        // // reader.onload = function () {
-        // //   console.log(reader.result);
-        // //   const bytes = new Uint8Array(info.file.originFileObj);
-        // //   console.log(bytes);
-        // //   socket.emit("chat-sendImageInConversation", bytes);
-        // // };
-        // reader.readAsArrayBuffer(info.file.originFileObj);
-
-        // console.log(reader);
-
-        // socket.emit('chat-sendImageInConversation' ,info.file.originFileObj)
-        // socket.emit("sendMessageConversation", {
-        //   room_id: idRoom,
-        //   mess: data,
-        //   idUser: localStorage.getItem("access_token"),
-        //   type: "image",
-        // });
-
         message.success("Upload avatar successful");
       });
     }
