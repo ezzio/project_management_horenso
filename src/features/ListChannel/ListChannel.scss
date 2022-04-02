@@ -109,7 +109,7 @@
 
       &__name {
         display: inline-block;
-        height: fit-content;
+        max-height: 45px;
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
