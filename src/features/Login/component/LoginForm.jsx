@@ -50,9 +50,9 @@ const LoginForm = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <Link style={{ float: 'right' }} to="/ForgotPassword">
+        {/* <Link style={{ float: 'right' }} to="/ForgotPassword">
           Forgot Password ?
-        </Link>
+        </Link> */}
       </Form.Item>
 
       <Form.Item>
