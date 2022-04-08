@@ -1,18 +1,18 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
-import userApi from 'api/userApi';
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import userApi from "api/userApi";
 const initialState = {
-  name: '',
-  bio: '',
-  display_name: '',
-  company: '',
-  location: '',
-  email: '',
-  avatarURL: '',
+  name: "",
+  bio: "",
+  display_name: "",
+  company: "",
+  location: "",
+  email: "",
+  avatarURL: "",
   projects: [
     {
       idProject: 1,
-      title: '',
-      members: [''],
+      title: "",
+      members: [""],
     },
   ],
   loading: false,
@@ -20,14 +20,14 @@ const initialState = {
   allTask: [],
 };
 export const listUserInfo = createAsyncThunk(
-  'user/InfoUser',
+  "user/InfoUser",
   async (thunkAPI) => {
     const infoUser = await userApi.listUserInfo();
     return infoUser;
   }
 );
 export const editUserAsync = createAsyncThunk(
-  'user/editUser',
+  "user/editUser",
   async (params, thunkAPI) => {
     thunkAPI.dispatch(editProfile(params));
     const infoUser = await userApi.editUser(params);
@@ -36,7 +36,7 @@ export const editUserAsync = createAsyncThunk(
 );
 
 export const userSettingSlice = createSlice({
-  name: 'userSetting',
+  name: "userSetting",
   initialState,
   reducers: {
     editProfile: (state, action) => {
@@ -76,27 +76,27 @@ export const userSettingSlice = createSlice({
       state.loading = false;
 
       if (payload) {
-        let userInfo = payload[0].userInfo;
-        state.name = userInfo.user_name;
-        state.display_name = userInfo.display_name;
-        state.bio = userInfo.bio;
-        state.company = userInfo.company;
-        state.location = userInfo.address;
-        state.email = userInfo.email;
-        state.avatarURL = userInfo.avatar;
+        let userInfo = payload[0]?.userInfo;
+        state.name = userInfo?.user_name;
+        state.display_name = userInfo?.display_name;
+        state.bio = userInfo?.bio;
+        state.company = userInfo?.company;
+        state.location = userInfo?.address;
+        state.email = userInfo?.email;
+        state.avatarURL = userInfo?.avatar;
         state.projects = [];
-        sessionStorage.setItem('avatarURL' , userInfo.avatar)
-        sessionStorage.setItem('name' , userInfo.display_name)
-        sessionStorage.setItem('user_name' , userInfo.user_name)
-        
-        payload[1].allProject.forEach((project, index) => {
+        sessionStorage.setItem("avatarURL", userInfo?.avatar);
+        sessionStorage.setItem("name", userInfo?.display_name);
+        sessionStorage.setItem("user_name", userInfo?.user_name);
+
+        payload[1]?.allProject.forEach((project, index) => {
           state.projects.push({
             ...project,
             totalTask: project.totalTaskInProject,
             completedTask: project.totalTaskComplete,
           });
         });
-        state.allTask = payload[1].allTask;
+        state.allTask = payload[1]?.allTask;
       }
     },
     [editUserAsync.pending]: (state, action) => {},
