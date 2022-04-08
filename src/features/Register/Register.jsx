@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { Button, Form, Input, message, Tooltip, Typography } from 'antd';
-import './Register.scss';
+import React, { useState } from "react";
+import { Button, Form, Input, message, Tooltip, Typography } from "antd";
+import "./Register.scss";
 import {
   UserOutlined,
   MailOutlined,
   PhoneOutlined,
   LockOutlined,
   ContactsOutlined,
-} from '@ant-design/icons';
-import { GoLocation } from 'react-icons/go';
-import { HiOutlineOfficeBuilding } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { signUp } from './registerSlice';
-import axios from 'axios';
-import { API } from 'api/configApi';
+} from "@ant-design/icons";
+import { GoLocation } from "react-icons/go";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "./registerSlice";
+import axios from "axios";
+import { API } from "api/configApi";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 const SignUp = () => {
@@ -58,12 +59,12 @@ const SignUp = () => {
       user_name: values.username,
       email: values.email,
       password: values.password,
-      avatar: '',
+      avatar: "",
       display_name: values.displayName,
       phone: values.phone,
-      bio: values.bio || '',
-      company: values.company || '',
-      address: values.address || '',
+      bio: values.bio || "",
+      company: values.company || "",
+      address: values.address || "",
     };
     setLoadingCheckUsername(true);
     const checkValidUsername = async (value) => {
@@ -76,7 +77,7 @@ const SignUp = () => {
           } else {
             setLoadingCheckUsername(false);
             message.error(
-              'Your username is already existed, please change and try again'
+              "Your username is already existed, please change and try again"
             );
           }
         });
@@ -89,7 +90,7 @@ const SignUp = () => {
       <div className="register__form">
         <Title
           level={3}
-          style={{ width: 'fit-content', margin: '0 auto 3rem auto' }}
+          style={{ width: "fit-content", margin: "0 auto 3rem auto" }}
         >
           Create your Kanso Account
         </Title>
@@ -105,7 +106,7 @@ const SignUp = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: "Please input your username!",
               },
             ]}
           >
@@ -113,18 +114,23 @@ const SignUp = () => {
               placeholder="Username"
               size="large"
               prefix={<UserOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
           <Form.Item
             name="email"
             rules={[
               {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
+                type: "email",
+                message: "The input is not valid E-mail!",
               },
               {
                 required: true,
-                message: 'Please input your E-mail!',
+                message: "Please input your E-mail!",
               },
             ]}
           >
@@ -132,6 +138,11 @@ const SignUp = () => {
               placeholder="E-mail"
               size="large"
               prefix={<MailOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
           <Form.Item
@@ -139,11 +150,11 @@ const SignUp = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: "Please input your password!",
               },
               {
                 min: 8,
-                message: 'Your password at least 8 characters',
+                message: "Your password at least 8 characters",
               },
             ]}
             hasFeedback
@@ -152,27 +163,32 @@ const SignUp = () => {
               placeholder="Password"
               size="large"
               prefix={<LockOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
 
           <Form.Item
             name="confirm"
-            dependencies={['password']}
+            dependencies={["password"]}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please confirm your password!',
+                message: "Please confirm your password!",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
+                  if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
 
                   return Promise.reject(
                     new Error(
-                      'The two passwords that you entered do not match!'
+                      "The two passwords that you entered do not match!"
                     )
                   );
                 },
@@ -183,6 +199,11 @@ const SignUp = () => {
               placeholder="Confirm Password"
               size="large"
               prefix={<LockOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
 
@@ -191,7 +212,7 @@ const SignUp = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your phone number!',
+                message: "Please input your phone number!",
               },
             ]}
           >
@@ -199,6 +220,11 @@ const SignUp = () => {
               size="large"
               placeholder="Phone Number"
               prefix={<PhoneOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
           <Form.Item
@@ -206,7 +232,7 @@ const SignUp = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your nickname!',
+                message: "Please input your nickname!",
                 whitespace: true,
               },
             ]}
@@ -215,6 +241,11 @@ const SignUp = () => {
               placeholder="Display Name"
               size="large"
               prefix={<ContactsOutlined />}
+              suffix={
+                <Tooltip title="Required information">
+                  <InfoCircleOutlined style={{ color: "red" }} />
+                </Tooltip>
+              }
             />
           </Form.Item>
 
@@ -239,7 +270,7 @@ const SignUp = () => {
           <Form.Item className="register__form__footer">
             <Button
               type="primary"
-              style={{ borderRadius: '4px', padding: '0 1.5rem' }}
+              style={{ borderRadius: "4px", padding: "0 1.5rem" }}
               block
               loading={loading || loadingCheckUsername}
               htmlType="submit"
@@ -248,7 +279,7 @@ const SignUp = () => {
               Sign up
             </Button>
           </Form.Item>
-          <Text style={{ width: ' 100%', textAlign: 'center' }}>
+          <Text style={{ width: " 100%", textAlign: "center" }}>
             <Link to="/login">Sign in instead</Link>
           </Text>
         </Form>
