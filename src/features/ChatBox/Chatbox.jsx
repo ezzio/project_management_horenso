@@ -158,6 +158,7 @@ const Chatbox = ({ socket }) => {
       form.resetFields();
       setRepliedContainer(false);
       dispatch(sendMessage(tempMessage));
+      dispatch(listRoomChatAsync({ idRoom }));
       socket.emit("sendMessageConversation", {
         room_id: idRoom,
         mess: data.message,
