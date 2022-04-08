@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useEffect, useRef } from 'react';
-import { setSizeVideoFitDiv } from './setSizeVideoFitDiv';
-import { io } from 'socket.io-client';
-import CardVideo from './CardVideo/CardVideo';
-import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment';
-import Peer from 'peerjs';
-import ChattingMeeting from 'features/ChattingMeeting/ChattingMeeting';
+import React, { useState } from "react";
+import { useEffect, useRef } from "react";
+import { setSizeVideoFitDiv } from "./setSizeVideoFitDiv";
+import { io } from "socket.io-client";
+import CardVideo from "./CardVideo/CardVideo";
+import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+import Peer from "peerjs";
+import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
 
 import {
   AudioMutedOutlined,
@@ -18,8 +18,8 @@ import {
   VideoCameraOutlined,
   PoweroffOutlined,
   UserOutlined,
-} from '@ant-design/icons';
-import { Avatar, Button, Space, Tooltip, message, notification } from 'antd';
+} from "@ant-design/icons";
+import { Avatar, Button, Space, Tooltip, message, notification } from "antd";
 import {
   selectuserInRoom,
   stopAudioOnly,
@@ -30,17 +30,18 @@ import {
   someOneDisconnect,
   memberInRoomMeeting,
   listMemberInCanJoinMeetingRoomAsync,
-} from './meetingRoomSlice';
-import './MeetingRoom.scss';
+} from "./meetingRoomSlice";
+import "./MeetingRoom.scss";
 
-import { useParams } from 'react-router-dom';
-import Title from 'antd/lib/typography/Title';
-import { useHistory } from 'react-router-dom';
-let socket = io("servervideocall.herokuapp.com");
-// let socket = io('http://localhost:8000');
+import { useParams } from "react-router-dom";
+import Title from "antd/lib/typography/Title";
+import { useHistory } from "react-router-dom";
+// let socket = io("servervideocall.herokuapp.com");
+let socket = io("http://localhost:8000");
+
 let peer = new Peer({
   secure: true,
-  host: 'mypeerserverjs.herokuapp.com',
+  host: "mypeerserverjs.herokuapp.com",
   port: 443,
 });
 // let peer = new Peer({
@@ -82,8 +83,8 @@ const MeetingRoom = () => {
       </Button>
     );
     notification.open({
-      message: 'Notification Title',
-      description: 'Ban chua mo Video Call',
+      message: "Notification Title",
+      description: "Ban chua mo Video Call",
       btn,
       key,
       onClose: close,
@@ -94,33 +95,31 @@ const MeetingRoom = () => {
     setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
-    peer.on('open', async (id) => {
-      await localStorage.setItem('peerid', id);
-      socket.emit('join_room', {
-        username: sessionStorage.getItem('name'),
+    peer.on("open", async (id) => {
+      localStorage.setItem("peerid", id);
+      socket.emit("join_room", {
+        username: sessionStorage.getItem("name"),
         room_id: idRoom,
-        ownerId: localStorage.getItem('access_token'),
+        ownerId: localStorage.getItem("access_token"),
         peerId: id,
-        avatar: sessionStorage.getItem('avatarURL'),
+        avatar: sessionStorage.getItem("avatarURL"),
       });
     });
-    socket.on('SomeOneJoin', async (userOnlineInRoom) => {
-      message.info('1 người vừa tham gia');
-      dispatch(memberInRoomMeeting(userOnlineInRoom));
-      setSizeVideoFitDiv();
+    socket.on("SomeOneJoin", async (userOnlineInRoom) => {
       dispatch(someOneJoinRoom(userOnlineInRoom));
+      setSizeVideoFitDiv();
     });
-    socket.on('memberInRoom', (users) => {
+    socket.on("memberInRoom", (users) => {
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
-
-    socket.on('totalInfoMemberInRoom', (data) => {
+    socket.on("totalInfoMemberInRoom", (data) => {
+      // console.log('total member in room'
       dispatch(someOneJoinRoom(data));
     });
-    socket.on('someOneDisconnect', async (userOut) => {
+    socket.on("someOneDisconnect", async (userOut) => {
       try {
-        let allvideo = document.querySelectorAll('video');
+        let allvideo = document.querySelectorAll("video");
         setTimeout(function () {
           allvideo.forEach((video) => {
             if (video.id == userOut.idUserDisconnect) {
@@ -139,10 +138,10 @@ const MeetingRoom = () => {
         console.log(err);
       }
     });
-    socket.on('SomeOneCloseCamara', async (data) => {
+    socket.on("SomeOneCloseCamara", async (data) => {
       let { username, avatar, ownerId, currentRoom } = data;
       let getUserCloseCamera = document.getElementById(ownerId);
-      let newDiv = document.createElement('div');
+      let newDiv = document.createElement("div");
       newDiv.style.backgroundImage = ` url(${avatar})`;
       getUserCloseCamera.appendChild(newDiv);
     });
@@ -172,15 +171,15 @@ const MeetingRoom = () => {
             }
           });
       });
-    peer.on('call', (call) => {
+    peer.on("call", (call) => {
       call.answer(MyVideo.current.srcObject);
-      call.on('stream', (remoteStream) => {
-        let videoGird = document.getElementById('video-grid');
-        let allvideo = document.querySelectorAll('video');
+      call.on("stream", (remoteStream) => {
+        let videoGird = document.getElementById("video-grid");
+        let allvideo = document.querySelectorAll("video");
         if (document.getElementById(call.options.metadata) == undefined) {
-          let videoTest = document.createElement('video');
+          let videoTest = document.createElement("video");
           videoTest.id = call.options.metadata;
-          videoTest.className = 'camera';
+          videoTest.className = "camera";
           videoTest.srcObject = remoteStream;
           videoTest.autoplay = true;
           if (videoGird) {
@@ -197,14 +196,14 @@ const MeetingRoom = () => {
     try {
       dispatch(stopAudioOnly(MyVideo.current.srcObject));
     } catch (e) {
-      console.log('chua set up');
+      console.log("chua set up");
     }
   }, [audio]);
 
   useEffect(() => {
     try {
       dispatch(stopVideoOnly(MyVideo.current.srcObject));
-      socket.emmit('close-video', localStorage.getItem('access_token'));
+      socket.emmit("close-video", localStorage.getItem("access_token"));
     } catch (e) {}
   }, [video]);
 
@@ -230,7 +229,7 @@ const MeetingRoom = () => {
               style={{
                 backgroundImage: `url('${avatarUrl.split(" ").join("%20")}')`,
                 backgroundRepeat: "no-repeat",
-                backgroundPosition: "center"
+                backgroundPosition: "center",
               }}
               className="camera"
               ref={MyVideo}
@@ -240,7 +239,7 @@ const MeetingRoom = () => {
           )}
           {dataGrid.length > 1 &&
             dataGrid.map((video) => {
-              if (video.id != localStorage.getItem('access_token')) {
+              if (video.id != localStorage.getItem("access_token")) {
                 if (MyVideo.current.srcObject) {
                   return (
                     <CardVideo
@@ -260,18 +259,18 @@ const MeetingRoom = () => {
         <div className="videocall__footer__info-room">
           <b>
             {
-              (moment(infoRoom.startTime).format('YYYY-MM-DD'),
-              +' || ' + infoRoom.roomName)
+              (moment(infoRoom.startTime).format("YYYY-MM-DD"),
+              +" || " + infoRoom.roomName)
             }
           </b>
         </div>
         <div className="videocall__footer__controller">
           <Space size="large">
             <Tooltip
-              title={openMicro ? 'Turn on microphone' : 'Turn off microphone'}
+              title={openMicro ? "Turn on microphone" : "Turn off microphone"}
             >
               <Button
-                shape={'circle'}
+                shape={"circle"}
                 size="large"
                 icon={openMicro ? <AudioMutedOutlined /> : <AudioOutlined />}
                 danger={openMicro}
@@ -281,10 +280,10 @@ const MeetingRoom = () => {
                 }}
               />
             </Tooltip>
-            <Tooltip title={'Leave now'}>
+            <Tooltip title={"Leave now"}>
               <Button
                 type="primary"
-                shape={'circle'}
+                shape={"circle"}
                 size="large"
                 icon={<PoweroffOutlined />}
                 onClick={() => {
@@ -304,9 +303,9 @@ const MeetingRoom = () => {
                 danger
               />
             </Tooltip>
-            <Tooltip title={openCamera ? 'Turn on camera' : 'Turn off camera'}>
+            <Tooltip title={openCamera ? "Turn on camera" : "Turn off camera"}>
               <Button
-                shape={'circle'}
+                shape={"circle"}
                 size="large"
                 icon={
                   openCamera ? (
@@ -329,7 +328,7 @@ const MeetingRoom = () => {
             <Button
               type="primary"
               size="large"
-              shape={'circle'}
+              shape={"circle"}
               icon={<TeamOutlined />}
               onClick={() => {
                 if (openChatting) {
@@ -366,7 +365,7 @@ const MeetingRoom = () => {
               type="primary"
               icon={<PlusOutlined />}
               size="large"
-              style={{ borderRadius: '0.5rem' }}
+              style={{ borderRadius: "0.5rem" }}
             >
               Add member
             </Button>
@@ -376,12 +375,12 @@ const MeetingRoom = () => {
             <b>In the meeting</b>
             <Space
               direction="vertical"
-              size={'large'}
+              size={"large"}
               style={{
-                width: '100%',
-                height: '100%',
-                paddingTop: '1rem',
-                overflow: 'auto',
+                width: "100%",
+                height: "100%",
+                paddingTop: "1rem",
+                overflow: "auto",
               }}
             >
               {dataGrid.length > 1 ? (
@@ -410,19 +409,19 @@ const MeetingRoom = () => {
             <b>Absent</b>
             <Space
               direction="vertical"
-              size={'large'}
+              size={"large"}
               style={{
-                width: '100%',
-                height: '100%',
-                paddingTop: '1rem',
-                overflow: 'auto',
+                width: "100%",
+                height: "100%",
+                paddingTop: "1rem",
+                overflow: "auto",
               }}
             >
               {dataGrid > 1
                 ? dataUserInMeeting.map(
                     (eachMemBerOnline) =>
                       eachMemBerOnline.id !==
-                        localStorage.getItem('access_token') && (
+                        localStorage.getItem("access_token") && (
                         <Space size="middle">
                           <Avatar
                             icon={<UserOutlined />}
@@ -435,7 +434,7 @@ const MeetingRoom = () => {
                 : dataUserInMeeting.map((eachMemBerOnline) => {
                     if (
                       eachMemBerOnline.id !==
-                      localStorage.getItem('access_token')
+                      localStorage.getItem("access_token")
                     ) {
                       let listDataId = dataGrid.map((items) => {
                         return items.id;
