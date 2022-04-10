@@ -36,8 +36,8 @@ import "./MeetingRoom.scss";
 import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
-// let socket = io("servervideocall.herokuapp.com");
-let socket = io("http://localhost:8000");
+let socket = io("servervideocall.herokuapp.com");
+// let socket = io("http://localhost:8000");
 
 let peer = new Peer({
   secure: true,
@@ -92,7 +92,7 @@ const MeetingRoom = () => {
   };
 
   useEffect(() => {
-    setSizeVideoFitDiv();
+    // setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
     peer.on("open", async (id) => {
@@ -107,10 +107,10 @@ const MeetingRoom = () => {
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
       dispatch(someOneJoinRoom(userOnlineInRoom));
-      setSizeVideoFitDiv();
+      // setSizeVideoFitDiv();
     });
     socket.on("memberInRoom", (users) => {
-      setSizeVideoFitDiv();
+      // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
     socket.on("totalInfoMemberInRoom", (data) => {
@@ -185,7 +185,7 @@ const MeetingRoom = () => {
           if (videoGird) {
             videoGird.append(videoTest);
 
-            setSizeVideoFitDiv();
+            // setSizeVideoFitDiv();
           }
         }
       });
@@ -361,14 +361,14 @@ const MeetingRoom = () => {
         <div className="ctn-video-feat teammate">
           <Space direction="vertical">
             <Title level={3}>Members</Title>
-            <Button
+            {/* <Button
               type="primary"
               icon={<PlusOutlined />}
               size="large"
               style={{ borderRadius: "0.5rem" }}
             >
               Add member
-            </Button>
+            </Button> */}
           </Space>
 
           <div className="teammate__list-member teammate__list-member--online">
