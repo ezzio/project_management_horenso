@@ -428,7 +428,7 @@ const DetailTask = (props) => {
                 }
                 extra={
                   info.progress === 100 &&
-                  (role === 'Leader' || role === 'Project Manager') && [
+                  (role === 'Project Manager' || role === 'Leader') && [
                     <Switch
                       onChange={checkFinished}
                       unCheckedChildren="Not finish"

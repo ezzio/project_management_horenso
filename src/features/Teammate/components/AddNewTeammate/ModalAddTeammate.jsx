@@ -1,8 +1,8 @@
-import { Button, Form, message, Modal } from 'antd';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AddNewTeammate, addNewTeammate } from '../../teammateSlice';
-import FormAddTeammate from './FormAddTeammate';
+import { Button, Form, message, Modal } from "antd";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AddNewTeammate, addNewTeammate } from "../../teammateSlice";
+import FormAddTeammate from "./FormAddTeammate";
 
 ModalAddTeammate.propTypes = {};
 
@@ -19,7 +19,7 @@ function ModalAddTeammate(props) {
     const action = {
       user_name: values.user_name[0].value,
       avatar: values.avatar,
-      tag: 'Member',
+      tag: "Member",
       idProject: idProject,
     };
     setModalOpen(false);
@@ -33,7 +33,7 @@ function ModalAddTeammate(props) {
 
   return (
     <>
-      {(role === 'Leader' || role === 'Project Manager') && (
+      {(role === "Project Manager" || role === "Leader") && (
         <Button type="primary" onClick={() => setModalOpen(true)}>
           Add new
         </Button>
@@ -52,7 +52,7 @@ function ModalAddTeammate(props) {
               onFinish(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              console.log("Validate Failed:", info);
             });
         }}
       >

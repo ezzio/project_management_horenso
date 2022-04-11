@@ -7,10 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import Peer from "peerjs";
 import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
-<<<<<<< HEAD
 import Clock from "react-live-clock";
-=======
->>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
 
 import {
   AudioMutedOutlined,
@@ -100,11 +97,7 @@ const MeetingRoom = () => {
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
     peer.on("open", async (id) => {
-<<<<<<< HEAD
-      await localStorage.setItem("peerid", id);
-=======
       localStorage.setItem("peerid", id);
->>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       socket.emit("join_room", {
         username: sessionStorage.getItem("name"),
         room_id: idRoom,
@@ -114,29 +107,15 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-<<<<<<< HEAD
-      message.info("1 người vừa tham gia");
-      dispatch(memberInRoomMeeting(userOnlineInRoom));
-      setSizeVideoFitDiv();
-=======
->>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       dispatch(someOneJoinRoom(userOnlineInRoom));
       // setSizeVideoFitDiv();
     });
     socket.on("memberInRoom", (users) => {
-<<<<<<< HEAD
-      setSizeVideoFitDiv();
-      dispatch(someOneJoinRoom(users));
-    });
-
-    socket.on("totalInfoMemberInRoom", (data) => {
-=======
       // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
     socket.on("totalInfoMemberInRoom", (data) => {
       // console.log('total member in room'
->>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
