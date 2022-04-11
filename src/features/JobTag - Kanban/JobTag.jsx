@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ListMember from './components/ListMember';
-import { BarsOutlined, LoginOutlined } from '@ant-design/icons';
-import './JobTag.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import ListMember from "./components/ListMember";
+import { BarsOutlined, LoginOutlined } from "@ant-design/icons";
+import "./JobTag.scss";
 import {
   Button,
   Divider,
@@ -12,15 +12,15 @@ import {
   Progress,
   Space,
   Tooltip,
-} from 'antd';
-import { useState } from 'react';
-import ModalEditKanban from 'features/KanbanDashBoard/components/ModalEditKanban';
+} from "antd";
+import { useState } from "react";
+import ModalEditKanban from "features/KanbanDashBoard/components/ModalEditKanban";
 import {
   updateKanban,
   EditAJob,
-} from 'features/KanbanDashBoard/KanbanDashBoardSlice';
-import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+} from "features/KanbanDashBoard/KanbanDashBoardSlice";
+import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 const JobTag = (props) => {
   const { title, priority, process, members, job, onDeleteJob, role } = props;
@@ -43,8 +43,8 @@ const JobTag = (props) => {
       priority: values.priority,
       process: job.process,
       is_completed: values.is_completed,
-      start_time: values.range_time[0].format('YYYY-MM-DD'),
-      end_time: values.range_time[1].format('YYYY-MM-DD'),
+      start_time: values.range_time[0].format("YYYY-MM-DD"),
+      end_time: values.range_time[1].format("YYYY-MM-DD"),
       members: job.members.filter((item) =>
         values.members.includes(item.user_name)
       ),
@@ -52,7 +52,7 @@ const JobTag = (props) => {
     };
     dispatch(updateKanban(action));
     dispatch(EditAJob(action));
-    message.success('Success! This Job has been edited');
+    message.success("Success! This Job has been edited");
     setIsModalVisible(false);
   };
 
@@ -74,13 +74,13 @@ const JobTag = (props) => {
         <div className="ctn-job-task__priority">
           <div
             className={
-              priority.toLowerCase() === 'high'
-                ? 'high'
-                : priority.toLowerCase() === 'medium'
-                ? 'medium'
-                : 'low'
+              priority.toLowerCase() === "high"
+                ? "high"
+                : priority.toLowerCase() === "medium"
+                ? "medium"
+                : "low"
             }
-            style={{ width: 'fit-content' }}
+            style={{ width: "fit-content" }}
           >
             {priority}
           </div>
@@ -93,7 +93,7 @@ const JobTag = (props) => {
         <div className="ctn-job-task__members">
           <ListMember members={members} />
           <div className="ctn-job-task__members__properties">
-            {(role === 'Leader' || role === 'Project Manager') && (
+            {(role === "Leader" || role === "Project Manager") && (
               <Popover
                 placement="topLeft"
                 content={
@@ -106,7 +106,7 @@ const JobTag = (props) => {
                     <Popconfirm
                       title="Are you sure to delete this job?"
                       onConfirm={(event) => onDeleteJob(job, event)}
-                      onCancel={'cancel'}
+                      onCancel={"cancel"}
                       okText="Yes"
                       cancelText="No"
                       placement="topRight"
@@ -115,7 +115,7 @@ const JobTag = (props) => {
                     </Popconfirm>
                   </Space>
                 }
-                trigger={'click'}
+                trigger={"click"}
               >
                 <Button shape="circle" type="text">
                   <BarsOutlined />
@@ -135,7 +135,7 @@ const JobTag = (props) => {
           </div>
         </div>
       </div>
-      <Divider classname="job-divider" style={{ margin: '0' }} />
+      <Divider classname="job-divider" style={{ margin: "0" }} />
     </>
   );
 };

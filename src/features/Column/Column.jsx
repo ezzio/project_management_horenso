@@ -1,11 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { MdMoreHoriz } from 'react-icons/md';
-import './Column.scss';
-import Task from 'features/Task/Task';
-import { Droppable } from 'react-beautiful-dnd';
-import { AiFillPlusCircle } from 'react-icons/ai';
-import { Badge } from 'antd';
+import Task from "features/Task/Task";
+import PropTypes from "prop-types";
+import React from "react";
+import { AiFillPlusCircle } from "react-icons/ai";
+import "./Column.scss";
 
 const Column = (props) => {
   const { column, openModal, role } = props;
@@ -26,15 +23,15 @@ const Column = (props) => {
       <div className="column__header">
         <h4 className="column__header__title">
           {column.id_column === 0
-            ? 'Backlogs'
+            ? "Backlogs"
             : column.id_column === 1
-            ? 'In progress'
+            ? "In progress"
             : column.id_column === 2
-            ? 'In review'
-            : 'Completed'}
+            ? "In review"
+            : "Completed"}
         </h4>
         {column.id_column === 0 &&
-          (role === 'Leader' || role === 'Project Manager') && (
+          (role === "Leader" || role === "Project Manager") && (
             <AiFillPlusCircle
               className="column__header__add"
               onClick={openModal}
