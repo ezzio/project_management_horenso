@@ -121,7 +121,7 @@ const Chatbox = ({ socket }) => {
           socket.emit("chat-sendImageInConversation", { idRoom });
           dispatch(getLastedImage({ idRoom }));
         });
-        message.success("Upload avatar successful");
+        // message.success("Upload avatar successful");
       });
     }
   };
