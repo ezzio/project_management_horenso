@@ -37,7 +37,7 @@ const Header = () => {
       <div className="user-setting-header__content">
         <Title level={2}>Kanso</Title>
         <Space size={'large'} style={{ marginRight: '4%' }}>
-          <Badge dot={Boolean(notifications.length > 0)}>
+          {/* <Badge dot={Boolean(notifications.length > 0)}>
             {notifications.length > 0 ? (
               <Dropdown overlay={notificationsListRender} trigger={['click']}>
                 <BellOutlined
@@ -49,7 +49,7 @@ const Header = () => {
                 <BellOutlined style={{ fontSize: 24, color: 'black' }} />
               </Tooltip>
             )}
-          </Badge>
+          </Badge> */}
           <Tooltip title="Log out">
             <LogoutOutlined
               style={{ fontSize: 24, cursor: 'pointer' }}

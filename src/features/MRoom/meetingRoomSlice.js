@@ -80,7 +80,6 @@ export const RoomMeetingSlice = createSlice({
       });
     },
     someOneJoinRoom: (state, action) => {
-      console.log(action.payload);
       let newMemberInRoom = action.payload.map((item, index) => {
         return {
           id: item.idUser,
@@ -98,25 +97,23 @@ export const RoomMeetingSlice = createSlice({
       });
       state.MemberInRoom = newMemberInRoom;
     },
-    memberInRoomMeeting: (state, action) => {
-      console.log(action.payload);
-      let newMemberInRoom = action.payload.map((item, index) => {
-        return {
-          id: item.idUser,
-          display_name: item.username,
-          user_name: item.username,
-          avatar: item.avatar,
-          RoomJoin: item.RoomJoin,
-          audio: item.audio,
-
-          camera: item.camera,
-
-          peerId: item.peerId,
-          socketId: item.socketId,
-        };
-      });
-      state.MemberInRoom = newMemberInRoom;
-    },
+    // memberInRoomMeeting: (state, action) => {
+  
+    //   let newMemberInRoom = action.payload.map((item, index) => {
+    //     return {
+    //       id: item.idUser,
+    //       display_name: item.username,
+    //       user_name: item.username,
+    //       avatar: item.avatar,
+    //       RoomJoin: item.RoomJoin,
+    //       audio: item.audio,
+    //       camera: item.camera,
+    //       peerId: item.peerId,
+    //       socketId: item.socketId,
+    //     };
+    //   });
+    //   state.MemberInRoom = newMemberInRoom;
+    // },
     someOneDisconnect: (state, action) => {
       state.MemberInRoom = action.payload.userCurrent;
       let userDisconect = action.payload.userDisconect;

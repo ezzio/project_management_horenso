@@ -7,7 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import Peer from "peerjs";
 import ChattingMeeting from "features/ChattingMeeting/ChattingMeeting";
+<<<<<<< HEAD
 import Clock from "react-live-clock";
+=======
+>>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
 
 import {
   AudioMutedOutlined,
@@ -38,7 +41,8 @@ import { useParams } from "react-router-dom";
 import Title from "antd/lib/typography/Title";
 import { useHistory } from "react-router-dom";
 let socket = io("servervideocall.herokuapp.com");
-// let socket = io('http://localhost:8000');
+// let socket = io("http://localhost:8000");
+
 let peer = new Peer({
   secure: true,
   host: "mypeerserverjs.herokuapp.com",
@@ -92,11 +96,15 @@ const MeetingRoom = () => {
   };
 
   useEffect(() => {
-    setSizeVideoFitDiv();
+    // setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
     peer.on("open", async (id) => {
+<<<<<<< HEAD
       await localStorage.setItem("peerid", id);
+=======
+      localStorage.setItem("peerid", id);
+>>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       socket.emit("join_room", {
         username: sessionStorage.getItem("name"),
         room_id: idRoom,
@@ -106,17 +114,29 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
+<<<<<<< HEAD
       message.info("1 người vừa tham gia");
       dispatch(memberInRoomMeeting(userOnlineInRoom));
       setSizeVideoFitDiv();
+=======
+>>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       dispatch(someOneJoinRoom(userOnlineInRoom));
+      // setSizeVideoFitDiv();
     });
     socket.on("memberInRoom", (users) => {
+<<<<<<< HEAD
       setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
 
     socket.on("totalInfoMemberInRoom", (data) => {
+=======
+      // setSizeVideoFitDiv();
+      dispatch(someOneJoinRoom(users));
+    });
+    socket.on("totalInfoMemberInRoom", (data) => {
+      // console.log('total member in room'
+>>>>>>> 96255fe5bf1e8278b3604397cb080013aee1615b
       dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
@@ -187,7 +207,7 @@ const MeetingRoom = () => {
           if (videoGird) {
             videoGird.append(videoTest);
 
-            setSizeVideoFitDiv();
+            // setSizeVideoFitDiv();
           }
         }
       });
@@ -261,8 +281,8 @@ const MeetingRoom = () => {
         <div className="videocall__footer__info-room">
           {/* <b>
             {
-              (moment(infoRoom.startTime).format('YYYY-MM-DD'),
-              +' || ' + infoRoom.roomName)
+              (moment(infoRoom.startTime).format("YYYY-MM-DD"),
+              +" || " + infoRoom.roomName)
             }
           </b> */}
           <Title level={5} style={{ margin: "0px" }}>
@@ -366,14 +386,14 @@ const MeetingRoom = () => {
         <div className="ctn-video-feat teammate">
           <Space direction="vertical">
             <Title level={3}>Members</Title>
-            <Button
+            {/* <Button
               type="primary"
               icon={<PlusOutlined />}
               size="large"
               style={{ borderRadius: "0.5rem" }}
             >
               Add member
-            </Button>
+            </Button> */}
           </Space>
 
           <div className="teammate__list-member teammate__list-member--online">
