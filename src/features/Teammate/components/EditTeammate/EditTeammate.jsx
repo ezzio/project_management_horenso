@@ -67,8 +67,8 @@ function EditTeammate(props) {
           optionFilterProp="children"
           onChange={onChange}
         >
-          <Option value={user.tag !== "Member" ? "Member" : "Project Manager"}>
-            {user.tag !== "Member" ? "Member" : "Project Manager"}
+          <Option value={user.tag !== "Member" ? "Member" : "Leader"}>
+            {user.tag !== "Member" ? "Member" : "Leader"}
           </Option>
         </Select>
       </Modal>

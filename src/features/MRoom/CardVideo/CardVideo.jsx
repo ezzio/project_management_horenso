@@ -23,9 +23,7 @@ const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
       setSizeVideoFitDiv();
     } catch (err) {}
   }, []);
-  return (
-    <video id={nameId} className="camera" ref={MyVideo} autoPlay muted></video>
-  );
+  return <video id={nameId} className="camera" ref={MyVideo} autoPlay></video>;
 };
 
 export default CardVideo;
