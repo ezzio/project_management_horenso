@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Layout, Menu, Space, Tooltip, Typography } from "antd";
+import React, { useEffect } from 'react';
+import { Layout, Menu, Space, Tooltip, Typography } from 'antd';
 import {
   PieChartFilled,
   HomeFilled,
@@ -13,11 +13,11 @@ import {
   MessageFilled,
   ScheduleFilled,
   SkinFilled,
-} from "@ant-design/icons";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { checkRoleUser } from "./sideBarSlice";
-import { useDispatch, useSelector } from "react-redux";
+} from '@ant-design/icons';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { checkRoleUser } from './sideBarSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -36,13 +36,13 @@ const SideBar = () => {
   useEffect(() => {
     dispatch(
       checkRoleUser({
-        id: localStorage.getItem("access_token"),
+        id: localStorage.getItem('access_token'),
         idProject,
       })
     );
   });
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Sider
         collapsible
         collapsed={isColapsed}
@@ -51,29 +51,29 @@ const SideBar = () => {
       >
         <div
           style={{
-            color: "white",
-            height: "2.5rem",
-            margin: "2rem 1rem",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            color: 'white',
+            height: '2.5rem',
+            margin: '2rem 1rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          <Space style={isColapsed ? { gap: "0" } : { gap: "4px" }}>
+          <Space style={isColapsed ? { gap: '0' } : { gap: '4px' }}>
             <Title
               level={2}
               style={
                 !isColapsed
                   ? {
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 1, 1)",
-                      color: "white",
-                      margin: "0",
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                      color: 'white',
+                      margin: '0',
                     }
                   : {
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 1, 1)",
-                      color: "white",
-                      fontSize: "1rem",
-                      margin: "0",
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 1, 1)',
+                      color: 'white',
+                      fontSize: '1rem',
+                      margin: '0',
                     }
               }
             >
@@ -83,20 +83,20 @@ const SideBar = () => {
         </div>
         <Menu
           theme="dark"
-          defaultSelectedKeys={[localStorage.getItem("sider")]}
-          selectedKeys={[localStorage.getItem("sider")]}
+          defaultSelectedKeys={[localStorage.getItem('sider')]}
+          selectedKeys={[localStorage.getItem('sider')]}
           mode="inline"
         >
           <Menu.Item
             key="1"
             icon={
-              <PieChartFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              <PieChartFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
             <Link
               to={`/${idProject}/dashboard`}
-              style={{ color: "white" }}
-              onClick={() => localStorage.setItem("sider", "1")}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '1')}
             >
               Dashboard
             </Link>
@@ -104,13 +104,13 @@ const SideBar = () => {
           <Menu.Item
             key="2"
             icon={
-              <CarryOutFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              <CarryOutFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
             <Link
               to={`/${idProject}/jobs`}
-              style={{ color: "white" }}
-              onClick={() => localStorage.setItem("sider", "2")}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '2')}
             >
               Jobs
             </Link>
@@ -118,92 +118,83 @@ const SideBar = () => {
           <Menu.Item
             key="3"
             icon={
-              <DatabaseFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              <DatabaseFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
           >
             <Link
               to={`/${idProject}/storage`}
-              style={{ color: "white" }}
-              onClick={() => localStorage.setItem("sider", "3")}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '3')}
             >
               Storage
             </Link>
           </Menu.Item>
 
-          <SubMenu
-            key="sub1"
+          <Menu.Item
+            key="5"
             icon={
-              <RocketFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              <VideoCameraFilled
+                style={{ color: 'white', fontSize: '1.15rem' }}
+              />
             }
-            title="Horenso"
           >
-            <Menu.Item
-              key="5"
-              icon={
-                <VideoCameraFilled
-                  style={{ color: "white", fontSize: "1.15rem" }}
-                />
-              }
+            <Link
+              to={`/${idProject}/meeting`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '5')}
             >
-              <Link
-                to={`/${idProject}/meeting`}
-                style={{ color: "white" }}
-                onClick={() => localStorage.setItem("sider", "5")}
-              >
-                Meeting
-              </Link>
-            </Menu.Item>
-            <Menu.Item
-              key="6"
-              icon={
-                <MessageFilled
-                  style={{ color: "white", fontSize: "1.15rem" }}
-                />
-              }
+              Meeting
+            </Link>
+          </Menu.Item>
+          <Menu.Item
+            key="6"
+            icon={
+              <MessageFilled style={{ color: 'white', fontSize: '1.15rem' }} />
+            }
+          >
+            <Link
+              to={`/${idProject}/conversation`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '6')}
             >
-              <Link
-                to={`/${idProject}/conversation`}
-                style={{ color: "white" }}
-                onClick={() => localStorage.setItem("sider", "6")}
-              >
-                Conversation
-              </Link>
-            </Menu.Item>
-          </SubMenu>
+              Conversation
+            </Link>
+          </Menu.Item>
+
           <SubMenu
             key="sub2"
             icon={
-              <ToolFilled style={{ color: "white", fontSize: "1.15rem" }} />
+              <ToolFilled style={{ color: 'white', fontSize: '1.15rem' }} />
             }
             title="Option"
           >
             <Menu.Item
               key="8"
               icon={
-                <SkinFilled style={{ color: "white", fontSize: "1.15rem" }} />
+                <SkinFilled style={{ color: 'white', fontSize: '1.15rem' }} />
               }
             >
               <Link
                 to={`/${idProject}/teammate`}
-                style={{ color: "white" }}
-                onClick={() => localStorage.setItem("sider", "8")}
+                style={{ color: 'white' }}
+                onClick={() => localStorage.setItem('sider', '8')}
               >
                 Teammate
               </Link>
             </Menu.Item>
-            {role === "Project Manager" && (
+            {role === 'Project Manager' && (
               <Menu.Item
                 key="9"
                 icon={
                   <SettingFilled
-                    style={{ color: "white", fontSize: "1.15rem" }}
+                    style={{ color: 'white', fontSize: '1.15rem' }}
                   />
                 }
               >
                 <Link
                   to={`/${idProject}/setting`}
-                  style={{ color: "white" }}
-                  onClick={() => localStorage.setItem("sider", "9")}
+                  style={{ color: 'white' }}
+                  onClick={() => localStorage.setItem('sider', '9')}
                 >
                   Setting
                 </Link>
@@ -213,23 +204,23 @@ const SideBar = () => {
         </Menu>
         <div
           style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            position: "absolute",
-            bottom: "4rem",
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            position: 'absolute',
+            bottom: '4rem',
           }}
         >
           <Tooltip
             title="Back to profile"
-            placement={isColapsed ? "left" : "top"}
+            placement={isColapsed ? 'left' : 'top'}
           >
-            <Link to="/" style={{ color: "white" }}>
+            <Link to="/" style={{ color: 'white' }}>
               <HomeFilled
                 style={{
-                  color: "white",
-                  fontSize: "1.5rem",
-                  cursor: "pointer",
+                  color: 'white',
+                  fontSize: '1.5rem',
+                  cursor: 'pointer',
                 }}
               />
             </Link>
