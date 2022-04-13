@@ -206,113 +206,106 @@ const Chatbox = ({ socket }) => {
 
   return (
     <div className="spinning-ctn-conversation">
-      <Spin
-        tip="Loading..."
-        size="large"
-        spinning={loading}
-        className="spinning"
-      >
-        <div className="chatbox">
-          <div className="chatbox__content">
-            {messages.length === 0 ? (
-              <Title level={2}>Let's talk with your partner now!</Title>
-            ) : (
-              messages.map((message, index) => {
-                if (message.type === "text") {
-                  return (
-                    <BubbleChat
-                      key={index}
-                      bubbleChatIndex={index}
-                      user={message.user}
-                      sendAt={message.sendAt}
-                      mess={message.mess}
-                      replied_message={message.replied_message}
-                      type={message.type}
-                      socket={socket}
-                      likeState={message.like ? message.like : []}
-                      dislikeState={message.dislike ? message.dislike : []}
-                      message={message}
-                      handleClickReply={onClickReplyMessage}
-                    />
-                  );
-                } else if (message.type === "image")
-                  return (
-                    <RenderImgMessage
-                      key={index}
-                      index={index}
-                      user={message.user}
-                      sendAt={message.sendAt}
-                      mess={message.mess}
-                      replied_message={message.replied_message}
-                      type={message.type}
-                      likeState={message.like && []}
-                      dislikeState={message.dislike && []}
-                      message={message}
-                      handleClickReply={onClickReplyMessage}
-                    />
-                  );
-              })
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <Form
-            layout="horizontal"
-            size="small"
-            form={form}
-            onFinish={onHandleSubmit}
-            className="chatbox__control"
-          >
-            {repliedContainer && (
-              <div className="chatbox__control__replied-container">
-                <Text style={{ color: "#fff", marginBottom: "0" }}>
-                  {repliedMessage}
-                </Text>
-                <Button
-                  onClick={() => setRepliedContainer(false)}
-                  type="default"
-                  shape="circle"
-                  icon={<CloseOutlined />}
-                  size="small"
-                />
-              </div>
-            )}
-
-            <Form.Item name="message" style={{ width: "100%" }}>
-              <Input
-                autocomplete="off"
-                style={{ padding: "0.5rem" }}
-                placeholder="Enter your message..."
-                size="large"
-                autoFocus
-                suffix={
-                  <Space>
-                    <Upload
-                      name="image"
-                      showUploadList={false}
-                      customRequest={dummyRequest}
-                      onChange={handleChangeUpload}
-                      beforeUpload={beforeUpload}
-                    >
-                      <Tooltip title="Upload Picture">
-                        <PictureOutlined className="hover-section" />
-                      </Tooltip>
-                    </Upload>
-
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{ width: "2.5rem" }}
-                    >
-                      <SendOutlined />
-                    </Button>
-                  </Space>
-                }
-              />
-            </Form.Item>
-          </Form>
+      <div className="chatbox">
+        <div className="chatbox__content">
+          {messages.length === 0 ? (
+            <Title level={2}>Let's talk with your partner now!</Title>
+          ) : (
+            messages.map((message, index) => {
+              if (message.type === "text") {
+                return (
+                  <BubbleChat
+                    key={index}
+                    bubbleChatIndex={index}
+                    user={message.user}
+                    sendAt={message.sendAt}
+                    mess={message.mess}
+                    replied_message={message.replied_message}
+                    type={message.type}
+                    socket={socket}
+                    likeState={message.like ? message.like : []}
+                    dislikeState={message.dislike ? message.dislike : []}
+                    message={message}
+                    handleClickReply={onClickReplyMessage}
+                  />
+                );
+              } else if (message.type === "image")
+                return (
+                  <RenderImgMessage
+                    key={index}
+                    index={index}
+                    user={message.user}
+                    sendAt={message.sendAt}
+                    mess={message.mess}
+                    replied_message={message.replied_message}
+                    type={message.type}
+                    likeState={message.like && []}
+                    dislikeState={message.dislike && []}
+                    message={message}
+                    handleClickReply={onClickReplyMessage}
+                  />
+                );
+            })
+          )}
+          <div ref={messagesEndRef} />
         </div>
-      </Spin>
+
+        <Form
+          layout="horizontal"
+          size="small"
+          form={form}
+          onFinish={onHandleSubmit}
+          className="chatbox__control"
+        >
+          {repliedContainer && (
+            <div className="chatbox__control__replied-container">
+              <Text style={{ color: "#fff", marginBottom: "0" }}>
+                {repliedMessage}
+              </Text>
+              <Button
+                onClick={() => setRepliedContainer(false)}
+                type="default"
+                shape="circle"
+                icon={<CloseOutlined />}
+                size="small"
+              />
+            </div>
+          )}
+
+          <Form.Item name="message" style={{ width: "100%" }}>
+            <Input
+              autocomplete="off"
+              style={{ padding: "0.5rem" }}
+              placeholder="Enter your message..."
+              size="large"
+              autoFocus
+              suffix={
+                <Space>
+                  <Upload
+                    name="image"
+                    showUploadList={false}
+                    customRequest={dummyRequest}
+                    onChange={handleChangeUpload}
+                    beforeUpload={beforeUpload}
+                  >
+                    <Tooltip title="Upload Picture">
+                      <PictureOutlined className="hover-section" />
+                    </Tooltip>
+                  </Upload>
+
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    style={{ width: "2.5rem" }}
+                  >
+                    <SendOutlined />
+                  </Button>
+                </Space>
+              }
+            />
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };
