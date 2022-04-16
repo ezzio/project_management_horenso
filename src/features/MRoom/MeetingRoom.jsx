@@ -107,7 +107,7 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      message.info("1 người vừa tham gia");
+      message.info("One member just joined the room");
       // dispatch(memberInRoomMeeting(userOnlineInRoom));
       // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
