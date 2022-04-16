@@ -229,7 +229,7 @@ const KanbanDashBoard = () => {
               <Title level={3} className="title">
                 Jobs in progress
               </Title>
-              {(role === 'Leader' || role === 'Project Manager') && (
+              {(role ===  'Project Manager'|| role ===  'Leader') && (
                 <Button
                   type={'primary'}
                   onClick={showModal}

@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { RiChat1Line } from "react-icons/ri";
-import { ImAttachment } from "react-icons/im";
-import "./Task.scss";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { RiChat1Line } from 'react-icons/ri';
+import { ImAttachment } from 'react-icons/im';
+import './Task.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   automaticallyUpdateColumn,
   deleteTaskAsync,
-} from "features/Board/boardSlice";
+} from 'features/Board/boardSlice';
 import {
   Menu,
   Dropdown,
@@ -16,31 +16,31 @@ import {
   Tooltip,
   Progress,
   Typography,
-} from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
-import { Popconfirm } from "antd";
-import moment from "moment";
-import ModalEditTask from "./EditTaskForm/ModalEditTask";
-import { useLocation } from "react-router";
-import { Link, useParams } from "react-router-dom";
+} from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import { Popconfirm } from 'antd';
+import moment from 'moment';
+import ModalEditTask from './EditTaskForm/ModalEditTask';
+import { useLocation } from 'react-router';
+import { Link, useParams } from 'react-router-dom';
 import {
   UserOutlined,
   ApartmentOutlined,
   MessageOutlined,
-} from "@ant-design/icons";
-import { viewMemberInfo } from "features/ModalCheckProfileMember/CheckProfileMemberSlice";
-import ModalCheckProfileMember from "features/ModalCheckProfileMember/ModalCheckProfileMember";
+} from '@ant-design/icons';
+import { viewMemberInfo } from 'features/ModalCheckProfileMember/CheckProfileMemberSlice';
+import ModalCheckProfileMember from 'features/ModalCheckProfileMember/ModalCheckProfileMember';
 
 const { Text } = Typography;
 
 const Task = (props) => {
-  const { task, index, columnId } = props;
+  const { task, index, columnId, members } = props;
   const { idBoard } = useParams();
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
-  const [userName, setUserName] = React.useState("");
+  const [userName, setUserName] = React.useState('');
   const location = useLocation();
   const loading = useSelector((state) => state.board.loading);
   // const currentTime = moment();
@@ -85,7 +85,7 @@ const Task = (props) => {
       <Menu.Item key="0" primary ghost>
         <Link to={`${location.pathname}/${task.id}`}>Open</Link>
       </Menu.Item>
-      {(role === "Leader" || role === "Project Manager") && (
+      {(role === 'Leader' || role === 'Project Manager') && (
         <>
           <Menu.Item key="1" primary ghost>
             <Text onClick={openModal}>Edit task</Text>
@@ -114,7 +114,7 @@ const Task = (props) => {
       )}
       {moment().isAfter(task.end_time) ? (
         <Badge.Ribbon text="Overdue" color="red">
-          <Dropdown overlay={menu} trigger={["contextMenu"]}>
+          <Dropdown overlay={menu} trigger={['contextMenu']}>
             <div className="kanban-task">
               <div className="kanban-task__title">
                 <h4>{task.title}</h4>
@@ -122,20 +122,20 @@ const Task = (props) => {
               <Progress percent={task.progress} status="exception" />
               <div className="kanban-task__info">
                 <div
-                  style={{ padding: "0.35rem 1.5rem" }}
+                  style={{ padding: '0.35rem 1.5rem' }}
                   className={
-                    task.priority.toLowerCase() === "high"
-                      ? "high"
-                      : task.priority === "low"
-                      ? "low"
-                      : "medium"
+                    task.priority.toLowerCase() === 'high'
+                      ? 'high'
+                      : task.priority === 'low'
+                      ? 'low'
+                      : 'medium'
                   }
                 >
                   {task.priority}
                 </div>
                 <div className="kanban-task__info__time">
-                  Overdue{" "}
-                  {moment(moment(task.end_time).format("YYYY-MM-DD")).toNow(
+                  Overdue{' '}
+                  {moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(
                     true
                   )}
                 </div>
@@ -145,16 +145,16 @@ const Task = (props) => {
                   maxCount={4}
                   maxPopoverTrigger="click"
                   maxStyle={{
-                    color: "#f56a00",
-                    backgroundColor: "#fde3cf",
-                    cursor: "pointer",
+                    color: '#f56a00',
+                    backgroundColor: '#fde3cf',
+                    cursor: 'pointer',
                   }}
                 >
                   {task.taskers.map((tasker) => (
                     <Tooltip title={tasker.user_name} placement="top">
                       <Avatar
                         src={tasker.avatar}
-                        style={{ backgroundColor: "#87d068" }}
+                        style={{ backgroundColor: '#87d068' }}
                         icon={<UserOutlined />}
                       />
                     </Tooltip>
@@ -185,45 +185,45 @@ const Task = (props) => {
           </Dropdown>
         </Badge.Ribbon>
       ) : (
-        <Dropdown overlay={menu} trigger={["contextMenu"]}>
+        <Dropdown overlay={menu} trigger={['contextMenu']}>
           <div className="kanban-task">
             <div className="kanban-task__title">
               <h4>{task.title}</h4>
-              <Dropdown overlay={menu} trigger={["click"]}>
+              <Dropdown overlay={menu} trigger={['click']}>
                 <DownOutlined />
               </Dropdown>
             </div>
             <Progress
               percent={task.progress}
-              status={!task.is_complete ? "active" : ""}
+              status={!task.is_complete ? 'active' : ''}
               strokeColor={
-                task.progress === 100 && !task.is_complete ? "#FECD3D" : ""
+                task.progress === 100 && !task.is_complete ? '#FECD3D' : ''
               }
             />
             <div className="kanban-task__info">
               <div
-                style={{ padding: "0.35rem 1.5rem" }}
+                style={{ padding: '0.35rem 1.5rem' }}
                 className={
-                  task.priority.toLowerCase() === "high"
-                    ? "high"
-                    : task.priority.toLowerCase() === "low"
-                    ? "low"
-                    : "medium"
+                  task.priority.toLowerCase() === 'high'
+                    ? 'high'
+                    : task.priority.toLowerCase() === 'low'
+                    ? 'low'
+                    : 'medium'
                 }
               >
-                {task.priority === "low" ? "Low" : task.priority}
+                {task.priority === 'low' ? 'Low' : task.priority}
               </div>
               <div className="kanban-task__info__time">
                 {moment().isBetween(
                   moment(task.start_time),
                   moment(task.end_time)
                 )
-                  ? "Due in " +
-                    moment(moment(task.end_time).format("YYYY-MM-DD")).toNow(
+                  ? 'Due in ' +
+                    moment(moment(task.end_time).format('YYYY-MM-DD')).toNow(
                       true
                     )
-                  : "Start after " +
-                    moment(moment(task.start_time).format("YYYY-MM-DD")).toNow(
+                  : 'Start after ' +
+                    moment(moment(task.start_time).format('YYYY-MM-DD')).toNow(
                       true
                     )}
               </div>
@@ -233,16 +233,16 @@ const Task = (props) => {
                 maxCount={4}
                 maxPopoverTrigger="click"
                 maxStyle={{
-                  color: "#f56a00",
-                  backgroundColor: "#fde3cf",
-                  cursor: "pointer",
+                  color: '#f56a00',
+                  backgroundColor: '#fde3cf',
+                  cursor: 'pointer',
                 }}
               >
                 {task.taskers.map((tasker) => (
                   <Tooltip title={tasker.user_name} placement="top">
                     <Avatar
                       src={tasker.avatar}
-                      style={{ backgroundColor: "#87d068", cursor: "pointer" }}
+                      style={{ backgroundColor: '#87d068', cursor: 'pointer' }}
                       icon={<UserOutlined />}
                       onClick={() => viewProfile(tasker.user_name)}
                     />
@@ -268,6 +268,7 @@ const Task = (props) => {
                 closeModal={closeModal}
                 task={task}
                 columnId={columnId}
+                members={members}
               />
             </div>
           </div>

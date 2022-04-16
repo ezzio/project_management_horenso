@@ -1,11 +1,11 @@
-import { Button, message, Modal, Select } from "antd";
+import { Button, message, Modal, Select } from 'antd';
 import {
   editTeammate,
   EditTeammateByUsername,
-} from "features/Teammate/teammateSlice";
-import React, { useState } from "react";
-import { RiEditFill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+} from 'features/Teammate/teammateSlice';
+import React, { useState } from 'react';
+import { RiEditFill } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
 
 EditTeammate.propTypes = {};
 
@@ -13,7 +13,7 @@ function EditTeammate(props) {
   const { user, idProject } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { Option } = Select;
-  const [newTag, setNewTag] = useState("");
+  const [newTag, setNewTag] = useState('');
 
   const dispatch = useDispatch();
 
@@ -67,8 +67,8 @@ function EditTeammate(props) {
           optionFilterProp="children"
           onChange={onChange}
         >
-          <Option value={user.tag !== "Member" ? "Member" : "Leader"}>
-            {user.tag !== "Member" ? "Member" : "Leader"}
+          <Option value={user.tag !== 'Member' ? 'Member' : 'Leader'}>
+            {user.tag !== 'Member' ? 'Member' : 'Leader'}
           </Option>
         </Select>
       </Modal>

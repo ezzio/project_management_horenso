@@ -130,46 +130,37 @@ const SideBar = () => {
             </Link>
           </Menu.Item>
 
-          <SubMenu
-            key="sub1"
+          <Menu.Item
+            key="5"
             icon={
-              <RocketFilled style={{ color: 'white', fontSize: '1.15rem' }} />
+              <VideoCameraFilled
+                style={{ color: 'white', fontSize: '1.15rem' }}
+              />
             }
-            title="Horenso"
           >
-            <Menu.Item
-              key="5"
-              icon={
-                <VideoCameraFilled
-                  style={{ color: 'white', fontSize: '1.15rem' }}
-                />
-              }
+            <Link
+              to={`/${idProject}/meeting`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '5')}
             >
-              <Link
-                to={`/${idProject}/meeting`}
-                style={{ color: 'white' }}
-                onClick={() => localStorage.setItem('sider', '5')}
-              >
-                Meeting
-              </Link>
-            </Menu.Item>
-            <Menu.Item
-              key="6"
-              icon={
-                <MessageFilled
-                  style={{ color: 'white', fontSize: '1.15rem' }}
-                />
-              }
+              Meeting
+            </Link>
+          </Menu.Item>
+          <Menu.Item
+            key="6"
+            icon={
+              <MessageFilled style={{ color: 'white', fontSize: '1.15rem' }} />
+            }
+          >
+            <Link
+              to={`/${idProject}/conversation`}
+              style={{ color: 'white' }}
+              onClick={() => localStorage.setItem('sider', '6')}
             >
-              <Link
-                to={`/${idProject}/conversation`}
-                style={{ color: 'white' }}
-                onClick={() => localStorage.setItem('sider', '6')}
-              >
-                Conversation
-              </Link>
-            </Menu.Item>
-          </SubMenu>
+              Conversation
+            </Link>
+          </Menu.Item>
+
           <SubMenu
             key="sub2"
             icon={
@@ -191,7 +182,7 @@ const SideBar = () => {
                 Teammate
               </Link>
             </Menu.Item>
-            {role === 'Leader' && (
+            {role === 'Project Manager' && (
               <Menu.Item
                 key="9"
                 icon={

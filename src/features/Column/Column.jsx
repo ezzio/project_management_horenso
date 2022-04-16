@@ -1,14 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { MdMoreHoriz } from 'react-icons/md';
-import './Column.scss';
 import Task from 'features/Task/Task';
-import { Droppable } from 'react-beautiful-dnd';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { Badge } from 'antd';
+import './Column.scss';
 
 const Column = (props) => {
-  const { column, openModal, role } = props;
+  const { column, openModal, role, members } = props;
 
   // const highTask = column.eachColumnTask.filter(
   //   (item) => item.priority === 'High'
@@ -50,6 +47,7 @@ const Column = (props) => {
                 key={task.id}
                 index={index}
                 columnId={column.id_column}
+                members={members}
               />
             );
           })}

@@ -76,7 +76,12 @@ const Board = (props) => {
           {columns &&
             columns.map((column) => {
               return (
-                <Column column={column} openModal={openModal} role={role} />
+                <Column
+                  column={column}
+                  openModal={openModal}
+                  role={role}
+                  members={members}
+                />
               );
             })}
         </div>

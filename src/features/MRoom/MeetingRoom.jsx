@@ -97,7 +97,7 @@ const MeetingRoom = () => {
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
     peer.on("open", async (id) => {
-      await localStorage.setItem("peerid", id);
+      localStorage.setItem("peerid", id);
       socket.emit("join_room", {
         username: sessionStorage.getItem("name"),
         room_id: idRoom,
@@ -114,11 +114,11 @@ const MeetingRoom = () => {
       // setSizeVideoFitDiv();
     });
     socket.on("memberInRoom", (users) => {
-      setSizeVideoFitDiv();
+      // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(users));
     });
-
     socket.on("totalInfoMemberInRoom", (data) => {
+      // console.log('total member in room'
       dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
