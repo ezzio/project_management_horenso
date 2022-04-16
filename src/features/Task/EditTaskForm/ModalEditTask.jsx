@@ -143,12 +143,12 @@ function Step1({ onFinish, form, task }) {
           rules={[
             { required: true, message: 'This field is required' },
             { min: 6, message: 'Title must be 6-30 characters long' },
-            { max: 30, message: 'Title must be 6-30 characters long' },
+            { max: 255, message: 'Title must be 6-30 characters long' },
           ]}
         >
           <Input
             bordered={true}
-            maxLength={36}
+            maxLength={255}
             size="large"
             placeholder="Enter title here..."
             name="title"
@@ -160,7 +160,7 @@ function Step1({ onFinish, form, task }) {
           rules={[
             { required: true, message: 'This field is required' },
             { min: 6, message: 'Description must be 6-100 characters long' },
-            { max: 100, message: 'Description must be 6-100 characters long' },
+            { max: 255, message: 'Description must be 6-100 characters long' },
           ]}
         >
           <Input
