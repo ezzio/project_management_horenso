@@ -16,7 +16,7 @@ import moment from 'moment';
 import { message } from 'antd';
 import { useRef } from 'react';
 
-function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
+function ModalEditTask({ modalOpen, closeModal, task, columnId, members }) {
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const formRef = useRef();
   const [form] = Form.useForm();
@@ -85,7 +85,12 @@ function ModalEditTask({ modalOpen, closeModal, task, columnId }) {
             <Step1 onFinish={onFinish} form={form} task={task} />
           </TabPane>
           <TabPane tab="Step 2" key="2">
-            <Step2 onFinish={onFinish} form={form} task={task} />
+            <Step2
+              onFinish={onFinish}
+              form={form}
+              task={task}
+              members={members}
+            />
           </TabPane>
         </Tabs>
       </Modal>
@@ -138,12 +143,12 @@ function Step1({ onFinish, form, task }) {
           rules={[
             { required: true, message: 'This field is required' },
             { min: 6, message: 'Title must be 6-30 characters long' },
-            { max: 30, message: 'Title must be 6-30 characters long' },
+            { max: 255, message: 'Title must be 6-30 characters long' },
           ]}
         >
           <Input
             bordered={true}
-            maxLength={36}
+            maxLength={255}
             size="large"
             placeholder="Enter title here..."
             name="title"
@@ -155,7 +160,7 @@ function Step1({ onFinish, form, task }) {
           rules={[
             { required: true, message: 'This field is required' },
             { min: 6, message: 'Description must be 6-100 characters long' },
-            { max: 100, message: 'Description must be 6-100 characters long' },
+            { max: 255, message: 'Description must be 6-100 characters long' },
           ]}
         >
           <Input
@@ -190,7 +195,7 @@ function Step1({ onFinish, form, task }) {
   );
 }
 
-function Step2({ onFinish, form, task }) {
+function Step2({ onFinish, form, task, members }) {
   const { Option } = Select;
 
   // from initalData
@@ -231,7 +236,7 @@ function Step2({ onFinish, form, task }) {
             defaultValue={task.taskers.map((tasker) => tasker.user_name)}
           >
             {/* from initialValue --- all of taskers */}
-            {task.taskers.map((member) => {
+            {members.map((member) => {
               return (
                 <>
                   <Option value={member.user_name}>

@@ -34,7 +34,7 @@ const Project = () => {
                 }}
               >
                 <Progress
-                  percent={percent}
+                  percent={parseInt(percent)}
                   size="small"
                   strokeColor={
                     percent <= 30
