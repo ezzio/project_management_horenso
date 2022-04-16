@@ -1,11 +1,11 @@
-import Task from "features/Task/Task";
-import PropTypes from "prop-types";
-import React from "react";
-import { AiFillPlusCircle } from "react-icons/ai";
-import "./Column.scss";
+import Task from 'features/Task/Task';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { AiFillPlusCircle } from 'react-icons/ai';
+import './Column.scss';
 
 const Column = (props) => {
-  const { column, openModal, role } = props;
+  const { column, openModal, role, members } = props;
 
   // const highTask = column.eachColumnTask.filter(
   //   (item) => item.priority === 'High'
@@ -23,15 +23,15 @@ const Column = (props) => {
       <div className="column__header">
         <h4 className="column__header__title">
           {column.id_column === 0
-            ? "Backlogs"
+            ? 'Backlogs'
             : column.id_column === 1
-            ? "In progress"
+            ? 'In progress'
             : column.id_column === 2
-            ? "In review"
-            : "Completed"}
+            ? 'In review'
+            : 'Completed'}
         </h4>
         {column.id_column === 0 &&
-          (role === "Leader" || role === "Project Manager") && (
+          (role === 'Leader' || role === 'Project Manager') && (
             <AiFillPlusCircle
               className="column__header__add"
               onClick={openModal}
@@ -47,6 +47,7 @@ const Column = (props) => {
                 key={task.id}
                 index={index}
                 columnId={column.id_column}
+                members={members}
               />
             );
           })}
