@@ -95,6 +95,7 @@ export const RoomMeetingSlice = createSlice({
           socketId: item.socketId,
         };
       });
+      console.log(newMemberInRoom)
       state.MemberInRoom = newMemberInRoom;
     },
     // memberInRoomMeeting: (state, action) => {
@@ -139,7 +140,7 @@ export const RoomMeetingSlice = createSlice({
         name,
       } = action.payload;
 
-      console.log(action.payload);
+  
       if (isSuccess) {
         state.roomName = name;
         state.startTime = timeStartMeeting;

@@ -106,19 +106,18 @@ const MeetingRoom = () => {
         avatar: sessionStorage.getItem("avatarURL"),
       });
     });
-    socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      message.info("One member just joined the room");
-      // dispatch(memberInRoomMeeting(userOnlineInRoom));
-      // setSizeVideoFitDiv();
-      dispatch(someOneJoinRoom(userOnlineInRoom));
-      // setSizeVideoFitDiv();
-    });
+    // socket.on("SomeOneJoin", async (userOnlineInRoom) => {
+    //   message.info("One member just joined the room");
+
+    //   dispatch(someOneJoinRoom(userOnlineInRoom));
+    // });
     socket.on("memberInRoom", (users) => {
       // setSizeVideoFitDiv();
+      console.log("member in room")
       dispatch(someOneJoinRoom(users));
     });
     socket.on("totalInfoMemberInRoom", (data) => {
-      // console.log('total member in room'
+      console.log('total member in room')
       dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
@@ -200,7 +199,7 @@ const MeetingRoom = () => {
     try {
       dispatch(stopAudioOnly(MyVideo.current.srcObject));
     } catch (e) {
-      console.log("chua set up");
+     
     }
   }, [audio]);
 
