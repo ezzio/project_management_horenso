@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { setSizeVideoFitDiv } from "../setSizeVideoFitDiv";
 const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
   const MyVideo = useRef();
-  console.log(CallTo)
+  // console.log({ connectionPeerjs, CallTo, nameId, MyVideoCall });
   useEffect(() => {
     try {
       let videoGird = document.getElementById("video-grid");
