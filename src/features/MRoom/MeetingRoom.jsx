@@ -107,16 +107,16 @@ const MeetingRoom = () => {
       });
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
-      message.info("One member just joined the room");
+      message.info("1 người vừa tham gia");
       // dispatch(memberInRoomMeeting(userOnlineInRoom));
       // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
       // setSizeVideoFitDiv();
     });
-    // socket.on("memberInRoom", (users) => {
-    //   setSizeVideoFitDiv();
-    //   dispatch(someOneJoinRoom(users));
-    // });
+    socket.on("memberInRoom", (users) => {
+      setSizeVideoFitDiv();
+      dispatch(someOneJoinRoom(users));
+    });
 
     socket.on("totalInfoMemberInRoom", (data) => {
       dispatch(someOneJoinRoom(data));
@@ -177,9 +177,7 @@ const MeetingRoom = () => {
       });
     peer.on("call", (call) => {
       call.answer(MyVideo.current.srcObject);
-      // console.log(MyVideo.current.srcObject)
       call.on("stream", (remoteStream) => {
-        // console.log(remoteStream)
         let videoGird = document.getElementById("video-grid");
         let allvideo = document.querySelectorAll("video");
         if (document.getElementById(call.options.metadata) == undefined) {
