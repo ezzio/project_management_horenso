@@ -4,22 +4,21 @@ import React, { useEffect, useRef, useState } from "react";
 import { setSizeVideoFitDiv } from "../setSizeVideoFitDiv";
 const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
   const MyVideo = useRef();
-  // console.log({ connectionPeerjs, CallTo, nameId, MyVideoCall });
+  console.log({ connectionPeerjs, CallTo, nameId, MyVideoCall });
   useEffect(() => {
     try {
-      let videoGird = document.getElementById("video-grid");
-      if (videoGird) {
-        videoGird.classList.remove(nameId);
-      }
       let call = connectionPeerjs.call(CallTo, MyVideoCall, {
         metadata: localStorage.getItem("access_token"),
       });
-
       call.on("stream", (remoteStream) => {
         if (MyVideo.current != null) {
           MyVideo.current.srcObject = remoteStream;
         }
       });
+      let videoGird = document.getElementById("video-grid");
+      if (videoGird) {
+        videoGird.classList.remove(nameId);
+      }
       // setSizeVideoFitDiv();
     } catch (err) {}
   }, []);
