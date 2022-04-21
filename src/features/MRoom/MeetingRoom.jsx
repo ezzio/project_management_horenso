@@ -40,9 +40,14 @@ import { useHistory } from "react-router-dom";
 let socket = io("https://server-video-call.herokuapp.com");
 // let socket = io("http://localhost:8000");
 
-let peer = new Peer({
+// let peer = new Peer({
+//   secure: true,
+//   host: "mypeerserverjs.herokuapp.com",
+//   port: 443,
+// });
+const peer = new Peer({
   secure: true,
-  host: "mypeerserverjs.herokuapp.com",
+  host: " peer-serverjs.herokuapp.com",
   port: 443,
 });
 // let peer = new Peer({
@@ -93,11 +98,11 @@ const MeetingRoom = () => {
   };
 
   useEffect(() => {
-    // setSizeVideoFitDiv();
     dispatch(listMemberInCanJoinMeetingRoomAsync({ idRoom }));
 
     peer.on("open", async (id) => {
-      await localStorage.setItem("peerid", id);
+      localStorage.setItem("peerid", id);
+      console.log(id);
       socket.emit("join_room", {
         username: sessionStorage.getItem("name"),
         room_id: idRoom,
@@ -108,6 +113,7 @@ const MeetingRoom = () => {
     });
     socket.on("SomeOneJoin", async (userOnlineInRoom) => {
       message.info("1 người vừa tham gia");
+      console.log("SomeOneJoin");
       // dispatch(memberInRoomMeeting(userOnlineInRoom));
       // setSizeVideoFitDiv();
       dispatch(someOneJoinRoom(userOnlineInRoom));
@@ -115,10 +121,11 @@ const MeetingRoom = () => {
     });
     socket.on("memberInRoom", (users) => {
       setSizeVideoFitDiv();
-      dispatch(someOneJoinRoom(users));
+      // dispatch(someOneJoinRoom(users));
     });
 
     socket.on("totalInfoMemberInRoom", (data) => {
+      console.log("totalInfoMemberInRoom");
       dispatch(someOneJoinRoom(data));
     });
     socket.on("someOneDisconnect", async (userOut) => {
@@ -175,26 +182,26 @@ const MeetingRoom = () => {
             }
           });
       });
-    peer.on("call", (call) => {
-      call.answer(MyVideo.current.srcObject);
-      call.on("stream", (remoteStream) => {
-        let videoGird = document.getElementById("video-grid");
-        let allvideo = document.querySelectorAll("video");
-        if (document.getElementById(call.options.metadata) == undefined) {
-          let videoTest = document.createElement("video");
-          videoTest.id = call.options.metadata;
-          videoTest.className = "camera";
-          videoTest.srcObject = remoteStream;
-          videoTest.autoplay = true;
-          if (videoGird) {
-            videoGird.append(videoTest);
-
-            // setSizeVideoFitDiv();
-          }
-        }
-      });
-    });
   }, []);
+  peer.on("call", (call) => {
+    call.answer(MyVideo.current.srcObject);
+    call.on("stream", (remoteStream) => {
+      let videoGird = document.getElementById("video-grid");
+      let allvideo = document.querySelectorAll("video");
+      if (document.getElementById(call.options.metadata) == undefined) {
+        let videoTest = document.createElement("video");
+        videoTest.id = call.options.metadata;
+        videoTest.className = "camera";
+        videoTest.srcObject = remoteStream;
+        videoTest.autoplay = true;
+        if (videoGird) {
+          videoGird.append(videoTest);
+
+          // setSizeVideoFitDiv();
+        }
+      }
+    });
+  });
 
   useEffect(() => {
     try {

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { setSizeVideoFitDiv } from "../setSizeVideoFitDiv";
 const CardVideo = ({ connectionPeerjs, CallTo, nameId, MyVideoCall }) => {
   const MyVideo = useRef();
-  console.log({ connectionPeerjs, CallTo, nameId, MyVideoCall });
+  console.log(MyVideoCall);
   useEffect(() => {
     try {
       let call = connectionPeerjs.call(CallTo, MyVideoCall, {
