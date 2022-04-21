@@ -47,7 +47,7 @@ let socket = io("https://server-video-call.herokuapp.com");
 // });
 const peer = new Peer({
   secure: true,
-  host: " peer-serverjs.herokuapp.com",
+  host: "peerjsnckh.herokuapp.com",
   port: 443,
 });
 // let peer = new Peer({
